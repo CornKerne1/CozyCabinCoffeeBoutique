@@ -21,14 +21,22 @@ public class DayNightCycle
         if (gMD.isOpen)
         {
             gMD.currentOpenTime -= 1 * Time.deltaTime;
+            if(gMD.currentOpenTime <= 0)
+            {
+                UpdateTimeOfDay(gMD.hoursOpen);
+            }
         }
     }
     public void UpdateTimeOfDay(int time)
     {
+
         if (gMD.timeOfDay + time > 24)
         {
             gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
         }
+        else
         gMD.timeOfDay += time;
+
+        if (gMD.timeOfDay > 12) gMD.displayTime = -1 * (gMD.timeOfDay - 12);
     }
 }

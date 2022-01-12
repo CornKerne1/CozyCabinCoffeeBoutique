@@ -6,9 +6,13 @@ using UnityEngine;
 public class GameModeData : ScriptableObject
 {
     [Header("Variables to Play With")]
+    [Range(0f, 720f)]
     public float openTimer;
+    [Range(0, 16)]
+    public int hoursOpen;
 
     [Header("DO NOT TOUCH")]
+    public int displayTime;
     public int timeOfDay;
     public float currentOpenTime;
     public bool isOpen;
