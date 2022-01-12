@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
+    //This class keeps track of the game
+    
+    //This is the Scriptable Object that contains the data for this class.
     public GameModeData gMD;
+    //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle dNC;
     
     // Start is called before the first frame update
