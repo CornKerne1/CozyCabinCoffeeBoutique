@@ -5,10 +5,12 @@ using UnityEngine;
 public class GameMode : MonoBehaviour
 {
     public GameModeData gMD;
+    public DayNightCycle dNC;
     
     // Start is called before the first frame update
     void Start()
     {
+        dNC = new DayNightCycle(dNC, this, gMD);
         gMD.gameModeInstance = this;
         gMD.currentOpenTime = gMD.openTimer;
     }
@@ -16,18 +18,11 @@ public class GameMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gMD.isOpen)
-        {
-            gMD.currentOpenTime -= 1 * Time.deltaTime;
-        }
+        dNC.StartTimer();
     }
 
     public void UpdateTimeOfDay(int time)
     {
-        if(gMD.timeOfDay + time > 24)
-        {
-            gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
-        }
-        gMD.timeOfDay += time;
+        dNC.UpdateTimeOfDay(time);
     }
 }
