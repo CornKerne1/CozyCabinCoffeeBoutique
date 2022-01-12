@@ -10,7 +10,7 @@ public class GameModeData : ScriptableObject
 
     [Header("DO NOT TOUCH")]
     public int timeOfDay;
-    public float currentOpenTime;
+    public float currentOpenTime = 0;
     public bool isOpen;
     public GameMode gameModeInstance;
 
