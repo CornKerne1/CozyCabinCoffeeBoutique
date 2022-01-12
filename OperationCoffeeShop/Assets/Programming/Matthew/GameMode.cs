@@ -10,8 +10,8 @@ public class GameMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dNC = new DayNightCycle(dNC, this, gMD);
         gMD.gameModeInstance = this;
+        dNC = new DayNightCycle(dNC, this, gMD);
         gMD.currentOpenTime = gMD.openTimer;
     }
 

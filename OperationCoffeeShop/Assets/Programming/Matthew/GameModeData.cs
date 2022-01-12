@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PapaData", menuName = "PapaData/Generic")]
+[CreateAssetMenu(fileName = "GameModeData", menuName = "GameModeData/Generic")]
 public class GameModeData : ScriptableObject
 {
     [Header("Variables to Play With")]
