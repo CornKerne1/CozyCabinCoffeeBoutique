@@ -14,15 +14,11 @@ public class GameMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Sets the reference to this script in the GameModeData instance.
-        gMD.gameModeInstance = this;
         //Creates new DayNightCycle component.
-        dNC = new DayNightCycle(dNC, this, gMD);
-        //Resets old timer data.
-        gMD.currentOpenTime = gMD.openTimer;
+        dNC = new DayNightCycle(dNC, gMD);
     }
-
-    // Update is called once per frame
+    
+    //Update is called once per frame
     void Update()
     {
         //Handles the timer when the store is open.

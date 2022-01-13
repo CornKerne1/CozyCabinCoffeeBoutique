@@ -24,6 +24,5 @@ public class GameModeData : ScriptableObject
     public int timeOfDay;
     public float currentOpenTime;
     public bool isOpen;
-    public GameMode gameModeInstance;
 
 }

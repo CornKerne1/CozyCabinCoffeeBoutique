@@ -9,13 +9,11 @@ public class DayNightCycle
     public event EventHandler TimeChanged;
     public GameModeData gMD;
     private DayNightCycle dNC;
-    private GameMode gM;
 
     //Constructor!
-    public DayNightCycle(DayNightCycle dNC, GameMode gM, GameModeData gMD)
+    public DayNightCycle(DayNightCycle dNC, GameModeData gMD)
     {
         this.dNC = dNC;
-        this.gM = gM;
         this.gMD = gMD;
     }
     //Handles store open timer.
@@ -37,11 +35,17 @@ public class DayNightCycle
             }
         }
     }
+    
+    public void Sub_TimeChanged(object sender, EventArgs e)
+    {
+
+    }
+    
     //This updates and handles time of day when days have 24 hours..
     public void UpdateTimeOfDay(int time)
     {
         //If the current time is 2 in the morning, we want to display 2 not 26.
-        if (gMD.timeOfDay + time > 24) gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
+        if (gMD.timeOfDay + time >= 24) gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
         else gMD.timeOfDay += time;
         if (gMD.timeOfDay > 12) gMD.displayTime = -1 * (gMD.timeOfDay - 12);
         //If TimeChanged Event is not null (isValid?) Invoke Event. 
