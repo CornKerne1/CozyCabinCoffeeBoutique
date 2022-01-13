@@ -24,6 +24,7 @@ public class GameModeData : ScriptableObject
     public int reputation;
     public int displayTime;
     public int timeOfDay;
+    public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
 
