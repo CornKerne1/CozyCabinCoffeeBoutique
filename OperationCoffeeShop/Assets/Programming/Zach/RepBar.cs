@@ -6,13 +6,12 @@ using UnityEngine.UI;
 
 public class RepBar : MonoBehaviour
 {
-    public int Maxrep;
+
     public Slider slider;
 
-    public void SetMaxRep(int reputation)
+    public void SetMaxRep(int Maxrep)
     {
         slider.maxValue = Maxrep;
-        slider.value = reputation;
     }
     public void SetRep(int reputation)
     {
