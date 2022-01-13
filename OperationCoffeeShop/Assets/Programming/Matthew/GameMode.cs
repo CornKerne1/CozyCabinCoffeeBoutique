@@ -24,6 +24,11 @@ public class GameMode : MonoBehaviour
         //Handles the timer when the store is open.
         dNC.StartTimer();
     }
+    public void UpdateReputation(int reputation)
+    {
+        //gMD.reputation = reputation + gMD.reputation;
+        //Call method to change reputation slider.
+    }
 
     //This is the method to call to change the time of day.
     public void UpdateTimeOfDay(int time)

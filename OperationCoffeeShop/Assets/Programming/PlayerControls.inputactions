@@ -11,7 +11,8 @@
                     "id": "64a5d5b0-b38e-41c9-986a-310ce693686b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Strafe Left/Right",
@@ -19,7 +20,8 @@
                     "id": "710f510d-a4e0-4070-9e18-4921033ae2cb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -27,7 +29,8 @@
                     "id": "910954c9-7cae-4429-8fa1-4e43b66bced5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -35,7 +38,8 @@
                     "id": "3ea3144a-5a2a-4a72-a50f-d5969353c8ec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Camera Look",
@@ -43,15 +47,17 @@
                     "id": "7b8d37ea-d917-4fb7-ab1d-191a1cb38b98",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Throw",
+                    "name": "Aim Down Sights",
                     "type": "Button",
                     "id": "bde0b333-1f4b-4192-b1f6-d746caad385d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PauseGame",
@@ -59,7 +65,8 @@
                     "id": "ba688af3-eee2-476a-ae2b-ffcf1fe4864c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "InteractWtih ",
@@ -67,15 +74,17 @@
                     "id": "75575b93-b018-45d2-8613-d6e904b34fdb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Flahslight",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "fd9f8615-f07f-42df-8111-1d7adef34605",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -163,7 +172,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throw",
+                    "action": "Aim Down Sights",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -218,7 +227,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Flahslight",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

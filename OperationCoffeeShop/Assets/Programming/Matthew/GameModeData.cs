@@ -14,12 +14,14 @@ public class GameModeData : ScriptableObject
     //You can use a slider with the RangeAttribute
     [Range(0f, 720f)]
     public float openTimer;
-    
+
+
     [Range(0, 16)]
     public int hoursOpen;
 
     //This section is for variable you do not want designers to play with.
     [Header("DO NOT TOUCH")]
+    public int reputation;
     public int displayTime;
     public int timeOfDay;
     public float currentOpenTime;
