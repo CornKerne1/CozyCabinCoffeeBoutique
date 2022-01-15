@@ -11,7 +11,9 @@ public class LightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Initialize());
+        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        gM.dNC.TimeChanged += Sub_TimeChanged;
+        //StartCoroutine(Initialize());
     }
 
     void Sub_TimeChanged(object sender, EventArgs e)
@@ -26,10 +28,10 @@ public class LightController : MonoBehaviour
         
     }
 
-    IEnumerator Initialize()
-    {
-        yield return new WaitForSeconds(.02f);
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        gM.dNC.TimeChanged += Sub_TimeChanged;
-    }
+    //IEnumerator Initialize()
+    //{
+    //    yield return new WaitForSeconds(.02f);
+    //    gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+    //    gM.dNC.TimeChanged += Sub_TimeChanged;
+    //}
 }

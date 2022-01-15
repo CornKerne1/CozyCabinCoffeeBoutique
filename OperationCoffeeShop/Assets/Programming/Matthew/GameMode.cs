@@ -12,7 +12,7 @@ public class GameMode : MonoBehaviour
     public DayNightCycle dNC;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Creates new DayNightCycle component.
         dNC = new DayNightCycle(dNC, gMD);
