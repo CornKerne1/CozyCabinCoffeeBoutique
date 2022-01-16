@@ -45,7 +45,11 @@ public class DayNightCycle
     public void UpdateTimeOfDay(int time)
     {
         //If the current time is 2 in the morning, we want to display 2 not 26.
-        if (gMD.timeOfDay + time >= 24) gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
+        if (gMD.timeOfDay + time >= 24)
+        {
+            gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
+            gMD.day = gMD.day + 1;
+        }
         else gMD.timeOfDay += time;
         if (gMD.timeOfDay > 12) gMD.displayTime = -1 * (gMD.timeOfDay - 12);
         //If TimeChanged Event is not null (isValid?) Invoke Event. 

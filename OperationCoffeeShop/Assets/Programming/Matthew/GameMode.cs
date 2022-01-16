@@ -12,10 +12,11 @@ public class GameMode : MonoBehaviour
     public DayNightCycle dNC;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Creates new DayNightCycle component.
         dNC = new DayNightCycle(dNC, gMD);
+        Initialize();
     }
     
     //Update is called once per frame
@@ -24,10 +25,20 @@ public class GameMode : MonoBehaviour
         //Handles the timer when the store is open.
         dNC.StartTimer();
     }
+    public void UpdateReputation(int reputation)
+    {
+        //gMD.reputation = reputation + gMD.reputation;
+        //Call method to change reputation slider.
+    }
 
     //This is the method to call to change the time of day.
     public void UpdateTimeOfDay(int time)
     {
         dNC.UpdateTimeOfDay(time);
+    }
+
+    public void Initialize()
+    {
+        gMD.currentOpenTime = gMD.openTimer;
     }
 }

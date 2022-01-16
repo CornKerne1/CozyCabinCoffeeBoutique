@@ -2,24 +2,26 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "ChildControlls",
+            "name": "FPPlayer",
             "id": "0b34927f-cc2b-4de9-8b25-203c84a93f63",
             "actions": [
                 {
                     "name": "Move Forward/Backwards",
                     "type": "PassThrough",
                     "id": "64a5d5b0-b38e-41c9-986a-310ce693686b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Strafe Left/Right",
+                    "name": "Move Left/Right",
                     "type": "PassThrough",
-                    "id": "710f510d-a4e0-4070-9e18-4921033ae2cb",
-                    "expectedControlType": "Button",
+                    "id": "a6d1ef5b-185f-48f4-9269-27da3685264f",
+                    "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
@@ -27,7 +29,8 @@
                     "id": "910954c9-7cae-4429-8fa1-4e43b66bced5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -35,23 +38,35 @@
                     "id": "3ea3144a-5a2a-4a72-a50f-d5969353c8ec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Camera Look",
+                    "name": "MouseX",
                     "type": "PassThrough",
                     "id": "7b8d37ea-d917-4fb7-ab1d-191a1cb38b98",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Throw",
+                    "name": "MouseY",
+                    "type": "PassThrough",
+                    "id": "a74dc915-415c-4668-85e7-ac5479d6ed8b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Aim Down Sights",
                     "type": "Button",
                     "id": "bde0b333-1f4b-4192-b1f6-d746caad385d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PauseGame",
@@ -59,7 +74,8 @@
                     "id": "ba688af3-eee2-476a-ae2b-ffcf1fe4864c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "InteractWtih ",
@@ -67,15 +83,17 @@
                     "id": "75575b93-b018-45d2-8613-d6e904b34fdb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Flahslight",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "fd9f8615-f07f-42df-8111-1d7adef34605",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -91,19 +109,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "Negative",
                     "id": "a56d87f7-b46b-4f84-a2cf-6172ef4f45d1",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move Forward/Backwards",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "64a76770-779c-4b91-a16d-c6817d0ca463",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -113,46 +120,24 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "StrafeKB",
-                    "id": "896231bb-7847-4cbe-99d4-dd6105a16126",
-                    "path": "1DAxis",
+                    "name": "Positive",
+                    "id": "64a76770-779c-4b91-a16d-c6817d0ca463",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Strafe Left/Right",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "057045b2-52be-4ad2-bb24-a8e42af8b398",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Strafe Left/Right",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "43715724-f597-4c8e-9265-e6e18003bf0f",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Strafe Left/Right",
+                    "action": "Move Forward/Backwards",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
                     "id": "63b62d1e-a16f-441a-b6b5-217902e903ad",
-                    "path": "<Mouse>/delta",
+                    "path": "<Mouse>/delta/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Camera Look",
+                    "action": "MouseX",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -163,7 +148,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throw",
+                    "action": "Aim Down Sights",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -218,7 +203,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Flahslight",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "MoveKB",
+                    "id": "5020e220-7be7-451f-ab29-d797efd17054",
+                    "path": "1DAxis",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Left/Right",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "5cecde15-d9f3-48d6-ac7a-183db61a9fe1",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Left/Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "707e68ce-a3d6-40ff-b88c-20f7545e10f0",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Left/Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "62628c1a-7b9f-413a-a64b-624e0ac4e85f",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseY",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
