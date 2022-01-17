@@ -57,5 +57,31 @@ public class ShoppingDict : MonoBehaviour
 
         DisplayShoppingList();
     }
+    public void AddMilk()
+    {
+        if (ShoppingDic.ContainsKey("Milk"))
+        {
+            ShoppingDic["Milk"]++;
 
+        }
+        else
+        {
+            ShoppingDic.Add("Milk", 1);
+        }
+        DisplayShoppingList();
+    }
+    public void RemoveMilk()
+    {
+        if (ShoppingDic.ContainsKey("Milk"))
+        {
+            ShoppingDic["Milk"]--;
+
+        }
+        if (ShoppingDic["Milk"] <= 0)
+        {
+            ShoppingDic.Remove("Milk");
+        }
+
+        DisplayShoppingList();
+    }
 }
