@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class RegularCustomer : Customer
 {
-    public abstract Drinks FavoriteDrink();
+    public abstract DrinkData FavoriteDrink();
+    public abstract List<DrinkData> DesirableDrinks();
 }

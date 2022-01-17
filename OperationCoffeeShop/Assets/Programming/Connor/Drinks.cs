@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Drinks : MonoBehaviour
+[System.Serializable]
+public struct Drinks 
 {
-   public enum Drink
-    {
-        Coffee,Espresso
-    }
+    public string name;
 
-
+   public Ingredients[] recipe; 
 
    
 }

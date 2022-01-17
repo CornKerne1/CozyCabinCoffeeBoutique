@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ingredients : MonoBehaviour
+[System.Serializable]
+public enum  Ingredients 
 {
-    
-        public enum Ingredient
-        {
-            Milk,EspressoShot
-        }
-    
+    Milk,EspressoShot,dirtyBeans,Foobar,Coke,cush, Plumbus
+
 }
