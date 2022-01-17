@@ -5,15 +5,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {    
-    Vector3 verticalVelocity = Vector3.zero;
+    Vector3 verticalVelocity = Vector3.zero;    
     
     private PlayerInput pI;
     private CharacterController controller;
     Vector3 currentVelocity;
     float gravity = -9.81f;
-    float horizontalMovement;
-    float verticalMovement;
+    float horizontalMovement = 0;
+    float verticalMovement = 0;
+    float mod = 5;
     bool isGrounded;
+    bool isMoving = false;
+
+    Rigidbody rB;
+
+    private void Awake()
+    {
+        GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
@@ -29,19 +38,15 @@ public class PlayerMovement : MonoBehaviour
     
     private void HandleMovement()
     {
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, pI.pD.groundMask);
-        if(isGrounded)
-        {
-            verticalVelocity.y = 0;
-        }
-        
+
         horizontalMovement = pI.GetHorizontalMovement();
         verticalMovement = pI.GetVerticalMovement();
 
-        Vector3 movementVelocity = (transform.right * horizontalMovement + transform.forward * verticalMovement);
+        Vector3 movementVelocity = transform.right * horizontalMovement + transform.forward * verticalMovement;
         controller.Move(movementVelocity * pI.pD.moveSpeed * Time.deltaTime);
         verticalVelocity.y += gravity * Time.deltaTime;
         controller.Move(verticalVelocity * Time.deltaTime);
+
     }
 
 
