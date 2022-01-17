@@ -12,10 +12,11 @@ public class GameMode : MonoBehaviour
     public DayNightCycle dNC;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Creates new DayNightCycle component.
         dNC = new DayNightCycle(dNC, gMD);
+        Initialize();
     }
     
     //Update is called once per frame
@@ -34,5 +35,10 @@ public class GameMode : MonoBehaviour
     public void UpdateTimeOfDay(int time)
     {
         dNC.UpdateTimeOfDay(time);
+    }
+
+    public void Initialize()
+    {
+        gMD.currentOpenTime = gMD.openTimer;
     }
 }
