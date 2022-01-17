@@ -4,16 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{    
-    Vector3 verticalVelocity = Vector3.zero;
+{
+    [SerializeField] Transform cam = null;
+
+    Vector3 verticalVelocity = Vector3.zero;    
     
     private PlayerInput pI;
     private CharacterController controller;
+    
     Vector3 currentVelocity;
     float gravity = -9.81f;
-    float horizontalMovement;
-    float verticalMovement;
+    float horizontalMovement = 0;
+    float verticalMovement = 0;
+    float speed =1;
     bool isGrounded;
+    bool isMoving = false;
+
+
+    private void Awake()
+    {
+
+    }
 
     private void Start()
     {
@@ -24,24 +35,39 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();      
+        HandleMovement();
     }
     
     private void HandleMovement()
     {
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, pI.pD.groundMask);
-        if(isGrounded)
+        
+        if (pI.GetHorizontalMovement() == 0 && pI.GetVerticalMovement() == 0)
         {
-            verticalVelocity.y = 0;
+            if(isMoving == true)
+            {
+                speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 2f, 0, pI.pD.moveSpeed);                
+            }
+            else    
+            speed = 0;
+        }
+        else if (speed == 0)
+        {
+            speed = Mathf.Clamp(speed + pI.pD.inertiaVar, 0, pI.pD.moveSpeed);
+            isMoving = false;
+        }
+        else
+        {
+            speed = Mathf.Clamp(speed + pI.pD.inertiaVar * 1.1f, 0, pI.pD.moveSpeed);
+            isMoving = true;
+            horizontalMovement = pI.GetHorizontalMovement();
+            verticalMovement = pI.GetVerticalMovement();
         }
         
-        horizontalMovement = pI.GetHorizontalMovement();
-        verticalMovement = pI.GetVerticalMovement();
-
-        Vector3 movementVelocity = (transform.right * horizontalMovement + transform.forward * verticalMovement);
-        controller.Move(movementVelocity * pI.pD.moveSpeed * Time.deltaTime);
+        Vector3 movementVelocity = transform.right * horizontalMovement + transform.forward * verticalMovement;
+        controller.Move(movementVelocity * speed * Time.deltaTime);
         verticalVelocity.y += gravity * Time.deltaTime;
         controller.Move(verticalVelocity * Time.deltaTime);
+
     }
 
 
