@@ -274,6 +274,178 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Barista"",
+            ""id"": ""bdbf0698-e6c5-4615-8d05-60ee34da2c5b"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc80d0dd-1e6f-45d7-93b1-f26b7c25d623"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move Forward/Backwards"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""65bf77b9-048a-4199-bc2b-7f2764a6da72"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Strafe Left/Right"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""344202de-a327-42e0-abaa-e1cac158bcd1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4ada7b57-513e-400e-bd72-4b3a2d2ae024"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""bea822ff-c9f4-4e80-8eaa-b54614842e98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractWtih "",
+                    ""type"": ""Button"",
+                    ""id"": ""016a6de3-b5fc-42ac-94c8-aca4f718dfcd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""845f6d02-ece5-4f1c-a032-8e0f1ad495cf"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""MoveKB"",
+                    ""id"": ""d17154f9-8a11-4d5d-bf5e-093ee619b90c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Forward/Backwards"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""02c93d14-6c60-441f-92d2-8fa89341943c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Forward/Backwards"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""331cec8b-7174-4c19-85e4-1255c9cb3705"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Forward/Backwards"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""StrafeKB"",
+                    ""id"": ""7dee93db-1d42-48a3-acee-10fc29589576"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strafe Left/Right"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8123b71e-1dae-46b9-8981-df2e25ed80d8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strafe Left/Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""99b015bf-dd26-4431-a93b-8dbfdd995ca9"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strafe Left/Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0173c81-9e9b-4352-8093-b5894a954028"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df6b25a0-0b14-403a-b2c1-ba63835dc65a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""540be3a1-46ce-4301-b03a-e6ace54e25c7"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractWtih "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -290,6 +462,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_FPPlayer_PauseGame = m_FPPlayer.FindAction("PauseGame", throwIfNotFound: true);
         m_FPPlayer_InteractWtih = m_FPPlayer.FindAction("InteractWtih ", throwIfNotFound: true);
         m_FPPlayer_Interact = m_FPPlayer.FindAction("Interact", throwIfNotFound: true);
+        // Barista
+        m_Barista = asset.FindActionMap("Barista", throwIfNotFound: true);
+        m_Barista_Newaction = m_Barista.FindAction("New action", throwIfNotFound: true);
+        m_Barista_MoveForwardBackwards = m_Barista.FindAction("Move Forward/Backwards", throwIfNotFound: true);
+        m_Barista_StrafeLeftRight = m_Barista.FindAction("Strafe Left/Right", throwIfNotFound: true);
+        m_Barista_CameraLook = m_Barista.FindAction("Camera Look", throwIfNotFound: true);
+        m_Barista_PauseGame = m_Barista.FindAction("PauseGame", throwIfNotFound: true);
+        m_Barista_InteractWtih = m_Barista.FindAction("InteractWtih ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -450,6 +630,79 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public FPPlayerActions @FPPlayer => new FPPlayerActions(this);
+
+    // Barista
+    private readonly InputActionMap m_Barista;
+    private IBaristaActions m_BaristaActionsCallbackInterface;
+    private readonly InputAction m_Barista_Newaction;
+    private readonly InputAction m_Barista_MoveForwardBackwards;
+    private readonly InputAction m_Barista_StrafeLeftRight;
+    private readonly InputAction m_Barista_CameraLook;
+    private readonly InputAction m_Barista_PauseGame;
+    private readonly InputAction m_Barista_InteractWtih;
+    public struct BaristaActions
+    {
+        private @PlayerControls m_Wrapper;
+        public BaristaActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Barista_Newaction;
+        public InputAction @MoveForwardBackwards => m_Wrapper.m_Barista_MoveForwardBackwards;
+        public InputAction @StrafeLeftRight => m_Wrapper.m_Barista_StrafeLeftRight;
+        public InputAction @CameraLook => m_Wrapper.m_Barista_CameraLook;
+        public InputAction @PauseGame => m_Wrapper.m_Barista_PauseGame;
+        public InputAction @InteractWtih => m_Wrapper.m_Barista_InteractWtih;
+        public InputActionMap Get() { return m_Wrapper.m_Barista; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BaristaActions set) { return set.Get(); }
+        public void SetCallbacks(IBaristaActions instance)
+        {
+            if (m_Wrapper.m_BaristaActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_BaristaActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_BaristaActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_BaristaActionsCallbackInterface.OnNewaction;
+                @MoveForwardBackwards.started -= m_Wrapper.m_BaristaActionsCallbackInterface.OnMoveForwardBackwards;
+                @MoveForwardBackwards.performed -= m_Wrapper.m_BaristaActionsCallbackInterface.OnMoveForwardBackwards;
+                @MoveForwardBackwards.canceled -= m_Wrapper.m_BaristaActionsCallbackInterface.OnMoveForwardBackwards;
+                @StrafeLeftRight.started -= m_Wrapper.m_BaristaActionsCallbackInterface.OnStrafeLeftRight;
+                @StrafeLeftRight.performed -= m_Wrapper.m_BaristaActionsCallbackInterface.OnStrafeLeftRight;
+                @StrafeLeftRight.canceled -= m_Wrapper.m_BaristaActionsCallbackInterface.OnStrafeLeftRight;
+                @CameraLook.started -= m_Wrapper.m_BaristaActionsCallbackInterface.OnCameraLook;
+                @CameraLook.performed -= m_Wrapper.m_BaristaActionsCallbackInterface.OnCameraLook;
+                @CameraLook.canceled -= m_Wrapper.m_BaristaActionsCallbackInterface.OnCameraLook;
+                @PauseGame.started -= m_Wrapper.m_BaristaActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_BaristaActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_BaristaActionsCallbackInterface.OnPauseGame;
+                @InteractWtih.started -= m_Wrapper.m_BaristaActionsCallbackInterface.OnInteractWtih;
+                @InteractWtih.performed -= m_Wrapper.m_BaristaActionsCallbackInterface.OnInteractWtih;
+                @InteractWtih.canceled -= m_Wrapper.m_BaristaActionsCallbackInterface.OnInteractWtih;
+            }
+            m_Wrapper.m_BaristaActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+                @MoveForwardBackwards.started += instance.OnMoveForwardBackwards;
+                @MoveForwardBackwards.performed += instance.OnMoveForwardBackwards;
+                @MoveForwardBackwards.canceled += instance.OnMoveForwardBackwards;
+                @StrafeLeftRight.started += instance.OnStrafeLeftRight;
+                @StrafeLeftRight.performed += instance.OnStrafeLeftRight;
+                @StrafeLeftRight.canceled += instance.OnStrafeLeftRight;
+                @CameraLook.started += instance.OnCameraLook;
+                @CameraLook.performed += instance.OnCameraLook;
+                @CameraLook.canceled += instance.OnCameraLook;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
+                @InteractWtih.started += instance.OnInteractWtih;
+                @InteractWtih.performed += instance.OnInteractWtih;
+                @InteractWtih.canceled += instance.OnInteractWtih;
+            }
+        }
+    }
+    public BaristaActions @Barista => new BaristaActions(this);
     public interface IFPPlayerActions
     {
         void OnMoveForwardBackwards(InputAction.CallbackContext context);
@@ -462,5 +715,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnInteractWtih(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IBaristaActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+        void OnMoveForwardBackwards(InputAction.CallbackContext context);
+        void OnStrafeLeftRight(InputAction.CallbackContext context);
+        void OnCameraLook(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
+        void OnInteractWtih(InputAction.CallbackContext context);
     }
 }
