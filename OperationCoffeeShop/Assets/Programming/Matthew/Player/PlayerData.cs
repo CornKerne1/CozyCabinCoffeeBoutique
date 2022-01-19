@@ -17,4 +17,8 @@ public class PlayerData : ScriptableObject
     [Range(0, 100)]
     public float neckClamp;
     public LayerMask groundMask;//
+
+    [Header("Headbob Stuff")]
+    [Range(0.00001f, 0.001f)] public float amplitude = 0.0003f;
+    [Range(0, 30)] public float frequency = 10.0f;
 }
