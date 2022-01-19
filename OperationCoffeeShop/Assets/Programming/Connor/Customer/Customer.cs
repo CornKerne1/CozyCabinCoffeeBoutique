@@ -10,7 +10,7 @@ public abstract class Customer : MonoBehaviour
     /// Returns Customer's Name.
     /// </summary>
     /// <returns></returns>
-    public abstract string Name();
+    public abstract string GetName();
 
 
 
@@ -24,11 +24,11 @@ public abstract class Customer : MonoBehaviour
 
 
     /// <summary>
-    ///      uses LearnedIngredients to randomly return any addons that a customer
+    ///      uses LearnedIngredients to randomly return any addon that a customer
     ///      may want on top of the default ingredients for the random drink. 
     /// </summary>
     /// <returns></returns>
-    protected abstract List<Ingredients> GetRandomAddOns();
+    protected abstract IngredientNode GetRandomAddOn();
 
 
     /// <summary>
@@ -36,8 +36,14 @@ public abstract class Customer : MonoBehaviour
 
     /// </summary>
     /// <returns></returns>
-    protected abstract Drinks GetRandomDrink();
+    protected abstract DrinkData GetRandomDrink();
 
+    /// <summary>
+    /// uses GetRandomAddOn and GetRandomDrink to return
+    /// a drink the customer may desired
+    /// </summary>
+    /// <returns></returns>
+    public abstract DrinkData GetDrinkOrder();
 
 
     /// <summary>

@@ -5,27 +5,57 @@ using UnityEngine;
 
 public class RandomCustomer : Customer
 {
-    override public string Name()
+    [SerializeField]
+    private RandomNameSet nameSet;
+
+    private string customerName;
+
+    System.Random random = new System.Random();
+    RandomCustomer()
     {
-        throw new NotImplementedException();
+        //sets a random name from nameSet
+        customerName = nameSet.names[random.Next(nameSet.names.Count - 1)];
+    }
+    RandomCustomer(RandomNameSet nameSet)
+    {
+        //Uses specified nameset to generate random name
+        this.nameSet = nameSet;
+        //sets a random name from nameSet
+        customerName = nameSet.names[random.Next(nameSet.names.Count - 1)];
     }
 
-    protected override List<Ingredients> GetRandomAddOns()
+    override public string GetName()
     {
-        throw new NotImplementedException();
+        return customerName;
     }
 
-    
-    protected override Drinks GetRandomDrink()
+    protected override IngredientNode GetRandomAddOn()
     {
-        throw new NotImplementedException();
+        int ingredient = random.Next(PRD.learnedIngredients.Count - 1);
+        float target = random.Next(0, 1);
+        return new IngredientNode(PRD.learnedIngredients[ingredient],target);
+    }
+
+    protected override DrinkData GetRandomDrink()
+    {
+      
+        return PRD.learnedDrinks[random.Next(PRD.learnedIngredients.Count - 1)];
+    }
+    public override DrinkData GetDrinkOrder()
+    {
+        IngredientNode addOn = GetRandomAddOn();
+        DrinkData drink = GetRandomDrink();
+        
+        DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
+        customeDrink.addIngredient(addOn);
+        return customeDrink;
     }
 
     public void compareingredients()
     {
         List<GameObject> newList = new List<GameObject>();
-        
-      // int i = newList.Find(g);
+
+        // int i = newList.Find(g);
     }
 
     protected override List<Ingredients> GetRandomToppings()
