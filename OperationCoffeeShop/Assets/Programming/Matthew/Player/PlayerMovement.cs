@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     float gravity = -9.81f;
     float horizontalMovement = 0;
     float verticalMovement = 0;
-    float speed =1;
+    public float speed =1;
     bool isGrounded;
     bool isMoving = false;
 
