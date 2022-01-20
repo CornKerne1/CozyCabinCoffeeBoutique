@@ -8,6 +8,8 @@ public class PlayerData : ScriptableObject
     [Header("Controller Variables")]
     [Range(0, 10)]
     public float moveSpeed;
+    [Range(.01f, .99f)]
+    public float inertiaVar;
     [Range(0, 100)]
     public float mouseSensitivityX;
     [Range(0, 100)]
