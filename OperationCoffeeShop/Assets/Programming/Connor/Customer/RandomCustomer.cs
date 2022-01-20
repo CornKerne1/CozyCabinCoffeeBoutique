@@ -63,6 +63,11 @@ public class RandomCustomer : Customer
         throw new NotImplementedException();
     }
 
+    public override void NextMove()
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Tree DialogueTree()
     {
         throw new NotImplementedException();
@@ -73,8 +78,5 @@ public class RandomCustomer : Customer
         throw new NotImplementedException();
     }
 
-    public override void NextMove()
-    {
-        throw new NotImplementedException();
-    }
+   
 }
