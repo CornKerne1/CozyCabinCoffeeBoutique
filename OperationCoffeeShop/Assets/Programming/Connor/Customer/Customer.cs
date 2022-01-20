@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Customer : MonoBehaviour
+public abstract class Customer 
 {
     public PlayerResearchData PRD;
 

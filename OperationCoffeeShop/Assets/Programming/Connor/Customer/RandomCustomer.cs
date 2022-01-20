@@ -11,12 +11,12 @@ public class RandomCustomer : Customer
     private string customerName;
 
     System.Random random = new System.Random();
-    RandomCustomer()
+    public RandomCustomer()
     {
         //sets a random name from nameSet
         customerName = nameSet.names[random.Next(nameSet.names.Count - 1)];
     }
-    RandomCustomer(RandomNameSet nameSet)
+    public RandomCustomer(RandomNameSet nameSet)
     {
         //Uses specified nameset to generate random name
         this.nameSet = nameSet;
