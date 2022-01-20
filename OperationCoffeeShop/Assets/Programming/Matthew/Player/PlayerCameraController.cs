@@ -20,7 +20,7 @@ public class PlayerCameraController : MonoBehaviour
     public void HandleMovement()
     {
 
-        transform.Rotate(Vector3.up, pI.pD.mouseSensitivityX * pI.GetMouseX() * Time.deltaTime);
+        transform.root.Rotate(Vector3.up, pI.pD.mouseSensitivityX * pI.GetMouseX() * Time.deltaTime);
         xRotation -= pI.GetMouseY() * (pI.pD.mouseSensitivityY / 200);
         xRotation = Mathf.Clamp(xRotation, -pI.pD.neckClamp, pI.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
@@ -30,7 +30,10 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Start()
     {
-        pI = this.gameObject.GetComponent<PlayerInput>();
+        if (this.gameObject.GetComponent<PlayerInput>() != null)
+            pI = this.gameObject.GetComponent<PlayerInput>();
+        else
+            pI = transform.root.gameObject.GetComponent<PlayerInput>();
 
     }
 
