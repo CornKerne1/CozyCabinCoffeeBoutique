@@ -10,6 +10,7 @@ public class DayNightCycle
     public GameModeData gMD;
     private DayNightCycle dNC;
 
+
     //Constructor!
     public DayNightCycle(DayNightCycle dNC, GameModeData gMD)
     {
@@ -23,15 +24,12 @@ public class DayNightCycle
         if (gMD.isOpen)
         {
             //Subtracts the amount that passes from the variable.
-            gMD.currentOpenTime -= 1 * Time.deltaTime;
+            TrackTime();
             //If current time is less than or equal to 0.
-            if(gMD.currentOpenTime <= 0)
+            if(gMD.currentTime.Hour >= gMD.closingHour)
             {
-                UpdateTimeOfDay(gMD.hoursOpen);
-                //Store closes.
                 gMD.isOpen = false;
-                //Timer Resets.
-                gMD.currentOpenTime = gMD.openTimer;
+
             }
         }
     }
@@ -42,17 +40,16 @@ public class DayNightCycle
     }
     
     //This updates and handles time of day when days have 24 hours..
-    public void UpdateTimeOfDay(int time)
+    public void UpdateTimeOfDay(int hourAdding)
     {
-        //If the current time is 2 in the morning, we want to display 2 not 26.
-        if (gMD.timeOfDay + time >= 24)
-        {
-            gMD.timeOfDay = (gMD.timeOfDay + time) - 24;
-            gMD.day = gMD.day + 1;
-        }
-        else gMD.timeOfDay += time;
-        if (gMD.timeOfDay > 12) gMD.displayTime = -1 * (gMD.timeOfDay - 12);
+        gMD.currentTime = gMD.currentTime.AddHours(hourAdding);
         //If TimeChanged Event is not null (isValid?) Invoke Event. 
+        TimeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void TrackTime() 
+    {
+        gMD.currentTime = gMD.currentTime.AddSeconds(Time.deltaTime * gMD.timeRate);
         TimeChanged?.Invoke(this, EventArgs.Empty);
     }
 }

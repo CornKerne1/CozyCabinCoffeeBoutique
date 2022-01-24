@@ -16,9 +16,13 @@ public class PlayerMovement : MonoBehaviour
     float gravity = -9.81f;
     float horizontalMovement = 0;
     float verticalMovement = 0;
-    public float speed =1;
+    public float speed = 0;
     bool isGrounded;
     bool isMoving = false;
+
+    float iTimer;
+    float iTimerMax = 2;
+    bool useTimer;
 
 
     private void Awake()
@@ -35,20 +39,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        iTimer = iTimer - Time.deltaTime;
         HandleMovement();
+        Debug.Log(speed);
     }
     
     private void HandleMovement()
     {
-        
+
         if (pI.GetHorizontalMovement() == 0 && pI.GetVerticalMovement() == 0)
         {
-            if(isMoving == true)
+            if (isMoving == true)
             {
-                speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 2f, 0, pI.pD.moveSpeed);                
+                speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 2f, 0, pI.pD.moveSpeed);
             }
-            else    
-            speed = 0;
+            else
+                speed = 0;
         }
         else if (speed == 0)
         {
@@ -59,15 +65,51 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = Mathf.Clamp(speed + pI.pD.inertiaVar * 1.1f, 0, pI.pD.moveSpeed);
             isMoving = true;
-            horizontalMovement = pI.GetHorizontalMovement();
+            horizontalMovement = pI.GetHorizontalMovement() / 1.5f;
             verticalMovement = pI.GetVerticalMovement();
         }
-        
+
+        if (verticalMovement != 0)
+        {
+            horizontalMovement = horizontalMovement / 2;
+        }
+
         Vector3 movementVelocity = transform.right * horizontalMovement + transform.forward * verticalMovement;
         controller.Move(movementVelocity * speed * Time.deltaTime);
         verticalVelocity.y += gravity * Time.deltaTime;
         controller.Move(verticalVelocity * Time.deltaTime);
 
+        //if (pI.GetHorizontalMovement() == 0 && pI.GetVerticalMovement() == 0)//
+        //{
+        //    if (isMoving == true)
+        //    {
+        //        speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 2f, 0, pI.pD.moveSpeed);
+        //    }
+        //    else
+        //        speed = 0;
+        //}
+        //else if (speed == 0)
+        //{
+        //    speed = Mathf.Clamp(speed + pI.pD.inertiaVar, 0, pI.pD.moveSpeed);
+        //    isMoving = false;
+        //}
+        //else if (horizontalMovement != pI.GetHorizontalMovement() || verticalMovement != pI.GetVerticalMovement())
+        //{
+        //    speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 2f, 0, pI.pD.moveSpeed);
+        //}
+        //else
+        //{
+        //    horizontalMovement = pI.GetHorizontalMovement();
+        //    verticalMovement = pI.GetVerticalMovement();
+        //    isMoving = true;
+        //    speed = Mathf.Clamp(speed + pI.pD.inertiaVar * 1.1f, 0, pI.pD.moveSpeed);
+        //}
+
+
+        //Vector3 movementVelocity = transform.right * horizontalMovement + transform.forward * verticalMovement;
+        //controller.Move(movementVelocity * speed * Time.deltaTime);
+        //verticalVelocity.y += gravity * Time.deltaTime;
+        //controller.Move(verticalVelocity * Time.deltaTime);
     }
 
 
