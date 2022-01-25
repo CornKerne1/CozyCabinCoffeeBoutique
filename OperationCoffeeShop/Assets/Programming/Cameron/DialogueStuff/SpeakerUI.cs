@@ -10,13 +10,14 @@ public class SpeakerUI : MonoBehaviour
     public Text dialog;
 
     private Character speaker;
+    
     public Character Speaker
     {
         get { return speaker; }
         set
         {
             speaker = value;
-            portrait.sprite = speaker.portrait;
+            //portrait.sprite = speaker.portrait;
             fullName.text = speaker.fullName;
 
         }
