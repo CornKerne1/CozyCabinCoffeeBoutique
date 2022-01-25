@@ -16,7 +16,6 @@ public class GameMode : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        gMD.currentTime = DateTime.Now.Date + TimeSpan.FromHours(gMD.startTime);
     }
     void Awake()
     {
@@ -53,6 +52,9 @@ public class GameMode : MonoBehaviour
 
     public void Initialize()
     {
+        //if save file exists load DateTime from file else set to startTime
+        gMD.startTime = DateTime.Now.Date + TimeSpan.FromHours(6);
+        gMD.currentTime = gMD.startTime;
 
     }
 }

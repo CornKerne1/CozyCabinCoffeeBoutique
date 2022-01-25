@@ -15,8 +15,8 @@ public class GameModeData : ScriptableObject
     //You can use a slider with the RangeAttribute
 
     public float timeRate;
-    public float startTime;
     public DateTime currentTime;
+    public DateTime startTime;
     public int closingHour;
 
 

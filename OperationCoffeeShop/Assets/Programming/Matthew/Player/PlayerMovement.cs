@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         iTimer = iTimer - Time.deltaTime;
         HandleMovement();
-        Debug.Log(speed);
+        //Debug.Log(speed);
     }
     
     private void HandleMovement()

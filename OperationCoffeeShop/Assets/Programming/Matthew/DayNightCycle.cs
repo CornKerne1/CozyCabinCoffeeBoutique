@@ -20,6 +20,7 @@ public class DayNightCycle
     //Handles store open timer.
     public void StartTimer()
     {
+        Debug.Log(gMD.currentTime.ToString("HH:mm"));
         //If store is open.
         if (gMD.isOpen)
         {
@@ -44,12 +45,14 @@ public class DayNightCycle
     {
         gMD.currentTime = gMD.currentTime.AddHours(hourAdding);
         //If TimeChanged Event is not null (isValid?) Invoke Event. 
+        if (gMD.currentTime.Hour > 12) gMD.displayTime = -1 * (gMD.currentTime.Hour - 12);
         TimeChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void TrackTime() 
     {
         gMD.currentTime = gMD.currentTime.AddSeconds(Time.deltaTime * gMD.timeRate);
+        if (gMD.currentTime.Hour > 12) gMD.displayTime = -1 * (gMD.currentTime.Hour - 12);
         TimeChanged?.Invoke(this, EventArgs.Empty);
     }
 }
