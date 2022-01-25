@@ -5,20 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CustomerData", menuName = "CustomerData/Generic")]
 public class CustomerData : ScriptableObject
 {
-    public string Name;
-    public Customer CustomerInfo;
-    public CustomerAI CAI;
-    public CustomerData( Customer customerInfo)
-    {
-        this.CustomerInfo = customerInfo;
-       
-    }
+    public string name;
+    public DrinkData favoriteDrink;
+    public List<DrinkData> acceptableDrinks;
+    //public List<string> orderPhrases;
 
-    public void setAI(CustomerAI CAI)
+
+    public CustomerData()
     {
-        if ( CAI != null)
-        {
-            this.CAI = CAI;
-        }
+        
+       
     }
 }

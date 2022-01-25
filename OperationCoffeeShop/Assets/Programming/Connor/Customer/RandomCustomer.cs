@@ -6,7 +6,7 @@ using UnityEngine;
 public class RandomCustomer : Customer
 {
     [SerializeField]
-    private RandomNameSet nameSet;
+    private RandomNameSet nameSet; 
 
     private string customerName;
 

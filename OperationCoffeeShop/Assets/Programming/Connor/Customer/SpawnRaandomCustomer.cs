@@ -11,8 +11,20 @@ public class SpawnRaandomCustomer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if
+
+
+
+
+
+
+
+
         Instantiate(customer);
         Customer RC = new RandomCustomer(nameSet);
+        // set name set 
+
         CustomerData CD = new CustomerData(RC);
         CustomerAI CAI = new CustomerAI(this.transform.position, CD);
         
