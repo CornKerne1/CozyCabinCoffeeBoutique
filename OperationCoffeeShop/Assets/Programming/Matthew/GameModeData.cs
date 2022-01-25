@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,11 @@ public class GameModeData : ScriptableObject
     //You can categorize your variables with a header.
     [Header("Day Night Cycle")]
     //You can use a slider with the RangeAttribute
-    [Range(0f, 720f)]
-    public float openTimer;
+
+    public float timeRate;
+    public DateTime currentTime;
+    public DateTime startTime;
+    public int closingHour;
 
 
     [Range(0, 16)]
@@ -23,7 +27,6 @@ public class GameModeData : ScriptableObject
     [Header("DO NOT TOUCH")]
     public int reputation;
     public int displayTime;
-    public int timeOfDay;
     public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
