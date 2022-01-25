@@ -11,9 +11,14 @@ public class CustomerData : ScriptableObject
     //public List<string> orderPhrases;
 
 
-    public CustomerData()
+    public CustomerData(string name, DrinkData favoriteDrink, List<DrinkData> acceptableDrinks)
     {
-        
+        this.name = name;
+        this.favoriteDrink = favoriteDrink;
+        foreach(DrinkData drink in acceptableDrinks)
+        {
+            this.acceptableDrinks.Add(drink);
+        }
        
     }
 }

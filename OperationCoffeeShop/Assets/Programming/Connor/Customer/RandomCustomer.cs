@@ -15,18 +15,16 @@ public class RandomCustomer : Customer
     {
         //sets a random name from nameSet
         customerName = nameSet.names[random.Next(nameSet.names.Count - 1)];
+
+        //CD = new CustomerData(customerName);
     }
+
     public RandomCustomer(RandomNameSet nameSet)
     {
         //Uses specified nameset to generate random name
         this.nameSet = nameSet;
         //sets a random name from nameSet
         customerName = nameSet.names[random.Next(nameSet.names.Count - 1)];
-    }
-
-    override public string GetName()
-    {
-        return customerName;
     }
 
     protected override IngredientNode GetRandomAddOn()

@@ -4,14 +4,49 @@ using UnityEngine;
 
 public abstract class Customer 
 {
-    public PlayerResearchData PRD;
+    public PlayerResearchData PRD; //holds all possible ingredients and drinks
 
+    public CustomerData CD; //holds all realavent variables
+        
     /// <summary>
     /// Returns Customer's Name.
     /// </summary>
     /// <returns></returns>
-    public abstract string GetName();
+    public string GetName()
+    {
+        if (CD != null || CD.name != null)
+            return "Naome";
+        return CD.name;
 
+    }
+    /// <summary>
+    /// Attempts to change customer's name.
+    /// Returns false if:
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public bool SetName(string name)
+    {
+        CD.name = name;
+        return true;
+    } 
+
+    public DrinkData GetFavoriteDrink()
+    {
+        if (CD != null || CD.name != null)
+           Debug.Log("Null Favorite drink or CustomerData ");
+        return CD.favoriteDrink;
+    }
+
+    public List<DrinkData> GetAcceptableDrinks()
+    {
+       List<DrinkData> AD = new List<DrinkData>();
+        foreach(DrinkData drink in CD.acceptableDrinks)
+        {
+            AD.Add(drink);  
+        }
+        return AD; 
+    }
 
 
     /// <summary>
