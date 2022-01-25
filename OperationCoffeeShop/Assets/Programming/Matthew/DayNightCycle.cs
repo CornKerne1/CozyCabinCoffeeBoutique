@@ -6,7 +6,7 @@ using UnityEngine;
 public class DayNightCycle
 {
     //Events!
-    public event EventHandler TimeChanged;
+    public static event EventHandler TimeChanged;
     public GameModeData gMD;
     private DayNightCycle dNC;
 
@@ -26,21 +26,16 @@ public class DayNightCycle
         {
             //Subtracts the amount that passes from the variable.
             TrackTime();
-            //If current time is less than or equal to 0.
+            
             if(gMD.currentTime.Hour >= gMD.closingHour)
             {
                 gMD.isOpen = false;
-
             }
         }
     }
     
-    public void Sub_TimeChanged(object sender, EventArgs e)
-    {
-
-    }
     
-    //This updates and handles time of day when days have 24 hours..
+    
     public void UpdateTimeOfDay(int hourAdding)
     {
         gMD.currentTime = gMD.currentTime.AddHours(hourAdding);

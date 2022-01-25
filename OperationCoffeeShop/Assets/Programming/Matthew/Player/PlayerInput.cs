@@ -10,8 +10,12 @@ public class PlayerInput : MonoBehaviour
 
     public PlayerData pD;
 
+    public static event EventHandler<EventArgs> InputEvents;
+    public static event EventHandler<EventArgs> InteractEvent;
+
     public PlayerControls pC;
     private PlayerControls.FPPlayerActions fPP;
+    private InputAction interact;
 
     Vector2 mouseInput;
 
@@ -25,6 +29,7 @@ public class PlayerInput : MonoBehaviour
         
         pC = new PlayerControls();
         fPP = pC.FPPlayer;
+        interact = pC.FPPlayer.Interact;
     }
 
     private void OnEnable()
@@ -44,7 +49,15 @@ public class PlayerInput : MonoBehaviour
         fPP.MouseY.Enable();
 
         fPP.Jump.performed += DoJump;
-        fPP.Jump.Enable();       
+        fPP.Jump.Enable();
+
+        interact.started += Interact;
+        interact.Enable();
+    }
+
+    private void Interact(InputAction.CallbackContext obj)
+    {
+        InteractEvent?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnDisable()
@@ -54,6 +67,7 @@ public class PlayerInput : MonoBehaviour
         fPP.MouseX.Disable();
         fPP.MouseY.Disable();
         fPP.Jump.Disable();
+        interact.Disable();
     }
 
     //private void Update()
@@ -81,10 +95,12 @@ public class PlayerInput : MonoBehaviour
         return mouseInput.y;
     }
 
-    private void DoJump(InputAction.CallbackContext obj)
+    public void DoJump(InputAction.CallbackContext obj)
     {
-
+        InputEvents?.Invoke(this, EventArgs.Empty);
     }
+
+
 
     //Vector2 moveInput = context.ReadValue<Vector2>();
 

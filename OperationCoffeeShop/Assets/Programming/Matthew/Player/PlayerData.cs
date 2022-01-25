@@ -21,4 +21,8 @@ public class PlayerData : ScriptableObject
     [Header("Headbob Stuff")]
     [Range(0.00001f, 0.001f)] public float amplitude = 0.0003f;
     [Range(0, 30)] public float frequency = 10.0f;
+
+    [Header("Gameplay Related")]
+    [Range(0, 100)]
+    public float interactDistance;
 }

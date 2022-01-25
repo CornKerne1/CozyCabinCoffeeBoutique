@@ -16,6 +16,7 @@ public class GameMode : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        //player.gameObject.SetActive(true);
     }
     void Awake()
     {
@@ -29,14 +30,6 @@ public class GameMode : MonoBehaviour
     {
         //Handles the timer when the store is open.
         dNC.StartTimer();
-        if(gMD.isOpen)
-        {
-            player.gameObject.SetActive(true);
-        }
-        else
-        {
-            player.gameObject.SetActive(false);
-        }
     }
     public void UpdateReputation(int reputation)
     {
