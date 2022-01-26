@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     //}
 
-    void FixedUpdate()
+    void Update()
     {
         iTimer = iTimer - Time.deltaTime;
         HandleMovement();
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isMoving == true)
             {
-                speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 8f, 0, pI.pD.moveSpeed);
+                speed = Mathf.Clamp(speed - pI.pD.inertiaVar * 2f, 0, pI.pD.moveSpeed);
             }
             else
                 speed = 0;
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            speed = Mathf.Clamp(speed + pI.pD.inertiaVar * 6.5f, 0, pI.pD.moveSpeed);
+            speed = Mathf.Clamp(speed + pI.pD.inertiaVar * 1.1f, 0, pI.pD.moveSpeed);
             isMoving = true;
             horizontalMovement = pI.GetHorizontalMovement() / 1.5f;
             verticalMovement = pI.GetVerticalMovement();

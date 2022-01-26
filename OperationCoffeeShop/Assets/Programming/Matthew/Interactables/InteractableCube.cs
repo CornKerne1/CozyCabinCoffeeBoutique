@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class InteractableCube : Interactable
 {
-    public override void Interact()
+    public override void OnFocus()
     {
-        Debug.Log("stuff");
+        Debug.Log("We Are Looking At You");
+    }
+
+    public override void OnInteract()
+    {
+        Debug.Log("SOMETHING");
+    }
+
+    public override void OnLoseFocus()//
+    {
+        Debug.Log("Gone!");
     }
 }

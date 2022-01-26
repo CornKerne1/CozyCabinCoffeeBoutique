@@ -5,21 +5,53 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public PlayerData pD;
+    [SerializeField] private PlayerData pD;
+    [SerializeField] private PlayerInput pI;
 
+    [SerializeField] private Vector3 interactionPoint;
+    [SerializeField] private LayerMask interactionLayer;
+    private Interactable currentInteractable;
+
+    private void Awake()
+    {
+        pI = gameObject.GetComponent<PlayerInput>();
+        pD = pI.pD;
+        PlayerInput.InteractEvent += TryInteract;//
+    }
+    private void Update()
+    {
+        RaycastCheck();
+    }
     private void Start()
     {
-        PlayerInput.InteractEvent += TryInteract;
+        //pI.InteractEvent += TryInteract;
     }
 
-    private void TryInteract(object sender, EventArgs e)
+    public void RaycastCheck()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, pD.interactDistance, LayerMask.NameToLayer("Interactable")))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance))
         {
-            hit.transform.gameObject.GetComponent<Interactable>().Interact();
+            if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+            {
+                hit.collider.TryGetComponent(out currentInteractable);
+                if (currentInteractable)
+                    currentInteractable.OnFocus();
+            }
         }
+        else if (currentInteractable)
+        {
+            currentInteractable.OnLoseFocus();
+            currentInteractable = null;
+        }
+    }
+
+    public void TryInteract(object sender, EventArgs e)
+    {
+        if(pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+        {
+            currentInteractable.OnInteract();
+        }
+        
     }
 
 
