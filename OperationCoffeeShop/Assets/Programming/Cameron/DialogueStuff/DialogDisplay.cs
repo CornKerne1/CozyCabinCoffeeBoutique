@@ -16,11 +16,15 @@ public class DialogDisplay : MonoBehaviour
 
     private void Start()
     {
+
+
         speakerUILeft = speakerLeft.GetComponent<SpeakerUI>();
         speakerUIRight = speakerRight.GetComponent<SpeakerUI>();
 
         speakerUILeft.Speaker = conversation.speakerLeft;
         speakerUIRight.Speaker = conversation.speakerRight;
+
+       
 
     }
     private void Update()
@@ -67,5 +71,6 @@ public class DialogDisplay : MonoBehaviour
     {
         activeSpeakerUI.Dialog = text;
         activeSpeakerUI.Show();
+
     }
 }
