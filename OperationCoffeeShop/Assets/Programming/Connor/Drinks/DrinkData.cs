@@ -15,6 +15,7 @@ public class DrinkData : ScriptableObject
     }
     public void addIngredient(IngredientNode IN)
     {
+        if (Ingredients != null)
         Ingredients.Add(new IngredientNode(IN.ingredient, IN.target));
     }
     public DrinkData(string name)

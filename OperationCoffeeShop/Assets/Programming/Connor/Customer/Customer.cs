@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Customer 
+public abstract class Customer : MonoBehaviour 
 {
+    [Header("RandomCustomer will be empty")]
+    public CustomerData CD; //holds all realavent variables
+
+    [Header("Should not be empty")]
     public PlayerResearchData PRD; //holds all possible ingredients and drinks
 
-    public CustomerData CD; //holds all realavent variables
+    
         
     /// <summary>
     /// Returns Customer's Name.
@@ -21,14 +25,13 @@ public abstract class Customer
     }
     /// <summary>
     /// Attempts to change customer's name.
-    /// Returns false if:
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public bool SetName(string name)
+    public void SetName(string name)
     {
         CD.name = name;
-        return true;
+        
     } 
 
     public DrinkData GetFavoriteDrink()
@@ -38,15 +41,15 @@ public abstract class Customer
         return CD.favoriteDrink;
     }
 
-    public List<DrinkData> GetAcceptableDrinks()
-    {
-       List<DrinkData> AD = new List<DrinkData>();
-        foreach(DrinkData drink in CD.acceptableDrinks)
-        {
-            AD.Add(drink);  
-        }
-        return AD; 
-    }
+    //public List<DrinkData> GetAcceptableDrinks()
+    //{
+    //   List<DrinkData> AD = new List<DrinkData>();
+    //    foreach(DrinkData drink in CD.desiredFlavors)
+    //    {
+    //        AD.Add(drink);  
+    //    }
+    //    return AD; 
+    //}
 
 
     /// <summary>

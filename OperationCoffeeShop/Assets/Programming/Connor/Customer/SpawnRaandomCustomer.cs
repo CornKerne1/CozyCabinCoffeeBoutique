@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class SpawnRaandomCustomer : MonoBehaviour
 {
-    GameObject customer;
+    public GameObject customer;
 
     public RandomNameSet nameSet;
 
     // Start is called before the first frame update
     void Start()
     {
-        //instanciate
-        
+        Instantiate(customer);
     }
 
     // Update is called once per frame
