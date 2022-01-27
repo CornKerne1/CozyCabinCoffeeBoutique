@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        optionsScreen.SetActive(true);
+        Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void CloseOptions()
