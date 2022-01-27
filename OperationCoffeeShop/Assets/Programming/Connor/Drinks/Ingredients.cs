@@ -15,6 +15,11 @@ public enum Flavors
     Bitter,Sweet,Salty
 }
 
+public enum Strength
+{
+    Light, Medium, Strong
+}
+
 public class FlavorProfile
 {
     public Dictionary<Ingredients, Flavors> flavorProfile;
