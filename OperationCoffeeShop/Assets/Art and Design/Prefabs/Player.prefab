@@ -56,7 +56,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -215,6 +215,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pD: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
+  interact:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &3143608906517689546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 8756248821475083717}
+  speed: 0
 --- !u!114 &3524786644289183257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,8 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9808fe43d4e901c4880437f981838c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pD: {fileID: 0}
   enable: 1
-  amplitude: 0.00034
-  frequency: 12.2
   cam: {fileID: 8756248821475083717}
   holder: {fileID: 5540566262454310176}

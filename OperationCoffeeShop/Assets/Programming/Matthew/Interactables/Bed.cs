@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableCube : Interactable
+public class Bed : Interactable
 {
     public override void OnFocus()
     {
         Debug.Log("We Are Looking At You");
     }
 
-   
-
     public override void OnInteract()
     {
-        Debug.Log("SOMETHING");
+        base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
+        base.gM.gMD.sleepTime.AddHours(8);
+        base.gM.gMD.sleeping = true;
     }
 
     public override void OnLoseFocus()//
