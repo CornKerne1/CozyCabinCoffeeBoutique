@@ -32,6 +32,7 @@ public class GameMode : MonoBehaviour
     {
         //Handles the timer when the store is open.
         dNC.StartTimer();
+        dNC.SleepTimer();
         dNC.RotateSun();
     }
     public void UpdateReputation(int reputation)

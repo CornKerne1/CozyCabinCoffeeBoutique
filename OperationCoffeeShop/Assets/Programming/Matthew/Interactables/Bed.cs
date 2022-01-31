@@ -11,8 +11,8 @@ public class Bed : Interactable
 
     public override void OnInteract()
     {
-        base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
-        base.gM.gMD.sleepTime.AddHours(8);
+        base.gM.gMD.sleepTime = base.gM.gMD.currentTime.AddHours(8);
+        //base.gM.gMD.sleepTime.AddHours(8);
         base.gM.gMD.sleeping = true;
     }
 

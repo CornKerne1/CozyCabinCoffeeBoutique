@@ -38,25 +38,29 @@ public class DayNightCycle
     {
         //Debug.Log(gMD.currentTime.ToString("HH:mm"));
         //If store is open.
-        if (gMD.isOpen || gMD.sleeping)
+        if (gMD.isOpen)
         {
             //Subtracts the amount that passes from the variable.
             TrackTime();
-
-            if (gMD.sleeping)
-            {
-                if (gMD.currentTime >= gMD.sleepTime)
-                {
-                    gMD.sleeping = false;
-                }
-            }
-            else if (gMD.isOpen && gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour)
+            if (gMD.isOpen && gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour)
             {
                 gMD.isOpen = false;
             }
         }
     }
     
+    public void SleepTimer()
+    {
+        if (gMD.sleeping)
+        {
+            TrackTime();
+            if (gMD.currentTime >= gMD.sleepTime)
+            {
+                gMD.sleeping = false;
+            }
+        }
+    }
+
     
     
     public void UpdateTimeOfDay(int hourAdding)
