@@ -16,16 +16,32 @@ public class RandomCustomer : Customer
         //sets a random name from nameSet
         customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
         DrinkData favoriteDrink = GetRandomDrink();
-        List<Flavors> flavors = new List<Flavors>();
+
+         List<Flavors> flavors = new List<Flavors>();
+        
+        List<FlavorProfile.FlavorNode> flavorNodes = new List<FlavorProfile.FlavorNode>();
+
         FlavorProfile flavorProfile = new FlavorProfile();
+
         foreach (IngredientNode i in favoriteDrink.Ingredients)
         {
-            if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient]))
+            if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient].flavor))
             {
-                flavors.Add(flavorProfile.flavorProfile[i.ingredient]);
+                flavors.Add(flavorProfile.flavorProfile[i.ingredient].flavor);
+                flavorNodes.Add(flavorProfile.flavorProfile[i.ingredient]);
+            }
+            else
+            {                
+                foreach(FlavorProfile.FlavorNode f in flavorNodes)
+                {
+                    if( f.flavor == flavorProfile.flavorProfile[i.ingredient].flavor)
+                    {
+                        f.strength += flavorProfile.flavorProfile[i.ingredient].strength;
+                    }
+                }
             }
         }
-        CD = new CustomerData(customerName, favoriteDrink, flavors);
+        CD = new CustomerData(customerName, favoriteDrink, flavorNodes);
     }
 
     public RandomCustomer(RandomNameSet nameSet)

@@ -7,16 +7,16 @@ public class CustomerData : ScriptableObject
 {
     public string name;
     public DrinkData favoriteDrink;
-    public List<Flavors> desiredFlavors;
+    public List<FlavorProfile.FlavorNode> desiredFlavors;
     //public List<string> orderPhrases;
 
 
-    public CustomerData(string name, DrinkData favoriteDrink, List<Flavors> flavors)
+    public CustomerData(string name, DrinkData favoriteDrink, List<FlavorProfile.FlavorNode> flavors)
     {
-        desiredFlavors = new List<Flavors>();
+        desiredFlavors = new List<FlavorProfile.FlavorNode>();
         this.name = name;
         this.favoriteDrink = favoriteDrink;
-        foreach (Flavors f in flavors)
+        foreach (FlavorProfile.FlavorNode f in flavors)
         {
             this.desiredFlavors.Add(f);
         }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum  Ingredients 
+public enum Ingredients
 {
-    Milk, Sugar,
-    EspressoShot, CofeeBean, GroundCoffeeBean,
-    Salt
+    Milk, SteamedMilk,FoamedMilk, Sugar, WhippedCream,
+    EspressoShot, DarkRoastCoffee,
+    Salt, 
 
 }
 public enum Flavors
 {
-    Bitter,Sweet,Salty
+    Bitter,Sweet, Salty
 }
 
 public enum Strength
@@ -22,18 +22,34 @@ public enum Strength
 
 public class FlavorProfile
 {
-    public Dictionary<Ingredients, Flavors> flavorProfile;
+    public Dictionary<Ingredients, FlavorNode> flavorProfile;
 
-     
+
     public FlavorProfile()
     {
-        flavorProfile = new Dictionary<Ingredients, Flavors>();
-        flavorProfile.Add(Ingredients.Milk, Flavors.Sweet);
-        flavorProfile.Add(Ingredients.Sugar, Flavors.Sweet);
-        flavorProfile.Add(Ingredients.EspressoShot, Flavors.Bitter);
-        flavorProfile.Add(Ingredients.CofeeBean, Flavors.Bitter);
-        flavorProfile.Add(Ingredients.GroundCoffeeBean, Flavors.Bitter);
-        flavorProfile.Add(Ingredients.Salt, Flavors.Salty);
+        flavorProfile = new Dictionary<Ingredients, FlavorNode>();
+        flavorProfile.Add(Ingredients.Milk, new FlavorNode(Flavors.Sweet, Strength.Light));
+        flavorProfile.Add(Ingredients.SteamedMilk, new FlavorNode(Flavors.Sweet, Strength.Light));
+        flavorProfile.Add(Ingredients.FoamedMilk, new FlavorNode(Flavors.Sweet, Strength.Light));
+        flavorProfile.Add(Ingredients.Sugar, new FlavorNode(Flavors.Sweet, Strength.Medium));
+        flavorProfile.Add(Ingredients.WhippedCream, new FlavorNode(Flavors.Sweet, Strength.Light));
 
+        flavorProfile.Add(Ingredients.EspressoShot, new FlavorNode(Flavors.Bitter, Strength.Strong));
+        flavorProfile.Add(Ingredients.DarkRoastCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
+
+        flavorProfile.Add(Ingredients.Salt, new FlavorNode(Flavors.Salty, Strength.Medium));
+
+    }
+    [System.Serializable]
+    public class FlavorNode
+    {
+        public FlavorNode(Flavors flavor, Strength strength)
+        {
+            this.flavor = flavor;
+            this.strength = (int)strength + 1;
+        }
+        public Flavors flavor;
+        [SerializeField]
+        public int strength;
     }
 }
