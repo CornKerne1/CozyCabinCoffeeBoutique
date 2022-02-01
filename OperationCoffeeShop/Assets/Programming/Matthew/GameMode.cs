@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,17 @@ using UnityEngine;
 public class GameMode : MonoBehaviour
 {
     //This class keeps track of the game
-    
+
+    [SerializeField]private Transform player;
     //This is the Scriptable Object that contains the data for this class.
     public GameModeData gMD;
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle dNC;
-    
+
     // Start is called before the first frame update
+    private void Start()
+    {
+    }
     void Awake()
     {
         //Creates new DayNightCycle component.
@@ -24,6 +29,14 @@ public class GameMode : MonoBehaviour
     {
         //Handles the timer when the store is open.
         dNC.StartTimer();
+        if(gMD.isOpen)
+        {
+            player.gameObject.SetActive(true);
+        }
+        else
+        {
+            player.gameObject.SetActive(false);
+        }
     }
     public void UpdateReputation(int reputation)
     {
@@ -39,6 +52,9 @@ public class GameMode : MonoBehaviour
 
     public void Initialize()
     {
-        gMD.currentOpenTime = gMD.openTimer;
+        //if save file exists load DateTime from file else set to startTime
+        gMD.startTime = DateTime.Now.Date + TimeSpan.FromHours(6);
+        gMD.currentTime = gMD.startTime;
+
     }
 }

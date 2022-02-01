@@ -19,7 +19,7 @@ public class LightController : MonoBehaviour
     void Sub_TimeChanged(object sender, EventArgs e)
     {
         
-        l.intensity = gM.gMD.timeOfDay;
+        l.intensity = gM.gMD.currentTime.Hour;
     }
 
     // Update is called once per frame
