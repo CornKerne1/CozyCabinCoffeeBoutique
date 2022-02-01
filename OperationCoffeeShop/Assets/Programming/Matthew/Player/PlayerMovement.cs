@@ -36,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
         controller = this.gameObject.GetComponent<CharacterController>();
     }
 
+    //public void Test(object sender, EventArgs e)
+    //{
+
+    //}
 
     void Update()
     {

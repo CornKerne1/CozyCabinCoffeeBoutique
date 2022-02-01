@@ -12,13 +12,12 @@ public class LightController : MonoBehaviour
     void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        gM.dNC.TimeChanged += Sub_TimeChanged;
+        DayNightCycle.TimeChanged += Sub_TimeChanged;
         //StartCoroutine(Initialize());
     }
 
     void Sub_TimeChanged(object sender, EventArgs e)
-    {
-        
+    {        
         l.intensity = gM.gMD.currentTime.Hour;
     }
 

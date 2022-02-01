@@ -13,15 +13,18 @@ public class GameMode : MonoBehaviour
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle dNC;
 
+    [SerializeField] public GameObject sunLight;
     // Start is called before the first frame update
     private void Start()
     {
+        //player.gameObject.SetActive(true);
     }
     void Awake()
     {
         //Creates new DayNightCycle component.
-        dNC = new DayNightCycle(dNC, gMD);
+        dNC = new DayNightCycle(dNC, this, gMD);
         Initialize();
+        //Instantiate(sunLight);
     }
     
     //Update is called once per frame
@@ -29,14 +32,8 @@ public class GameMode : MonoBehaviour
     {
         //Handles the timer when the store is open.
         dNC.StartTimer();
-        if(gMD.isOpen)
-        {
-            player.gameObject.SetActive(true);
-        }
-        else
-        {
-            player.gameObject.SetActive(false);
-        }
+        dNC.SleepTimer();
+        dNC.RotateSun();
     }
     public void UpdateReputation(int reputation)
     {
@@ -53,6 +50,7 @@ public class GameMode : MonoBehaviour
     public void Initialize()
     {
         //if save file exists load DateTime from file else set to startTime
+        dNC.Initialize();
         gMD.startTime = DateTime.Now.Date + TimeSpan.FromHours(6);
         gMD.currentTime = gMD.startTime;
 
