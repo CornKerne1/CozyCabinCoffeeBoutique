@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoffeeGrinder : Interactable
 {
+
     public override void OnFocus()
     {
         Debug.Log("We Are Looking At You");
@@ -11,9 +12,7 @@ public class CoffeeGrinder : Interactable
 
     public override void OnInteract()
     {
-        base.gM.gMD.sleepTime = base.gM.gMD.currentTime.AddHours(8);
-        //base.gM.gMD.sleepTime.AddHours(8);
-        base.gM.gMD.sleeping = true;
+        StartCoroutine(gameObject.GetComponent<Machine>().ActivateMachine(5));
     }
 
     public override void OnLoseFocus()//
