@@ -2,16 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Customer : MonoBehaviour
+public abstract class Customer : MonoBehaviour 
 {
-    public PlayerResearchData PRD;
+    [Header("RandomCustomer will be empty")]
+    public CustomerData CD; //holds all realavent variables
 
+    [Header("Should not be empty")]
+    public PlayerResearchData PRD; //holds all possible ingredients and drinks
+
+    
+        
     /// <summary>
     /// Returns Customer's Name.
     /// </summary>
     /// <returns></returns>
-    public abstract string Name();
+    public string GetName()
+    {
+        if (CD != null || CD.name != null)
+            return "Naome";
+        return CD.name;
 
+    }
+    /// <summary>
+    /// Attempts to change customer's name.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public void SetName(string name)
+    {
+        CD.name = name;
+        
+    } 
+
+    public DrinkData GetFavoriteDrink()
+    {
+        if (CD != null || CD.name != null)
+           Debug.Log("Null Favorite drink or CustomerData ");
+        return CD.favoriteDrink;
+    }
+
+    //public List<DrinkData> GetAcceptableDrinks()
+    //{
+    //   List<DrinkData> AD = new List<DrinkData>();
+    //    foreach(DrinkData drink in CD.desiredFlavors)
+    //    {
+    //        AD.Add(drink);  
+    //    }
+    //    return AD; 
+    //}
 
 
     /// <summary>
@@ -24,11 +62,11 @@ public abstract class Customer : MonoBehaviour
 
 
     /// <summary>
-    ///      uses LearnedIngredients to randomly return any addons that a customer
+    ///      uses LearnedIngredients to randomly return any addon that a customer
     ///      may want on top of the default ingredients for the random drink. 
     /// </summary>
     /// <returns></returns>
-    protected abstract List<Ingredients> GetRandomAddOns();
+    protected abstract IngredientNode GetRandomAddOn();
 
 
     /// <summary>
@@ -36,8 +74,14 @@ public abstract class Customer : MonoBehaviour
 
     /// </summary>
     /// <returns></returns>
-    protected abstract Drinks GetRandomDrink();
+    protected abstract DrinkData GetRandomDrink();
 
+    /// <summary>
+    /// uses GetRandomAddOn and GetRandomDrink to return
+    /// a drink the customer may desired
+    /// </summary>
+    /// <returns></returns>
+    public abstract DrinkData GetDrinkOrder();
 
 
     /// <summary>
