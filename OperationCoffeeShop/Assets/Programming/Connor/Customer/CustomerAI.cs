@@ -1,25 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomerAI : MonoBehaviour
 {
     private Vector3 startingPosition;
 
-    public CustomerData customerData;
+    [SerializeField]
+    private Vector3 destination;
+   
+    public List<GameObject> gameObjects = new List<GameObject>();
+    
+    public Queue<GameObject> dests = new Queue<GameObject>();
 
-    public CustomerAI(Vector3 startingPosition)
+    public NavMeshAgent agent;
+     [HideInInspector]
+    public CustomerData CD;
+    private void Awake()
     {
-        this.startingPosition = startingPosition;
-    }
-    public CustomerAI(Vector3 startingPosition, CustomerData CD)
-    {
-        this.startingPosition = startingPosition;
+        foreach(GameObject go in gameObjects)
+        {
+            dests.Enqueue(go);
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-       // this.customerData = gameO
-    }
+        agent = gameObject.GetComponent<NavMeshAgent>();
+       
+            this.CD = gameObject.GetComponent<Customer>().CD;
+        if (destination == Vector3.zero)
+        {
+            if (dests.Peek() != null)
+            {
+                destination = dests.Dequeue().transform.position;
+            }
+        }
 
+    }
+    private void Update()
+    {
+        
+ 
+            Vector3 distanceToNode = gameObject.transform.position - destination;
+            if (distanceToNode.magnitude < 3)
+            {
+                destination = dests.Dequeue().transform.position;
+                setDestination(destination);
+            }
+        
+    }
+    public void setDestination(Vector3 destination)
+    {
+        this.destination = destination;
+        agent.SetDestination(destination);
+
+    }
 }

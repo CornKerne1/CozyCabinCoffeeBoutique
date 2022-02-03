@@ -11,7 +11,7 @@ public class SpawnRaandomCustomer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(customer);
+        Instantiate(customer, gameObject.transform);
     }
 
     // Update is called once per frame
