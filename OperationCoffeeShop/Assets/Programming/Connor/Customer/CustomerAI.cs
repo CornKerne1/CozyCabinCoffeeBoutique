@@ -9,52 +9,53 @@ public class CustomerAI : MonoBehaviour
 
     [SerializeField]
     private Vector3 destination;
-   
-    public List<GameObject> gameObjects = new List<GameObject>();
-    
-    public Queue<GameObject> dests = new Queue<GameObject>();
+
+    public List<GameObject> Destinations = new List<GameObject>();
+
+    public Queue<Vector3> dests = new Queue<Vector3>();
 
     public NavMeshAgent agent;
-     [HideInInspector]
+    [HideInInspector]
     public CustomerData CD;
-    private void Awake()
-    {
-        foreach(GameObject go in gameObjects)
-        {
-            dests.Enqueue(go);
-        }
-    }
+
     // Start is called before the first frame update
     void Start()
     {
+        foreach (GameObject go in Destinations)
+        {
+            dests.Enqueue(go.transform.position);
+        }
         agent = gameObject.GetComponent<NavMeshAgent>();
-       
-            this.CD = gameObject.GetComponent<Customer>().CD;
+
+        this.CD = gameObject.GetComponent<Customer>().CD;
         if (destination == Vector3.zero)
         {
             if (dests.Peek() != null)
             {
-                destination = dests.Dequeue().transform.position;
+                destination = dests.Dequeue();
             }
         }
 
     }
     private void Update()
     {
-        
- 
-            Vector3 distanceToNode = gameObject.transform.position - destination;
-            if (distanceToNode.magnitude < 3)
-            {
-                destination = dests.Dequeue().transform.position;
-                setDestination(destination);
-            }
-        
+        agent.destination = destination;
+        Vector3 distanceToNode = gameObject.transform.position - destination;
+        if (distanceToNode.magnitude < 3 && dests.Count != 0)
+        {
+            destination = dests.Dequeue();
+            setDestination(destination);
+        }
+
     }
     public void setDestination(Vector3 destination)
     {
         this.destination = destination;
         agent.SetDestination(destination);
 
+    }
+    public void queueDestination(Vector3 v)
+    {
+        dests.Enqueue(v);
     }
 }
