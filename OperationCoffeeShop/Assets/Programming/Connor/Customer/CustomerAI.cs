@@ -12,11 +12,13 @@ public class CustomerAI : MonoBehaviour
 
     public List<GameObject> Destinations = new List<GameObject>();
 
-    public Queue<Vector3> dests = new Queue<Vector3>();
+    private Queue<Vector3> dests = new Queue<Vector3>();
 
     public NavMeshAgent agent;
     [HideInInspector]
     public CustomerData CD;
+
+    public bool stay = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +41,15 @@ public class CustomerAI : MonoBehaviour
     }
     private void Update()
     {
-        agent.destination = destination;
-        Vector3 distanceToNode = gameObject.transform.position - destination;
-        if (distanceToNode.magnitude < 3 && dests.Count != 0)
+        if (!stay)
         {
-            destination = dests.Dequeue();
-            setDestination(destination);
+            agent.destination = destination;
+            Vector3 distanceToNode = gameObject.transform.position - destination;
+            if (distanceToNode.magnitude < 3 && dests.Count != 0)
+            {
+                destination = dests.Dequeue();
+                setDestination(destination);
+            }
         }
 
     }
@@ -57,5 +62,15 @@ public class CustomerAI : MonoBehaviour
     public void queueDestination(Vector3 v)
     {
         dests.Enqueue(v);
+    }
+
+    public void clearQueue()
+    {
+        dests.Clear();
+    }
+
+    public void setStay(bool stay)
+    {
+        this.stay = stay;
     }
 }
