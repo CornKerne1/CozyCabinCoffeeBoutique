@@ -10,9 +10,9 @@ public class CoffeeGrinder : Interactable
         Debug.Log("We Are Looking At You");
     }
 
-    public override void OnInteract()
+    public override void OnInteract(PlayerInteraction pI)
     {
-        StartCoroutine(gameObject.GetComponent<Machine>().ActivateMachine(5));
+        gameObject.GetComponent<Machine>().StartMachine(2);
     }
 
     public override void OnLoseFocus()//

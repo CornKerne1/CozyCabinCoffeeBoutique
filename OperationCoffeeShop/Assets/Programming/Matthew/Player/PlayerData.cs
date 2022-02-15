@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Generic")]
 public class PlayerData : ScriptableObject
 {
+    private void Awake()
+    {
+        busyHands = false;
+    }
+
     [Header("Controller Variables")]
     [Range(0, 10)]
     [SerializeField] public float moveSpeed;
@@ -26,4 +31,9 @@ public class PlayerData : ScriptableObject
     [Range(0, 100)]
     [SerializeField] public float interactDistance;
     [SerializeField] public bool canInteract;
+    [SerializeField] public bool busyHands;
+    [Range(0, 10)]
+    [SerializeField] public float carryDistance;
+    [Range(0, 10)]
+    [SerializeField] public float smooth;
 }

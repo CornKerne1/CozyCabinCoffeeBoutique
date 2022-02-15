@@ -9,7 +9,7 @@ public class Bed : Interactable
         Debug.Log("We Are Looking At You");
     }
 
-    public override void OnInteract()
+    public override void OnInteract(PlayerInteraction pI)
     {
         base.gM.gMD.sleepTime = base.gM.gMD.currentTime.AddHours(8);
         //base.gM.gMD.sleepTime.AddHours(8);

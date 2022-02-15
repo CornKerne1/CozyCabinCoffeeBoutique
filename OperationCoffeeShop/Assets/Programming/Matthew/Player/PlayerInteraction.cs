@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerData pD;
     [SerializeField] private PlayerInput pI;
 
+    GameObject carriedObj;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
@@ -21,6 +22,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         RaycastCheck();
+        HandleCarrying();
     }
     private void Start()
     {
@@ -45,13 +47,49 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void Carry(GameObject obj)
+    {
+        if(pD.busyHands)
+        {
+            DropCurrentObj();
+        }
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.GetComponent<Collider>().isTrigger = true;
+        carriedObj = obj;
+        pD.busyHands = true;
+    }
+
+    private void HandleCarrying()
+    {
+        if (pD.busyHands && carriedObj != null)
+        {
+            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * pD.carryDistance, Time.deltaTime * pD.smooth);
+        }
+    }
+
+    public void DropCurrentObj()
+    {
+            if(carriedObj != null)
+            {
+                carriedObj.GetComponent<Rigidbody>().isKinematic = false;
+                carriedObj.GetComponent<Collider>().isTrigger = false;
+            }
+            
+            carriedObj = null;
+            pD.busyHands = false;
+    }
+    
     public void TryInteract(object sender, EventArgs e)
     {
-        if(pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+        if (pD.busyHands)
         {
-            currentInteractable.OnInteract();
+            DropCurrentObj();
         }
-        
+        if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+        {
+            currentInteractable.OnInteract(this);
+        }
+
     }
 
 

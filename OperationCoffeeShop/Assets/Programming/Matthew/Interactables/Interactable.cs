@@ -16,7 +16,7 @@ public abstract class Interactable : MonoBehaviour
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
-    public abstract void OnInteract();
+    public abstract void OnInteract(PlayerInteraction pI);
     public abstract void OnFocus();
     public abstract void OnLoseFocus();
 }

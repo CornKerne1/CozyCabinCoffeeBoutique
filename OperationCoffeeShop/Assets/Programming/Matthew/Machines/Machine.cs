@@ -6,15 +6,15 @@ public class Machine : MonoBehaviour
 {
     public int currentCapacity;
     public MachineData mD;
+    public bool isRunning;
 
-    public GameObject outputIngredient;
 
     public Transform outputTransform;
 
     // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+    public void Interact(GameObject other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ingredient") && currentCapacity < mD.maxCapacity)
+        if (other.layer == LayerMask.NameToLayer("Interactable") && other.tag == "PickUp" && currentCapacity < mD.maxCapacity && !isRunning)
         {
             if(other.GetComponent<PhysicalIngredient>().iD.thisIngredient == mD.acceptedIngredient)
             {
@@ -24,17 +24,29 @@ public class Machine : MonoBehaviour
         }
     }
 
-    public IEnumerator ActivateMachine(float time)
+    public void StartMachine(float time)
     {
+        if(!isRunning)
+        {
+            StartCoroutine(ActivateMachine(time));
+        }
+    }
+
+
+    private IEnumerator ActivateMachine(float time)
+    {
+        isRunning = true;
         yield return new WaitForSeconds(time);
         OutputIngredients();
+        isRunning = false;
     }
 
     private void OutputIngredients()
     {
         for (int i = currentCapacity; i > 0; i--)
             currentCapacity = i;
-            Instantiate(outputIngredient, outputTransform);
+            Debug.Log(currentCapacity);
+            Instantiate(mD.outputIngredient, outputTransform.position, outputTransform.rotation);
     }
 
     // Update is called once per frame

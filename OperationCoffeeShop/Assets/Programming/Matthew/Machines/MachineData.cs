@@ -7,5 +7,6 @@ public class MachineData : ScriptableObject
 {
     [SerializeField] public int maxCapacity;
     [SerializeField] public Ingredients acceptedIngredient;
+    [SerializeField] public GameObject outputIngredient;
 
 }
