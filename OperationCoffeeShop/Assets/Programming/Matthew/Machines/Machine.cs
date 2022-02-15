@@ -18,7 +18,8 @@ public class Machine : MonoBehaviour
         {
             if(other.GetComponent<PhysicalIngredient>().iD.thisIngredient == mD.acceptedIngredient)
             {
-                currentCapacity += currentCapacity;
+                Debug.Log("wth");
+                currentCapacity = currentCapacity + 1;
                 Destroy(other);
             }
         }
@@ -43,15 +44,22 @@ public class Machine : MonoBehaviour
 
     private void OutputIngredients()
     {
-        for (int i = currentCapacity; i > 0; i--)
-            currentCapacity = i;
-            Debug.Log(currentCapacity);
-            Instantiate(mD.outputIngredient, outputTransform.position, outputTransform.rotation);
+        for (int i = 0; i <= currentCapacity; i++)
+            if (currentCapacity == 0)
+            {
+
+            }
+            else
+            {
+                currentCapacity = currentCapacity - 1;
+                Debug.Log(currentCapacity);
+                Instantiate(mD.outputIngredient, outputTransform.position, outputTransform.rotation);
+            }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(currentCapacity);
     }
 }
