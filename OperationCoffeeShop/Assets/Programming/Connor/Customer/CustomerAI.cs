@@ -20,6 +20,10 @@ public class CustomerAI : MonoBehaviour
 
     public bool stay = false;
 
+    public float minDistance = 1;
+
+    public CustomerLine customerLine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +49,7 @@ public class CustomerAI : MonoBehaviour
         {
             agent.destination = destination;
             Vector3 distanceToNode = gameObject.transform.position - destination;
-            if (distanceToNode.magnitude < 3 && dests.Count != 0)
+            if (distanceToNode.magnitude < minDistance && dests.Count != 0)
             {
                 destination = dests.Dequeue();
                 setDestination(destination);
@@ -72,5 +76,14 @@ public class CustomerAI : MonoBehaviour
     public void setStay(bool stay)
     {
         this.stay = stay;
+    }
+
+    public void LeaveLine()
+    {
+        if(customerLine != null)
+        {
+            customerLine.moveLine();
+            customerLine = null;
+        }
     }
 }

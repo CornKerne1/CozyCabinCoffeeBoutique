@@ -4,14 +4,20 @@ using UnityEngine;
 
 public abstract class Customer : MonoBehaviour 
 {
+    public bool hasOrder = false;
+
     [Header("RandomCustomer will be empty")]
     public CustomerData CD; //holds all realavent variables
 
     [Header("Should not be empty")]
     public PlayerResearchData PRD; //holds all possible ingredients and drinks
 
-    
-        
+    public GameMode gameMode;
+
+    public virtual void Start()
+    {
+        gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+    }
     /// <summary>
     /// Returns Customer's Name.
     /// </summary>
@@ -103,4 +109,10 @@ public abstract class Customer : MonoBehaviour
     /// aka moving them to new location based on enviromental factors.
     /// </summary>
     public abstract void NextMove();
+
+
+    /// <summary>
+    /// Some how given a drink and sends the customers requested drink and the paramater drink to the GameMode.
+    /// </summary>
+    public abstract void RecieveDrink(DrinkData Drink);
 }

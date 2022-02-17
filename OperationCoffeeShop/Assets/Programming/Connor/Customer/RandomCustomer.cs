@@ -10,8 +10,11 @@ public class RandomCustomer : Customer
 
     private string customerName;
 
+    private CustomerAI ai;
+
     public void Awake()
     {
+        ai= GetComponent<CustomerAI>();
 
         //sets a random name from nameSet
         customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
@@ -98,6 +101,13 @@ public class RandomCustomer : Customer
     {
         return "";
     }
-
-
+    /// <summary>
+    /// Sends drink data to GameMode for comparison. 
+    /// </summary>
+    /// <param name="playerDrink"></param>
+    public override void RecieveDrink(DrinkData playerDrink)
+    {
+        //base.gameMode.CompareDrink(CD.favoriteDrink, playerDrink);
+        ai.LeaveLine();
+    }
 }
