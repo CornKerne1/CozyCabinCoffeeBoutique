@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Machine : MonoBehaviour
+public abstract class Machine : MonoBehaviour
 {
     public int currentCapacity;
     public MachineData mD;
+    public IngredientData iD;
     public bool isRunning;
     Vector3 origin;
 
@@ -21,14 +22,23 @@ public class Machine : MonoBehaviour
     }
     public void Interact(GameObject other)
     {
-        if (other.layer == LayerMask.NameToLayer("Interactable") && other.tag == "PickUp" && currentCapacity < mD.maxCapacity && !isRunning)
+        if (currentCapacity < mD.maxCapacity && !isRunning)
         {
-            if(other.GetComponent<PhysicalIngredient>().iD.thisIngredient == mD.acceptedIngredient)
-            {
-                Debug.Log("wth");
+            ChooseIngredient(other);            
+        }
+    }
+
+    public virtual void ChooseIngredient(GameObject other)
+    {
+        switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
+        {
+            case Ingredients.LightRoastCoffee:                
+                
                 currentCapacity = currentCapacity + 1;
+                mD.outputIngredient.Add(iD.glCoffee);
+                other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
                 Destroy(other);
-            }
+                break;
         }
     }
 
@@ -61,7 +71,8 @@ public class Machine : MonoBehaviour
             {
                 currentCapacity = currentCapacity - 1;
                 Debug.Log(currentCapacity);
-                Instantiate(mD.outputIngredient, outputTransform.position, outputTransform.rotation);
+                Instantiate(mD.outputIngredient[i], outputTransform.position, outputTransform.rotation);
+                mD.outputIngredient.RemoveAt(i);
             }
     }
 

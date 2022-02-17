@@ -45,6 +45,10 @@ public class PlayerInteraction : MonoBehaviour
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
         }
+        else
+        {
+
+        }
     }
 
     public void Carry(GameObject obj)
@@ -85,7 +89,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             DropCurrentObj();
         }
-        if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+        else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
         {
             currentInteractable.OnInteract(this);
         }

@@ -6,8 +6,9 @@ using UnityEngine;
 public enum Ingredients
 {
     Milk, SteamedMilk,FoamedMilk, Sugar, WhippedCream,
-    EspressoShot, DarkRoastCoffee,
-    Salt, 
+    EspressoShot, DarkRoastCoffee, MediumRoastCoffee, 
+    LightRoastCoffee, GroundDarkRoastCoffee, GroundMediumRoastCoffee, 
+    GroundLightRoastCoffee, Salt, 
 
 }
 public enum Flavors

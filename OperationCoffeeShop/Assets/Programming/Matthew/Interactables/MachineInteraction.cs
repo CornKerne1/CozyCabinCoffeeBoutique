@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoffeeGrinder : Interactable
+public class MachineInteraction : Interactable
 {
 
+    public MachineData mD;
     public override void OnFocus()
     {
         Debug.Log("We Are Looking At You");
@@ -12,7 +13,7 @@ public class CoffeeGrinder : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        gameObject.GetComponent<Machine>().StartMachine(2);
+        gameObject.GetComponent<Machine>().StartMachine(mD.productionTime);
     }
 
     public override void OnLoseFocus()//

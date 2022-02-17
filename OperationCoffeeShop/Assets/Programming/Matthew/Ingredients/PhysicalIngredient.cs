@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PhysicalIngredient : Interactable
 {
-    public IngredientData iD;
+    [SerializeField] public Ingredients thisIngredient;
     bool inHand;
-    PlayerInteraction pI;
+    public PlayerInteraction pI;
 
     public void Update()
     {
@@ -42,12 +42,13 @@ public class PhysicalIngredient : Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (inHand && other.gameObject.layer == 3)
+        if (other.gameObject.layer == 3)
         {
-            pI.DropCurrentObj();
+            //pI.DropCurrentObj();
             try
             {
                 other.GetComponent<Machine>().Interact(gameObject);
+                pI.DropCurrentObj();
             }
             catch { }
         }
