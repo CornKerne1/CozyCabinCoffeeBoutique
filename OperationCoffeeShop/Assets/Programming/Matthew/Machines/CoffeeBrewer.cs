@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoffeeGrinder : Machine
+public class CoffeeBrewer : Machine
 {
     public override void ChooseIngredient(GameObject other)
     {
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
-            case Ingredients.UngroundCoffee:
+            case Ingredients.GroundCoffee:
 
                 currentCapacity = currentCapacity + 1;
                 mD.outputIngredient.Add(iD.glCoffee);

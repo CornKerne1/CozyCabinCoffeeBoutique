@@ -30,16 +30,16 @@ public abstract class Machine : MonoBehaviour
 
     public virtual void ChooseIngredient(GameObject other)
     {
-        switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
-        {
-            case Ingredients.LightRoastCoffee:                
+        //switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
+        //{
+        //    case Ingredients.LightRoastCoffee:                
                 
-                currentCapacity = currentCapacity + 1;
-                mD.outputIngredient.Add(iD.glCoffee);
-                other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
-                Destroy(other);
-                break;
-        }
+        //        currentCapacity = currentCapacity + 1;
+        //        mD.outputIngredient.Add(iD.glCoffee);
+        //        other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
+        //        Destroy(other);
+        //        break;
+        //}
     }
 
     public void StartMachine(float time)
@@ -60,7 +60,7 @@ public abstract class Machine : MonoBehaviour
         isRunning = false;
     }
 
-    private void OutputIngredients()
+    public virtual void OutputIngredients()
     {
         for (int i = 0; i < currentCapacity;)
             if (currentCapacity == 0)

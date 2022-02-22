@@ -11,7 +11,6 @@ public class HeadBobController : MonoBehaviour
     [SerializeField] private Transform cam;
     [SerializeField] private Transform holder;
 
-    private PlayerMovement pM;
     
     private Vector3 startPos;
     private CharacterController controller;
@@ -20,7 +19,6 @@ public class HeadBobController : MonoBehaviour
 
     void Awake()
     {
-        pM = gameObject.GetComponent<PlayerMovement>();
         controller = GetComponent<CharacterController>();
         startPos = cam.localPosition;
     }
@@ -41,7 +39,7 @@ public class HeadBobController : MonoBehaviour
     private void CheckMotion()
     {
         //float speed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        if (pM.speed == 0) return;
+        if (GetComponent<CharacterController>().velocity.magnitude == 0) return;
         //if (!controller.isGrounded) return;
 
         PlayMotion(Motion());
