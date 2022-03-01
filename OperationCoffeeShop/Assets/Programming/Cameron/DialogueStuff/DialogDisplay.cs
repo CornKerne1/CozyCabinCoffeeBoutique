@@ -9,8 +9,8 @@ public class DialogDisplay : MonoBehaviour
     public GameObject speakerLeft;
     public GameObject speakerRight;
 
-    private SpeakerUI speakerUILeft;
-    private SpeakerUI speakerUIRight;
+    private SpeakerUI speakerUILeft; //should always be the player
+    private SpeakerUI speakerUIRight; // should always be the customer
 
     private int activeLineIndex = 0;
 
@@ -72,5 +72,18 @@ public class DialogDisplay : MonoBehaviour
         activeSpeakerUI.Dialog = text;
         activeSpeakerUI.Show();
 
+    }
+    void Agree()
+    {
+        Line line = conversation.lines[activeLineIndex];
+        Character character = line.character;
+
+        SetDialog(speakerUIRight, speakerUIRight, line.text);
+    }
+    void Disagree()
+    {
+        speakerUIRight.Hide();
+        speakerUILeft.Hide();
+        activeLineIndex = 0;
     }
 }
