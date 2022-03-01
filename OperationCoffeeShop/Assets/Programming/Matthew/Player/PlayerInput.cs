@@ -11,12 +11,16 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public PlayerData pD;
 
     [SerializeField] public static event EventHandler InteractEvent;//
-
+    [SerializeField] public static event EventHandler InteractCanceledEvent;
+    [SerializeField] public static event EventHandler RotateEvent;//
+    [SerializeField] public static event EventHandler RotateCanceledEvent;//
+    
     [SerializeField] private PlayerControls pC;
     [SerializeField] private PlayerControls.FPPlayerActions fPP;
     [SerializeField] private InputAction interact;
 
     Vector2 mouseInput;
+    float currentRotate;
 
     float horizontalMovement;
     float verticalMovement;
@@ -53,9 +57,15 @@ public class PlayerInput : MonoBehaviour
         fPP.Jump.Enable();
 
         interact.performed += Interact;
+        interact.canceled += InteractCanceled;
         interact.Enable();
-    }
 
+
+        fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<float>();
+        fPP.Rotate.performed += Rotate;
+        fPP.Rotate.canceled += RotateCanceled;
+        fPP.Rotate.Enable();
+    }
 
     private void OnDisable()
     {
@@ -65,6 +75,7 @@ public class PlayerInput : MonoBehaviour
         fPP.MouseY.Disable();
         fPP.Jump.Disable();
         interact.Disable();
+        fPP.Rotate.Disable();
     }
 
     //private void Update()
@@ -92,6 +103,11 @@ public class PlayerInput : MonoBehaviour
         return mouseInput.y;
     }
 
+    public float GetCurrentRotate()
+    {
+        return currentRotate;
+    }
+
     public void DoJump(InputAction.CallbackContext obj)
     {
 
@@ -101,6 +117,17 @@ public class PlayerInput : MonoBehaviour
     {
         InteractEvent?.Invoke(this, EventArgs.Empty);
     }
+    private void InteractCanceled(InputAction.CallbackContext obj)
+    {
+        InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    }
+    private void Rotate(InputAction.CallbackContext obj)
+    {
+        RotateEvent?.Invoke(this, EventArgs.Empty);
+    }
 
-
+    private void RotateCanceled(InputAction.CallbackContext obj)
+    {
+        RotateCanceledEvent?.Invoke(this, EventArgs.Empty);
+    }
 }

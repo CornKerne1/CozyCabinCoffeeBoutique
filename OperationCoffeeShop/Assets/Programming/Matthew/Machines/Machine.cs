@@ -20,7 +20,7 @@ public abstract class Machine : MonoBehaviour
     {
         origin = transform.position;
     }
-    public void Interact(GameObject other)
+    public void IngredientInteract(GameObject other)
     {
         if (currentCapacity < mD.maxCapacity && !isRunning)
         {
@@ -42,16 +42,16 @@ public abstract class Machine : MonoBehaviour
         //}
     }
 
-    public void StartMachine(float time)
+    public virtual void StartMachine()
     {
         if(!isRunning)
         {
-            StartCoroutine(ActivateMachine(time));
+            StartCoroutine(ActivateMachine(mD.productionTime));
         }
     }
 
 
-    private IEnumerator ActivateMachine(float time)
+    public virtual IEnumerator ActivateMachine(float time)
     {
         isRunning = true;
         yield return new WaitForSeconds(time);
@@ -82,15 +82,15 @@ public abstract class Machine : MonoBehaviour
         Shake();
     }
 
-    private void Shake()
+    public virtual void Shake()
     {
 
         if(isRunning)
         {
             Vector3 shakePos = origin;
-            shakePos.x = origin.x + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt;
-            shakePos.y = origin.y + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt;
-            shakePos.z = origin.z + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt;
+            shakePos.x = origin.x + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.x;
+            shakePos.y = origin.y + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.y;
+            shakePos.z = origin.z + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.z;
             transform.position = shakePos;
         }
         

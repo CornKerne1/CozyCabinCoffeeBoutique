@@ -116,6 +116,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniGames"",
+                    ""type"": ""Button"",
+                    ""id"": ""ead2043c-2da1-4e4b-8a13-bac652936298"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e138dd2-bbf4-45d6-a99b-b9b08fa76b2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +290,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""MouseY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0449fc5b-eaaa-4874-85c6-715c2fa4d7e5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniGames"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f34c4925-d9f8-4ce6-b915-6bdc730476a5"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e969ae2b-8e09-4149-9802-8f1c8364ca36"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""d7c522fa-a355-409c-a7b8-30fb9879712c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -290,6 +352,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_FPPlayer_PauseGame = m_FPPlayer.FindAction("PauseGame", throwIfNotFound: true);
         m_FPPlayer_InteractWtih = m_FPPlayer.FindAction("InteractWtih ", throwIfNotFound: true);
         m_FPPlayer_Interact = m_FPPlayer.FindAction("Interact", throwIfNotFound: true);
+        m_FPPlayer_MiniGames = m_FPPlayer.FindAction("MiniGames", throwIfNotFound: true);
+        m_FPPlayer_Rotate = m_FPPlayer.FindAction("Rotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -359,6 +423,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FPPlayer_PauseGame;
     private readonly InputAction m_FPPlayer_InteractWtih;
     private readonly InputAction m_FPPlayer_Interact;
+    private readonly InputAction m_FPPlayer_MiniGames;
+    private readonly InputAction m_FPPlayer_Rotate;
     public struct FPPlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -373,6 +439,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @PauseGame => m_Wrapper.m_FPPlayer_PauseGame;
         public InputAction @InteractWtih => m_Wrapper.m_FPPlayer_InteractWtih;
         public InputAction @Interact => m_Wrapper.m_FPPlayer_Interact;
+        public InputAction @MiniGames => m_Wrapper.m_FPPlayer_MiniGames;
+        public InputAction @Rotate => m_Wrapper.m_FPPlayer_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_FPPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -412,6 +480,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnInteract;
+                @MiniGames.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMiniGames;
+                @MiniGames.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMiniGames;
+                @MiniGames.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMiniGames;
+                @Rotate.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnRotate;
             }
             m_Wrapper.m_FPPlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -446,6 +520,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @MiniGames.started += instance.OnMiniGames;
+                @MiniGames.performed += instance.OnMiniGames;
+                @MiniGames.canceled += instance.OnMiniGames;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
             }
         }
     }
@@ -462,5 +542,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnInteractWtih(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnMiniGames(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
 }

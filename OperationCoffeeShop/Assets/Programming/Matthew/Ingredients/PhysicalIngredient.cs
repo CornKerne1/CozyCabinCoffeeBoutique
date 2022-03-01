@@ -47,7 +47,7 @@ public class PhysicalIngredient : Interactable
             //pI.DropCurrentObj();
             try
             {
-                other.GetComponent<Machine>().Interact(gameObject);
+                other.GetComponent<Machine>().IngredientInteract(gameObject);
                 pI.DropCurrentObj();
             }
             catch { }

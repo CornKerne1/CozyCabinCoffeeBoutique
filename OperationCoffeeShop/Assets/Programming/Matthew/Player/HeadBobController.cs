@@ -38,9 +38,7 @@ public class HeadBobController : MonoBehaviour
 
     private void CheckMotion()
     {
-        //float speed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
         if (GetComponent<CharacterController>().velocity.magnitude == 0) return;
-        //if (!controller.isGrounded) return;
 
         PlayMotion(Motion());
     }

@@ -7,10 +7,11 @@ public class MachineData : ScriptableObject
 {
     [SerializeField] public int maxCapacity;
     [SerializeField] public List<GameObject> outputIngredient = new List<GameObject>();
-    [Range(0, 1)]
-    [SerializeField] public float vibeAmt;
+
+    [SerializeField] public Vector3 vibeAmt = new Vector3(.01f, .01f, .01f);
     [Range(0, 1000)]
     [SerializeField] public float vibeSpeed;
-    [SerializeField] public float productionTime =5;
+    
+    [SerializeField] public float productionTime = 5;
 
 }

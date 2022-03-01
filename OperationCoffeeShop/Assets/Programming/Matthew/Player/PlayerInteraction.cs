@@ -12,17 +12,20 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
-
+    bool rotate;
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>();
         pD = pI.pD;
         PlayerInput.InteractEvent += TryInteract;//
+        PlayerInput.RotateEvent += TryRotate;//
+        PlayerInput.RotateCanceledEvent += CancelRotate;
     }
     private void Update()
     {
         RaycastCheck();
         HandleCarrying();
+        HandleRotation();
     }
     private void Start()
     {
@@ -95,6 +98,22 @@ public class PlayerInteraction : MonoBehaviour
         }
 
     }
+    
+    public void TryRotate(object sender, EventArgs e)
+    {
+        rotate = true;
+    }
 
 
+    public void CancelRotate(object sender, EventArgs e)
+    {
+        rotate = false;
+    }
+    public void HandleRotation()
+    {
+        if (pD.busyHands && carriedObj != null && rotate)
+        {
+            carriedObj.transform.Rotate(0, pI.GetCurrentRotate() * pD.objRotationSpeed, 0);
+        }
+    }
 }
