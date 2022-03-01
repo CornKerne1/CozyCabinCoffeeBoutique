@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5241538006757079240}
   - component: {fileID: 227380337125209658}
   - component: {fileID: 1918959151782791178}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4046360190246443980}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5540566262454310176}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,8 @@ GameObject:
   - component: {fileID: 3143608906517689546}
   - component: {fileID: 3524786644289183257}
   - component: {fileID: 3510924159522584960}
-  m_Layer: 0
+  - component: {fileID: 1019261022}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,10 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pD: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
   interact:
-    m_Name: 
+    m_Name: Interact
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 94e490c1-0004-4031-853b-675846400591
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -293,7 +294,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9808fe43d4e901c4880437f981838c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pD: {fileID: 0}
+  pD: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
   enable: 1
   cam: {fileID: 8756248821475083717}
   holder: {fileID: 5540566262454310176}
+--- !u!114 &1019261022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308627260341943980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48329cd027a6f6041a9a432107328092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pD: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
+  pI: {fileID: 540870954}
+  interactionPoint: {x: 0.5, y: 0.5, z: 0}
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 8
