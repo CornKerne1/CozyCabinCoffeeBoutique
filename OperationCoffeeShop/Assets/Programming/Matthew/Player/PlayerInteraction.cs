@@ -12,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
+    Quaternion currentrotation;
     bool rotate;
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Start()
     {
         //pI.InteractEvent += TryInteract;
+        currentrotation = gameObject.transform.localRotation;
     }
 
     public void RaycastCheck()
@@ -113,7 +115,9 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (pD.busyHands && carriedObj != null && rotate)
         {
-            carriedObj.transform.Rotate(0, pI.GetCurrentRotate() * pD.objRotationSpeed, 0);
+            
+             carriedObj.transform.Rotate(0,pI.GetCurrentRotate() * pD.objRotationSpeed, 0);//
+                      
         }
     }
 }
