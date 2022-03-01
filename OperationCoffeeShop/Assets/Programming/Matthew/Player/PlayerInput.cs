@@ -8,10 +8,13 @@ public class PlayerInput : MonoBehaviour
 {
     //[SerializeField] PlayerMovement playerMovement;
 
-    public PlayerData pD;
+    [SerializeField] public PlayerData pD;
 
-    public PlayerControls pC;
-    private PlayerControls.FPPlayerActions fPP;
+    [SerializeField] public static event EventHandler InteractEvent;//
+
+    [SerializeField] private PlayerControls pC;
+    [SerializeField] private PlayerControls.FPPlayerActions fPP;
+    [SerializeField] private InputAction interact;
 
     Vector2 mouseInput;
 
@@ -22,10 +25,13 @@ public class PlayerInput : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
+
         pC = new PlayerControls();
         fPP = pC.FPPlayer;
+        interact = pC.FPPlayer.Interact;
+
     }
+
 
     private void OnEnable()
     {
@@ -44,8 +50,12 @@ public class PlayerInput : MonoBehaviour
         fPP.MouseY.Enable();
 
         fPP.Jump.performed += DoJump;
-        fPP.Jump.Enable();       
+        fPP.Jump.Enable();
+
+        interact.performed += Interact;
+        interact.Enable();
     }
+
 
     private void OnDisable()
     {
@@ -54,6 +64,7 @@ public class PlayerInput : MonoBehaviour
         fPP.MouseX.Disable();
         fPP.MouseY.Disable();
         fPP.Jump.Disable();
+        interact.Disable();
     }
 
     //private void Update()
@@ -81,11 +92,15 @@ public class PlayerInput : MonoBehaviour
         return mouseInput.y;
     }
 
-    private void DoJump(InputAction.CallbackContext obj)
+    public void DoJump(InputAction.CallbackContext obj)
     {
 
     }
 
-    //Vector2 moveInput = context.ReadValue<Vector2>();
+    public void Interact(InputAction.CallbackContext obj)
+    {
+        InteractEvent?.Invoke(this, EventArgs.Empty);
+    }
+
 
 }

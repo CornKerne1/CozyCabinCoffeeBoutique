@@ -1,50 +1,103 @@
 using System.Collections;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RandomCustomer : Customer
 {
-    override public string Name()
+    [SerializeField]
+    private RandomNameSet nameSet;
+
+    private string customerName;
+
+    public void Awake()
     {
-        throw new NotImplementedException();
+
+        //sets a random name from nameSet
+        customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+        DrinkData favoriteDrink = GetRandomDrink();
+
+         List<Flavors> flavors = new List<Flavors>();
+        
+        List<FlavorProfile.FlavorNode> flavorNodes = new List<FlavorProfile.FlavorNode>();
+
+        FlavorProfile flavorProfile = new FlavorProfile();
+
+        foreach (IngredientNode i in favoriteDrink.Ingredients)
+        {
+            if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient].flavor))
+            {
+                flavors.Add(flavorProfile.flavorProfile[i.ingredient].flavor);
+                flavorNodes.Add(flavorProfile.flavorProfile[i.ingredient]);
+            }
+            else
+            {                
+                foreach(FlavorProfile.FlavorNode f in flavorNodes)
+                {
+                    if( f.flavor == flavorProfile.flavorProfile[i.ingredient].flavor)
+                    {
+                        f.strength += flavorProfile.flavorProfile[i.ingredient].strength;
+                    }
+                }
+            }
+        }
+        CD = new CustomerData(customerName, favoriteDrink, flavorNodes);
     }
 
-    protected override List<Ingredients> GetRandomAddOns()
+    public RandomCustomer(RandomNameSet nameSet)
     {
-        throw new NotImplementedException();
+        //Uses specified nameset to generate random name
+        this.nameSet = nameSet;
+        //sets a random name from nameSet
+        customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
     }
 
-    
-    protected override Drinks GetRandomDrink()
+    protected override IngredientNode GetRandomAddOn()
     {
-        throw new NotImplementedException();
+        int ingredient = Random.Range(0, PRD.learnedIngredients.Count);
+        float target = Random.value;
+        return new IngredientNode(PRD.learnedIngredients[ingredient], target);
+    }
+
+    protected override DrinkData GetRandomDrink()
+    {
+        return PRD.learnedDrinks[Random.Range(0, PRD.learnedDrinks.Count)];
+    }
+    public override DrinkData GetDrinkOrder()
+    {
+        IngredientNode addOn = GetRandomAddOn();
+        DrinkData drink = GetRandomDrink();
+
+        DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
+        customeDrink.addIngredient(addOn);
+        return customeDrink;
     }
 
     public void compareingredients()
     {
         List<GameObject> newList = new List<GameObject>();
-        
-      // int i = newList.Find(g);
+
+        // int i = newList.Find(g);
     }
 
     protected override List<Ingredients> GetRandomToppings()
     {
-        throw new NotImplementedException();
+        return new List<Ingredients>();
+    }
+    public override void NextMove()
+    {
+
     }
 
     protected override Tree DialogueTree()
     {
-        throw new NotImplementedException();
+        return new Tree();
     }
 
     public override string Dialogue()
     {
-        throw new NotImplementedException();
+        return "";
     }
 
-    public override void NextMove()
-    {
-        throw new NotImplementedException();
-    }
+
 }

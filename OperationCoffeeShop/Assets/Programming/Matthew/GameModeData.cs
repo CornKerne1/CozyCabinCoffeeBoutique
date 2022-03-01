@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,25 +8,27 @@ using UnityEngine;
 //The class does not inherit from MonoBehavior, since it it a Scriptable Object
 public class GameModeData : ScriptableObject
 {
-    //These are all my variables for a particular component or system
-    
-    //You can categorize your variables with a header.
+
     [Header("Day Night Cycle")]
-    //You can use a slider with the RangeAttribute
-    [Range(0f, 720f)]
-    public float openTimer;
+
+    public float timeRate;
+    public DateTime currentTime;
+    public DateTime sleepTime;
+    public DateTime startTime;
+    public int closingHour;
+    public int wakeUpHour = 6;
 
 
     [Range(0, 16)]
     public int hoursOpen;
 
-    //This section is for variable you do not want designers to play with.
     [Header("DO NOT TOUCH")]
+    public bool sleeping;
     public int reputation;
     public int displayTime;
-    public int timeOfDay;
     public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
 
+    public string time;
 }

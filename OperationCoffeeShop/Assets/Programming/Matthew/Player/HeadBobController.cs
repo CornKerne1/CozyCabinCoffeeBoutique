@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class HeadBobController : MonoBehaviour
 {
+    [SerializeField] private PlayerData pD;
 
     [SerializeField] private bool enable = true;
-
-    [SerializeField, Range(0, .1f)] private float amplitude = .015f;
-    [SerializeField, Range(0, 30)] private float frequency = 10.0f;
 
     [SerializeField] private Transform cam;
     [SerializeField] private Transform holder;
 
-    private PlayerMovement pM;
     
-    private float toggleSpeed = 0.5f;
     private Vector3 startPos;
     private CharacterController controller;
 
@@ -23,7 +19,6 @@ public class HeadBobController : MonoBehaviour
 
     void Awake()
     {
-        pM = gameObject.GetComponent<PlayerMovement>();
         controller = GetComponent<CharacterController>();
         startPos = cam.localPosition;
     }
@@ -44,7 +39,7 @@ public class HeadBobController : MonoBehaviour
     private void CheckMotion()
     {
         //float speed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        if (pM.speed == 0) return;
+        if (GetComponent<CharacterController>().velocity.magnitude == 0) return;
         //if (!controller.isGrounded) return;
 
         PlayMotion(Motion());
@@ -53,8 +48,8 @@ public class HeadBobController : MonoBehaviour
     private Vector3 Motion()
     {
         Vector3 pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * frequency) * amplitude;
-        pos.x += Mathf.Cos(Time.time * frequency / 2) * amplitude * 2;
+        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude;
+        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2;
         return pos;
     }
     private Vector3 FocusTarget()
@@ -67,6 +62,6 @@ public class HeadBobController : MonoBehaviour
     private void ResetPosition()
     {
         if (cam.localPosition == startPos) return;
-        cam.localPosition = Vector3.Lerp(cam.localPosition, startPos, 1 * Time.deltaTime);
+        cam.localPosition = Vector3.Lerp(cam.localPosition, startPos, 8 * Time.deltaTime);
     }    
 }
