@@ -8,6 +8,8 @@ public class SpawnRaandomCustomer : MonoBehaviour
 
     public RandomNameSet nameSet;
 
+    public bool spawnCustomer = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,16 @@ public class SpawnRaandomCustomer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (spawnCustomer)
+        {
+            spawnCustomer = false;
+            SpawnCustomer();
+        }
+    }
+
+    public void SpawnCustomer()
+    {
+        Instantiate(customer, gameObject.transform);
+       // customer.GetComponent<CustomerAI>().setDestination(customer.GetComponent<CustomerAI>().Destinations[0].transform.position);
     }
 }
