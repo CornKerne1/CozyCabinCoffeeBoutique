@@ -41,6 +41,8 @@ public class CustomerAI : MonoBehaviour
                 destination = dests.Dequeue();
             }
         }
+        this.setStay(false);
+
 
     }
     private void Update()

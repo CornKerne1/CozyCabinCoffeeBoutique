@@ -29,6 +29,5 @@ public class SpawnRaandomCustomer : MonoBehaviour
     public void SpawnCustomer()
     {
         Instantiate(customer, gameObject.transform);
-       // customer.GetComponent<CustomerAI>().setDestination(customer.GetComponent<CustomerAI>().Destinations[0].transform.position);
     }
 }
