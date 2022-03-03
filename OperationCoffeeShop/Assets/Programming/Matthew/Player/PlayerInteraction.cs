@@ -8,6 +8,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerData pD;
     [SerializeField] private PlayerInput pI;
 
+    [SerializeField] public DialogDisplay dD;
+
     GameObject carriedObj;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
@@ -18,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         pI = gameObject.GetComponent<PlayerInput>();
         pD = pI.pD;
+        dD = gameObject.GetComponent<DialogDisplay>();
         PlayerInput.InteractEvent += TryInteract;//
         PlayerInput.RotateEvent += TryRotate;//
         PlayerInput.RotateCanceledEvent += CancelRotate;
