@@ -6,6 +6,12 @@ using UnityEngine;
 public class MachineData : ScriptableObject
 {
     [SerializeField] public int maxCapacity;
-    [SerializeField] public Ingredients acceptedIngredient;
+    [SerializeField] public List<GameObject> outputIngredient = new List<GameObject>();
+
+    [SerializeField] public Vector3 vibeAmt = new Vector3(.01f, .01f, .01f);
+    [Range(0, 1000)]
+    [SerializeField] public float vibeSpeed;
+    
+    [SerializeField] public float productionTime = 5;
 
 }

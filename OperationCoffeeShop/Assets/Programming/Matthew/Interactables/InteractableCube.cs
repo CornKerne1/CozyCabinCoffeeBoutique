@@ -9,9 +9,9 @@ public class InteractableCube : Interactable
         Debug.Log("We Are Looking At You");
     }
 
-   
 
-    public override void OnInteract()
+
+    public override void OnInteract(PlayerInteraction pI)
     {
         Debug.Log("SOMETHING");
     }

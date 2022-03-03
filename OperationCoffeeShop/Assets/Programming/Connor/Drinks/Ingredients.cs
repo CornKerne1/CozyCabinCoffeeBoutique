@@ -6,8 +6,7 @@ using UnityEngine;
 public enum Ingredients
 {
     Milk, SteamedMilk,FoamedMilk, Sugar, WhippedCream,
-    EspressoShot, DarkRoastCoffee,
-    Salt, 
+    EspressoShot, UngroundCoffee, GroundCoffee, Salt, 
 
 }
 public enum Flavors
@@ -35,7 +34,7 @@ public class FlavorProfile
         flavorProfile.Add(Ingredients.WhippedCream, new FlavorNode(Flavors.Sweet, Strength.Light));
 
         flavorProfile.Add(Ingredients.EspressoShot, new FlavorNode(Flavors.Bitter, Strength.Strong));
-        flavorProfile.Add(Ingredients.DarkRoastCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
+        flavorProfile.Add(Ingredients.GroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
 
         flavorProfile.Add(Ingredients.Salt, new FlavorNode(Flavors.Salty, Strength.Medium));
 
