@@ -10,23 +10,36 @@ public class CustomerInteractable : Interactable
     public Conversation conversation;
 
     public GameObject prompt;
+
+    private DialogDisplay DD;
+
+    private void Start()
+    {
+        DD = GameObject.Find("Dialog").GetComponent<DialogDisplay>();
+        prompt = GameObject.Find("AdvanceButton");
+    
+    }
+
     public override void OnFocus()
     {
-       
-        Instantiate(prompt); //instanciates on screen prompt asking if you want to interact with them.
+
+        prompt.SetActive(true); //instanciates on screen prompt asking if you want to interact with them.
+        
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
+        Debug.Log("boop the customer");
         //invokes the dialogue interaction thing
         //DialogDisplay
+        DD.AdvanceConversation();
 
     }
 
     public override void OnLoseFocus()
     {
-       
-        Destroy(prompt); //Destroys on screen prompt 
+
+        prompt.SetActive(false); //Destroys on screen prompt 
     }
 
 
