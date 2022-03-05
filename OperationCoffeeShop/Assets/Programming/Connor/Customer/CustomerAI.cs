@@ -42,7 +42,7 @@ public class CustomerAI : MonoBehaviour
             }
         }
         this.setStay(false);
-
+        this.customerLine = null;
 
     }
     private void Update()

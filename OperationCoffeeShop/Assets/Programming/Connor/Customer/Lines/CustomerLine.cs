@@ -10,12 +10,9 @@ public class CustomerLine : MonoBehaviour
 
     Queue<CustomerAI> queue = new Queue<CustomerAI>();
 
-    List<SpotInLine> spots = new List<SpotInLine>();
-
     //used for testing
     public bool next = false;
-
-    public int maxLineSize = 5;
+    
     /// <summary>
     /// only for testing delete when no lonker needed
     /// </summary>
@@ -39,8 +36,7 @@ public class CustomerLine : MonoBehaviour
     /// <param name="customer"></param>
     public void getInLine(GameObject customer)
     {
-        if (queue.Count < maxLineSize)
-        {
+        
             CustomerAI customerAI = customer.GetComponent<CustomerAI>();
 
             customerAI.customerLine = this;
@@ -48,12 +44,9 @@ public class CustomerLine : MonoBehaviour
             Debug.Log("que count is" + queue.Count);
             customerAI.setDestination(getNextSpotInLine(queue.Count));
             customerAI.setStay(true);//sets stay
-        }
+        
         //if line is full
-        else
-        {
-            Debug.Log("line is at capacity");
-        }
+        
     }
 
     /// <summary>
@@ -94,15 +87,4 @@ public class CustomerLine : MonoBehaviour
     /// <summary>
     /// A better way to make lines in the future would be to link list them. 
     /// </summary>
-    class SpotInLine
-    {
-        Vector3 spot;
-        bool occupied;
-
-        void CreateSpotInLine(Transform trans, float distance)
-        {
-            spot = trans.position + trans.forward * distance;
-
-        }
-    }
 }

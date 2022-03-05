@@ -17,6 +17,7 @@ public abstract class Customer : MonoBehaviour
     public virtual void Start()
     {
         gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        this.hasOrder = false;
     }
     /// <summary>
     /// Returns Customer's Name.

@@ -16,14 +16,13 @@ public class CustomerInteractable : Interactable
     private void Start()
     {
         DD = GameObject.Find("Dialog").GetComponent<DialogDisplay>();
-        prompt = GameObject.Find("AdvanceButton");
-    
+        prompt = GameObject.Find("Canvas");
+        prompt.GetComponent<Canvas>().enabled = false;
     }
 
     public override void OnFocus()
     {
-
-        prompt.SetActive(true); //instanciates on screen prompt asking if you want to interact with them.
+        prompt.GetComponent<Canvas>().enabled = true; //instanciates on screen prompt asking if you want to interact with them.
         
     }
 
@@ -39,9 +38,9 @@ public class CustomerInteractable : Interactable
     public override void OnLoseFocus()
     {
 
-        prompt.SetActive(false); //Destroys on screen prompt 
+        prompt.GetComponent<Canvas>().enabled = false;//Destroys on screen prompt 
     }
 
 
-    
+
 }
