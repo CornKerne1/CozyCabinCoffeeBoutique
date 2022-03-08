@@ -26,7 +26,7 @@ public abstract class Customer : MonoBehaviour
     public string GetName()
     {
         if (CD != null || CD.name != null)
-            return "Naome";
+            return "Name";
         return CD.name;
 
     }
