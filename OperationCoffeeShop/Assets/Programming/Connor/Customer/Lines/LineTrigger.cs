@@ -17,7 +17,7 @@ public class LineTrigger : MonoBehaviour
      void OnTriggerEnter(Collider other)
     {
         if (other.tag == customerTag 
-            && other.GetComponent<Customer>().hasOrder == false
+            && other.GetComponent<CustomerAI>().hasOrdered == false
             && other.GetComponent<CustomerAI>().customerLine == null)
         {
             Debug.Log("Yes I love Customers in line!!");

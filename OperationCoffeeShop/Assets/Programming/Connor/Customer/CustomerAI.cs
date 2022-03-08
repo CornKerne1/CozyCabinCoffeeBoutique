@@ -24,6 +24,9 @@ public class CustomerAI : MonoBehaviour
 
     public CustomerLine customerLine;
 
+    public bool hasOrdered = false;
+    public bool hasOrder = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,10 @@ public class CustomerAI : MonoBehaviour
         }
         this.setStay(false);
         this.customerLine = null;
+        this.hasOrder = false;
+        this.hasOrdered = false;
+
+
 
     }
     private void Update()

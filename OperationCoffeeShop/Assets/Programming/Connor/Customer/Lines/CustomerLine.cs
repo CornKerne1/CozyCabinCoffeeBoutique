@@ -41,7 +41,7 @@ public class CustomerLine : MonoBehaviour
 
             customerAI.customerLine = this;
             queue.Enqueue(customerAI);
-            Debug.Log("que count is" + queue.Count);
+            Debug.Log("que count is: " + queue.Count);
             customerAI.setDestination(getNextSpotInLine(queue.Count));
             customerAI.setStay(true);//sets stay
         
@@ -60,6 +60,7 @@ public class CustomerLine : MonoBehaviour
             CustomerAI ai = queue.Dequeue();
             ai.stay = false;
             ai.customerLine = null;
+            ai.hasOrdered = true;
             foreach (CustomerAI AI in queue)
             {
                 //moves customer up 1 position & incraments position. 
@@ -77,7 +78,7 @@ public class CustomerLine : MonoBehaviour
 
         float i = position;
         Vector3 nextSpot = this.transform.forward * position;
-        Debug.Log("customer " + position + " is:" + lineStartPosition + nextSpot);
+        //Debug.Log("customer " + position + " is:" + lineStartPosition + nextSpot);
 
         return lineStartPosition + nextSpot;
 

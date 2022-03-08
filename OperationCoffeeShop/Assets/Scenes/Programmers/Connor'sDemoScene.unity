@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: e0dadaadcb50463489ab2fb6bf2a90e1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e1c77898e28ca6947bfa58412a776cf2, type: 2}
 --- !u!4 &14264386
 Transform:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.193861e-39, y: 9.1835e-41, z: 1.1e-44, w: 0}
+  m_BoundingSphereOverride: {x: 4.775446e-39, y: 9.1835e-41, z: 1.8e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -867,7 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d5ba372f51fea418dcce0a24f6b355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasOrder: 0
   CD: {fileID: 0}
   PRD: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
   gameMode: {fileID: 0}
@@ -1482,8 +1481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
+  m_OverrideArea: 0
+  m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
 --- !u!64 &4866966304276261513
@@ -1622,6 +1621,8 @@ MonoBehaviour:
   stay: 0
   minDistance: 1
   customerLine: {fileID: 0}
+  hasOrdered: 0
+  hasOrder: 0
 --- !u!1 &9127328532023339192
 GameObject:
   m_ObjectHideFlags: 0

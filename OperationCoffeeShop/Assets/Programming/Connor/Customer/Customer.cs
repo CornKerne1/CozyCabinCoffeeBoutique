@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Customer : MonoBehaviour 
 {
-    public bool hasOrder = false;
+
+
 
     [Header("RandomCustomer will be empty")]
     public CustomerData CD; //holds all realavent variables
@@ -17,7 +18,6 @@ public abstract class Customer : MonoBehaviour
     public virtual void Start()
     {
         gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        this.hasOrder = false;
     }
     /// <summary>
     /// Returns Customer's Name.
