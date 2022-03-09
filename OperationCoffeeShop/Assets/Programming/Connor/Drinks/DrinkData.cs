@@ -16,8 +16,24 @@ public class DrinkData : ScriptableObject
     public void addIngredient(IngredientNode IN)
     {
         if (Ingredients != null)
-        Ingredients.Add(new IngredientNode(IN.ingredient, IN.target));
+        {
+            bool foundIngredient = false;
+            foreach (IngredientNode ingredient in Ingredients)
+            {
+                if (ingredient.ingredient == IN.ingredient)
+                {
+                    foundIngredient=true;
+                    ingredient.target+= IN.target;
+                }
+               
+            }
+            if (!foundIngredient)
+            {
+                Ingredients.Add(IN);
+            }
+        }
     }
+        
     public DrinkData(string name)
     {
         this.name = name;
@@ -43,6 +59,6 @@ public class IngredientNode
             this.target = target;
         }
         public Ingredients ingredient;
-        [SerializeField, Range(0,1)]
+        [SerializeField, Range(0,100)]
         public float target;
     }
