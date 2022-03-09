@@ -5,7 +5,6 @@ using UnityEngine;
 public class CoffeeBrewer : Machine
 {
     public bool hasPitcher;
-    
     public override IEnumerator ActivateMachine(float time)
     {
         isRunning = true;

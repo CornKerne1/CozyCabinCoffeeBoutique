@@ -10,7 +10,8 @@ public class BrewedCoffee : MonoBehaviour
     private Material mat;
     public float speed;
     private bool changeColor;
-
+    private bool animate;
+    
     public IngredientNode iN;
 
     private void Awake()
@@ -25,6 +26,13 @@ public class BrewedCoffee : MonoBehaviour
     }
     private void Update()
     {
+        ChangeColor();
+        ScaleMesh();
+
+    }
+
+    private void ChangeColor()
+    {
         if (changeColor)
         {
             if (mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e") >= 1)
@@ -38,16 +46,32 @@ public class BrewedCoffee : MonoBehaviour
         }
     }
 
+    private void ScaleMesh()
+    {
+        if (animate)
+        {
+            if (transform.localScale.x > 0)
+            {
+                transform.localScale -= new Vector3(.0001f, 0, 0);
+                transform.localScale += new Vector3(0, .0001f, .0001f);
+            }
+            else
+            {
+                animate = false;
+                Destroy(gameObject);
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         TryAddOrDelete(other.gameObject);
+        
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        TryAddOrDelete(collision.gameObject);
+        animate = true;
     }
-
 
     private void TryAddOrDelete(GameObject obj)
     {
