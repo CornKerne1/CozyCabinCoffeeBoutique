@@ -35,7 +35,7 @@ public class CoffeeBrewer : Machine
         for (int i = 0; i < currentCapacity;)
             if (currentCapacity != 0)
             {
-                for (int k = 0; k < 50 * (i + 1); k++)
+                for (int k = 0; k < 100 * (i + 1); k++)
                 {
                     Instantiate(mD.outputIngredient[i], outputTransform.position, outputTransform.rotation);
                     yield return new WaitForSeconds(.04f);
