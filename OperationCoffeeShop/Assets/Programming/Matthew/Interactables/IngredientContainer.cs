@@ -22,7 +22,11 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
-        dD.addIngredient(new IngredientNode(Ingredients.Milk, 100000f));
+    }
+
+    public virtual void AddToContainer(IngredientNode iN)
+    {
+        dD.addIngredient(iN);
     }
 
     public override void OnInteract(PlayerInteraction pI)
@@ -34,7 +38,7 @@ public class IngredientContainer : Interactable
 
     public override void OnFocus()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public void OnDrop()

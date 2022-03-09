@@ -11,6 +11,8 @@ public class BrewedCoffee : MonoBehaviour
     public float speed;
     private bool changeColor;
 
+    public IngredientNode iN;
+
     private void Awake()
     {
         mat = matOwner.GetComponent<Renderer>().material;
@@ -23,7 +25,6 @@ public class BrewedCoffee : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e"));
         if (changeColor)
         {
             if (mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e") >= 1)
@@ -32,9 +33,24 @@ public class BrewedCoffee : MonoBehaviour
             }
             else
             {
-                mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e") + (speed* 20f));
+                mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e") + (speed* 5f));
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        TryAddOrDelete(other.gameObject);
+    }
     
+
+    private void TryAddOrDelete(GameObject obj)
+    {
+        try
+        {
+            obj.GetComponent<IngredientContainer>().AddToContainer(iN);//WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
+            Destroy(gameObject);
+        }
+        catch{Destroy(gameObject);}
+    }
 }
