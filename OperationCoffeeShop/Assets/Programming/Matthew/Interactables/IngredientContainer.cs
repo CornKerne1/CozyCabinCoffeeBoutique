@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cup : Interactable
+public class IngredientContainer : Interactable
 {
-
+    bool inHand;
+    public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
 
     public override void Awake()
@@ -18,25 +19,32 @@ public class Cup : Interactable
     public override void Start()
     {
         base.Start();
+        gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
         dD.addIngredient(new IngredientNode(Ingredients.Milk, 100000f));
     }
 
-    public override void OnFocus()
-    {
-        Debug.Log("We Are Looking At You");
-    }
-
-
-
     public override void OnInteract(PlayerInteraction pI)
     {
-        Debug.Log("SOMETHING");
+        this.pI = pI;
+        pI.Carry(gameObject);
+        inHand = true;
     }
 
-    public override void OnLoseFocus()//
+    public override void OnFocus()
     {
-        Debug.Log("Gone!");
+        throw new System.NotImplementedException();
     }
+
+    public void OnDrop()
+    {
+        inHand = false;
+    }
+
+    public override void OnLoseFocus()
+    {
+
+    }
+    
 }
