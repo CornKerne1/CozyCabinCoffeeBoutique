@@ -42,7 +42,12 @@ public class BrewedCoffee : MonoBehaviour
     {
         TryAddOrDelete(other.gameObject);
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        TryAddOrDelete(collision.gameObject);
+    }
+
 
     private void TryAddOrDelete(GameObject obj)
     {
