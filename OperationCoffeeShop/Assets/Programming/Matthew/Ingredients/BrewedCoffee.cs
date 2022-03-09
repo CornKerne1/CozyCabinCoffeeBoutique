@@ -26,6 +26,7 @@ public class BrewedCoffee : MonoBehaviour
     }
     private void Update()
     {
+        mat.SetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81", mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") -.002f);
         ChangeColor();
         ScaleMesh();
 
@@ -53,7 +54,7 @@ public class BrewedCoffee : MonoBehaviour
             if (transform.localScale.x > 0)
             {
                 transform.localScale -= new Vector3(.0001f, 0, 0);
-                transform.localScale += new Vector3(0, .0001f, .0001f);
+                transform.localScale += new Vector3(0, .0005f, .0005f);
             }
             else
             {
