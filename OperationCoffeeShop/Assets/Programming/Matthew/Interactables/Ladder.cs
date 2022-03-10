@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ladder : Interactable
 {
     public PlayerInteraction pI;
-    private bool canClimb;
+    public bool canClimb;
     
     void Start()
     {
@@ -16,9 +16,16 @@ public class Ladder : Interactable
     public override void OnInteract(PlayerInteraction pI)
     {
         this.pI = pI;
-        if (canClimb)
+        if (this.pI.pD.isClimbing)
         {
-            this.pI.pD.isClimbing = true;
+            this.pI.pD.isClimbing = false;
+        }
+        else
+        {
+            if (canClimb)
+            {
+                this.pI.pD.isClimbing = true;
+            }
         }
     }
 
@@ -26,30 +33,7 @@ public class Ladder : Interactable
     {
     }
 
-    public override void OnLoseFocus()
+    public override void OnLoseFocus()//
     {
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer.Equals(2))
-        {
-            canClimb = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer.Equals(2))
-        {
-            canClimb = false;
-            this.pI.pD.isClimbing = false;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
