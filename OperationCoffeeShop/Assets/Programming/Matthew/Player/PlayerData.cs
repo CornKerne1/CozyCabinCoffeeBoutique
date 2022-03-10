@@ -31,9 +31,12 @@ public class PlayerData : ScriptableObject
     [Header("Gameplay Related")]
     [Range(0, 100)]
     [SerializeField] public Vector3 currentMovement;
+
+    [SerializeField] public float objMoveSpeed =0.1f;
     [SerializeField] public float interactDistance;
+    [SerializeField] public float interactDistanceClamp;
     
-    [Range(0, 1)]
+    [Range(1, 20)]
     [SerializeField] public float objRotationSpeed;
     
     [SerializeField] public bool canInteract;

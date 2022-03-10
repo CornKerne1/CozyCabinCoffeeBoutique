@@ -6,12 +6,14 @@ using Random = UnityEngine.Random;
 
 public class BrewedCoffee : MonoBehaviour
 {
+    public float maxScale;
     public GameObject matOwner;
     private Material mat;
     public float speed;
     private bool changeColor;
     private bool animate;
-    public Collider triggerBox;
+    float timer;
+    public float maxTimer;
 
     public IngredientNode iN;
     
@@ -23,14 +25,20 @@ public class BrewedCoffee : MonoBehaviour
 
     private void Start()
     {
+        timer = maxTimer;
         changeColor = true;
         mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f);//
     }
     private void Update()
     {
         mat.SetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81", mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") -.0035f);
+        if (mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") <= 0)
+        {
+            Destroy(gameObject);
+        }
         ChangeColor();
         ScaleMesh();
+        timer =- Time.deltaTime;
 
     }
 
@@ -51,13 +59,12 @@ public class BrewedCoffee : MonoBehaviour
 
     private void ScaleMesh()
     {
-        
-        if (animate)
+        if (timer <= 0)
         {
-            if (transform.localScale.x > 0)
+            if (transform.localScale.x > 0 || transform.localScale.z < maxScale)
             {
                 transform.localScale -= new Vector3(.0001f, 0, 0);
-                transform.localScale += new Vector3(0, .0005f, .0005f);
+                transform.localScale += new Vector3(0, .00028f, .00028f);
             }
             else
             {
@@ -70,12 +77,6 @@ public class BrewedCoffee : MonoBehaviour
     {
         TryAddOrDelete(other.gameObject);
         
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        animate = true;
-        Destroy(triggerBox);
     }
 
     private void TryAddOrDelete(GameObject obj)

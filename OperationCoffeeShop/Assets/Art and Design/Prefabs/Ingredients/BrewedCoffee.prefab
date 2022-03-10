@@ -42,10 +42,9 @@ GameObject:
   - component: {fileID: 8889326768271314780}
   - component: {fileID: 6260292433587366439}
   - component: {fileID: 118665870297350443}
-  - component: {fileID: 9060252024148841058}
-  - component: {fileID: 8797725623319639450}
   - component: {fileID: 7192238697411973598}
   - component: {fileID: 766767930868364327}
+  - component: {fileID: 6756155383486331375}
   m_Layer: 4
   m_Name: Cube
   m_TagString: Untagged
@@ -60,9 +59,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5227003749097557388}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.05, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 8736813970023886068}
   m_RootOrder: 0
@@ -116,32 +115,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9060252024148841058
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5227003749097557388}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &8797725623319639450
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5227003749097557388}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6, z: 0.6}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7192238697411973598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,11 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a56cf7fadd623043a1719963e0fed27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxScale: 0.2
   matOwner: {fileID: 5227003749097557388}
   speed: 0.001
-  triggerBox: {fileID: 9060252024148841058}
+  maxTimer: 1.5
   iN:
-    ingredient: 5
+    ingredient: 9
     target: 0.01
 --- !u!54 &766767930868364327
 Rigidbody:
@@ -176,3 +150,16 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!65 &6756155383486331375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227003749097557388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
