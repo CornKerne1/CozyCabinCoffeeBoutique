@@ -11,22 +11,24 @@ public class BrewedCoffee : MonoBehaviour
     public float speed;
     private bool changeColor;
     private bool animate;
-    
-    public IngredientNode iN;
+    public Collider triggerBox;
 
+    public IngredientNode iN;
+    
     private void Awake()
     {
+
         mat = matOwner.GetComponent<Renderer>().material;
     }
 
     private void Start()
     {
         changeColor = true;
-        mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f);
+        mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f);//
     }
     private void Update()
     {
-        mat.SetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81", mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") -.002f);
+        mat.SetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81", mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") -.0035f);
         ChangeColor();
         ScaleMesh();
 
@@ -49,6 +51,7 @@ public class BrewedCoffee : MonoBehaviour
 
     private void ScaleMesh()
     {
+        
         if (animate)
         {
             if (transform.localScale.x > 0)
@@ -72,6 +75,7 @@ public class BrewedCoffee : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         animate = true;
+        Destroy(triggerBox);
     }
 
     private void TryAddOrDelete(GameObject obj)
