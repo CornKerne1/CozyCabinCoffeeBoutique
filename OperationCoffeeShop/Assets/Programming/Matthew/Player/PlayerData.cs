@@ -31,6 +31,7 @@ public class PlayerData : ScriptableObject
     [Header("Gameplay Related")]
     [Range(0, 100)]
     [SerializeField] public Vector3 currentMovement;
+    [SerializeField] public bool isClimbing;
 
     [SerializeField] public float objMoveSpeed =0.1f;
     [SerializeField] public float interactDistance;

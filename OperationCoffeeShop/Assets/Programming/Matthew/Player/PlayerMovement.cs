@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-
+    
     private PlayerInput pI;
     public CharacterController controller;
     
@@ -48,6 +48,22 @@ public class PlayerMovement : MonoBehaviour
     }
     
     private void HandleMovement()
+    {
+        if (pI.pD.isClimbing)
+        {
+            HandleLadderMovement();
+        }
+        else
+        {
+            Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() *.75f, 0.0f, pI.GetVerticalMovement());
+            currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
+            Vector3 finalMovement = transform.TransformVector(currentMovement);
+            controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
+    }
+    private void HandleLadderMovement()
     {
         Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() *.75f, 0.0f, pI.GetVerticalMovement());
         currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
