@@ -128,12 +128,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Rotate"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""3e138dd2-bbf4-45d6-a99b-b9b08fa76b2b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveObj"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""bf22d0ea-6856-41a1-bf87-fc05afae3585"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -239,7 +248,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cc756f09-3acd-4768-a651-8485be74f4e3"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -303,9 +312,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""f34c4925-d9f8-4ce6-b915-6bdc730476a5"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""3940d5f0-289b-4619-8d6f-9b6128bf13e3"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -314,8 +323,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""e969ae2b-8e09-4149-9802-8f1c8364ca36"",
+                    ""name"": ""left"",
+                    ""id"": ""c135abaf-f094-4532-a573-672dd7faeeeb"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -325,8 +334,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""d7c522fa-a355-409c-a7b8-30fb9879712c"",
+                    ""name"": ""up"",
+                    ""id"": ""666cf2b3-4f6e-4169-a020-05f74bded36a"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -334,6 +343,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cce4f883-6d7a-472f-93db-439b56bedca4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d28b64f1-8e1a-4f9a-ad33-e69d5767bb5f"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c80920d0-ec70-48a6-b0b9-a719d312e6b4"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveObj"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -354,6 +396,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_FPPlayer_Interact = m_FPPlayer.FindAction("Interact", throwIfNotFound: true);
         m_FPPlayer_MiniGames = m_FPPlayer.FindAction("MiniGames", throwIfNotFound: true);
         m_FPPlayer_Rotate = m_FPPlayer.FindAction("Rotate", throwIfNotFound: true);
+        m_FPPlayer_MoveObj = m_FPPlayer.FindAction("MoveObj", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,6 +468,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FPPlayer_Interact;
     private readonly InputAction m_FPPlayer_MiniGames;
     private readonly InputAction m_FPPlayer_Rotate;
+    private readonly InputAction m_FPPlayer_MoveObj;
     public struct FPPlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -441,6 +485,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_FPPlayer_Interact;
         public InputAction @MiniGames => m_Wrapper.m_FPPlayer_MiniGames;
         public InputAction @Rotate => m_Wrapper.m_FPPlayer_Rotate;
+        public InputAction @MoveObj => m_Wrapper.m_FPPlayer_MoveObj;
         public InputActionMap Get() { return m_Wrapper.m_FPPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -486,6 +531,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Rotate.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnRotate;
+                @MoveObj.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMoveObj;
+                @MoveObj.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMoveObj;
+                @MoveObj.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMoveObj;
             }
             m_Wrapper.m_FPPlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -526,6 +574,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @MoveObj.started += instance.OnMoveObj;
+                @MoveObj.performed += instance.OnMoveObj;
+                @MoveObj.canceled += instance.OnMoveObj;
             }
         }
     }
@@ -544,5 +595,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnMiniGames(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnMoveObj(InputAction.CallbackContext context);
     }
 }
