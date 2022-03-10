@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private PlayerData pD;
+    [SerializeField] public PlayerData pD;
     [SerializeField] private PlayerInput pI;
 
     GameObject carriedObj;
