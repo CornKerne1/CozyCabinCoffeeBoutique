@@ -16,10 +16,9 @@ public class BrewedCoffee : MonoBehaviour
     public float maxTimer;
 
     public IngredientNode iN;
-    
+
     private void Awake()
     {
-
         mat = matOwner.GetComponent<Renderer>().material;
     }
 
@@ -27,18 +26,22 @@ public class BrewedCoffee : MonoBehaviour
     {
         timer = maxTimer;
         changeColor = true;
-        mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f);//
+        mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f); //
     }
+
     private void Update()
     {
-        mat.SetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81", mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") -.0035f);
+        mat.SetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81",
+            mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") - .0035f);
         if (mat.GetFloat("Vector1_509ce15df0f245ffba027f51d8eaef81") <= 0)
         {
             Destroy(gameObject);
+
         }
+
         ChangeColor();
         ScaleMesh();
-        timer =- Time.deltaTime;
+        timer = -Time.deltaTime;
 
     }
 
@@ -52,7 +55,8 @@ public class BrewedCoffee : MonoBehaviour
             }
             else
             {
-                mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e") + (speed* 5f));
+                mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e",
+                    mat.GetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e") + (speed * 5f));
             }
         }
     }
@@ -73,19 +77,24 @@ public class BrewedCoffee : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         TryAddOrDelete(other.gameObject);
-        
+
     }
 
     private void TryAddOrDelete(GameObject obj)
     {
         try
         {
-            obj.GetComponent<IngredientContainer>().AddToContainer(iN);//WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
+            obj.GetComponent<IngredientContainer>().AddToContainer(iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
             Destroy(gameObject);
         }
-        catch{Destroy(gameObject);}
+        catch
+        {
+            Destroy(gameObject);
+        }
     }
 }
+
