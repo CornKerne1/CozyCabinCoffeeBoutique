@@ -9,7 +9,7 @@ public abstract class Machine : MonoBehaviour
     public MachineData mD;
     public IngredientData iD;
     public bool isRunning;
-    Vector3 origin;
+    public Vector3 origin;
 
 
     public Transform outputTransform;
@@ -19,6 +19,7 @@ public abstract class Machine : MonoBehaviour
     private void Awake()
     {
         origin = transform.position;
+        mD.outputIngredient.Clear();
     }
     public void IngredientInteract(GameObject other)
     {
@@ -63,11 +64,7 @@ public abstract class Machine : MonoBehaviour
     public virtual void OutputIngredients()
     {
         for (int i = 0; i < currentCapacity;)
-            if (currentCapacity == 0)
-            {
-
-            }
-            else
+            if (currentCapacity != 0)
             {
                 currentCapacity = currentCapacity - 1;
                 Debug.Log(currentCapacity);

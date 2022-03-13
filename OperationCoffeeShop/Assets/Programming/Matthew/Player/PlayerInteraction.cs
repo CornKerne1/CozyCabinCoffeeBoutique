@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private PlayerData pD;
+    [SerializeField] public PlayerData pD;
     [SerializeField] private PlayerInput pI;
 
     GameObject carriedObj;
@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     private Interactable currentInteractable;
     Quaternion currentrotation;
     bool rotate;
+    private float carryDistance;
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>();
@@ -21,7 +22,15 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.InteractEvent += TryInteract;//
         PlayerInput.RotateEvent += TryRotate;//
         PlayerInput.RotateCanceledEvent += CancelRotate;
+        PlayerInput.MoveObjEvent += MoveObj;
     }
+
+    private void MoveObj(object sender, EventArgs e)
+    {
+        if (rotate) return;
+        carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance()/8), pD.carryDistance - pD.interactDistanceClamp, pD.carryDistance + pD.interactDistanceClamp);
+    }
+
     private void Update()
     {
         RaycastCheck();
@@ -32,6 +41,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         //pI.InteractEvent += TryInteract;
         currentrotation = gameObject.transform.localRotation;
+        carryDistance = pD.carryDistance;
     }
 
     public void RaycastCheck()
@@ -72,7 +82,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (pD.busyHands && carriedObj != null)
         {
-            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * pD.carryDistance, Time.deltaTime * pD.smooth);
+            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * carryDistance, Time.deltaTime * pD.smooth);
         }
     }
 
@@ -116,8 +126,31 @@ public class PlayerInteraction : MonoBehaviour
         if (pD.busyHands && carriedObj != null && rotate)
         {
             
-             carriedObj.transform.Rotate(0,pI.GetCurrentRotate() * pD.objRotationSpeed, 0);//
-                      
+            if (pI.GetCurrentRotate().x > 0)
+            {
+                carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed,0, 0);
+            }
+            else if (pI.GetCurrentRotate().x < 0)
+            {
+                carriedObj.transform.Rotate(0,pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
+            }
+            else if (pI.GetCurrentRotate().y > 0)
+            {
+                carriedObj.transform.Rotate(0,0,pI.GetCurrentObjDistance() * pD.objRotationSpeed);
+            }
+            else if (pI.GetCurrentRotate().y < 0)
+            {
+                Interactable i = carriedObj.GetComponent<Interactable>();
+                if (i)
+                {
+                    Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x, Quaternion.identity.y+ i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z, Quaternion.identity.w);
+                    carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime/2);
+                }
+            }
+
+            try { carriedObj.GetComponent<IngredientContainer>().CheckPour(); }
+            catch { }
+
         }
     }
 }

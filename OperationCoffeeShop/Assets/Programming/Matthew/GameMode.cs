@@ -13,12 +13,16 @@ public class GameMode : MonoBehaviour
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle dNC;
 
+    private List<GameObject> toBeDestroyed = new List<GameObject>();
+    
+
     [SerializeField] public GameObject sunLight;
     // Start is called before the first frame update
     private void Start()
     {
         //player.gameObject.SetActive(true);
     }
+    
     void Awake()
     {
         //Creates new DayNightCycle component.
@@ -54,5 +58,11 @@ public class GameMode : MonoBehaviour
         gMD.startTime = DateTime.Now.Date + TimeSpan.FromHours(6);
         gMD.currentTime = gMD.startTime;
 
+    }
+
+    public void DeactivateAndDestroy(GameObject obj)
+    {
+        obj.SetActive(false);
+        toBeDestroyed.Add(obj);
     }
 }

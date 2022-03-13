@@ -9,21 +9,30 @@ public class PlayerInput : MonoBehaviour
     //[SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] public PlayerData pD;
+    [SerializeField] public GameObject hud;
 
     [SerializeField] public static event EventHandler InteractEvent;//
     [SerializeField] public static event EventHandler InteractCanceledEvent;
     [SerializeField] public static event EventHandler RotateEvent;//
     [SerializeField] public static event EventHandler RotateCanceledEvent;//
     
+    [SerializeField] public static event EventHandler MoveObjEvent;
+
+
+    [SerializeField] public static event EventHandler ResetObjEvent;//
+    
+    [SerializeField] public static event EventHandler PourEvent;
+    
     [SerializeField] private PlayerControls pC;
     [SerializeField] private PlayerControls.FPPlayerActions fPP;
     [SerializeField] private InputAction interact;
 
     Vector2 mouseInput;
-    float currentRotate;
+    Vector2 currentRotate;
 
     float horizontalMovement;
     float verticalMovement;
+    Vector2 currentObjDistance;
 
     private void Awake()
     {
@@ -34,6 +43,11 @@ public class PlayerInput : MonoBehaviour
         fPP = pC.FPPlayer;
         interact = pC.FPPlayer.Interact;
 
+    }
+
+    private void Start()
+    {
+        Instantiate(hud);
     }
 
 
@@ -61,10 +75,19 @@ public class PlayerInput : MonoBehaviour
         interact.Enable();
 
 
-        fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<float>();
+        fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<Vector2>();
         fPP.Rotate.performed += Rotate;
         fPP.Rotate.canceled += RotateCanceled;
         fPP.Rotate.Enable();
+        
+        fPP.MoveObj.performed += ctx => currentObjDistance = ctx.ReadValue<Vector2>();
+        fPP.MoveObj.performed += MoveObj;
+        fPP.MoveObj.Enable();
+    }
+
+    private void MoveObj(InputAction.CallbackContext obj)
+    {
+        MoveObjEvent?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnDisable()
@@ -92,6 +115,12 @@ public class PlayerInput : MonoBehaviour
     {
         return -verticalMovement;
     }
+    
+    public float GetCurrentObjDistance()
+    {
+        
+        return Mathf.Clamp(currentObjDistance.y, -1, 1);
+    }
 
     public float GetMouseX()
     {
@@ -103,7 +132,7 @@ public class PlayerInput : MonoBehaviour
         return mouseInput.y;
     }
 
-    public float GetCurrentRotate()
+    public Vector2 GetCurrentRotate()
     {
         return currentRotate;
     }
