@@ -6,6 +6,7 @@ public abstract class Interactable : MonoBehaviour
 {
     
     public GameMode gM;
+    public Vector3 rotateOffset;
     public virtual void Awake()
     {
         gameObject.layer = 3;      

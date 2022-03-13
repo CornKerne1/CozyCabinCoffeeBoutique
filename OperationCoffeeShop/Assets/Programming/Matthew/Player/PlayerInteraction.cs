@@ -140,8 +140,12 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (pI.GetCurrentRotate().y < 0)
             {
-                Quaternion rot = new Quaternion(Quaternion.identity.x - 90, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w);
-                carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime/2);
+                Interactable i = carriedObj.GetComponent<Interactable>();
+                if (i)
+                {
+                    Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x, Quaternion.identity.y+ i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z, Quaternion.identity.w);
+                    carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime/2);
+                }
             }
 
             try { carriedObj.GetComponent<IngredientContainer>().CheckPour(); }
