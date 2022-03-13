@@ -8,6 +8,7 @@ public class PlayerData : ScriptableObject
     private void Awake()
     {
         busyHands = false;
+        isClimbing = false;
 
     }
 
