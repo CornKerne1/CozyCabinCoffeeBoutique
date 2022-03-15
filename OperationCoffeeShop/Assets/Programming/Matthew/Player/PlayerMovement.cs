@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-
+    
     private PlayerInput pI;
     public CharacterController controller;
     
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         pI = this.gameObject.GetComponent<PlayerInput>();
         controller = this.gameObject.GetComponent<CharacterController>();
         pI.pD.currentMovement = transform.position;
+        pI.pD.isClimbing = false;
     }
 
 
@@ -49,12 +50,27 @@ public class PlayerMovement : MonoBehaviour
     
     private void HandleMovement()
     {
-        Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() *.75f, 0.0f, pI.GetVerticalMovement());
-        currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
+        if (pI.pD.isClimbing)
+        {
+            HandleLadderMovement();
+        }
+        else
+        {
+            Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() *.75f, 0.0f, pI.GetVerticalMovement());
+            currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
+            Vector3 finalMovement = transform.TransformVector(currentMovement);
+            controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
+    }
+    private void HandleLadderMovement()
+    {
+        Vector3 lM = new Vector3(Vector3.up.x * pI.GetVerticalMovement(), Vector3.up.y * pI.GetVerticalMovement(),
+            Vector3.up.z * pI.GetVerticalMovement());
+        currentMovement = Vector3.MoveTowards(currentMovement, lM, pI.pD.inertiaVar * Time.deltaTime);
         Vector3 finalMovement = transform.TransformVector(currentMovement);
         controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
     }
 
 

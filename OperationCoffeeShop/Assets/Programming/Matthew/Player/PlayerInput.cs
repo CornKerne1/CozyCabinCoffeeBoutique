@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     //[SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] public PlayerData pD;
+    [SerializeField] public GameObject hud;
 
     [SerializeField] public static event EventHandler InteractEvent;//
     [SerializeField] public static event EventHandler InteractCanceledEvent;
@@ -42,6 +43,11 @@ public class PlayerInput : MonoBehaviour
         fPP = pC.FPPlayer;
         interact = pC.FPPlayer.Interact;
 
+    }
+
+    private void Start()
+    {
+        Instantiate(hud);
     }
 
 
