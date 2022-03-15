@@ -13,7 +13,7 @@ public class MachineInteraction : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        gameObject.GetComponent<Machine>().StartMachine(mD.productionTime);
+        gameObject.GetComponent<Machine>().StartMachine();
     }
 
     public override void OnLoseFocus()//

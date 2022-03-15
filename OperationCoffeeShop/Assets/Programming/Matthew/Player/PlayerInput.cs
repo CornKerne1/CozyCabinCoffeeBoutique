@@ -11,15 +11,27 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public PlayerData pD;
 
     [SerializeField] public static event EventHandler InteractEvent;//
+    [SerializeField] public static event EventHandler InteractCanceledEvent;
+    [SerializeField] public static event EventHandler RotateEvent;//
+    [SerializeField] public static event EventHandler RotateCanceledEvent;//
+    
+    [SerializeField] public static event EventHandler MoveObjEvent;
 
+
+    [SerializeField] public static event EventHandler ResetObjEvent;//
+    
+    [SerializeField] public static event EventHandler PourEvent;
+    
     [SerializeField] private PlayerControls pC;
     [SerializeField] private PlayerControls.FPPlayerActions fPP;
     [SerializeField] private InputAction interact;
 
     Vector2 mouseInput;
+    Vector2 currentRotate;
 
     float horizontalMovement;
     float verticalMovement;
+    Vector2 currentObjDistance;
 
     private void Awake()
     {
@@ -53,9 +65,24 @@ public class PlayerInput : MonoBehaviour
         fPP.Jump.Enable();
 
         interact.performed += Interact;
+        interact.canceled += InteractCanceled;
         interact.Enable();
+
+
+        fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<Vector2>();
+        fPP.Rotate.performed += Rotate;
+        fPP.Rotate.canceled += RotateCanceled;
+        fPP.Rotate.Enable();
+        
+        fPP.MoveObj.performed += ctx => currentObjDistance = ctx.ReadValue<Vector2>();
+        fPP.MoveObj.performed += MoveObj;
+        fPP.MoveObj.Enable();
     }
 
+    private void MoveObj(InputAction.CallbackContext obj)
+    {
+        MoveObjEvent?.Invoke(this, EventArgs.Empty);
+    }
 
     private void OnDisable()
     {
@@ -65,6 +92,7 @@ public class PlayerInput : MonoBehaviour
         fPP.MouseY.Disable();
         fPP.Jump.Disable();
         interact.Disable();
+        fPP.Rotate.Disable();
     }
 
     //private void Update()
@@ -81,6 +109,12 @@ public class PlayerInput : MonoBehaviour
     {
         return -verticalMovement;
     }
+    
+    public float GetCurrentObjDistance()
+    {
+        
+        return Mathf.Clamp(currentObjDistance.y, -1, 1);
+    }
 
     public float GetMouseX()
     {
@@ -92,6 +126,11 @@ public class PlayerInput : MonoBehaviour
         return mouseInput.y;
     }
 
+    public Vector2 GetCurrentRotate()
+    {
+        return currentRotate;
+    }
+
     public void DoJump(InputAction.CallbackContext obj)
     {
 
@@ -101,6 +140,17 @@ public class PlayerInput : MonoBehaviour
     {
         InteractEvent?.Invoke(this, EventArgs.Empty);
     }
+    private void InteractCanceled(InputAction.CallbackContext obj)
+    {
+        InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    }
+    private void Rotate(InputAction.CallbackContext obj)
+    {
+        RotateEvent?.Invoke(this, EventArgs.Empty);
+    }
 
-
+    private void RotateCanceled(InputAction.CallbackContext obj)
+    {
+        RotateCanceledEvent?.Invoke(this, EventArgs.Empty);
+    }
 }

@@ -13,6 +13,7 @@ public class HeadBobController : MonoBehaviour
 
     
     private Vector3 startPos;
+    private Vector3 lastPosition;
     private CharacterController controller;
 
 
@@ -21,6 +22,7 @@ public class HeadBobController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         startPos = cam.localPosition;
+        lastPosition = transform.root.position;
     }
 
     // Update is called once per frame
@@ -33,18 +35,22 @@ public class HeadBobController : MonoBehaviour
 
     private void PlayMotion(Vector3 motion)
     {
-        cam.localPosition += motion;
+        cam.localPosition += motion * Time.deltaTime;
     }
 
     private void CheckMotion()
     {
-        //float speed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        if (GetComponent<CharacterController>().velocity.magnitude == 0) return;
-        //if (!controller.isGrounded) return;
+        if (GetSpeed() == 0) return;
 
         PlayMotion(Motion());
     }
 
+    private float GetSpeed()
+    {
+        float speed = Vector3.Distance(lastPosition, transform.root.position);
+        lastPosition = transform.root.position;
+        return speed;
+    }
     private Vector3 Motion()
     {
         Vector3 pos = Vector3.zero;
