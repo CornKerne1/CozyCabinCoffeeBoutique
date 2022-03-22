@@ -11,15 +11,14 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerInput pI;
 
     GameObject carriedObj;
-    [SerializeField] private Volume volume;
+    [SerializeField] public AutofocusScript aF;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
     Quaternion currentrotation;
     bool rotate;
     private float carryDistance;
-    DepthOfField dofComponent;
-    
+
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>();
@@ -48,20 +47,13 @@ public class PlayerInteraction : MonoBehaviour
         //pI.InteractEvent += TryInteract;
         currentrotation = gameObject.transform.localRotation;
         carryDistance = pD.carryDistance;
-        volume = GetComponentInChildren<Volume>();
-        DepthOfField tmp;
-        if (volume.profile.TryGet<DepthOfField>(out tmp))
-        {
-            dofComponent = tmp;
-        }
     }
 
     public void RaycastCheck()
     {
         if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 10000))
         {
-            dofComponent.gaussianStart = new MinFloatParameter(hit.distance-1, 1.5f, true);
-            dofComponent.gaussianEnd = new MinFloatParameter(hit.distance+1, 1.5f, true);
+            aF.UpdateFocus(hit.distance);
             if (hit.distance <= pD.interactDistance)
             {
                 if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
@@ -81,7 +73,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (currentInteractable)
         {
-            dofComponent.focusDistance = new MinFloatParameter(hit.distance, 5f, true);
+            aF.UpdateFocus(5);
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
         }
