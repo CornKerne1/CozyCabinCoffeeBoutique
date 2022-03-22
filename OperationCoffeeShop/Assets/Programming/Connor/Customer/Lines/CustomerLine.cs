@@ -12,7 +12,7 @@ public class CustomerLine : MonoBehaviour
 
     //used for testing
     public bool next = false;
-    
+
     /// <summary>
     /// only for testing delete when no lonker needed
     /// </summary>
@@ -36,17 +36,19 @@ public class CustomerLine : MonoBehaviour
     /// <param name="customer"></param>
     public void getInLine(GameObject customer)
     {
-        
-            CustomerAI customerAI = customer.GetComponent<CustomerAI>();
 
-            customerAI.customerLine = this;
+        CustomerAI customerAI = customer.GetComponent<CustomerAI>();
+        Debug.Log("get in line");
+        if (!customerAI.customerLines.Contains(this))
+        {
+            customerAI.customerLines.Add(this);
             queue.Enqueue(customerAI);
             Debug.Log("que count is: " + queue.Count);
             customerAI.setDestination(getNextSpotInLine(queue.Count));
             customerAI.setStay(true);//sets stay
-        
+        }
         //if line is full
-        
+
     }
 
     /// <summary>
@@ -59,8 +61,14 @@ public class CustomerLine : MonoBehaviour
         {
             CustomerAI ai = queue.Dequeue();
             ai.stay = false;
-            ai.customerLine = null;
-            ai.hasOrdered = true;
+            if (!ai.hasOrdered)
+            {
+                ai.hasOrdered = true;
+            }
+            else if (!ai.hasOrder)
+            {
+                ai.hasOrder = true;
+            }
             foreach (CustomerAI AI in queue)
             {
                 //moves customer up 1 position & incraments position. 

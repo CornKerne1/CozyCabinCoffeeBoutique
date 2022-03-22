@@ -22,7 +22,7 @@ public class CustomerAI : MonoBehaviour
 
     public float minDistance = 1;
 
-    public CustomerLine customerLine;
+    public List<CustomerLine> customerLines;
 
     public bool hasOrdered = false;
     public bool hasOrder = false;
@@ -30,6 +30,12 @@ public class CustomerAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject path = GameObject.Find("Customer Path");
+        foreach (Transform dest in path.GetComponentsInChildren<Transform>())
+        {
+            Destinations.Add(dest.gameObject);
+        }
+        Destinations.Remove(Destinations[0]);
         foreach (GameObject go in Destinations)
         {
             dests.Enqueue(go.transform.position);
@@ -45,7 +51,7 @@ public class CustomerAI : MonoBehaviour
             }
         }
         this.setStay(false);
-        this.customerLine = null;
+        this.customerLines.Clear();
         this.hasOrder = false;
         this.hasOrdered = false;
 
@@ -89,10 +95,8 @@ public class CustomerAI : MonoBehaviour
 
     public void LeaveLine()
     {
-        if(customerLine != null)
-        {
-            customerLine.moveLine();
-            customerLine = null;
-        }
+        
+            customerLines[customerLines.Count-1].moveLine();
+        
     }
 }
