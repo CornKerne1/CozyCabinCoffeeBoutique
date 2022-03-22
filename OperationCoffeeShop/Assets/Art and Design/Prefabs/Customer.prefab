@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d5ba372f51fea418dcce0a24f6b355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasOrder: 0
   CD: {fileID: 0}
   PRD: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
   gameMode: {fileID: 0}
@@ -159,6 +158,8 @@ MonoBehaviour:
   stay: 0
   minDistance: 1
   customerLine: {fileID: 0}
+  hasOrdered: 0
+  hasOrder: 0
 --- !u!114 &9203058362976567349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
   AI: {fileID: 1033753536987892517}
   conversation: {fileID: 11400000, guid: 5ca89bfcc3655db44a576c5e56fdf158, type: 2}
   prompt: {fileID: 0}
