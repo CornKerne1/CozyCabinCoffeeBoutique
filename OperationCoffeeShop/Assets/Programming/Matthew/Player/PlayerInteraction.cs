@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -9,12 +11,15 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerInput pI;
 
     GameObject carriedObj;
+    [SerializeField] private Volume volume;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
     Quaternion currentrotation;
     bool rotate;
     private float carryDistance;
+    DepthOfField dofComponent;
+    
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>();
@@ -24,6 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.RotateCanceledEvent += CancelRotate;
         PlayerInput.MoveObjEvent += MoveObj;
     }
+    
 
     private void MoveObj(object sender, EventArgs e)
     {
@@ -42,21 +48,40 @@ public class PlayerInteraction : MonoBehaviour
         //pI.InteractEvent += TryInteract;
         currentrotation = gameObject.transform.localRotation;
         carryDistance = pD.carryDistance;
+        volume = GetComponentInChildren<Volume>();
+        DepthOfField tmp;
+        if (volume.profile.TryGet<DepthOfField>(out tmp))
+        {
+            dofComponent = tmp;
+        }
     }
 
     public void RaycastCheck()
     {
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 10000))
         {
-            if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+            dofComponent.gaussianStart = new MinFloatParameter(hit.distance-1, 1.5f, true);
+            dofComponent.gaussianEnd = new MinFloatParameter(hit.distance+1, 1.5f, true);
+            if (hit.distance <= pD.interactDistance)
             {
-                hit.collider.TryGetComponent(out currentInteractable);
-                if (currentInteractable)
-                    currentInteractable.OnFocus();
+                if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+                {
+                    hit.collider.TryGetComponent(out currentInteractable);
+                    if (currentInteractable)
+                        currentInteractable.OnFocus();
+                }
+                
             }
+            else if (currentInteractable)
+            {
+                currentInteractable.OnLoseFocus();
+                currentInteractable = null;
+            }
+
         }
         else if (currentInteractable)
         {
+            dofComponent.focusDistance = new MinFloatParameter(hit.distance, 5f, true);
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
         }
