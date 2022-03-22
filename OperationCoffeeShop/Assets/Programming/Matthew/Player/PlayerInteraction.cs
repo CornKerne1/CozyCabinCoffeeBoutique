@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -9,12 +11,14 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerInput pI;
 
     GameObject carriedObj;
+    [SerializeField] public AutofocusScript aF;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
     Quaternion currentrotation;
     bool rotate;
     private float carryDistance;
+
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>();
@@ -24,6 +28,7 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.RotateCanceledEvent += CancelRotate;
         PlayerInput.MoveObjEvent += MoveObj;
     }
+    
 
     private void MoveObj(object sender, EventArgs e)
     {
@@ -46,17 +51,29 @@ public class PlayerInteraction : MonoBehaviour
 
     public void RaycastCheck()
     {
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 10000))
         {
-            if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+            aF.UpdateFocus(hit.distance);
+            if (hit.distance <= pD.interactDistance)
             {
-                hit.collider.TryGetComponent(out currentInteractable);
-                if (currentInteractable)
-                    currentInteractable.OnFocus();
+                if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+                {
+                    hit.collider.TryGetComponent(out currentInteractable);
+                    if (currentInteractable)
+                        currentInteractable.OnFocus();
+                }
+                
             }
+            else if (currentInteractable)
+            {
+                currentInteractable.OnLoseFocus();
+                currentInteractable = null;
+            }
+
         }
         else if (currentInteractable)
         {
+            aF.UpdateFocus(5);
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
         }
