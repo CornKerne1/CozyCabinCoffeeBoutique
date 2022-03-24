@@ -12,13 +12,16 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerInput pI;
 
     GameObject carriedObj;
-    [SerializeField] public AutofocusScript aF;
+    [SerializeField] public VolumeProfile profile;
+    [SerializeField] private DepthOfField dof;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable currentInteractable;
     Quaternion currentrotation;
     bool rotate;
     private float carryDistance;
+    
+    private MinFloatParameter dofDistanceParametar;
 
     private void Awake()
     {
@@ -37,18 +40,16 @@ public class PlayerInteraction : MonoBehaviour
         carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance()/8), pD.carryDistance - pD.interactDistanceClamp, pD.carryDistance + pD.interactDistanceClamp);
     }
 
-    void FixedUpdate()
-    {
-        RaycastCheck();
-    }
-
     private void Update()
     {
+        RaycastCheck();
         HandleCarrying();
         HandleRotation();
     }
     private void Start()
     {
+        profile.TryGet<DepthOfField>(out dof);
+        dofDistanceParametar = dof.focusDistance;
         //pI.InteractEvent += TryInteract;
         currentrotation = gameObject.transform.localRotation;
         carryDistance = pD.carryDistance;
@@ -56,15 +57,9 @@ public class PlayerInteraction : MonoBehaviour
 
     public void RaycastCheck()
     {
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 10000))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
         {
-            //aF.UpdateFocus(hit.distance);
-            DepthOfField tmp;
-            if (aF.volume.profile.TryGet<DepthOfField>(out tmp))//
-            {
-                tmp.focusDistance = new MinFloatParameter(hit.distance, 1.5f, true);
-                EditorUtility.SetDirty(tmp);
-            }
+            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, hit.distance, 2);
             if (hit.distance <= pD.interactDistance)
             {
                 if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
@@ -84,7 +79,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (currentInteractable)
         {
-            aF.UpdateFocus(5);
+            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, 5, 1);
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
         }
