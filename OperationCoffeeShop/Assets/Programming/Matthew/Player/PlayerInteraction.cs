@@ -59,7 +59,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
         {
-            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, hit.distance, 2);
+            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, hit.distance, .5f);
             if (hit.distance <= pD.interactDistance)
             {
                 if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
