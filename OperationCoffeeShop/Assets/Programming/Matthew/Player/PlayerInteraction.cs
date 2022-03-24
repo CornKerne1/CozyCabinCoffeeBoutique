@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -36,9 +37,13 @@ public class PlayerInteraction : MonoBehaviour
         carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance()/8), pD.carryDistance - pD.interactDistanceClamp, pD.carryDistance + pD.interactDistanceClamp);
     }
 
-    private void Update()
+    void FixedUpdate()
     {
         RaycastCheck();
+    }
+
+    private void Update()
+    {
         HandleCarrying();
         HandleRotation();
     }
@@ -53,7 +58,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 10000))
         {
-            aF.UpdateFocus(hit.distance);
+            //aF.UpdateFocus(hit.distance);
+            DepthOfField tmp;
+            if (aF.volume.profile.TryGet<DepthOfField>(out tmp))//
+            {
+                tmp.focusDistance = new MinFloatParameter(hit.distance, 1.5f, true);
+                EditorUtility.SetDirty(tmp);
+            }
             if (hit.distance <= pD.interactDistance)
             {
                 if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
