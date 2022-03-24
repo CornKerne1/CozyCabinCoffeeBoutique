@@ -34,10 +34,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.66, z: 0.5}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &5404817027161305983
 NavMeshAgent:
@@ -80,7 +79,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -159,7 +157,7 @@ MonoBehaviour:
   CD: {fileID: 0}
   stay: 0
   minDistance: 1
-  customerLine: {fileID: 0}
+  customerLines: []
   hasOrdered: 0
   hasOrder: 0
 --- !u!114 &9203058362976567349
@@ -176,9 +174,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  AI: {fileID: 1033753536987892517}
+  CAI: {fileID: 1033753536987892517}
+  CD: {fileID: 0}
   conversation: {fileID: 11400000, guid: 5ca89bfcc3655db44a576c5e56fdf158, type: 2}
-  prompt: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!54 &927562656731061223
 Rigidbody:
   m_ObjectHideFlags: 0
