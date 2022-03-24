@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1028583421220286788}
   - component: {fileID: 4173034451242057441}
   - component: {fileID: 2165510075365394987}
+  - component: {fileID: 826791840}
   m_Layer: 0
   m_Name: model
   m_TagString: Untagged
@@ -82,6 +83,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &826791840
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364109325418933246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1899122062421037049, guid: b3d94c24463aedc4583daf48757d8372, type: 3}
 --- !u!1 &1396334954221788881
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +108,7 @@ GameObject:
   - component: {fileID: 4126862564776680333}
   - component: {fileID: 9123579207867236846}
   - component: {fileID: 8906806254194415612}
+  - component: {fileID: 1864670399}
   m_Layer: 0
   m_Name: FrotherHandle
   m_TagString: Untagged
@@ -163,6 +179,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1864670399
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396334954221788881}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2583125591322911412, guid: b3d94c24463aedc4583daf48757d8372, type: 3}
 --- !u!1 &3511743963125461092
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +272,7 @@ BoxCollider:
   m_GameObject: {fileID: 3511743963125461092}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.9040365, y: 0.6135535, z: 0.05235195}
   m_Center: {x: -0.04798174, y: -0.19322324, z: 0.26370192}
@@ -255,7 +285,7 @@ BoxCollider:
   m_GameObject: {fileID: 3511743963125461092}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.8348503, y: 0.352839, z: 0.35477257}
   m_Center: {x: -0.032440186, y: -0.24041486, z: 0.05091381}

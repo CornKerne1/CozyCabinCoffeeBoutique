@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 2683047464340814371}
   - component: {fileID: 1338627787317376390}
   - component: {fileID: 3852607005123674444}
+  - component: {fileID: 5442739125575713375}
   m_Layer: 0
   m_Name: CoffeeDripMachine
   m_TagString: Untagged
@@ -113,6 +114,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5442739125575713375
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348366779825758361}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7484214753122430546, guid: d54eaccffbdc3e04b9e2cc8b047610cd, type: 3}
 --- !u!1 &5391586676537825222
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +208,7 @@ BoxCollider:
   m_GameObject: {fileID: 5391586676537825222}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.6149772, y: 0.046492856, z: 0.3}
   m_Center: {x: -0.1925114, y: 0.016437946, z: 0}
@@ -219,7 +234,7 @@ BoxCollider:
   m_GameObject: {fileID: 5391586676537825222}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.15345573, y: 0.6030004, z: 0.3}
   m_Center: {x: -0.5181416, y: 0.30003953, z: 0}
@@ -234,6 +249,7 @@ GameObject:
   - component: {fileID: 5263506130063688562}
   - component: {fileID: 1273109643857015509}
   - component: {fileID: 6509078558472073685}
+  - component: {fileID: 6670450642817904425}
   m_Layer: 0
   m_Name: CoffeeDrip_Bowl
   m_TagString: Untagged
@@ -304,6 +320,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6670450642817904425
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956417264389596599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8599982371115155190, guid: d54eaccffbdc3e04b9e2cc8b047610cd, type: 3}
 --- !u!1 &8675541021117073078
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +345,7 @@ GameObject:
   - component: {fileID: 7551442381081669125}
   - component: {fileID: 7790924577224539935}
   - component: {fileID: 5459370972864288743}
+  - component: {fileID: 2890420388794512417}
   m_Layer: 0
   m_Name: CoffeeDrip_Dial
   m_TagString: Untagged
@@ -385,3 +416,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2890420388794512417
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675541021117073078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6171588584536716606, guid: d54eaccffbdc3e04b9e2cc8b047610cd, type: 3}
