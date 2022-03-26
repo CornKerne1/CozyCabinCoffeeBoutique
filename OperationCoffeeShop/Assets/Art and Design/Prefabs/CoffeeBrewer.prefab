@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 2683047464340814371}
   - component: {fileID: 1338627787317376390}
   - component: {fileID: 3852607005123674444}
-  - component: {fileID: 5442739125575713375}
-  m_Layer: 0
+  - component: {fileID: 5484636717391365573}
+  m_Layer: 4
   m_Name: CoffeeDripMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5442739125575713375
+--- !u!64 &5484636717391365573
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3775402947523511549}
   - component: {fileID: 4238057949658667476}
-  - component: {fileID: 1652796102}
-  - component: {fileID: 5391586676537825241}
-  - component: {fileID: 6309135361890495169}
-  - component: {fileID: 1185770421}
   m_Layer: 3
   m_Name: CoffeeBrewer
   m_TagString: Untagged
@@ -184,60 +180,6 @@ MonoBehaviour:
   origin: {x: 0, y: 0, z: 0}
   outputTransform: {fileID: 2804664668617145305}
   hasPitcher: 1
---- !u!114 &1652796102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391586676537825222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c954166633eff4f98130f12142ed57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rotateOffset: {x: 0, y: 0, z: 0}
-  mD: {fileID: 11400000, guid: f2d3ebd94cc75444da972136842bfa62, type: 2}
---- !u!65 &5391586676537825241
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391586676537825222}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6149772, y: 0.046492856, z: 0.3}
-  m_Center: {x: -0.1925114, y: 0.016437946, z: 0}
---- !u!65 &6309135361890495169
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391586676537825222}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4264397, y: 0.2713437, z: 0.3}
-  m_Center: {x: -0.20701995, y: 0.4702202, z: 0}
---- !u!65 &1185770421
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391586676537825222}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.15345573, y: 0.6030004, z: 0.3}
-  m_Center: {x: -0.5181416, y: 0.30003953, z: 0}
 --- !u!1 &6956417264389596599
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +192,9 @@ GameObject:
   - component: {fileID: 1273109643857015509}
   - component: {fileID: 6509078558472073685}
   - component: {fileID: 6670450642817904425}
-  m_Layer: 0
+  - component: {fileID: 1291219134}
+  - component: {fileID: 2965839891816342707}
+  m_Layer: 4
   m_Name: CoffeeDrip_Bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956417264389596599}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.044, z: -1.1641532e-12}
+  m_LocalPosition: {x: 0, y: 0.044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2683047464340814371}
@@ -334,6 +278,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8599982371115155190, guid: d54eaccffbdc3e04b9e2cc8b047610cd, type: 3}
+--- !u!135 &1291219134
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956417264389596599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.012
+  m_Center: {x: 0.02, y: -0.002, z: 0}
+--- !u!114 &2965839891816342707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956417264389596599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c954166633eff4f98130f12142ed57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+  mD: {fileID: 11400000, guid: f2d3ebd94cc75444da972136842bfa62, type: 2}
 --- !u!1 &8675541021117073078
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +318,7 @@ GameObject:
   - component: {fileID: 7790924577224539935}
   - component: {fileID: 5459370972864288743}
   - component: {fileID: 2890420388794512417}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: CoffeeDrip_Dial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
