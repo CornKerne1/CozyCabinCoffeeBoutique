@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Generic")]
 public class PlayerData : ScriptableObject
@@ -36,7 +37,7 @@ public class PlayerData : ScriptableObject
 
     [SerializeField] public float objMoveSpeed =0.1f;
     [SerializeField] public float interactDistance;
-    [SerializeField] public float interactDistanceClamp;
+    [SerializeField] public float carryDistanceClamp;
     
     [Range(1, 20)]
     [SerializeField] public float objRotationSpeed;

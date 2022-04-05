@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LineTrigger : MonoBehaviour
 {
-     CustomerLine line;
+    CustomerLine line;
 
     string customerTag = "Customer";
 
@@ -14,15 +14,9 @@ public class LineTrigger : MonoBehaviour
         line = GetComponentInParent<CustomerLine>();
     }
 
-     void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.tag == customerTag 
-            && other.GetComponent<CustomerAI>().hasOrdered == false
-            && other.GetComponent<CustomerAI>().customerLine == null)
-        {
-            Debug.Log("Yes I love Customers in line!!");
-
-            line.getInLine(other.gameObject);    
-        }
+        Debug.Log("Yes I love Customers in line!!");
+        line.getInLine(other.gameObject);
     }
 }

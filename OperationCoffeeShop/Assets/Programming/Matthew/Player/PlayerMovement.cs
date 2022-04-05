@@ -71,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
         currentMovement = Vector3.MoveTowards(currentMovement, lM, pI.pD.inertiaVar * Time.deltaTime);
         Vector3 finalMovement = transform.TransformVector(currentMovement);
         controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
+        if (isGrounded && pI.GetVerticalMovement() < 0)
+        {
+            pI.pD.isClimbing = false;
+        }
     }
 
 
