@@ -8,7 +8,7 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
-    bool inHand;
+    public bool inHand;
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
     private float capacity;

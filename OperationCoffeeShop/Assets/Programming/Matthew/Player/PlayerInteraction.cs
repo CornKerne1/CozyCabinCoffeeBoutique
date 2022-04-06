@@ -28,12 +28,12 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.RotateCanceledEvent += CancelRotate;
         PlayerInput.MoveObjEvent += MoveObj;
     }
-    
+
 
     private void MoveObj(object sender, EventArgs e)
     {
         if (rotate) return;
-        carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance()/8), pD.carryDistance - pD.interactDistanceClamp, pD.carryDistance + pD.interactDistanceClamp);
+        carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.interactDistanceClamp, pD.carryDistance + pD.interactDistanceClamp);
     }
 
     private void Update()
@@ -62,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
                     if (currentInteractable)
                         currentInteractable.OnFocus();
                 }
-                
+
             }
             else if (currentInteractable)
             {
@@ -85,7 +85,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Carry(GameObject obj)
     {
-        if(pD.busyHands)
+        if (pD.busyHands)
         {
             DropCurrentObj();
         }
@@ -105,16 +105,22 @@ public class PlayerInteraction : MonoBehaviour
 
     public void DropCurrentObj()
     {
-            if(carriedObj != null)
+        if (carriedObj != null)
+        {
+            carriedObj.GetComponent<Rigidbody>().isKinematic = false;
+            carriedObj.GetComponent<Collider>().isTrigger = false;
+            if (carriedObj.TryGetComponent<IngredientContainer>(out IngredientContainer ingredientContainor))
             {
-                carriedObj.GetComponent<Rigidbody>().isKinematic = false;
-                carriedObj.GetComponent<Collider>().isTrigger = false;
+                ingredientContainor.inHand = false;
+
             }
-            
-            carriedObj = null;
-            pD.busyHands = false;
+
+        }
+
+        carriedObj = null;
+        pD.busyHands = false;
     }
-    
+
     public void TryInteract(object sender, EventArgs e)
     {
         if (pD.busyHands)
@@ -127,7 +133,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
     }
-    
+
     public void TryRotate(object sender, EventArgs e)
     {
         rotate = true;
@@ -142,26 +148,26 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (pD.busyHands && carriedObj != null && rotate)
         {
-            
+
             if (pI.GetCurrentRotate().x > 0)
             {
-                carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed,0, 0);
+                carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
             }
             else if (pI.GetCurrentRotate().x < 0)
             {
-                carriedObj.transform.Rotate(0,pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
+                carriedObj.transform.Rotate(0, pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
             }
             else if (pI.GetCurrentRotate().y > 0)
             {
-                carriedObj.transform.Rotate(0,0,pI.GetCurrentObjDistance() * pD.objRotationSpeed);
+                carriedObj.transform.Rotate(0, 0, pI.GetCurrentObjDistance() * pD.objRotationSpeed);
             }
             else if (pI.GetCurrentRotate().y < 0)
             {
                 Interactable i = carriedObj.GetComponent<Interactable>();
                 if (i)
                 {
-                    Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x, Quaternion.identity.y+ i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z, Quaternion.identity.w);
-                    carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime/2);
+                    Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x, Quaternion.identity.y + i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z, Quaternion.identity.w);
+                    carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime / 2);
                 }
             }
 
