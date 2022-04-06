@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void OpenOptions()
