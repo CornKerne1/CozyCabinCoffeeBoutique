@@ -37,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
     private void MoveObj(object sender, EventArgs e)
     {
         if (rotate) return;
-        carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.interactDistanceClamp, pD.carryDistance + pD.interactDistanceClamp);
+        carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
     }
 
     private void Update()

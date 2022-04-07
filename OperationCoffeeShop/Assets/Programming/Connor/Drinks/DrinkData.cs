@@ -10,6 +10,7 @@ public class DrinkData : ScriptableObject
     public string Name;
     public List<IngredientNode> Ingredients;
 
+    public float price;
     public void addIngredient(Ingredients ingredient, float target)
     {
         Ingredients.Add(new IngredientNode(ingredient, target));

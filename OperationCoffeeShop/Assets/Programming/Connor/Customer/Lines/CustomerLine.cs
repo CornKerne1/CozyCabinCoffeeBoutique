@@ -13,7 +13,8 @@ public class CustomerLine : MonoBehaviour
 
     [SerializeField] public static event EventHandler DrinkBeGone;
 
-
+    [SerializeField] public static event EventHandler DepositMoney;//
+ 
     //used for testing
     public bool next = false;
 
@@ -114,6 +115,8 @@ public class CustomerLine : MonoBehaviour
             ai.hasOrder = true;
             ai.CD.recievedDrink = (DrinkData)drink;
             ((GameObject)sender).active = false;
+            DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
+            Debug.Log("Here is your money");
 
         }
     }
