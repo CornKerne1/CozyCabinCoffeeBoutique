@@ -21,7 +21,7 @@ public class PlayerCameraController : MonoBehaviour
     {
 
         transform.root.Rotate(Vector3.up, pI.pD.mouseSensitivityX * pI.GetMouseX() * Time.deltaTime);
-        xRotation -= pI.GetMouseY() * (pI.pD.mouseSensitivityY / 200);
+        xRotation -= pI.GetMouseY() * (pI.pD.mouseSensitivityY / 400);
         xRotation = Mathf.Clamp(xRotation, -pI.pD.neckClamp, pI.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = xRotation;
