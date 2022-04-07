@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MachineData", menuName = "Machine/Generic")]
 public class MachineData : ScriptableObject
 {
+    
+    public enum Type { Default, Brewer }
+    [SerializeField] public Type machineType = Type.Default;
     [SerializeField] public int maxCapacity;
     [SerializeField] public List<GameObject> outputIngredient = new List<GameObject>();
 

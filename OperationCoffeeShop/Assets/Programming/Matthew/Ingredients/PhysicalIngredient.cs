@@ -50,11 +50,21 @@ public class PhysicalIngredient : Interactable
             try
             {
                 other.GetComponent<Machine>().IngredientInteract(gameObject);
-                rb.AddForce(rejectionForce);//
+                rb.AddForce(rejectionForce); //
                 pI.DropCurrentObj();
-                
+
             }
-            catch { }
+            catch
+            {
+                try
+                {
+                    other.GetComponent<BrewerBowl>().IngredientInteract(gameObject);
+                    rb.AddForce(rejectionForce);//
+                    pI.DropCurrentObj();
+                
+                }
+                catch { }
+            }
         }
     }
 }
