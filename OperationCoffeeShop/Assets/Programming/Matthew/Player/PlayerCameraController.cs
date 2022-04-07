@@ -12,6 +12,10 @@ public class PlayerCameraController : MonoBehaviour
 
     private PlayerInput pI;
 
+    public PlayerCameraController()
+    {
+    }
+    
     private void Update()
     {
         HandleMovement();
@@ -30,6 +34,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Start()
     {
+        cam = Camera.main.transform;
         if (this.gameObject.GetComponent<PlayerInput>() != null)
             pI = this.gameObject.GetComponent<PlayerInput>();
         else
