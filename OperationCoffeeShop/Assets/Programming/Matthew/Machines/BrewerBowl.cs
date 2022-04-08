@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine;
 
 public class BrewerBowl : MonoBehaviour
 {
@@ -70,7 +71,10 @@ public class BrewerBowl : MonoBehaviour
     
     public void IngredientInteract(GameObject other)
     {
-        m.IngredientInteract(other);
+        if (open)
+        {
+            m.IngredientInteract(other);
+        }
     }
 
 

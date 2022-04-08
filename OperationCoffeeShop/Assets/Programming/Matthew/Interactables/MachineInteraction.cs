@@ -10,7 +10,7 @@ public class MachineInteraction : Interactable
     public override void Start()
     {
         base.Start();
-        machine = gameObject.GetComponent<Machine>();
+        machine = transform.root.GetComponentInChildren<Machine>();
     }
 
     public override void OnFocus()
@@ -26,7 +26,7 @@ public class MachineInteraction : Interactable
                 machine.StartMachine();
                 return ;
             case MachineData.Type.Brewer:
-                var bB = gameObject.GetComponentInChildren<BrewerBowl>();
+                var bB = transform.root.GetComponentInChildren<BrewerBowl>();
                 if (bB)
                 {
                     if (!bB.open && machine.currentCapacity > 0)
@@ -38,22 +38,6 @@ public class MachineInteraction : Interactable
                         bB.OpenOrClose();
                     }
                 }
-                else
-                {
-                    bB = transform.root.GetComponentInChildren<BrewerBowl>();
-                    if (bB)
-                    {
-                        if (!bB.open && machine.currentCapacity > 0)
-                        {
-                            machine.StartMachine();
-                        }
-                        else
-                        {
-                            bB.OpenOrClose();
-                        }
-                    }
-                }
-                
                 return ;
                 
         }
