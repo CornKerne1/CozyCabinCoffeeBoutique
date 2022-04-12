@@ -16,6 +16,10 @@ public class MusicManager : MonoBehaviour
             GetComponent<AudioSource>().clip = soundtrack[Random.Range(0, soundtrack.Length)];
             GetComponent<AudioSource>().Play();
         }
+        else
+        {
+         
+        }
     }
 
     // Update is called once per frame
