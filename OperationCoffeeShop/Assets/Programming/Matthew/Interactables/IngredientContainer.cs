@@ -50,7 +50,8 @@ public class IngredientContainer : Interactable
         {
             dD.addIngredient(iN);
             capacity = capacity + iN.target;
-            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y - .00052f) ,contentsVisualizer.transform.localPosition.z);
+            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y - .00048f) ,contentsVisualizer.transform.localPosition.z);
+            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f, (contentsVisualizer.transform.localScale.y + .01f) ,contentsVisualizer.transform.localScale.z);
             
         }
 
@@ -63,14 +64,14 @@ public class IngredientContainer : Interactable
 
     public void CheckPour()
     {
-        float currentXAngle = startingRotation.x; //- transform.rotation.x;//
-        Debug.Log((currentXAngle));
-        if (capacity > 0 && (transform.localRotation.x != startingRotation.x || transform.localRotation.z != startingRotation.z))
-        {
-            
-            if (Mathf.Abs(currentXAngle) <= .9)Pour();
-                else if (capacity > currentXAngle * .95f)Pour();
-        }
+        // float currentXAngle = startingRotation.x; //- transform.rotation.x;//
+        // Debug.Log((currentXAngle));
+        // if (capacity > 0 && (transform.localRotation.x != startingRotation.x || transform.localRotation.z != startingRotation.z))
+        // {
+        //     
+        //     if (Mathf.Abs(currentXAngle) <= .9)Pour();
+        //         else if (capacity > currentXAngle * .95f)Pour();
+        // }
     }
 
     public void Pour()

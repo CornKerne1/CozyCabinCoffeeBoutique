@@ -20,9 +20,11 @@ public class PlayerInteraction : MonoBehaviour
     Quaternion currentrotation;
     bool rotate;
     private float carryDistance;
+    private Camera cam;
+    private bool reset;
     
     private MinFloatParameter dofDistanceParametar;
-
+    
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>();
@@ -53,39 +55,44 @@ public class PlayerInteraction : MonoBehaviour
         //pI.InteractEvent += TryInteract;
         currentrotation = gameObject.transform.localRotation;
         carryDistance = pD.carryDistance;
+        cam = GetComponentInChildren<Camera>();
     }
 
     public void RaycastCheck()
     {
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
+
+        if (cam)
         {
-            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, hit.distance, .5f);
-            if (hit.distance <= pD.interactDistance)
+            if (Physics.Raycast(cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
             {
-                if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+                dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, hit.distance, .5f);
+                if (hit.distance <= pD.interactDistance)
                 {
-                    hit.collider.TryGetComponent(out currentInteractable);
-                    if (currentInteractable)
-                        currentInteractable.OnFocus();
-                }
+                    if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+                    {
+                        hit.collider.TryGetComponent(out currentInteractable);
+                        if (currentInteractable)
+                            currentInteractable.OnFocus();
+                    }
                 
+                }
+                else if (currentInteractable)
+                {
+                    currentInteractable.OnLoseFocus();
+                    currentInteractable = null;
+                }
+
             }
             else if (currentInteractable)
             {
+                dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, 5, 1);
                 currentInteractable.OnLoseFocus();
                 currentInteractable = null;
             }
+            else
+            {
 
-        }
-        else if (currentInteractable)
-        {
-            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, 5, 1);
-            currentInteractable.OnLoseFocus();
-            currentInteractable = null;
-        }
-        else
-        {
-
+            }
         }
     }
 
@@ -106,7 +113,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (pD.busyHands && carriedObj != null)
         {
-            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * carryDistance, Time.deltaTime * pD.smooth);
+            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, cam.transform.position + cam.transform.forward * carryDistance, Time.deltaTime * pD.smooth);
         }
     }
 
@@ -128,7 +135,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             DropCurrentObj();
         }
-        else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+        else if (pD.canInteract && currentInteractable != null && Physics.Raycast(cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
         {
             currentInteractable.OnInteract(this);
         }
