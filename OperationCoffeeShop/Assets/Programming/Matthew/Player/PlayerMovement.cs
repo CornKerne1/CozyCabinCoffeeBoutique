@@ -34,6 +34,16 @@ public class PlayerMovement : MonoBehaviour
         controller = this.gameObject.GetComponent<CharacterController>();
         pI.pD.currentMovement = transform.position;
         pI.pD.isClimbing = false;
+        StartCoroutine(EditorFix());
+    }
+
+    private IEnumerator EditorFix()
+    {
+        var pInt = GetComponent<PlayerInteraction>();
+        pInt.enabled = false;
+        yield return new WaitForSeconds(.1f);
+        pInt.enabled = true;
+
     }
 
 
