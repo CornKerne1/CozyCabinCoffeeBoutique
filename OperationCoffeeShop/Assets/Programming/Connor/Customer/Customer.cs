@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Customer : MonoBehaviour 
 {
-
 
 
     [Header("RandomCustomer will be empty")]
