@@ -81,7 +81,7 @@ public class DrinkData : ScriptableObject
                 {
                     foundIngredient = true;
                     float min = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
-                    float max = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
+                    float max = Mathf.Max(DesiredIngredientNode.target, playerIngredientNode.target);
                     sum += min / max;
                     break;
                 }

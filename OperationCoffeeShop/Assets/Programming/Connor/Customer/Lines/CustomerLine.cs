@@ -106,17 +106,19 @@ public class CustomerLine : MonoBehaviour
     private void deliverDrink(object sender, EventArgs e)
     {
         DrinkData drink = ((GameObject)sender).GetComponent<IngredientContainer>().dD;
-        Debug.Log("recieved event");
+        //Debug.Log("recieved event");
         if (queue.Count>0 && queue.Peek().hasOrdered == true)
         {
-            Debug.Log("Deliverd drink");
+            //Debug.Log("Deliverd drink");
             CustomerAI ai = queue.Peek();
-            moveLine();
             ai.hasOrder = true;
+            moveLine();
             ai.CD.recievedDrink = (DrinkData)drink;
             ((GameObject)sender).active = false;
             DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
-            Debug.Log("Here is your money");
+            DrinkBeGone?.Invoke(ai.CD.recievedDrink, EventArgs.Empty);
+
+            Debug.Log("Here is your money");//
 
         }
     }

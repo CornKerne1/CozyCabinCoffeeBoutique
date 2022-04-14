@@ -103,13 +103,6 @@ public class RandomCustomer : Customer
     {
         return "";
     }
-    /// <summary>
-    /// Sends drink data to GameMode for comparison. 
-    /// </summary>
-    /// <param name="playerDrink"></param>
-    public override void RecieveDrink(DrinkData playerDrink)
-    {
-        //base.gameMode.CompareDrink(CD.favoriteDrink, playerDrink);
 
-    }
+
 }

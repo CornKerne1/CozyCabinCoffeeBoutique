@@ -26,10 +26,11 @@ public class CoffeeBankTM : MonoBehaviour
     }
     void DepositMoneyInBank(object sender, EventArgs e)
     {
-        Debug.Log("depositing money");
+       
         try
         {
             moneyInBank += (float)sender;
+            Debug.Log("depositing money, money in bank now =" + moneyInBank);
 
         }
         catch (Exception ex)
@@ -50,6 +51,8 @@ public class CoffeeBankTM : MonoBehaviour
 
                 SuccessfulWithdrawl?.Invoke(true, EventArgs.Empty);
                 moneyInBank -= (float)sender;
+                Debug.Log("withdrawing money, money in bank now =" + moneyInBank);
+
             }
             else
             {
