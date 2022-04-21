@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class RandomCustomer : Customer
@@ -12,12 +13,13 @@ public class RandomCustomer : Customer
 
     private CustomerAI ai;
 
+
     public void Awake()
     {
         ai= GetComponent<CustomerAI>();
 
         //sets a random name from nameSet
-        customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+        customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
         DrinkData favoriteDrink = GetRandomDrink();
 
          List<Flavors> flavors = new List<Flavors>();
@@ -52,19 +54,19 @@ public class RandomCustomer : Customer
         //Uses specified nameset to generate random name
         this.nameSet = nameSet;
         //sets a random name from nameSet
-        customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+        customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
     }
 
     protected override IngredientNode GetRandomAddOn()
     {
-        int ingredient = Random.Range(0, PRD.learnedIngredients.Count);
-        float target = Random.value;
+        int ingredient = UnityEngine.Random.Range(0, PRD.learnedIngredients.Count);
+        float target = UnityEngine.Random.value;
         return new IngredientNode(PRD.learnedIngredients[ingredient], target);
     }
 
     protected override DrinkData GetRandomDrink()
     {
-        return PRD.learnedDrinks[Random.Range(0, PRD.learnedDrinks.Count)];
+        return PRD.learnedDrinks[UnityEngine.Random.Range(0, PRD.learnedDrinks.Count)];
     }
     public override DrinkData GetDrinkOrder()
     {
@@ -101,13 +103,6 @@ public class RandomCustomer : Customer
     {
         return "";
     }
-    /// <summary>
-    /// Sends drink data to GameMode for comparison. 
-    /// </summary>
-    /// <param name="playerDrink"></param>
-    public override void RecieveDrink(DrinkData playerDrink)
-    {
-        //base.gameMode.CompareDrink(CD.favoriteDrink, playerDrink);
-        ai.LeaveLine();
-    }
+
+
 }

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Customer : MonoBehaviour 
 {
-
 
 
     [Header("RandomCustomer will be empty")]
@@ -15,9 +15,14 @@ public abstract class Customer : MonoBehaviour
 
     public GameMode gameMode;
 
+    [SerializeField] public static event EventHandler CustomerRating;// publishes the customer rating for all to see. 
+
+
     public virtual void Start()
     {
         gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        CustomerLine.DrinkBeGone += RecieveDrink;
+
     }
     /// <summary>
     /// Returns Customer's Name.
@@ -113,7 +118,12 @@ public abstract class Customer : MonoBehaviour
 
 
     /// <summary>
-    /// Some how given a drink and sends the customers requested drink and the paramater drink to the GameMode.
+    /// Rates the customer recieved drink.
     /// </summary>
-    public abstract void RecieveDrink(DrinkData Drink);
+    public void RecieveDrink(object sender, EventArgs e)
+    {
+        float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.favoriteDrink);
+        CustomerRating?.Invoke(quality, EventArgs.Empty);
+        Debug.Log("Drink Quality = " + quality);
+    }
 }

@@ -19,11 +19,6 @@ public class RegularCustomer : Customer
         throw new System.NotImplementedException();
     }
 
-    public override void RecieveDrink(DrinkData Drink)
-    {
-        throw new System.NotImplementedException();
-    }
-
     protected override Tree DialogueTree()
     {
         throw new System.NotImplementedException();

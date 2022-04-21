@@ -14,9 +14,13 @@ public class DialogDisplay : MonoBehaviour
 
     private int activeLineIndex = 0;
 
+    public bool finishedOrder = false;
+
     private void Start()
     {
 
+        Canvas canvas= gameObject.GetComponentInParent<Canvas>();
+        canvas.enabled = false;
 
         speakerUILeft = speakerLeft.GetComponent<SpeakerUI>();
         speakerUIRight = speakerRight.GetComponent<SpeakerUI>();
@@ -36,6 +40,10 @@ public class DialogDisplay : MonoBehaviour
     }
     public void AdvanceConversation()
     {
+        if (activeLineIndex == 0)
+        {
+            finishedOrder = false;
+        }
         if (activeLineIndex < conversation.lines.Length)
         {
             DisplayLine();
@@ -46,6 +54,7 @@ public class DialogDisplay : MonoBehaviour
             speakerUIRight.Hide();
             speakerUILeft.Hide();
             activeLineIndex = 0;
+            finishedOrder = true;
         }
     }
     void DisplayLine()

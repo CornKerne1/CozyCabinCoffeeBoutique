@@ -5,24 +5,29 @@ using UnityEngine;
 public class CustomerInteractable : Interactable
 {
 
-    public CustomerAI AI;
+    public CustomerAI CAI;
+
+    public CustomerData CD;
 
     public Conversation conversation;
 
-    public GameObject prompt;
+    private GameObject prompt;
 
     private DialogDisplay DD;
+
+    public Canvas canvas;
 
     private void Start()
     {
         DD = GameObject.Find("Dialog").GetComponent<DialogDisplay>();
         prompt = GameObject.Find("Canvas");
-        prompt.GetComponent<Canvas>().enabled = false;
+        canvas = prompt.GetComponent<Canvas>();
+        canvas.enabled = false;
     }
 
     public override void OnFocus()
     {
-        prompt.GetComponent<Canvas>().enabled = true; //instanciates on screen prompt asking if you want to interact with them.
+        canvas.enabled = true; //instanciates on screen prompt asking if you want to interact with them.
         
     }
 
@@ -32,15 +37,16 @@ public class CustomerInteractable : Interactable
         //invokes the dialogue interaction thing
         //DialogDisplay
         DD.AdvanceConversation();
-
+        if ((DD.finishedOrder && !CAI.hasOrdered) || DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
+        {
+            CAI.customerLines[CAI.customerLines.Count -1].moveLine();
+        }
     }
 
     public override void OnLoseFocus()
     {
-
-        prompt.GetComponent<Canvas>().enabled = false;//Destroys on screen prompt 
+        canvas.enabled = false;//Destroys on screen prompt 
     }
-
 
 
 }

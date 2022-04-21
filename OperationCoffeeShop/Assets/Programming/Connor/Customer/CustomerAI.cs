@@ -22,7 +22,7 @@ public class CustomerAI : MonoBehaviour
 
     public float minDistance = 1;
 
-    public List<CustomerLine> customerLines;
+    public List<CustomerLine> customerLines = new List<CustomerLine>();
 
     public bool hasOrdered = false;
     public bool hasOrder = false;
@@ -51,7 +51,7 @@ public class CustomerAI : MonoBehaviour
             }
         }
         this.setStay(false);
-        this.customerLines.Clear();
+        this.customerLines = new List<CustomerLine>();
         this.hasOrder = false;
         this.hasOrdered = false;
 

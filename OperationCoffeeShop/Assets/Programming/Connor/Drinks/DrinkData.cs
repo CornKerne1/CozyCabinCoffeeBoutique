@@ -10,6 +10,7 @@ public class DrinkData : ScriptableObject
     public string Name;
     public List<IngredientNode> Ingredients;
 
+    public float price;
     public void addIngredient(Ingredients ingredient, float target)
     {
         Ingredients.Add(new IngredientNode(ingredient, target));
@@ -80,7 +81,7 @@ public class DrinkData : ScriptableObject
                 {
                     foundIngredient = true;
                     float min = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
-                    float max = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
+                    float max = Mathf.Max(DesiredIngredientNode.target, playerIngredientNode.target);
                     sum += min / max;
                     break;
                 }

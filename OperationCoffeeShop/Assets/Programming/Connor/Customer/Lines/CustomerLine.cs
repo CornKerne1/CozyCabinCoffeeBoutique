@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 
@@ -10,8 +11,13 @@ public class CustomerLine : MonoBehaviour
 
     Queue<CustomerAI> queue = new Queue<CustomerAI>();
 
+    [SerializeField] public static event EventHandler DrinkBeGone;
+
+    [SerializeField] public static event EventHandler DepositMoney;//
+ 
     //used for testing
     public bool next = false;
+
 
     /// <summary>
     /// only for testing delete when no lonker needed
@@ -29,6 +35,7 @@ public class CustomerLine : MonoBehaviour
     void Start()
     {
         lineStartPosition = transform.position;
+        DeliveryZone.DrinkDelivery += deliverDrink;
     }
     /// <summary>
     /// Puts the customer in the next spot in line. 
@@ -94,6 +101,25 @@ public class CustomerLine : MonoBehaviour
 
 
     /// <summary>
-    /// A better way to make lines in the future would be to link list them. 
+    /// 
     /// </summary>
+    private void deliverDrink(object sender, EventArgs e)
+    {
+        DrinkData drink = ((GameObject)sender).GetComponent<IngredientContainer>().dD;
+        //Debug.Log("recieved event");
+        if (queue.Count>0 && queue.Peek().hasOrdered == true)
+        {
+            //Debug.Log("Deliverd drink");
+            CustomerAI ai = queue.Peek();
+            ai.hasOrder = true;
+            moveLine();
+            ai.CD.recievedDrink = (DrinkData)drink;
+            ((GameObject)sender).active = false;
+            DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
+            DrinkBeGone?.Invoke(ai.CD.recievedDrink, EventArgs.Empty);
+
+            Debug.Log("Here is your money");//
+
+        }
+    }
 }
