@@ -23,6 +23,7 @@ public class CustomerInteractable : Interactable
         prompt = GameObject.Find("Canvas");
         canvas = prompt.GetComponent<Canvas>();
         canvas.enabled = false;
+        this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
     }
 
     public override void OnFocus()
@@ -33,7 +34,7 @@ public class CustomerInteractable : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        Debug.Log("boop the customer");
+        //Debug.Log("boop the customer");
         //invokes the dialogue interaction thing
         //DialogDisplay
         DD.AdvanceConversation();

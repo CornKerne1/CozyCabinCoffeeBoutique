@@ -17,7 +17,7 @@ public class LineTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Customer")) {
-            Debug.Log("Yes I love Customers in line!!");
+            //Debug.Log("Yes I love Customers in line!!");
             line.getInLine(other.gameObject);
         }
     }

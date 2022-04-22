@@ -69,7 +69,12 @@ public class CustomerAI : MonoBehaviour
                 destination = dests.Dequeue();
                 setDestination(destination);
             }
+            else if (agent.hasPath ==false&& hasOrder &&hasOrdered)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
+        
 
     }
     public void setDestination(Vector3 destination)

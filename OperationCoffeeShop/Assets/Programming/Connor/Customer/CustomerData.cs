@@ -14,17 +14,17 @@ public class CustomerData : ScriptableObject
 
     public CustomerData(string name, DrinkData favoriteDrink, List<FlavorProfile.FlavorNode> flavors)
     {
-        desiredFlavors = new List<FlavorProfile.FlavorNode>();
         this.name = name;
         this.favoriteDrink = favoriteDrink;
+
+
+    }
+    public void DesiredFlavors(List<FlavorProfile.FlavorNode> flavors)
+    {
+        desiredFlavors = new List<FlavorProfile.FlavorNode>();
         foreach (FlavorProfile.FlavorNode f in flavors)
         {
             this.desiredFlavors.Add(f);
         }
-
-    }
-    public CustomerData()
-    {
-
     }
 }

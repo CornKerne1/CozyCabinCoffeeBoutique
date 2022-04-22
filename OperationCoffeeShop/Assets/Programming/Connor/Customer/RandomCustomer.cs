@@ -46,7 +46,10 @@ public class RandomCustomer : Customer
                 }
             }
         }
-        CD = new CustomerData(customerName, favoriteDrink, flavorNodes);
+        CD = (CustomerData)ScriptableObject.CreateInstance("CustomerData");
+        CD.name = customerName;
+        CD.favoriteDrink = favoriteDrink;
+        CD.DesiredFlavors(flavorNodes);
     }
 
     public RandomCustomer(RandomNameSet nameSet)
