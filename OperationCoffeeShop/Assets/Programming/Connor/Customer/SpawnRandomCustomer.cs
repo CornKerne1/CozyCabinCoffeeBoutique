@@ -46,7 +46,7 @@ public class SpawnRandomCustomer : MonoBehaviour
             }
             if (oneCustomerAtATime && minutes % spawnInterval == 0 && maxCustomerCount-- >0) // once per interval max of count
             {
-                Debug.Log("spawning customer");
+                //Debug.Log("spawning customer");
                 oneCustomerAtATime = false;
                 SpawnCustomer();
             }
@@ -70,5 +70,6 @@ public class SpawnRandomCustomer : MonoBehaviour
     public void SpawnCustomer()
     {
         Instantiate(customer, this.transform.position, this.transform.rotation);
+        
     }
 }

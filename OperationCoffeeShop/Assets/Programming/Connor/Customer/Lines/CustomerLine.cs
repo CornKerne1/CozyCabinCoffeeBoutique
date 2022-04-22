@@ -45,12 +45,12 @@ public class CustomerLine : MonoBehaviour
     {
 
         CustomerAI customerAI = customer.GetComponent<CustomerAI>();
-        Debug.Log("get in line");
+        //Debug.Log("get in line");
         if (!customerAI.customerLines.Contains(this))
         {
             customerAI.customerLines.Add(this);
             queue.Enqueue(customerAI);
-            Debug.Log("que count is: " + queue.Count);
+            //Debug.Log("que count is: " + queue.Count);
             customerAI.setDestination(getNextSpotInLine(queue.Count));
             customerAI.setStay(true);//sets stay
         }
