@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] public PlayerData pD;
     [SerializeField] private PlayerInput pI;
 
-    GameObject carriedObj;
+    public GameObject carriedObj;
     [SerializeField] public VolumeProfile profile;
     [SerializeField] private DepthOfField dof;
     [SerializeField] private Vector3 interactionPoint;
