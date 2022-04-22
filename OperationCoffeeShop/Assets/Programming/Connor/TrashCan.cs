@@ -41,4 +41,18 @@ public class TrashCan : MonoBehaviour
             }
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (this.trashAnimator.GetBool("Open"))
+            {
+
+            }
+            else
+            {
+                this.trashAnimator.SetBool("Open", true);
+            }
+        }
+    }
 }
