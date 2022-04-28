@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,7 +70,14 @@ public class SpawnRandomCustomer : MonoBehaviour
 
     public void SpawnCustomer()
     {
-        Instantiate(customer, this.transform.position, this.transform.rotation);
+        StartCoroutine(Spawn());
         
+    }
+
+    private IEnumerator Spawn()
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1,10));
+        Instantiate(customer, this.transform.position, this.transform.rotation);
+
     }
 }
