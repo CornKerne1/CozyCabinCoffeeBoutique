@@ -21,8 +21,6 @@ public abstract class Customer : MonoBehaviour
     public virtual void Start()
     {
         gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        CustomerLine.DrinkBeGone += RecieveDrink;
-
     }
     /// <summary>
     /// Returns Customer's Name.
@@ -120,7 +118,7 @@ public abstract class Customer : MonoBehaviour
     /// <summary>
     /// Rates the customer recieved drink.
     /// </summary>
-    public void RecieveDrink(object sender, EventArgs e)
+    public void RecieveDrink()
     {
         float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.favoriteDrink);
         CustomerRating?.Invoke(quality, EventArgs.Empty);

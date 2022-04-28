@@ -34,7 +34,6 @@ public class DrinkData : ScriptableObject
                     foundIngredient = true;
                     ingredient.target += IN.target;
                 }
-
             }
             if (!foundIngredient)
             {
@@ -69,21 +68,32 @@ public class DrinkData : ScriptableObject
     public float Compare(DrinkData playerDrink, DrinkData DesiredDrink)
     {
         float sum = 0;
+        float numberofBadIngredients;
         float numberOfDesiredIngredients = DesiredDrink.Ingredients.Count;
-        float numberofBadIngredients = playerDrink.Ingredients.Count;
+        try
+        {
+            numberofBadIngredients = playerDrink.Ingredients.Count;
+        }
+        catch
+        {
+            numberofBadIngredients = 0;
+        }
 
         foreach (IngredientNode DesiredIngredientNode in DesiredDrink.Ingredients)
         {
             bool foundIngredient = false;
-            foreach (IngredientNode playerIngredientNode in playerDrink.Ingredients)
+            if (playerDrink != null &&playerDrink.Ingredients != null)
             {
-                if (DesiredIngredientNode.ingredient == playerIngredientNode.ingredient)
+                foreach (IngredientNode playerIngredientNode in playerDrink.Ingredients)
                 {
-                    foundIngredient = true;
-                    float min = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
-                    float max = Mathf.Max(DesiredIngredientNode.target, playerIngredientNode.target);
-                    sum += min / max;
-                    break;
+                    if (DesiredIngredientNode.ingredient == playerIngredientNode.ingredient)
+                    {
+                        foundIngredient = true;
+                        float min = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
+                        float max = Mathf.Max(DesiredIngredientNode.target, playerIngredientNode.target);
+                        sum += min / max;
+                        break;
+                    }
                 }
             }
             if (!foundIngredient)
