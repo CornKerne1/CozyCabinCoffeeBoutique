@@ -49,6 +49,7 @@ public class RandomCustomer : Customer
         CD.name = customerName;
         CD.favoriteDrink = favoriteDrink;
         CD.DesiredFlavors(flavorNodes);
+        CD.customer = this;
     }
 
     public RandomCustomer(RandomNameSet nameSet)

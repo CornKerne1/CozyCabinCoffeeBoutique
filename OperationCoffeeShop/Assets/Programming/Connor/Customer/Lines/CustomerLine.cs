@@ -18,6 +18,7 @@ public class CustomerLine : MonoBehaviour
     //used for testing
     public bool next = false;
 
+    public Customer NextCustomer;
 
     /// <summary>
     /// only for testing delete when no lonker needed
@@ -35,7 +36,6 @@ public class CustomerLine : MonoBehaviour
     void Start()
     {
         lineStartPosition = transform.position;
-        DeliveryZone.DrinkDelivery += deliverDrink;
     }
     /// <summary>
     /// Puts the customer in the next spot in line. 
@@ -103,9 +103,9 @@ public class CustomerLine : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    private void deliverDrink(object sender, EventArgs e)
+    public void deliverDrink(GameObject drink)
     {
-        DrinkData drink = ((GameObject)sender).GetComponent<IngredientContainer>().dD;
+        DrinkData drinkdata = (drink).GetComponent<IngredientContainer>().dD;
         //Debug.Log("recieved event");
         if (queue.Count>0 && queue.Peek().hasOrdered == true)
         {
@@ -113,13 +113,12 @@ public class CustomerLine : MonoBehaviour
             CustomerAI ai = queue.Peek();
             ai.hasOrder = true;
             moveLine();
-            ai.CD.recievedDrink = (DrinkData)drink;
-            ((GameObject)sender).active = false;
+            ai.CD.recievedDrink = drinkdata;
+            drink.SetActive(false);
             DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
-            DrinkBeGone?.Invoke(ai.CD.recievedDrink, EventArgs.Empty);
-
-            Debug.Log("Here is your money");//
-
+            ai.CD.customer.RecieveDrink();
+            //Debug.Log("Here is your money");
+          
         }
     }
 }
