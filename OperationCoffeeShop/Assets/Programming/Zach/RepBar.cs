@@ -6,12 +6,14 @@ using System;
 
 public class RepBar : MonoBehaviour
 {
+    private GameMode gameMode;
 
     public Slider slider;
 
     private void Start()
     {
         Customer.CustomerRating += SetRepHelper;
+        gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
 
     }
     private void SetRepHelper(object sender, EventArgs e)
