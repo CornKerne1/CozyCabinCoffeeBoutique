@@ -46,7 +46,7 @@ public class DayNightCycle
             
             if (gMD.isOpen && pastClosing)
             {
-                gMD.isOpen = false;
+                gM.CloseShop();
             }
         }
     }

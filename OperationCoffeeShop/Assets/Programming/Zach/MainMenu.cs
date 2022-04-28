@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public string scene;
+    
     public GameObject optionsScreen;
 
     //Bellow is all of the functions for managing what buttons do in the main menu.

@@ -24,7 +24,7 @@ public class GameModeData : ScriptableObject
 
     [Header("DO NOT TOUCH")]
     public bool sleeping;
-    public int reputation;
+    public float reputation;
     public int displayTime;
     public int day = 1;
     public float currentOpenTime;

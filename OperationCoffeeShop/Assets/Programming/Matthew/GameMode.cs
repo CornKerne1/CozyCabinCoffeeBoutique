@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class GameMode : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class GameMode : MonoBehaviour
     
 
     [SerializeField] public GameObject sunLight;
+
+    [SerializeField] private GameObject GameOver;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -64,5 +68,11 @@ public class GameMode : MonoBehaviour
     {
         obj.SetActive(false);
         toBeDestroyed.Add(obj);
+    }
+
+    public void CloseShop()
+    {
+        gMD.isOpen = false;
+        Instantiate(GameOver);
     }
 }
