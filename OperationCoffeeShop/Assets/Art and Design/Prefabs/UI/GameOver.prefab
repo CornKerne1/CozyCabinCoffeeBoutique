@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423995552129583628}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OpenOptions
         m_Mode: 1
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423995552129583628}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423995552129583628}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -815,7 +815,6 @@ GameObject:
   - component: {fileID: 1423995552129583630}
   - component: {fileID: 1423995552129583631}
   - component: {fileID: 1423995552129583616}
-  - component: {fileID: 1423995552129583628}
   - component: {fileID: 1430304730604766022}
   - component: {fileID: 5553740291608385466}
   - component: {fileID: 1810798381104253381}
@@ -911,20 +910,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1423995552129583628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423995552129583617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d6fd81df8dea9f4e94fd871167bb7b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene: ConnorShowcase 1
-  optionsScreen: {fileID: 8101693855475531530, guid: 220ec2d867514e24f95b94cf2ea92ed6, type: 3}
 --- !u!114 &1430304730604766022
 MonoBehaviour:
   m_ObjectHideFlags: 0
