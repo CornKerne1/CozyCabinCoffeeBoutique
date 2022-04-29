@@ -8,6 +8,10 @@ using UnityEngine;
 //The class does not inherit from MonoBehavior, since it it a Scriptable Object
 public class GameModeData : ScriptableObject
 {
+    public void OnEnable()
+    {
+        isOpen = false;
+    }
 
     [Header("Day Night Cycle")]
 

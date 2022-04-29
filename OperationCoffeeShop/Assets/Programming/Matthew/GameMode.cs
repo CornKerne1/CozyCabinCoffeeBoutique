@@ -73,7 +73,7 @@ public class GameMode : MonoBehaviour
 
     public void OpenShop()
     {
-        if (gMD.currentTime.Hour > 18)
+        if (gMD.currentTime.Hour < 18)
         {
             gMD.isOpen = true;
             gate.OpenCloseGate();

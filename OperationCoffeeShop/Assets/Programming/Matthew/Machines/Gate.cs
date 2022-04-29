@@ -9,7 +9,8 @@ public class Gate : MonoBehaviour
     [SerializeField] private Transform trans;
     [SerializeField] private Transform startTrans;
     
-    private bool active;
+    private bool activate;
+    private bool running;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,20 +20,25 @@ public class Gate : MonoBehaviour
 
     public void OpenCloseGate()
     {
-        active = true;
+        if (!running)
+        {
+            activate = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (active)
+        if (activate)
         {
+            running = true;
             if (gM.gMD.isOpen)
             {//Open
                 gate.transform.position = Vector3.Lerp(gate.transform.position, trans.position, 1);
                 if (gate.transform.position == trans.position)
                 {
-                    active = false;
+                    activate = false;
+                    running = false;
                 }
             }
             else
@@ -40,7 +46,8 @@ public class Gate : MonoBehaviour
                 gate.transform.position = Vector3.Lerp(gate.transform.position, startTrans.position, 1);
                 if (gate.transform.position == startTrans.position)
                 {
-                    active = false;
+                    activate = false;
+                    running = false;
                 }
             }
         }
