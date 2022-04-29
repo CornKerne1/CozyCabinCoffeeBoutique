@@ -9,6 +9,7 @@ public class GameMode : MonoBehaviour
     //This class keeps track of the game
 
     [SerializeField]private Transform player;
+    [SerializeField]private Gate gate;
     //This is the Scriptable Object that contains the data for this class.
     public GameModeData gMD;
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
@@ -70,9 +71,18 @@ public class GameMode : MonoBehaviour
         toBeDestroyed.Add(obj);
     }
 
+    public void OpenShop()
+    {
+        if (gMD.currentTime.Hour > 18)
+        {
+            gMD.isOpen = true;
+            gate.OpenCloseGate();
+        }
+    }
     public void CloseShop()
     {
         gMD.isOpen = false;
+        gate.OpenCloseGate();
         Instantiate(GameOver);
     }
 }
