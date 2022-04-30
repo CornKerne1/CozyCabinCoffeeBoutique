@@ -31,7 +31,7 @@ public class MachineInteraction : Interactable
                 {
                     if (!bB.open && machine.currentCapacity > 0)
                     {
-                        machine.StartMachine();
+                        machine.StartMachine();bB.filter.SetActive(false);
                     }
                     else
                     {

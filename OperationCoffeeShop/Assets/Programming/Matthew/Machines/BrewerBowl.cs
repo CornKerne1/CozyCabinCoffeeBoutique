@@ -10,6 +10,8 @@ public class BrewerBowl : MonoBehaviour
     private bool run = false;
     [SerializeField] private Transform OpenTrans;
     [SerializeField] private Transform CloseTrans;
+    [SerializeField] private Transform filterTrans;
+    public GameObject filter;
     private IEnumerator iU;
     private Machine m;
 
@@ -17,6 +19,7 @@ public class BrewerBowl : MonoBehaviour
     {
         iU = ImitateUpdate();
         m = transform.root.GetComponentInChildren<Machine>();
+        filter = filterTrans.gameObject;
     }
 
     private void Update()
@@ -71,9 +74,14 @@ public class BrewerBowl : MonoBehaviour
     
     public void IngredientInteract(GameObject other)
     {
-        if (open)
+        if (open && filter.activeSelf)
         {
             m.IngredientInteract(other);
+        }
+        else if(open && other.GetComponent<PhysicalIngredient>().thisIngredient == Ingredients.CoffeeFilter)
+        {
+            filter.SetActive(true);
+            Destroy(other);
         }
     }
 

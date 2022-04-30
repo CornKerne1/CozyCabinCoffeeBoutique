@@ -9,7 +9,7 @@ using UnityEngine;
 public enum Ingredients 
 {
     Milk, SteamedMilk,FoamedMilk, Sugar, WhippedCream,
-    Espresso, UngroundCoffee, GroundCoffee, Salt, BrewedCoffee, EspressoBeans
+    Espresso, UngroundCoffee, GroundCoffee, Salt, BrewedCoffee, EspressoBeans, CoffeeFilter
 
 }
 public enum Flavors
