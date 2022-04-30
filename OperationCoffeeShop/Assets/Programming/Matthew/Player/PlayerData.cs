@@ -6,11 +6,11 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Generic")]
 public class PlayerData : ScriptableObject
 {
-    private void Awake()
+    private void OnEnable()
     {
         busyHands = false;
         isClimbing = false;
-
+        killSwitchOff = true;
     }
 
     [Header("Controller Variables")]
@@ -48,4 +48,6 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float carryDistance;
     [Range(0, 10)]
     [SerializeField] public float smooth;
+
+    [SerializeField] public bool killSwitchOff;
 }

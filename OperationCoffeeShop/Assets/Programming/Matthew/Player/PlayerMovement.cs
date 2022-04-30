@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(transform.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = -2f * Convert.ToInt16(pI.pD.killSwitchOff);
         }
         HandleMovement();
         //Debug.Log(speed);
@@ -69,9 +69,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() *.75f, 0.0f, pI.GetVerticalMovement());
             currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
             Vector3 finalMovement = transform.TransformVector(currentMovement);
-            controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
+            controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime * Convert.ToInt16(pI.pD.killSwitchOff));
             velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime * Convert.ToInt16(pI.pD.killSwitchOff));
         }
     }
     private void HandleLadderMovement()
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3.up.z * pI.GetVerticalMovement());
         currentMovement = Vector3.MoveTowards(currentMovement, lM, pI.pD.inertiaVar * Time.deltaTime);
         Vector3 finalMovement = transform.TransformVector(currentMovement);
-        controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
+        controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime * Convert.ToInt16(pI.pD.killSwitchOff));
         if (isGrounded && pI.GetVerticalMovement() < 0)
         {
             pI.pD.isClimbing = false;

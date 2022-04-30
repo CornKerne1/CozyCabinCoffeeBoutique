@@ -12,6 +12,8 @@ public class PlayerCameraController : MonoBehaviour
 
     private PlayerInput pI;
 
+    public GameObject holder;
+
     public PlayerCameraController()
     {
     }
@@ -29,7 +31,7 @@ public class PlayerCameraController : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -pI.pD.neckClamp, pI.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = xRotation;
-        cam.eulerAngles = camRotation;
+        cam.eulerAngles = new Vector3(camRotation.x * Convert.ToInt16(pI.pD.killSwitchOff),camRotation.y * Convert.ToInt16(pI.pD.killSwitchOff), camRotation.z * Convert.ToInt16(pI.pD.killSwitchOff));
     }
 
     private void Start()
