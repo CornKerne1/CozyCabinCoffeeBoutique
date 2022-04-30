@@ -33,6 +33,11 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.MoveObjEvent += MoveObj;
     }
 
+    public PlayerInput GetPlayerInput()
+    {
+        return pI;
+    }
+    
 
     private void MoveObj(object sender, EventArgs e)
     {

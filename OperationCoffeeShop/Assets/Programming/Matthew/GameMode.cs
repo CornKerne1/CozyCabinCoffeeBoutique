@@ -8,7 +8,7 @@ public class GameMode : MonoBehaviour
 {
     //This class keeps track of the game
 
-    [SerializeField]private Transform player;
+    [SerializeField]public Transform player;
     [SerializeField]private Gate gate;
     //This is the Scriptable Object that contains the data for this class.
     public GameModeData gMD;

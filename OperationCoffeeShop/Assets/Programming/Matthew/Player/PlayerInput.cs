@@ -34,6 +34,8 @@ public class PlayerInput : MonoBehaviour
     float verticalMovement;
     Vector2 currentObjDistance;
 
+    public bool disabled;
+
     private void Awake()
     {
         Cursor.visible = false;
@@ -51,8 +53,10 @@ public class PlayerInput : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    public void OnEnable()
     {
+        disabled = false;
+        
         fPP.Enable();
         fPP.MoveForwardBackwards.started += ctx => verticalMovement = ctx.ReadValue<float>();
         fPP.MoveForwardBackwards.canceled += ctx => verticalMovement = ctx.ReadValue<float>();
@@ -90,8 +94,9 @@ public class PlayerInput : MonoBehaviour
         MoveObjEvent?.Invoke(this, EventArgs.Empty);
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
+        disabled = true;
         fPP.MoveForwardBackwards.Disable();
         fPP.MoveLeftRight.Disable();
         fPP.MouseX.Disable();
