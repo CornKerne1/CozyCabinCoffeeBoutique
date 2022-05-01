@@ -136,7 +136,6 @@ public class PlayerInput : MonoBehaviour
     {
         return mouseInput.y;
     }
-
     public Vector2 GetCurrentRotate()
     {
         return currentRotate;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,8 +11,15 @@ public class Bed : Interactable
 
     [SerializeField] private Transform sleepTrans;
     [SerializeField] private Transform startTrans;
+    private Transform playerTrans;
+    
+    public float transportTime = 3f;
 
     private bool running;
+
+    private IEnumerator TimerRef;
+
+    private bool inBed;
 
     public override void Start()
     {
@@ -21,38 +29,57 @@ public class Bed : Interactable
 
     public void Update()
     {
+        HandlePlayerMove();
+    }
+
+    private void HandlePlayerMove()
+    {
         if (pI)
         {
             if (!base.gM.gMD.sleeping && pI.pD.killSwitchOff == false)
             {
                 running = true;
+                if (TimerRef == null)
+                {
+                    StartCoroutine(Timer());
+                }
             }
         }
-
         if (running)
         {
+            if (TimerRef == null)
+            {
+                StartCoroutine(Timer());
+            }
             if (base.gM.gMD.sleeping)
             {
-                gM.player.transform.position = Vector3.Lerp(gM.player.transform.position, sleepTrans.position, 1.0f * Time.deltaTime);
-                gM.player.transform.rotation = Quaternion.Lerp(gM.player.transform.rotation, sleepTrans.rotation, 1.0f * Time.deltaTime);
-                if (gM.player.transform.position == sleepTrans.position)
-                {
-                    running = false;
-                }
+                playerTrans.position = Vector3.Lerp(playerTrans.position, sleepTrans.position, 1.0f * Time.deltaTime);
             }
             else
             {
-                Debug.Log("sometin");
-                gM.player.transform.position = Vector3.Lerp(gM.player.transform.position, startTrans.position, 1.0f * Time.deltaTime);
-                gM.player.transform.rotation = Quaternion.Lerp(gM.player.transform.rotation, startTrans.rotation, 1.0f * Time.deltaTime);
-                if (gM.player.transform.position == startTrans.position)
-                {
-                    running = false;
-                    pI.pD.killSwitchOff = true;
-
-                }
+                playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 1.0f * Time.deltaTime);
             }
         }
+    }
+
+    IEnumerator Timer()
+    {
+        TimerRef = Timer();
+        yield return new WaitForSeconds(transportTime);
+        if (!inBed)
+        {
+            running = false;
+            inBed = true;
+        }
+        else
+        {
+            running = false;
+            pI.pD.killSwitchOff = true;
+            playerTrans.GetComponent<Collider>().enabled = true;
+            inBed = false;
+        }
+
+        TimerRef = null;
     }
 
     public override void OnFocus()
@@ -62,11 +89,12 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        startTrans = pI.gameObject.transform;
-        pI.pD.killSwitchOff = false;
+        playerTrans = base.gM.player.transform;
         base.gM.gMD.sleepTime = base.gM.gMD.currentTime.AddHours(8);
         //base.gM.gMD.sleepTime.AddHours(8);
         base.gM.gMD.sleeping = true;
+        base.gM.player.GetComponent<Collider>().enabled = false;
+        pI.pD.killSwitchOff = false;
         running = true;
     }
 
