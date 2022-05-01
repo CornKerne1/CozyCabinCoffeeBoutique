@@ -77,6 +77,7 @@ public class Bed : Interactable
             pI.pD.killSwitchOff = true;
             playerTrans.GetComponent<Collider>().enabled = true;
             inBed = false;
+            base.gM.gMD.timeRate = base.gM.gMD.timeRate/3;
         }
 
         TimerRef = null;
@@ -90,6 +91,7 @@ public class Bed : Interactable
     public override void OnInteract(PlayerInteraction pI)
     {
         playerTrans = base.gM.player.transform;
+        base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
         base.gM.gMD.sleepTime = base.gM.gMD.currentTime.AddHours(8);
         //base.gM.gMD.sleepTime.AddHours(8);
         base.gM.gMD.sleeping = true;
