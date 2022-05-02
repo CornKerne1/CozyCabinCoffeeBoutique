@@ -17,6 +17,7 @@ public class CustomerInteractable : Interactable
 
     public Canvas canvas;
 
+    private CustomerAnimations CA;
     private void Start()
     {
         DD = GameObject.Find("Dialog").GetComponent<DialogDisplay>();
@@ -24,6 +25,7 @@ public class CustomerInteractable : Interactable
         canvas = prompt.GetComponent<Canvas>();
         canvas.enabled = false;
         this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
+        CA=gameObject.GetComponent<CustomerAnimations>();
     }
 
     public override void OnFocus()
@@ -38,6 +40,7 @@ public class CustomerInteractable : Interactable
         //invokes the dialogue interaction thing
         //DialogDisplay
         DD.AdvanceConversation();
+        CA.Talk();
         if ((DD.finishedOrder && !CAI.hasOrdered) || DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
         {
             CAI.customerLines[CAI.customerLines.Count -1].moveLine();
@@ -49,5 +52,8 @@ public class CustomerInteractable : Interactable
         canvas.enabled = false;//Destroys on screen prompt 
     }
 
-
+    public DialogDisplay GetDD()
+    {
+        return this.DD;
+    }
 }
