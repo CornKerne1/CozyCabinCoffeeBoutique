@@ -33,18 +33,6 @@ public class CustomerAnimations : MonoBehaviour
     }
     public void Talk()
     {
-        StartCoroutine(talking());
-    }
-    private IEnumerator talking()
-    {
-        if (customerAnimator.GetBool("Talking") == false)
-        {
-            customerAnimator.SetBool("Talking", true);
-            yield return new WaitForSeconds(1);
-            customerAnimator.SetBool("Talking", false);
-
-        }
-
-
+        customerAnimator.SetTrigger("Talking");
     }
 }
