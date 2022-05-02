@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class CustomerAI : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class CustomerAI : MonoBehaviour
 
     public bool hasOrdered = false;
     public bool hasOrder = false;
+    public bool lookAtBool = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +62,9 @@ public class CustomerAI : MonoBehaviour
     }
     private void Update()
     {
-        if (!stay)
+        if (!stay) //when not in line
         {
+            lookAtBool = false;
             agent.destination = destination;
             Vector3 distanceToNode = gameObject.transform.position - destination;
             if (distanceToNode.magnitude < minDistance && dests.Count != 0)
@@ -69,10 +72,16 @@ public class CustomerAI : MonoBehaviour
                 destination = dests.Dequeue();
                 setDestination(destination);
             }
-            else if (agent.hasPath ==false&& hasOrder &&hasOrdered)
+            else if (agent.hasPath == false && hasOrder && hasOrdered)
             {
                 this.gameObject.SetActive(false);
             }
+        }
+        else if(lookAtBool == false)// when in line
+        {
+            Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
+            lookat.rotation = new Quaternion(lookat.rotation.x, lookat.rotation.y, lookat.rotation.z, lookat.rotation.w);
+            this.gameObject.transform.LookAt(lookat);
         }
         
 
