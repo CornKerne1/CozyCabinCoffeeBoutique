@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Oven : Interactable
+public class Oven : MachineInteraction
 {
     public Animator ovenAnimator;
 

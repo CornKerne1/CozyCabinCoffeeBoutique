@@ -7,8 +7,10 @@ public class Button : Interactable
     // Start is called before the first frame update
     private PlayerInteraction pI;
 
+    public Animator ButtonAnimator;
     public override void OnInteract(PlayerInteraction pI)
     {
+        ButtonAnimator.SetTrigger("Press");
         if (!gM.gMD.isOpen)
         {
             gM.OpenShop();
