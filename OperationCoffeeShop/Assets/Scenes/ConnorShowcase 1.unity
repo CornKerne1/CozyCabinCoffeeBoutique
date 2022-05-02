@@ -123,6 +123,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 4d33773740a170a4dbc555f71dc7a558, type: 2}
+--- !u!1 &1875867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5226767951113151678, guid: 4a64811016096ae468f78cffd944a5c7, type: 3}
+  m_PrefabInstance: {fileID: 1429043805366639903}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1875869
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6021791604266249079, guid: cace866e0b6ff76449f6a86a7819977b, type: 3}
+--- !u!114 &1875872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d5a9e6a6520547bd2a75570cb2751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+  ovenAnimator: {fileID: 1875874}
+--- !u!95 &1875874
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875867}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0dff6dca293f1e408d6dc263bf4d603, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &142942324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3128,7 +3181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oven
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4808970123874192730, guid: 4a64811016096ae468f78cffd944a5c7, type: 3}
+    - {fileID: 5266728491755853098, guid: 4a64811016096ae468f78cffd944a5c7, type: 3}
+    - {fileID: 614121604, guid: 4a64811016096ae468f78cffd944a5c7, type: 3}
+    - {fileID: 614121605, guid: 4a64811016096ae468f78cffd944a5c7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a64811016096ae468f78cffd944a5c7, type: 3}
 --- !u!1001 &1551274637575183695
 PrefabInstance:
