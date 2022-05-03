@@ -92,9 +92,9 @@ GameObject:
   - component: {fileID: 5225016489439919883}
   - component: {fileID: 4884484185373255090}
   - component: {fileID: 4884484185373255091}
+  - component: {fileID: 477727331}
   - component: {fileID: 477727332}
   - component: {fileID: 477727334}
-  - component: {fileID: 477727331}
   - component: {fileID: 477727335}
   m_Layer: 3
   m_Name: Button
@@ -147,6 +147,19 @@ MonoBehaviour:
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   ButtonAnimator: {fileID: 477727334}
+--- !u!114 &477727331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884484185373255089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d067f9fcda38e6441ab2c5f36bf06e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Collider: {fileID: 0}
 --- !u!54 &477727332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -182,19 +195,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &477727331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4884484185373255089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d067f9fcda38e6441ab2c5f36bf06e31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Collider: {fileID: 0}
 --- !u!114 &477727335
 MonoBehaviour:
   m_ObjectHideFlags: 0
