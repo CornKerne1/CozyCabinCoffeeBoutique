@@ -2,30 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineInteraction : Interactable
+public class GrinderInteraction : MachineInteraction
 {
-    protected Machine machine;
-    public MachineData mD;
-
-    public override void Start()
-    {
-        base.Start();
-        machine = transform.root.GetComponentInChildren<Machine>();
-    }
-
-    public override void OnFocus()
-    {
-        Debug.Log("We Are Looking At You");
-    }
-
+    public Animator animator;
     public override void OnInteract(PlayerInteraction pI)
     {
 
+        animator.SetTrigger("Press");
+        StartCoroutine(Grind());
+        
+    }
+    IEnumerator Grind()
+    {
+        yield return new WaitForSeconds(1);
         switch (mD.machineType)
         {
             case MachineData.Type.Default:
                 machine.StartMachine();
-                return;
+                 break;
             case MachineData.Type.Brewer:
                 var bB = transform.root.GetComponentInChildren<BrewerBowl>();
                 if (bB)
@@ -39,13 +33,10 @@ public class MachineInteraction : Interactable
                         bB.OpenOrClose();
                     }
                 }
-                return;
+                break;
 
         }
     }
 
-    public override void OnLoseFocus()//
-    {
-        Debug.Log("Gone!");
-    }
+
 }
