@@ -15,6 +15,7 @@ public class GameMode : MonoBehaviour
     public GameModeData gMD;
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle dNC;
+    public static event EventHandler ShopClosed;
 
     private List<GameObject> toBeDestroyed = new List<GameObject>();
     
@@ -84,6 +85,10 @@ public class GameMode : MonoBehaviour
     {
         gMD.isOpen = false;
         gate.OpenCloseGate();
-        Instantiate(GameOver);
+        ShopClosed?.Invoke(this, EventArgs.Empty);
+        if (gMD.currentTime.Day > 2)
+        {
+            Instantiate(GameOver);
+        }
     }
 }

@@ -8,23 +8,27 @@ public class Ladder : Interactable
     public PlayerInteraction pI;
     public bool canClimb;
     
-    void Start()
+    public override void Start()
     {
+        base.Start();
         canClimb = false;
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
         this.pI = pI;
-        if (this.pI.pD.isClimbing)
+        if (!base.gM.gMD.isOpen)
         {
-            this.pI.pD.isClimbing = false;
-        }
-        else
-        {
-            if (canClimb)
+            if (this.pI.pD.isClimbing)
             {
-                this.pI.pD.isClimbing = true;
+                this.pI.pD.isClimbing = false;
+            }
+            else
+            {
+                if (canClimb)
+                {
+                    this.pI.pD.isClimbing = true;
+                }
             }
         }
     }
