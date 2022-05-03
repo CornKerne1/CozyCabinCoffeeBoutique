@@ -117,7 +117,21 @@ public class CustomerAI : MonoBehaviour
     public void ShopClosed(object sender, EventArgs e)
     {
         //CALLED WHEN THE SHOP CLOSES
-        
+
         //CONNOR please write a method that makes the customers leave when the shop closes; Any drink not delivered will be scored as a zero! 
+        DrinkData drink = new DrinkData("nothing");
+        drink.price = 0;
+        drink.Ingredients = new List<IngredientNode>();
+        if(hasOrdered)
+            customerLines[customerLines.Count - 1].LeaveWithoutGettingDrink(drink);
+        else
+            customerLines[customerLines.Count - 1].LeaveWithoutPaying(drink);
+        hasOrder = true;
+        hasOrdered = true;
+        Vector3 finalDestination = dests.ToArray()[(dests.ToArray().Length-1)];
+        dests.Clear();
+        setDestination(finalDestination);
+
+
     }
 }

@@ -106,10 +106,8 @@ public class CustomerLine : MonoBehaviour
     public void deliverDrink(GameObject drink)
     {
         DrinkData drinkdata = (drink).GetComponent<IngredientContainer>().dD;
-        //Debug.Log("recieved event");
         if (queue.Count>0 && queue.Peek().hasOrdered == true)
         {
-            //Debug.Log("Deliverd drink");
             CustomerAI ai = queue.Peek();
             ai.hasOrder = true;
             moveLine();
@@ -117,8 +115,32 @@ public class CustomerLine : MonoBehaviour
             drink.SetActive(false);
             DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
             ai.CD.customer.RecieveDrink();
-            //Debug.Log("Here is your money");
           
+        }
+    }
+    public void LeaveWithoutPaying(DrinkData drinkdata)
+    {
+        if (queue.Count > 0 && queue.Peek().hasOrdered == true)
+        {
+            CustomerAI ai = queue.Peek();
+            ai.hasOrder = true;
+            moveLine();
+            ai.CD.recievedDrink = drinkdata;
+            ai.CD.customer.RecieveDrink();
+
+        }
+    }
+    public void LeaveWithoutGettingDrink(DrinkData drinkdata)
+    {
+        if (queue.Count > 0 && queue.Peek().hasOrdered == true)
+        {
+            CustomerAI ai = queue.Peek();
+            ai.hasOrder = true;
+            moveLine();
+            ai.CD.recievedDrink = drinkdata;
+            DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
+            ai.CD.customer.RecieveDrink();
+
         }
     }
 }

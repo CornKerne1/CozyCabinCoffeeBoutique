@@ -17,9 +17,7 @@ public class DeliveryZone : MonoBehaviour
     {
         if (other.TryGetComponent<IngredientContainer>(out IngredientContainer drinkContainor) && drinkContainor.inHand ==false)
         {
-            //DrinkDelivery?.Invoke(other.gameObject, EventArgs.Empty);
             line.deliverDrink(other.gameObject);
-            Debug.Log("Drink detected");
         }
     }
 
