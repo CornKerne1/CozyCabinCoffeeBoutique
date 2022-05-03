@@ -14,6 +14,7 @@ public class Button : Interactable
         if (!gM.gMD.isOpen)
         {
             gM.OpenShop();
+            AkSoundEngine.PostEvent("Play_buttonpress" , this.gameObject);
         }
         
     }

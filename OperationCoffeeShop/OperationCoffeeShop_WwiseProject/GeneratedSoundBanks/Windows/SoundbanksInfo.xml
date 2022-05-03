@@ -16,5 +16,20 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX" Hash="630198314">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2652178615" Name="Play_buttonpress" ObjectPath="\Events\Default Work Unit\Play_buttonpress" MaxAttenuation="2." DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
+					<IncludedMemoryFiles>
+						<File Id="873684257" Language="SFX">
+							<ShortName>buttonpress.wav</ShortName>
+							<Path>SFX\buttonpress_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
