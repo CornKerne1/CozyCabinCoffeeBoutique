@@ -35,8 +35,4 @@ public class GameModeData : ScriptableObject
     public bool isOpen;
 
     public string time;
-    
-    [SerializeField] public Material matL;
-    [SerializeField] public Material matM;
-    [SerializeField] public Material matD;
 }
