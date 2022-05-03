@@ -10,11 +10,15 @@ public class RandomCustomer : Customer
 
     private string customerName;
 
+    private CustomerAI ai;
+
+
     public void Awake()
     {
+        ai= GetComponent<CustomerAI>();
 
         //sets a random name from nameSet
-        customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+        customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
         DrinkData favoriteDrink = GetRandomDrink();
 
          List<Flavors> flavors = new List<Flavors>();
@@ -41,7 +45,11 @@ public class RandomCustomer : Customer
                 }
             }
         }
-        CD = new CustomerData(customerName, favoriteDrink, flavorNodes);
+        CD = (CustomerData)ScriptableObject.CreateInstance("CustomerData");
+        CD.name = customerName;
+        CD.favoriteDrink = favoriteDrink;
+        CD.DesiredFlavors(flavorNodes);
+        CD.customer = this;
     }
 
     public RandomCustomer(RandomNameSet nameSet)
@@ -49,19 +57,19 @@ public class RandomCustomer : Customer
         //Uses specified nameset to generate random name
         this.nameSet = nameSet;
         //sets a random name from nameSet
-        customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+        customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
     }
 
     protected override IngredientNode GetRandomAddOn()
     {
-        int ingredient = Random.Range(0, PRD.learnedIngredients.Count);
-        float target = Random.value;
+        int ingredient = UnityEngine.Random.Range(0, PRD.learnedIngredients.Count);
+        float target = UnityEngine.Random.value;
         return new IngredientNode(PRD.learnedIngredients[ingredient], target);
     }
 
     protected override DrinkData GetRandomDrink()
     {
-        return PRD.learnedDrinks[Random.Range(0, PRD.learnedDrinks.Count)];
+        return PRD.learnedDrinks[UnityEngine.Random.Range(0, PRD.learnedDrinks.Count)];
     }
     public override DrinkData GetDrinkOrder()
     {

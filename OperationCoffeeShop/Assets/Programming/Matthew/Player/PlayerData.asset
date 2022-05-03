@@ -12,19 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2151d413d07c44f81f03b5984194ca, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  moveSpeed: 2.2
+  moveSpeed: 2
   inertiaVar: 3
   mouseSensitivityX: 20
   mouseSensitivityY: 20
-  neckClamp: 61.2
+  modX: 0
+  neckClamp: 77.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  amplitude: 0.001
-  frequency: 10
-  currentMovement: {x: 0, y: 0, z: -0}
-  interactDistance: 3.5
+    m_Bits: 1
+  amplitude: 0.1
+  frequency: 11
+  currentMovement: {x: -1.9030117, y: -9.601306, z: -7.190458}
+  isClimbing: 0
+  objMoveSpeed: 0
+  interactDistance: 4
+  carryDistanceClamp: 0.25
+  objRotationSpeed: 12.99
   canInteract: 1
   busyHands: 0
-  carryDistance: 0.91
+  carryDistance: 0.7
   smooth: 10
+  killSwitchOff: 1

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class HeadBobController : MonoBehaviour
 
     
     private Vector3 startPos;
+    private Vector3 lastPosition;
     private CharacterController controller;
 
 
@@ -21,6 +23,7 @@ public class HeadBobController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         startPos = cam.localPosition;
+        lastPosition = transform.root.position;
     }
 
     // Update is called once per frame
@@ -33,23 +36,27 @@ public class HeadBobController : MonoBehaviour
 
     private void PlayMotion(Vector3 motion)
     {
-        cam.localPosition += motion;
+        cam.localPosition += motion * Time.deltaTime;
     }
 
     private void CheckMotion()
     {
-        //float speed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        if (GetComponent<CharacterController>().velocity.magnitude == 0) return;
-        //if (!controller.isGrounded) return;
+        if (GetSpeed() == 0) return;
 
         PlayMotion(Motion());
     }
 
+    private float GetSpeed()
+    {
+        float speed = Vector3.Distance(lastPosition, transform.root.position);
+        lastPosition = transform.root.position;
+        return speed;
+    }
     private Vector3 Motion()
     {
         Vector3 pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude;
-        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2;
+        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude * Convert.ToInt16(pD.killSwitchOff);
+        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2 * Convert.ToInt16(pD.killSwitchOff);
         return pos;
     }
     private Vector3 FocusTarget()

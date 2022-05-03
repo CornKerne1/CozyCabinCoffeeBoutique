@@ -8,6 +8,10 @@ using UnityEngine;
 //The class does not inherit from MonoBehavior, since it it a Scriptable Object
 public class GameModeData : ScriptableObject
 {
+    public void OnEnable()
+    {
+        isOpen = false;
+    }
 
     [Header("Day Night Cycle")]
 
@@ -24,7 +28,7 @@ public class GameModeData : ScriptableObject
 
     [Header("DO NOT TOUCH")]
     public bool sleeping;
-    public int reputation;
+    public float reputation;
     public int displayTime;
     public int day = 1;
     public float currentOpenTime;

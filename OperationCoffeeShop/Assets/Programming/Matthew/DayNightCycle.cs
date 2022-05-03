@@ -37,14 +37,16 @@ public class DayNightCycle
     public void StartTimer()
     {
         //Debug.Log(gMD.currentTime.ToString("HH:mm"));
-        //If store is open.
         if (gMD.isOpen)
         {
             //Subtracts the amount that passes from the variable.
             TrackTime();
-            if (gMD.isOpen && gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour)
+
+            bool pastClosing = gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour;
+            
+            if (gMD.isOpen && pastClosing)
             {
-                gMD.isOpen = false;
+                gM.CloseShop();
             }
         }
     }

@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Customer : MonoBehaviour 
 {
+
+
     [Header("RandomCustomer will be empty")]
     public CustomerData CD; //holds all realavent variables
 
     [Header("Should not be empty")]
     public PlayerResearchData PRD; //holds all possible ingredients and drinks
 
-    
-        
+    public GameMode gameMode;
+
+    [SerializeField] public static event EventHandler CustomerRating;// publishes the customer rating for all to see. 
+
+
+    public virtual void Start()
+    {
+        gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+    }
     /// <summary>
     /// Returns Customer's Name.
     /// </summary>
@@ -19,7 +29,7 @@ public abstract class Customer : MonoBehaviour
     public string GetName()
     {
         if (CD != null || CD.name != null)
-            return "Naome";
+            return "Name";
         return CD.name;
 
     }
@@ -103,4 +113,15 @@ public abstract class Customer : MonoBehaviour
     /// aka moving them to new location based on enviromental factors.
     /// </summary>
     public abstract void NextMove();
+
+
+    /// <summary>
+    /// Rates the customer recieved drink.
+    /// </summary>
+    public void RecieveDrink()
+    {
+        float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.favoriteDrink);
+        CustomerRating?.Invoke(quality, EventArgs.Empty);
+        Debug.Log("Drink Quality = " + quality);
+    }
 }

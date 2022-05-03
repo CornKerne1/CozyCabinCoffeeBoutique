@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum Ingredients
+
+//If you intend to add a new Ingredient to the enum,
+//you must also add a new FlavorProfile for that Ingredient
+public enum Ingredients 
 {
     Milk, SteamedMilk,FoamedMilk, Sugar, WhippedCream,
-    EspressoShot, UngroundCoffee, GroundCoffee, Salt, 
+    Espresso, UngroundCoffee, GroundCoffee, Salt, BrewedCoffee, EspressoBeans, CoffeeFilter
 
 }
 public enum Flavors
@@ -33,8 +36,10 @@ public class FlavorProfile
         flavorProfile.Add(Ingredients.Sugar, new FlavorNode(Flavors.Sweet, Strength.Medium));
         flavorProfile.Add(Ingredients.WhippedCream, new FlavorNode(Flavors.Sweet, Strength.Light));
 
-        flavorProfile.Add(Ingredients.EspressoShot, new FlavorNode(Flavors.Bitter, Strength.Strong));
+        flavorProfile.Add(Ingredients.Espresso, new FlavorNode(Flavors.Bitter, Strength.Strong));
         flavorProfile.Add(Ingredients.GroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
+        flavorProfile.Add(Ingredients.UngroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
+        flavorProfile.Add(Ingredients.BrewedCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
 
         flavorProfile.Add(Ingredients.Salt, new FlavorNode(Flavors.Salty, Strength.Medium));
 
