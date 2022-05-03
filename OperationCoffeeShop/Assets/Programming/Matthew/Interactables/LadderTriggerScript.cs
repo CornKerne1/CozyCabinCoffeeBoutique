@@ -7,6 +7,7 @@ using UnityEngine;
 public class LadderTriggerScript : MonoBehaviour
 {
     public GameObject owner;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.Equals(2))

@@ -57,7 +57,7 @@ public class CustomerAI : MonoBehaviour
         this.hasOrder = false;
         this.hasOrdered = false;
 
-
+        GameMode.ShopClosed += ShopClosed;
 
     }
     private void Update()
@@ -112,5 +112,12 @@ public class CustomerAI : MonoBehaviour
         
             customerLines[customerLines.Count-1].moveLine();
         
+    }
+
+    public void ShopClosed(object sender, EventArgs e)
+    {
+        //CALLED WHEN THE SHOP CLOSES
+        
+        //CONNOR please write a method that makes the customers leave when the shop closes; Any drink not delivered will be scored as a zero! 
     }
 }

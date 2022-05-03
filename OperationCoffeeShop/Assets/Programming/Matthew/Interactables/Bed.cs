@@ -90,18 +90,32 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        playerTrans = base.gM.player.transform;
-        base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
-        base.gM.gMD.sleepTime = base.gM.gMD.currentTime.AddHours(8);
-        //base.gM.gMD.sleepTime.AddHours(8);
-        base.gM.gMD.sleeping = true;
-        base.gM.player.GetComponent<Collider>().enabled = false;
-        pI.pD.killSwitchOff = false;
-        running = true;
+        if (gM.gMD.currentTime.Hour > 18 && gM.gMD.currentTime.Hour < 6)
+        {
+            playerTrans = base.gM.player.transform;
+            base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
+            base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
+            CalculateSleepTime();
+            //base.gM.gMD.sleepTime.AddHours(8);
+            base.gM.gMD.sleeping = true;
+            base.gM.player.GetComponent<Collider>().enabled = false;
+            pI.pD.killSwitchOff = false;
+            running = true;
+        }
     }
 
     public override void OnLoseFocus()//
     {
         Debug.Log("Gone!");
+    }
+
+    void CalculateSleepTime()
+    {
+        if (base.gM.gMD.sleepTime.Hour != 6)
+        {
+            base.gM.gMD.sleepTime.AddHours(1);
+            CalculateSleepTime();
+        }
+      
     }
 }
