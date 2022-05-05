@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
 
     [SerializeField] private Transform openTrans;
     
+     [SerializeField] private bool playerDoor;
     
     private bool open;
 
@@ -65,7 +66,21 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Customer")
+        if(playerDoor)
+        {
+            if (other.tag == "Player")
+            {
+                if (running && open)
+                {
+                    open = false;
+                }
+                else if (!open)
+                {
+                    running = true;
+                }
+            }
+        }
+        else if (other.tag == "Customer")
         {
             if (running && open)
             {
