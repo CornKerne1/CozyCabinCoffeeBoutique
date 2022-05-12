@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 353893168363793289}
   - component: {fileID: 4305255638318496729}
   - component: {fileID: 2468550647213554171}
-  - component: {fileID: 6088482635061935511}
+  - component: {fileID: 6143082617725950381}
   m_Layer: 0
   m_Name: PlayCube-360 1
   m_TagString: Untagged
@@ -100,7 +100,7 @@ MonoBehaviour:
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   mD: {fileID: 0}
-  PlayCubeAnimator: {fileID: 0}
+  PlayCubeAnimator: {fileID: 2468550647213554171}
 --- !u!95 &2468550647213554171
 Animator:
   serializedVersion: 3
@@ -120,8 +120,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &6088482635061935511
-MeshCollider:
+--- !u!65 &6143082617725950381
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -130,10 +130,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5954742352917569562, guid: 7605d8c4f72ec3148912a8264193e30b, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.090000026, y: 0.04025921, z: 0.07500003}
+  m_Center: {x: 0.012639889, y: -0.00006392318, z: -0.0011238924}
 --- !u!1 &6630982398280086807
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +144,7 @@ GameObject:
   - component: {fileID: 4169635790182642012}
   - component: {fileID: 5806298724166439402}
   - component: {fileID: 4350660844875794130}
+  - component: {fileID: 1873761794964469906}
   m_Layer: 0
   m_Name: PC360_Lid
   m_TagString: Untagged
@@ -215,3 +215,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1873761794964469906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630982398280086807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04900725, y: 0.0049999994, z: 0.05400002}
+  m_Center: {x: 0.0155036375, y: -0.0005001191, z: 0.026999995}

@@ -14,7 +14,7 @@ public class GrinderInteraction : MachineInteraction
     }
     IEnumerator Grind()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.4f);
         switch (mD.machineType)
         {
             case MachineData.Type.Default:

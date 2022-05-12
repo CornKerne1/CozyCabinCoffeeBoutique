@@ -22,6 +22,7 @@ public class CoffeeBrewer : Machine
                 mD.outputIngredient.Add(iD.brewedCoffee);
                 other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
                 Destroy(other);
+                
                 break;
         }
     }
