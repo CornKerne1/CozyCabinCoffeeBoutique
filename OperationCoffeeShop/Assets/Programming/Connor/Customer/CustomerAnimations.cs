@@ -6,15 +6,19 @@ public class CustomerAnimations : MonoBehaviour
 {
     [SerializeField, Header("Will be set at runtime")]
     public Animator customerAnimator;
-    public Rigidbody customerRigedBody;
+    public Transform customerRigedBody;
     public CustomerInteractable customerInteractable;
+    Vector3 tempPosition;
+
 
     // Start is called before the first frame update
     void Start()
     {
         customerAnimator = gameObject.GetComponentInChildren<Animator>();
-        customerRigedBody = gameObject.GetComponent<Rigidbody>();
+        customerRigedBody = gameObject.GetComponent<Transform>();
         customerInteractable = gameObject.GetComponent<CustomerInteractable>();
+        tempPosition = customerRigedBody.transform.position;
+
     }
 
     // Update is called once per frame
@@ -25,11 +29,19 @@ public class CustomerAnimations : MonoBehaviour
 
     private void HandleAnimations()
     {
-        if (customerRigedBody.velocity.magnitude > .1)
+        StartCoroutine(setTempPosition());
+        if (customerRigedBody.transform.position != tempPosition)
         {
             customerAnimator.SetBool("Moving", true);
         }
         else customerAnimator.SetBool("Moving", false);
+    }
+
+    IEnumerator setTempPosition()
+    {
+        yield return new WaitForSeconds(1);
+         tempPosition = customerRigedBody.transform.position;
+
     }
     public void Talk()
     {
