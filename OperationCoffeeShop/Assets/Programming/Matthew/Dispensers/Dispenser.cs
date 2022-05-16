@@ -8,7 +8,6 @@ public class Dispenser : Interactable
     [SerializeField] private Transform spawnTrans;
     [SerializeField] private ObjectHolder objType;
     private Transform obj;
-    private bool full;
 
     // Start is called before the first frame update
     void Start()
@@ -22,29 +21,12 @@ public class Dispenser : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if(!full)
+        if (!pI.pD.busyHands)
         {
             obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
-            obj.GetComponent<Rigidbody>().isKinematic = true;
+            pI.Carry(obj.gameObject);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (obj != null && other.gameObject == obj.gameObject)
-        {
-            full = true;
-        }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (obj != null && other.gameObject == obj.gameObject)
-        {
-            full = false;
-        }
-    }
-
     public override void OnFocus()
     {
     }

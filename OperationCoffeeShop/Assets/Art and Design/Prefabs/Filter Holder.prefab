@@ -330,8 +330,7 @@ GameObject:
   - component: {fileID: 7892533233304839704}
   - component: {fileID: 5360161384250823378}
   - component: {fileID: 7529072495726758939}
-  - component: {fileID: 5864779702839210752}
-  - component: {fileID: 8165477487020633428}
+  - component: {fileID: 5857140870316253974}
   m_Layer: 0
   m_Name: Filter Holder
   m_TagString: Untagged
@@ -422,8 +421,8 @@ MonoBehaviour:
   rotateOffset: {x: 0, y: 0, z: 0}
   spawnTrans: {fileID: 1031137208290710118}
   objType: {fileID: 11400000, guid: c3788bd74a9e2c847a01f995a711c175, type: 2}
---- !u!64 &5864779702839210752
-MeshCollider:
+--- !u!65 &5857140870316253974
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -432,20 +431,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7414629702493323579, guid: 87d424d5d014c5b4a8dccb7b3207c1d4, type: 3}
---- !u!65 &8165477487020633428
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5864779702839210759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.023531226, y: 0.02353122, z: 0.020000009}
-  m_Center: {x: 0, y: -0.02, z: -5.970574e-11}
+  m_Size: {x: 0.029426912, y: 0.029366888, z: 0.020212416}
+  m_Center: {x: -7.473791e-12, y: 0.0017816816, z: -0.00010620272}
