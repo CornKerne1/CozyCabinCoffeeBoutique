@@ -36,7 +36,5 @@ public class GameModeData : ScriptableObject
 
     public string time;
     
-    [SerializeField] public Material matL;
-    [SerializeField] public Material matM;
-    [SerializeField] public Material matD;
+    [SerializeField] public List<Material> treeMats = new List<Material>();
 }

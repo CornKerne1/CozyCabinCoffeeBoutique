@@ -24,6 +24,21 @@ public class Door : MonoBehaviour
         startTrans = transform;
     }
 
+    public void PlayerOpen()
+    {
+        if (playerDoor)
+        {
+            if (running && open)
+            {
+                open = false;
+            }
+            else if (!open)
+            {
+                running = true;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -68,17 +83,7 @@ public class Door : MonoBehaviour
     {
         if(playerDoor)
         {
-            if (other.tag == "Player")
-            {
-                if (running && open)
-                {
-                    open = false;
-                }
-                else if (!open)
-                {
-                    running = true;
-                }
-            }
+            
         }
         else if (other.tag == "Customer")
         {
