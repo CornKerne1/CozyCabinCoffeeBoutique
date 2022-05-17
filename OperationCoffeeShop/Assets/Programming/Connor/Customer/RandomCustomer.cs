@@ -12,19 +12,10 @@ public class RandomCustomer : Customer
 
     private CustomerAI ai;
 
-    public RandomCustomerSet CustomerSet;
 
     public void Awake()
     {
-        //Instanciate Random Customer from CustomerSet
-        GameObject customer = Instantiate(CustomerSet.Customers[UnityEngine.Random.Range(0, CustomerSet.Customers.Count)]) as GameObject;
-        Vector3 scale = customer.transform.localScale;
-        Vector3 position = customer.transform.localPosition;
-        customer.transform.parent = gameObject.transform;
-        customer.transform.localPosition = position;
-        customer.transform.localScale = scale;
-
-        ai = GetComponent<CustomerAI>();
+        ai= GetComponent<CustomerAI>();
 
         //sets a random name from nameSet
         customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
