@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomerAnimations : MonoBehaviour
 {
@@ -25,11 +26,16 @@ public class CustomerAnimations : MonoBehaviour
 
     private void HandleAnimations()
     {
-        if (customerRigedBody.velocity.magnitude > .1)
+        customerAnimator.SetFloat("Speed", GetComponent<NavMeshAgent>().velocity.magnitude);
+        if (GetComponent<NavMeshAgent>().velocity.magnitude > 0)
         {
             customerAnimator.SetBool("Moving", true);
         }
-        else customerAnimator.SetBool("Moving", false);
+        else
+        {
+            customerAnimator.SetBool("Moving", false);
+            customerAnimator.SetFloat("Speed", .75f);
+        }
     }
     public void Talk()
     {
