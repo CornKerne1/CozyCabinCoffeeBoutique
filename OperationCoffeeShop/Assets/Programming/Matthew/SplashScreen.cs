@@ -1,21 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SplashScreen : MonoBehaviour
 {
-    [SerializeField] private string scene;
-    
-    
-    public void StartGame()
+    private void Start()
     {
-        StartCoroutine(Wait());
+        StartCoroutine(Timer());
     }
 
-    public IEnumerator Wait()
+    private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(scene);
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene(1);
     }
 }
 
