@@ -5,9 +5,6 @@ using UnityEngine.Rendering;
 
 public class TreeRandomizer : MonoBehaviour
 {
-    [SerializeField] private Material matL;
-    [SerializeField] private Material matM;
-    [SerializeField] private Material matD;
 
     private GameMode gM;
     // Start is called before the first frame update
@@ -26,9 +23,9 @@ public class TreeRandomizer : MonoBehaviour
     void Initialize()
     {
         int random = Random.Range(0,2);
-        matL = gM.gMD.matL;
-        matM = gM.gMD.matM;
-        matD = gM.gMD.matD;
+        var matL = gM.gMD.treeMats[0];
+        var matM = gM.gMD.treeMats[1];
+        var matD = gM.gMD.treeMats[2];
         var myMat = GetComponent<MeshRenderer>().materials;
         switch(random)
         {
