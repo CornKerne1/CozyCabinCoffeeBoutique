@@ -33,7 +33,6 @@ public class CustomerAnimations : MonoBehaviour
     private void HandleAnimations()
     {
         speed = navMeshAgent.velocity.magnitude;
-        Debug.Log(speed);
         customerAnimator.SetFloat("Speed",speed);
         
     }

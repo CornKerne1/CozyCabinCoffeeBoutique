@@ -25,13 +25,13 @@ public class CustomerInteractable : Interactable
         canvas = prompt.GetComponent<Canvas>();
         canvas.enabled = false;
         this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
-        CA=gameObject.GetComponent<CustomerAnimations>();
+        CA = gameObject.GetComponent<CustomerAnimations>();
     }
 
     public override void OnFocus()
     {
         canvas.enabled = true; //instanciates on screen prompt asking if you want to interact with them.
-        
+
     }
 
     public override void OnInteract(PlayerInteraction pI)
@@ -43,8 +43,15 @@ public class CustomerInteractable : Interactable
         CA.Talk();
         if ((DD.finishedOrder && !CAI.hasOrdered) || DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
         {
-            CAI.customerLines[CAI.customerLines.Count -1].moveLine();
+            StartCoroutine(MoveLine());
         }
+    }
+
+    IEnumerator MoveLine()
+    {
+        yield return new WaitForSeconds(2);
+        CAI.customerLines[CAI.customerLines.Count - 1].moveLine();
+
     }
 
     public override void OnLoseFocus()
