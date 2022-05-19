@@ -86,6 +86,12 @@ public class CustomerAI : MonoBehaviour
         
 
     }
+
+    private IEnumerator Die()
+    {
+        yield return new WaitForSeconds(2);
+    }
+
     public void setDestination(Vector3 destination)
     {
         this.destination = destination;
