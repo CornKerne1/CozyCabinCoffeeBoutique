@@ -15,7 +15,8 @@ public class Gate : MonoBehaviour
     void Start()
     {
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
-        startTrans = gate.transform;
+        var sT = gate.transform;
+        startTrans = sT;
     }
 
     public void OpenCloseGate()

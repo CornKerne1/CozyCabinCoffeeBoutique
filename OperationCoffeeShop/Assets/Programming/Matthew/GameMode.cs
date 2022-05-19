@@ -79,10 +79,14 @@ public class GameMode : MonoBehaviour
         {
             gMD.isOpen = true;
             gate.OpenCloseGate();
+            var p = player.GetComponent<PlayerData>();
+            p.moveSpeed = p.closeSpeed;
         }
     }
     public void CloseShop()
     {
+        var p = player.GetComponent<PlayerData>();
+        p.moveSpeed = p.closeSpeed;
         gMD.isOpen = false;
         gate.OpenCloseGate();
         ShopClosed?.Invoke(this, EventArgs.Empty);

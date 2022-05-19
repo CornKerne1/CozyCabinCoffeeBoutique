@@ -25,6 +25,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float modX;
     [SerializeField] public float neckClamp = 77.3f;
     [SerializeField] public LayerMask groundMask;//
+    
+    [SerializeField] public float closeSpeed;
+    [SerializeField] public float openSpeed;
 
     [Header("Headbob Stuff")]
     [Range(0f, 1f)] [SerializeField] public float amplitude = 0.0003f;
