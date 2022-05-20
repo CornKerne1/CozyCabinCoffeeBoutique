@@ -16,6 +16,9 @@ public class OrderThoughts : MonoBehaviour
     List<IngredientNode> ingredients;
 
     Image[] images;
+
+    GameMode GM;
+    Transform player;
     
     // Start is called before the first frame update
     void Start()
@@ -30,7 +33,10 @@ public class OrderThoughts : MonoBehaviour
             Add(IN.ingredient,i);
             i++;
         }
+        GM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        player = GM.player;
     }
+
 
     private void Add(Ingredients ingredient, int position)
     {
@@ -56,6 +62,6 @@ public class OrderThoughts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.gameObject.transform.LookAt(player);
     }
 }

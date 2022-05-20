@@ -32,7 +32,7 @@ public class CustomerInteractable : Interactable
         CA = gameObject.GetComponent<CustomerAnimations>();
         orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
         orderCanvas = gameObject.GetComponentInChildren<Canvas>();
-        
+        orderCanvas.enabled = false;
     }
 
     public override void OnFocus()
@@ -40,7 +40,7 @@ public class CustomerInteractable : Interactable
         canvas.enabled = true; //instanciates on screen prompt asking if you want to interact with them.
 
     }
-
+   
     public override void OnInteract(PlayerInteraction pI)
     {
         //Debug.Log("boop the customer");
@@ -49,33 +49,27 @@ public class CustomerInteractable : Interactable
         DD.AdvanceConversation();
         CA.Talk();
         DisplayOrderBubble();
-        if ((DD.finishedOrder && !CAI.hasOrdered) || DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
+        if (DD.finishedOrder && !CAI.hasOrdered)
         {
             StartCoroutine(MoveLine());
             DisplayOrderTicket();
         }
-        else if ( DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
-        {
-            StartCoroutine(MoveLine());
-            RemoveOrderTicket();
-            RemoveOrderBubble();
-        }
     }
 
-    private void DisplayOrderBubble()
+    public void DisplayOrderBubble()
     {
         orderCanvas.enabled = true;
     }
-    private void RemoveOrderBubble()
+    public void RemoveOrderBubble()
     {
         orderCanvas.enabled = false;
     }
 
-    private void DisplayOrderTicket()
+    public void DisplayOrderTicket()
     {
 
     }
-    private void RemoveOrderTicket()
+    public void RemoveOrderTicket()
     {
 
     }
