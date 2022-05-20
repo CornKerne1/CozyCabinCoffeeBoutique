@@ -17,6 +17,10 @@ public class CustomerInteractable : Interactable
 
     public Canvas canvas;
 
+    private OrderThoughts orderBubble;
+    private Canvas orderCanvas;
+
+
     private CustomerAnimations CA;
     private void Start()
     {
@@ -26,6 +30,9 @@ public class CustomerInteractable : Interactable
         canvas.enabled = false;
         this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         CA = gameObject.GetComponent<CustomerAnimations>();
+        orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
+        orderCanvas = gameObject.GetComponentInChildren<Canvas>();
+        
     }
 
     public override void OnFocus()
@@ -41,10 +48,36 @@ public class CustomerInteractable : Interactable
         //DialogDisplay
         DD.AdvanceConversation();
         CA.Talk();
+        DisplayOrderBubble();
         if ((DD.finishedOrder && !CAI.hasOrdered) || DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
         {
             StartCoroutine(MoveLine());
+            DisplayOrderTicket();
         }
+        else if ( DD.finishedOrder && CAI.hasOrdered && CAI.hasOrder)
+        {
+            StartCoroutine(MoveLine());
+            RemoveOrderTicket();
+            RemoveOrderBubble();
+        }
+    }
+
+    private void DisplayOrderBubble()
+    {
+        orderCanvas.enabled = true;
+    }
+    private void RemoveOrderBubble()
+    {
+        orderCanvas.enabled = false;
+    }
+
+    private void DisplayOrderTicket()
+    {
+
+    }
+    private void RemoveOrderTicket()
+    {
+
     }
 
     IEnumerator MoveLine()
