@@ -19,7 +19,7 @@ public class OrderThoughts : MonoBehaviour
 
     GameMode GM;
     Transform player;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,7 @@ public class OrderThoughts : MonoBehaviour
         int i = 1;
         foreach (IngredientNode IN in ingredients)
         {
-            Add(IN.ingredient,i);
+            Add(IN.ingredient, i);
             i++;
         }
         GM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
@@ -40,7 +40,8 @@ public class OrderThoughts : MonoBehaviour
 
     private void Add(Ingredients ingredient, int position)
     {
-        switch (ingredient) {
+        switch (ingredient)
+        {
             case Ingredients.Sugar:
                 images[position].sprite = Sugar;
                 break;
@@ -62,6 +63,9 @@ public class OrderThoughts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.LookAt(player);
+        Transform t = this.gameObject.transform;
+        t.LookAt(player);
+        t.rotation = new Quaternion(0, player.rotation.y, player.rotation.z, player.rotation.w);
+        this.gameObject.transform.rotation = t.rotation;
     }
 }

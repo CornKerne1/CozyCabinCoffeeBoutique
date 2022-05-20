@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6065402770315145938}
   - component: {fileID: 6236985082645257115}
   - component: {fileID: 8213433088429481583}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6019452339980015691}
   - component: {fileID: 5639728047073285210}
   - component: {fileID: 2570867502472167201}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 267993790401284513}
   - component: {fileID: 1404358626658990209}
   - component: {fileID: 3778418850865682624}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,10 +236,10 @@ GameObject:
   - component: {fileID: 3647330371588398719}
   - component: {fileID: 8826750703661061789}
   - component: {fileID: 7618009693430974170}
-  - component: {fileID: 5029311571655050080}
   - component: {fileID: 4006027593407321608}
   - component: {fileID: 1249328890970784588}
-  m_Layer: 0
+  - component: {fileID: 5029311571655050080}
+  m_Layer: 5
   m_Name: ThoughtOrder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,23 +312,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!114 &5029311571655050080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7179324249317260875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b6fabcb3604f745a4212f0fd319f18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sugar: {fileID: 21300000, guid: aec69ad9a1b5e2b45af99c554946d4c5, type: 3}
-  BrewedCoffee: {fileID: 21300000, guid: 1847df46f989393419767f2eedaae32f, type: 3}
-  Milk: {fileID: 21300000, guid: 72ef291d6d6c06741a8b4df1dba24be0, type: 3}
-  Esspresso: {fileID: 21300000, guid: ecc8b7f09b7fcdf4fa1ad31bae384f63, type: 3}
+  m_PresetInfoIsWorld: 1
 --- !u!222 &4006027593407321608
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -367,6 +351,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5029311571655050080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7179324249317260875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b6fabcb3604f745a4212f0fd319f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sugar: {fileID: 21300000, guid: aec69ad9a1b5e2b45af99c554946d4c5, type: 3}
+  BrewedCoffee: {fileID: 21300000, guid: 1847df46f989393419767f2eedaae32f, type: 3}
+  Milk: {fileID: 21300000, guid: 72ef291d6d6c06741a8b4df1dba24be0, type: 3}
+  Esspresso: {fileID: 21300000, guid: ecc8b7f09b7fcdf4fa1ad31bae384f63, type: 3}
 --- !u!1 &7249996005519297406
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 4034237166756372040}
   - component: {fileID: 4460334062164285323}
   - component: {fileID: 5630149753445145484}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pos (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

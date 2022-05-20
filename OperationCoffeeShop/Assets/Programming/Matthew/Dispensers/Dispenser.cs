@@ -25,9 +25,15 @@ public class Dispenser : Interactable
         {
             obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
             PhysicalIngredient phyIng;
+            IngredientContainer ingCon;
             if (obj.gameObject.TryGetComponent<PhysicalIngredient>(out phyIng))
             {
                 phyIng.pI = pI;
+            }
+            else if (obj.gameObject.TryGetComponent<IngredientContainer>(out ingCon))
+            {
+                ingCon.pI = pI;
+                ingCon.inHand = true;
             }
             pI.Carry(obj.gameObject);
         }
