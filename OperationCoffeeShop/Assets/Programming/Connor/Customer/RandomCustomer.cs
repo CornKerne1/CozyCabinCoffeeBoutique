@@ -59,6 +59,14 @@ public class RandomCustomer : Customer
         CD.favoriteDrink = favoriteDrink;
         CD.DesiredFlavors(flavorNodes);
         CD.customer = this;
+       
+        DrinkData drink = GetRandomDrink();
+
+        DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
+        //Adds a little RNG to the drink orders
+        //IngredientNode addOn = GetRandomAddOn();
+        //customeDrink.addIngredient(addOn);
+        CD.OrderedDrink= customeDrink;
     }
 
     public RandomCustomer(RandomNameSet nameSet)
@@ -82,12 +90,8 @@ public class RandomCustomer : Customer
     }
     public override DrinkData GetDrinkOrder()
     {
-        IngredientNode addOn = GetRandomAddOn();
-        DrinkData drink = GetRandomDrink();
-
-        DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
-        customeDrink.addIngredient(addOn);
-        return customeDrink;
+       
+        return CD.OrderedDrink;
     }
 
     public void compareingredients()
