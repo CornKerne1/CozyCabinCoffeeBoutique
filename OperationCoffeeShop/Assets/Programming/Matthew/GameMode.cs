@@ -9,6 +9,7 @@ public class GameMode : MonoBehaviour
     //This class keeps track of the game
 
     [SerializeField]public Transform player;
+    [SerializeField]public PlayerData pD;
     [SerializeField]public GameObject playerPref;
     [SerializeField]private Gate gate;
     //This is the Scriptable Object that contains the data for this class.
@@ -25,9 +26,10 @@ public class GameMode : MonoBehaviour
     [SerializeField] private GameObject GameOver;
 
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        //player.gameObject.SetActive(true);
+        pD = player.GetComponent<PlayerInteraction>().pD;
+        pD.moveSpeed = pD.closeSpeed;
     }
     
     void Awake()
@@ -79,16 +81,14 @@ public class GameMode : MonoBehaviour
         {
             gMD.isOpen = true;
             gate.OpenCloseGate();
-            var p = player.GetComponent<PlayerData>();
-            p.moveSpeed = p.closeSpeed;
+            pD.moveSpeed = pD.openSpeed;
         }
     }
     public void CloseShop()
     {
-        var p = player.GetComponent<PlayerData>();
-        p.moveSpeed = p.closeSpeed;
         gMD.isOpen = false;
         gate.OpenCloseGate();
+        pD.moveSpeed = pD.closeSpeed;
         ShopClosed?.Invoke(this, EventArgs.Empty);
         if (gMD.currentTime.Day > 2)
         {

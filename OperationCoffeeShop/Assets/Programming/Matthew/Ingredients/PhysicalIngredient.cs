@@ -63,7 +63,7 @@ public class PhysicalIngredient : Interactable
                     pI.DropCurrentObj();
                 
                 }
-                catch { }
+                catch {}
             }
         }
     }

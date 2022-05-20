@@ -20,6 +20,7 @@ public abstract class Machine : MonoBehaviour
     {
         origin = transform.position;
         mD.outputIngredient.Clear();
+        
     }
     public void IngredientInteract(GameObject other)
     {

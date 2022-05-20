@@ -26,6 +26,16 @@ public class TipJar : Interactable
         
     }
 
+    public override void OnAltInteract(PlayerInteraction pI)
+    {
+        
+    }
+
+    public override void OnAltInteractCanceled()
+    {
+        
+    }
+
     private void Update()
     {
         if (gM.gMD.reputation > 5)

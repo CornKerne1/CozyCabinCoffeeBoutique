@@ -59,6 +59,14 @@ public class CustomerInteractable : Interactable
         canvas.enabled = false;//Destroys on screen prompt 
     }
 
+    public override void OnAltInteract(PlayerInteraction pI)
+    {
+    }
+
+    public override void OnAltInteractCanceled()
+    {
+    }
+
     public DialogDisplay GetDD()
     {
         return this.DD;

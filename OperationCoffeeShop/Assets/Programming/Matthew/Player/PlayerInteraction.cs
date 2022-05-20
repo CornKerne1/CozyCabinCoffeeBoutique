@@ -31,6 +31,8 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.RotateEvent += TryRotate;//
         PlayerInput.RotateCanceledEvent += CancelRotate;
         PlayerInput.MoveObjEvent += MoveObj;
+        PlayerInput.Alt_InteractEvent += Alt;
+        PlayerInput.Alt_InteractCanceledEvent += AltCanceled;
     }
 
     public PlayerInput GetPlayerInput()
@@ -146,6 +148,21 @@ public class PlayerInteraction : MonoBehaviour
 
     }
 
+    public void Alt(object sender, EventArgs e)
+    {
+        if (carriedObj)
+        {
+            currentInteractable.OnAltInteract(this);
+        }
+    }
+    public void AltCanceled(object sender, EventArgs e)
+    {
+        if (carriedObj)
+        {
+            currentInteractable.OnAltInteractCanceled();
+        }
+    }
+
     public void TryRotate(object sender, EventArgs e)
     {
         rotate = true;
@@ -160,32 +177,31 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (pD.busyHands && carriedObj != null && rotate)
         {
-
-            if (pI.GetCurrentRotate().x > 0)
+            if (pI.GetCurrentRotate().y < 0)
             {
-                carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
-            }
-            else if (pI.GetCurrentRotate().x < 0)
-            {
-                carriedObj.transform.Rotate(0, pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
-            }
-            else if (pI.GetCurrentRotate().y > 0)
-            {
-                carriedObj.transform.Rotate(0, 0, pI.GetCurrentObjDistance() * pD.objRotationSpeed);
-            }
-            else if (pI.GetCurrentRotate().y < 0)
-            {
-                Interactable i = carriedObj.GetComponent<Interactable>();
+                var i = carriedObj.GetComponent<Interactable>();
                 if (i)
                 {
                     Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x, Quaternion.identity.y + i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z, Quaternion.identity.w);
-                    carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime / 2);
+                    carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime *50);
                 }
             }
-
-            try { carriedObj.GetComponent<IngredientContainer>().CheckPour(); }
-            catch { }
-
+            try { carriedObj.GetComponent<IngredientContainer>().Pour(); }
+            catch 
+            { 
+                if (pI.GetCurrentRotate().x > 0)
+                {
+                    carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
+                }
+                else if (pI.GetCurrentRotate().x < 0)
+                {
+                    carriedObj.transform.Rotate(0, pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
+                }
+                else if (pI.GetCurrentRotate().y > 0)
+                {
+                    carriedObj.transform.Rotate(0, 0, pI.GetCurrentObjDistance() * pD.objRotationSpeed);
+                }
+            }
         }
     }
 }

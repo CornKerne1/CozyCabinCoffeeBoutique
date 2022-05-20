@@ -6,6 +6,7 @@ public class CoffeeGrinder : Machine
 {
     public override void ChooseIngredient(GameObject other)
     {
+        var obj = other;
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
             case Ingredients.UngroundCoffee:
@@ -14,7 +15,8 @@ public class CoffeeGrinder : Machine
                 mD.outputIngredient.Add(iD.glCoffee);
                 other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
                 Destroy(other);
-                break;
+                new WaitForSeconds(1f);
+                return;
         }
     }
 }
