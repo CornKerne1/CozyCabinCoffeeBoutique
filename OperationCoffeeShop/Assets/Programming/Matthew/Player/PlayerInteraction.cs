@@ -143,6 +143,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
         {
+            Debug.Log("tryInteract");
             currentInteractable.OnInteract(this);
         }
 
