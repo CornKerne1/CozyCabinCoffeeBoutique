@@ -43,7 +43,6 @@ public class CustomerInteractable : Interactable
    
     public override void OnInteract(PlayerInteraction pI)
     {
-        //Debug.Log("boop the customer");
         //invokes the dialogue interaction thing
         //DialogDisplay
         DD.AdvanceConversation();
