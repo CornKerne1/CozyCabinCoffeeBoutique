@@ -5,13 +5,14 @@ using UnityEngine.Rendering;
 
 public class TreeRandomizer : MonoBehaviour
 {
-
-    private GameMode gM;
+    private Material mat;
+    [SerializeField] private int matSlot = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         Initialize();
+        
     }
 
     // Update is called once per frame
@@ -22,25 +23,14 @@ public class TreeRandomizer : MonoBehaviour
 
     void Initialize()
     {
-        int random = Random.Range(0,2);
-        var matL = gM.gMD.treeMats[0];
-        var matM = gM.gMD.treeMats[1];
-        var matD = gM.gMD.treeMats[2];
+        var r = Random.Range(.35f, .65f);
+        var g = Random.Range(.35f, .65f);
+        var b = Random.Range(.35f, .65f);
+        var a = Random.Range(0f, 1f);
         var myMat = GetComponent<MeshRenderer>().materials;
-        switch(random)
-        {
-            case 0:
-                myMat[0] = matL;
-                GetComponent<MeshRenderer>().materials = myMat;
-                break;
-            case 1:
-                myMat[0] = matM;
-                GetComponent<MeshRenderer>().materials = myMat;
-                break;
-            case 2:
-                myMat[0] = matD;
-                GetComponent<MeshRenderer>().materials = myMat;
-                break;
-        }
+        var newMat = GetComponent<MeshRenderer>().materials[matSlot];
+        newMat.SetColor("_BaseColor", new Color(r,g,b,a));
+        myMat[0] = new Material(newMat);
+        GetComponent<MeshRenderer>().materials = myMat;
     }
 }
