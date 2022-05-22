@@ -66,7 +66,7 @@ public class RandomCustomer : Customer
         //Adds a little RNG to the drink orders
         //IngredientNode addOn = GetRandomAddOn();
         //customeDrink.addIngredient(addOn);
-        CD.OrderedDrink= customeDrink;
+        CD.orderedDrink= customeDrink;
     }
 
     public RandomCustomer(RandomNameSet nameSet)
@@ -91,7 +91,7 @@ public class RandomCustomer : Customer
     public override DrinkData GetDrinkOrder()
     {
        
-        return CD.OrderedDrink;
+        return CD.orderedDrink;
     }
 
     public void compareingredients()
