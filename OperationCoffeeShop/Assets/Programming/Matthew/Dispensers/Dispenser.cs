@@ -9,6 +9,9 @@ public class Dispenser : Interactable
     [SerializeField] private ObjectHolder objType;
     private Transform obj;
 
+    public int quantity = 10;
+    public bool bottomless = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +24,9 @@ public class Dispenser : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if (!pI.pD.busyHands)
+        if (!pI.pD.busyHands && (bottomless || quantity > 0 ))
         {
+            quantity--;
             obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
             PhysicalIngredient phyIng;
             IngredientContainer ingCon;
