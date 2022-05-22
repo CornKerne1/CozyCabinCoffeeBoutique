@@ -15,11 +15,50 @@ public class IngredientContainer : Interactable
     private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
-    private Quaternion startingRotation;
-    
-    [SerializeField]private bool pouring;
+
+    private bool pouring;
+    private bool rotating;
 
     public IngredientData iD;
+
+    private IEnumerator cr1;
+
+    private void FixedUpdate()
+    {
+        HandlePourRotation();
+    }
+
+    IEnumerator Timer(float time)
+    {
+        cr1 = Timer(time);
+        yield return new WaitForSeconds(time);
+        rotating = false;
+        pouring = !pouring;
+        cr1 = null;
+    }
+    private void HandlePourRotation()
+    {
+        if (rotating)
+        {
+            
+            if (!pouring)
+            {
+                transform.Rotate(2,0,0);
+                if (cr1 == null)
+                {
+                    StartCoroutine(Timer(1f));
+                }
+            }
+            else
+            {
+                transform.Rotate(-2,0,0);
+                if (cr1 == null)
+                {
+                    StartCoroutine(Timer(1f));
+                }
+            }
+        }
+    }
 
     public override void Awake()
     {
@@ -39,7 +78,7 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
-        startingRotation = transform.localRotation;
+        cr1 = null;
     }
 
     public virtual void AddToContainer(IngredientNode iN)
@@ -60,14 +99,16 @@ public class IngredientContainer : Interactable
 
     }
 
-    public void Update()
-    {
-    }
     
 
     public void Pour()
     {
-        
+        rotating = true;
+    }
+    
+    public void StopPouring()
+    {
+        rotating = true;
     }
 
     void IngredientOverflow(IngredientNode ingredient)
@@ -77,6 +118,9 @@ public class IngredientContainer : Interactable
             case Ingredients.BrewedCoffee:
                 Instantiate(iD.brewedCoffee, pourTransform.position, pourTransform.rotation);
                 break;
+            case Ingredients.Espresso:
+                Instantiate(iD.espresso, pourTransform.position, pourTransform.rotation);
+                break;
         }
     }
     
@@ -85,7 +129,9 @@ public class IngredientContainer : Interactable
         this.pI = pI;
         pI.Carry(gameObject);
         inHand = true;
-    }
+        Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y, Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
+        transform.rotation =rot;
+        }
 
     public override void OnFocus()
     {
@@ -104,11 +150,6 @@ public class IngredientContainer : Interactable
 
     public override void OnAltInteract(PlayerInteraction pI)
     {
-        Pour();
-    }
-
-    public override void OnAltInteractCanceled()
-    {
-        
+        rotating = true;
     }
 }
