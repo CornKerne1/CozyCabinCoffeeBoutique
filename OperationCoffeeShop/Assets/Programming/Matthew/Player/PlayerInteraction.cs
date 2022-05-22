@@ -125,7 +125,7 @@ public class PlayerInteraction : MonoBehaviour
             if (carriedObj.TryGetComponent<IngredientContainer>(out IngredientContainer ingredientContainor))
             {
                 ingredientContainor.inHand = false;
-                ingredientContainor.StopPouring();
+                //ingredientContainor.StopPouring();
                 Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainor.rotateOffset.x, Quaternion.identity.y + ingredientContainor.rotateOffset.y, Quaternion.identity.z + ingredientContainor.rotateOffset.z, Quaternion.identity.w);
                 ingredientContainor.transform.rotation = rot;
             }

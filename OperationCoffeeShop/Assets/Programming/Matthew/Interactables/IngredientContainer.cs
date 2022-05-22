@@ -40,7 +40,6 @@ public class IngredientContainer : Interactable
     {
         if (rotating)
         {
-            
             if (!pouring)
             {
                 transform.Rotate(2,0,0);

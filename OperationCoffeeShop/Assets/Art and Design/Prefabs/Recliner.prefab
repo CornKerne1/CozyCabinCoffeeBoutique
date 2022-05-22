@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5050546014228798866}
   - component: {fileID: 8194580181165298231}
   - component: {fileID: 6222857632345007869}
+  - component: {fileID: 8881986404172352121}
   m_Layer: 0
   m_Name: Recliner
   m_TagString: Untagged
@@ -106,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5574599251409700648}
-  m_LocalRotation: {x: 0.6279077, y: 0.32516474, z: -0.32516477, w: 0.62790745}
+  m_LocalRotation: {x: 0.62790805, y: 0.32516384, z: -0.32516384, w: 0.62790805}
   m_LocalPosition: {x: -2.4256806, y: -5.6064, z: -10.672976}
   m_LocalScale: {x: 1.0089256, y: 1.0089256, z: 1.0089256}
   m_Children:
@@ -164,3 +165,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8881986404172352121
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574599251409700648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2757041002271201789, guid: 0c55f2283a52e474bbd485aafd56c1c7, type: 3}
