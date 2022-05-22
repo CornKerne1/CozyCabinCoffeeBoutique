@@ -25,6 +25,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Stop_Radio_RoastBlend" ID="{2295BB69-7881-4857-A970-F6FB1F3F364B}">
+					<ChildrenList>
+						<Action Name="" ID="{E5368FF4-AC44-4CF8-896C-33FD63767125}" ShortID="180474829">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Radio_RoastBlend" ID="{C3D39DFB-E8CB-4C56-991C-1FCFFD98A5F1}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
