@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\deora\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\deora\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\deora\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\deora\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="630198314">
+		<SoundBank Id="3161908922" Language="SFX" Hash="2435395775">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -29,7 +29,26 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2797373490" Name="Play_Radio_RoastBlend" ObjectPath="\Events\Default Work Unit\Play_Radio_RoastBlend" DurationType="OneShot" DurationMin="140.004715" DurationMax="140.004715">
+					<IncludedMemoryFiles>
+						<File Id="776190147" Language="SFX">
+							<ShortName>Roast Blend.wav</ShortName>
+							<Path>SFX\Roast Blend_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2596343296" Name="Stop_Radio_RoastBlend" ObjectPath="\Events\Default Work Unit\Stop_Radio_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="776190147" Language="SFX">
+					<ShortName>Roast Blend.wav</ShortName>
+					<Path>SFX\Roast Blend_10C4C929.wem</Path>
+				</File>
+				<File Id="873684257" Language="SFX">
+					<ShortName>buttonpress.wav</ShortName>
+					<Path>SFX\buttonpress_10C4C929.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
