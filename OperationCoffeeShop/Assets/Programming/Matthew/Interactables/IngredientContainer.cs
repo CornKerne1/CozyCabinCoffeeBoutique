@@ -16,6 +16,8 @@ public class IngredientContainer : Interactable
     public bool hasContentsVisualizer = true;
     public float topOfCup;
     private Quaternion startingRotation;
+    
+    [SerializeField]private bool pouring;
 
     public IngredientData iD;
 
@@ -61,30 +63,11 @@ public class IngredientContainer : Interactable
     public void Update()
     {
     }
-
-    public void CheckPour()
-    {
-        // float currentXAngle = startingRotation.x; //- transform.rotation.x;//
-        // Debug.Log((currentXAngle));
-        // if (capacity > 0 && (transform.localRotation.x != startingRotation.x || transform.localRotation.z != startingRotation.z))
-        // {
-        //     
-        //     if (Mathf.Abs(currentXAngle) <= .9)Pour();
-        //         else if (capacity > currentXAngle * .95f)Pour();
-        // }
-    }
+    
 
     public void Pour()
     {
-        foreach (IngredientNode i in dD.Ingredients)
-        {
-            i.target = i.target - .02f;
-            if (i.target !<= 0)
-            {
-                contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y + .00052f) ,contentsVisualizer.transform.localPosition.z);
-                IngredientOverflow(i);
-            }
-        }
+        
     }
 
     void IngredientOverflow(IngredientNode ingredient)
@@ -118,5 +101,14 @@ public class IngredientContainer : Interactable
     {
 
     }
-    
+
+    public override void OnAltInteract(PlayerInteraction pI)
+    {
+        Pour();
+    }
+
+    public override void OnAltInteractCanceled()
+    {
+        
+    }
 }

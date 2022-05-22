@@ -22,4 +22,14 @@ public class RandomInteractable : Interactable
     {
         
     }
+
+    public override void OnAltInteract(PlayerInteraction pI)
+    {
+        
+    }
+
+    public override void OnAltInteractCanceled()
+    {
+        
+    }
 }

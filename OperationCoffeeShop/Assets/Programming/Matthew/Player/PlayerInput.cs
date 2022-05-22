@@ -11,8 +11,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
 
-    [SerializeField] public static event EventHandler InteractEvent;//
+    [SerializeField] public static event EventHandler InteractEvent;
     [SerializeField] public static event EventHandler InteractCanceledEvent;
+    [SerializeField] public static event EventHandler Alt_InteractEvent;
+    [SerializeField] public static event EventHandler Alt_InteractCanceledEvent;
     [SerializeField] public static event EventHandler RotateEvent;//
     [SerializeField] public static event EventHandler RotateCanceledEvent;//
     
@@ -26,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private PlayerControls pC;
     [SerializeField] private PlayerControls.FPPlayerActions fPP;
     [SerializeField] private InputAction interact;
+    [SerializeField] private InputAction alt_interact;
 
     Vector2 mouseInput;
     Vector2 currentRotate;
@@ -44,6 +47,7 @@ public class PlayerInput : MonoBehaviour
         pC = new PlayerControls();
         fPP = pC.FPPlayer;
         interact = pC.FPPlayer.Interact;
+        alt_interact = pC.FPPlayer.Alt_Interact;
 
     }
 
@@ -77,6 +81,10 @@ public class PlayerInput : MonoBehaviour
         interact.performed += Interact;
         interact.canceled += InteractCanceled;
         interact.Enable();
+        
+        alt_interact.performed += Alt_Interact;
+        alt_interact.canceled += Alt_InteractCanceled;
+        alt_interact.Enable();
 
 
         fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<Vector2>();
@@ -153,6 +161,14 @@ public class PlayerInput : MonoBehaviour
     private void InteractCanceled(InputAction.CallbackContext obj)
     {
         InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    }
+    public void Alt_Interact(InputAction.CallbackContext obj)
+    {
+        Alt_InteractEvent?.Invoke(this, EventArgs.Empty);
+    }
+    private void Alt_InteractCanceled(InputAction.CallbackContext obj)
+    {
+        Alt_InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
     }
     private void Rotate(InputAction.CallbackContext obj)
     {

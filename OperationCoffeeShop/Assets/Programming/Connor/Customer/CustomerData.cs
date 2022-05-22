@@ -7,6 +7,7 @@ public class CustomerData : ScriptableObject
 {
     public string name;
     public DrinkData favoriteDrink;
+    public DrinkData OrderedDrink;
     public DrinkData recievedDrink;
     public List<FlavorProfile.FlavorNode> desiredFlavors;
     public Customer customer;

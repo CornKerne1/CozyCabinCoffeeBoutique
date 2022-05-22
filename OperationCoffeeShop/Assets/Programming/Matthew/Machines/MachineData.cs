@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class MachineData : ScriptableObject
 {
     
-    public enum Type { Default, Brewer }
+    public enum Type { Default, Brewer, Grinder }
     [SerializeField] public Type machineType = Type.Default;
     [SerializeField] public int maxCapacity;
     [SerializeField] public List<GameObject> outputIngredient = new List<GameObject>();
@@ -17,4 +18,8 @@ public class MachineData : ScriptableObject
     
     [SerializeField] public float productionTime = 5;
 
+    private void OnEnable()
+    {
+        outputIngredient = new List<GameObject>();
+    }
 }
