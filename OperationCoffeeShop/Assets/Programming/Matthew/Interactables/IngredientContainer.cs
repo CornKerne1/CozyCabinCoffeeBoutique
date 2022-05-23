@@ -98,7 +98,19 @@ public class IngredientContainer : Interactable
 
     }
 
-    
+    public virtual void RemoveIngredient()
+    {
+        foreach (IngredientNode i in dD.Ingredients)
+        {
+            i.target = i.target - .1f;
+            capacity = capacity - .1f;
+            if (i.target <= 0)
+            {
+                dD.Ingredients.Remove(i);
+            }
+        }
+            //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
+    }
 
     public void Pour()
     {
