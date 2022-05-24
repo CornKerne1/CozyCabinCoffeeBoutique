@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31a1678a5a0c26479f65ac32fbcc794, type: 3}
+  m_Name: test
+  m_EditorClassIdentifier: 
+  customerName: 'Connor '
+  conversationTree:
+    message: wow what a lovely text box
+    mood: 0
+    PlayerOptionA: what text box?
+    PlayerOptionB: 'yea it is '
+    ATree:
+    - message: You mean you can't see the text?
+      mood: 0
+      PlayerOptionA: OHHHHH THat Text box
+      PlayerOptionB: 'You are crazy my friend. '
+      ATree:
+      - message: 
+        mood: 0
+        PlayerOptionA: 
+        PlayerOptionB: 
+        ATree: []
+        BTree: []
+      BTree:
+      - message: 
+        mood: 0
+        PlayerOptionA: 
+        PlayerOptionB: 
+        ATree: []
+        BTree: []
+    BTree:
+    - message: 'Man this must have taken hours to make. '
+      mood: 0
+      PlayerOptionA: nah it was easy
+      PlayerOptionB: 'damn it litterally took me all morning. '
+      ATree:
+      - message: 
+        mood: 0
+        PlayerOptionA: 
+        PlayerOptionB: 
+        ATree: []
+        BTree: []
+      BTree:
+      - message: 
+        mood: 0
+        PlayerOptionA: 
+        PlayerOptionB: 
+        ATree: []
+        BTree: []
