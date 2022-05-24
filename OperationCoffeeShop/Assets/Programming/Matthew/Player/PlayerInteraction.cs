@@ -155,7 +155,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (carriedObj)
         {
-            currentInteractable.OnAltInteract(this);
+            if (currentInteractable)
+            {
+                currentInteractable.OnAltInteract(this);
+            }
         }
     }
 
