@@ -10,10 +10,11 @@ public class ConnorConverstation : ScriptableObject
 
 
     [SerializeField]
+    public string ConversationName = "";
     public string customerName = "";
 
-    public ConversationTree conversationTree;
-
+    public ConversationTree conversationTreeOrder;
+    public ConversationTree conversationTreeRecievedDrink;
 
     [System.Serializable]
     public class ConversationTree
