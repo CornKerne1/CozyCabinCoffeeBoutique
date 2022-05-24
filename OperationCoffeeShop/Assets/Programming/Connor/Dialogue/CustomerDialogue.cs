@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class CustomerDialogue : MonoBehaviour
@@ -14,6 +15,10 @@ public class CustomerDialogue : MonoBehaviour
     public UnityEngine.UI.Button ButtonB;
     private UnityEngine.UI.Image ButtonBImage;
     private TextMeshProUGUI ButtonBText;
+
+
+    private GameObject myEventSystem;
+    private EventSystem EventSystem;
 
 
     public ConnorConverstation converstation;
@@ -34,10 +39,13 @@ public class CustomerDialogue : MonoBehaviour
         ButtonAText.text = conversationTree.PlayerOptionA;
         ButtonBText.text = conversationTree.PlayerOptionB;
         customerMessageText.text = conversationTree.message;
+        myEventSystem = GameObject.Find("EventSystem");
+        EventSystem = myEventSystem.GetComponent<EventSystem>();
     }
 
     public void AdvanceConversationA()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         if (conversationTree.ATree.Count > 0)
         {
             conversationTree = conversationTree.ATree[0];
@@ -75,16 +83,20 @@ public class CustomerDialogue : MonoBehaviour
             }
 
             //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionB != "" && conversationTree.PlayerOptionA != "")
+            if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
             {
                 canvas.enabled = false;
             }
         }
-        else canvas.enabled = false;
+        else
+        {
+            Debug.Log(conversationTree.ATree.Count);
+            canvas.enabled = false;
+        }
     }
     public void AdvanceConversationB()
     {
-
+        EventSystem.current.SetSelectedGameObject(null);
         if (conversationTree.BTree.Count > 0)
         {
             conversationTree = conversationTree.BTree[0];
@@ -122,7 +134,7 @@ public class CustomerDialogue : MonoBehaviour
             }
 
             //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionB != "" && conversationTree.PlayerOptionA != "")
+            if (conversationTree.PlayerOptionB == "" && conversationTree.PlayerOptionB == "")
             {
                 canvas.enabled = false;
             }
