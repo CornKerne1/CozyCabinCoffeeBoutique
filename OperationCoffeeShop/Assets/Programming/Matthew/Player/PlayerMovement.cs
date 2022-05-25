@@ -6,10 +6,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    
+
     private PlayerInput pI;
     public CharacterController controller;
-    
+
     Vector3 velocity;
     float gravity = -9.81f;
     //float horizontalMovement = 0;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     //float iTimer;
     //float iTimerMax = 2;
     //bool useTimer;
-
+    public bool canMove = true;
 
     private void Awake()
     {
@@ -54,10 +54,11 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -2f * Convert.ToInt16(pI.pD.killSwitchOff);
         }
-        HandleMovement();
+        if (canMove)
+            HandleMovement();
         //Debug.Log(speed);
     }
-    
+
     private void HandleMovement()
     {
         if (pI.pD.isClimbing)
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() *.75f, 0.0f, pI.GetVerticalMovement());
+            Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() * .75f, 0.0f, pI.GetVerticalMovement());
             currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
             Vector3 finalMovement = transform.TransformVector(currentMovement);
             controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime * Convert.ToInt16(pI.pD.killSwitchOff));

@@ -25,6 +25,9 @@ public class CustomerDialogue : MonoBehaviour
 
     private ConnorConverstation.ConversationTree conversationTree;
 
+    public bool finishedConversation = false;
+
+
     private void Start()
     {
         canvas = this.GetComponent<Canvas>();
@@ -33,7 +36,7 @@ public class CustomerDialogue : MonoBehaviour
         ButtonBImage = ButtonB.gameObject.GetComponent<UnityEngine.UI.Image>();
         ButtonAImage = ButtonA.gameObject.GetComponent<UnityEngine.UI.Image>();
 
-        conversationTree = converstation.conversationTree;
+        conversationTree = converstation.conversationTreeOrder;
 
         customerNameText.text = converstation.customerName;
         ButtonAText.text = conversationTree.PlayerOptionA;
@@ -41,6 +44,7 @@ public class CustomerDialogue : MonoBehaviour
         customerMessageText.text = conversationTree.message;
         myEventSystem = GameObject.Find("EventSystem");
         EventSystem = myEventSystem.GetComponent<EventSystem>();
+
     }
 
     public void AdvanceConversationA()
@@ -86,12 +90,14 @@ public class CustomerDialogue : MonoBehaviour
             if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
             {
                 canvas.enabled = false;
+                finishedConversation = true;
             }
         }
         else
         {
-            Debug.Log(conversationTree.ATree.Count);
             canvas.enabled = false;
+            finishedConversation = true;
+
         }
     }
     public void AdvanceConversationB()
@@ -134,13 +140,28 @@ public class CustomerDialogue : MonoBehaviour
             }
 
             //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionB == "" && conversationTree.PlayerOptionB == "")
+            if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
             {
                 canvas.enabled = false;
+                finishedConversation = true;
+
             }
         }
-        else canvas.enabled = false;
+
+        else
+        {
+            canvas.enabled = false;
+            finishedConversation = true;
+        }
+
     }
 
+    public void ChangeConversation(ConnorConverstation.ConversationTree ct)
+    {
+        conversationTree = ct;
+        ButtonAText.text = conversationTree.PlayerOptionA;
+        ButtonBText.text = conversationTree.PlayerOptionB;
+        customerMessageText.text = conversationTree.message;
+    }
 
 }

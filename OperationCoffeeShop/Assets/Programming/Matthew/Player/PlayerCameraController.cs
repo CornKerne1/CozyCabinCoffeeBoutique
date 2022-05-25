@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] Transform cam = null;
-    
+
     float mouseX, mouseY;
     float xRotation = 0f;
 
@@ -14,24 +14,27 @@ public class PlayerCameraController : MonoBehaviour
 
     public GameObject holder;
 
+    public bool canMove = true;
+
     public PlayerCameraController()
     {
     }
-    
+
     private void Update()
     {
+        //if (canMove)
         HandleMovement();
     }
 
     public void HandleMovement()
     {
-
-        transform.root.Rotate(Vector3.up, pI.pD.mouseSensitivityX * pI.GetMouseX() * Time.deltaTime);
+        if (canMove)
+            transform.root.Rotate(Vector3.up, pI.pD.mouseSensitivityX * pI.GetMouseX() * Time.deltaTime);
         xRotation -= pI.GetMouseY() * (pI.pD.mouseSensitivityY / 400);
         xRotation = Mathf.Clamp(xRotation, -pI.pD.neckClamp, pI.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = xRotation;
-        cam.eulerAngles = new Vector3(camRotation.x * Convert.ToInt16(pI.pD.killSwitchOff) + pI.pD.modX,camRotation.y * Convert.ToInt16(pI.pD.killSwitchOff), camRotation.z * Convert.ToInt16(pI.pD.killSwitchOff));
+        cam.eulerAngles = new Vector3(camRotation.x * Convert.ToInt16(pI.pD.killSwitchOff) + pI.pD.modX, camRotation.y * Convert.ToInt16(pI.pD.killSwitchOff), camRotation.z * Convert.ToInt16(pI.pD.killSwitchOff));
     }
 
     private void Start()

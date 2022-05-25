@@ -113,7 +113,7 @@ public class CustomerLine : MonoBehaviour
             ci.RemoveOrderTicket();
             ci.RemoveOrderBubble();
             ai.hasOrder = true;
-            moveLine();
+            ci.DeliverDrink();
             ai.CD.recievedDrink = drinkdata;
             drink.SetActive(false);
             DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);

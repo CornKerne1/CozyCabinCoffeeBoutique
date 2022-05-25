@@ -13,31 +13,81 @@ public class CustomerInteractable : Interactable
 
     private GameObject prompt;
 
-    private DialogDisplay DD;
+    private CustomerDialogue customerDialogue;
 
     public Canvas canvas;
 
     private OrderThoughts orderBubble;
     private Canvas orderCanvas;
 
+    private GameObject player;
+    private PlayerMovement pm;
+    private PlayerCameraController pcc;
 
     private CustomerAnimations CA;
+
+    private CustomerLine line;
+
+    float neckclamp;
+
+    Transform oldLook;
+
+
     private void Start()
     {
-        DD = GameObject.Find("Dialog").GetComponent<DialogDisplay>();
-        prompt = GameObject.Find("Canvas");
-        canvas = prompt.GetComponent<Canvas>();
-        canvas.enabled = false;
+        customerDialogue = GameObject.Find("Dialogue Canvas").GetComponent<CustomerDialogue>();
         this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         CA = gameObject.GetComponent<CustomerAnimations>();
         orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
         orderCanvas = gameObject.GetComponentInChildren<Canvas>();
         orderCanvas.enabled = false;
+        player = gM.player.gameObject;
+        pm = player.GetComponent<PlayerMovement>();
+        pcc = player.GetComponent<PlayerCameraController>();
+        neckclamp = gM.pD.neckClamp;
     }
+    private void Update()
+    {
+        if (customerDialogue.finishedConversation && CAI.hasOrder && CAI.hasOrdered)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Camera.main.transform.LookAt(oldLook.position);
+            pm.canMove = true;
+            pcc.canMove = true;
+            StartCoroutine(MoveLine());
+            RemoveOrderBubble();
+            RemoveOrderTicket();
+            customerDialogue.finishedConversation = false;
+            gM.pD.neckClamp = neckclamp;
 
+        }
+        else if (customerDialogue.finishedConversation && !CAI.hasOrdered)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Camera.main.transform.LookAt(oldLook.position);
+            pm.canMove = true;
+            pcc.canMove = true;
+            StartCoroutine(MoveLine());
+            DisplayOrderBubble();
+            DisplayOrderTicket();
+            customerDialogue.finishedConversation = false;
+            gM.pD.neckClamp = neckclamp;
+
+
+        }
+        if (!pm.canMove)
+        {
+            gM.pD.neckClamp = neckclamp / 4;
+            var c = Camera.main.transform;
+            oldLook = c;
+            Camera.main.transform.LookAt(this.transform.position);
+            //gM.player.transform.LookAt(this.transform.position);
+        }
+    }
     public override void OnFocus()
     {
-        canvas.enabled = true; //instanciates on screen prompt asking if you want to interact with them.
 
     }
    
@@ -45,14 +95,17 @@ public class CustomerInteractable : Interactable
     {
         //invokes the dialogue interaction thing
         //DialogDisplay
-        DD.AdvanceConversation();
-        CA.Talk();
-        DisplayOrderBubble();
-        if (DD.finishedOrder && !CAI.hasOrdered)
+        if (CAI.stay == true && !CAI.hasOrdered)
         {
-            StartCoroutine(MoveLine());
-            DisplayOrderTicket();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            customerDialogue.canvas.enabled = true;
+            pm.canMove = false;
+            pcc.canMove = false;
+            CA.Talk();
         }
+
+
     }
 
     public void DisplayOrderBubble()
@@ -82,7 +135,7 @@ public class CustomerInteractable : Interactable
 
     public override void OnLoseFocus()
     {
-        canvas.enabled = false;//Destroys on screen prompt 
+
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
@@ -93,8 +146,19 @@ public class CustomerInteractable : Interactable
     {
     }
 
-    public DialogDisplay GetDD()
+    public CustomerDialogue GetDD()
     {
-        return this.DD;
+        return this.customerDialogue;
+    }
+
+    public void  DeliverDrink()
+    {
+        customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeRecievedDrink);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        customerDialogue.canvas.enabled = true;
+        pm.canMove = false;
+        pcc.canMove = false;
+        CA.Talk();
     }
 }
