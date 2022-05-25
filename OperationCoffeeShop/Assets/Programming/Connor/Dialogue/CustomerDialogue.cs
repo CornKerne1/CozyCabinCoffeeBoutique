@@ -16,6 +16,7 @@ public class CustomerDialogue : MonoBehaviour
     private UnityEngine.UI.Image ButtonBImage;
     private TextMeshProUGUI ButtonBText;
 
+    [SerializeField, HideInInspector]public Transform customer;
 
     private GameObject myEventSystem;
     private EventSystem EventSystem;
@@ -23,11 +24,10 @@ public class CustomerDialogue : MonoBehaviour
 
     public ConnorConverstation converstation;
 
-    private ConnorConverstation.ConversationTree conversationTree;
+    public ConnorConverstation.ConversationTree conversationTree;
 
-    public bool finishedConversation = false;
-
-
+    [SerializeField, HideInInspector] public bool finishedConversation = false;
+    [SerializeField, HideInInspector] public bool startedConversation = false;
     private void Start()
     {
         canvas = this.GetComponent<Canvas>();
@@ -55,50 +55,15 @@ public class CustomerDialogue : MonoBehaviour
             conversationTree = conversationTree.ATree[0];
             customerMessageText.text = conversationTree.message;
 
-            //Displays or hides optionA, there should always be an option A
-            if (conversationTree.PlayerOptionA != "")
-            {
-                ButtonA.enabled = true;
-                ButtonAImage.enabled = true;
-
-                ButtonAText.text = conversationTree.PlayerOptionA;
-            }
-            else
-            {
-                ButtonA.enabled = false;
-                ButtonAText.text = "";
-                ButtonAImage.enabled = false;
-
-            }
-
-            //Display or hides option B
-            if (conversationTree.PlayerOptionB != "")
-            {
-                ButtonB.enabled = true;
-                ButtonBImage.enabled = true;
-                ButtonBText.text = conversationTree.PlayerOptionB;
-            }
-            else
-            {
-                ButtonB.enabled = false;
-                ButtonBText.text = "";
-                ButtonBImage.enabled = false;
-
-            }
-
-            //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
-            {
-                canvas.enabled = false;
-                finishedConversation = true;
-            }
+            displayHideButtons();
         }
         else
         {
             canvas.enabled = false;
             finishedConversation = true;
+            startedConversation = false;
 
-        }
+}
     }
     public void AdvanceConversationB()
     {
@@ -108,60 +73,69 @@ public class CustomerDialogue : MonoBehaviour
             conversationTree = conversationTree.BTree[0];
             customerMessageText.text = conversationTree.message;
 
-            //Displays or hides optionA, there should always be an option A
-            if (conversationTree.PlayerOptionA != "")
-            {
-
-                ButtonA.enabled = true;
-                ButtonAImage.enabled = true;
-                ButtonAText.text = conversationTree.PlayerOptionA;
-            }
-            else
-            {
-                ButtonA.enabled = false;
-                ButtonAText.text = "";
-                ButtonAImage.enabled = false;
-
-            }
-
-            //Display or hides option B
-            if (conversationTree.PlayerOptionB != "")
-            {
-                ButtonB.enabled = true;
-                ButtonBImage.enabled = true;
-                ButtonBText.text = conversationTree.PlayerOptionB;
-            }
-            else
-            {
-                ButtonB.enabled = false;
-                ButtonBText.text = "";
-                ButtonBImage.enabled = false;
-
-            }
-
-            //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
-            {
-                canvas.enabled = false;
-                finishedConversation = true;
-
-            }
+            displayHideButtons();
         }
 
         else
         {
             canvas.enabled = false;
             finishedConversation = true;
+            startedConversation = false;
         }
 
     }
-
-    public void ChangeConversation(ConnorConverstation.ConversationTree ct)
+    private void displayHideButtons()
     {
+        //Displays or hides optionA, there should always be an option A
+        if (conversationTree.PlayerOptionA != "")
+        {
+            ButtonA.enabled = true;
+            ButtonAImage.enabled = true;
+
+            ButtonAText.text = conversationTree.PlayerOptionA;
+        }
+        else
+        {
+            ButtonA.enabled = false;
+            ButtonAText.text = "";
+            ButtonAImage.enabled = false;
+
+        }
+
+        //Display or hides option B
+        if (conversationTree.PlayerOptionB != "")
+        {
+            ButtonB.enabled = true;
+            ButtonBImage.enabled = true;
+            ButtonBText.text = conversationTree.PlayerOptionB;
+        }
+        else
+        {
+            ButtonB.enabled = false;
+            ButtonBText.text = "";
+            ButtonBImage.enabled = false;
+
+        }
+        //catches user error and hides optionless text
+        if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
+        {
+            canvas.enabled = false;
+            finishedConversation = true;
+            startedConversation = false;
+
+
+        }
+    }
+
+    public void ChangeConversation(ConnorConverstation.ConversationTree ct, Transform customer)
+    {
+        this.customer = customer;
+        finishedConversation = false;
         conversationTree = ct;
         ButtonAText.text = conversationTree.PlayerOptionA;
         ButtonBText.text = conversationTree.PlayerOptionB;
         customerMessageText.text = conversationTree.message;
+        displayHideButtons();
     }
 
 }
