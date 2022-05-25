@@ -27,9 +27,5 @@ public class RandomInteractable : Interactable
     {
         
     }
-
-    public override void OnAltInteractCanceled()
-    {
-        
-    }
+    
 }

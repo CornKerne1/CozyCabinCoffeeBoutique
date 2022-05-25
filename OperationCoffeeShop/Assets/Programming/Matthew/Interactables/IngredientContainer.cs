@@ -26,11 +26,8 @@ public class IngredientContainer : Interactable
 
     public List<GameObject> outputIngredients = new List<GameObject>();
 
-    private bool done;
-
     private void FixedUpdate()
     {
-        Debug.Log(pouring);
         HandlePourRotation();
         Pour();
     }
@@ -40,9 +37,18 @@ public class IngredientContainer : Interactable
         cr1 = Timer(time);
         yield return new WaitForSeconds(time);
         rotating = false;
-        done = true;
+        Test();
         cr1 = null;
     }
+
+    private void Test()
+    {
+        if (pouring)
+            pouring = false;
+        else 
+            pouring = true;
+    }
+
     private void HandlePourRotation()
     {
         if (rotating)
@@ -54,12 +60,6 @@ public class IngredientContainer : Interactable
                 {
                     StartCoroutine(Timer(1f));
                 }
-
-                if (done)
-                {
-                    pouring = true;
-                    done = false;
-                }
             }
             else
             {
@@ -67,11 +67,6 @@ public class IngredientContainer : Interactable
                 if (cr1 == null)
                 {
                     StartCoroutine(Timer(1f));
-                }
-                if (done)
-                {
-                    pouring = false;
-                    done = false;
                 }
             }
         }

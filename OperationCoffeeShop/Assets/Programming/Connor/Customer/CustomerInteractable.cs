@@ -141,10 +141,7 @@ public class CustomerInteractable : Interactable
     public override void OnAltInteract(PlayerInteraction pI)
     {
     }
-
-    public override void OnAltInteractCanceled()
-    {
-    }
+    
 
     public CustomerDialogue GetDD()
     {

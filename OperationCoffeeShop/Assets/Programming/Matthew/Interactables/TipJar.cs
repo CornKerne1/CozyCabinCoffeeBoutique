@@ -30,11 +30,7 @@ public class TipJar : Interactable
     {
         
     }
-
-    public override void OnAltInteractCanceled()
-    {
-        
-    }
+    
 
     private void Update()
     {

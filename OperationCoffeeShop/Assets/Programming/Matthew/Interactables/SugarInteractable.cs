@@ -2,37 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorInteractable : Interactable
+public class SugarInteractable : Interactable
 {
-    private Door door;
     // Start is called before the first frame update
-    void Start()
-    {
-        door = transform.root.GetComponentInChildren<Door>();
-    }
+    private PlayerInteraction pI;
+    [SerializeField] private GameObject sugarCube;
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        door.PlayerOpen();
+        this.pI = pI;
+        pI.Carry(gameObject);
     }
 
     public override void OnFocus()
     {
+
     }
 
     public override void OnLoseFocus()
     {
+        
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
     {
-       
-    }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
         
+    }
+
+    public override void OnDrop()
+    {
+        Instantiate(sugarCube, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 }

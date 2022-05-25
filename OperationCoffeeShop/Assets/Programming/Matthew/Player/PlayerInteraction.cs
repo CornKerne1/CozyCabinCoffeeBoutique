@@ -129,7 +129,11 @@ public class PlayerInteraction : MonoBehaviour
                 Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainor.rotateOffset.x, Quaternion.identity.y + ingredientContainor.rotateOffset.y, Quaternion.identity.z + ingredientContainor.rotateOffset.z, Quaternion.identity.w);
                 ingredientContainor.transform.rotation = rot;
             }
-            
+
+            if (currentInteractable)
+            {
+                currentInteractable.OnDrop();
+            }
 
         }
 
