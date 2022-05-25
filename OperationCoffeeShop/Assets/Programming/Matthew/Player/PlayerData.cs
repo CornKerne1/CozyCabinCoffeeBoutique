@@ -11,6 +11,7 @@ public class PlayerData : ScriptableObject
         busyHands = false;
         isClimbing = false;
         killSwitchOff = true;
+        neckClamp = 77.3f;
     }
 
     [Header("Controller Variables")]
@@ -53,4 +54,5 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float smooth;
 
     [SerializeField] public bool killSwitchOff;
+
 }

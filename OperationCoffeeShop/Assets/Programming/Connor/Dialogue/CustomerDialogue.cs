@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class CustomerDialogue : MonoBehaviour
@@ -16,9 +17,16 @@ public class CustomerDialogue : MonoBehaviour
     private TextMeshProUGUI ButtonBText;
 
 
+    private GameObject myEventSystem;
+    private EventSystem EventSystem;
+
+
     public ConnorConverstation converstation;
 
     private ConnorConverstation.ConversationTree conversationTree;
+
+    public bool finishedConversation = false;
+
 
     private void Start()
     {
@@ -28,16 +36,20 @@ public class CustomerDialogue : MonoBehaviour
         ButtonBImage = ButtonB.gameObject.GetComponent<UnityEngine.UI.Image>();
         ButtonAImage = ButtonA.gameObject.GetComponent<UnityEngine.UI.Image>();
 
-        conversationTree = converstation.conversationTree;
+        conversationTree = converstation.conversationTreeOrder;
 
         customerNameText.text = converstation.customerName;
         ButtonAText.text = conversationTree.PlayerOptionA;
         ButtonBText.text = conversationTree.PlayerOptionB;
         customerMessageText.text = conversationTree.message;
+        myEventSystem = GameObject.Find("EventSystem");
+        EventSystem = myEventSystem.GetComponent<EventSystem>();
+
     }
 
     public void AdvanceConversationA()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         if (conversationTree.ATree.Count > 0)
         {
             conversationTree = conversationTree.ATree[0];
@@ -75,16 +87,22 @@ public class CustomerDialogue : MonoBehaviour
             }
 
             //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionB != "" && conversationTree.PlayerOptionA != "")
+            if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
             {
                 canvas.enabled = false;
+                finishedConversation = true;
             }
         }
-        else canvas.enabled = false;
+        else
+        {
+            canvas.enabled = false;
+            finishedConversation = true;
+
+        }
     }
     public void AdvanceConversationB()
     {
-
+        EventSystem.current.SetSelectedGameObject(null);
         if (conversationTree.BTree.Count > 0)
         {
             conversationTree = conversationTree.BTree[0];
@@ -122,13 +140,28 @@ public class CustomerDialogue : MonoBehaviour
             }
 
             //catches user error and hides optionless text
-            if (conversationTree.PlayerOptionB != "" && conversationTree.PlayerOptionA != "")
+            if (conversationTree.PlayerOptionA == "" && conversationTree.PlayerOptionB == "")
             {
                 canvas.enabled = false;
+                finishedConversation = true;
+
             }
         }
-        else canvas.enabled = false;
+
+        else
+        {
+            canvas.enabled = false;
+            finishedConversation = true;
+        }
+
     }
 
+    public void ChangeConversation(ConnorConverstation.ConversationTree ct)
+    {
+        conversationTree = ct;
+        ButtonAText.text = conversationTree.PlayerOptionA;
+        ButtonBText.text = conversationTree.PlayerOptionB;
+        customerMessageText.text = conversationTree.message;
+    }
 
 }

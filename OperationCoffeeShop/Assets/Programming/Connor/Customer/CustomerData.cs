@@ -11,7 +11,7 @@ public class CustomerData : ScriptableObject
     public DrinkData recievedDrink;
     public List<FlavorProfile.FlavorNode> desiredFlavors;
     public Customer customer;
-    public List<ConnorConverstation> converstations;
+    public List<ConnorConverstation> conversations;
     //public List<string> orderPhrases;
 
 

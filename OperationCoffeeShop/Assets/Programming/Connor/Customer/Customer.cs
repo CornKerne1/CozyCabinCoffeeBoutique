@@ -17,10 +17,14 @@ public abstract class Customer : MonoBehaviour
 
     [SerializeField] public static event EventHandler CustomerRating;// publishes the customer rating for all to see. 
 
-
+    [SerializeField] protected ParticleSystem ps;
+    protected ParticleSystemRenderer psr;
+    [SerializeField] protected Material Like;
+    [SerializeField] protected Material Dislike;
     public virtual void Start()
     {
         gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        psr = ps.GetComponent<ParticleSystemRenderer>();
     }
     /// <summary>
     /// Returns Customer's Name.
@@ -122,6 +126,11 @@ public abstract class Customer : MonoBehaviour
     {
         float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.favoriteDrink);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
+        if (quality > .5)
+            psr.material = Like;
+        else
+            psr.material = Dislike;
+            ps.Play();
         Debug.Log("Drink Quality = " + quality);
     }
 }
