@@ -21,11 +21,18 @@ public class IngredientContainer : Interactable
 
     public IngredientData iD;
 
-    private IEnumerator cr1;
+    private IEnumerator cr1 = null;
+    private IEnumerator cr2 = null;
+
+    public List<GameObject> outputIngredients = new List<GameObject>();
+
+    private bool done;
 
     private void FixedUpdate()
     {
+        Debug.Log(pouring);
         HandlePourRotation();
+        Pour();
     }
 
     IEnumerator Timer(float time)
@@ -33,7 +40,7 @@ public class IngredientContainer : Interactable
         cr1 = Timer(time);
         yield return new WaitForSeconds(time);
         rotating = false;
-        pouring = !pouring;
+        done = true;
         cr1 = null;
     }
     private void HandlePourRotation()
@@ -47,6 +54,12 @@ public class IngredientContainer : Interactable
                 {
                     StartCoroutine(Timer(1f));
                 }
+
+                if (done)
+                {
+                    pouring = true;
+                    done = false;
+                }
             }
             else
             {
@@ -54,6 +67,11 @@ public class IngredientContainer : Interactable
                 if (cr1 == null)
                 {
                     StartCoroutine(Timer(1f));
+                }
+                if (done)
+                {
+                    pouring = false;
+                    done = false;
                 }
             }
         }
@@ -102,8 +120,20 @@ public class IngredientContainer : Interactable
     {
         foreach (IngredientNode i in dD.Ingredients)
         {
-            i.target = i.target - .1f;
-            capacity = capacity - .1f;
+            i.target = i.target - 0.1f;
+            capacity = capacity - 0.1f;
+            switch (i.ingredient)
+            {
+                case Ingredients.BrewedCoffee:
+                    outputIngredients.Add(iD.brewedCoffee);
+                    break;
+                case Ingredients.Espresso:
+                    outputIngredients.Add(iD.espresso);
+                    break;
+                case Ingredients.Milk:
+                    outputIngredients.Add(iD.milk);
+                    break;
+            }
             if (i.target <= 0)
             {
                 dD.Ingredients.Remove(i);
@@ -111,12 +141,25 @@ public class IngredientContainer : Interactable
         }
             //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
     }
-
     public void Pour()
     {
-        rotating = true;
+        if (pouring && outputIngredients.Count > 0)
+        {
+            if (cr2 != null)
+            {
+                StartCoroutine(Liquify());
+            }
+        }
     }
-    
+
+    IEnumerator Liquify()
+    {
+        cr2 = Liquify();
+        yield return new WaitForSeconds(.04f);
+        Instantiate(outputIngredients[outputIngredients.Count], pourTransform.position, pourTransform.rotation);
+        cr2 = null;
+    }
+
     public void StopPouring()
     {
         rotating = true;
