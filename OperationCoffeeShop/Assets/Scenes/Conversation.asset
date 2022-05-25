@@ -12,11 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31a1678a5a0c26479f65ac32fbcc794, type: 3}
   m_Name: Conversation
   m_EditorClassIdentifier: 
-  customerName: 
-  conversationTree:
-    message: 
+  ConversationName: 3 dogs intro
+  customerName: 3 Dogs in a trenchcoat
+  conversationTreeOrder:
+    message: "Good \u2018morrow, my fair lady! I don\u2019t suppose you know the
+      nearest attraction to purchase some ground espresso juice, now would you? \n"
     mood: 0
-    PlayerOptionA: 
+    PlayerOptionA: 'We have espresso! This is a coffee shop, afterall.  '
+    PlayerOptionB: 
+    ATree:
+    - message: 'How quaint. This will do quite nicely. '
+      mood: 0
+      PlayerOptionA: 
+      PlayerOptionB: 
+      ATree: []
+      BTree: []
+    BTree: []
+  conversationTreeRecievedDrink:
+    message: Why, that was seemingly no time at all! I bid you farewell and my sincerest
+      appreciation for this tiny cup of concentrated caffeine!
+    mood: 0
+    PlayerOptionA: I'm sure I'll see you around.
     PlayerOptionB: 
     ATree: []
     BTree: []
