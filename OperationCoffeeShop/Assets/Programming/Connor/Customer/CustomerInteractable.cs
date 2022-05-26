@@ -32,6 +32,7 @@ public class CustomerInteractable : Interactable
 
     Transform oldLook;
 
+    public bool talking = false;
 
     private void Start()
     {
@@ -77,7 +78,7 @@ public class CustomerInteractable : Interactable
 
 
         }
-        if (!pm.canMove)
+        if (!pm.canMove && customerDialogue.customer == this.transform)
         {
             gM.pD.neckClamp = neckclamp / 4;
             var c = Camera.main.transform;
@@ -90,13 +91,16 @@ public class CustomerInteractable : Interactable
     {
 
     }
-   
+
     public override void OnInteract(PlayerInteraction pI)
     {
         //invokes the dialogue interaction thing
         //DialogDisplay
-        if (CAI.stay == true && !CAI.hasOrdered)
+        if (!customerDialogue.startedConversation && CAI.stay == true && !CAI.hasOrdered)
         {
+            customerDialogue.startedConversation = true;
+            talking = true;
+            customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeOrder,this.transform);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             customerDialogue.canvas.enabled = true;
@@ -148,9 +152,9 @@ public class CustomerInteractable : Interactable
         return this.customerDialogue;
     }
 
-    public void  DeliverDrink()
+    public void DeliverDrink()
     {
-        customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeRecievedDrink);
+        customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeRecievedDrink,this.transform);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         customerDialogue.canvas.enabled = true;

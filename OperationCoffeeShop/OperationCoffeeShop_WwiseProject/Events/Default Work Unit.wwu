@@ -39,6 +39,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_GrindingCoffee" ID="{7E1D72AE-DA71-4857-8C7E-EB124CBDCBC4}">
+					<ChildrenList>
+						<Action Name="" ID="{3085DC9F-74C6-48D5-958D-138CEA0D6B21}" ShortID="583549594">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Grinding_Coffee_Beans" ID="{A2E6066C-93B7-417E-A390-56853203E21C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_GrindingEspresso" ID="{96FE6F0E-A4E7-46AB-8B8E-CA941C938282}">
+					<ChildrenList>
+						<Action Name="" ID="{722EBA77-BD76-44A3-BC83-9891FC98C459}" ShortID="93029276">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Grinding_Espresso" ID="{54F6CA64-686E-4074-9D0D-85A8F80A2CBE}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
