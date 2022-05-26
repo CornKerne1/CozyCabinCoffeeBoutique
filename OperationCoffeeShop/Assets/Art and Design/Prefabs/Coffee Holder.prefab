@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5502512018999177176}
   - component: {fileID: 7762005424145144594}
   - component: {fileID: 8122473644744784582}
-  - component: {fileID: 8122473644744784581}
+  - component: {fileID: 7118911816346908744}
   m_Layer: 3
   m_Name: Coffee Holder
   m_TagString: Untagged
@@ -57,9 +57,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8122473644744784583}
-  m_LocalRotation: {x: 0.63695586, y: -0.30706227, z: 0.30706227, w: 0.63695586}
+  m_LocalRotation: {x: 0.6369569, y: -0.30706027, z: 0.30706027, w: 0.6369569}
   m_LocalPosition: {x: -3.213, y: -8.9403, z: -4.597}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 3428476800576117670}
   m_Father: {fileID: 0}
@@ -130,7 +130,11 @@ MonoBehaviour:
   rotateOffset: {x: 0, y: 0, z: 0}
   spawnTrans: {fileID: 3428476800576117670}
   objType: {fileID: 11400000, guid: 054c001c8d91c02489981ec4dc14c43a, type: 2}
---- !u!65 &8122473644744784581
+  text: {fileID: 0}
+  message: ' beans remaing'
+  quantity: 10
+  bottomless: 0
+--- !u!65 &7118911816346908744
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,5 +145,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 1.7609469}
-  m_Center: {x: 0, y: 0, z: 0.119526565}
+  m_Size: {x: 0.019540804, y: 0.019540805, z: 0.01760947}
+  m_Center: {x: 0, y: 0.0000000013969839, z: -0.0011952654}

@@ -28,11 +28,7 @@ public class DoorInteractable : Interactable
     {
        
     }
-
-    public override void OnAltInteractCanceled()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()

@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public static event EventHandler InteractEvent;
     [SerializeField] public static event EventHandler InteractCanceledEvent;
     [SerializeField] public static event EventHandler Alt_InteractEvent;
-    [SerializeField] public static event EventHandler Alt_InteractCanceledEvent;
+    //[SerializeField] public static event EventHandler Alt_InteractCanceledEvent;
     [SerializeField] public static event EventHandler RotateEvent;//
     [SerializeField] public static event EventHandler RotateCanceledEvent;//
     
@@ -83,7 +83,7 @@ public class PlayerInput : MonoBehaviour
         interact.Enable();
         
         alt_interact.performed += Alt_Interact;
-        alt_interact.canceled += Alt_InteractCanceled;
+        //alt_interact.canceled += Alt_InteractCanceled;
         alt_interact.Enable();
 
 
@@ -166,10 +166,10 @@ public class PlayerInput : MonoBehaviour
     {
         Alt_InteractEvent?.Invoke(this, EventArgs.Empty);
     }
-    private void Alt_InteractCanceled(InputAction.CallbackContext obj)
-    {
-        Alt_InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
-    }
+    //private void Alt_InteractCanceled(InputAction.CallbackContext obj)
+    //{
+        //Alt_InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    //}
     private void Rotate(InputAction.CallbackContext obj)
     {
         RotateEvent?.Invoke(this, EventArgs.Empty);

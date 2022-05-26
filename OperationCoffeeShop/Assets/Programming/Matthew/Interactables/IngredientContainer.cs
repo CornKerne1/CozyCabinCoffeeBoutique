@@ -15,11 +15,62 @@ public class IngredientContainer : Interactable
     private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
-    private Quaternion startingRotation;
-    
-    [SerializeField]private bool pouring;
+
+    private bool pouring;
+    private bool rotating;
 
     public IngredientData iD;
+
+    private IEnumerator cr1 = null;
+    private IEnumerator cr2 = null;
+
+    public List<GameObject> outputIngredients = new List<GameObject>();
+
+    private void FixedUpdate()
+    {
+        HandlePourRotation();
+        Pour();
+    }
+
+    IEnumerator Timer(float time)
+    {
+        cr1 = Timer(time);
+        yield return new WaitForSeconds(time);
+        rotating = false;
+        Test();
+        cr1 = null;
+    }
+
+    private void Test()
+    {
+        if (pouring)
+            pouring = false;
+        else 
+            pouring = true;
+    }
+
+    private void HandlePourRotation()
+    {
+        if (rotating)
+        {
+            if (!pouring)
+            {
+                transform.Rotate(2,0,0);
+                if (cr1 == null)
+                {
+                    StartCoroutine(Timer(1f));
+                }
+            }
+            else
+            {
+                transform.Rotate(-2,0,0);
+                if (cr1 == null)
+                {
+                    StartCoroutine(Timer(1f));
+                }
+            }
+        }
+    }
 
     public override void Awake()
     {
@@ -39,7 +90,7 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
-        startingRotation = transform.localRotation;
+        cr1 = null;
     }
 
     public virtual void AddToContainer(IngredientNode iN)
@@ -60,14 +111,53 @@ public class IngredientContainer : Interactable
 
     }
 
-    public void Update()
+    public virtual void RemoveIngredient()
     {
+        foreach (IngredientNode i in dD.Ingredients)
+        {
+            i.target = i.target - 0.1f;
+            capacity = capacity - 0.1f;
+            switch (i.ingredient)
+            {
+                case Ingredients.BrewedCoffee:
+                    outputIngredients.Add(iD.brewedCoffee);
+                    break;
+                case Ingredients.Espresso:
+                    outputIngredients.Add(iD.espresso);
+                    break;
+                case Ingredients.Milk:
+                    outputIngredients.Add(iD.milk);
+                    break;
+            }
+            if (i.target <= 0)
+            {
+                dD.Ingredients.Remove(i);
+            }
+        }
+            //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
     }
-    
-
     public void Pour()
     {
-        
+        if (pouring && outputIngredients.Count > 0)
+        {
+            if (cr2 != null)
+            {
+                StartCoroutine(Liquify());
+            }
+        }
+    }
+
+    IEnumerator Liquify()
+    {
+        cr2 = Liquify();
+        yield return new WaitForSeconds(.04f);
+        Instantiate(outputIngredients[outputIngredients.Count], pourTransform.position, pourTransform.rotation);
+        cr2 = null;
+    }
+
+    public void StopPouring()
+    {
+        rotating = true;
     }
 
     void IngredientOverflow(IngredientNode ingredient)
@@ -77,6 +167,9 @@ public class IngredientContainer : Interactable
             case Ingredients.BrewedCoffee:
                 Instantiate(iD.brewedCoffee, pourTransform.position, pourTransform.rotation);
                 break;
+            case Ingredients.Espresso:
+                Instantiate(iD.espresso, pourTransform.position, pourTransform.rotation);
+                break;
         }
     }
     
@@ -85,7 +178,9 @@ public class IngredientContainer : Interactable
         this.pI = pI;
         pI.Carry(gameObject);
         inHand = true;
-    }
+        Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y, Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
+        transform.rotation =rot;
+        }
 
     public override void OnFocus()
     {
@@ -104,11 +199,6 @@ public class IngredientContainer : Interactable
 
     public override void OnAltInteract(PlayerInteraction pI)
     {
-        Pour();
-    }
-
-    public override void OnAltInteractCanceled()
-    {
-        
+        rotating = true;
     }
 }

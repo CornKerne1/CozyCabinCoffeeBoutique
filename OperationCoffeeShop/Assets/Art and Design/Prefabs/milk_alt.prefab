@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4210957179606635857}
   - component: {fileID: 106225316}
   - component: {fileID: 106225317}
-  - component: {fileID: 106225318}
+  - component: {fileID: 389920648}
   m_Layer: 3
   m_Name: milk_alt
   m_TagString: PickUp
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.018, y: 0.030999998, z: 0.012}
   m_Center: {x: 0, y: 0.0057694865, z: 0.0000000018626451}
---- !u!114 &106225318
+--- !u!114 &389920648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +122,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2409618553146324100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
+  m_Script: {fileID: 11500000, guid: a26b609d3b755b84ba3d187d7e268da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  pourTransform: {fileID: 0}
+  contentsVisualizer: {fileID: 0}
+  inHand: 0
+  pI: {fileID: 0}
+  dD: {fileID: 0}
+  hasContentsVisualizer: 1
+  topOfCup: 0
+  iD: {fileID: 0}
