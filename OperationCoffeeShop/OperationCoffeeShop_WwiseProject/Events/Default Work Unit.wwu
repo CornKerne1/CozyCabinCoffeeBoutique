@@ -14,23 +14,9 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_Radio_RoastBlend" ID="{028BD3FF-82B7-46BC-ACFA-371833546A4A}">
+				<Event Name="Play_RoastBlend" ID="{028BD3FF-82B7-46BC-ACFA-371833546A4A}">
 					<ChildrenList>
 						<Action Name="" ID="{480E8C04-F813-4965-90E2-EC1767BD890A}" ShortID="218895274">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="Radio_RoastBlend" ID="{C3D39DFB-E8CB-4C56-991C-1FCFFD98A5F1}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="Stop_Radio_RoastBlend" ID="{2295BB69-7881-4857-A970-F6FB1F3F364B}">
-					<ChildrenList>
-						<Action Name="" ID="{E5368FF4-AC44-4CF8-896C-33FD63767125}" ShortID="180474829">
-							<PropertyList>
-								<Property Name="ActionType" Type="int16" Value="2"/>
-							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Radio_RoastBlend" ID="{C3D39DFB-E8CB-4C56-991C-1FCFFD98A5F1}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
@@ -56,6 +42,435 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Grinding_Espresso" ID="{54F6CA64-686E-4074-9D0D-85A8F80A2CBE}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_AfterHours" ID="{5481D196-AD59-4897-B910-183B40218C63}">
+					<ChildrenList>
+						<Action Name="" ID="{B9247254-BC67-4AF1-86CC-AD2D3F2B23CA}" ShortID="517637974">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="After_Hours" ID="{D9426BE0-C0AE-4394-8813-FB68683CB597}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_BossaNova" ID="{8A4C9005-868E-407A-BF3C-6D302E01A6AA}">
+					<ChildrenList>
+						<Action Name="" ID="{F70255B5-6A5D-4043-8F9A-A200D19400C4}" ShortID="13083026">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BossaNovaAttempt" ID="{0C1F79CF-CCB7-41FB-8FA7-03A87B38542C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_BreakingLoose" ID="{9A19C5F5-6862-44EB-865A-C2099F595C9E}">
+					<ChildrenList>
+						<Action Name="" ID="{4CE27D68-364A-4471-B40A-2645F496A771}" ShortID="464153623">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Breaking_Loose_LoFi" ID="{234954B0-BB81-41FE-828E-A91694E2B90C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Piano" ID="{0EE32559-55EC-4FEC-8244-EC73BA642CA0}">
+					<ChildrenList>
+						<Action Name="" ID="{BBD33083-4980-48C9-A163-01E2B57B7BF8}" ShortID="281038183">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ChillWurlyPiano" ID="{CFDEB9C4-7105-4B14-A55E-98BA17AE49F2}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_ExquisiteTaste" ID="{3B23FFDB-C172-48F6-AEF4-5EF18B95E3B4}">
+					<ChildrenList>
+						<Action Name="" ID="{B7A1FD84-4E94-4E83-A5E7-6050F435FA35}" ShortID="871320007">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="exquisite_tasteACPlaylist" ID="{4F431E79-7530-42CC-B31B-4FC1A9A5905A}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_NeuroticBone" ID="{1FF6FBAF-C986-49D2-A5B0-4C12EE8DB8E0}">
+					<ChildrenList>
+						<Action Name="" ID="{34B63982-68C2-4E85-A6A9-D5D37D491A27}" ShortID="670910447">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Neurotic_to_the_Bone_LoFi_Playlist" ID="{3E614882-078A-4A04-80B3-7433B24BE395}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_SomedayWakeUp" ID="{D1FC00F1-A273-4C86-892F-53FFC76B5D10}">
+					<ChildrenList>
+						<Action Name="" ID="{8C9779C2-A650-4369-B71C-77CDD8AC9A11}" ShortID="116246120">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Someday_Youd_Better_Wake_Up_LoFi_playlist" ID="{305D20CB-DF8B-41A9-B197-70D106013B4B}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_SpashedSea" ID="{8A95C488-4A4E-4E04-AF09-C6436A1EE5F9}">
+					<ChildrenList>
+						<Action Name="" ID="{F6666AD6-2C7F-4BAD-86F6-1DE8DE26EA6B}" ShortID="1029554541">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Spashed_in_the_Sea_AC_Playlist" ID="{B0AB1385-95C0-416C-B10D-8EBB8F8FC2ED}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TakingShape" ID="{4876C1F8-4D61-453E-B844-2214E09FC5DA}">
+					<ChildrenList>
+						<Action Name="" ID="{8C5C8A5F-52B0-4ACD-A149-5B48493E0E67}" ShortID="1015391828">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Taking_Shape" ID="{D0EF1B80-15A4-4B92-B4DD-6675A3A141D0}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TellingStories" ID="{83F70347-562E-44B0-9ACA-F9E2E2F4EA0E}">
+					<ChildrenList>
+						<Action Name="" ID="{59E0A9CE-DB42-493A-89BF-FB8E58A78561}" ShortID="611047774">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Telling_Stories_AC_Playlist" ID="{09D4AC2D-0FBF-46B2-B30C-678E9B815EBD}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_AfterHours" ID="{BB5663B4-9D48-47AA-8E8C-4FC68F4E3BB6}">
+					<ChildrenList>
+						<Action Name="" ID="{BFBD76DE-18F6-4B37-AE0D-8471F8B9145A}" ShortID="600103135">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="After_Hours" ID="{D9426BE0-C0AE-4394-8813-FB68683CB597}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_BossaNova" ID="{1764E165-7F3A-4A2F-B328-91791E323716}">
+					<ChildrenList>
+						<Action Name="" ID="{3BACD37C-05AB-400E-BC6E-26F4840EBC87}" ShortID="886799117">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BossaNovaAttempt" ID="{0C1F79CF-CCB7-41FB-8FA7-03A87B38542C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_BreakingLoose" ID="{DEF50D90-1DBE-4A95-B981-3F0CC803D4A5}">
+					<ChildrenList>
+						<Action Name="" ID="{1A00A7DF-2C3E-479B-89BE-79FB21691D17}" ShortID="783584122">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Breaking_Loose_LoFi" ID="{234954B0-BB81-41FE-828E-A91694E2B90C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_Piano" ID="{44492CFA-B0C9-472A-A3B7-9062FE01ECBD}">
+					<ChildrenList>
+						<Action Name="" ID="{7A2E6BAA-BCB8-47ED-84D2-4FEFAF835A35}" ShortID="671275599">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ChillWurlyPiano" ID="{CFDEB9C4-7105-4B14-A55E-98BA17AE49F2}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_ExquisiteTaste" ID="{AA8CCEFF-AFBE-4CBA-9D8B-710764D5D9EA}">
+					<ChildrenList>
+						<Action Name="" ID="{F62D4BF9-D184-496C-A824-551ACD938AE9}" ShortID="61270404">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="exquisite_tasteACPlaylist" ID="{4F431E79-7530-42CC-B31B-4FC1A9A5905A}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_NeuroticBone" ID="{08F0195B-7641-4BD0-8EB5-14193A3EC2A9}">
+					<ChildrenList>
+						<Action Name="" ID="{40D2E864-E75D-4499-B219-ABFFA0EEB2C2}" ShortID="192430847">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Neurotic_to_the_Bone_LoFi_Playlist" ID="{3E614882-078A-4A04-80B3-7433B24BE395}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_RoastBlend" ID="{0A883B5B-045A-48F1-9100-39A669640F3C}">
+					<ChildrenList>
+						<Action Name="" ID="{5DFA8D2D-3A97-4DF3-A4E9-C29DF4F82BBC}" ShortID="391630764">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Radio_RoastBlend" ID="{C3D39DFB-E8CB-4C56-991C-1FCFFD98A5F1}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_SomedayWakeUp" ID="{045B98A8-5CEA-4344-B18B-300295899585}">
+					<ChildrenList>
+						<Action Name="" ID="{BD0009F5-370A-4350-BEDD-AD26D135422F}" ShortID="497561711">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Someday_Youd_Better_Wake_Up_LoFi_playlist" ID="{305D20CB-DF8B-41A9-B197-70D106013B4B}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_SpashedSea" ID="{8EFFFB91-4BDA-432E-92FD-675E02537022}">
+					<ChildrenList>
+						<Action Name="" ID="{08102568-7455-4700-BDE7-10521822A0AD}" ShortID="915880794">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Spashed_in_the_Sea_AC_Playlist" ID="{B0AB1385-95C0-416C-B10D-8EBB8F8FC2ED}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_TakingShape" ID="{DBA9CFAB-B9F6-4B1D-A0A9-FA1A38706FC8}">
+					<ChildrenList>
+						<Action Name="" ID="{CDF28357-FCD8-47F0-BF82-93E2CFBA515F}" ShortID="27468664">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Taking_Shape" ID="{D0EF1B80-15A4-4B92-B4DD-6675A3A141D0}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_TellingStories" ID="{387FD2CA-EDCD-4864-BA52-524FF50DAF7B}">
+					<ChildrenList>
+						<Action Name="" ID="{7334E471-A6D1-4079-97F9-774F2E4E6F4E}" ShortID="742463142">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Telling_Stories_AC_Playlist" ID="{09D4AC2D-0FBF-46B2-B30C-678E9B815EBD}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_AfterHours" ID="{706AC10D-DA2B-4868-A568-DB63079689CA}">
+					<ChildrenList>
+						<Action Name="" ID="{520AFC74-6BA5-42ED-AEFA-76B5F68F3163}" ShortID="918435573">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="After_Hours" ID="{D9426BE0-C0AE-4394-8813-FB68683CB597}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_BossaNova" ID="{CB5598EA-8231-48C5-9BCA-1BB19EDEA87B}">
+					<ChildrenList>
+						<Action Name="" ID="{F1ED7E0C-7532-4430-9B71-DF4E40CE8B0B}" ShortID="561737328">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BossaNovaAttempt" ID="{0C1F79CF-CCB7-41FB-8FA7-03A87B38542C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_BreakingLoose" ID="{BC4D9C04-B473-49E3-94B2-23C58F7D4655}">
+					<ChildrenList>
+						<Action Name="" ID="{FB8EE47E-DD1C-4865-98E2-5F49A6818B78}" ShortID="248189180">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Breaking_Loose_LoFi" ID="{234954B0-BB81-41FE-828E-A91694E2B90C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_ExquisiteTaste" ID="{1E947A9D-33E8-4137-B9AF-0FD308709A64}">
+					<ChildrenList>
+						<Action Name="" ID="{2EA58E1C-3B0F-4704-A787-FE15F0ADDD59}" ShortID="751130531">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="exquisite_tasteACPlaylist" ID="{4F431E79-7530-42CC-B31B-4FC1A9A5905A}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_NeuroticBone" ID="{74DB83EA-80D4-4D48-9C22-015710C30781}">
+					<ChildrenList>
+						<Action Name="" ID="{9189DF7D-6AAF-4600-9E26-0C5981FFD3B5}" ShortID="317753231">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Neurotic_to_the_Bone_LoFi_Playlist" ID="{3E614882-078A-4A04-80B3-7433B24BE395}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_Piano" ID="{E220A99B-F429-4BA1-850C-48EC6270EC62}">
+					<ChildrenList>
+						<Action Name="" ID="{42FA8B8D-93B5-48D3-8184-527452B236BC}" ShortID="670992039">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ChillWurlyPiano" ID="{CFDEB9C4-7105-4B14-A55E-98BA17AE49F2}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_RoastBlend" ID="{2347B786-CB3B-43AF-AA4A-1D44B51B6145}">
+					<ChildrenList>
+						<Action Name="" ID="{B7203242-8F87-46DE-A998-84650249C5EB}" ShortID="346954613">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Radio_RoastBlend" ID="{C3D39DFB-E8CB-4C56-991C-1FCFFD98A5F1}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_SomedayWakeUp" ID="{2977A711-22F7-433E-933B-1376EFF66BAA}">
+					<ChildrenList>
+						<Action Name="" ID="{C6BB17B0-DC60-47D1-830E-A471CF096FC6}" ShortID="998601984">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Someday_Youd_Better_Wake_Up_LoFi_playlist" ID="{305D20CB-DF8B-41A9-B197-70D106013B4B}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_SpashedSea" ID="{49BD7BAB-1059-417B-AD24-B68419841165}">
+					<ChildrenList>
+						<Action Name="" ID="{789A33FA-D065-4425-8795-B00D1B9A53C7}" ShortID="417398134">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Spashed_in_the_Sea_AC_Playlist" ID="{B0AB1385-95C0-416C-B10D-8EBB8F8FC2ED}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_TakingShape" ID="{EE91EF99-525C-4EA1-B84B-01249B2D0050}">
+					<ChildrenList>
+						<Action Name="" ID="{E271D9A7-8B96-4EC4-B075-9B3910C1A250}" ShortID="541046175">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Taking_Shape" ID="{D0EF1B80-15A4-4B92-B4DD-6675A3A141D0}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_TellingStories" ID="{2D4975C9-5917-4B49-94E2-2F3763159A53}">
+					<ChildrenList>
+						<Action Name="" ID="{5264CFAB-8E33-45C4-B784-2A9922B33899}" ShortID="593407457">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+								<Property Name="Volume" Type="Real64" Value="100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Telling_Stories_AC_Playlist" ID="{09D4AC2D-0FBF-46B2-B30C-678E9B815EBD}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
