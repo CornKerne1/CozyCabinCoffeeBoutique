@@ -54,23 +54,23 @@ public class IngredientContainer : Interactable
         if (rotating)
         {
             if (!pouringAction)
+            {
+                transform.Rotate(2, 0, 0);
+                pouring = true;
+                if (cr1 == null)
                 {
-                    transform.Rotate(2, 0, 0);
-                    pouring = true;
-                    if (cr1 == null)
-                    {
-                        StartCoroutine(Timer(1f));
-                    }
+                    StartCoroutine(Timer(1f));
                 }
-                else
+            }
+            else
+            {
+                pouring = false;
+                transform.Rotate(-2, 0, 0);
+                if (cr1 == null)
                 {
-                    pouring = false;
-                    transform.Rotate(-2,0,0);
-                    if (cr1 == null)
-                    {
-                        StartCoroutine(Timer(1f));
-                    }
+                    StartCoroutine(Timer(1f));
                 }
+            }
         }
     }
 
@@ -80,10 +80,9 @@ public class IngredientContainer : Interactable
         {
             Destroy(contentsVisualizer);
         }
+
         base.Awake();
         dD = (DrinkData)ScriptableObject.CreateInstance("DrinkData");
-        
-
     }
 
     public override void Start()
@@ -97,7 +96,7 @@ public class IngredientContainer : Interactable
     }
 
     public virtual void AddToContainer(IngredientNode iN)
-    { 
+    {
         if (capacity > maxCapacity)
         {
             IngredientOverflow(iN);
@@ -106,12 +105,11 @@ public class IngredientContainer : Interactable
         {
             dD.addIngredient(iN);
             capacity = capacity + iN.target;
-            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y - .00048f) ,contentsVisualizer.transform.localPosition.z);
-            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f, (contentsVisualizer.transform.localScale.y + .01f) ,contentsVisualizer.transform.localScale.z);//
-            
+            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
+                (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
+            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
+                (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
         }
-
-
     }
 
     public virtual void RemoveIngredient()
@@ -132,26 +130,37 @@ public class IngredientContainer : Interactable
                     outputIngredients.Add(iD.milk);
                     break;
             }
+
             if (i.target <= 0)
             {
                 dD.Ingredients.Remove(i);
             }
         }
-            //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
+        //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
     }
+
     public void Pour()
     {
-        if (pouring && outputIngredients.Count > 0)
-            if (cr2 != null)
-                StartCoroutine(Liquify());
+        if (pouring)
+        {
+            if(outputIngredients.Count > 0)
+            {
+                //if (cr2 != null)
+                    StartCoroutine(Liquify());
+            }
+            else
+            {
+                RemoveIngredient();
+            }
+        }
     }
 
     IEnumerator Liquify()
     {
-        cr2 = Liquify();
+        //cr2 = Liquify();
         yield return new WaitForSeconds(.04f);
-        Instantiate(outputIngredients[outputIngredients.Count], pourTransform.position, pourTransform.rotation);
-        cr2 = null;
+        Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
+        //cr2 = null;
     }
 
     public void StopPouring()
@@ -171,19 +180,19 @@ public class IngredientContainer : Interactable
                 break;
         }
     }
-    
+
     public override void OnInteract(PlayerInteraction pI)
     {
         this.pI = pI;
         pI.Carry(gameObject);
         inHand = true;
-        Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y, Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
-        transform.rotation =rot;
+        Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y,
+            Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
+        transform.rotation = rot;
     }
 
     public override void OnFocus()
     {
-
     }
 
     public void OnDrop()
@@ -193,7 +202,6 @@ public class IngredientContainer : Interactable
 
     public override void OnLoseFocus()
     {
-
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
