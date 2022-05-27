@@ -15,8 +15,8 @@ public class IngredientContainer : Interactable
     private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
-
     private bool pouring;
+    private bool pouringAction;
     private bool rotating;
 
     public IngredientData iD;
@@ -37,38 +37,40 @@ public class IngredientContainer : Interactable
         cr1 = Timer(time);
         yield return new WaitForSeconds(time);
         rotating = false;
-        Test();
+        pouringAction = !pouringAction;
         cr1 = null;
     }
 
-    private void Test()
+    public bool IsPouring()
     {
-        if (pouring)
-            pouring = false;
-        else 
-            pouring = true;
+        if (pouringAction)
+            return pouringAction;
+        else
+            return pouring;
     }
 
     private void HandlePourRotation()
     {
         if (rotating)
         {
-            if (!pouring)
-            {
-                transform.Rotate(2,0,0);
-                if (cr1 == null)
+            if (!pouringAction)
                 {
-                    StartCoroutine(Timer(1f));
+                    transform.Rotate(2, 0, 0);
+                    pouring = true;
+                    if (cr1 == null)
+                    {
+                        StartCoroutine(Timer(1f));
+                    }
                 }
-            }
-            else
-            {
-                transform.Rotate(-2,0,0);
-                if (cr1 == null)
+                else
                 {
-                    StartCoroutine(Timer(1f));
+                    pouring = false;
+                    transform.Rotate(-2,0,0);
+                    if (cr1 == null)
+                    {
+                        StartCoroutine(Timer(1f));
+                    }
                 }
-            }
         }
     }
 
@@ -91,6 +93,7 @@ public class IngredientContainer : Interactable
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
         cr1 = null;
+        cr2 = null;
     }
 
     public virtual void AddToContainer(IngredientNode iN)
@@ -104,7 +107,7 @@ public class IngredientContainer : Interactable
             dD.addIngredient(iN);
             capacity = capacity + iN.target;
             contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y - .00048f) ,contentsVisualizer.transform.localPosition.z);
-            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f, (contentsVisualizer.transform.localScale.y + .01f) ,contentsVisualizer.transform.localScale.z);
+            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f, (contentsVisualizer.transform.localScale.y + .01f) ,contentsVisualizer.transform.localScale.z);//
             
         }
 
@@ -139,12 +142,8 @@ public class IngredientContainer : Interactable
     public void Pour()
     {
         if (pouring && outputIngredients.Count > 0)
-        {
             if (cr2 != null)
-            {
                 StartCoroutine(Liquify());
-            }
-        }
     }
 
     IEnumerator Liquify()
@@ -180,7 +179,7 @@ public class IngredientContainer : Interactable
         inHand = true;
         Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y, Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
         transform.rotation =rot;
-        }
+    }
 
     public override void OnFocus()
     {

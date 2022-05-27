@@ -11,6 +11,7 @@ public class Radio : Interactable
     bool isOn;
     public List<RadioChannel> RadioChannels = new List<RadioChannel>();
     [SerializeField] private GameObject radioDial;
+    PlayerInteraction pI;//
     public void PostSoundEvent(string s) { AkSoundEngine.PostEvent(s, this.gameObject); }
     public override void Start()
     {
@@ -45,6 +46,7 @@ public class Radio : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
+        this.pI = pI;
         pI.Carry(gameObject);
     }
 
