@@ -10,7 +10,7 @@ public class CustomerData : ScriptableObject
     public DrinkData orderedDrink;
     public DrinkData recievedDrink;
     public List<FlavorProfile.FlavorNode> desiredFlavors;
-    public Customer customer;
+    [HideInInspector] public Customer customer;
     public List<ConnorConverstation> conversations;
     //public List<string> orderPhrases;
 
@@ -30,4 +30,12 @@ public class CustomerData : ScriptableObject
             this.desiredFlavors.Add(f);
         }
     }
+    //public void DesiredFlavors(List<FlavorProfile.FlavorNode> flavors)
+    //{
+    //    desiredFlavors = new List<FlavorProfile.FlavorNode>();
+    //    foreach (FlavorProfile.FlavorNode f in flavors)
+    //    {
+    //        this.desiredFlavors.Add(f);
+    //    }
+    //}
 }

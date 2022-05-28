@@ -124,7 +124,7 @@ public abstract class Customer : MonoBehaviour
     /// </summary>
     public void RecieveDrink()
     {
-        float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.favoriteDrink);
+        float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.orderedDrink);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
         if (quality > .5)
             psr.material = Like;
