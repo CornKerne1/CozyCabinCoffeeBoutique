@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 {
     public string scene;
 
-    public Canvas canvas;
+    public Canvas introLetterCanvas;
 
     public GameObject optionsScreen;
 
@@ -20,10 +20,12 @@ public class MainMenu : MonoBehaviour
 
     private Animator animator;
 
+    public Animator inroLetterAnimator;
+
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
-        canvas.enabled = false;
+        introLetterCanvas.enabled = false;
         animator.SetTrigger("Reverse");
         director.Play();
     }
@@ -60,6 +62,7 @@ public class MainMenu : MonoBehaviour
     }
     private void ReadNote(PlayableDirector aDirector)
     {
-        canvas.enabled = true;
+        introLetterCanvas.enabled = true;
+        inroLetterAnimator.enabled = true;
     }
 }
