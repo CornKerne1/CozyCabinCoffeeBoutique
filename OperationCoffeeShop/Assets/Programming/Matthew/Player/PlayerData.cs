@@ -1,6 +1,9 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Generic")]
@@ -12,6 +15,12 @@ public class PlayerData : ScriptableObject
         isClimbing = false;
         killSwitchOff = true;
         neckClamp = 77.3f;
+        PlayerInput.InteractEvent += tryTest;
+    }
+
+    void tryTest(object sender, EventArgs e)
+    {
+        Debug.Log("SOMETHING");
     }
 
     [Header("Controller Variables")]

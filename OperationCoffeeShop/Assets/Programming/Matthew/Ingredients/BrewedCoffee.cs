@@ -19,7 +19,6 @@ public class BrewedCoffee : MonoBehaviour
 
     private void Awake()
     {
-        mat = matOwner.GetComponent<Renderer>().material;
     }
 
     private void Start()
@@ -30,6 +29,7 @@ public class BrewedCoffee : MonoBehaviour
         var newMat = GetComponent<MeshRenderer>().materials[0];
         myMat[0] = new Material(newMat);
         GetComponent<MeshRenderer>().materials = myMat;
+        mat = matOwner.GetComponent<Renderer>().material;
         mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f); //
     }
 

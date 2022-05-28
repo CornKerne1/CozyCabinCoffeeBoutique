@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pD: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
   hud: {fileID: 2146522850313100945, guid: 6a8cb7da0d5daab42a3c69aa805e9ff5, type: 3}
+  pauseMenu: {fileID: 1423995552129583617, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
   interact:
     m_Name: Interact
     m_Type: 1
@@ -339,6 +340,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: f8142ba7-5b31-495a-aaa4-278a68817f39
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  pause:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3eaa8b5d-4ed5-4ec8-8fb6-7550c68ab767
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -361,6 +371,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  canMove: 1
 --- !u!114 &3524786644289183257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8756248821475083717}
   holder: {fileID: 4690671043602249586}
+  canMove: 1
 --- !u!114 &1019261022
 MonoBehaviour:
   m_ObjectHideFlags: 0
