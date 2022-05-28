@@ -182,10 +182,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             try
             {
-                var c = carriedObj.GetComponent<IngredientContainer>();
+                if (!carriedObj.transform.root.GetComponentInChildren<IngredientContainer>().IsPouring()) {}
             }
             catch
             {
+
                 if (pI.GetCurrentRotate().x > 0)
                 {
                     carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
@@ -203,12 +204,14 @@ public class PlayerInteraction : MonoBehaviour
                     var i = carriedObj.GetComponent<Interactable>();
                     if (i)
                     {
-                        Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x, Quaternion.identity.y + i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z, Quaternion.identity.w);
-                        carriedObj.transform.rotation = Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime *50);
+                        Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x,
+                            Quaternion.identity.y + i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z,
+                            Quaternion.identity.w);
+                        carriedObj.transform.rotation =
+                            Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime * 50);
                     }
                 }
             }
-            
         }
     }
 }

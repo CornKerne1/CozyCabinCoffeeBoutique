@@ -11,6 +11,7 @@ public class Radio : Interactable
     bool isOn;
     public List<RadioChannel> RadioChannels = new List<RadioChannel>();
     [SerializeField] private GameObject radioDial;
+    PlayerInteraction pI;//
     public void PostSoundEvent(string s) { AkSoundEngine.PostEvent(s, this.gameObject); }
     public override void Start()
     {
@@ -33,9 +34,9 @@ public class Radio : Interactable
 
     public void HandleDial()
     {
-        var length = Mathf.Abs(sT.position.x) - Mathf.Abs(sT.position.y);
+        var length = Mathf.Abs(sT.position.x) - Mathf.Abs(eT.position.x);
         var inc = -length * (1.0f / RadioChannels.Count) * currentChannel;
-        radioDial.transform.position = new Vector3(sT.position.x - inc/57.0f, radioDial.transform.position.y,
+        radioDial.transform.position = new Vector3(sT.position.x - inc, radioDial.transform.position.y,
             radioDial.transform.position.z);
     }
     public override void OnFocus()
@@ -45,6 +46,7 @@ public class Radio : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
+        this.pI = pI;
         pI.Carry(gameObject);
     }
 
