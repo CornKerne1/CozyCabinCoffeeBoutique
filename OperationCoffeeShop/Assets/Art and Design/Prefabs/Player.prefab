@@ -334,6 +334,16 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  alt_interact:
+    m_Name: Alt_interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d758ff53-5836-4a78-b83f-2b81d61667d9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  disabled: 0
 --- !u!114 &3143608906517689546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +361,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  canMove: 1
 --- !u!114 &3524786644289183257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 8756248821475083717}
+  holder: {fileID: 0}
+  canMove: 1
 --- !u!114 &1019261022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pD: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
   pI: {fileID: 540870954}
+  carriedObj: {fileID: 0}
   profile: {fileID: 11400000, guid: b3e8b6154810f1c45b7d66eac43c7b23, type: 2}
   dof: {fileID: 0}
   interactionPoint: {x: 0.5, y: 0.5, z: 0}
