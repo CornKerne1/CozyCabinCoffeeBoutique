@@ -25,6 +25,9 @@ public class GameMode : MonoBehaviour
 
     [SerializeField] private GameObject GameOver;
 
+    static uint[] playingIds = new uint[50];
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,5 +97,26 @@ public class GameMode : MonoBehaviour
         {
             Instantiate(GameOver);
         }
+    }
+
+
+
+    public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
+    {
+        uint testEventId = AkSoundEngine.GetIDFromString(eventName);
+
+        uint count = (uint)playingIds.Length;
+        AKRESULT result = AkSoundEngine.GetPlayingIDsFromGameObject(go, ref count, playingIds);
+
+        for (int i = 0; i < count; i++)
+        {
+            uint playingId = playingIds[i];
+            uint eventId = AkSoundEngine.GetEventIDFromPlayingID(playingId);
+
+            if (eventId == testEventId)
+                return true;
+        }
+
+        return false;
     }
 }

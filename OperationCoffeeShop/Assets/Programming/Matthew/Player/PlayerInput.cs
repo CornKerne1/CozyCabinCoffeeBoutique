@@ -41,8 +41,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+       
 
         pC = new PlayerControls();
         fPP = pC.FPPlayer;
@@ -59,6 +58,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OnEnable()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
         
         fPP.Enable();

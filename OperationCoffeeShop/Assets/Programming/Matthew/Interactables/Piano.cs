@@ -6,7 +6,7 @@ public class Piano : Interactable
 {
     public override void OnInteract(PlayerInteraction pI)
     {
-        if(gM.)
+        //if(gM.)
     }
 
     public override void OnFocus()

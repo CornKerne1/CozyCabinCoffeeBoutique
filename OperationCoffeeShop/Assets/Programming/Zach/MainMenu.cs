@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,10 +14,20 @@ public class MainMenu : MonoBehaviour
     
     public GameObject optionsScreen;
 
+    [SerializeField] PlayableDirector director;
+
+    private Animator animator;
+
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
+        animator.SetTrigger("Reverse");
+        director.Play();
+    }
+    private void LaunchGame(PlayableDirector aDirector)
+    {
         SceneManager.LoadScene(scene);
+
     }
 
     public void OpenOptions()
@@ -34,6 +48,11 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD.isOpen = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        director.stopped += LaunchGame;
+
     }
 }
