@@ -11,7 +11,9 @@ using UnityEngine.InputSystem;
 public class MainMenu : MonoBehaviour
 {
     public string scene;
-    
+
+    public Canvas canvas;
+
     public GameObject optionsScreen;
 
     [SerializeField] PlayableDirector director;
@@ -21,10 +23,11 @@ public class MainMenu : MonoBehaviour
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
+        canvas.enabled = false;
         animator.SetTrigger("Reverse");
         director.Play();
     }
-    private void LaunchGame(PlayableDirector aDirector)
+    private void LaunchGame()
     {
         SceneManager.LoadScene(scene);
 
@@ -52,7 +55,11 @@ public class MainMenu : MonoBehaviour
         GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD.isOpen = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        director.stopped += LaunchGame;
+        director.stopped += ReadNote;
 
+    }
+    private void ReadNote(PlayableDirector aDirector)
+    {
+        canvas.enabled = true;
     }
 }
