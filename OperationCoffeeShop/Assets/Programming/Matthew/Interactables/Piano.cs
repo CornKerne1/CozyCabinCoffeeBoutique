@@ -6,7 +6,8 @@ public class Piano : Interactable
 {
     public override void OnInteract(PlayerInteraction pI)
     {
-        //if(gM.)
+        if (!GameMode.IsEventPlayingOnGameObject("Play_Piano", this.gameObject))
+            AkSoundEngine.PostEvent("Play_Piano", this.gameObject);
     }
 
     public override void OnFocus()
