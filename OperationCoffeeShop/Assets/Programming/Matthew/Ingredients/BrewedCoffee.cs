@@ -26,6 +26,10 @@ public class BrewedCoffee : MonoBehaviour
     {
         timer = maxTimer;
         changeColor = true;
+        var myMat = GetComponent<MeshRenderer>().materials;
+        var newMat = GetComponent<MeshRenderer>().materials[0];
+        myMat[0] = new Material(newMat);
+        GetComponent<MeshRenderer>().materials = myMat;
         mat.SetFloat("Vector1_f635bf8842f4453fa95dcb17f6f4ad4e", 0.0f); //
     }
 

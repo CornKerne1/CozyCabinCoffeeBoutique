@@ -3,7 +3,7 @@
 	<Presets>
 		<WorkUnit Name="Default Work Unit" ID="{89DB1D0A-377C-43CB-9428-7DCA26B3354E}" PersistMode="Standalone">
 			<ChildrenList>
-				<Attenuation Name="RadioAttenuation" ID="{804C66D1-1693-4CCD-8271-1B2AD1A14292}">
+				<Attenuation Name="RadioAttenuation" ID="{157E7C6F-A7BD-438C-9D98-757E8FECAE91}">
 					<PropertyList>
 						<Property Name="ConeAttenuation" Type="Real64">
 							<ValueList>
@@ -15,12 +15,12 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
-						<Property Name="RadiusMax" Type="Real64" Value="15"/>
+						<Property Name="RadiusMax" Type="Real64" Value="12"/>
 					</PropertyList>
 					<CurveUsageInfoList>
 						<VolumeDryUsage>
 							<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-								<Curve Name="VolumeDry" ID="{FD11195F-2FE5-49D6-89E2-C569F76DEDDA}">
+								<Curve Name="VolumeDry" ID="{7EE50F6A-A22E-4150-99DC-F7BEE90FB9BF}">
 									<PropertyList>
 										<Property Name="Flags" Type="int32" Value="3"/>
 									</PropertyList>
@@ -31,7 +31,7 @@
 											<Flags>5</Flags>
 										</Point>
 										<Point>
-											<XPos>15</XPos>
+											<XPos>12</XPos>
 											<YPos>-200</YPos>
 											<Flags>37</Flags>
 										</Point>
@@ -47,7 +47,7 @@
 						</VolumeWetUserUsage>
 						<LowPassFilterUsage>
 							<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-								<Curve Name="LowPassFilter" ID="{4F707E04-536F-4614-9B69-54B2EFAC453A}">
+								<Curve Name="LowPassFilter" ID="{13C8986E-5346-4AB9-B277-55B2C3D08D84}">
 									<PropertyList>
 										<Property Name="Flags" Type="int32" Value="65537"/>
 									</PropertyList>
@@ -59,8 +59,8 @@
 											<SegmentShape>Exp3</SegmentShape>
 										</Point>
 										<Point>
-											<XPos>15</XPos>
-											<YPos>100</YPos>
+											<XPos>12</XPos>
+											<YPos>30</YPos>
 											<Flags>37</Flags>
 										</Point>
 									</PointList>

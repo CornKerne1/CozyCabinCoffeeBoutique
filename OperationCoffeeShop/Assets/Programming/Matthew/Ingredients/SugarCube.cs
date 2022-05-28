@@ -18,10 +18,16 @@ public class SugarCube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(sugarCube, transform.position, transform.rotation);
-        Destroy(this);
+        StartCoroutine(MakePickUpable());
     }
 
+    public IEnumerator MakePickUpable()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Instantiate(sugarCube, transform.position, transform.rotation);
+        Destroy(transform.gameObject);
+    }
+    
     private void TryAddOrDelete(GameObject obj)
     {
         try
