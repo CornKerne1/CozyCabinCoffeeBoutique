@@ -34,9 +34,9 @@ public class Radio : Interactable
 
     public void HandleDial()
     {
-        var length = Mathf.Abs(sT.position.x) - Mathf.Abs(sT.position.y);
+        var length = Mathf.Abs(sT.position.x) - Mathf.Abs(eT.position.x);
         var inc = -length * (1.0f / RadioChannels.Count) * currentChannel;
-        radioDial.transform.position = new Vector3(sT.position.x - inc/57.0f, radioDial.transform.position.y,
+        radioDial.transform.position = new Vector3(sT.position.x - inc, radioDial.transform.position.y,
             radioDial.transform.position.z);
     }
     public override void OnFocus()
