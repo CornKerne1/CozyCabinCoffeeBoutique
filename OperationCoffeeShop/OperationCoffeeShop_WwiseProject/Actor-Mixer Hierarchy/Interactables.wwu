@@ -401,6 +401,32 @@
 								<ActiveSource Name="Telling_Stories_AC_Playlist" ID="{F0555B24-488C-4806-B8DB-9112436B7F78}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="RedPandaTheme" ID="{8D0F1697-9F86-4240-A319-2E92EC37244E}" ShortID="256237881">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="RedPandaTheme" ID="{223BFC34-B8D9-47ED-9E23-30F64D75A351}">
+									<Language>SFX</Language>
+									<AudioFile>RedPandaTheme.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="2409473"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="RedPandaTheme" ID="{223BFC34-B8D9-47ED-9E23-30F64D75A351}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>

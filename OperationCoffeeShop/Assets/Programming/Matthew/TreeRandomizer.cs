@@ -23,9 +23,9 @@ public class TreeRandomizer : MonoBehaviour
 
     void Initialize()
     {
-        var r = Random.Range(0.01f, 1.0f);
-        var g = Random.Range(0.3f, 1.0f);
-        var b = Random.Range(0.01f, 0.6f);
+        var r = Random.Range(0.3f, 1.0f);
+        var g = Random.Range(0.5f, 1.0f);
+        var b = Random.Range(0.1f, 0.45f);
         var a = 1;
         var myMat = GetComponent<MeshRenderer>().materials;
         var newMat = GetComponent<MeshRenderer>().materials[matSlot];
