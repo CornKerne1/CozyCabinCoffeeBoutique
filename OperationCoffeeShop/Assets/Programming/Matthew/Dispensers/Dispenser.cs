@@ -70,7 +70,6 @@ public class Dispenser : Interactable
     public void AddItems(object sender, EventArgs e)
     {
         Tuple<ObjectHolder, int> tuple= (Tuple<ObjectHolder,int>)sender;
-        Debug.Log("adding items of quantitiy " + tuple.Item2);
 
         if (objType == tuple.Item1)
         {

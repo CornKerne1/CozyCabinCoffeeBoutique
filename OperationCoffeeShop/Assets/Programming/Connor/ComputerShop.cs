@@ -45,7 +45,6 @@ public class ComputerShop : MonoBehaviour
 
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         cBTM = gM.gameObject.GetComponent<CoffeeBankTM>();
-        cBTM.ResetEvents();
         CoffeeBankTM.SuccessfulWithdrawl += EnsureWithdrawl;//
         pcc = gM.player.gameObject.GetComponent<PlayerCameraController>();
         pm = gM.player.gameObject.GetComponent<PlayerMovement>();
@@ -55,8 +54,8 @@ public class ComputerShop : MonoBehaviour
 
     public void CloseShop()
     {
+        this.GetComponent<Canvas>().enabled = false;
         orders = new Queue<string>();
-        Destroy(this.gameObject);
         pcc.canMove = true;
         pm.canMove = true;
         Cursor.visible = false;
@@ -91,41 +90,43 @@ public class ComputerShop : MonoBehaviour
     }
     void EnsureWithdrawl(object sender, EventArgs e)
     {
-        Debug.Log("ensureWithdrawl " + orders.Count);
-        if ((bool)sender)
+        if (orders.Count > 0)
         {
-            balance.text = balanceString + cBTM.moneyInBank;
-            bankUpdate.color = Color.green;
-            string ingredient = orders.Dequeue();
-            bankUpdate.text = bankSuccessString + ingredient;
-            
-            switch (ingredient)
+            if ((bool)sender)
             {
-                case "Coffee":
-                    Tuple<ObjectHolder, int> coffee = new Tuple<ObjectHolder, int>(coffeeType, coffeeQuanitiy);
-                    DepositItems?.Invoke(coffee, EventArgs.Empty);
-                    break;
+                balance.text = balanceString + cBTM.moneyInBank;
+                bankUpdate.color = Color.green;
+                string ingredient = orders.Dequeue();
+                bankUpdate.text = bankSuccessString + ingredient;
 
-                case "Milk":
-                    //DepositItems?.Invoke((milkQuantity), EventArgs.Empty);
-                    break;
+                switch (ingredient)
+                {
+                    case "Coffee":
+                        Tuple<ObjectHolder, int> coffee = new Tuple<ObjectHolder, int>(coffeeType, coffeeQuanitiy);
+                        DepositItems?.Invoke(coffee, EventArgs.Empty);
+                        break;
 
-                case "Espresso":
-                    Tuple<ObjectHolder, int> espresso = new Tuple<ObjectHolder, int>(espressoType, espressoQuantity);
-                    DepositItems?.Invoke(espresso, EventArgs.Empty);
-                    break;
+                    case "Milk":
+                        //DepositItems?.Invoke((milkQuantity), EventArgs.Empty);
+                        break;
 
-                case "Sugar":
-                    //DepositItems?.Invoke((sugarQuantity), EventArgs.Empty);
-                    break;
+                    case "Espresso":
+                        Tuple<ObjectHolder, int> espresso = new Tuple<ObjectHolder, int>(espressoType, espressoQuantity);
+                        DepositItems?.Invoke(espresso, EventArgs.Empty);
+                        break;
+
+                    case "Sugar":
+                        //DepositItems?.Invoke((sugarQuantity), EventArgs.Empty);
+                        break;
+                }
+
+
             }
-
-
-        }
-        else
-        {
-            bankUpdate.color = Color.red;
-            bankUpdate.text = bankFailureString + orders.Dequeue();
+            else
+            {
+                bankUpdate.color = Color.red;
+                bankUpdate.text = bankFailureString + orders.Dequeue();
+            }
         }
     }
 

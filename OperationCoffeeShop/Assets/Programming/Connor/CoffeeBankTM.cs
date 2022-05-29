@@ -20,13 +20,7 @@ public class CoffeeBankTM : MonoBehaviour
        
 
     }
-    public void ResetEvents()
-    {
-        CustomerLine.DepositMoney -= DepositMoneyInBank;//
-        ComputerShop.SpendMoney -= WithdrawMoneyInBank;
-        CustomerLine.DepositMoney += DepositMoneyInBank;//
-        ComputerShop.SpendMoney += WithdrawMoneyInBank;
-    }
+    
     void DepositMoneyInBank(object sender, EventArgs e)
     {
        
@@ -46,8 +40,8 @@ public class CoffeeBankTM : MonoBehaviour
     void WithdrawMoneyInBank(object sender, EventArgs e)
     {
         Debug.Log("making a withdrawl for " + (float)sender + " from an accound with " + moneyInBank);
-        try
-        {
+        //try
+        //{
             if (moneyInBank - (float)sender >= 0)
             {
                 EventArgs ee = new EventArgs();
@@ -63,12 +57,12 @@ public class CoffeeBankTM : MonoBehaviour
                 SuccessfulWithdrawl?.Invoke(false, EventArgs.Empty);
 
             }
-        }
-        catch (Exception ex)
-        {
-            SuccessfulWithdrawl?.Invoke(false, EventArgs.Empty);
-            Debug.LogException(ex);
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    SuccessfulWithdrawl?.Invoke(false, EventArgs.Empty);
+        //    Debug.LogException(ex);
+        //}
 
     }
 }

@@ -6,7 +6,7 @@ using System;
 public class ComputerShopInteractable : Interactable
 {
 
-    public GameObject shopUI;
+    public Canvas shopUI;
 
     PlayerMovement pm;
     PlayerCameraController pcc;
@@ -22,7 +22,7 @@ public class ComputerShopInteractable : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        Instantiate(shopUI);
+        shopUI.enabled = true;
         pcc.canMove = false;
         pm.canMove = false;
         Cursor.visible = true;
