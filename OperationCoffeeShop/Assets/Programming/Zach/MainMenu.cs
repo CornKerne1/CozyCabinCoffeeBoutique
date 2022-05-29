@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         introLetterCanvas.enabled = false;
-        animator.SetTrigger("Reverse");
+        animator.SetTrigger("Start");
         director.Play();
     }
     private void LaunchGame()
