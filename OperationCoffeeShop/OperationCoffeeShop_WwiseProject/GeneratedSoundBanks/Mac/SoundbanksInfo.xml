@@ -16,12 +16,11 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="2397766435">
+		<SoundBank Id="3161908922" Language="SFX" Hash="123591438">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
-				<Event Id="264203025" Name="Mute_RedPandaTheme" ObjectPath="\Events\Default Work Unit\Mute_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4061997089" Name="Play_AfterHours" ObjectPath="\Events\Default Work Unit\Play_AfterHours" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="752191520" Language="SFX">
@@ -94,11 +93,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3700200612" Name="Play_RedPandaTheme" ObjectPath="\Events\Default Work Unit\Play_RedPandaTheme" MaxAttenuation="12." DurationType="Infinite">
+				<Event Id="3700200612" Name="Play_RedPandaTheme" ObjectPath="\Events\Default Work Unit\Play_RedPandaTheme" MaxAttenuation="12." DurationType="OneShot" DurationMin="129." DurationMax="129.">
 					<IncludedMemoryFiles>
-						<File Id="153184364" Language="SFX">
+						<File Id="2409473" Language="SFX">
 							<ShortName>RedPandaTheme.wav</ShortName>
-							<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
+							<Path>SFX\RedPandaTheme_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -142,13 +141,13 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2620215200" Name="UnMute_RedPandaTheme" ObjectPath="\Events\Default Work Unit\UnMute_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeOne_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="521874696" Name="VolumeOne_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeOne_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1886182129" Name="VolumeOne_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeOne_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="844119779" Name="VolumeOne_Piano" ObjectPath="\Events\Default Work Unit\VolumeOne_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="662843338" Name="VolumeOne_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeOne_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3973291544" Name="VolumeOne_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeOne_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2181399409" Name="VolumeOne_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeOne_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2689093237" Name="VolumeOne_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeOne_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -160,6 +159,7 @@
 				<Event Id="247285116" Name="VolumeZero_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeZero_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3535909101" Name="VolumeZero_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeZero_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2896401063" Name="VolumeZero_Piano" ObjectPath="\Events\Default Work Unit\VolumeZero_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="946022718" Name="VolumeZero_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeZero_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2913870116" Name="VolumeZero_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeZero_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3467887341" Name="VolumeZero_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeZero_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4282258553" Name="VolumeZero_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeZero_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -167,9 +167,9 @@
 				<Event Id="3876908550" Name="VolumeZero_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeZero_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="153184364" Language="SFX">
+				<File Id="2409473" Language="SFX">
 					<ShortName>RedPandaTheme.wav</ShortName>
-					<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
+					<Path>SFX\RedPandaTheme_10C4C929.wem</Path>
 				</File>
 				<File Id="230495110" Language="SFX">
 					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>

@@ -15,7 +15,7 @@ public class Radio : Interactable
     public void PostSoundEvent(string s) { AkSoundEngine.PostEvent(s, this.gameObject); }
     public override void Start()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 11; i++)
         {
             var rC = Instantiate(radioChannel, transform.position, transform.rotation).GetComponent<RadioChannel>();
             rC.channel = i;

@@ -13,7 +13,6 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID MUTE_REDPANDATHEME = 264203025U;
         static const AkUniqueID PLAY_AFTERHOURS = 4061997089U;
         static const AkUniqueID PLAY_BOSSANOVA = 2993288148U;
         static const AkUniqueID PLAY_BREAKINGLOOSE = 855079117U;
@@ -29,13 +28,13 @@ namespace AK
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
-        static const AkUniqueID UNMUTE_REDPANDATHEME = 2620215200U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;
         static const AkUniqueID VOLUMEONE_BREAKINGLOOSE = 4016599115U;
         static const AkUniqueID VOLUMEONE_EXQUISITETASTE = 521874696U;
         static const AkUniqueID VOLUMEONE_NEUROTICBONE = 1886182129U;
         static const AkUniqueID VOLUMEONE_PIANO = 844119779U;
+        static const AkUniqueID VOLUMEONE_REDPANDATHEME = 662843338U;
         static const AkUniqueID VOLUMEONE_ROASTBLEND = 3973291544U;
         static const AkUniqueID VOLUMEONE_SOMEDAYWAKEUP = 2181399409U;
         static const AkUniqueID VOLUMEONE_SPASHEDSEA = 2689093237U;
@@ -47,6 +46,7 @@ namespace AK
         static const AkUniqueID VOLUMEZERO_EXQUISITETASTE = 247285116U;
         static const AkUniqueID VOLUMEZERO_NEUROTICBONE = 3535909101U;
         static const AkUniqueID VOLUMEZERO_PIANO = 2896401063U;
+        static const AkUniqueID VOLUMEZERO_REDPANDATHEME = 946022718U;
         static const AkUniqueID VOLUMEZERO_ROASTBLEND = 2913870116U;
         static const AkUniqueID VOLUMEZERO_SOMEDAYWAKEUP = 3467887341U;
         static const AkUniqueID VOLUMEZERO_SPASHEDSEA = 4282258553U;

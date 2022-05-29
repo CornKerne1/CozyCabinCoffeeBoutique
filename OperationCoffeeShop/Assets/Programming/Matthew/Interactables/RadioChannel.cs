@@ -39,6 +39,9 @@ public class RadioChannel: MonoBehaviour
                 eventName = "Play_TakingShape";
                 break;
             case 9 :
+                eventName = "Play_RedPandaTheme";
+                break;
+            case 10 :
                 eventName = "Play_TellingStories";
                 break;
         }
@@ -77,6 +80,9 @@ public class RadioChannel: MonoBehaviour
                 eventName = "VolumeOne_TakingShape";
                 break;
             case 9 :
+                eventName = "VolumeOne_RedPandaTheme";
+                break;
+            case 10 :
                 eventName = "VolumeOne_TellingStories";
                 break;
         }
@@ -114,6 +120,9 @@ public class RadioChannel: MonoBehaviour
                 eventName = "VolumeZero_TakingShape";
                 break;
             case 9 :
+                eventName = "VolumeZero_RedPandaTheme";
+                break;
+            case 10 :
                 eventName = "VolumeZero_TellingStories";
                 break;
         }
