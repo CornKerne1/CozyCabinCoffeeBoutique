@@ -6,7 +6,7 @@ using System;
 public class ComputerShopInteractable : Interactable
 {
 
-    GameObject shopUI;
+    public GameObject shopUI;
 
     PlayerMovement pm;
     PlayerCameraController pcc;
@@ -28,14 +28,7 @@ public class ComputerShopInteractable : Interactable
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-    public void CloseShop()
-    {
-        shopUI.SetActive(false);
-        pcc.canMove = true;
-        pm.canMove = true;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    
 
 
     public override void OnFocus()
