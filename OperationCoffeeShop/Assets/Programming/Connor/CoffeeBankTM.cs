@@ -20,7 +20,13 @@ public class CoffeeBankTM : MonoBehaviour
        
 
     }
-
+    public void ResetEvents()
+    {
+        CustomerLine.DepositMoney -= DepositMoneyInBank;//
+        ComputerShop.SpendMoney -= WithdrawMoneyInBank;
+        CustomerLine.DepositMoney += DepositMoneyInBank;//
+        ComputerShop.SpendMoney += WithdrawMoneyInBank;
+    }
     void DepositMoneyInBank(object sender, EventArgs e)
     {
        
@@ -46,8 +52,9 @@ public class CoffeeBankTM : MonoBehaviour
             {
                 EventArgs ee = new EventArgs();
 
-                SuccessfulWithdrawl?.Invoke(true, EventArgs.Empty);
                 moneyInBank -= (float)sender;
+                SuccessfulWithdrawl?.Invoke(true, EventArgs.Empty);
+
                 Debug.Log("withdrawing money, money in bank now =" + moneyInBank);
 
             }
