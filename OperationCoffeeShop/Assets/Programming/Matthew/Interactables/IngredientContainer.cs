@@ -25,6 +25,7 @@ public class IngredientContainer : Interactable
     private IEnumerator cr2 = null;
 
     public List<GameObject> outputIngredients = new List<GameObject>();
+    private List<IngredientNode> garbageList = new List<IngredientNode>();
 
     private void FixedUpdate()
     {
@@ -109,16 +110,7 @@ public class IngredientContainer : Interactable
                 (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
             contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
                 (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
-        }
-    }
-
-    public virtual void RemoveIngredient()
-    {
-        foreach (IngredientNode i in dD.Ingredients)
-        {
-            i.target = i.target - 0.1f;
-            capacity = capacity - 0.1f;
-            switch (i.ingredient)
+            switch (iN.ingredient)
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
@@ -129,13 +121,32 @@ public class IngredientContainer : Interactable
                 case Ingredients.Milk:
                     outputIngredients.Add(iD.milk);
                     break;
+                case Ingredients.Sugar:
+                    outputIngredients.Add(iD.Sugar);
+                    break;
             }
+        }
+    }
+
+    public virtual void RemoveIngredient()
+    {
+        foreach (IngredientNode i in dD.Ingredients)
+        {
+            i.target = i.target - 0.1f;
+            capacity = capacity - 0.1f;
 
             if (i.target <= 0)
             {
-                dD.Ingredients.Remove(i);
+                garbageList.Add(i);
             }
         }
+
+        foreach (IngredientNode i in garbageList)
+        {
+            dD.Ingredients.Remove(i);
+        }
+
+        garbageList = new List<IngredientNode>();
         //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
     }
 
@@ -145,12 +156,7 @@ public class IngredientContainer : Interactable
         {
             if(outputIngredients.Count > 0)
             {
-                //if (cr2 != null)
-                    StartCoroutine(Liquify());
-            }
-            else
-            {
-                RemoveIngredient();
+                StartCoroutine(Liquify());
             }
         }
     }

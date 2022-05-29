@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID MUTE_REDPANDATHEME = 264203025U;
         static const AkUniqueID PLAY_AFTERHOURS = 4061997089U;
         static const AkUniqueID PLAY_BOSSANOVA = 2993288148U;
         static const AkUniqueID PLAY_BREAKINGLOOSE = 855079117U;
@@ -22,11 +23,13 @@ namespace AK
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
         static const AkUniqueID PLAY_NEUROTICBONE = 3754899171U;
         static const AkUniqueID PLAY_PIANO = 1479974693U;
+        static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
         static const AkUniqueID PLAY_ROASTBLEND = 3453202434U;
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
+        static const AkUniqueID UNMUTE_REDPANDATHEME = 2620215200U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;
         static const AkUniqueID VOLUMEONE_BREAKINGLOOSE = 4016599115U;
