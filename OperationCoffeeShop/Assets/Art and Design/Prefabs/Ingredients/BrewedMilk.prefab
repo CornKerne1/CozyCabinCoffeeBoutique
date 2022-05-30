@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8736813970023886068}
   m_Layer: 4
-  m_Name: BrewedEspresso
+  m_Name: BrewedMilk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1053302688289356717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8889326768271314780}
   m_Father: {fileID: 0}
@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d069e2cb1266f0458c7b133d2d566cf, type: 2}
+  - {fileID: 2100000, guid: 9727919e7074c4942b63eade0f33de5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   speed: 0.001
   maxTimer: 1.5
   iN:
-    ingredient: 5
+    ingredient: 0
     target: 0.01
 --- !u!54 &766767930868364327
 Rigidbody:

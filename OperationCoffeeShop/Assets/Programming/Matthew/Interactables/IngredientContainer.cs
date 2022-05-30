@@ -12,7 +12,7 @@ public class IngredientContainer : Interactable
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
     private float capacity;
-    private float maxCapacity = 2.0f;
+    [SerializeField]private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
     private bool pouring;
@@ -106,10 +106,14 @@ public class IngredientContainer : Interactable
         {
             dD.addIngredient(iN);
             capacity = capacity + iN.target;
-            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
-                (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
-            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
-                (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
+            if (hasContentsVisualizer)
+            {
+                contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
+                    (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
+                contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
+                    (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
+            }
+
             switch (iN.ingredient)
             {
                 case Ingredients.BrewedCoffee:
@@ -132,7 +136,8 @@ public class IngredientContainer : Interactable
     {
         foreach (IngredientNode i in dD.Ingredients)
         {
-            i.target = i.target - 0.1f;
+            var c = i.target - 0.1f;
+            i.target = c;
             capacity = capacity - 0.1f;
 
             if (i.target <= 0)
@@ -166,6 +171,14 @@ public class IngredientContainer : Interactable
         if (outputIngredients.Count > 0)
         {
             Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
+            outputIngredients.Remove(outputIngredients[outputIngredients.Count-1]);
+            if (hasContentsVisualizer)
+            {
+                contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
+                    (contentsVisualizer.transform.localPosition.y + .00048f), contentsVisualizer.transform.localPosition.z);
+                contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x - .01f,
+                    (contentsVisualizer.transform.localScale.y - .01f), contentsVisualizer.transform.localScale.z); //
+            }
         }
 
         cr2 = null;
@@ -185,6 +198,12 @@ public class IngredientContainer : Interactable
                 break;
             case Ingredients.Espresso:
                 Instantiate(iD.espresso, pourTransform.position, pourTransform.rotation);
+                break;
+            case Ingredients.Sugar:
+                Instantiate(iD.Sugar, pourTransform.position, pourTransform.rotation);
+                break;
+            case Ingredients.Milk:
+                Instantiate(iD.milk, pourTransform.position, pourTransform.rotation);
                 break;
         }
     }
