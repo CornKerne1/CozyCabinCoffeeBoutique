@@ -13,7 +13,10 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
     private Story currentStory;
 
-    private bool dialogueIsPlaying;
+    public bool dialogueIsPlaying;
+    public bool finishedConversation = false;
+
+    private GameObject currentCustoemr;
 
     private void Awake()
     {
@@ -49,6 +52,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
+        finishedConversation = true;
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -58,12 +62,28 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+
             dialogueText.text = currentStory.Continue();
+        }
+        else if (currentStory.currentChoices.Count > 0)
+        {
+            currentStory.ChooseChoiceIndex(0);
+            dialogueText.text = currentStory.Continue();
+
         }
         else
         {
+            Debug.Log("we are now exiting dialgoue");
             ExitDialogueMode();
         }
+    }
+    public GameObject GetCurrentCustomer()
+    {
+        return currentCustoemr;
+    }
+    public void SetCurrentCustomer(GameObject customer)
+    {
+        currentCustoemr = customer;
     }
 }
 

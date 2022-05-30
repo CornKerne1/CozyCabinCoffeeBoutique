@@ -21,11 +21,11 @@ public class SkeletonAlembic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        jumpIdleDirector = jumpIdle.GetComponent<PlayableDirector>();
-        jumpWalkingDirector = jumpWalking.GetComponent<PlayableDirector>();
-        jumpTalkingDirector = jumpTalking.GetComponent<PlayableDirector>();
-        jumpIntroDirector = jumpIntroDirector.GetComponent<PlayableDirector>();
+        //animator = GetComponent<Animator>();
+        //jumpIdleDirector = jumpIdle.GetComponent<PlayableDirector>();
+        //jumpWalkingDirector = jumpWalking.GetComponent<PlayableDirector>();
+        //jumpTalkingDirector = jumpTalking.GetComponent<PlayableDirector>();
+        //jumpIntroDirector = jumpIntroDirector.GetComponent<PlayableDirector>();
 
 
     }
@@ -33,19 +33,19 @@ public class SkeletonAlembic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(animator.speed >.1 && jumpWalkingDirector.time == 0)
-        {
-            currentObject.SetActive(false);
-            jumpWalking.SetActive(true);
-            currentObject = jumpWalking;
-            jumpWalkingDirector.Play();
-        }
-        if (animator.speed < .1 && jumpWalkingDirector.time == 0)
-        {
-            currentObject.SetActive(false);
-            jumpIdle.SetActive(true);
-            currentObject = jumpIdle;
-            jumpIdleDirector.Play();
-        }
+        //if(animator.speed >.1 && jumpWalkingDirector.time == 0)
+        //{
+        //    currentObject.SetActive(false);
+        //    jumpWalking.SetActive(true);
+        //    currentObject = jumpWalking;
+        //    jumpWalkingDirector.Play();
+        //}
+        //if (animator.speed < .1 && jumpWalkingDirector.time == 0)
+        //{
+        //    currentObject.SetActive(false);
+        //    jumpIdle.SetActive(true);
+        //    currentObject = jumpIdle;
+        //    jumpIdleDirector.Play();
+        //}
     }
 }
