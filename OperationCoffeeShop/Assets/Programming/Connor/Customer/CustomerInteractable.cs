@@ -6,7 +6,6 @@ public class CustomerInteractable : Interactable
 {
 
     [Header("Visual Cue")]
-    [SerializeField] private GameObject visualcue;
 
     private TextAsset IntroConversation;
     private TextAsset ExitConversation;
@@ -138,7 +137,7 @@ public class CustomerInteractable : Interactable
 
     public override void OnFocus()
     {
-        visualcue.SetActive(true);
+       
     }
 
     public override void OnInteract(PlayerInteraction pI)
@@ -189,7 +188,7 @@ public class CustomerInteractable : Interactable
 
     public override void OnLoseFocus()
     {
-        visualcue.SetActive(false);
+       
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
