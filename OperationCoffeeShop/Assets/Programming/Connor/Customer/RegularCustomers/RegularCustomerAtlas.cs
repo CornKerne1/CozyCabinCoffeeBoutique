@@ -10,11 +10,11 @@ public class RegularCustomerAtlas : ScriptableObject
     public class KeyValuePair
     {
         public int Day;
-        public List<GameObject> customers;
+        public List<customerConversations> customers;
     }
 
     public List<KeyValuePair> customerDays = new List<KeyValuePair>();
-    public Dictionary<int, List<GameObject>> dic = new Dictionary<int, List<GameObject>>();
+    public Dictionary<int, List<customerConversations>> dic = new Dictionary<int, List<customerConversations>>();
 
     public void updateDictionary()
     {
@@ -23,8 +23,13 @@ public class RegularCustomerAtlas : ScriptableObject
             dic[kvp.Day] = kvp.customers;
         }
     }
-
-    
+    [Serializable]
+    public struct customerConversations
+    {
+        public GameObject customer;
+        public TextAsset IntroConversation;
+        public TextAsset ExitConversation;
+    }
     
 }
 

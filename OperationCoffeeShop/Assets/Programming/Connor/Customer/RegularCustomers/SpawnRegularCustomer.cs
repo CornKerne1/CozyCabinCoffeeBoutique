@@ -27,6 +27,7 @@ public class SpawnRegularCustomer : MonoBehaviour
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
         Instantiate(customer, this.transform.position, this.transform.rotation);
+        customer.GetComponent<CustomerInteractable>().rCA = RCA;
 
     }
     private void UpdateDic(object sender, EventArgs e)
@@ -40,10 +41,10 @@ public class SpawnRegularCustomer : MonoBehaviour
             Debug.Log("Day: " + gMD.currentTime.Day);
             if (RCA.dic.ContainsKey(gMD.currentTime.Day))
             {
-                List<GameObject> customers = RCA.dic[gMD.currentTime.Day];
-                foreach (GameObject customer in customers)
+                List<RegularCustomerAtlas.customerConversations> customers = RCA.dic[gMD.currentTime.Day];
+                foreach (RegularCustomerAtlas.customerConversations customer in customers)
                 {
-                    RegularCustomer rc = customer.GetComponent<RegularCustomer>();
+                    RegularCustomer rc = customer.customer.GetComponent<RegularCustomer>();
                     if (rc.randomTimeOfDay)
                     {
                         int hour = UnityEngine.Random.Range(gMD.wakeUpHour, gMD.closingHour);
@@ -51,7 +52,7 @@ public class SpawnRegularCustomer : MonoBehaviour
                         {
                             Time_Customer[hour] = new List<GameObject>();
                         }
-                        Time_Customer[hour].Add(customer);
+                        Time_Customer[hour].Add(customer.customer);
                     }
                     else
                     {
@@ -59,7 +60,7 @@ public class SpawnRegularCustomer : MonoBehaviour
                         {
                             Time_Customer[rc.spawnTime] = new List<GameObject>();
                         }
-                        Time_Customer[rc.spawnTime].Add(customer);
+                        Time_Customer[rc.spawnTime].Add(customer.customer);
                     }
                 }
             }

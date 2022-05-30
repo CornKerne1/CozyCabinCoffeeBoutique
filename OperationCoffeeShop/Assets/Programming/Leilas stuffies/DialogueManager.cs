@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI button1Text;
     private static DialogueManager instance;
     private Story currentStory;
 
@@ -47,7 +48,15 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
-        ContinueStory();
+        ContinueStory(); 
+        if (currentStory.currentChoices.Count > 0)
+        {
+            button1Text.text = currentStory.currentChoices[0].text;
+        }
+        else
+        {
+            button1Text.text = "Continue";
+        }
     }
 
     private void ExitDialogueMode()
@@ -68,7 +77,16 @@ public class DialogueManager : MonoBehaviour
         else if (currentStory.currentChoices.Count > 0)
         {
             currentStory.ChooseChoiceIndex(0);
+           
             dialogueText.text = currentStory.Continue();
+            if (currentStory.currentChoices.Count > 0)
+            {
+                button1Text.text = currentStory.currentChoices[0].text;
+            }
+            else
+            {
+                button1Text.text = "Continue";
+            }
 
         }
         else

@@ -12,6 +12,7 @@ public class RegularCustomer : Customer
     public void Awake()
     {
         ai = GetComponent<CustomerAI>();
+        CD.orderedDrink = GetFavoriteDrink();
         //CD.DesiredFlavors(CD.favoriteDrink.);
     }
     public override string Dialogue()

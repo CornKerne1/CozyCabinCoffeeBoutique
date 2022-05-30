@@ -5,6 +5,7 @@ using System;
 
 public abstract class Customer : MonoBehaviour 
 {
+    public RandomConversations randomConversations;
 
 
     [Header("RandomCustomer will be empty")]

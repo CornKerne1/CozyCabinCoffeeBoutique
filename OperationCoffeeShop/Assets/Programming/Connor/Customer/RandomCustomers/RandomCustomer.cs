@@ -14,6 +14,7 @@ public class RandomCustomer : Customer
 
     public RandomCustomerSet CustomerSet;
 
+
     public void Awake()
     {
         //Instanciate Random Customer from CustomerSet

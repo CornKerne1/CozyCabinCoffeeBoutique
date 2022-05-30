@@ -10,8 +10,9 @@ public class CustomerData : ScriptableObject
     public DrinkData orderedDrink;
     public DrinkData recievedDrink;
     public List<FlavorProfile.FlavorNode> desiredFlavors;
-    [HideInInspector] public Customer customer;
-    public List<ConnorConverstation> conversations;
+   public Customer customer;
+    public List<TextAsset> OrderConversation;
+
     //public List<string> orderPhrases;
 
 
@@ -36,6 +37,23 @@ public class CustomerData : ScriptableObject
     //    foreach (FlavorProfile.FlavorNode f in flavors)
     //    {
     //        this.desiredFlavors.Add(f);
+    //    }
+    //}
+
+    //public class KeyValuePair
+    //{
+    //    public int Day;
+    //    public List<GameObject> customers;
+    //}
+
+    //public List<KeyValuePair> customerDays = new List<KeyValuePair>();
+    //public Dictionary<int, List<GameObject>> dic = new Dictionary<int, List<GameObject>>();
+
+    //public void updateDictionary()
+    //{
+    //    foreach (var kvp in customerDays)
+    //    {
+    //        dic[kvp.Day] = kvp.customers;
     //    }
     //}
 }

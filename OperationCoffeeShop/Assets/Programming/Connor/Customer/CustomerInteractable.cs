@@ -8,8 +8,8 @@ public class CustomerInteractable : Interactable
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualcue;
 
-    [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJSON;
+    private TextAsset IntroConversation;
+    private TextAsset ExitConversation;
 
     public CustomerAI CAI;
 
@@ -19,7 +19,6 @@ public class CustomerInteractable : Interactable
 
     private GameObject prompt;
 
-    private CustomerDialogue customerDialogue;
 
     public Canvas canvas;
 
@@ -42,9 +41,11 @@ public class CustomerInteractable : Interactable
 
     DialogueManager dialogueManager;
 
+    [HideInInspector]
+    public RegularCustomerAtlas rCA;
+
     private void Start()
     {
-        customerDialogue = GameObject.Find("Dialogue Canvas").GetComponent<CustomerDialogue>();
         this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         CA = gameObject.GetComponent<CustomerAnimations>();
         orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
@@ -55,6 +56,14 @@ public class CustomerInteractable : Interactable
         pcc = player.GetComponent<PlayerCameraController>();
         neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
+
+        // will be null if random customer or not spawned by a regular spawner
+        if (rCA != null)
+            SetConversations();
+        else
+        {
+            StartCoroutine(SetRandomConversations());
+        }
     }
     private void Update()
     {
@@ -69,7 +78,7 @@ public class CustomerInteractable : Interactable
             RemoveOrderBubble();
             RemoveOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp;
+            gM.pD.neckClamp = neckclamp * 4;
 
         }
         else if (dialogueManager.finishedConversation && !CAI.hasOrdered)
@@ -83,7 +92,7 @@ public class CustomerInteractable : Interactable
             DisplayOrderBubble();
             DisplayOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp;
+            gM.pD.neckClamp = neckclamp * 4;
 
 
         }
@@ -96,6 +105,37 @@ public class CustomerInteractable : Interactable
             //gM.player.transform.LookAt(this.transform.position);
         }
     }
+    private void SetConversations()
+    {
+        if (rCA.dic.ContainsKey(gM.gMD.currentTime.Day))
+        {
+            foreach (RegularCustomerAtlas.customerConversations cc in rCA.dic[gM.gMD.currentTime.Day])
+            {
+                if (cc.customer.GetComponent<Customer>().CD = this.CD)
+                {
+                    this.IntroConversation = cc.IntroConversation;
+                    this.ExitConversation = cc.ExitConversation;
+                    break;
+                }
+            }
+        }
+    }
+    private IEnumerator SetRandomConversations()
+    {
+        yield return new WaitForSeconds(2);
+        Customer rc = this.gameObject.GetComponent<RandomCustomer>();
+        try
+        {
+            IntroConversation = rc.randomConversations.introConversations[Random.Range(0, rc.randomConversations.introConversations.Count)];
+            ExitConversation = rc.randomConversations.exitConversations[Random.Range(0, rc.randomConversations.exitConversations.Count)];
+
+        }
+        catch
+        {
+            Debug.Log("random conversation list is empty");
+        }
+    }
+
     public override void OnFocus()
     {
         visualcue.SetActive(true);
@@ -108,9 +148,8 @@ public class CustomerInteractable : Interactable
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered)
         {
             dialogueManager.SetCurrentCustomer(this.gameObject);
-            customerDialogue.startedConversation = true;
             talking = true;
-            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+            DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
             //customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeOrder,this.transform);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -156,19 +195,17 @@ public class CustomerInteractable : Interactable
     public override void OnAltInteract(PlayerInteraction pI)
     {
     }
-    
 
-    public CustomerDialogue GetDD()
-    {
-        return this.customerDialogue;
-    }
+
+
 
     public void DeliverDrink()
     {
-        customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeRecievedDrink,this.transform);
+        dialogueManager.SetCurrentCustomer(this.gameObject);
+        DialogueManager.GetInstance().EnterDialogueMode(ExitConversation);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        customerDialogue.canvas.enabled = true;
         pm.canMove = false;
         pcc.canMove = false;
         CA.Talk();
