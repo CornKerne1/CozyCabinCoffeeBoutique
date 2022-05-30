@@ -15,9 +15,65 @@ public class IngredientContainer : Interactable
     private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
-    private Quaternion startingRotation;
+    private bool pouring;
+    private bool pouringAction;
+    private bool rotating;
 
     public IngredientData iD;
+
+    private IEnumerator cr1 = null;
+    private IEnumerator cr2 = null;
+
+    public List<GameObject> outputIngredients = new List<GameObject>();
+    private List<IngredientNode> garbageList = new List<IngredientNode>();
+
+    private void FixedUpdate()
+    {
+        HandlePourRotation();
+        Pour();
+    }
+
+    IEnumerator Timer(float time)
+    {
+        cr1 = Timer(time);
+        yield return new WaitForSeconds(time);
+        rotating = false;
+        pouringAction = !pouringAction;
+        cr1 = null;
+    }
+
+    public bool IsPouring()
+    {
+        if (pouringAction)
+            return pouringAction;
+        else
+            return pouring;
+    }
+
+    private void HandlePourRotation()
+    {
+        if (rotating)
+        {
+            if (!pouringAction)
+            {
+                transform.Rotate(2, 0, 0);
+                pouring = true;
+                if (cr1 == null)
+                {
+                    StartCoroutine(Timer(1f));
+                }
+            }
+            else
+            {
+                pouring = false;
+                transform.Rotate(-2, 0, 0);
+                if (cr1 == null)
+                {
+                    StartCoroutine(Timer(1f));
+                }
+            }
+        }
+    }
 
     public override void Awake()
     {
@@ -25,10 +81,9 @@ public class IngredientContainer : Interactable
         {
             Destroy(contentsVisualizer);
         }
+
         base.Awake();
         dD = (DrinkData)ScriptableObject.CreateInstance("DrinkData");
-        
-
     }
 
     public override void Start()
@@ -37,11 +92,12 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
-        startingRotation = transform.localRotation;
+        cr1 = null;
+        cr2 = null;
     }
 
     public virtual void AddToContainer(IngredientNode iN)
-    { 
+    {
         if (capacity > maxCapacity)
         {
             IngredientOverflow(iN);
@@ -50,41 +106,72 @@ public class IngredientContainer : Interactable
         {
             dD.addIngredient(iN);
             capacity = capacity + iN.target;
-            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y - .00048f) ,contentsVisualizer.transform.localPosition.z);
-            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f, (contentsVisualizer.transform.localScale.y + .01f) ,contentsVisualizer.transform.localScale.z);
-            
+            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
+                (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
+            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
+                (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
+            switch (iN.ingredient)
+            {
+                case Ingredients.BrewedCoffee:
+                    outputIngredients.Add(iD.brewedCoffee);
+                    break;
+                case Ingredients.Espresso:
+                    outputIngredients.Add(iD.espresso);
+                    break;
+                case Ingredients.Milk:
+                    outputIngredients.Add(iD.milk);
+                    break;
+                case Ingredients.Sugar:
+                    outputIngredients.Add(iD.Sugar);
+                    break;
+            }
+        }
+    }
+
+    public virtual void RemoveIngredient()
+    {
+        foreach (IngredientNode i in dD.Ingredients)
+        {
+            i.target = i.target - 0.1f;
+            capacity = capacity - 0.1f;
+
+            if (i.target <= 0)
+            {
+                garbageList.Add(i);
+            }
         }
 
+        foreach (IngredientNode i in garbageList)
+        {
+            dD.Ingredients.Remove(i);
+        }
 
-    }
-
-    public void Update()
-    {
-    }
-
-    public void CheckPour()
-    {
-        // float currentXAngle = startingRotation.x; //- transform.rotation.x;//
-        // Debug.Log((currentXAngle));
-        // if (capacity > 0 && (transform.localRotation.x != startingRotation.x || transform.localRotation.z != startingRotation.z))
-        // {
-        //     
-        //     if (Mathf.Abs(currentXAngle) <= .9)Pour();
-        //         else if (capacity > currentXAngle * .95f)Pour();
-        // }
+        garbageList = new List<IngredientNode>();
+        //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
     }
 
     public void Pour()
     {
-        foreach (IngredientNode i in dD.Ingredients)
+        if (pouring)
         {
-            i.target = i.target - .02f;
-            if (i.target !<= 0)
+            if(outputIngredients.Count > 0)
             {
-                contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, (contentsVisualizer.transform.localPosition.y + .00052f) ,contentsVisualizer.transform.localPosition.z);
-                IngredientOverflow(i);
+                StartCoroutine(Liquify());
             }
         }
+    }
+
+    IEnumerator Liquify()
+    {
+        //cr2 = Liquify();
+        yield return new WaitForSeconds(.04f);
+        Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
+        //cr2 = null;
+    }
+
+    public void StopPouring()
+    {
+        rotating = true;
     }
 
     void IngredientOverflow(IngredientNode ingredient)
@@ -94,19 +181,24 @@ public class IngredientContainer : Interactable
             case Ingredients.BrewedCoffee:
                 Instantiate(iD.brewedCoffee, pourTransform.position, pourTransform.rotation);
                 break;
+            case Ingredients.Espresso:
+                Instantiate(iD.espresso, pourTransform.position, pourTransform.rotation);
+                break;
         }
     }
-    
+
     public override void OnInteract(PlayerInteraction pI)
     {
         this.pI = pI;
         pI.Carry(gameObject);
         inHand = true;
+        Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y,
+            Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
+        transform.rotation = rot;
     }
 
     public override void OnFocus()
     {
-
     }
 
     public void OnDrop()
@@ -116,7 +208,10 @@ public class IngredientContainer : Interactable
 
     public override void OnLoseFocus()
     {
-
     }
-    
+
+    public override void OnAltInteract(PlayerInteraction pI)
+    {
+        rotating = true;
+    }
 }

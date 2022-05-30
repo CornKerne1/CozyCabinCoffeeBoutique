@@ -1,35 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomerAnimations : MonoBehaviour
 {
     [SerializeField, Header("Will be set at runtime")]
     public Animator customerAnimator;
-    public Rigidbody customerRigedBody;
     public CustomerInteractable customerInteractable;
+    Vector3 tempPosition;
+
+    private NavMeshAgent navMeshAgent;
+
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
         customerAnimator = gameObject.GetComponentInChildren<Animator>();
-        customerRigedBody = gameObject.GetComponent<Rigidbody>();
         customerInteractable = gameObject.GetComponent<CustomerInteractable>();
+        navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         HandleAnimations();
     }
 
     private void HandleAnimations()
     {
-        if (customerRigedBody.velocity.magnitude > .1)
-        {
-            customerAnimator.SetBool("Moving", true);
-        }
-        else customerAnimator.SetBool("Moving", false);
+        speed = navMeshAgent.velocity.magnitude;
+        customerAnimator.SetFloat("Speed",speed);
+        
     }
     public void Talk()
     {

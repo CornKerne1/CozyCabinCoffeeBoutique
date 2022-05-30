@@ -109,8 +109,11 @@ public class CustomerLine : MonoBehaviour
         if (queue.Count>0 && queue.Peek().hasOrdered == true)
         {
             CustomerAI ai = queue.Peek();
+            CustomerInteractable ci = ai.gameObject.GetComponent<CustomerInteractable>();
+            ci.RemoveOrderTicket();
+            ci.RemoveOrderBubble();
             ai.hasOrder = true;
-            moveLine();
+            ci.DeliverDrink();
             ai.CD.recievedDrink = drinkdata;
             drink.SetActive(false);
             DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);

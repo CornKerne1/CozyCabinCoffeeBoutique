@@ -7,9 +7,11 @@ public class CustomerData : ScriptableObject
 {
     public string name;
     public DrinkData favoriteDrink;
+    public DrinkData orderedDrink;
     public DrinkData recievedDrink;
     public List<FlavorProfile.FlavorNode> desiredFlavors;
     public Customer customer;
+    public List<ConnorConverstation> conversations;
     //public List<string> orderPhrases;
 
 

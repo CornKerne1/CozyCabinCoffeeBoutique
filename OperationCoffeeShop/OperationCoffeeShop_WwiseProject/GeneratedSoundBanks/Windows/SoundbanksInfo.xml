@@ -11,17 +11,41 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3690994985">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3382481968">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="630198314">
+		<SoundBank Id="3161908922" Language="SFX" Hash="1865522146">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
-				<Event Id="2652178615" Name="Play_buttonpress" ObjectPath="\Events\Default Work Unit\Play_buttonpress" MaxAttenuation="2." DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
+				<Event Id="4061997089" Name="Play_AfterHours" ObjectPath="\Events\Default Work Unit\Play_AfterHours" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="752191520" Language="SFX">
+							<ShortName>After_Hours.wav</ShortName>
+							<Path>SFX\After_Hours_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2993288148" Name="Play_BossaNova" ObjectPath="\Events\Default Work Unit\Play_BossaNova" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="538996245" Language="SFX">
+							<ShortName>BossaNovaAttempt.wav</ShortName>
+							<Path>SFX\BossaNovaAttempt_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="855079117" Name="Play_BreakingLoose" ObjectPath="\Events\Default Work Unit\Play_BreakingLoose" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="903791736" Language="SFX">
+							<ShortName>Breaking_Loose_LoFi.wav</ShortName>
+							<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2652178615" Name="Play_buttonpress" ObjectPath="\Events\Default Work Unit\Play_buttonpress" MaxAttenuation="10." DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
 					<IncludedMemoryFiles>
 						<File Id="873684257" Language="SFX">
 							<ShortName>buttonpress.wav</ShortName>
@@ -29,7 +53,181 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3622673270" Name="Play_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\Play_ExquisiteTaste" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="551003881" Language="SFX">
+							<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
+							<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="10." DurationType="OneShot" DurationMin="7.497143" DurationMax="7.497143">
+					<IncludedMemoryFiles>
+						<File Id="1013556960" Language="SFX">
+							<ShortName>Grinding_Coffee_Beans.wav</ShortName>
+							<Path>SFX\Grinding_Coffee_Beans_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="579639504" Name="Play_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Play_GrindingEspresso" MaxAttenuation="10." DurationType="OneShot" DurationMin="4.519184" DurationMax="4.519184">
+					<IncludedMemoryFiles>
+						<File Id="759491673" Language="SFX">
+							<ShortName>Grinding_Espresso.wav</ShortName>
+							<Path>SFX\Grinding_Espresso_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3754899171" Name="Play_NeuroticBone" ObjectPath="\Events\Default Work Unit\Play_NeuroticBone" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="230495110" Language="SFX">
+							<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
+							<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1479974693" Name="Play_Piano" ObjectPath="\Events\Default Work Unit\Play_Piano" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="386335204" Language="SFX">
+							<ShortName>ChillWurlyPiano.wav</ShortName>
+							<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3700200612" Name="Play_RedPandaTheme" ObjectPath="\Events\Default Work Unit\Play_RedPandaTheme" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="2409473" Language="SFX">
+							<ShortName>RedPandaTheme.wav</ShortName>
+							<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3453202434" Name="Play_RoastBlend" ObjectPath="\Events\Default Work Unit\Play_RoastBlend" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="776190147" Language="SFX">
+							<ShortName>Roast Blend.wav</ShortName>
+							<Path>SFX\Roast Blend_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="43930435" Name="Play_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\Play_SomedayWakeUp" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="626169617" Language="SFX">
+							<ShortName>Someday_Youd_Better_Wake_Up_LoFi_playlist.wav</ShortName>
+							<Path>SFX\Someday_Youd_Better_Wake_Up_LoFi_playlist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4221615279" Name="Play_SpashedSea" ObjectPath="\Events\Default Work Unit\Play_SpashedSea" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="366206813" Language="SFX">
+							<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
+							<Path>SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3915894401" Name="Play_TakingShape" ObjectPath="\Events\Default Work Unit\Play_TakingShape" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="636649444" Language="SFX">
+							<ShortName>Taking_Shape.wav</ShortName>
+							<Path>SFX\Taking_Shape_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="315754304" Name="Play_TellingStories" ObjectPath="\Events\Default Work Unit\Play_TellingStories" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="760450632" Language="SFX">
+							<ShortName>Telling_Stories_AC_Playlist.wav</ShortName>
+							<Path>SFX\Telling_Stories_AC_Playlist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeOne_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="521874696" Name="VolumeOne_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeOne_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1886182129" Name="VolumeOne_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeOne_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="844119779" Name="VolumeOne_Piano" ObjectPath="\Events\Default Work Unit\VolumeOne_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="662843338" Name="VolumeOne_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeOne_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3973291544" Name="VolumeOne_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeOne_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2181399409" Name="VolumeOne_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeOne_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2689093237" Name="VolumeOne_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeOne_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2511561735" Name="VolumeOne_TakingShape" ObjectPath="\Events\Default Work Unit\VolumeOne_TakingShape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3384730498" Name="VolumeOne_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeOne_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1970210963" Name="VolumeZero_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeZero_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1625469250" Name="VolumeZero_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeZero_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="319625207" Name="VolumeZero_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeZero_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="247285116" Name="VolumeZero_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeZero_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3535909101" Name="VolumeZero_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeZero_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2896401063" Name="VolumeZero_Piano" ObjectPath="\Events\Default Work Unit\VolumeZero_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="946022718" Name="VolumeZero_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeZero_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2913870116" Name="VolumeZero_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeZero_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3467887341" Name="VolumeZero_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeZero_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4282258553" Name="VolumeZero_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeZero_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3252269563" Name="VolumeZero_TakingShape" ObjectPath="\Events\Default Work Unit\VolumeZero_TakingShape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3876908550" Name="VolumeZero_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeZero_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="2409473" Language="SFX">
+					<ShortName>RedPandaTheme.wav</ShortName>
+					<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
+				</File>
+				<File Id="230495110" Language="SFX">
+					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
+					<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="366206813" Language="SFX">
+					<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
+					<Path>SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="386335204" Language="SFX">
+					<ShortName>ChillWurlyPiano.wav</ShortName>
+					<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
+				</File>
+				<File Id="538996245" Language="SFX">
+					<ShortName>BossaNovaAttempt.wav</ShortName>
+					<Path>SFX\BossaNovaAttempt_D79FB2B7.wem</Path>
+				</File>
+				<File Id="551003881" Language="SFX">
+					<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
+					<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="626169617" Language="SFX">
+					<ShortName>Someday_Youd_Better_Wake_Up_LoFi_playlist.wav</ShortName>
+					<Path>SFX\Someday_Youd_Better_Wake_Up_LoFi_playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="636649444" Language="SFX">
+					<ShortName>Taking_Shape.wav</ShortName>
+					<Path>SFX\Taking_Shape_D79FB2B7.wem</Path>
+				</File>
+				<File Id="752191520" Language="SFX">
+					<ShortName>After_Hours.wav</ShortName>
+					<Path>SFX\After_Hours_D79FB2B7.wem</Path>
+				</File>
+				<File Id="759491673" Language="SFX">
+					<ShortName>Grinding_Espresso.wav</ShortName>
+					<Path>SFX\Grinding_Espresso_10C4C929.wem</Path>
+				</File>
+				<File Id="760450632" Language="SFX">
+					<ShortName>Telling_Stories_AC_Playlist.wav</ShortName>
+					<Path>SFX\Telling_Stories_AC_Playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="776190147" Language="SFX">
+					<ShortName>Roast Blend.wav</ShortName>
+					<Path>SFX\Roast Blend_D79FB2B7.wem</Path>
+				</File>
+				<File Id="873684257" Language="SFX">
+					<ShortName>buttonpress.wav</ShortName>
+					<Path>SFX\buttonpress_10C4C929.wem</Path>
+				</File>
+				<File Id="903791736" Language="SFX">
+					<ShortName>Breaking_Loose_LoFi.wav</ShortName>
+					<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1013556960" Language="SFX">
+					<ShortName>Grinding_Coffee_Beans.wav</ShortName>
+					<Path>SFX\Grinding_Coffee_Beans_10C4C929.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

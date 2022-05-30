@@ -28,4 +28,10 @@ public class Button : Interactable
     {
         
     }
+
+    public override void OnAltInteract(PlayerInteraction pI)
+    {
+        
+    }
+    
 }

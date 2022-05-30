@@ -12,10 +12,19 @@ public class RandomCustomer : Customer
 
     private CustomerAI ai;
 
+    public RandomCustomerSet CustomerSet;
 
     public void Awake()
     {
-        ai= GetComponent<CustomerAI>();
+        //Instanciate Random Customer from CustomerSet
+        GameObject customer = Instantiate(CustomerSet.Customers[UnityEngine.Random.Range(0, CustomerSet.Customers.Count)]) as GameObject;
+        Vector3 scale = customer.transform.localScale;
+        Vector3 position = customer.transform.localPosition;
+        customer.transform.parent = gameObject.transform;
+        customer.transform.localPosition = position;
+        customer.transform.localScale = scale;
+
+        ai = GetComponent<CustomerAI>();
 
         //sets a random name from nameSet
         customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
@@ -50,6 +59,14 @@ public class RandomCustomer : Customer
         CD.favoriteDrink = favoriteDrink;
         CD.DesiredFlavors(flavorNodes);
         CD.customer = this;
+       
+        DrinkData drink = GetRandomDrink();
+
+        DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
+        //Adds a little RNG to the drink orders
+        //IngredientNode addOn = GetRandomAddOn();
+        //customeDrink.addIngredient(addOn);
+        CD.orderedDrink= customeDrink;
     }
 
     public RandomCustomer(RandomNameSet nameSet)
@@ -73,12 +90,8 @@ public class RandomCustomer : Customer
     }
     public override DrinkData GetDrinkOrder()
     {
-        IngredientNode addOn = GetRandomAddOn();
-        DrinkData drink = GetRandomDrink();
-
-        DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
-        customeDrink.addIngredient(addOn);
-        return customeDrink;
+       
+        return CD.orderedDrink;
     }
 
     public void compareingredients()

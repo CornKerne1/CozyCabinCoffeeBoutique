@@ -35,4 +35,6 @@ public class GameModeData : ScriptableObject
     public bool isOpen;
 
     public string time;
+    
+    [SerializeField] public List<Material> treeMats = new List<Material>();
 }

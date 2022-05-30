@@ -10,9 +10,14 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
-
-    [SerializeField] public static event EventHandler InteractEvent;//
+    [SerializeField] public GameObject pauseMenu;
+    private GameObject pauseM;
+    [SerializeField] public static event EventHandler InteractEvent;
     [SerializeField] public static event EventHandler InteractCanceledEvent;
+    [SerializeField] public static event EventHandler Alt_InteractEvent;
+    //[SerializeField] public static event EventHandler Alt_InteractCanceledEvent;
+    
+    [SerializeField] public static event EventHandler PauseEvent;
     [SerializeField] public static event EventHandler RotateEvent;//
     [SerializeField] public static event EventHandler RotateCanceledEvent;//
     
@@ -26,6 +31,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private PlayerControls pC;
     [SerializeField] private PlayerControls.FPPlayerActions fPP;
     [SerializeField] private InputAction interact;
+    [SerializeField] private InputAction alt_interact;
+    [SerializeField] private InputAction pause;
 
     Vector2 mouseInput;
     Vector2 currentRotate;
@@ -38,23 +45,37 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
+        
         pC = new PlayerControls();
         fPP = pC.FPPlayer;
         interact = pC.FPPlayer.Interact;
+        alt_interact = pC.FPPlayer.Alt_Interact;
+        pause = pC.FPPlayer.PauseGame;
 
     }
 
     private void Start()
     {
         Instantiate(hud);
+        PauseEvent += _Pause;
     }
 
+    void _Pause(object sender, EventArgs e)
+    {
+        if (pauseM == null)
+        {
+            pauseM = Instantiate(pauseMenu);
+        }
+        else
+        {
+            pauseM.GetComponent<PauseMenu>().StartGame();
+        }
+    }
 
     public void OnEnable()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
         
         fPP.Enable();
@@ -77,7 +98,13 @@ public class PlayerInput : MonoBehaviour
         interact.performed += Interact;
         interact.canceled += InteractCanceled;
         interact.Enable();
+        
+        alt_interact.performed += Alt_Interact;
+        //alt_interact.canceled += Alt_InteractCanceled;
+        alt_interact.Enable();
 
+        pause.performed += Pause;
+        pause.Enable();
 
         fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<Vector2>();
         fPP.Rotate.performed += Rotate;
@@ -153,6 +180,18 @@ public class PlayerInput : MonoBehaviour
     private void InteractCanceled(InputAction.CallbackContext obj)
     {
         InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    }
+    public void Alt_Interact(InputAction.CallbackContext obj)
+    {
+        Alt_InteractEvent?.Invoke(this, EventArgs.Empty);
+    }
+    //private void Alt_InteractCanceled(InputAction.CallbackContext obj)
+    //{
+        //Alt_InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    //}
+    public void Pause(InputAction.CallbackContext obj)
+    {
+        PauseEvent?.Invoke(this, EventArgs.Empty);
     }
     private void Rotate(InputAction.CallbackContext obj)
     {

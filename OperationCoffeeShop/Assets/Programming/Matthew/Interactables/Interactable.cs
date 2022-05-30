@@ -19,4 +19,6 @@ public abstract class Interactable : MonoBehaviour
     public abstract void OnInteract(PlayerInteraction pI);
     public abstract void OnFocus();
     public abstract void OnLoseFocus();
+    public virtual void OnAltInteract(PlayerInteraction pI){}
+    public virtual void OnDrop(){}
 }

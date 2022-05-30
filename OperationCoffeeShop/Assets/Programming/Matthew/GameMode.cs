@@ -9,6 +9,7 @@ public class GameMode : MonoBehaviour
     //This class keeps track of the game
 
     [SerializeField]public Transform player;
+    [SerializeField]public PlayerData pD;
     [SerializeField]public GameObject playerPref;
     [SerializeField]private Gate gate;
     //This is the Scriptable Object that contains the data for this class.
@@ -24,10 +25,14 @@ public class GameMode : MonoBehaviour
 
     [SerializeField] private GameObject GameOver;
 
+    static uint[] playingIds = new uint[50];
+
+
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        //player.gameObject.SetActive(true);
+        pD = player.GetComponent<PlayerInteraction>().pD;
+        pD.moveSpeed = pD.closeSpeed;
     }
     
     void Awake()
@@ -62,7 +67,7 @@ public class GameMode : MonoBehaviour
     {
         //if save file exists load DateTime from file else set to startTime
         dNC.Initialize();
-        gMD.startTime = DateTime.Now.Date + TimeSpan.FromHours(6);
+        gMD.startTime = new DateTime(2027, 1, 1, 6, 1, 1);
         gMD.currentTime = gMD.startTime;
 
     }
@@ -79,16 +84,39 @@ public class GameMode : MonoBehaviour
         {
             gMD.isOpen = true;
             gate.OpenCloseGate();
+            pD.moveSpeed = pD.openSpeed;
         }
     }
     public void CloseShop()
     {
         gMD.isOpen = false;
         gate.OpenCloseGate();
+        pD.moveSpeed = pD.closeSpeed;
         ShopClosed?.Invoke(this, EventArgs.Empty);
         if (gMD.currentTime.Day > 2)
         {
             Instantiate(GameOver);
         }
+    }
+
+
+
+    public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
+    {
+        uint testEventId = AkSoundEngine.GetIDFromString(eventName);
+
+        uint count = (uint)playingIds.Length;
+        AKRESULT result = AkSoundEngine.GetPlayingIDsFromGameObject(go, ref count, playingIds);
+
+        for (int i = 0; i < count; i++)
+        {
+            uint playingId = playingIds[i];
+            uint eventId = AkSoundEngine.GetEventIDFromPlayingID(playingId);
+
+            if (eventId == testEventId)
+                return true;
+        }
+
+        return false;
     }
 }

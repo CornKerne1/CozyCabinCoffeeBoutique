@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsScreen;
+    
 
     public Toggle fullscreenTog, vsyncTog;
 

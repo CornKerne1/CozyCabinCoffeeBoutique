@@ -1,6 +1,9 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Generic")]
@@ -11,6 +14,13 @@ public class PlayerData : ScriptableObject
         busyHands = false;
         isClimbing = false;
         killSwitchOff = true;
+        neckClamp = 77.3f;
+        PlayerInput.InteractEvent += tryTest;
+    }
+
+    void tryTest(object sender, EventArgs e)
+    {
+        Debug.Log("SOMETHING");
     }
 
     [Header("Controller Variables")]
@@ -25,6 +35,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float modX;
     [SerializeField] public float neckClamp = 77.3f;
     [SerializeField] public LayerMask groundMask;//
+    
+    [SerializeField] public float closeSpeed;
+    [SerializeField] public float openSpeed;
 
     [Header("Headbob Stuff")]
     [Range(0f, 1f)] [SerializeField] public float amplitude = 0.0003f;
@@ -50,4 +63,5 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float smooth;
 
     [SerializeField] public bool killSwitchOff;
+
 }

@@ -96,6 +96,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Alt_Interact",
+                    "type": "Button",
+                    "id": "7d93fb72-49cb-4230-bedc-0008aacd0cb4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MiniGames",
                     "type": "Button",
                     "id": "ead2043c-2da1-4e4b-8a13-bac652936298",
@@ -184,6 +193,17 @@
                     "id": "e5a5a96f-0352-48ed-9759-d697b39d9a18",
                     "path": "<Keyboard>/escape",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e7f79ce-35a7-40cc-bf67-442d435f35da",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "PauseGame",
@@ -352,6 +372,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MoveObj",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b37bee69-aeae-4da2-a964-1c338601a8ce",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Alt_Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
