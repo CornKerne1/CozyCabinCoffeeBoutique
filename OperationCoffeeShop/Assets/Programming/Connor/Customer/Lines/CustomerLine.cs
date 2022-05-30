@@ -11,10 +11,10 @@ public class CustomerLine : MonoBehaviour
 
     Queue<CustomerAI> queue = new Queue<CustomerAI>();
 
-    [SerializeField] public static event EventHandler DrinkBeGone;
+    public static event EventHandler DrinkBeGone;
 
-    [SerializeField] public static event EventHandler DepositMoney;//
- 
+    public static event EventHandler DepositMoney;//
+
     //used for testing
     public bool next = false;
 
@@ -67,6 +67,7 @@ public class CustomerLine : MonoBehaviour
         if (queue.Count > 0)
         {
             CustomerAI ai = queue.Dequeue();
+            CustomerAnimations cA = ai.gameObject.GetComponent<CustomerAnimations>();
             ai.stay = false;
             if (!ai.hasOrdered)
             {
@@ -79,7 +80,8 @@ public class CustomerLine : MonoBehaviour
             foreach (CustomerAI AI in queue)
             {
                 //moves customer up 1 position & incraments position. 
-                AI.setDestination(getNextSpotInLine(i++));
+                AI.setDestination(getNextSpotInLine(++i));
+                cA.RandomizeSpeed();
             }
             i = 0;
         }
@@ -106,7 +108,7 @@ public class CustomerLine : MonoBehaviour
     public void deliverDrink(GameObject drink)
     {
         DrinkData drinkdata = (drink).GetComponent<IngredientContainer>().dD;
-        if (queue.Count>0 && queue.Peek().hasOrdered == true)
+        if (queue.Count > 0 && queue.Peek().hasOrdered == true)
         {
             CustomerAI ai = queue.Peek();
             CustomerInteractable ci = ai.gameObject.GetComponent<CustomerInteractable>();
@@ -118,7 +120,7 @@ public class CustomerLine : MonoBehaviour
             drink.SetActive(false);
             DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
             ai.CD.customer.RecieveDrink();
-          
+
         }
     }
     public void LeaveWithoutPaying(DrinkData drinkdata)

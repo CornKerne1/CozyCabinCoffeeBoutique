@@ -40,7 +40,7 @@ public class CustomerInteractable : Interactable
 
     DialogueManager dialogueManager;
 
-    [HideInInspector]
+    //[HideInInspector]
     public RegularCustomerAtlas rCA;
 
     private void Start()
