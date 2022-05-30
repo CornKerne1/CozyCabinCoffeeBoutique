@@ -60,6 +60,7 @@ public class IngredientContainer : Interactable
                 pouring = true;
                 if (cr1 == null)
                 {
+                    cr1 = Timer(1f);
                     StartCoroutine(Timer(1f));
                 }
             }
@@ -69,6 +70,7 @@ public class IngredientContainer : Interactable
                 transform.Rotate(-2, 0, 0);
                 if (cr1 == null)
                 {
+                    cr1 = Timer(1f);
                     StartCoroutine(Timer(1f));
                 }
             }
@@ -92,8 +94,6 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
-        cr1 = null;
-        cr2 = null;
     }
 
     public virtual void AddToContainer(IngredientNode iN)
@@ -152,21 +152,23 @@ public class IngredientContainer : Interactable
 
     public void Pour()
     {
-        if (pouring)
+        if (pouring && cr2 == null)
         {
-            if(outputIngredients.Count > 0)
-            {
-                StartCoroutine(Liquify());
-            }
+            cr2 = Liquify();
+            StartCoroutine(Liquify());
         }
     }
 
     IEnumerator Liquify()
     {
-        //cr2 = Liquify();
+        RemoveIngredient();
         yield return new WaitForSeconds(.04f);
-        Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
-        //cr2 = null;
+        if (outputIngredients.Count > 0)
+        {
+            Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
+        }
+
+        cr2 = null;
     }
 
     public void StopPouring()
