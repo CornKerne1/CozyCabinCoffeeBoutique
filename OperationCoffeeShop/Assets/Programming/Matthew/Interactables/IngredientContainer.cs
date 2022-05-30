@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class IngredientContainer : Interactable
 {
@@ -170,7 +171,8 @@ public class IngredientContainer : Interactable
         yield return new WaitForSeconds(.04f);
         if (outputIngredients.Count > 0)
         {
-            Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
+            var r = Random.Range(0, outputIngredients.Count);
+            Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
             outputIngredients.Remove(outputIngredients[outputIngredients.Count-1]);
             if (hasContentsVisualizer)
             {
