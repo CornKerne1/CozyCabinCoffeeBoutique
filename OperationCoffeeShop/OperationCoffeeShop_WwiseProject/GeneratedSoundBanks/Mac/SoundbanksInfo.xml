@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="2274117586">
+		<SoundBank Id="3161908922" Language="SFX" Hash="1533938351">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -141,6 +141,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3107494279" Name="Play_TitleTheme" ObjectPath="\Events\Default Work Unit\Play_TitleTheme" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="138462402" Language="SFX">
+							<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
+							<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1450757357" Name="Stop_TitleTheme" ObjectPath="\Events\Default Work Unit\Stop_TitleTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeOne_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -170,6 +179,10 @@
 				<File Id="2409473" Language="SFX">
 					<ShortName>RedPandaTheme.wav</ShortName>
 					<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
+				</File>
+				<File Id="138462402" Language="SFX">
+					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
+					<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
 				</File>
 				<File Id="230495110" Language="SFX">
 					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>

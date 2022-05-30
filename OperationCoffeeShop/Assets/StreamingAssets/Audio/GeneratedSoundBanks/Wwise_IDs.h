@@ -28,6 +28,8 @@ namespace AK
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
+        static const AkUniqueID PLAY_TITLETHEME = 3107494279U;
+        static const AkUniqueID STOP_TITLETHEME = 1450757357U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;
         static const AkUniqueID VOLUMEONE_BREAKINGLOOSE = 4016599115U;
