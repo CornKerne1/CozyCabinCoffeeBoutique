@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31a1678a5a0c26479f65ac32fbcc794, type: 3}
+  m_Name: three dogs intro
+  m_EditorClassIdentifier: 
+  ConversationName: Three Dogs Intro
+  customerName: 3 Dogs in a trenchcoat
+  conversationTreeOrder:
+    message: "Good \u2018morrow, comrade! I don\u2019t suppose you know the nearest
+      attraction to purchase some ground espresso juice, now would you? "
+    mood: 0
+    PlayerOptionA: We have espresso, though I don't think it's good for dogs.
+    PlayerOptionB: This is a coffee shop, afterall.
+    ATree:
+    - message: 'How quaint. This will do quite nicely, though it won''t be for consuming,
+        it is for science! '
+      mood: 0
+      PlayerOptionA: 'That''s oddly specific, but I will get that for you. '
+      PlayerOptionB: Coming right up!
+      ATree: []
+      BTree: []
+    BTree: []
+  conversationTreeRecievedDrink:
+    message: Why, that was seemingly no time at all!
+    mood: 0
+    PlayerOptionA: Because it was crafted with love.
+    PlayerOptionB: 'I try my best. '
+    ATree:
+    - message: I bid you farewell and my sincerest appreciation for this tiny cup
+        of concentrated caffeine!
+      mood: 0
+      PlayerOptionA: Enjoy it!
+      PlayerOptionB: Have a nice day!
+      ATree: []
+      BTree: []
+    BTree: []
