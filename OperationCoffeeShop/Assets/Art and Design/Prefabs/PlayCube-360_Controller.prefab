@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 576183813985394247}
   - component: {fileID: 3481528480504664546}
   - component: {fileID: 1708035225402090792}
+  - component: {fileID: 106276106}
+  - component: {fileID: 106276107}
+  - component: {fileID: 106276105}
   m_Layer: 0
   m_Name: PlayCube-360_Controller
   m_TagString: Untagged
@@ -25,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915590325771011325}
-  m_LocalRotation: {x: 0.545592, y: 0.44981042, z: -0.44981033, w: 0.54559207}
+  m_LocalRotation: {x: 0.5455935, y: 0.44980857, z: -0.44980857, w: 0.5455935}
   m_LocalPosition: {x: 0.485, y: -4.7053, z: -10.374}
-  m_LocalScale: {x: 14.439251, y: 14.439251, z: 14.439251}
+  m_LocalScale: {x: 11.865022, y: 11.865022, z: 11.865022}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,3 +84,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &106276106
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915590325771011325}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &106276107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915590325771011325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000009, y: 0.015000006, z: 0.0052513336}
+  m_Center: {x: 3.039817e-10, y: -0.0055000014, z: -0.0026256652}
+--- !u!114 &106276105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915590325771011325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
