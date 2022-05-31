@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Radio : Interactable
 {
@@ -14,23 +16,27 @@ public class Radio : Interactable
     PlayerInteraction pI;//
     public void PostSoundEvent(string s) { AkSoundEngine.PostEvent(s, this.gameObject); }
     public override void Start()
-    {
-        base.Start();
+    { 
         for (int i = 0; i < 11; i++)
         {
-            var rC = Instantiate(radioChannel, transform.position, transform.rotation).GetComponent<RadioChannel>();
-            rC.channel = i;
-            rC.radio = this;
-            RadioChannels.Insert(i,rC);
-            rC.transform.SetParent(this.transform);
+                RadioChannel rC = Instantiate(radioChannel, transform.position, transform.rotation).GetComponent<RadioChannel>();
+                    rC.radio = this;
+                    rC.transform.SetParent(this.transform);
+                    RadioChannels.Add(rC);
+                    rC.channel = RadioChannels.Count;
         }
-        foreach (RadioChannel rC in RadioChannels)
-        {
-            rC.StartChannel();
-        }
-        currentChannel = Random.Range(0, RadioChannels.Count);
-        RadioChannels[currentChannel].PlayChannel();
-        HandleDial();
+            
+            foreach (RadioChannel rC in RadioChannels)
+            {
+                rC.StartChannel();
+            }
+            currentChannel = Random.Range(0, RadioChannels.Count);
+            RadioChannels[currentChannel].PlayChannel();
+            HandleDial();
+    }
+
+    private void Update()
+    {
     }
 
     public void HandleDial()
