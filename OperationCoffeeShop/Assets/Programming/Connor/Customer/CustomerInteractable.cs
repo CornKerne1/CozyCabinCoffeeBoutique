@@ -44,6 +44,8 @@ public class CustomerInteractable : Interactable
     //[HideInInspector]
     public RegularCustomerAtlas rCA;
 
+    public Transform lookat;
+
     private void Start()
     {
         this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
@@ -105,7 +107,7 @@ public class CustomerInteractable : Interactable
             gM.pD.neckClamp = neckclamp / 40;
             var c = Camera.main.transform;
             oldLook = c;
-            Camera.main.transform.LookAt(this.transform.position);
+            Camera.main.transform.LookAt(lookat.position);
             //gM.player.transform.LookAt(this.transform.position);
         }
     }

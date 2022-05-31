@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6541600759439495696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7378664472688273545}
+  m_Layer: 3
+  m_Name: LookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7378664472688273545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541600759439495696}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.007, y: 0.489, z: 0.091}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8382161432092520759}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8382161432092520763
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +68,7 @@ Transform:
   m_Children:
   - {fileID: 3361564991408877838}
   - {fileID: 2150414187828921197}
+  - {fileID: 7378664472688273545}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,11 +166,11 @@ MonoBehaviour:
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   CAI: {fileID: 1033753536987892517}
-  CD: {fileID: 11400000, guid: 72ecd56fca152d14f8cb2d5038cc6393, type: 2}
   conversation: {fileID: 11400000, guid: 5ca89bfcc3655db44a576c5e56fdf158, type: 2}
   canvas: {fileID: 4316614292114363163}
   talking: 0
   rCA: {fileID: 11400000, guid: 538bf7d1777b2e845b3d10637778c263, type: 2}
+  lookat: {fileID: 7378664472688273545}
 --- !u!54 &927562656731061223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4952,6 +4983,10 @@ PrefabInstance:
     - target: {fileID: 252051547247971641, guid: 6457ca319760a3347978e14f42b54824, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145349780523784383, guid: 6457ca319760a3347978e14f42b54824, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363650070705192977, guid: 6457ca319760a3347978e14f42b54824, type: 3}
       propertyPath: m_RootOrder
