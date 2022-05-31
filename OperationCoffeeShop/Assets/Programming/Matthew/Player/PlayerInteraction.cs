@@ -137,13 +137,16 @@ public class PlayerInteraction : MonoBehaviour
                 //ingredientContainor.StopPouring();
                 Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainor.rotateOffset.x, Quaternion.identity.y + ingredientContainor.rotateOffset.y, Quaternion.identity.z + ingredientContainor.rotateOffset.z, Quaternion.identity.w);
                 ingredientContainor.transform.rotation = rot;
+                if(ingredientContainor.IsPouring())
+                    ingredientContainor.StopPouring();
             }
 
             if (currentInteractable)
             {
                 currentInteractable.OnDrop();
             }
-
+            currentInteractable = null;
+            pD.busyHands = false;
         }
 
         carriedObj = null;

@@ -9,6 +9,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField]private ScriptableOptions sO;
     public GameObject optionsScreen;
     
+    public GameMode gM;
 
     public Toggle fullscreenTog, vsyncTog, performanceTog;
 
@@ -19,7 +20,7 @@ public class OptionsMenu : MonoBehaviour
     
 
     public TMP_Text mastLabel, musicLabel, sfxLabel;
-    public Slider masterSlider, musicSlider, sfxSlider;
+    public Slider masterSlider, musicSlider, sfxSlider, mouseSlider;
 
     public UniversalRenderPipelineAsset urpA;
 
@@ -87,6 +88,9 @@ public class OptionsMenu : MonoBehaviour
         musicSlider.value = sO.MusicVol;
         
         sfxSlider.value = sO.SFXVol;
+        
+        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        mouseSlider.value = gM.pD.mouseSensitivity;
 
         mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
@@ -162,6 +166,10 @@ public class OptionsMenu : MonoBehaviour
         sO.SFXVol = sfxSlider.value;
         AkSoundEngine.SetRTPCValue("SFXVolume", sO.SFXVol);
         
+    }
+    public void SetMouse()
+    {
+        gM.pD.mouseSensitivity = mouseSlider.value;
     }
     public void CloseOptions()
     {

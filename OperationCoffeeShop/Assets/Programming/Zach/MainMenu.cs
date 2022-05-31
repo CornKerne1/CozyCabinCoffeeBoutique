@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
         introLetterCanvas.enabled = false;
         animator.SetTrigger("Start");
         director.Play();
+        Cursor.visible = false;
     }
     public void LaunchGame()
     {
@@ -63,6 +64,7 @@ public class MainMenu : MonoBehaviour
     }
     private void ReadNote(PlayableDirector aDirector)
     {
+        Cursor.visible = true;
         introLetterCanvas.enabled = true;
         inroLetterAnimator.enabled = true;
     }
