@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ExitDialogueMode()
+    public void ExitDialogueMode()
     {
         finishedConversation = true;
         dialogueIsPlaying = false;

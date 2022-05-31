@@ -99,10 +99,13 @@ public class CustomerAI : MonoBehaviour
             customerLines[customerLines.Count - 1].LeaveWithoutPaying(drink);
         hasOrder = true;
         hasOrdered = true;
-        stay = false;
         Vector3 finalDestination = dests.ToArray()[(dests.ToArray().Length - 1)];
         dests.Clear();
+        gameObject.GetComponent<CustomerInteractable>().dialogueManager.ExitDialogueMode();
+        //gameObject.SetActive(false);// use at last resort
         setDestination(finalDestination);
+        stay = false;
+
     }
 
     public void setDestination(Vector3 destination)

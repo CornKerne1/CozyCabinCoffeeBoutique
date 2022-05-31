@@ -11,6 +11,7 @@ public class RegularCustomer : Customer
 
     public void Awake()
     {
+        CD.customer = this;
         ai = GetComponent<CustomerAI>();
         CD.orderedDrink = GetFavoriteDrink();
         //CD.DesiredFlavors(CD.favoriteDrink.);
