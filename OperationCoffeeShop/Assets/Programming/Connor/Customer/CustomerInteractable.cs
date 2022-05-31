@@ -86,7 +86,7 @@ public class CustomerInteractable : Interactable
             pI.pD.inUI = false;
 
         }
-        else if (dialogueManager.finishedConversation && !CAI.hasOrdered)
+        else if (dialogueManager.finishedConversation && !CAI.hasOrdered && dialogueManager.GetCurrentCustomer() == this.gameObject)
         {
             canInteract = false;
             Cursor.visible = false;

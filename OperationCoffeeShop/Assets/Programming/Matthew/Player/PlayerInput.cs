@@ -10,23 +10,23 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
-    [SerializeField]private GameObject pauseM;
+    [SerializeField] private GameObject pauseM;
     [SerializeField] public static event EventHandler InteractEvent;
     [SerializeField] public static event EventHandler InteractCanceledEvent;
     [SerializeField] public static event EventHandler Alt_InteractEvent;
     //[SerializeField] public static event EventHandler Alt_InteractCanceledEvent;
-    
+
     [SerializeField] public static event EventHandler PauseEvent;
     [SerializeField] public static event EventHandler RotateEvent;//
     [SerializeField] public static event EventHandler RotateCanceledEvent;//
-    
+
     [SerializeField] public static event EventHandler MoveObjEvent;
 
 
     [SerializeField] public static event EventHandler ResetObjEvent;//
-    
+
     [SerializeField] public static event EventHandler PourEvent;
-    
+
     [SerializeField] private PlayerControls pC;
     [SerializeField] private PlayerControls.FPPlayerActions fPP;
     [SerializeField] private InputAction interact;
@@ -49,7 +49,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        
+
         pC = new PlayerControls();
         fPP = pC.FPPlayer;
         interact = pC.FPPlayer.Interact;
@@ -72,15 +72,15 @@ public class PlayerInput : MonoBehaviour
             pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
-    }
-        else
-        {
-            pD.inUI = false;
-            if (pauseM)
-            {
-                //pauseM.GetComponent<PauseMenu>().StartGame();
-            }
         }
+        //else
+        //{
+        //    pD.inUI = false;
+        //    if (pauseM)
+        //    {
+        //        //pauseM.GetComponent<PauseMenu>().StartGame();
+        //    }
+        //}
     }
 
     public void OnEnable()
@@ -88,7 +88,7 @@ public class PlayerInput : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
-        
+
         fPP.Enable();
         fPP.MoveForwardBackwards.started += ctx => verticalMovement = ctx.ReadValue<float>();
         fPP.MoveForwardBackwards.canceled += ctx => verticalMovement = ctx.ReadValue<float>();
@@ -109,7 +109,7 @@ public class PlayerInput : MonoBehaviour
         interact.performed += Interact;
         interact.canceled += InteractCanceled;
         interact.Enable();
-        
+
         alt_interact.performed += Alt_Interact;
         //alt_interact.canceled += Alt_InteractCanceled;
         alt_interact.Enable();
@@ -121,7 +121,7 @@ public class PlayerInput : MonoBehaviour
         fPP.Rotate.performed += Rotate;
         fPP.Rotate.canceled += RotateCanceled;
         fPP.Rotate.Enable();
-        
+
         fPP.MoveObj.performed += ctx => currentObjDistance = ctx.ReadValue<Vector2>();
         fPP.MoveObj.performed += MoveObj;
         fPP.MoveObj.Enable();
@@ -158,10 +158,10 @@ public class PlayerInput : MonoBehaviour
     {
         return -verticalMovement;
     }
-    
+
     public float GetCurrentObjDistance()
     {
-        
+
         return Mathf.Clamp(currentObjDistance.y, -1, 1);
     }
 
@@ -198,7 +198,7 @@ public class PlayerInput : MonoBehaviour
     }
     //private void Alt_InteractCanceled(InputAction.CallbackContext obj)
     //{
-        //Alt_InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+    //Alt_InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
     //}
     public void Pause(InputAction.CallbackContext obj)
     {
