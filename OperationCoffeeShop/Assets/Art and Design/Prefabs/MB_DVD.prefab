@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7448885214609353494}
   - component: {fileID: 5832190337807557811}
   - component: {fileID: 8580744322606747769}
+  - component: {fileID: 2455266652599825810}
   m_Layer: 0
   m_Name: MB_DVD
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7787868414432997804}
-  m_LocalRotation: {x: 0, y: -0.26416948, z: -0, w: 0.9644762}
+  m_LocalRotation: {x: 0, y: -0.26416758, z: 0, w: 0.9644768}
   m_LocalPosition: {x: -0.628, y: -9.518, z: 2.412}
   m_LocalScale: {x: 1.6533, y: 1.6533, z: 1.6533}
   m_Children: []
@@ -61,7 +62,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 421b76c89c421d04f81a055e5a13c788, type: 2}
   - {fileID: 2100000, guid: 69f31eb54ed3ce343b71143cf0f70a25, type: 2}
-  - {fileID: 1571880951434826042, guid: 980e4c2f32f32f644bbf95101c6fe510, type: 3}
+  - {fileID: 2100000, guid: 7cb7210e44a7c5e42b36db2a28a96457, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2455266652599825810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787868414432997804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.36205527, y: 0.20732561, z: 0.40932527}
+  m_Center: {x: -0.0074768057, y: -0.00858457, z: 0.0049145515}
