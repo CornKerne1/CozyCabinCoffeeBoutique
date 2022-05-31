@@ -91,12 +91,10 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if (gM.gMD.currentTime.Hour > 6)
+        if (gM.gMD.currentTime.Hour == 18)
         {
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
-            base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
-            base.gM.gMD.sleepTime.AddHours(12);
             base.gM.gMD.sleeping = true;
             base.gM.player.GetComponent<Collider>().enabled = false;
             pI.pD.killSwitchOff = false;
