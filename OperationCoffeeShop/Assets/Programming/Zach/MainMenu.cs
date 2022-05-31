@@ -29,10 +29,10 @@ public class MainMenu : MonoBehaviour
         animator.SetTrigger("Start");
         director.Play();
     }
-    private void LaunchGame()
+    public void LaunchGame()
     {
-        SceneManager.LoadScene(scene);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
+        SceneManager.LoadScene(scene);
     }
 
     public void OpenOptions()
