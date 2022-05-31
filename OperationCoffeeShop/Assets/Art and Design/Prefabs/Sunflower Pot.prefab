@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3812974967453980540}
   - component: {fileID: 4397763147552047586}
   - component: {fileID: 412303031808877853}
-  - component: {fileID: 9086344316590834307}
   - component: {fileID: 5702180555421633999}
+  - component: {fileID: 4382775033342387498}
   m_Layer: 0
   m_Name: Sunflower Pot
   m_TagString: Untagged
@@ -98,7 +98,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
---- !u!54 &9086344316590834307
+--- !u!64 &5702180555421633999
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577357821971529199}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2816119944088101400, guid: bafd6ef09a390864e8c6158914b3b04e, type: 3}
+--- !u!54 &4382775033342387498
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,17 +128,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5702180555421633999
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8577357821971529199}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2816119944088101400, guid: bafd6ef09a390864e8c6158914b3b04e, type: 3}
