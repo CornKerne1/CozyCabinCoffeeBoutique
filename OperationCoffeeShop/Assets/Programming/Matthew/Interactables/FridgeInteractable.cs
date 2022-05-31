@@ -1,39 +1,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class FridgeInteractable : Interactable
 {
-    private Fridge fridge;
-    public bool open;
-    [SerializeField]private Transform openTransform;
-    [SerializeField]private Transform startTransform;
-    private float time = 1.5f;
+    private Animator _animator;
+    private bool opening;
+    private bool open;
 
     private void Update()
     {
-        Debug.Log(open);
+       
     }
 
     void Start()
     {
-        fridge = transform.root.GetComponent<Fridge>();
+        _animator = GetComponent<Animator>();
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        //fridge.RotateObj(this.gameObject,open,time, startTransform,openTransform);
+        if (!opening)
+        {
+            if (open)
+            {
+                _animator.SetTrigger("Close");
+                StartCoroutine(Timer(1f));
+                opening = true;
+            }
+            else
+            {
+                _animator.SetTrigger("Open");
+                StartCoroutine(Timer(1f));
+                opening = true;
+            }
+        }
     }
 
+    IEnumerator Timer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        opening = false;
+        open = !open;
+    }
     public override void OnFocus()
     {
-        throw new NotImplementedException();
+
     }
 
     public override void OnLoseFocus()
     {
-        throw new NotImplementedException();
+
     }
 }

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2204909570687547233}
   - component: {fileID: 7252557782459163479}
   - component: {fileID: 1629025821280501493}
+  - component: {fileID: 1455543993}
   m_Layer: 0
   m_Name: Refrigerator_BottomDoor
   m_TagString: Untagged
@@ -141,9 +142,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  open: 0
-  openTransform: {fileID: 449412838083077031}
-  startTransform: {fileID: 0}
+--- !u!95 &1455543993
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976656744701970494}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a66de00c8b7f5644f8f4c48d91471d31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4624960877666606487
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +203,6 @@ GameObject:
   - component: {fileID: 5957211875639727501}
   - component: {fileID: 8451202520665973063}
   - component: {fileID: 3257170340602049493}
-  - component: {fileID: 5801461498411364874}
   m_Layer: 0
   m_Name: Refrigerator
   m_TagString: Untagged
@@ -275,18 +291,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4132612039364378522, guid: 03027c2c0029aa64ca267017b2cda59a, type: 3}
---- !u!114 &5801461498411364874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7946689068551749778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700cd52426502e049bb01157ac514bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9001434814423615835
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +304,7 @@ GameObject:
   - component: {fileID: 6895133600886579818}
   - component: {fileID: 4276287436740989148}
   - component: {fileID: 6859374440405215023}
+  - component: {fileID: 1086524336}
   m_Layer: 0
   m_Name: Refrigerator_TopDoor
   m_TagString: Untagged
@@ -385,9 +390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  open: 0
-  openTransform: {fileID: 7399088462618475688}
-  startTransform: {fileID: 0}
 --- !u!64 &6859374440405215023
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -402,3 +404,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7075988510807825446, guid: 03027c2c0029aa64ca267017b2cda59a, type: 3}
+--- !u!95 &1086524336
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9001434814423615835}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2bf4fa3907e50f14a953eacd667f39f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
