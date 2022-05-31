@@ -96,8 +96,7 @@ public class Bed : Interactable
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
             base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
-            StartCoroutine(CalculateSleepTime());
-            //base.gM.gMD.sleepTime.AddHours(8);
+            base.gM.gMD.sleepTime.AddHours(12);
             base.gM.gMD.sleeping = true;
             base.gM.player.GetComponent<Collider>().enabled = false;
             pI.pD.killSwitchOff = false;
@@ -110,14 +109,5 @@ public class Bed : Interactable
         Debug.Log("Gone!");
     }
 
-    IEnumerator CalculateSleepTime()
-    {
-        yield return new WaitForSeconds(.04f);
-        if (base.gM.gMD.sleepTime.Hour != 6)
-        {
-            base.gM.gMD.sleepTime.AddHours(1);
-            StartCoroutine(CalculateSleepTime());
-        }
-      
-    }
+
 }
