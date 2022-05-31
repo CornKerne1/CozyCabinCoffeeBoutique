@@ -15,12 +15,7 @@ public class Radio : Interactable
     public void PostSoundEvent(string s) { AkSoundEngine.PostEvent(s, this.gameObject); }
     public override void Start()
     {
-        StartCoroutine(Initialize());
-    }
-
-    private IEnumerator Initialize()
-    {
-        yield return new WaitForSeconds(.04f);
+        base.Start();
         for (int i = 0; i < 11; i++)
         {
             var rC = Instantiate(radioChannel, transform.position, transform.rotation).GetComponent<RadioChannel>();
@@ -37,7 +32,6 @@ public class Radio : Interactable
         RadioChannels[currentChannel].PlayChannel();
         HandleDial();
     }
-
 
     public void HandleDial()
     {
