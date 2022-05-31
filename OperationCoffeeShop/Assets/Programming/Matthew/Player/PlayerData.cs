@@ -63,5 +63,6 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float smooth;
 
     [SerializeField] public bool killSwitchOff;
+    [SerializeField] public bool inUI;
 
 }

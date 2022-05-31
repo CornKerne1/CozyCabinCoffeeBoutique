@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     private PlayerMovement pM;
     private PlayerCameraController pCC;
     private PlayerInteraction pI;
+    public PlayerData pD;
     
     
     public GameObject optionsScreen;
@@ -30,6 +31,8 @@ public class PauseMenu : MonoBehaviour
         pM.canMove = true;
         pCC.canMove = true;
         pI.CameraBlur();
+        pD.neckClamp = 77.3f;
+        pD.inUI = false;
         Destroy(gameObject);
     }
 
@@ -40,11 +43,13 @@ public class PauseMenu : MonoBehaviour
 
     public void CloseOptions()
     {
-        optionsScreen.SetActive(false);
+        pD.inUI = false;
+        Destroy(gameObject);
     }
 
     public void QuitGame()
     {
+        pD.inUI = false;
         SceneManager.LoadScene(quitScene);
     }
     
@@ -61,5 +66,6 @@ public class PauseMenu : MonoBehaviour
         pI.CameraBlur();
         pM.canMove = false;
         pCC.canMove = false;
+        pD.neckClamp = 0.0f;
     }
 }

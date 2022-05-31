@@ -14,13 +14,15 @@ public class GrinderInteraction : MachineInteraction
     }
     IEnumerator Grind()
     {
-        machine.PostSoundEvent("Play_GrindingCoffee");
         yield return new WaitForSeconds(.4f);
         switch (mD.machineType)
         {
             case MachineData.Type.Default:
+                if(!machine.isRunning)
+                    machine.PostSoundEvent("Play_GrindingCoffee");
+                
                 machine.StartMachine();
-                 break;
+                break;
             case MachineData.Type.Brewer:
                 var bB = transform.root.GetComponentInChildren<BrewerBowl>();
                 if (bB)
