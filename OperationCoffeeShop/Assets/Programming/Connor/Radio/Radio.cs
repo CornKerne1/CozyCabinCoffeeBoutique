@@ -11,13 +11,13 @@ public class Radio : Interactable
     [SerializeField] private GameObject radioChannel;
     public int currentChannel;
     bool isOn;
-    public List<RadioChannel> RadioChannels = new List<RadioChannel>();
+    public List<RadioChannel> RadioChannels = new List<RadioChannel>();//
     [SerializeField] private GameObject radioDial;
     PlayerInteraction pI;//
     public void PostSoundEvent(string s) { AkSoundEngine.PostEvent(s, this.gameObject); }
     public override void Start()
     { 
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 10; i++)
         {
                 RadioChannel rC = Instantiate(radioChannel, transform.position, transform.rotation).GetComponent<RadioChannel>();
                     rC.radio = this;

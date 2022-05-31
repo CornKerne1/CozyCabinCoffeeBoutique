@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,18 +12,34 @@ public class Gate : MonoBehaviour
     
     private bool activate;
     private bool running;
+    private bool open;
     // Start is called before the first frame update
     void Start()
     {
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         var sT = gate.transform;
         startTrans = sT;
+        GameMode.ShopClosed += Closed;
     }
 
-    public void OpenCloseGate()
+    private void Closed(object sender, EventArgs e)
+    {
+        OpenGate();
+    }
+
+    void Closed()
     {
         if (!running)
         {
+            open = false;
+            activate = true;
+        }
+    }
+    public void OpenGate()
+    {
+        if (!running)
+        {
+            open = true;
             activate = true;
         }
     }
@@ -32,18 +49,20 @@ public class Gate : MonoBehaviour
     {
         if (activate)
         {
-            running = true;
-            if (gM.gMD.isOpen)
-            {//Open
+            if (open)
+            {
+                running = true;
                 gate.transform.position = Vector3.Lerp(gate.transform.position, trans.position, 1);
                 if (gate.transform.position == trans.position)
                 {
                     activate = false;
                     running = false;
                 }
+
             }
             else
-            {//Close
+            {
+                running = true;
                 gate.transform.position = Vector3.Lerp(gate.transform.position, startTrans.position, 1);
                 if (gate.transform.position == startTrans.position)
                 {

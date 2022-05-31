@@ -83,14 +83,13 @@ public class GameMode : MonoBehaviour
         if (gMD.currentTime.Hour < 18 && gMD.currentTime.Hour > 5)
         {
             gMD.isOpen = true;
-            gate.OpenCloseGate();
+            gate.OpenGate();
             pD.moveSpeed = pD.openSpeed;
         }
     }
     public void CloseShop()
     {
         gMD.isOpen = false;
-        gate.OpenCloseGate();
         pD.moveSpeed = pD.closeSpeed;
         ShopClosed?.Invoke(this, EventArgs.Empty);
         if (gMD.currentTime.Day > 2)
