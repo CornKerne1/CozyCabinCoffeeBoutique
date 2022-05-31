@@ -5,7 +5,7 @@ using UnityEngine;
 public class RanomizeAnimations : MonoBehaviour
 {
     Animator animator;
-    public Animation idleAnimation;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,9 @@ public class RanomizeAnimations : MonoBehaviour
 
     public void RandomIdle()
     {
-       // animator.
+        if (animator.IsInTransition(0) == false)
+        {
+
+        }
     }
 }
