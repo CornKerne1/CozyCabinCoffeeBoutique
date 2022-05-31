@@ -56,7 +56,7 @@ public class DayNightCycle
         if (gMD.sleeping)
         {
             TrackTime();
-            if (gMD.currentTime >= gMD.sleepTime)
+            if (gMD.currentTime == new DateTime(gMD.currentTime.Year,gMD.currentTime.Month,gMD.currentTime.Day,6,gMD.currentTime.Minute,gMD.currentTime.Second ));
             {
                 gMD.sleeping = false;
             }
