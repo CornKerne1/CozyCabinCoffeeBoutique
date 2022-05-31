@@ -10,8 +10,7 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
-    [SerializeField] public GameObject pauseMenu;
-    private GameObject pauseM;
+    [SerializeField]private GameObject pauseM;
     [SerializeField] public static event EventHandler InteractEvent;
     [SerializeField] public static event EventHandler InteractCanceledEvent;
     [SerializeField] public static event EventHandler Alt_InteractEvent;
@@ -62,23 +61,24 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         Instantiate(hud);
-        PauseEvent += _Pause;
+        pauseM.SetActive(false);
+        pauseM.GetComponent<PauseMenu>().CloseOptions();
     }
 
-    void _Pause(object sender, EventArgs e)
+    void _Pause()
     {
-        if (pauseM == null && !pD.inUI)
+        if (!pD.inUI)
         {
-            pauseM = Instantiate(pauseMenu);
+            pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
-        }
+    }
         else
         {
             pD.inUI = false;
             if (pauseM)
             {
-                pauseM.GetComponent<PauseMenu>().StartGame();
+                //pauseM.GetComponent<PauseMenu>().StartGame();
             }
         }
     }
@@ -203,6 +203,7 @@ public class PlayerInput : MonoBehaviour
     public void Pause(InputAction.CallbackContext obj)
     {
         PauseEvent?.Invoke(this, EventArgs.Empty);
+        _Pause();
     }
     private void Rotate(InputAction.CallbackContext obj)
     {

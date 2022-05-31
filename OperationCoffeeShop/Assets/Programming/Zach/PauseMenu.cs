@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         pI.CameraBlur();
         pD.neckClamp = 77.3f;
         pD.inUI = false;
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 
     public void OpenOptions()
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
     public void CloseOptions()
     {
         pD.inUI = false;
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 
     public void QuitGame()
@@ -52,12 +52,27 @@ public class PauseMenu : MonoBehaviour
         pD.inUI = false;
         SceneManager.LoadScene(quitScene);
     }
+
+    private void OnEnable()
+    {
+        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        animator = GetComponent<Animator>();
+        pM = gM.player.gameObject.GetComponent<PlayerMovement>();
+        pCC = gM.player.gameObject.GetComponent<PlayerCameraController>();
+        pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        pI.CameraBlur();
+        pM.canMove = false;
+        pCC.canMove = false;
+        pD.neckClamp = 0.0f;
+    }
     
-    
+
     private void Start()
     {
-        animator = GetComponent<Animator>();
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        animator = GetComponent<Animator>();
         pM = gM.player.gameObject.GetComponent<PlayerMovement>();
         pCC = gM.player.gameObject.GetComponent<PlayerCameraController>();
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();

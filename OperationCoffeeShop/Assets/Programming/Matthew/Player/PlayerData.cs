@@ -16,6 +16,7 @@ public class PlayerData : ScriptableObject
         killSwitchOff = true;
         neckClamp = 77.3f;
         PlayerInput.InteractEvent += tryTest;
+        inUI = false;
     }
 
     void tryTest(object sender, EventArgs e)
@@ -63,6 +64,6 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float smooth;
 
     [SerializeField] public bool killSwitchOff;
-    [SerializeField] public bool inUI;
+    [SerializeField] public bool inUI = false;
 
 }
