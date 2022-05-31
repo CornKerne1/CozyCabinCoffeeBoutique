@@ -38,7 +38,7 @@ public class CustomerInteractable : Interactable
 
     private bool canInteract = true;
 
-    DialogueManager dialogueManager;
+    public DialogueManager dialogueManager;
     private PlayerInteraction pI;
 
     //[HideInInspector]
@@ -102,7 +102,7 @@ public class CustomerInteractable : Interactable
             pI.pD.inUI = false;
 
         }
-        if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject)
+        if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject && dialogueManager.dialogueIsPlaying)
         {
             gM.pD.neckClamp = neckclamp / 40;
             var c = Camera.main.transform;
