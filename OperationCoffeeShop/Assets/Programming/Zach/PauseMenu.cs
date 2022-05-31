@@ -30,10 +30,10 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pM.canMove = true;
         pCC.canMove = true;
-        pI.CameraBlur();
         pD.neckClamp = 77.3f;
         pD.inUI = false;
         this.gameObject.SetActive(false);
+        pI.CameraBlur();
     }
 
     public void OpenOptions()
@@ -62,10 +62,10 @@ public class PauseMenu : MonoBehaviour
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        pI.CameraBlur();
         pM.canMove = false;
         pCC.canMove = false;
         pD.neckClamp = 0.0f;
+        pI.CameraBlur();
     }
     
 
@@ -78,9 +78,9 @@ public class PauseMenu : MonoBehaviour
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        pI.CameraBlur();
         pM.canMove = false;
         pCC.canMove = false;
         pD.neckClamp = 0.0f;
+        pI.CameraBlur();
     }
 }

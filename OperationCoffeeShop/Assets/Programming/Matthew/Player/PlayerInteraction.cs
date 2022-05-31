@@ -228,7 +228,7 @@ public class PlayerInteraction : MonoBehaviour
 
      public void CameraBlur()
     {
-         if (!blur)
+         if (blur)
          {
              dofAperture.value = 1.0f;
              blur = true;
