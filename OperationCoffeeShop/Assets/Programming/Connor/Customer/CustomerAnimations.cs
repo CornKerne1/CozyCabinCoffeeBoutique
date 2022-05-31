@@ -44,7 +44,8 @@ public class CustomerAnimations : MonoBehaviour
 
     public void RandomizeSpeed()
     {
-        customerAnimator.speed = Random.Range(.8f, 1.21f);
+        customerAnimator.speed = Random.Range(.4f, 1.6f);
+        StartCoroutine(ResetSpeed());
 
     }
     private IEnumerator ResetSpeed()
