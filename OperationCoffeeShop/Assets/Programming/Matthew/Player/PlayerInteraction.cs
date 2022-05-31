@@ -152,16 +152,18 @@ public class PlayerInteraction : MonoBehaviour
 
     public void TryInteract(object sender, EventArgs e)
     {
-        if (pD.busyHands)
+        if (!pD.inUI)
         {
-            DropCurrentObj();
+            if (pD.busyHands)
+            {
+                DropCurrentObj();
+            }
+            else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+            {
+                Debug.Log("tryInteract");
+                currentInteractable.OnInteract(this);
+            }
         }
-        else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
-        {
-            Debug.Log("tryInteract");
-            currentInteractable.OnInteract(this);
-        }
-
     }
 
     public void Alt(object sender, EventArgs e)

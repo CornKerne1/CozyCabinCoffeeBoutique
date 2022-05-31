@@ -476,6 +476,98 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_RedPandaTheme" ID="{940ADAA3-68D3-48BB-BD04-123B1C3442E5}">
+					<ChildrenList>
+						<Action Name="" ID="{066F5A09-1324-4F96-B379-4C1CAB003931}" ShortID="668733560">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RedPandaTheme" ID="{8D0F1697-9F86-4240-A319-2E92EC37244E}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeZero_RedPandaTheme" ID="{422C8F17-D830-48B8-8844-7EAF1ACE7748}">
+					<ChildrenList>
+						<Action Name="" ID="{B223A55E-E57E-457C-A350-1FBBC0A3308B}" ShortID="382921613">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RedPandaTheme" ID="{8D0F1697-9F86-4240-A319-2E92EC37244E}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="VolumeOne_RedPandaTheme" ID="{502F061C-D91C-4F97-804E-6D4B87A5236C}">
+					<ChildrenList>
+						<Action Name="" ID="{47C738CD-54F3-4994-9E33-AF0BD489267F}" ShortID="450715684">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RedPandaTheme" ID="{8D0F1697-9F86-4240-A319-2E92EC37244E}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TitleTheme" ID="{FE86C0C2-DCC9-4975-AA4B-D752967EB03C}">
+					<ChildrenList>
+						<Action Name="" ID="{0BB6C7D0-885C-4565-9491-6ECA3D0391B0}" ShortID="893080615">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Cozy_Cabin_Coffee_Title_Screen" ID="{187F684E-EFE1-433E-A96B-6967A9051A01}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_TitleTheme" ID="{565B434C-D941-47AE-A7AF-C7115198B41C}">
+					<ChildrenList>
+						<Action Name="" ID="{1DE2FAF2-5966-4D40-8F59-79371DDD58F0}" ShortID="278405382">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Cozy_Cabin_Coffee_Title_Screen" ID="{187F684E-EFE1-433E-A96B-6967A9051A01}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_GrindingCoffee" ID="{97146076-BEF0-4413-809D-00A65BFDCB24}">
+					<ChildrenList>
+						<Action Name="" ID="{3E8B9FE2-AC8E-4267-BA9C-EFCBCF198847}" ShortID="124974233">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Grinding_Coffee_Beans" ID="{A2E6066C-93B7-417E-A390-56853203E21C}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_GrindingEspresso" ID="{E1565CF9-CC15-411E-971E-71888BB74D3C}">
+					<ChildrenList>
+						<Action Name="" ID="{03A84A7A-4A7E-4858-9EAF-CF08EF821AD6}" ShortID="817380189">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Grinding_Espresso" ID="{54F6CA64-686E-4074-9D0D-85A8F80A2CBE}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

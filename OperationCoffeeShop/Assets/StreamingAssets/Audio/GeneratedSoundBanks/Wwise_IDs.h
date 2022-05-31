@@ -22,17 +22,23 @@ namespace AK
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
         static const AkUniqueID PLAY_NEUROTICBONE = 3754899171U;
         static const AkUniqueID PLAY_PIANO = 1479974693U;
+        static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
         static const AkUniqueID PLAY_ROASTBLEND = 3453202434U;
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
+        static const AkUniqueID PLAY_TITLETHEME = 3107494279U;
+        static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
+        static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;
+        static const AkUniqueID STOP_TITLETHEME = 1450757357U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;
         static const AkUniqueID VOLUMEONE_BREAKINGLOOSE = 4016599115U;
         static const AkUniqueID VOLUMEONE_EXQUISITETASTE = 521874696U;
         static const AkUniqueID VOLUMEONE_NEUROTICBONE = 1886182129U;
         static const AkUniqueID VOLUMEONE_PIANO = 844119779U;
+        static const AkUniqueID VOLUMEONE_REDPANDATHEME = 662843338U;
         static const AkUniqueID VOLUMEONE_ROASTBLEND = 3973291544U;
         static const AkUniqueID VOLUMEONE_SOMEDAYWAKEUP = 2181399409U;
         static const AkUniqueID VOLUMEONE_SPASHEDSEA = 2689093237U;
@@ -44,6 +50,7 @@ namespace AK
         static const AkUniqueID VOLUMEZERO_EXQUISITETASTE = 247285116U;
         static const AkUniqueID VOLUMEZERO_NEUROTICBONE = 3535909101U;
         static const AkUniqueID VOLUMEZERO_PIANO = 2896401063U;
+        static const AkUniqueID VOLUMEZERO_REDPANDATHEME = 946022718U;
         static const AkUniqueID VOLUMEZERO_ROASTBLEND = 2913870116U;
         static const AkUniqueID VOLUMEZERO_SOMEDAYWAKEUP = 3467887341U;
         static const AkUniqueID VOLUMEZERO_SPASHEDSEA = 4282258553U;
@@ -64,6 +71,13 @@ namespace AK
         } // namespace LOOP
 
     } // namespace STATES
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MASTERVOLUME = 2918011349U;
+        static const AkUniqueID MUSICVOLUME = 2346531308U;
+        static const AkUniqueID SFXVOLUME = 988953028U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {

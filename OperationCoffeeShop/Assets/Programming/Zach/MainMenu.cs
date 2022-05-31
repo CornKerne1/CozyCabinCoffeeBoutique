@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
     private void LaunchGame()
     {
         SceneManager.LoadScene(scene);
-
+        AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
     }
 
     public void OpenOptions()
@@ -53,6 +53,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        AkSoundEngine.PostEvent("Play_TitleTheme", this.gameObject);
         animator = GetComponent<Animator>();
         GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD.isOpen = true;
         Cursor.visible = true;

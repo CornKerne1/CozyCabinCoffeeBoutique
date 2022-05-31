@@ -11,12 +11,12 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3382481968">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2926097407">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="1171408977">
+		<SoundBank Id="3161908922" Language="SFX" Hash="987458094">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -61,11 +61,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="10." DurationType="OneShot" DurationMin="7.497143" DurationMax="7.497143">
+				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="10." DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
 					<IncludedMemoryFiles>
-						<File Id="1013556960" Language="SFX">
-							<ShortName>Grinding_Coffee_Beans.wav</ShortName>
-							<Path>SFX\Grinding_Coffee_Beans_10C4C929.wem</Path>
+						<File Id="285469530" Language="SFX">
+							<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
+							<Path>SFX\Grinding_Coffee_Beans1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -90,6 +90,14 @@
 						<File Id="386335204" Language="SFX">
 							<ShortName>ChillWurlyPiano.wav</ShortName>
 							<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3700200612" Name="Play_RedPandaTheme" ObjectPath="\Events\Default Work Unit\Play_RedPandaTheme" MaxAttenuation="12." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="2409473" Language="SFX">
+							<ShortName>RedPandaTheme.wav</ShortName>
+							<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -133,12 +141,24 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3107494279" Name="Play_TitleTheme" ObjectPath="\Events\Default Work Unit\Play_TitleTheme" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="138462402" Language="SFX">
+							<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
+							<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1450757357" Name="Stop_TitleTheme" ObjectPath="\Events\Default Work Unit\Stop_TitleTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeOne_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="521874696" Name="VolumeOne_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeOne_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1886182129" Name="VolumeOne_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeOne_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="844119779" Name="VolumeOne_Piano" ObjectPath="\Events\Default Work Unit\VolumeOne_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="662843338" Name="VolumeOne_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeOne_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3973291544" Name="VolumeOne_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeOne_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2181399409" Name="VolumeOne_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeOne_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2689093237" Name="VolumeOne_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeOne_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -150,6 +170,7 @@
 				<Event Id="247285116" Name="VolumeZero_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeZero_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3535909101" Name="VolumeZero_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeZero_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2896401063" Name="VolumeZero_Piano" ObjectPath="\Events\Default Work Unit\VolumeZero_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="946022718" Name="VolumeZero_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeZero_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2913870116" Name="VolumeZero_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeZero_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3467887341" Name="VolumeZero_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeZero_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4282258553" Name="VolumeZero_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeZero_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -157,9 +178,21 @@
 				<Event Id="3876908550" Name="VolumeZero_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeZero_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="2409473" Language="SFX">
+					<ShortName>RedPandaTheme.wav</ShortName>
+					<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
+				</File>
+				<File Id="138462402" Language="SFX">
+					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
+					<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
+				</File>
 				<File Id="230495110" Language="SFX">
 					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
 					<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="285469530" Language="SFX">
+					<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
+					<Path>SFX\Grinding_Coffee_Beans1_10C4C929.wem</Path>
 				</File>
 				<File Id="366206813" Language="SFX">
 					<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
@@ -209,11 +242,12 @@
 					<ShortName>Breaking_Loose_LoFi.wav</ShortName>
 					<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
 				</File>
-				<File Id="1013556960" Language="SFX">
-					<ShortName>Grinding_Coffee_Beans.wav</ShortName>
-					<Path>SFX\Grinding_Coffee_Beans_10C4C929.wem</Path>
-				</File>
 			</IncludedMemoryFiles>
+			<GameParameters>
+				<GameParameter Id="988953028" Name="SFXVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFXVolume"/>
+				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MusicVolume"/>
+				<GameParameter Id="2918011349" Name="MasterVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MasterVolume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

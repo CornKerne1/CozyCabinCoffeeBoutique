@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class IngredientContainer : Interactable
 {
@@ -12,7 +13,7 @@ public class IngredientContainer : Interactable
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
     private float capacity;
-    private float maxCapacity = 2.0f;
+    [SerializeField]private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
     private bool pouring;
@@ -25,6 +26,7 @@ public class IngredientContainer : Interactable
     private IEnumerator cr2 = null;
 
     public List<GameObject> outputIngredients = new List<GameObject>();
+    private List<IngredientNode> garbageList = new List<IngredientNode>();
 
     private void FixedUpdate()
     {
@@ -59,6 +61,7 @@ public class IngredientContainer : Interactable
                 pouring = true;
                 if (cr1 == null)
                 {
+                    cr1 = Timer(1f);
                     StartCoroutine(Timer(1f));
                 }
             }
@@ -68,6 +71,7 @@ public class IngredientContainer : Interactable
                 transform.Rotate(-2, 0, 0);
                 if (cr1 == null)
                 {
+                    cr1 = Timer(1f);
                     StartCoroutine(Timer(1f));
                 }
             }
@@ -91,8 +95,6 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.Ingredients = new List<IngredientNode>();
         dD.Name = "Cup";
-        cr1 = null;
-        cr2 = null;
     }
 
     public virtual void AddToContainer(IngredientNode iN)
@@ -105,20 +107,15 @@ public class IngredientContainer : Interactable
         {
             dD.addIngredient(iN);
             capacity = capacity + iN.target;
-            contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
-                (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
-            contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
-                (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
-        }
-    }
+            if (hasContentsVisualizer)
+            {
+                contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
+                    (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
+                contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
+                    (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
+            }
 
-    public virtual void RemoveIngredient()
-    {
-        foreach (IngredientNode i in dD.Ingredients)
-        {
-            i.target = i.target - 0.1f;
-            capacity = capacity - 0.1f;
-            switch (i.ingredient)
+            switch (iN.ingredient)
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
@@ -129,38 +126,64 @@ public class IngredientContainer : Interactable
                 case Ingredients.Milk:
                     outputIngredients.Add(iD.milk);
                     break;
+                case Ingredients.Sugar:
+                    outputIngredients.Add(iD.Sugar);
+                    break;
             }
+        }
+    }
+
+    public virtual void RemoveIngredient()
+    {
+        foreach (IngredientNode i in dD.Ingredients)
+        {
+            var c = i.target - 0.1f;
+            i.target = c;
+            capacity = capacity - 0.1f;
 
             if (i.target <= 0)
             {
-                dD.Ingredients.Remove(i);
+                garbageList.Add(i);
             }
         }
+
+        foreach (IngredientNode i in garbageList)
+        {
+            dD.Ingredients.Remove(i);
+        }
+
+        garbageList = new List<IngredientNode>();
         //Queue Each Ingriedent for spawning using a list, then use a coroutine to spawn each ingriedent with a small buffer.
     }
 
     public void Pour()
     {
-        if (pouring)
+        if (pouring && cr2 == null)
         {
-            if(outputIngredients.Count > 0)
-            {
-                //if (cr2 != null)
-                    StartCoroutine(Liquify());
-            }
-            else
-            {
-                RemoveIngredient();
-            }
+            cr2 = Liquify();
+            StartCoroutine(Liquify());
         }
     }
 
     IEnumerator Liquify()
     {
-        //cr2 = Liquify();
+        RemoveIngredient();
         yield return new WaitForSeconds(.04f);
-        Instantiate(outputIngredients[outputIngredients.Count-1], pourTransform.position, pourTransform.rotation);
-        //cr2 = null;
+        if (outputIngredients.Count > 0)
+        {
+            var r = Random.Range(0, outputIngredients.Count);
+            Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
+            outputIngredients.Remove(outputIngredients[outputIngredients.Count-1]);
+            if (hasContentsVisualizer)
+            {
+                contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
+                    (contentsVisualizer.transform.localPosition.y + .00048f), contentsVisualizer.transform.localPosition.z);
+                contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x - .01f,
+                    (contentsVisualizer.transform.localScale.y - .01f), contentsVisualizer.transform.localScale.z); //
+            }
+        }
+
+        cr2 = null;
     }
 
     public void StopPouring()
@@ -177,6 +200,12 @@ public class IngredientContainer : Interactable
                 break;
             case Ingredients.Espresso:
                 Instantiate(iD.espresso, pourTransform.position, pourTransform.rotation);
+                break;
+            case Ingredients.Sugar:
+                Instantiate(iD.Sugar, pourTransform.position, pourTransform.rotation);
+                break;
+            case Ingredients.Milk:
+                Instantiate(iD.milk, pourTransform.position, pourTransform.rotation);
                 break;
         }
     }
