@@ -3,28 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Audio;
+using UnityEngine.Rendering.Universal;
 public class OptionsMenu : MonoBehaviour
 {
-    public ScriptableOptions sO;
+    [SerializeField]private ScriptableOptions sO;
     public GameObject optionsScreen;
     
 
-    public Toggle fullscreenTog, vsyncTog;
+    public Toggle fullscreenTog, vsyncTog, performanceTog;
 
     public List<ResItem> resolutions = new List<ResItem>();
     private int selectedResolution;
 
     public TMP_Text resolutionLabel;
-
-    public AudioMixer theMixer;
+    
 
     public TMP_Text mastLabel, musicLabel, sfxLabel;
     public Slider masterSlider, musicSlider, sfxSlider;
 
+    public UniversalRenderPipelineAsset urpA;
+
+    public void TogglePerformace(bool lowQuality)
+    {
+        if (lowQuality)
+        {
+            urpA.msaaSampleCount = 0;
+            urpA.supportsCameraDepthTexture = false;
+            urpA.supportsCameraOpaqueTexture = false;
+            urpA.shadowCascadeCount = 1;
+            urpA.supportsHDR = false;
+            urpA.shadowDistance = 45;
+        }
+        else
+        {
+            urpA.msaaSampleCount = 8;
+            urpA.supportsCameraDepthTexture = true;
+            urpA.supportsCameraOpaqueTexture = true;
+            urpA.shadowCascadeCount = 3;
+            urpA.supportsHDR = true;
+            urpA.shadowDistance = 180;
+        }
+    }
     void Start()
     {
         fullscreenTog.isOn = Screen.fullScreen;
+        performanceTog.isOn = false;
+        TogglePerformace(performanceTog.isOn);
 
         if (QualitySettings.vSyncCount == 0)
         {
@@ -114,6 +138,7 @@ public class OptionsMenu : MonoBehaviour
         }
 
         Screen.SetResolution(resolutions[selectedResolution].horizontal, resolutions[selectedResolution].vertical, fullscreenTog.isOn);
+        TogglePerformace(performanceTog.isOn);
     }
 
     //functions below control sound slider values and how they interact with ui
