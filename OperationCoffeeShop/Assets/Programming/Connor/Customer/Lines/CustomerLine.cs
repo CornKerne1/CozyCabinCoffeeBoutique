@@ -80,11 +80,17 @@ public class CustomerLine : MonoBehaviour
             foreach (CustomerAI AI in queue)
             {
                 //moves customer up 1 position & incraments position. 
-                AI.setDestination(getNextSpotInLine(++i));
+                StartCoroutine(RandomMoveLine(AI, ++i));
                 cA.RandomizeSpeed();
             }
             i = 0;
         }
+    }
+
+    IEnumerator RandomMoveLine(CustomerAI AI, int i)
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(.5f,1.5f));
+        AI.setDestination(getNextSpotInLine(i));
     }
 
     /// <summary>
