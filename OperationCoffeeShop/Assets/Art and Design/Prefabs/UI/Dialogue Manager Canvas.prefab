@@ -113,8 +113,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d84633d46df4843a66266375eabed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 3008080769521958748}
+  buttonImage: {fileID: 3008080770158878030}
   dialoguePanel: {fileID: 3008080769925001665}
   dialogueText: {fileID: 3008080769201366141}
+  button1Text: {fileID: 3008080769607119372}
+  dialogueIsPlaying: 0
+  finishedConversation: 0
 --- !u!1 &3008080769201366143
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +266,7 @@ GameObject:
   - component: {fileID: 3008080769521958723}
   - component: {fileID: 3008080769521958748}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 13de67c39ae38443cb277c657f7fa473, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c576343f451d4ecd8ac988053085e2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -358,7 +363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 39.6, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3008080769607119475
@@ -423,7 +428,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -452,7 +457,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -532.87335, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -574,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -20, y: 10}
+  m_AnchoredPosition: {x: -614.48, y: 0.3}
   m_SizeDelta: {x: 39.518494, y: 39.518997}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3008080770158878029
@@ -598,14 +603,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.31620678, g: 0.5188679, b: 0.24719651, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 96c8d63540ed04934bafb63ccb688e5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29e1e2aa33fe02e47bbcfaf1a91f3ef2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

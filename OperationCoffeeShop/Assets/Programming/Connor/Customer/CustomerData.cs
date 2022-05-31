@@ -10,9 +10,10 @@ public class CustomerData : ScriptableObject
     public DrinkData orderedDrink;
     public DrinkData recievedDrink;
     public List<FlavorProfile.FlavorNode> desiredFlavors;
-   public Customer customer;
+    public Customer customer;
     public List<TextAsset> OrderConversation;
-
+    public Sprite portrait;
+    public Sprite buttonImage;
     //public List<string> orderPhrases;
 
 

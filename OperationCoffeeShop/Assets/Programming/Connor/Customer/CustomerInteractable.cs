@@ -12,8 +12,6 @@ public class CustomerInteractable : Interactable
 
     public CustomerAI CAI;
 
-    public CustomerData CD;
-
     public Conversation conversation;
 
     private GameObject prompt;
@@ -55,12 +53,13 @@ public class CustomerInteractable : Interactable
         pcc = player.GetComponent<PlayerCameraController>();
         neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
-
+        
         // will be null if random customer or not spawned by a regular spawner
         if (rCA != null)
             SetConversations();
         else
         {
+            
             StartCoroutine(SetRandomConversations());
         }
     }
@@ -110,7 +109,7 @@ public class CustomerInteractable : Interactable
         {
             foreach (RegularCustomerAtlas.customerConversations cc in rCA.dic[gM.gMD.currentTime.Day])
             {
-                if (cc.customer.GetComponent<Customer>().CD = this.CD)
+                if (cc.customer.GetComponent<Customer>().CD = this.CAI.CD)
                 {
                     this.IntroConversation = cc.IntroConversation;
                     this.ExitConversation = cc.ExitConversation;
@@ -149,6 +148,15 @@ public class CustomerInteractable : Interactable
             dialogueManager.SetCurrentCustomer(this.gameObject);
             talking = true;
             DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
+            if (rCA != null)
+            {
+                dialogueManager.SetPortraitButtonAndName(this.CAI.CD.portrait, this.CAI.CD.buttonImage, this.CAI.CD.name);
+            }
+            else
+            {
+                dialogueManager.SetDefaultImagesAndName(this.CAI.CD.name);
+
+            }
             //customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeOrder,this.transform);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
