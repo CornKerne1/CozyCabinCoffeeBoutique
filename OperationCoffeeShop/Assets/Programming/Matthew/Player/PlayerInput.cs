@@ -72,15 +72,8 @@ public class PlayerInput : MonoBehaviour
             pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
-    }
-        else
-        {
-            pD.inUI = false;
-            if (pauseM)
-            {
-                //pauseM.GetComponent<PauseMenu>().StartGame();
-            }
         }
+
     }
 
     public void OnEnable()
