@@ -29,6 +29,7 @@ public class Bed : Interactable
 
     public void Update()
     {
+        Debug.Log(base.gM.gMD.currentTime.Hour);
         HandlePlayerMove();
     }
 
@@ -90,12 +91,12 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if (gM.gMD.currentTime.Hour > 18 && gM.gMD.currentTime.Hour < 6)
+        if (gM.gMD.currentTime.Hour > 6)
         {
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
             base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
-            CalculateSleepTime();
+            StartCoroutine(CalculateSleepTime());
             //base.gM.gMD.sleepTime.AddHours(8);
             base.gM.gMD.sleeping = true;
             base.gM.player.GetComponent<Collider>().enabled = false;
@@ -109,12 +110,13 @@ public class Bed : Interactable
         Debug.Log("Gone!");
     }
 
-    void CalculateSleepTime()
+    IEnumerator CalculateSleepTime()
     {
+        yield return new WaitForSeconds(.04f);
         if (base.gM.gMD.sleepTime.Hour != 6)
         {
             base.gM.gMD.sleepTime.AddHours(1);
-            CalculateSleepTime();
+            StartCoroutine(CalculateSleepTime());
         }
       
     }
