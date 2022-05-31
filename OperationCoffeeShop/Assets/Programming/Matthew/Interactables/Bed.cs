@@ -91,8 +91,8 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        //if (gM.gMD.currentTime.Hour == 18)
-        //{
+        if (gM.gMD.currentTime.Hour == 18)
+        {
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 10*base.gM.gMD.timeRate;
             base.gM.player.GetComponent<Collider>().enabled = false;
@@ -100,7 +100,7 @@ public class Bed : Interactable
             base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
             base.gM.gMD.sleeping = true;
             running = true;
-        //}
+        }
     }
 
     public override void OnLoseFocus()//
