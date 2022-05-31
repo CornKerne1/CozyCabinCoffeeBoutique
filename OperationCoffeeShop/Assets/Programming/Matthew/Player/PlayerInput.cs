@@ -43,6 +43,11 @@ public class PlayerInput : MonoBehaviour
 
     public bool disabled;
 
+    private void Update()
+    {
+
+    }
+
     private void Awake()
     {
         
@@ -62,13 +67,19 @@ public class PlayerInput : MonoBehaviour
 
     void _Pause(object sender, EventArgs e)
     {
-        if (pauseM == null)
+        if (pauseM == null && !pD.inUI)
         {
             pauseM = Instantiate(pauseMenu);
+            pauseM.GetComponent<PauseMenu>().pD = pD;
+            pD.inUI = true;
         }
         else
         {
-            pauseM.GetComponent<PauseMenu>().StartGame();
+            pD.inUI = false;
+            if (pauseM)
+            {
+                pauseM.GetComponent<PauseMenu>().StartGame();
+            }
         }
     }
 

@@ -37,6 +37,7 @@ public class CustomerInteractable : Interactable
     public bool talking = false;
 
     DialogueManager dialogueManager;
+    private PlayerInteraction pI;
 
     //[HideInInspector]
     public RegularCustomerAtlas rCA;
@@ -77,6 +78,7 @@ public class CustomerInteractable : Interactable
             RemoveOrderTicket();
             dialogueManager.finishedConversation = false;
             gM.pD.neckClamp = neckclamp * 4;
+            pI.pD.inUI = false;
 
         }
         else if (dialogueManager.finishedConversation && !CAI.hasOrdered)
@@ -91,7 +93,7 @@ public class CustomerInteractable : Interactable
             DisplayOrderTicket();
             dialogueManager.finishedConversation = false;
             gM.pD.neckClamp = neckclamp * 4;
-
+            pI.pD.inUI = false;
 
         }
         if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject)
@@ -143,8 +145,10 @@ public class CustomerInteractable : Interactable
     {
         //invokes the dialogue interaction thing
         //DialogDisplay
+        this.pI =pI;
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered)
         {
+            pI.pD.inUI = true;
             dialogueManager.SetCurrentCustomer(this.gameObject);
             talking = true;
             DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
@@ -208,6 +212,7 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
+        pI.pD.inUI = true;
         dialogueManager.SetCurrentCustomer(this.gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(ExitConversation);
 
@@ -216,5 +221,6 @@ public class CustomerInteractable : Interactable
         pm.canMove = false;
         pcc.canMove = false;
         CA.Talk();
+        
     }
 }

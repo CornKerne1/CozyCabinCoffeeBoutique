@@ -93,4 +93,8 @@ public abstract class Machine : MonoBehaviour
         }
         
     }
+    public void PostSoundEvent(string s)
+    {
+        AkSoundEngine.PostEvent(s, this.gameObject);
+    }
 }
