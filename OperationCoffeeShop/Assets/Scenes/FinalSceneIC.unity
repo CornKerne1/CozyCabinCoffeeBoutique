@@ -3023,7 +3023,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.9901113, b: 0.88235295, a: 1}
-  m_Intensity: 10
+  m_Intensity: 9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5815,6 +5815,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8299582187478750290, guid: 018c4f17f59523945a6800eed2e18f1b, type: 3}
+      propertyPath: shopUI
+      value: 
+      objectReference: {fileID: 2079226546}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018c4f17f59523945a6800eed2e18f1b, type: 3}
 --- !u!1001 &737655852
@@ -14027,15 +14031,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3810799645724592806, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.1642492
+      value: -1.573
       objectReference: {fileID: 0}
     - target: {fileID: 3810799645724592806, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.075
+      value: -9.481
       objectReference: {fileID: 0}
     - target: {fileID: 3810799645724592806, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.61495733
+      value: -3.586
       objectReference: {fileID: 0}
     - target: {fileID: 3810799645724592806, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17556,6 +17560,11 @@ MonoBehaviour:
   m_SkinMeshRef: {fileID: 0}
   m_OriginalMeshObject: {fileID: 411480072993813340, guid: b854827b0f2c6da43bf4b268d0571dae, type: 3}
   m_Mode: 0
+--- !u!223 &2079226546 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8756745364233946377, guid: fee2311ba5c0a8c41b41499b12be5f6c, type: 3}
+  m_PrefabInstance: {fileID: 1502391012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2094985084
 PrefabInstance:
   m_ObjectHideFlags: 0
