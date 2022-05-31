@@ -36,6 +36,8 @@ public class CustomerInteractable : Interactable
 
     public bool talking = false;
 
+    private bool canInteract = true;
+
     DialogueManager dialogueManager;
     private PlayerInteraction pI;
 
@@ -68,6 +70,7 @@ public class CustomerInteractable : Interactable
     {
         if (dialogueManager.finishedConversation && CAI.hasOrder && CAI.hasOrdered)
         {
+            canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             Camera.main.transform.LookAt(oldLook.position);
@@ -83,6 +86,7 @@ public class CustomerInteractable : Interactable
         }
         else if (dialogueManager.finishedConversation && !CAI.hasOrdered)
         {
+            canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             Camera.main.transform.LookAt(oldLook.position);
@@ -146,7 +150,7 @@ public class CustomerInteractable : Interactable
         //invokes the dialogue interaction thing
         //DialogDisplay
         this.pI =pI;
-        if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered)
+        if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
             pI.pD.inUI = true;
             dialogueManager.SetCurrentCustomer(this.gameObject);
