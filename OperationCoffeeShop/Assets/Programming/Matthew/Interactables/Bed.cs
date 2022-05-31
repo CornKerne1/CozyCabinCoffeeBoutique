@@ -78,7 +78,7 @@ public class Bed : Interactable
             pI.pD.killSwitchOff = true;
             playerTrans.GetComponent<Collider>().enabled = true;
             inBed = false;
-            base.gM.gMD.timeRate = base.gM.gMD.timeRate/10;
+            base.gM.gMD.timeRate = base.gM.gMD.timeRate/30;
         }
 
         TimerRef = null;
@@ -94,7 +94,7 @@ public class Bed : Interactable
         if (gM.gMD.currentTime.Hour == 18)
         {
             playerTrans = base.gM.player.transform;
-            base.gM.gMD.timeRate = 10*base.gM.gMD.timeRate;
+            base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
             base.gM.player.GetComponent<Collider>().enabled = false;
             pI.pD.killSwitchOff = false;
             base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
