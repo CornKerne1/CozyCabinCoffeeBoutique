@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 483131656259130273}
   - component: {fileID: 3538622297707207684}
   - component: {fileID: 1657115149318596814}
-  - component: {fileID: 6340516886236221024}
+  - component: {fileID: 8418398538529176368}
+  - component: {fileID: 4348869155791416866}
+  - component: {fileID: 8019999643177066555}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -26,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008732661694466331}
-  m_LocalRotation: {x: 0.84416866, y: 0, z: -0, w: 0.53607774}
+  m_LocalRotation: {x: 0.8441689, y: 0, z: 0, w: 0.5360773}
   m_LocalPosition: {x: -6.033, y: -9.06, z: -0.172}
-  m_LocalScale: {x: 0.09513927, y: 0.09513927, z: 0.09513927}
+  m_LocalScale: {x: 0.07192053, y: 0.07192053, z: 0.07192053}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0fd87e01867c5c6428a7de2ed59142cf, type: 2}
+  - {fileID: 2100000, guid: dcdb7a9d3d7340e4596cb4f847955d08, type: 2}
   - {fileID: 2100000, guid: 0fd87e01867c5c6428a7de2ed59142cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -83,8 +85,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6340516886236221024
-MeshCollider:
+--- !u!54 &8418398538529176368
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008732661694466331}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4348869155791416866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008732661694466331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+--- !u!135 &8019999643177066555
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,7 +125,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -472147775963580301, guid: f526cf081003b3f4cadc9a1ec68ea63e, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.7817278
+  m_Center: {x: -0.0000076293945, y: 0, z: 0}
