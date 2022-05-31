@@ -4,24 +4,7 @@
 		<WorkUnit Name="Interactables" ID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}" OwnerID="{CBB52676-6A79-4470-A7E5-FFFE18280F43}" PersistMode="Nested">
 			<ChildrenList>
 				<ActorMixer Name="Button" ID="{3721868B-F887-4896-998F-B3EFA9918851}" ShortID="998855377">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
-						</Reference>
-					</ReferenceList>
-					<ObjectLists/>
-				</ActorMixer>
-				<Sound Name="buttonpress" ID="{270703C9-6C75-4044-8C81-940081A21230}" ShortID="420379749">
 					<PropertyList>
-						<Property Name="3DSpatialization" Type="int16" Value="1"/>
-						<Property Name="InitialDelay" Type="Real64">
-							<ValueList>
-								<Value>0.5</Value>
-							</ValueList>
-						</Property>
 						<Property Name="OverridePositioning" Type="bool" Value="True"/>
 					</PropertyList>
 					<ReferenceList>
@@ -36,19 +19,44 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="buttonpress" ID="{C5A94F4F-27D8-47F3-9420-4A32A6F36D07}">
-							<Language>SFX</Language>
-							<AudioFile>buttonpress.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="873684257"/>
-							</MediaIDList>
-						</AudioFileSource>
+						<Sound Name="buttonpress" ID="{270703C9-6C75-4044-8C81-940081A21230}" ShortID="420379749">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="InitialDelay" Type="Real64">
+									<ValueList>
+										<Value>0.5</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverridePositioning" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="New Attenuation" ID="{68F48FA5-61FC-4D8C-8070-8B31D9E18113}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="buttonpress" ID="{C5A94F4F-27D8-47F3-9420-4A32A6F36D07}">
+									<Language>SFX</Language>
+									<AudioFile>buttonpress.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="873684257"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="buttonpress" ID="{C5A94F4F-27D8-47F3-9420-4A32A6F36D07}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="buttonpress" ID="{C5A94F4F-27D8-47F3-9420-4A32A6F36D07}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
+				</ActorMixer>
 				<ActorMixer Name="Radio" ID="{F7775B84-0D2C-4405-AB84-56283F2F9535}" ShortID="131508901">
 					<PropertyList>
 						<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
@@ -62,6 +70,34 @@
 							<ValueList>
 								<Value>True</Value>
 							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{CA0887BF-BE95-4A56-B89D-C0596683E67D}" ShortID="263246991">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="MusicVolume" ID="{89BACAAD-DACC-4916-B165-2C0CC8F9648E}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{722EBD6B-CBF1-4A40-8682-486643528BB4}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>
@@ -431,6 +467,36 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Coffee Grinder" ID="{F01C3C38-E116-4D51-8824-B7F03439683E}" ShortID="725307907">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{A4CD2005-0D40-4E67-B1C2-4FBDC8ED679F}" ShortID="700941651">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="SFXVolume" ID="{0581A918-066E-4F92-B031-D826DB7345F1}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{9808BA0B-C7AE-418B-936E-E7A774693AC2}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -446,7 +512,7 @@
 								<Property Name="OverridePositioning" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-20</Value>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -462,23 +528,53 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Grinding_Coffee_Beans" ID="{D574D1E8-34D2-4C35-8AEA-B1419A2E47FF}">
+								<AudioFileSource Name="Grinding_Coffee_Beans" ID="{75135B6A-CA14-4B53-AD3F-8843255F4A5A}">
 									<Language>SFX</Language>
-									<AudioFile>Grinding_Coffee_Beans.wav</AudioFile>
+									<AudioFile>Grinding_Coffee_Beans1.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="1013556960"/>
+										<MediaID ID="285469530"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Grinding_Coffee_Beans" ID="{D574D1E8-34D2-4C35-8AEA-B1419A2E47FF}" Platform="Linked"/>
+								<ActiveSource Name="Grinding_Coffee_Beans" ID="{75135B6A-CA14-4B53-AD3F-8843255F4A5A}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Espresso Machine" ID="{CE7368F7-2F3F-47AB-8DAE-68544997A6AF}" ShortID="934988502">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{A8F48D98-6CB4-4155-828E-9EE39DABC7E1}" ShortID="57352220">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="SFXVolume" ID="{0581A918-066E-4F92-B031-D826DB7345F1}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{3B34988C-962F-4650-973C-FFF9861FB6DB}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -494,7 +590,7 @@
 								<Property Name="OverridePositioning" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-20</Value>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Audio;
 public class OptionsMenu : MonoBehaviour
 {
+    public ScriptableOptions sO;
     public GameObject optionsScreen;
     
 
@@ -57,18 +58,15 @@ public class OptionsMenu : MonoBehaviour
         }
 
         float vol = 0f;
-        theMixer.GetFloat("MasterVol", out vol);
-        masterSlider.value = vol;
+        masterSlider.value = sO.MasterVol;
+        
+        musicSlider.value = sO.MusicVol;
+        
+        sfxSlider.value = sO.SFXVol;
 
-        theMixer.GetFloat("MusicVol", out vol);
-        musicSlider.value = vol;
-
-        theMixer.GetFloat("SFXVol", out vol);
-        sfxSlider.value = vol;
-
-        mastLabel.text = Mathf.RoundToInt(masterSlider.value + 80).ToString();
-        musicLabel.text = Mathf.RoundToInt(musicSlider.value + 80).ToString();
-        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value + 80).ToString();
+        mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
+        musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
+        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
     }
 
     // Update is called once per frame
@@ -121,27 +119,24 @@ public class OptionsMenu : MonoBehaviour
     //functions below control sound slider values and how they interact with ui
     public void SetMasterVol()
     {
-        mastLabel.text = Mathf.RoundToInt(masterSlider.value + 80) .ToString();
-
-        theMixer.SetFloat("MasterVol", masterSlider.value);
-
-        PlayerPrefs.SetFloat("MasterVol", masterSlider.value);
+        mastLabel.text = Mathf.RoundToInt(masterSlider.value) .ToString();
+        sO.MasterVol = masterSlider.value;
+        AkSoundEngine.SetRTPCValue("MasterVolume", sO.MasterVol);
+        
     }
     public void SetMusicVol()
     {
-        musicLabel.text = Mathf.RoundToInt(musicSlider.value + 80).ToString();
+        musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
+        sO.MusicVol = musicSlider.value;
+        AkSoundEngine.SetRTPCValue("MusicVolume", sO.MusicVol);
 
-        theMixer.SetFloat("MusicVol", musicSlider.value);
-
-        PlayerPrefs.SetFloat("MusicVol", musicSlider.value);
     }
     public void SetSFXVol()
     {
-        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value + 80).ToString();
-
-        theMixer.SetFloat("SFXVol", sfxSlider.value);
-
-        PlayerPrefs.SetFloat("SFXVol", sfxSlider.value);
+        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
+        sO.SFXVol = sfxSlider.value;
+        AkSoundEngine.SetRTPCValue("SFXVolume", sO.SFXVol);
+        
     }
     public void CloseOptions()
     {

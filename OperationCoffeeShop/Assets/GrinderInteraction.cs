@@ -14,6 +14,7 @@ public class GrinderInteraction : MachineInteraction
     }
     IEnumerator Grind()
     {
+        machine.PostSoundEvent("Play_GrindingCoffee");
         yield return new WaitForSeconds(.4f);
         switch (mD.machineType)
         {

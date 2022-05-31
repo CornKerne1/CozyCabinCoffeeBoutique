@@ -7,6 +7,7 @@ public class EspressoMachine : Machine
     public override IEnumerator ActivateMachine(float time)
     {
         isRunning = true;
+        base.PostSoundEvent("Play_GrindingEspresso");
         yield return new WaitForSeconds(time);
         OutputIngredients();
         transform.position = base.origin;

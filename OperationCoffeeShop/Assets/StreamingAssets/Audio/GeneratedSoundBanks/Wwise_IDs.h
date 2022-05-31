@@ -29,6 +29,8 @@ namespace AK
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
         static const AkUniqueID PLAY_TITLETHEME = 3107494279U;
+        static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
+        static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;
         static const AkUniqueID STOP_TITLETHEME = 1450757357U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;
@@ -69,6 +71,13 @@ namespace AK
         } // namespace LOOP
 
     } // namespace STATES
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MASTERVOLUME = 2918011349U;
+        static const AkUniqueID MUSICVOLUME = 2346531308U;
+        static const AkUniqueID SFXVOLUME = 988953028U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {

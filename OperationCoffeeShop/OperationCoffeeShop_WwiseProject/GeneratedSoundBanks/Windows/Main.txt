@@ -6,12 +6,14 @@ Event	ID	Name			Wwise Object Path	Notes
 	319625207	VolumeZero_BreakingLoose			\Default Work Unit\VolumeZero_BreakingLoose	
 	521874696	VolumeOne_ExquisiteTaste			\Default Work Unit\VolumeOne_ExquisiteTaste	
 	579639504	Play_GrindingEspresso			\Default Work Unit\Play_GrindingEspresso	
+	623871430	Stop_GrindingEspresso			\Default Work Unit\Stop_GrindingEspresso	
 	662843338	VolumeOne_RedPandaTheme			\Default Work Unit\VolumeOne_RedPandaTheme	
 	844119779	VolumeOne_Piano			\Default Work Unit\VolumeOne_Piano	
 	855079117	Play_BreakingLoose			\Default Work Unit\Play_BreakingLoose	
 	946022718	VolumeZero_RedPandaTheme			\Default Work Unit\VolumeZero_RedPandaTheme	
 	1450757357	Stop_TitleTheme			\Default Work Unit\Stop_TitleTheme	
 	1479974693	Play_Piano			\Default Work Unit\Play_Piano	
+	1506977314	Stop_GrindingCoffee			\Default Work Unit\Stop_GrindingCoffee	
 	1625469250	VolumeZero_BossaNova			\Default Work Unit\VolumeZero_BossaNova	
 	1886182129	VolumeOne_NeuroticBone			\Default Work Unit\VolumeOne_NeuroticBone	
 	1970210963	VolumeZero_AfterHours			\Default Work Unit\VolumeZero_AfterHours	
@@ -41,10 +43,15 @@ Event	ID	Name			Wwise Object Path	Notes
 	4221615279	Play_SpashedSea			\Default Work Unit\Play_SpashedSea	
 	4282258553	VolumeZero_SpashedSea			\Default Work Unit\VolumeZero_SpashedSea	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	988953028	SFXVolume			\Default Work Unit\Volume\SFXVolume	
+	2346531308	MusicVolume			\Default Work Unit\Volume\MusicVolume	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	2409473	RedPandaTheme	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\RedPandaTheme_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\RedPandaTheme		24768064
 	138462402	Cozy_Cabin_Coffee_Title_Screen	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Non_World\Cozy_Cabin_Coffee_Title_Screen		11547712
 	230495110	Neurotic_to_the_Bone_LoFi_Playlist	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\Neurotic_to_the_Bone_LoFi_Playlist		20911168
+	285469530	Grinding_Coffee_Beans	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Grinding_Coffee_Beans1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Coffee Grinder\Grinding_Coffee_Beans		720064
 	366206813	Spashed_in_the_Sea_AC_Playlist	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\Spashed_in_the_Sea_AC_Playlist		33357376
 	386335204	ChillWurlyPiano	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\ChillWurlyPiano_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\ChillWurlyPiano		28578880
 	538996245	BossaNovaAttempt	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\BossaNovaAttempt_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\BossaNovaAttempt		33684544
@@ -55,7 +62,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	759491673	Grinding_Espresso	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Grinding_Espresso_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Espresso Machine\Grinding_Espresso		797248
 	760450632	Telling_Stories_AC_Playlist	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Telling_Stories_AC_Playlist_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\Telling_Stories_AC_Playlist		29652544
 	776190147	Radio_RoastBlend	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Roast Blend_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\Radio_RoastBlend		24696896
-	873684257	buttonpress	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\buttonpress_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\buttonpress		72064
+	873684257	buttonpress	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\buttonpress_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Button\buttonpress		72064
 	903791736	Breaking_Loose_LoFi	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Breaking_Loose_LoFi_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Radio\Breaking_Loose_LoFi		23284288
-	1013556960	Grinding_Coffee_Beans	C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\SFX\Grinding_Coffee_Beans_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\World\Interactables\Coffee Grinder\Grinding_Coffee_Beans		1322560
 
