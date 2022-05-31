@@ -54,11 +54,11 @@ public class Bed : Interactable
             }
             if (base.gM.gMD.sleeping)
             {
-                playerTrans.position = Vector3.Lerp(playerTrans.position, sleepTrans.position, 1.0f * Time.deltaTime);
+                playerTrans.position = Vector3.Lerp(playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime);
             }
             else
             {
-                playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 1.0f * Time.deltaTime);
+                playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
             }
         }
     }
@@ -78,7 +78,7 @@ public class Bed : Interactable
             pI.pD.killSwitchOff = true;
             playerTrans.GetComponent<Collider>().enabled = true;
             inBed = false;
-            base.gM.gMD.timeRate = base.gM.gMD.timeRate/3;
+            base.gM.gMD.timeRate = base.gM.gMD.timeRate/10;
         }
 
         TimerRef = null;
@@ -91,15 +91,16 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if (gM.gMD.currentTime.Hour == 18)
-        {
+        //if (gM.gMD.currentTime.Hour == 18)
+        //{
             playerTrans = base.gM.player.transform;
-            base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
-            base.gM.gMD.sleeping = true;
+            base.gM.gMD.timeRate = 10*base.gM.gMD.timeRate;
             base.gM.player.GetComponent<Collider>().enabled = false;
             pI.pD.killSwitchOff = false;
+            base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
+            base.gM.gMD.sleeping = true;
             running = true;
-        }
+        //}
     }
 
     public override void OnLoseFocus()//
