@@ -56,7 +56,7 @@ public class SpawnRegularCustomer : MonoBehaviour
                     }
                     else
                     {
-                        if (Time_Customer.ContainsKey(rc.spawnTime))
+                        if (!Time_Customer.ContainsKey(rc.spawnTime))
                         {
                             Time_Customer[rc.spawnTime] = new List<GameObject>();
                         }
