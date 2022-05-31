@@ -102,6 +102,10 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("we are now exiting dialgoue");
             ExitDialogueMode();
         }
+        if (dialogueText.text == "")
+        {
+            ExitDialogueMode();
+        }
     }
     public GameObject GetCurrentCustomer()
     {

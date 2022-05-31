@@ -77,7 +77,7 @@ public class CustomerInteractable : Interactable
             RemoveOrderBubble();
             RemoveOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp * 4;
+            gM.pD.neckClamp = neckclamp * 40;
             pI.pD.inUI = false;
 
         }
@@ -92,13 +92,13 @@ public class CustomerInteractable : Interactable
             DisplayOrderBubble();
             DisplayOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp * 4;
+            gM.pD.neckClamp = neckclamp * 40;
             pI.pD.inUI = false;
 
         }
         if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject)
         {
-            gM.pD.neckClamp = neckclamp / 4;
+            gM.pD.neckClamp = neckclamp / 40;
             var c = Camera.main.transform;
             oldLook = c;
             Camera.main.transform.LookAt(this.transform.position);
