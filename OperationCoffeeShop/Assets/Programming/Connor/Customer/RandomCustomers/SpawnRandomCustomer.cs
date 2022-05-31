@@ -23,10 +23,11 @@ public class SpawnRandomCustomer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DayNightCycle.TimeChanged += ResetMaxCustomers;
         //Instantiate(customer, this.transform.position, this.transform.rotation);
         gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
-        if(maxCustomerCount == 0)
-            maxCustomerCount = gMD.closingHour -gMD.wakeUpHour;
+        if (maxCustomerCount == 0)
+            maxCustomerCount = gMD.closingHour - gMD.wakeUpHour;
         minutes = 0;
     }
 
@@ -38,14 +39,14 @@ public class SpawnRandomCustomer : MonoBehaviour
             spawnCustomer = false;
             SpawnCustomer();
         }
-        if(gMD.isOpen) // if store is open
+        if (gMD.isOpen) // if store is open
         {
             minutesSinceOpening();
             if (gMD.currentTime.TimeOfDay.Minutes == 30) //helps ensure only 1 customer spawns at a time. 
             {
                 oneCustomerAtATime = true;
             }
-            if (oneCustomerAtATime && minutes % spawnInterval == 0 && maxCustomerCount-- >0) // once per interval max of count
+            if (oneCustomerAtATime && minutes % spawnInterval == 0 && maxCustomerCount-- > 0) // once per interval max of count
             {
                 //Debug.Log("spawning customer");
                 oneCustomerAtATime = false;
@@ -59,7 +60,7 @@ public class SpawnRandomCustomer : MonoBehaviour
     private int minutesSinceOpening()
     {
         int currentMinute = gMD.currentTime.TimeOfDay.Minutes;
-        if(currentMinute != pastMinute)
+        if (currentMinute != pastMinute)
         {
             pastMinute = currentMinute;
             minutes++;
@@ -71,13 +72,20 @@ public class SpawnRandomCustomer : MonoBehaviour
     public void SpawnCustomer()
     {
         StartCoroutine(Spawn());
-        
+
     }
 
     private IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1,10));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
         Instantiate(customer, this.transform.position, this.transform.rotation);
 
     }
+
+    void ResetMaxCustomers(object sender, EventArgs e)
+    {
+        if (gMD.currentOpenTime == gMD.currentTime.Hour)
+            maxCustomerCount = gMD.closingHour - gMD.wakeUpHour;
+    }
+
 }

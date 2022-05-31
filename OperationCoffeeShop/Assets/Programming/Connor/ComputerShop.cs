@@ -11,7 +11,7 @@ public class ComputerShop : MonoBehaviour
     PlayerCameraController pcc;
 
     GameMode gM;
-    CoffeeBankTM cBTM;
+    public CoffeeBankTM cBTM;
 
     public TextMeshProUGUI balance;
     public string balanceString;

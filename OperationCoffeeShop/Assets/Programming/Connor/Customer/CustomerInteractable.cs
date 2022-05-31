@@ -58,13 +58,13 @@ public class CustomerInteractable : Interactable
         pcc = player.GetComponent<PlayerCameraController>();
         neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
-        
+
         // will be null if random customer or not spawned by a regular spawner
         if (rCA != null)
             SetConversations();
         else
         {
-            
+
             StartCoroutine(SetRandomConversations());
         }
     }
@@ -75,7 +75,8 @@ public class CustomerInteractable : Interactable
             canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Camera.main.transform.LookAt(oldLook.position);
+            if (oldLook != null)
+                Camera.main.transform.LookAt(oldLook.position);
             pm.canMove = true;
             pcc.canMove = true;
             StartCoroutine(MoveLine());
@@ -91,7 +92,8 @@ public class CustomerInteractable : Interactable
             canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Camera.main.transform.LookAt(oldLook.position);
+            if (oldLook != null)
+                Camera.main.transform.LookAt(oldLook.position);
             pm.canMove = true;
             pcc.canMove = true;
             StartCoroutine(MoveLine());
@@ -144,14 +146,14 @@ public class CustomerInteractable : Interactable
 
     public override void OnFocus()
     {
-       
+
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
         //invokes the dialogue interaction thing
         //DialogDisplay
-        this.pI =pI;
+        this.pI = pI;
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
             pI.pD.inUI = true;
@@ -206,7 +208,7 @@ public class CustomerInteractable : Interactable
 
     public override void OnLoseFocus()
     {
-       
+
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
@@ -227,6 +229,6 @@ public class CustomerInteractable : Interactable
         pm.canMove = false;
         pcc.canMove = false;
         CA.Talk();
-        
+
     }
 }
