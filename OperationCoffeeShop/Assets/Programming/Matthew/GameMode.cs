@@ -67,7 +67,7 @@ public class GameMode : MonoBehaviour
     {
         //if save file exists load DateTime from file else set to startTime
         dNC.Initialize();
-        gMD.startTime = new DateTime(2027, 1, 1, 6, 1, 1);
+        gMD.startTime = new DateTime(2027, 1, 1, 6, 0, 0);
         gMD.currentTime = gMD.startTime;
 
     }

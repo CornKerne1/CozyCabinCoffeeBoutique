@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31a1678a5a0c26479f65ac32fbcc794, type: 3}
+  m_Name: Wand Saleswoman Intro
+  m_EditorClassIdentifier: 
+  ConversationName: Wand Saleswoman Intro
+  customerName: Hella
+  conversationTreeOrder:
+    message: 'Oh, er, hello, there. '
+    mood: 0
+    PlayerOptionA: Hello!
+    PlayerOptionB: What can I get started for you today?
+    ATree:
+    - message: "I never know what I\u2019m in the mood for, but\u2026uh\u2026I want
+        something creamy and bitter today. "
+      mood: 0
+      PlayerOptionA: Coming right up!
+      PlayerOptionB: I know just the thing!
+      ATree: []
+      BTree: []
+    BTree: []
+  conversationTreeRecievedDrink:
+    message: 'Thank you so much! This little latte just brightened my spirits enough
+      to tackle more wand-selling today! '
+    mood: 0
+    PlayerOptionA: Just doing my job.
+    PlayerOptionB: I love to hear it!
+    ATree:
+    - message: "I\u2019m Hella, by the way. Nice to have your understanding! "
+      mood: 0
+      PlayerOptionA: Nice to meet you, Hella.
+      PlayerOptionB: 'Come back here anytime. '
+      ATree: []
+      BTree: []
+    BTree: []

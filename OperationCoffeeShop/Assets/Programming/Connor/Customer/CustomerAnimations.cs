@@ -32,6 +32,7 @@ public class CustomerAnimations : MonoBehaviour
 
     private void HandleAnimations()
     {
+        
         speed = navMeshAgent.velocity.magnitude;
         customerAnimator.SetFloat("Speed",speed);
         
@@ -39,5 +40,17 @@ public class CustomerAnimations : MonoBehaviour
     public void Talk()
     {
         customerAnimator.SetTrigger("Talking");
+    }
+
+    public void RandomizeSpeed()
+    {
+        customerAnimator.speed = Random.Range(.4f, 1.6f);
+        StartCoroutine(ResetSpeed());
+
+    }
+    private IEnumerator ResetSpeed()
+    {
+        yield return new WaitForSeconds(1);
+        customerAnimator.speed = 1;
     }
 }

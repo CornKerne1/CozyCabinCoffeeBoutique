@@ -50,7 +50,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5512892553539472869}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -121,7 +121,17 @@ MonoBehaviour:
   customerMessageText: {fileID: 5512892555086305826}
   ButtonA: {fileID: 5512892554817167609}
   ButtonB: {fileID: 5512892553622685419}
+  customer: {fileID: 0}
   converstation: {fileID: 11400000, guid: 9f2c51a47925de44db57d428a5bdc2c3, type: 2}
+  conversationTree:
+    message: 
+    mood: 0
+    PlayerOptionA: 
+    PlayerOptionB: 
+    ATree: []
+    BTree: []
+  finishedConversation: 0
+  startedConversation: 0
 --- !u!1 &5512892553559912448
 GameObject:
   m_ObjectHideFlags: 0
