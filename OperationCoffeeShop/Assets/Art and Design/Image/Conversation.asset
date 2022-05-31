@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31a1678a5a0c26479f65ac32fbcc794, type: 3}
+  m_Name: Conversation
+  m_EditorClassIdentifier: 
+  ConversationName: Traveler  Intro to player
+  customerName: Lalima
+  conversationTreeOrder:
+    message: 'Howdy! '
+    mood: 0
+    PlayerOptionA: Good Morning! What can I get for you today?
+    PlayerOptionB: Hello! It's a lovely day today.
+    ATree:
+    - message: "It sure is a good one! Might be a lil, muggy later, but there\u2019s
+        nothing my mushrooms can\u2019t handle!  I think I\u2019m in the mood for
+        something a lil\u2019 bitter tah-day. \n"
+      mood: 0
+      PlayerOptionA: "They sure are colorful! I\u2019ll get that for you right away. "
+      PlayerOptionB: Coming right up!
+      ATree: []
+      BTree: []
+    BTree: []
+  conversationTreeRecievedDrink:
+    message: 
+    mood: 0
+    PlayerOptionA: 
+    PlayerOptionB: 
+    ATree: []
+    BTree: []

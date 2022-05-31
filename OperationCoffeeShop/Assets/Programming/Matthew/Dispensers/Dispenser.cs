@@ -20,6 +20,7 @@ public class Dispenser : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        ComputerShop.DepositItems += AddItems;
         if (!bottomless)
             try
             {
@@ -27,18 +28,13 @@ public class Dispenser : Interactable
                 if (!bottomless)
                     text.text = quantity + message;
                 else text.text = "Botomless";
-                
+
             }
             catch
             {
                 text = null;
             }
- 
 
-    }
-
-    private void Update()
-    {
 
     }
 
@@ -71,6 +67,20 @@ public class Dispenser : Interactable
             text.text = quantity + message;
         }
     }
+    public void AddItems(object sender, EventArgs e)
+    {
+        Tuple<ObjectHolder, int> tuple= (Tuple<ObjectHolder,int>)sender;
+
+        if (objType == tuple.Item1)
+        {
+            this.quantity += tuple.Item2;
+            updateQuantity();
+        }
+    }
+
+
+
+
     public override void OnFocus()
     {
     }

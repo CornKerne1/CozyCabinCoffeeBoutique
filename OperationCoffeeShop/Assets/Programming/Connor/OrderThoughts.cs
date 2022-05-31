@@ -20,6 +20,8 @@ public class OrderThoughts : MonoBehaviour
     GameMode GM;
     Transform player;
 
+    public Transform pivot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,18 +46,23 @@ public class OrderThoughts : MonoBehaviour
         {
             case Ingredients.Sugar:
                 images[position].sprite = Sugar;
+                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
                 break;
             case Ingredients.BrewedCoffee:
                 images[position].sprite = BrewedCoffee;
+                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
                 break;
             case Ingredients.Milk:
                 images[position].sprite = Milk;
+                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
                 break;
             case Ingredients.Espresso:
                 images[position].sprite = Esspresso;
+                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
                 break;
             default:
                 images[position].sprite = null;
+                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 0);
                 break;
         }
     }
@@ -63,7 +70,7 @@ public class OrderThoughts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Transform t = this.gameObject.transform;
+        Transform t = pivot.gameObject.transform;
         t.LookAt(player);
         t.rotation = new Quaternion(0, player.rotation.y, player.rotation.z, player.rotation.w);
         this.gameObject.transform.rotation = t.rotation;

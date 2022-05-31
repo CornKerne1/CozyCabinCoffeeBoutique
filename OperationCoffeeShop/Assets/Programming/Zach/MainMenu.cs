@@ -11,20 +11,25 @@ using UnityEngine.InputSystem;
 public class MainMenu : MonoBehaviour
 {
     public string scene;
-    
+
+    public Canvas introLetterCanvas;
+
     public GameObject optionsScreen;
 
     [SerializeField] PlayableDirector director;
 
     private Animator animator;
 
+    public Animator inroLetterAnimator;
+
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
-        animator.SetTrigger("Reverse");
+        introLetterCanvas.enabled = false;
+        animator.SetTrigger("Start");
         director.Play();
     }
-    private void LaunchGame(PlayableDirector aDirector)
+    private void LaunchGame()
     {
         SceneManager.LoadScene(scene);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
@@ -53,7 +58,12 @@ public class MainMenu : MonoBehaviour
         GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD.isOpen = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        director.stopped += LaunchGame;
+        director.stopped += ReadNote;
 
+    }
+    private void ReadNote(PlayableDirector aDirector)
+    {
+        introLetterCanvas.enabled = true;
+        inroLetterAnimator.enabled = true;
     }
 }

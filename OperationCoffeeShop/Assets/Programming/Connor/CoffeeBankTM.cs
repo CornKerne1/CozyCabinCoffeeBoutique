@@ -9,21 +9,18 @@ public class CoffeeBankTM : MonoBehaviour
     [SerializeField] public static event EventHandler SuccessfulWithdrawl;//
 
 
-    public float moneyInBank;
+    public float moneyInBank = 30;
 
 
     // Start is called before the first frame update
     void Start()
     {
         CustomerLine.DepositMoney += DepositMoneyInBank;//
-        WithdrawMoney += WithdrawMoneyInBank;//
+        ComputerShop.SpendMoney += WithdrawMoneyInBank;
+       
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
     void DepositMoneyInBank(object sender, EventArgs e)
     {
        
@@ -42,15 +39,16 @@ public class CoffeeBankTM : MonoBehaviour
     }
     void WithdrawMoneyInBank(object sender, EventArgs e)
     {
-
-        try
-        {
+        Debug.Log("making a withdrawl for " + (float)sender + " from an accound with " + moneyInBank);
+        //try
+        //{
             if (moneyInBank - (float)sender >= 0)
             {
                 EventArgs ee = new EventArgs();
 
-                SuccessfulWithdrawl?.Invoke(true, EventArgs.Empty);
                 moneyInBank -= (float)sender;
+                SuccessfulWithdrawl?.Invoke(true, EventArgs.Empty);
+
                 Debug.Log("withdrawing money, money in bank now =" + moneyInBank);
 
             }
@@ -59,12 +57,12 @@ public class CoffeeBankTM : MonoBehaviour
                 SuccessfulWithdrawl?.Invoke(false, EventArgs.Empty);
 
             }
-        }
-        catch (Exception ex)
-        {
-            SuccessfulWithdrawl?.Invoke(false, EventArgs.Empty);
-            Debug.LogException(ex);
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    SuccessfulWithdrawl?.Invoke(false, EventArgs.Empty);
+        //    Debug.LogException(ex);
+        //}
 
     }
 }

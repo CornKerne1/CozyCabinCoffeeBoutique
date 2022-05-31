@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31a1678a5a0c26479f65ac32fbcc794, type: 3}
+  m_Name: suspicious one intro
+  m_EditorClassIdentifier: 
+  ConversationName: Suspicious One Intro
+  customerName: Delvin Von Humerus
+  conversationTreeOrder:
+    message: THIS IS A MILK EMERGENCY!
+    mood: 0
+    PlayerOptionA: "Oh\u2026uhh, you want a glass of milk? "
+    PlayerOptionB: I'm sorry...what?
+    ATree:
+    - message: 'Pardon, but for someone with two ears, you sure are hard of hearing. '
+      mood: 0
+      PlayerOptionA: 
+      PlayerOptionB: 
+      ATree:
+      - message: You have anything with calcium?
+        mood: 0
+        PlayerOptionA: 'Coming right up! '
+        PlayerOptionB: I know just the thing.
+        ATree: []
+        BTree: []
+      BTree: []
+    BTree: []
+  conversationTreeRecievedDrink:
+    message: "Well tickle my ribs and call me a marimba! This is the best glass of
+      milk I\u2019ve had in decades and I don\u2019t even have a tongue!"
+    mood: 0
+    PlayerOptionA: "It\u2019s really no big deal."
+    PlayerOptionB: Stop, I'm blushing!
+    ATree:
+    - message: I am Delvin Von Humerus and I never forget a friendly soul. I'll remember
+        you, friend!
+      mood: 0
+      PlayerOptionA: I'll remember you too!
+      PlayerOptionB: 'Come back anytime. '
+      ATree: []
+      BTree: []
+    BTree: []
