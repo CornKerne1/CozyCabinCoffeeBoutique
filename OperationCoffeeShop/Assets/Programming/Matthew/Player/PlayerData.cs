@@ -33,6 +33,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float mouseSensitivityX;
     [Range(0, 100)]
     [SerializeField] public float mouseSensitivityY;
+    [SerializeField] public float mouseSensitivity = .75f;
     [SerializeField] public float modX;
     [SerializeField] public float neckClamp = 77.3f;
     [SerializeField] public LayerMask groundMask;//
