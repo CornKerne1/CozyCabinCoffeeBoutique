@@ -77,13 +77,13 @@ public class CustomerAI : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
-        else if(lookAtBool == false)// when in line
+        else if (lookAtBool == false)// when in line
         {
             Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
             lookat.rotation = new Quaternion(lookat.rotation.x, lookat.rotation.y, lookat.rotation.z, lookat.rotation.w);
             this.gameObject.transform.LookAt(lookat);
         }
-        
+
 
     }
 
@@ -131,9 +131,9 @@ public class CustomerAI : MonoBehaviour
 
     public void LeaveLine()
     {
-        
-            customerLines[customerLines.Count-1].moveLine();
-        
+
+        customerLines[customerLines.Count - 1].moveLine();
+
     }
 
     public void ShopClosed(object sender, EventArgs e)
@@ -141,8 +141,8 @@ public class CustomerAI : MonoBehaviour
         //CALLED WHEN THE SHOP CLOSES
 
         //CONNOR please write a method that makes the customers leave when the shop closes; Any drink not delivered will be scored as a zero! 
-;
-        StartCoroutine(Die(10));
+        if (this.isActiveAndEnabled)
+            StartCoroutine(Die(10));
 
     }
 }

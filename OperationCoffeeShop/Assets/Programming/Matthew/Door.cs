@@ -83,7 +83,14 @@ public class Door : MonoBehaviour
     {
         if(playerDoor)
         {
-            
+            if (running && open)
+            {
+                open = false;
+            }
+            else if (!open)
+            {
+                running = true;
+            }
         }
         else if (other.tag == "Customer")
         {
