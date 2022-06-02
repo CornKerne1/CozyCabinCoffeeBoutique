@@ -91,7 +91,7 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if (gM.gMD.currentTime.Hour == 18)
+        if (gM.gMD.currentTime.Hour == 18)//if (gM.gMD.currentTime.Hour > 18 ||gM.gMD.currentTime.Hour ==0)
         {
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;

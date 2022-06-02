@@ -85,6 +85,59 @@
 								<ActiveSource Name="Cozy_Cabin_Coffee_Title_Screen" ID="{0B1A3CF9-7072-4DC9-9C94-6C6053DDC09F}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="MenuClick" ID="{27C85936-6704-44D3-9009-6D6FA459D479}" ShortID="1026496600">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{1455506C-3E11-4715-A9F2-A2C74DF247E3}" ShortID="136514259">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="SFXVolume" ID="{0581A918-066E-4F92-B031-D826DB7345F1}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{9CE5235D-EE69-4CB5-8477-01AC787FEC4B}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="MenuClick" ID="{A0E93CCD-DF98-4C8C-ACC0-EFA3E3FEC600}">
+									<Language>SFX</Language>
+									<AudioFile>MenuClick.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1052987244"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="MenuClick" ID="{A0E93CCD-DF98-4C8C-ACC0-EFA3E3FEC600}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
