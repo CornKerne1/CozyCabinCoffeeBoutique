@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ExitDialogueMode()
+    public void ExitDialogueMode()
     {
         finishedConversation = true;
         dialogueIsPlaying = false;
@@ -100,6 +100,11 @@ public class DialogueManager : MonoBehaviour
         else
         {
             Debug.Log("we are now exiting dialgoue");
+            ExitDialogueMode();
+        }
+        string dialogue = dialogueText.text;
+        if (dialogue.Trim() =="")
+        {
             ExitDialogueMode();
         }
     }

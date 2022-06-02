@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,24 +8,28 @@ public class Gate : MonoBehaviour
     private GameMode gM;
     [SerializeField] private GameObject gate;
     [SerializeField] private Transform trans;
-    [SerializeField] private Transform startTrans;
+    [SerializeField] private Transform startPos;
     
     private bool activate;
     private bool running;
+    private bool open;
     // Start is called before the first frame update
     void Start()
     {
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
-        var sT = gate.transform;
-        startTrans = sT;
+        GameMode.ShopClosed += Closed;
     }
 
-    public void OpenCloseGate()
+    private void Closed(object sender, EventArgs e)
     {
-        if (!running)
-        {
-            activate = true;
-        }
+        open = false;
+        activate = true;
+    }
+
+    public void OpenGate()
+    {
+        open = true;
+        activate = true;
     }
 
     // Update is called once per frame
@@ -32,24 +37,16 @@ public class Gate : MonoBehaviour
     {
         if (activate)
         {
-            running = true;
-            if (gM.gMD.isOpen)
-            {//Open
-                gate.transform.position = Vector3.Lerp(gate.transform.position, trans.position, 1);
-                if (gate.transform.position == trans.position)
-                {
-                    activate = false;
-                    running = false;
-                }
+            if (open)
+            {
+                running = true;
+                gate.transform.position = Vector3.Lerp(gate.transform.position, trans.position, 1*Time.deltaTime);
+
             }
             else
-            {//Close
-                gate.transform.position = Vector3.Lerp(gate.transform.position, startTrans.position, 1);
-                if (gate.transform.position == startTrans.position)
-                {
-                    activate = false;
-                    running = false;
-                }
+            {
+                running = true;
+                gate.transform.position = Vector3.Lerp(gate.transform.position, startPos.position, 1*Time.deltaTime);
             }
         }
     }

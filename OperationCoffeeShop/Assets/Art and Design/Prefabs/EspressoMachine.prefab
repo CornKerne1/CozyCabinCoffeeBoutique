@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 3682925322637449397}
   - component: {fileID: 8777131485002065113}
   - component: {fileID: 3682925322637449387}
+  - component: {fileID: 1363882251614154677}
   m_Layer: 3
   m_Name: EspressoMachine
   m_TagString: Untagged
@@ -223,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 3511743963125461092}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -4.147, y: -8.751, z: -8.219}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7491389, y: 0.7491389, z: 0.7491389}
   m_Children:
   - {fileID: 6855192479371621557}
   - {fileID: 1028583421220286788}
@@ -302,6 +303,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: -0.2, z: -0.3}
+--- !u!65 &1363882251614154677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511743963125461092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8322066, y: 0.25524753, z: 0.27632332}
+  m_Center: {x: -0.022103256, y: -0.012505813, z: -0.16034925}
 --- !u!1 &7253034579957541684
 GameObject:
   m_ObjectHideFlags: 0

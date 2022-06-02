@@ -29,6 +29,7 @@ public class Bed : Interactable
 
     public void Update()
     {
+        Debug.Log(base.gM.gMD.currentTime.Hour);
         HandlePlayerMove();
     }
 
@@ -53,11 +54,11 @@ public class Bed : Interactable
             }
             if (base.gM.gMD.sleeping)
             {
-                playerTrans.position = Vector3.Lerp(playerTrans.position, sleepTrans.position, 1.0f * Time.deltaTime);
+                playerTrans.position = Vector3.Lerp(playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime);
             }
             else
             {
-                playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 1.0f * Time.deltaTime);
+                playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
             }
         }
     }
@@ -77,7 +78,7 @@ public class Bed : Interactable
             pI.pD.killSwitchOff = true;
             playerTrans.GetComponent<Collider>().enabled = true;
             inBed = false;
-            base.gM.gMD.timeRate = base.gM.gMD.timeRate/3;
+            base.gM.gMD.timeRate = base.gM.gMD.timeRate/30;
         }
 
         TimerRef = null;
@@ -90,16 +91,14 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        if (gM.gMD.currentTime.Hour > 18 && gM.gMD.currentTime.Hour < 6)
+        if (gM.gMD.currentTime.Hour == 18)
         {
             playerTrans = base.gM.player.transform;
-            base.gM.gMD.timeRate = 3*base.gM.gMD.timeRate;
-            base.gM.gMD.sleepTime = base.gM.gMD.currentTime;
-            CalculateSleepTime();
-            //base.gM.gMD.sleepTime.AddHours(8);
-            base.gM.gMD.sleeping = true;
+            base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
             base.gM.player.GetComponent<Collider>().enabled = false;
             pI.pD.killSwitchOff = false;
+            base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
+            base.gM.gMD.sleeping = true;
             running = true;
         }
     }
@@ -109,13 +108,5 @@ public class Bed : Interactable
         Debug.Log("Gone!");
     }
 
-    void CalculateSleepTime()
-    {
-        if (base.gM.gMD.sleepTime.Hour != 6)
-        {
-            base.gM.gMD.sleepTime.AddHours(1);
-            CalculateSleepTime();
-        }
-      
-    }
+
 }

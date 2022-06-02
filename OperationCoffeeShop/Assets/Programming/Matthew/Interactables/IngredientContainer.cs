@@ -188,7 +188,16 @@ public class IngredientContainer : Interactable
 
     public void StopPouring()
     {
-        rotating = true;
+        StartCoroutine(WaitForPour());
+    }
+
+    IEnumerator WaitForPour()
+    {
+        yield return new WaitForSeconds(1f);
+        if (IsPouring())
+        {
+            rotating = true;
+        }
     }
 
     void IngredientOverflow(IngredientNode ingredient)

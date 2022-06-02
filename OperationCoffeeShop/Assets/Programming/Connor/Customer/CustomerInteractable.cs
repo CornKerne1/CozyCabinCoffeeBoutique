@@ -36,11 +36,15 @@ public class CustomerInteractable : Interactable
 
     public bool talking = false;
 
-    DialogueManager dialogueManager;
+    private bool canInteract = true;
+
+    public DialogueManager dialogueManager;
     private PlayerInteraction pI;
 
     //[HideInInspector]
     public RegularCustomerAtlas rCA;
+
+    public Transform lookat;
 
     private void Start()
     {
@@ -54,13 +58,13 @@ public class CustomerInteractable : Interactable
         pcc = player.GetComponent<PlayerCameraController>();
         neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
-        
+
         // will be null if random customer or not spawned by a regular spawner
         if (rCA != null)
             SetConversations();
         else
         {
-            
+
             StartCoroutine(SetRandomConversations());
         }
     }
@@ -68,40 +72,44 @@ public class CustomerInteractable : Interactable
     {
         if (dialogueManager.finishedConversation && CAI.hasOrder && CAI.hasOrdered)
         {
+            canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Camera.main.transform.LookAt(oldLook.position);
+            if (oldLook != null)
+                Camera.main.transform.LookAt(oldLook.position);
             pm.canMove = true;
             pcc.canMove = true;
             StartCoroutine(MoveLine());
             RemoveOrderBubble();
             RemoveOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp * 4;
+            gM.pD.neckClamp = neckclamp * 40;
             pI.pD.inUI = false;
 
         }
-        else if (dialogueManager.finishedConversation && !CAI.hasOrdered)
+        else if (dialogueManager.finishedConversation && !CAI.hasOrdered && dialogueManager.GetCurrentCustomer() == this.gameObject)
         {
+            canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Camera.main.transform.LookAt(oldLook.position);
+            if (oldLook != null)
+                Camera.main.transform.LookAt(oldLook.position);
             pm.canMove = true;
             pcc.canMove = true;
             StartCoroutine(MoveLine());
             DisplayOrderBubble();
             DisplayOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp * 4;
+            gM.pD.neckClamp = neckclamp * 40;
             pI.pD.inUI = false;
 
         }
-        if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject)
+        if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject && dialogueManager.dialogueIsPlaying)
         {
-            gM.pD.neckClamp = neckclamp / 4;
+            gM.pD.neckClamp = neckclamp / 40;
             var c = Camera.main.transform;
             oldLook = c;
-            Camera.main.transform.LookAt(this.transform.position);
+            Camera.main.transform.LookAt(lookat.position);
             //gM.player.transform.LookAt(this.transform.position);
         }
     }
@@ -138,15 +146,15 @@ public class CustomerInteractable : Interactable
 
     public override void OnFocus()
     {
-       
+
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
         //invokes the dialogue interaction thing
         //DialogDisplay
-        this.pI =pI;
-        if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered)
+        this.pI = pI;
+        if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
             pI.pD.inUI = true;
             dialogueManager.SetCurrentCustomer(this.gameObject);
@@ -200,7 +208,7 @@ public class CustomerInteractable : Interactable
 
     public override void OnLoseFocus()
     {
-       
+
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
@@ -221,6 +229,6 @@ public class CustomerInteractable : Interactable
         pm.canMove = false;
         pcc.canMove = false;
         CA.Talk();
-        
+
     }
 }

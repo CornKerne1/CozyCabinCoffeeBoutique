@@ -28,11 +28,12 @@ public class MainMenu : MonoBehaviour
         introLetterCanvas.enabled = false;
         animator.SetTrigger("Start");
         director.Play();
+        Cursor.visible = false;
     }
-    private void LaunchGame()
+    public void LaunchGame()
     {
-        SceneManager.LoadScene(scene);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
+        SceneManager.LoadScene(scene);
     }
 
     public void OpenOptions()
@@ -63,6 +64,7 @@ public class MainMenu : MonoBehaviour
     }
     private void ReadNote(PlayableDirector aDirector)
     {
+        Cursor.visible = true;
         introLetterCanvas.enabled = true;
         inroLetterAnimator.enabled = true;
     }

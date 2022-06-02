@@ -17,7 +17,7 @@ public class GameModeData : ScriptableObject
 
     public float timeRate;
     public DateTime currentTime;
-    public DateTime sleepTime;
+    public int sleepDay;
     public DateTime startTime;
     public int closingHour;
     public int wakeUpHour = 6;
