@@ -56,6 +56,7 @@ public class CustomerInteractable : Interactable
         player = gM.player.gameObject;
         pm = player.GetComponent<PlayerMovement>();
         pcc = player.GetComponent<PlayerCameraController>();
+        pI = player.GetComponent<PlayerInteraction>();
         neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
 
