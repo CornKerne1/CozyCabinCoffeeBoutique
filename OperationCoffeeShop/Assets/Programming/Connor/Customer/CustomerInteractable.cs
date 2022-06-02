@@ -155,6 +155,8 @@ public class CustomerInteractable : Interactable
         //invokes the dialogue interaction thing
         //DialogDisplay
         this.pI = pI;
+        //Debug.Log("dialogueManager.dialogueIsPlaying: " + dialogueManager.dialogueIsPlaying
+            //+ " CAI.stay: "+ CAI.stay + " CAI.hasOrdered: " + CAI.hasOrdered + " canInteract: " + canInteract);
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
             pI.pD.inUI = true;
@@ -221,6 +223,15 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
+        if (rCA != null)
+        {
+            dialogueManager.SetPortraitButtonAndName(this.CAI.CD.portrait, this.CAI.CD.buttonImage, this.CAI.CD.name);
+        }
+        else
+        {
+            dialogueManager.SetDefaultImagesAndName(this.CAI.CD.name);
+
+        }
         pI.pD.inUI = true;
         dialogueManager.SetCurrentCustomer(this.gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(ExitConversation);

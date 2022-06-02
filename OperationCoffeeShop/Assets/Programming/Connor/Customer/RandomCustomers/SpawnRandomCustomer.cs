@@ -62,7 +62,7 @@ public class SpawnRandomCustomer : MonoBehaviour
             pastMinute = currentMinute;
             minutes++;
         }
-        Debug.Log("minutes since opening: " + minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ maxCustomerCount);
+        //Debug.Log("minutes since opening: " + minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ maxCustomerCount);
         return minutes;
     }
 

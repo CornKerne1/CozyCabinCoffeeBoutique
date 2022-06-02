@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
             ExitDialogueMode();
         }
         string dialogue = dialogueText.text;
-        if (dialogue.Trim() =="")
+        if (dialogue.Trim() =="" && dialogueIsPlaying)
         {
             ExitDialogueMode();
         }
