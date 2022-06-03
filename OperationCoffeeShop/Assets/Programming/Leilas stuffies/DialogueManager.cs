@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying;
     public bool finishedConversation = false;
 
-    private GameObject currentCustoemr;
+    public GameObject currentCustoemr;
 
 
 
@@ -69,6 +69,17 @@ public class DialogueManager : MonoBehaviour
 
     public void ExitDialogueMode()
     {
+        Debug.Log("Exiting dialogue");
+        CustomerAI cAI = currentCustoemr.GetComponent<CustomerAI>();
+        CustomerInteractable cI = currentCustoemr.GetComponent<CustomerInteractable>();
+        if (!cAI.hasOrdered)
+        {
+            cAI.hasOrdered = true;
+            StartCoroutine(cI.MoveLine());
+            cI.DisplayOrderBubble();
+            cI.DisplayOrderTicket();
+        }
+
         finishedConversation = true;
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
