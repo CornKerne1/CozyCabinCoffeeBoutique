@@ -29,7 +29,7 @@ public class Bed : Interactable
 
     public void Update()
     {
-        Debug.Log(base.gM.gMD.currentTime.Hour);
+        //Debug.Log(base.gM.gMD.currentTime.Hour);
         HandlePlayerMove();
     }
 

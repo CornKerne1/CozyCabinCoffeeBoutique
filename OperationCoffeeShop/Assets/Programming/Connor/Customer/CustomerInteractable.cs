@@ -34,8 +34,6 @@ public class CustomerInteractable : Interactable
 
     Transform oldLook;
 
-    public bool talking = false;
-
     private bool canInteract = true;
 
     public DialogueManager dialogueManager;
@@ -56,6 +54,7 @@ public class CustomerInteractable : Interactable
         player = gM.player.gameObject;
         pm = player.GetComponent<PlayerMovement>();
         pcc = player.GetComponent<PlayerCameraController>();
+        pI = player.GetComponent<PlayerInteraction>();
         neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
 
@@ -83,12 +82,14 @@ public class CustomerInteractable : Interactable
             RemoveOrderBubble();
             RemoveOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp * 40;
+            gM.pD.neckClamp = 77.3f;
             pI.pD.inUI = false;
 
         }
-        else if (dialogueManager.finishedConversation && !CAI.hasOrdered && dialogueManager.GetCurrentCustomer() == this.gameObject)
+        else if (dialogueManager.finishedConversation && dialogueManager.GetCurrentCustomer() == this.gameObject)
         {
+            Debug.Log("testing my patience");
+
             canInteract = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -96,17 +97,17 @@ public class CustomerInteractable : Interactable
                 Camera.main.transform.LookAt(oldLook.position);
             pm.canMove = true;
             pcc.canMove = true;
-            StartCoroutine(MoveLine());
+            //StartCoroutine(MoveLine());
             DisplayOrderBubble();
             DisplayOrderTicket();
             dialogueManager.finishedConversation = false;
-            gM.pD.neckClamp = neckclamp * 40;
+            gM.pD.neckClamp = 77.3f;
             pI.pD.inUI = false;
 
         }
         if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject && dialogueManager.dialogueIsPlaying)
         {
-            gM.pD.neckClamp = neckclamp / 40;
+            gM.pD.neckClamp = 0;
             var c = Camera.main.transform;
             oldLook = c;
             Camera.main.transform.LookAt(lookat.position);
@@ -119,7 +120,7 @@ public class CustomerInteractable : Interactable
         {
             foreach (RegularCustomerAtlas.customerConversations cc in rCA.dic[gM.gMD.currentTime.Day])
             {
-                if (cc.customer.GetComponent<Customer>().CD = this.CAI.CD)
+                if (cc.customer.GetComponent<Customer>().CD == this.CAI.CD)
                 {
                     this.IntroConversation = cc.IntroConversation;
                     this.ExitConversation = cc.ExitConversation;
@@ -154,11 +155,12 @@ public class CustomerInteractable : Interactable
         //invokes the dialogue interaction thing
         //DialogDisplay
         this.pI = pI;
+        //Debug.Log("dialogueManager.dialogueIsPlaying: " + dialogueManager.dialogueIsPlaying
+            //+ " CAI.stay: "+ CAI.stay + " CAI.hasOrdered: " + CAI.hasOrdered + " canInteract: " + canInteract);
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
             pI.pD.inUI = true;
             dialogueManager.SetCurrentCustomer(this.gameObject);
-            talking = true;
             DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
             if (rCA != null)
             {
@@ -199,7 +201,7 @@ public class CustomerInteractable : Interactable
 
     }
 
-    IEnumerator MoveLine()
+    public IEnumerator MoveLine()
     {
         yield return new WaitForSeconds(2);
         CAI.customerLines[CAI.customerLines.Count - 1].moveLine();
@@ -220,9 +222,22 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
+        if (rCA != null)
+        {
+            dialogueManager.SetPortraitButtonAndName(this.CAI.CD.portrait, this.CAI.CD.buttonImage, this.CAI.CD.name);
+        }
+        else
+        {
+            dialogueManager.SetDefaultImagesAndName(this.CAI.CD.name);
+
+        }
         pI.pD.inUI = true;
-        dialogueManager.SetCurrentCustomer(this.gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(ExitConversation);
+
+        dialogueManager.SetCurrentCustomer(this.gameObject);
+        gM.pD.neckClamp = 0;
+        dialogueManager.finishedConversation = false;
+        //canInteract = false;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

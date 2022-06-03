@@ -13,6 +13,7 @@ public class SpawnRandomCustomer : MonoBehaviour
 
     public bool spawnCustomer = false;
 
+    [SerializeField,Header("60 is once per hour")]
     public int spawnInterval = 60; //60 is once per hour
 
     int maxCustomerCount = 0;
@@ -20,18 +21,15 @@ public class SpawnRandomCustomer : MonoBehaviour
 
     bool oneCustomerAtATime = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         DayNightCycle.TimeChanged += ResetMaxCustomers;
-        //Instantiate(customer, this.transform.position, this.transform.rotation);
         gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
         if (maxCustomerCount == 0)
-            maxCustomerCount = gMD.closingHour - gMD.wakeUpHour;
+            maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour)*60)/spawnInterval;
         minutes = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (spawnCustomer) //for manually spawning customers. 
@@ -39,7 +37,7 @@ public class SpawnRandomCustomer : MonoBehaviour
             spawnCustomer = false;
             SpawnCustomer();
         }
-        if (gMD.isOpen) // if store is open
+        if (gMD.isOpen) 
         {
             minutesSinceOpening();
             if (gMD.currentTime.TimeOfDay.Minutes == 30) //helps ensure only 1 customer spawns at a time. 
@@ -48,7 +46,6 @@ public class SpawnRandomCustomer : MonoBehaviour
             }
             if (oneCustomerAtATime && minutes % spawnInterval == 0 && maxCustomerCount-- > 0) // once per interval max of count
             {
-                //Debug.Log("spawning customer");
                 oneCustomerAtATime = false;
                 SpawnCustomer();
             }
@@ -65,7 +62,7 @@ public class SpawnRandomCustomer : MonoBehaviour
             pastMinute = currentMinute;
             minutes++;
         }
-        //Debug.Log("minutes since opening: " + minutes +". Customers will spawn every: " + spawnInterval + " minutes");
+        //Debug.Log("minutes since opening: " + minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ maxCustomerCount);
         return minutes;
     }
 
@@ -84,8 +81,12 @@ public class SpawnRandomCustomer : MonoBehaviour
 
     void ResetMaxCustomers(object sender, EventArgs e)
     {
-        if (gMD.currentOpenTime == gMD.currentTime.Hour)
-            maxCustomerCount = gMD.closingHour - gMD.wakeUpHour;
+        if (!gMD.isOpen && gMD.wakeUpHour == gMD.currentTime.Hour )
+        {
+            maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
+            minutes = 0;
+            Debug.Log("reseting maxCustomerCount to :" + maxCustomerCount);
+        }
     }
 
 }
