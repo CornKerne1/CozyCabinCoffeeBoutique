@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         animator.SetTrigger("Reverse");//
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -38,17 +39,20 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenOptions()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void CloseOptions()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         pD.inUI = false;
         this.gameObject.SetActive(false);
     }
 
     public void QuitGame()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         pD.inUI = false;
         SceneManager.LoadScene(quitScene);
     }

@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="2935273847">
+		<SoundBank Id="3161908922" Language="SFX" Hash="780888634">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -77,6 +77,30 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="416139438" Name="Play_LoopPour" ObjectPath="\Events\Default Work Unit\Play_LoopPour" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="588977900" Language="SFX">
+							<ShortName>LoopPour.wav</ShortName>
+							<Path>SFX\LoopPour_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2859911570" Name="Play_MachineBuzzing" ObjectPath="\Events\Default Work Unit\Play_MachineBuzzing" DurationType="OneShot" DurationMin="3.478277" DurationMax="3.478277">
+					<IncludedMemoryFiles>
+						<File Id="282050569" Language="SFX">
+							<ShortName>MachineBuzzing.wav</ShortName>
+							<Path>SFX\MachineBuzzing_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2576276897" Name="Play_MenuClick" ObjectPath="\Events\Default Work Unit\Play_MenuClick" DurationType="OneShot" DurationMin="0.434785" DurationMax="0.434785">
+					<IncludedMemoryFiles>
+						<File Id="1052987244" Language="SFX">
+							<ShortName>MenuClick.wav</ShortName>
+							<Path>SFX\MenuClick_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3754899171" Name="Play_NeuroticBone" ObjectPath="\Events\Default Work Unit\Play_NeuroticBone" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="230495110" Language="SFX">
@@ -106,6 +130,14 @@
 						<File Id="776190147" Language="SFX">
 							<ShortName>Roast Blend.wav</ShortName>
 							<Path>SFX\Roast Blend_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1306435193" Name="Play_Slider" ObjectPath="\Events\Default Work Unit\Play_Slider" DurationType="OneShot" DurationMin="0.496145" DurationMax="0.496145">
+					<IncludedMemoryFiles>
+						<File Id="30486242" Language="SFX">
+							<ShortName>Slider1Shake.wav</ShortName>
+							<Path>SFX\Slider1Shake_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -151,6 +183,8 @@
 				</Event>
 				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3762348028" Name="Stop_MachineBuzzing" ObjectPath="\Events\Default Work Unit\Stop_MachineBuzzing" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1450757357" Name="Stop_TitleTheme" ObjectPath="\Events\Default Work Unit\Stop_TitleTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -182,6 +216,10 @@
 					<ShortName>RedPandaTheme.wav</ShortName>
 					<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
 				</File>
+				<File Id="30486242" Language="SFX">
+					<ShortName>Slider1Shake.wav</ShortName>
+					<Path>SFX\Slider1Shake_10C4C929.wem</Path>
+				</File>
 				<File Id="138462402" Language="SFX">
 					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
 					<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
@@ -189,6 +227,10 @@
 				<File Id="230495110" Language="SFX">
 					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
 					<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="282050569" Language="SFX">
+					<ShortName>MachineBuzzing.wav</ShortName>
+					<Path>SFX\MachineBuzzing_10C4C929.wem</Path>
 				</File>
 				<File Id="285469530" Language="SFX">
 					<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
@@ -209,6 +251,10 @@
 				<File Id="551003881" Language="SFX">
 					<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
 					<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="588977900" Language="SFX">
+					<ShortName>LoopPour.wav</ShortName>
+					<Path>SFX\LoopPour_D79FB2B7.wem</Path>
 				</File>
 				<File Id="626169617" Language="SFX">
 					<ShortName>Someday_Youd_Better_Wake_Up_LoFi_playlist.wav</ShortName>
@@ -241,6 +287,10 @@
 				<File Id="903791736" Language="SFX">
 					<ShortName>Breaking_Loose_LoFi.wav</ShortName>
 					<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1052987244" Language="SFX">
+					<ShortName>MenuClick.wav</ShortName>
+					<Path>SFX\MenuClick_10C4C929.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 			<GameParameters>

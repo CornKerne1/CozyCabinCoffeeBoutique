@@ -690,6 +690,12 @@
 				</ActorMixer>
 				<Sound Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" ShortID="489687652">
 					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Lowpass" Type="int16">
+							<ValueList>
+								<Value>25</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Volume" Type="Real64">
 							<RTPCList>
 								<RTPC Name="" ID="{3293A6EB-E713-4140-9B63-F13E8D3D8EC9}" ShortID="786403322">

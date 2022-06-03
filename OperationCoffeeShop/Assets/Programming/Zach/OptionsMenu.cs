@@ -17,6 +17,7 @@ public class OptionsMenu : MonoBehaviour
     private int selectedResolution;
 
     public TMP_Text resolutionLabel;
+    private bool playing;
     
 
     public TMP_Text mastLabel, musicLabel, sfxLabel;
@@ -105,6 +106,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void ResLeft()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         selectedResolution--;
         if(selectedResolution < 0)
         {
@@ -115,6 +117,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void ResRight()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         selectedResolution++;
         if (selectedResolution > resolutions.Count - 1)
         {
@@ -130,8 +133,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void ApplyGraphics()
     {
-        //Screen.fullScreen = fullscreenTog.isOn;
-
+        Screen.fullScreen = fullscreenTog.isOn;
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         if (vsyncTog.isOn)
         {
             QualitySettings.vSyncCount = 1;
@@ -148,13 +151,15 @@ public class OptionsMenu : MonoBehaviour
     //functions below control sound slider values and how they interact with ui
     public void SetMasterVol()
     {
+        StartCoroutine(CO_PlayAudioWWisely());
         mastLabel.text = Mathf.RoundToInt(masterSlider.value) .ToString();
         sO.MasterVol = masterSlider.value;
         AkSoundEngine.SetRTPCValue("MasterVolume", sO.MasterVol);
-        
+
     }
     public void SetMusicVol()
     {
+        StartCoroutine(CO_PlayAudioWWisely());
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
         sO.MusicVol = musicSlider.value;
         AkSoundEngine.SetRTPCValue("MusicVolume", sO.MusicVol);
@@ -162,6 +167,7 @@ public class OptionsMenu : MonoBehaviour
     }
     public void SetSFXVol()
     {
+        StartCoroutine(CO_PlayAudioWWisely());
         sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
         sO.SFXVol = sfxSlider.value;
         AkSoundEngine.SetRTPCValue("SFXVolume", sO.SFXVol);
@@ -169,11 +175,23 @@ public class OptionsMenu : MonoBehaviour
     }
     public void SetMouse()
     {
+        StartCoroutine(CO_PlayAudioWWisely());
         gM.pD.mouseSensitivity = mouseSlider.value;
     }
     public void CloseOptions()
     {
-       Destroy(optionsScreen);
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        Destroy(optionsScreen);
+    }
+
+    private IEnumerator CO_PlayAudioWWisely()
+    {
+        if (playing)
+            yield break;
+        playing = true;
+        yield return new WaitForSeconds(.1f);
+        playing = false;
+        AkSoundEngine.PostEvent("Play_Slider", gameObject);
     }
 }
 

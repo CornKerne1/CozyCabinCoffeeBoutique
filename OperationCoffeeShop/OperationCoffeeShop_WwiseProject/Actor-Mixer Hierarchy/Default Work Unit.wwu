@@ -4,6 +4,36 @@
 		<WorkUnit Name="Default Work Unit" ID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}" PersistMode="Standalone">
 			<ChildrenList>
 				<ActorMixer Name="World" ID="{CBB52676-6A79-4470-A7E5-FFFE18280F43}" ShortID="764777701">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{13CB637B-E7DC-4126-9BE7-AA370D95F5A6}" ShortID="675733540">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="MasterVolume" ID="{C556DB6A-D655-490D-A849-62DEE3EA048F}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{74A810CD-34E7-45CA-8AE4-DE1BF580DFA4}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -19,6 +49,36 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Non_World" ID="{839FFB6D-B7FC-4507-8CE3-65842B99A0D8}" ShortID="546040727">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{6F774138-4DAE-4A6D-AA09-E71E60B671DE}" ShortID="20058015">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="MasterVolume" ID="{C556DB6A-D655-490D-A849-62DEE3EA048F}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{2A49D355-3EE1-4BFD-AE37-5F855534D44C}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -136,6 +196,64 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="MenuClick" ID="{A0E93CCD-DF98-4C8C-ACC0-EFA3E3FEC600}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Slider" ID="{011C1A94-47C1-435C-8E18-5D851F1EF391}" ShortID="871505210">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>40</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{19E02B91-B6AD-42FA-A043-A286BC7EF8E3}" ShortID="363371795">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="SFXVolume" ID="{0581A918-066E-4F92-B031-D826DB7345F1}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{777D8A77-06DB-4FEE-8018-3A89EB87A998}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Slider1Shake" ID="{AB95093C-5A42-4E6E-884F-6D317B2DF042}">
+									<Language>SFX</Language>
+									<AudioFile>Slider1Shake.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="30486242"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Slider1Shake" ID="{AB95093C-5A42-4E6E-884F-6D317B2DF042}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

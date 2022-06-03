@@ -568,6 +568,78 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_LoopPour" ID="{2566E383-321E-45C7-9617-DFB3481826E3}">
+					<ChildrenList>
+						<Action Name="" ID="{9BECB41D-775C-4F20-92B0-DC63BA283DA5}" ShortID="420489062">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_LoopPour" ID="{B188F44A-405D-4E2B-A1A9-4B3BE815F3A8}">
+					<ChildrenList>
+						<Action Name="" ID="{67C739EE-1BD5-4A30-B4A3-525B27F58479}" ShortID="745089355">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_MachineBuzzing" ID="{495EC5F7-19A1-4572-968F-602F8239F9EB}">
+					<ChildrenList>
+						<Action Name="" ID="{CF05634E-D4D9-45B0-B625-81A52F1A813B}" ShortID="464886180">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MachineBuzzing" ID="{9C4C0CEE-DBC7-4B1B-BA6D-D6547CF4129F}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_MachineBuzzing" ID="{B271C0F0-A579-4CD0-9053-C397142272F1}">
+					<ChildrenList>
+						<Action Name="" ID="{CBA534D8-9750-49D2-9B43-5EDD949CF1D1}" ShortID="709959371">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MachineBuzzing" ID="{9C4C0CEE-DBC7-4B1B-BA6D-D6547CF4129F}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_MenuClick" ID="{63BBC110-1D62-47F9-8C4C-D7A83AFD16EA}">
+					<ChildrenList>
+						<Action Name="" ID="{67623E4A-8E97-47F2-8B1D-E43A2699F950}" ShortID="201893550">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MenuClick" ID="{27C85936-6704-44D3-9009-6D6FA459D479}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Slider" ID="{D74E2151-D19C-4097-99B6-A2DF773E6B0F}">
+					<ChildrenList>
+						<Action Name="" ID="{46C48DA4-71FD-4745-9A94-A4B3BF6BFA89}" ShortID="1062230814">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Slider" ID="{011C1A94-47C1-435C-8E18-5D851F1EF391}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

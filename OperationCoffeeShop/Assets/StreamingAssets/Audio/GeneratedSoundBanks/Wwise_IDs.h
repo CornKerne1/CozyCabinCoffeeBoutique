@@ -20,10 +20,14 @@ namespace AK
         static const AkUniqueID PLAY_EXQUISITETASTE = 3622673270U;
         static const AkUniqueID PLAY_GRINDINGCOFFEE = 2302029328U;
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
+        static const AkUniqueID PLAY_LOOPPOUR = 416139438U;
+        static const AkUniqueID PLAY_MACHINEBUZZING = 2859911570U;
+        static const AkUniqueID PLAY_MENUCLICK = 2576276897U;
         static const AkUniqueID PLAY_NEUROTICBONE = 3754899171U;
         static const AkUniqueID PLAY_PIANO = 1479974693U;
         static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
         static const AkUniqueID PLAY_ROASTBLEND = 3453202434U;
+        static const AkUniqueID PLAY_SLIDER = 1306435193U;
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
@@ -31,6 +35,8 @@ namespace AK
         static const AkUniqueID PLAY_TITLETHEME = 3107494279U;
         static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
         static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;
+        static const AkUniqueID STOP_LOOPPOUR = 4059860068U;
+        static const AkUniqueID STOP_MACHINEBUZZING = 3762348028U;
         static const AkUniqueID STOP_TITLETHEME = 1450757357U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;
