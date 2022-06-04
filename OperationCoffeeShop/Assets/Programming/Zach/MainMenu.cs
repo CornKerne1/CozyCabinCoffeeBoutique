@@ -16,6 +16,9 @@ public class MainMenu : MonoBehaviour
 
     public GameObject optionsScreen;
 
+    public GameObject creditsScreen;
+
+
     [SerializeField] PlayableDirector director;
 
     private Animator animator;
@@ -39,6 +42,16 @@ public class MainMenu : MonoBehaviour
     public void OpenOptions()
     {
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    public void OpenCredits()
+    {
+        Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    public void CloseCredits()
+    {
+        creditsScreen.SetActive(false);
     }
 
     public void CloseOptions()
