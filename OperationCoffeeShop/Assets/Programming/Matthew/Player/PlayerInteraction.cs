@@ -196,7 +196,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             try
             {
-                if (!carriedObj.transform.root.GetComponentInChildren<IngredientContainer>().IsPouring()) {}
+                if (carriedObj.transform.root.GetComponentInChildren<Radio>()||!carriedObj.transform.root.GetComponentInChildren<IngredientContainer>().IsPouring()) {}
             }
             catch
             {
