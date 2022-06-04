@@ -10,15 +10,30 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue UI")]
     [SerializeField] private Image portrait;
-    [SerializeField] private Sprite defaultPortrait;
     [SerializeField] private Image buttonImage;
+    [SerializeField] private Image dialogueBoxImage;
+
+
+
+    [SerializeField] private Sprite portraitNeutral;
+    [SerializeField] private Sprite portraitHappy;
+    [SerializeField] private Sprite portraitAmazed;
+    [SerializeField] private Sprite portraitAnnoyed;
+
+    [SerializeField] private Sprite defaultPortrait;
     [SerializeField] private Sprite defaultButtonImage;
+    [SerializeField] private Sprite defaultDialogueBox;
+
+
     [SerializeField] private GameObject dialoguePanel;
+
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI button1Text;
     [SerializeField] private TextMeshProUGUI displayName;
+
     private static DialogueManager instance;
     private Story currentStory;
+    private List<string> currentTags;
 
     public bool dialogueIsPlaying;
     public bool finishedConversation = false;
@@ -55,8 +70,9 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-
-        ContinueStory(); 
+        currentTags = currentStory.currentTags;
+        ApplyTags();
+        ContinueStory();
         if (currentStory.currentChoices.Count > 0)
         {
             button1Text.text = currentStory.currentChoices[0].text;
@@ -64,6 +80,47 @@ public class DialogueManager : MonoBehaviour
         else
         {
             button1Text.text = "Continue";
+        }
+    }
+
+    private void ApplyTags()
+    {
+        foreach (string s in currentTags)
+        {
+            switch (s.ToLower().Trim())
+            {
+                case "portrait:happy":
+                    if (portraitHappy != null)
+                    {
+                        portrait.sprite = portraitHappy;
+                    }
+                    break;
+
+                case "portrait:annoyed":
+                    if (portraitHappy != null)
+                    {
+                        portrait.sprite = portraitHappy;
+                    }
+                    break;
+
+                case "portrait:amazed":
+                    if (portraitAmazed != null)
+                    {
+                        portrait.sprite = portraitAmazed;
+                    }
+                    break;
+
+                case "portrait:neutral":
+                    if (portraitNeutral!= null)
+                    {
+                        portrait.sprite = portraitNeutral;
+                    }
+                    break;
+
+                default:
+
+                    break;
+            }
         }
     }
 
@@ -96,7 +153,7 @@ public class DialogueManager : MonoBehaviour
         else if (currentStory.currentChoices.Count > 0)
         {
             currentStory.ChooseChoiceIndex(0);
-           
+
             dialogueText.text = currentStory.Continue();
             if (currentStory.currentChoices.Count > 0)
             {
@@ -114,7 +171,7 @@ public class DialogueManager : MonoBehaviour
             ExitDialogueMode();
         }
         string dialogue = dialogueText.text;
-        if (dialogue.Trim() =="" && dialogueIsPlaying)
+        if (dialogue.Trim() == "" && dialogueIsPlaying)
         {
             ExitDialogueMode();
         }
@@ -127,16 +184,27 @@ public class DialogueManager : MonoBehaviour
     {
         currentCustoemr = customer;
     }
-    public void SetPortraitButtonAndName(Sprite portrait, Sprite buttonImage, string name)
+    public void SetPortraitButtonAndName(CustomerData CD)
     {
-        this.portrait.sprite = portrait;
-        this.buttonImage.sprite = buttonImage;
-        displayName.text = name;
+        portraitAmazed = CD.portraitAmazed;
+        portraitAnnoyed = CD.protraitAnoyed;
+        portraitHappy = CD.portraitHappy;
+        portraitNeutral = CD.portraitNeutral;
+        portrait.sprite = CD.portraitNeutral;
+        buttonImage.sprite = CD.buttonImage;
+        dialogueBoxImage.sprite = CD.dialogueBoxImage;
+        displayName.text = CD.name;
     }
     public void SetDefaultImagesAndName(string name)
     {
+        portraitAmazed = null;
+        portraitAnnoyed = null;
+        portraitHappy = null;
+        portraitNeutral = null;
         portrait.sprite = defaultPortrait;
         buttonImage.sprite = defaultButtonImage;
+        dialogueBoxImage.sprite = defaultDialogueBox;
+
         displayName.text = name;
 
     }

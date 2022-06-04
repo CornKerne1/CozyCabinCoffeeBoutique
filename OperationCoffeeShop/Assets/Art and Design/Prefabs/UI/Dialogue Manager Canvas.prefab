@@ -114,15 +114,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portrait: {fileID: 3008080769521958748}
-  defaultPortrait: {fileID: 21300000, guid: 0d19d1bb3f44f3f47a48b4cf1fd41519, type: 3}
   buttonImage: {fileID: 3008080770158878030}
+  dialogueBoxImage: {fileID: 3008080769925001671}
+  portraitNeutral: {fileID: 0}
+  portraitHappy: {fileID: 0}
+  portraitAmazed: {fileID: 0}
+  portraitAnnoyed: {fileID: 0}
+  defaultPortrait: {fileID: 21300000, guid: 0d19d1bb3f44f3f47a48b4cf1fd41519, type: 3}
   defaultButtonImage: {fileID: 21300000, guid: d78e1859041647a42b96264694033f6b, type: 3}
+  defaultDialogueBox: {fileID: 21300000, guid: d698a89adaeeaa84f83f0ae0e0fe8878, type: 3}
   dialoguePanel: {fileID: 3008080769925001665}
   dialogueText: {fileID: 3008080769201366141}
   button1Text: {fileID: 3008080769607119372}
   displayName: {fileID: 3008080770357574555}
   dialogueIsPlaying: 0
   finishedConversation: 0
+  currentCustoemr: {fileID: 0}
 --- !u!1 &3008080769201366143
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,17 +195,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: sdgsadgasgdfhcvnbnnvb,mhgjk7tyyh
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: abf40d996cbbfe44bae41fd82e4494bf, type: 2}
-  m_sharedMaterial: {fileID: -3060557860744182584, guid: abf40d996cbbfe44bae41fd82e4494bf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283584536
-  m_fontColor: {r: 0.095318615, g: 0.3137255, b: 0.3207547, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -460,7 +467,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -532.87335, w: 0}
+  m_margin: {x: 0, y: 0, z: -574.9054, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -535,7 +542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c8501eb7f94d44d0bbd8231566fac1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d698a89adaeeaa84f83f0ae0e0fe8878, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -582,7 +589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -614.48, y: 0.3}
+  m_AnchoredPosition: {x: -614.48, y: 20.4}
   m_SizeDelta: {x: 39.518494, y: 39.518997}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3008080770158878029
