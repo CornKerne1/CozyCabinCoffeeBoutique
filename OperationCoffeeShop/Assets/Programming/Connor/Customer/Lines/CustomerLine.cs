@@ -124,7 +124,7 @@ public class CustomerLine : MonoBehaviour
             ci.DeliverDrink();
             ai.CD.recievedDrink = drinkdata;
             drink.SetActive(false);
-            DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
+            DepositMoney?.Invoke(ai.CD.orderedDrink.price, EventArgs.Empty);
             ai.CD.customer.RecieveDrink();
 
         }

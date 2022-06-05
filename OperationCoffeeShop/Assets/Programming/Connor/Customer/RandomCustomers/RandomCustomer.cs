@@ -64,6 +64,8 @@ public class RandomCustomer : Customer
         DrinkData drink = GetRandomDrink();
 
         DrinkData customeDrink = new DrinkData(drink.name, drink.Ingredients);
+
+        customeDrink.price = favoriteDrink.price;// need to add random ingredients to price
         //Adds a little RNG to the drink orders
         //IngredientNode addOn = GetRandomAddOn();
         //customeDrink.addIngredient(addOn);
