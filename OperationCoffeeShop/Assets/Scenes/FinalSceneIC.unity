@@ -921,10 +921,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayCube-360_Controller (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 106276107, guid: 0d671ac84f819da49abb2a24a9b22642, type: 3}
-    - {fileID: 106276105, guid: 0d671ac84f819da49abb2a24a9b22642, type: 3}
-    - {fileID: 106276106, guid: 0d671ac84f819da49abb2a24a9b22642, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d671ac84f819da49abb2a24a9b22642, type: 3}
 --- !u!1001 &112287433
 PrefabInstance:
@@ -14784,9 +14781,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8756745364233946377, guid: fee2311ba5c0a8c41b41499b12be5f6c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8756745364233946378, guid: fee2311ba5c0a8c41b41499b12be5f6c, type: 3}
       propertyPath: m_Name
       value: Shop_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756745364233946378, guid: fee2311ba5c0a8c41b41499b12be5f6c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fee2311ba5c0a8c41b41499b12be5f6c, type: 3}
@@ -16010,7 +16015,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7896588514335635392, guid: 3cbae9dc9ae45f64b8fe50f61fa8568c, type: 3}
 --- !u!1001 &1660746610
@@ -28578,6 +28583,7 @@ GameObject:
   - component: {fileID: 8319613493727598456}
   - component: {fileID: 8319613493727598455}
   - component: {fileID: 8319613493727598454}
+  - component: {fileID: 8319613493727598457}
   m_Layer: 0
   m_Name: Directonal light2
   m_TagString: Untagged
@@ -28674,6 +28680,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &8319613493727598457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319613493727598453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ece1e69e8aab141b28acc7f3550b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 8319613493727598455}
+  wakeUpHour: 6
+  sleepingHour: 18
 --- !u!1 &8319613493729877292
 GameObject:
   m_ObjectHideFlags: 0
