@@ -2,7 +2,7 @@
 
 
 === main ===
-Are you the origianal ownder of this building?
+Are you the original owner of this building?
 * [Well, actually, it was given to me by my grandfolks who won the lottery. They're out far away by now.] 
 
 -I knew there was something off about you!
