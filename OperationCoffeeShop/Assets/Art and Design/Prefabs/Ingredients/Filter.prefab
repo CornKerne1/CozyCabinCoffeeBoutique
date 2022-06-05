@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1824098916473184224}
   - component: {fileID: 5627431528785714960}
   - component: {fileID: 6123381333317132787}
-  - component: {fileID: 3022473197386100353}
+  - component: {fileID: 7806554320722758358}
   m_Layer: 3
   m_Name: Filter
   m_TagString: PickUp
@@ -116,8 +116,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!64 &3022473197386100353
-MeshCollider:
+--- !u!65 &7806554320722758358
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,7 +126,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3299960617027473765, guid: 186d99d63de567b468f6f72e54e149e5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.17580472, y: 0.09531784, z: 0.18418233}
+  m_Center: {x: -0.0034119647, y: 0.046159744, z: 0.006303518}

@@ -31,6 +31,8 @@ public class ComputerShop : MonoBehaviour
     public int milkQuantity = 10;
     public float sugarPrice = 10;
     public int sugarQuantity = 25;
+    public ObjectHolder sugarType;
+
 
     [SerializeField] public static event EventHandler SpendMoney;
     [SerializeField] public static event EventHandler DepositItems;//
@@ -107,7 +109,8 @@ public class ComputerShop : MonoBehaviour
                         break;
 
                     case "Milk":
-                        //DepositItems?.Invoke((milkQuantity), EventArgs.Empty);
+                        Tuple<Ingredients, int> milk = new Tuple<Ingredients, int>(Ingredients.Milk, milkQuantity);
+                        DepositItems?.Invoke(milk, EventArgs.Empty);
                         break;
 
                     case "Espresso":
@@ -116,7 +119,8 @@ public class ComputerShop : MonoBehaviour
                         break;
 
                     case "Sugar":
-                        //DepositItems?.Invoke((sugarQuantity), EventArgs.Empty);
+                        Tuple<ObjectHolder, int> sugar = new Tuple<ObjectHolder, int>(sugarType, sugarQuantity);
+                        DepositItems?.Invoke(sugar, EventArgs.Empty);
                         break;
                 }
 
