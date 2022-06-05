@@ -18,7 +18,8 @@ public class IngredientContainer : Interactable
     public float topOfCup;
     private bool pouring;
     private bool pouringAction;
-    private bool rotating;
+    public bool rotating;
+    public bool pouringRotation;
 
     public IngredientData iD;
 
@@ -59,6 +60,7 @@ public class IngredientContainer : Interactable
             {
                 transform.Rotate(2, 0, 0);
                 pouring = true;
+                pouringRotation = true;
                 if (cr1 == null)
                 {
                     cr1 = Timer(1f);
@@ -69,6 +71,7 @@ public class IngredientContainer : Interactable
             {
                 pouring = false;
                 transform.Rotate(-2, 0, 0);
+                pouringRotation = false;
                 if (cr1 == null)
                 {
                     cr1 = Timer(1f);
@@ -221,12 +224,15 @@ public class IngredientContainer : Interactable
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        this.pI = pI;
-        pI.Carry(gameObject);
-        inHand = true;
-        Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y,
-            Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
-        transform.rotation = rot;
+        if (!IsPouring())
+        {
+            this.pI = pI;
+            pI.Carry(gameObject);
+            inHand = true;
+            Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y,
+                Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
+            transform.rotation = rot;
+        }
     }
 
     public override void OnFocus()
