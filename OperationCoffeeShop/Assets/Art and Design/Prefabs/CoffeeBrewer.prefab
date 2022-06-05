@@ -444,7 +444,7 @@ Transform:
   m_GameObject: {fileID: 5391586676537825222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7153926, y: 0.7153926, z: 0.7153926}
   m_Children:
   - {fileID: 2683047464340814371}
   - {fileID: 620592021}
@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 1291219134}
   - component: {fileID: 2965839891816342707}
   - component: {fileID: 1785624811}
+  - component: {fileID: 1820469460}
   m_Layer: 0
   m_Name: CoffeeDrip_Bowl
   m_TagString: Untagged
@@ -597,6 +598,19 @@ MonoBehaviour:
   CloseTrans: {fileID: 928347463}
   filterTrans: {fileID: 3234807850615746045}
   filter: {fileID: 2859654051466377031}
+--- !u!135 &1820469460
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956417264389596599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.004
+  m_Center: {x: 0.02, y: -0.0165, z: 0}
 --- !u!1 &8675541021117073078
 GameObject:
   m_ObjectHideFlags: 0
