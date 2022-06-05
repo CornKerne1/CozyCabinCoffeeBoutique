@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 675918537729760039}
   - component: {fileID: 1783690415919917191}
   - component: {fileID: 6148174884791040955}
+  - component: {fileID: 2147615422659203293}
   m_Layer: 3
   m_Name: Hella
   m_TagString: Customer
@@ -168,7 +169,7 @@ MonoBehaviour:
   CAI: {fileID: 1033753536987892517}
   conversation: {fileID: 11400000, guid: 5ca89bfcc3655db44a576c5e56fdf158, type: 2}
   canvas: {fileID: 6167939972010913447}
-  talking: 0
+  dialogueManager: {fileID: 0}
   rCA: {fileID: 11400000, guid: 538bf7d1777b2e845b3d10637778c263, type: 2}
   lookat: {fileID: 5040082395697250112}
 --- !u!54 &927562656731061223
@@ -4973,6 +4974,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2147615422659203293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382161432092520763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12642062969a5ae4fbc02ecb37522bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dollarBill: {fileID: 8613457205847449800, guid: 0c7984702bc55b648b1b4145bf2f2b44, type: 3}
+  coin: {fileID: 0}
 --- !u!1001 &1018454794517721690
 PrefabInstance:
   m_ObjectHideFlags: 0
