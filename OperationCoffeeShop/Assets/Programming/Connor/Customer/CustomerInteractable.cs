@@ -222,6 +222,7 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
+        gameObject.GetComponent<MoneyLancher>().LaunchMoney((int)CAI.CD.orderedDrink.price, (int)((CAI.CD.orderedDrink.price - (int)CAI.CD.orderedDrink.price)*10));
         if (rCA != null)
         {
             dialogueManager.SetPortraitButtonAndName(CAI.CD);

@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying;
     public bool finishedConversation = false;
 
-    public GameObject currentCustoemr;
+    public GameObject currentCustomer;
 
 
 
@@ -127,11 +127,10 @@ public class DialogueManager : MonoBehaviour
     public void ExitDialogueMode()
     {
         Debug.Log("Exiting dialogue");
-        CustomerAI cAI = currentCustoemr.GetComponent<CustomerAI>();
-        CustomerInteractable cI = currentCustoemr.GetComponent<CustomerInteractable>();
+        CustomerAI cAI = currentCustomer.GetComponent<CustomerAI>();
+        CustomerInteractable cI = currentCustomer.GetComponent<CustomerInteractable>();
         if (!cAI.hasOrdered)
         {
-            cAI.hasOrdered = true;
             StartCoroutine(cI.MoveLine());
             cI.DisplayOrderBubble();
             cI.DisplayOrderTicket();
@@ -178,11 +177,11 @@ public class DialogueManager : MonoBehaviour
     }
     public GameObject GetCurrentCustomer()
     {
-        return currentCustoemr;
+        return currentCustomer;
     }
     public void SetCurrentCustomer(GameObject customer)
     {
-        currentCustoemr = customer;
+        currentCustomer = customer;
     }
     public void SetPortraitButtonAndName(CustomerData CD)
     {

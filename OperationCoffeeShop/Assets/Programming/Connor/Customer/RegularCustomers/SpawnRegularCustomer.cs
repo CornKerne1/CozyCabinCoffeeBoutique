@@ -32,13 +32,13 @@ public class SpawnRegularCustomer : MonoBehaviour
     }
     private void UpdateDic(object sender, EventArgs e)
     {
-        Debug.Log("hour: " + gMD.currentTime.Hour);
+        //Debug.Log("hour: " + gMD.currentTime.Hour);
         if (currentDay != gMD.currentTime.Day)
         {
             Time_Customer = new Dictionary<int, List<GameObject>>();
             currentDay = gMD.currentTime.Day;
             RCA.updateDictionary();
-            Debug.Log("Day: " + gMD.currentTime.Day);
+            //Debug.Log("Day: " + gMD.currentTime.Day);
             if (RCA.dic.ContainsKey(gMD.currentTime.Day))
             {
                 List<RegularCustomerAtlas.customerConversations> customers = RCA.dic[gMD.currentTime.Day];
@@ -68,7 +68,7 @@ public class SpawnRegularCustomer : MonoBehaviour
         if (currentHour != gMD.currentTime.Hour && Time_Customer.ContainsKey(gMD.currentTime.Hour))
         {
             currentHour = gMD.currentTime.Hour;
-            Debug.Log("spawning regular customers");
+            //Debug.Log("spawning regular customers");
             foreach (GameObject customer in Time_Customer[gMD.currentTime.Hour])
             StartCoroutine(Spawn(customer));
         }
