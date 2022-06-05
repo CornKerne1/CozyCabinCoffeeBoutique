@@ -6105,7 +6105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8756745364233946374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6155,7 +6155,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8756745364233946378}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -6221,6 +6221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c496b42d217d4bb576d74280ad65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cBTM: {fileID: 0}
   balance: {fileID: 3031559348928858858}
   balanceString: 'Checking: '
   bankUpdate: {fileID: 3644936032103769229}
@@ -6236,6 +6237,7 @@ MonoBehaviour:
   milkQuantity: 10
   sugarPrice: 10
   sugarQuantity: 25
+  sugarType: {fileID: 11400000, guid: cccf0c40de2667145b204cf5b7bda58d, type: 2}
 --- !u!1 &8756745364236978468
 GameObject:
   m_ObjectHideFlags: 0

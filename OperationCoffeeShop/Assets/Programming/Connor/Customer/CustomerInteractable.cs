@@ -120,7 +120,7 @@ public class CustomerInteractable : Interactable
         {
             foreach (RegularCustomerAtlas.customerConversations cc in rCA.dic[gM.gMD.currentTime.Day])
             {
-                if (cc.customer.GetComponent<Customer>().CD == this.CAI.CD)
+                if (cc.customer.GetComponent<Customer>().CD == CAI.CD)
                 {
                     this.IntroConversation = cc.IntroConversation;
                     this.ExitConversation = cc.ExitConversation;
@@ -160,15 +160,15 @@ public class CustomerInteractable : Interactable
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
             pI.pD.inUI = true;
-            dialogueManager.SetCurrentCustomer(this.gameObject);
+            dialogueManager.SetCurrentCustomer(gameObject);
             DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
             if (rCA != null)
             {
-                dialogueManager.SetPortraitButtonAndName(this.CAI.CD.portrait, this.CAI.CD.buttonImage, this.CAI.CD.name);
+                dialogueManager.SetPortraitButtonAndName(CAI.CD);
             }
             else
             {
-                dialogueManager.SetDefaultImagesAndName(this.CAI.CD.name);
+                dialogueManager.SetDefaultImagesAndName(CAI.CD.name);
 
             }
             //customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeOrder,this.transform);
@@ -222,19 +222,20 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
+        gameObject.GetComponent<MoneyLancher>().LaunchMoney((int)CAI.CD.orderedDrink.price, (int)((CAI.CD.orderedDrink.price - (int)CAI.CD.orderedDrink.price)*10));
         if (rCA != null)
         {
-            dialogueManager.SetPortraitButtonAndName(this.CAI.CD.portrait, this.CAI.CD.buttonImage, this.CAI.CD.name);
+            dialogueManager.SetPortraitButtonAndName(CAI.CD);
         }
         else
         {
-            dialogueManager.SetDefaultImagesAndName(this.CAI.CD.name);
+            dialogueManager.SetDefaultImagesAndName(CAI.CD.name);
 
         }
         pI.pD.inUI = true;
         DialogueManager.GetInstance().EnterDialogueMode(ExitConversation);
 
-        dialogueManager.SetCurrentCustomer(this.gameObject);
+        dialogueManager.SetCurrentCustomer(gameObject);
         gM.pD.neckClamp = 0;
         dialogueManager.finishedConversation = false;
         //canInteract = false;

@@ -69,12 +69,19 @@ public class Dispenser : Interactable
     }
     public void AddItems(object sender, EventArgs e)
     {
-        Tuple<ObjectHolder, int> tuple= (Tuple<ObjectHolder,int>)sender;
-
-        if (objType == tuple.Item1)
+        try
         {
-            this.quantity += tuple.Item2;
-            updateQuantity();
+            Tuple<ObjectHolder, int> tuple = (Tuple<ObjectHolder, int>)sender;
+
+            if (objType == tuple.Item1)
+            {
+                this.quantity += tuple.Item2;
+                updateQuantity();
+            }
+        }
+        catch
+        {
+
         }
     }
 

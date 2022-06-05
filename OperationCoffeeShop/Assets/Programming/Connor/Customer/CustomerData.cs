@@ -12,8 +12,12 @@ public class CustomerData : ScriptableObject
     public List<FlavorProfile.FlavorNode> desiredFlavors;
     public Customer customer;
     public List<TextAsset> OrderConversation;
-    public Sprite portrait;
+    public Sprite portraitNeutral;
+    public Sprite portraitHappy;
+    public Sprite protraitAnoyed;
+    public Sprite portraitAmazed;
     public Sprite buttonImage;
+    public Sprite dialogueBoxImage;
     //public List<string> orderPhrases;
 
 

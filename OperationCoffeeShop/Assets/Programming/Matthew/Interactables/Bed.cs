@@ -21,10 +21,24 @@ public class Bed : Interactable
 
     private bool inBed;
 
+    public GameObject DayCounter;
+    GameObject currentDC;
+    DayCounter dC;
     public override void Start()
     {
         base.Start();
         pI = base.gM.player.GetComponent<PlayerInteraction>();
+        currentDC = Instantiate(DayCounter);
+        dC = currentDC.GetComponent<DayCounter>();
+        dC.DisplayDay(gM.gMD.currentTime.Day);
+        StartCoroutine(CO_RemoveDisplayDay());
+    }
+
+    IEnumerator CO_RemoveDisplayDay()
+    {
+        yield return new WaitForSeconds(15);
+        Destroy(currentDC);
+        currentDC = null;
     }
 
     public void Update()
@@ -58,7 +72,15 @@ public class Bed : Interactable
             }
             else
             {
+                if (currentDC == null)
+                {
+                    currentDC = Instantiate(DayCounter);
+                    dC = currentDC.GetComponent<DayCounter>();
+                    dC.DisplayDay(gM.gMD.currentTime.Day);
+                }
+               
                 playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
+                StartCoroutine(CO_RemoveDisplayDay());
             }
         }
     }
@@ -93,6 +115,7 @@ public class Bed : Interactable
     {
         if (gM.gMD.currentTime.Hour == 18)//if (gM.gMD.currentTime.Hour > 18 ||gM.gMD.currentTime.Hour ==0)
         {
+           
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
             base.gM.player.GetComponent<Collider>().enabled = false;

@@ -21,7 +21,7 @@ public class PlayerData : ScriptableObject
 
     void tryTest(object sender, EventArgs e)
     {
-        Debug.Log("SOMETHING");
+        //Debug.Log("SOMETHING");
     }
 
     [Header("Controller Variables")]
