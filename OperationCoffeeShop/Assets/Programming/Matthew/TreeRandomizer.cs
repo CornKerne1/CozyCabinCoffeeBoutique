@@ -28,6 +28,14 @@ public class TreeRandomizer : MonoBehaviour
         var g = Random.Range(0.5f, 1.0f);
         var b = Random.Range(0.1f, 0.45f);
         var a = 1;
+        if (g > .7f && r > .7f)
+        {
+            g = g - Random.Range(.15f, .35f);
+            if (r > .8f)
+            {
+                r = r - Random.Range(.1f, .2f);
+            }
+        }
         var rndr = GetComponent<MeshRenderer>();
         var myMat = rndr.materials;
         var newMat = rndr.materials[matSlot];
