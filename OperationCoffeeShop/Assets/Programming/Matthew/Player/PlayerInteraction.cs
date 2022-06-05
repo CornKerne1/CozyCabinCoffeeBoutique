@@ -127,30 +127,36 @@ public class PlayerInteraction : MonoBehaviour
 
     public void DropCurrentObj()
     {
-        if (carriedObj != null)
+        if (carriedObj.TryGetComponent<IngredientContainer>(out IngredientContainer ingredientContainor))
         {
-            carriedObj.GetComponent<Rigidbody>().isKinematic = false;
-            carriedObj.GetComponent<Collider>().isTrigger = false;
-            if (carriedObj.TryGetComponent<IngredientContainer>(out IngredientContainer ingredientContainor))
+
+            Debug.Log("Nothing");
+            if (!ingredientContainor.IsPouring() && !ingredientContainor.rotating && !ingredientContainor.pouringRotation)
             {
+                carriedObj.GetComponent<Rigidbody>().isKinematic = false;
+                carriedObj.GetComponent<Collider>().isTrigger = false;
+                Debug.Log("1Nothing");
                 ingredientContainor.inHand = false;
                 //ingredientContainor.StopPouring();
                 Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainor.rotateOffset.x, Quaternion.identity.y + ingredientContainor.rotateOffset.y, Quaternion.identity.z + ingredientContainor.rotateOffset.z, Quaternion.identity.w);
                 ingredientContainor.transform.rotation = rot;
-                if(ingredientContainor.IsPouring())
-                    ingredientContainor.StopPouring();
+                carriedObj = null;
+                pD.busyHands = false;
             }
-
+        }
+        else if (carriedObj != null)
+        {
+            carriedObj.GetComponent<Rigidbody>().isKinematic = false;
+            carriedObj.GetComponent<Collider>().isTrigger = false;
             if (currentInteractable)
             {
                 currentInteractable.OnDrop();
             }
             currentInteractable = null;
             pD.busyHands = false;
+            carriedObj = null;
+            pD.busyHands = false;
         }
-
-        carriedObj = null;
-        pD.busyHands = false;
     }
 
     public void TryInteract(object sender, EventArgs e)
