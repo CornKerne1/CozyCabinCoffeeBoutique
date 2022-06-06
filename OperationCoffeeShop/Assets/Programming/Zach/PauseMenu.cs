@@ -53,8 +53,7 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        pD.inUI = false;
-        SceneManager.LoadScene(quitScene);
+        Application.Quit();
     }
 
     private void OnEnable()
