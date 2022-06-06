@@ -36,8 +36,8 @@ public class Bed : Interactable
 
     IEnumerator CO_RemoveDisplayDay()
     {
-        yield return new WaitForSeconds(15);
-        Destroy(currentDC);
+        yield return new WaitForSeconds(13f);
+        StartCoroutine(dC.CO_HideDisplay());
         currentDC = null;
     }
 

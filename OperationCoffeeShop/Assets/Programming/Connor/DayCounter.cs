@@ -13,11 +13,11 @@ public class DayCounter : MonoBehaviour
     public Sprite day3;
 
     GameMode gM;
-
+    private Animator animator; 
     private void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-
+        animator = transform.root.GetComponentInChildren<Animator>();
     }
 
 
@@ -46,7 +46,14 @@ public class DayCounter : MonoBehaviour
 
     public void HideDisplay()
     {
-        dayDisplay.enabled = false;
+        StartCoroutine(CO_HideDisplay());
+    }
+
+    public IEnumerator CO_HideDisplay()
+    { 
+        animator.SetTrigger("Hide");
+    yield return new WaitForSeconds(2.0f);
+        Destroy(transform.root.gameObject);
     }
 
 }
