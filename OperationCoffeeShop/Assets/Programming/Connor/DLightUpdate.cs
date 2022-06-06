@@ -13,7 +13,10 @@ public class DLightUpdate : MonoBehaviour
     void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-
+        if (gM.gMD.currentTime.Hour >= wakeUpHour )
+        {
+            light.enabled = true;
+        }
         DayNightCycle.TimeChanged += AdjustLight;
     }
 
