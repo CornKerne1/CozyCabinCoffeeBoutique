@@ -27,7 +27,6 @@ public class Bed : Interactable
     public override void Start()
     {
         base.Start();
-        pI = base.gM.player.GetComponent<PlayerInteraction>();
         currentDC = Instantiate(DayCounter);
         dC = currentDC.GetComponent<DayCounter>();
         dC.DisplayDay(gM.gMD.currentTime.Day);
@@ -51,7 +50,7 @@ public class Bed : Interactable
     {
         if (pI)
         {
-            if (!base.gM.gMD.sleeping && pI.pD.killSwitchOff == false)
+            if (!base.gM.gMD.sleeping && pI.pD.canMove == false)
             {
                 running = true;
                 if (TimerRef == null)
@@ -97,7 +96,7 @@ public class Bed : Interactable
         else
         {
             running = false;
-            pI.pD.killSwitchOff = true;
+            pI.pD.canMove = true;
             playerTrans.GetComponent<Collider>().enabled = true;
             inBed = false;
             base.gM.gMD.timeRate = base.gM.gMD.timeRate/30;
@@ -119,7 +118,7 @@ public class Bed : Interactable
             playerTrans = base.gM.player.transform;
             base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
             base.gM.player.GetComponent<Collider>().enabled = false;
-            pI.pD.killSwitchOff = false;
+            pI.pD.canMove = false;
             base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
             base.gM.gMD.sleeping = true;
             running = true;

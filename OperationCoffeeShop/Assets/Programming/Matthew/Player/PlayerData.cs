@@ -9,21 +9,6 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Generic")]
 public class PlayerData : ScriptableObject
 {
-    private void OnEnable()
-    {
-        busyHands = false;
-        isClimbing = false;
-        killSwitchOff = true;
-        neckClamp = 77.3f;
-        PlayerInput.InteractEvent += tryTest;
-        inUI = false;
-    }
-
-    void tryTest(object sender, EventArgs e)
-    {
-        //Debug.Log("SOMETHING");
-    }
-
     [Header("Controller Variables")]
     [Range(0, 10)]
     [SerializeField] public float moveSpeed;
@@ -34,12 +19,11 @@ public class PlayerData : ScriptableObject
     [Range(0, 100)]
     [SerializeField] public float mouseSensitivityY;
     [SerializeField] public float mouseSensitivity = .75f;
-    [SerializeField] public float modX;
     [SerializeField] public float neckClamp = 77.3f;
-    [SerializeField] public LayerMask groundMask;//
-    
+    [SerializeField] public LayerMask groundMask;
     [SerializeField] public float closeSpeed;
     [SerializeField] public float openSpeed;
+    [SerializeField] public bool canMove;
 
     [Header("Headbob Stuff")]
     [Range(0f, 1f)] [SerializeField] public float amplitude = 0.0003f;
@@ -63,8 +47,14 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float carryDistance;
     [Range(0, 10)]
     [SerializeField] public float smooth;
-
-    [SerializeField] public bool killSwitchOff;
     [SerializeField] public bool inUI = false;
-
+    
+    private void OnEnable()
+    {
+        busyHands = false;
+        isClimbing = false;
+        neckClamp = 77.3f;
+        inUI = false;
+        canMove = true;
+    }
 }

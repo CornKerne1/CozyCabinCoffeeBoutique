@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
         animator.SetTrigger("Reverse");//
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
-        pM.canMove = true;
+        gM.pD.canMove = true;
         pCC.canMove = true;
         pD.neckClamp = 77.3f;
         pD.inUI = false;
@@ -65,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        pM.canMove = false;
+        gM.pD.canMove = false;
         pCC.canMove = false;
         pD.neckClamp = 0.0f;
         pI.CameraBlur();
@@ -81,7 +81,7 @@ public class PauseMenu : MonoBehaviour
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        pM.canMove = false;
+        gM.pD.canMove = false;
         pCC.canMove = false;
         pD.neckClamp = 0.0f;
         pI.CameraBlur();

@@ -76,7 +76,7 @@ public class CustomerInteractable : Interactable
             Cursor.lockState = CursorLockMode.Locked;
             if (oldLook != null)
                 Camera.main.transform.LookAt(oldLook.position);
-            pm.canMove = true;
+            gM.pD.canMove = true;
             pcc.canMove = true;
             StartCoroutine(MoveLine());
             RemoveOrderBubble();
@@ -95,7 +95,7 @@ public class CustomerInteractable : Interactable
             Cursor.lockState = CursorLockMode.Locked;
             if (oldLook != null)
                 Camera.main.transform.LookAt(oldLook.position);
-            pm.canMove = true;
+            gM.pD.canMove = true;
             pcc.canMove = true;
             //StartCoroutine(MoveLine());
             DisplayOrderBubble();
@@ -105,7 +105,7 @@ public class CustomerInteractable : Interactable
             pI.pD.inUI = false;
 
         }
-        if (!pm.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject && dialogueManager.dialogueIsPlaying)
+        if (!gM.pD.canMove && dialogueManager.GetCurrentCustomer() == this.gameObject && dialogueManager.dialogueIsPlaying)
         {
             gM.pD.neckClamp = 0;
             var c = Camera.main.transform;
@@ -175,7 +175,7 @@ public class CustomerInteractable : Interactable
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             //customerDialogue.canvas.enabled = true;
-            pm.canMove = false;
+            gM.pD.canMove = false;
             pcc.canMove = false;
             CA.Talk();
         }
@@ -242,7 +242,7 @@ public class CustomerInteractable : Interactable
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        pm.canMove = false;
+        gM.pD.canMove = false;
         pcc.canMove = false;
         CA.Talk();
 

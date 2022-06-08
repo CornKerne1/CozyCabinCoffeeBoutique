@@ -55,8 +55,8 @@ public class HeadBobController : MonoBehaviour
     private Vector3 Motion()
     {
         Vector3 pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude * Convert.ToInt16(pD.killSwitchOff);
-        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2 * Convert.ToInt16(pD.killSwitchOff);
+        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude;
+        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2;
         return pos;
     }
     private Vector3 FocusTarget()

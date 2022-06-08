@@ -26,7 +26,7 @@ public class ComputerShopInteractable : Interactable
         cS.balance.text = cS.balanceString + cS.cBTM.moneyInBank;
         shopUI.enabled = true;
         pcc.canMove = false;
-        pm.canMove = false;
+        gM.pD.canMove = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

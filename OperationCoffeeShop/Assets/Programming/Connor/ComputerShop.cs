@@ -59,7 +59,7 @@ public class ComputerShop : MonoBehaviour
         this.GetComponent<Canvas>().enabled = false;
         orders = new Queue<string>();
         pcc.canMove = true;
-        pm.canMove = true;
+        gM.pD.canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
