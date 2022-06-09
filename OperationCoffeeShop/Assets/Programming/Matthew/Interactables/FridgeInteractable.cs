@@ -33,6 +33,7 @@ public class FridgeInteractable : Interactable
             }
             else
             {
+                AkSoundEngine.PostEvent("Play_FridgeOpen", gameObject);
                 _animator.SetTrigger("Open");
                 StartCoroutine(Timer(1f));
                 opening = true;
@@ -45,6 +46,10 @@ public class FridgeInteractable : Interactable
         yield return new WaitForSeconds(time);
         opening = false;
         open = !open;
+        if (!open)
+        {
+            AkSoundEngine.PostEvent("Play_FridgeClosed", gameObject);
+        }
     }
     public override void OnFocus()
     {
