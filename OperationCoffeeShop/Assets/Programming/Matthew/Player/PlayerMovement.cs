@@ -7,71 +7,71 @@ public class PlayerMovement : MonoBehaviour
 {
 
 
-    private PlayerInput pI;
-    public CharacterController controller;
+    private PlayerInput _playerInput;
+    [SerializeField] public CharacterController controller;
 
-    Vector3 velocity;
-    float gravity = -9.81f;
-    float groundDistance = .4f;
-    public bool isGrounded;
-    public LayerMask groundMask;
-    private Vector3 currentMovement;
+    private Vector3 _velocity;
+    private const float Gravity = -9.81f;
+    private const float GroundDistance = .4f;
+    [SerializeField] public bool isGrounded;
+    [SerializeField] public LayerMask groundMask;
+    private Vector3 _currentMovement;
     private void Start()
     {
-        pI = this.gameObject.GetComponent<PlayerInput>();
+        _playerInput = this.gameObject.GetComponent<PlayerInput>();
         controller = this.gameObject.GetComponent<CharacterController>();
-        pI.pD.currentMovement = transform.position;
-        pI.pD.isClimbing = false;
-        StartCoroutine(EditorFix());
+        _playerInput.pD.currentMovement = transform.position;
+        _playerInput.pD.isClimbing = false;
+        StartCoroutine(CO_EditorFix());
     }
-
-    private IEnumerator EditorFix()
+    private void Update()
     {
-        var pInt = GetComponent<PlayerInteraction>();
-        pInt.enabled = false;
-        yield return new WaitForSeconds(.1f);
-        pInt.enabled = true;
-
-    }
-
-
-    void Update()
-    {
-        isGrounded = Physics.CheckSphere(transform.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        if (pI.pD.canMove)
+        isGrounded = Physics.CheckSphere(transform.position, GroundDistance, groundMask);
+        if (isGrounded && _velocity.y < 0)
+            _velocity.y = -2f;
+        if (_playerInput.pD.canMove)
             HandleMovement();
+    }
+
+    private IEnumerator CO_EditorFix()
+    {
+        var playerInteractable = GetComponent<PlayerInteraction>();
+        playerInteractable.enabled = false;
+        yield return new WaitForSeconds(.1f);
+        playerInteractable.enabled = true;
+
     }
 
     private void HandleMovement()
     {
-        if (pI.pD.isClimbing)
+        if (_playerInput.pD.isClimbing)
         {
             HandleLadderMovement();
         }
         else
         {
-            Vector3 rawMovement = new Vector3(pI.GetHorizontalMovement() * .75f, 0.0f, pI.GetVerticalMovement());
-            currentMovement = Vector3.MoveTowards(currentMovement, rawMovement, pI.pD.inertiaVar * Time.deltaTime);
-            Vector3 finalMovement = transform.TransformVector(currentMovement);
-            controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+            Vector3 rawMovement = new Vector3(_playerInput.GetHorizontalMovement() * .75f, 0.0f, _playerInput.GetVerticalMovement());
+            _currentMovement = Vector3.MoveTowards(_currentMovement, rawMovement, _playerInput.pD.inertiaVar * Time.deltaTime);
+            Vector3 finalMovement = transform.TransformVector(_currentMovement);
+            controller.Move( _playerInput.pD.moveSpeed * Time.deltaTime* finalMovement );
+            _velocity.y += Gravity * Time.deltaTime;
+            controller.Move(_velocity * Time.deltaTime);
         }
     }
+
+    
+
+
     private void HandleLadderMovement()
     {
-        Vector3 lM = new Vector3(Vector3.up.x * pI.GetVerticalMovement(), Vector3.up.y * pI.GetVerticalMovement(),
-            Vector3.up.z * pI.GetVerticalMovement());
-        currentMovement = Vector3.MoveTowards(currentMovement, lM, pI.pD.inertiaVar * Time.deltaTime);
-        Vector3 finalMovement = transform.TransformVector(currentMovement);
-        controller.Move(finalMovement * pI.pD.moveSpeed * Time.deltaTime);
-        if (isGrounded && pI.GetVerticalMovement() < 0)
+        Vector3 lM = new Vector3(Vector3.up.x * _playerInput.GetVerticalMovement(), Vector3.up.y * _playerInput.GetVerticalMovement(),
+            Vector3.up.z * _playerInput.GetVerticalMovement());
+        _currentMovement = Vector3.MoveTowards(_currentMovement, lM, _playerInput.pD.inertiaVar * Time.deltaTime);
+        Vector3 finalMovement = transform.TransformVector(_currentMovement);
+        controller.Move( _playerInput.pD.moveSpeed * Time.deltaTime * finalMovement);
+        if (isGrounded && _playerInput.GetVerticalMovement() < 0)
         {
-            pI.pD.isClimbing = false;
+            _playerInput.pD.isClimbing = false;
         }
     }
 }
