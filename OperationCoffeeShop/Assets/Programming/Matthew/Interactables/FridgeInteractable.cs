@@ -27,12 +27,14 @@ public class FridgeInteractable : Interactable
         {
             if (open)
             {
+                AkSoundEngine.PostEvent("Play_FridgeDoorSqueak", gameObject);
                 _animator.SetTrigger("Close");
                 StartCoroutine(Timer(1f));
                 opening = true;
             }
             else
             {
+                AkSoundEngine.PostEvent("Play_FridgeDoorSqueak", gameObject);
                 AkSoundEngine.PostEvent("Play_FridgeOpen", gameObject);
                 _animator.SetTrigger("Open");
                 StartCoroutine(Timer(1f));
