@@ -817,6 +817,29 @@
 								<ActiveSource Name="FridgeOpen" ID="{6F5C0165-A553-4450-A0F2-2661D283EB13}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="FridgeDoorSqueak" ID="{EF2A517D-AF0A-429A-9FC3-CA2FA09579C7}" ShortID="212652409">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="FridgeDoorSqueak" ID="{73FA4D27-74EF-46DB-AD52-62CED846A5BF}">
+									<Language>SFX</Language>
+									<AudioFile>FridgeDoorSqueak.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="4925453"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="FridgeDoorSqueak" ID="{73FA4D27-74EF-46DB-AD52-62CED846A5BF}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
