@@ -640,6 +640,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_FridgeClosed" ID="{17226FA3-6C34-48DE-8456-4148CEB9B88E}">
+					<ChildrenList>
+						<Action Name="" ID="{6C847123-0BAC-49E9-85C6-B37D3825BFD7}" ShortID="980882469">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FridgeClosed" ID="{8A93E2AA-0329-470A-968E-377E63D28F59}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_FridgeOpen" ID="{F44DAB8D-44FA-423E-8AD4-B468613D18DF}">
+					<ChildrenList>
+						<Action Name="" ID="{1E4F4081-C6B8-4FE9-B7F7-91F21086DC9D}" ShortID="239419872">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FridgeOpen" ID="{0F208B8F-11D8-4BA0-94FF-11205C64D227}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

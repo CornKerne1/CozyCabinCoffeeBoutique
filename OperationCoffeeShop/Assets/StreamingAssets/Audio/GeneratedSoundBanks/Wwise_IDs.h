@@ -18,6 +18,8 @@ namespace AK
         static const AkUniqueID PLAY_BREAKINGLOOSE = 855079117U;
         static const AkUniqueID PLAY_BUTTONPRESS = 2652178615U;
         static const AkUniqueID PLAY_EXQUISITETASTE = 3622673270U;
+        static const AkUniqueID PLAY_FRIDGECLOSED = 721548189U;
+        static const AkUniqueID PLAY_FRIDGEOPEN = 2104121909U;
         static const AkUniqueID PLAY_GRINDINGCOFFEE = 2302029328U;
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
         static const AkUniqueID PLAY_LOOPPOUR = 416139438U;

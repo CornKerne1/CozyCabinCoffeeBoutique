@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\f1d3l\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\f1d3l\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\f1d3l\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\New Account\Documents\School\Bair's\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\f1d3l\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="780888634">
+		<SoundBank Id="3161908922" Language="SFX" Hash="3077826862">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -58,6 +58,22 @@
 						<File Id="551003881" Language="SFX">
 							<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
 							<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="721548189" Name="Play_FridgeClosed" ObjectPath="\Events\Default Work Unit\Play_FridgeClosed" DurationType="OneShot" DurationMin="0.413447" DurationMax="0.413447">
+					<IncludedMemoryFiles>
+						<File Id="281651751" Language="SFX">
+							<ShortName>FridgeClosed.wav</ShortName>
+							<Path>SFX\FridgeClosed_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2104121909" Name="Play_FridgeOpen" ObjectPath="\Events\Default Work Unit\Play_FridgeOpen" DurationType="OneShot" DurationMin="0.537483" DurationMax="0.537483">
+					<IncludedMemoryFiles>
+						<File Id="873507374" Language="SFX">
+							<ShortName>FridgeOpen.wav</ShortName>
+							<Path>SFX\FridgeOpen_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -228,6 +244,10 @@
 					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
 					<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
 				</File>
+				<File Id="281651751" Language="SFX">
+					<ShortName>FridgeClosed.wav</ShortName>
+					<Path>SFX\FridgeClosed_10C4C929.wem</Path>
+				</File>
 				<File Id="282050569" Language="SFX">
 					<ShortName>MachineBuzzing.wav</ShortName>
 					<Path>SFX\MachineBuzzing_10C4C929.wem</Path>
@@ -280,6 +300,10 @@
 					<ShortName>Roast Blend.wav</ShortName>
 					<Path>SFX\Roast Blend_D79FB2B7.wem</Path>
 				</File>
+				<File Id="873507374" Language="SFX">
+					<ShortName>FridgeOpen.wav</ShortName>
+					<Path>SFX\FridgeOpen_10C4C929.wem</Path>
+				</File>
 				<File Id="873684257" Language="SFX">
 					<ShortName>buttonpress.wav</ShortName>
 					<Path>SFX\buttonpress_10C4C929.wem</Path>
@@ -296,6 +320,7 @@
 			<GameParameters>
 				<GameParameter Id="988953028" Name="SFXVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFXVolume"/>
 				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MusicVolume"/>
+				<GameParameter Id="2918011349" Name="MasterVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MasterVolume"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
