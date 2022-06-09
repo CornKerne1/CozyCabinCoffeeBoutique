@@ -77,7 +77,7 @@ public class CustomerInteractable : Interactable
             if (oldLook != null)
                 Camera.main.transform.LookAt(oldLook.position);
             gM.pD.canMove = true;
-            pcc.canMove = true;
+            gM.pD.canMove = true;
             StartCoroutine(MoveLine());
             RemoveOrderBubble();
             RemoveOrderTicket();
@@ -96,7 +96,7 @@ public class CustomerInteractable : Interactable
             if (oldLook != null)
                 Camera.main.transform.LookAt(oldLook.position);
             gM.pD.canMove = true;
-            pcc.canMove = true;
+            gM.pD.canMove = true;
             //StartCoroutine(MoveLine());
             DisplayOrderBubble();
             DisplayOrderTicket();
@@ -176,7 +176,6 @@ public class CustomerInteractable : Interactable
             Cursor.lockState = CursorLockMode.None;
             //customerDialogue.canvas.enabled = true;
             gM.pD.canMove = false;
-            pcc.canMove = false;
             CA.Talk();
         }
 
@@ -243,7 +242,7 @@ public class CustomerInteractable : Interactable
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gM.pD.canMove = false;
-        pcc.canMove = false;
+        gM.pD.canMove = false;
         CA.Talk();
 
     }
