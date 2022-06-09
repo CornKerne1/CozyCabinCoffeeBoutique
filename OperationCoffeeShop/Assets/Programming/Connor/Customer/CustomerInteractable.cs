@@ -26,7 +26,7 @@ public class CustomerInteractable : Interactable
     private PlayerMovement pm;
     private PlayerCameraController pcc;
 
-    private CustomerAnimations CA;
+    private CustomerData customerData;
 
     private CustomerLine line;
 
@@ -46,8 +46,9 @@ public class CustomerInteractable : Interactable
 
     private void Start()
     {
-        this.gM = GameObject.Find("GameMode").GetComponent<GameMode>();
-        CA = gameObject.GetComponent<CustomerAnimations>();
+        gM = GameObject.Find("GameMode").GetComponent<GameMode>();
+        customerData = gameObject.GetComponent<Customer>().customerData;
+        customerData.customerInteractable = this;
         orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
         orderCanvas = gameObject.GetComponentInChildren<Canvas>();
         orderCanvas.enabled = false;
@@ -120,7 +121,7 @@ public class CustomerInteractable : Interactable
         {
             foreach (RegularCustomerAtlas.customerConversations cc in rCA.dic[gM.gMD.currentTime.Day])
             {
-                if (cc.customer.GetComponent<Customer>().CD == CAI.CD)
+                if (cc.customer.GetComponent<Customer>().customerData == CAI.customerData)
                 {
                     this.IntroConversation = cc.IntroConversation;
                     this.ExitConversation = cc.ExitConversation;
@@ -164,11 +165,11 @@ public class CustomerInteractable : Interactable
             DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
             if (rCA != null)
             {
-                dialogueManager.SetPortraitButtonAndName(CAI.CD);
+                dialogueManager.SetPortraitButtonAndName(CAI.customerData);
             }
             else
             {
-                dialogueManager.SetDefaultImagesAndName(CAI.CD.name);
+                dialogueManager.SetDefaultImagesAndName(CAI.customerData.name);
 
             }
             //customerDialogue.ChangeConversation(customerDialogue.converstation.conversationTreeOrder,this.transform);
@@ -176,7 +177,7 @@ public class CustomerInteractable : Interactable
             Cursor.lockState = CursorLockMode.None;
             //customerDialogue.canvas.enabled = true;
             gM.pD.canMove = false;
-            CA.Talk();
+            customerData.customerAnimations.Talk();
         }
 
 
@@ -203,7 +204,7 @@ public class CustomerInteractable : Interactable
     public IEnumerator MoveLine()
     {
         yield return new WaitForSeconds(2);
-        CAI.customerLines[CAI.customerLines.Count - 1].moveLine();
+        CAI.customerLines[CAI.customerLines.Count - 1].MoveLine();
 
     }
 
@@ -221,14 +222,14 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
-        gameObject.GetComponent<MoneyLancher>().LaunchMoney((int)CAI.CD.orderedDrink.price, (int)((CAI.CD.orderedDrink.price - (int)CAI.CD.orderedDrink.price)*10));
+        gameObject.GetComponent<MoneyLancher>().LaunchMoney((int)CAI.customerData.orderedDrinkData.price, (int)((CAI.customerData.orderedDrinkData.price - (int)CAI.customerData.orderedDrinkData.price)*10));
         if (rCA != null)
         {
-            dialogueManager.SetPortraitButtonAndName(CAI.CD);
+            dialogueManager.SetPortraitButtonAndName(CAI.customerData);
         }
         else
         {
-            dialogueManager.SetDefaultImagesAndName(CAI.CD.name);
+            dialogueManager.SetDefaultImagesAndName(CAI.customerData.name);
 
         }
         pI.pD.inUI = true;
@@ -243,7 +244,7 @@ public class CustomerInteractable : Interactable
         Cursor.lockState = CursorLockMode.None;
         gM.pD.canMove = false;
         gM.pD.canMove = false;
-        CA.Talk();
+        customerData.customerAnimations.Talk();
 
     }
 }

@@ -17,7 +17,7 @@ public class DeliveryZone : MonoBehaviour
     {
         if (other.TryGetComponent<IngredientContainer>(out IngredientContainer drinkContainor) && drinkContainor.inHand ==false)
         {
-            line.deliverDrink(other.gameObject);
+            line.DeliverDrink(other.gameObject);
         }
     }
 
