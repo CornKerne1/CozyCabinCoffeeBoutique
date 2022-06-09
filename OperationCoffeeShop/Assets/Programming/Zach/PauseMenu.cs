@@ -12,8 +12,6 @@ public class PauseMenu : MonoBehaviour
 {
     private GameMode gM;
     [SerializeField]private string quitScene;
-    private PlayerMovement pM;
-    private PlayerCameraController pCC;
     private PlayerInteraction pI;
     public PlayerData pD;
     
@@ -30,7 +28,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
         gM.pD.canMove = true;
-        pCC.canMove = true;
+        pD.canMove = true;
         pD.neckClamp = 77.3f;
         pD.inUI = false;
         this.gameObject.SetActive(false);
@@ -60,13 +58,11 @@ public class PauseMenu : MonoBehaviour
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         animator = GetComponent<Animator>();
-        pM = gM.player.gameObject.GetComponent<PlayerMovement>();
-        pCC = gM.player.gameObject.GetComponent<PlayerCameraController>();
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gM.pD.canMove = false;
-        pCC.canMove = false;
+        pD.canMove = false;
         pD.neckClamp = 0.0f;
         pI.CameraBlur();
     }
@@ -76,13 +72,11 @@ public class PauseMenu : MonoBehaviour
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         animator = GetComponent<Animator>();
-        pM = gM.player.gameObject.GetComponent<PlayerMovement>();
-        pCC = gM.player.gameObject.GetComponent<PlayerCameraController>();
         pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gM.pD.canMove = false;
-        pCC.canMove = false;
+        pD.canMove = false;
         pD.neckClamp = 0.0f;
         pI.CameraBlur();
     }

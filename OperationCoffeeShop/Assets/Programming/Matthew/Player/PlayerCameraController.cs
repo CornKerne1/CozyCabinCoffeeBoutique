@@ -5,46 +5,49 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    [SerializeField] Transform cam = null;
+    [SerializeField] private Transform cam = null;
 
-    float mouseX, mouseY;
-    float xRotation = 0f;
+    private float _mouseX, _mouseY;
+    private float _xRotation = 0f;
 
-    private PlayerInput pI;
+    private PlayerInput _playerInput;
 
     public GameObject holder;
-
-    public bool canMove = true;
-
-    public PlayerCameraController()
+    
+    private void Start()
     {
+        cam = GetComponent<Camera>().transform;
+        _playerInput = GetComponent<PlayerInput>() != null ? GetComponent<PlayerInput>() : transform.root.GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        //if (canMove)
         HandleMovement();
     }
 
-    public void HandleMovement()
+    private void HandleMovement()
     {
-        if (canMove)
-            transform.root.Rotate(Vector3.up, pI.pD.mouseSensitivity * pI.pD.mouseSensitivityX * pI.GetMouseX() * Time.deltaTime);
-        xRotation -= pI.GetMouseY() * (pI.pD.mouseSensitivity * pI.pD.mouseSensitivityY / 400);
-        xRotation = Mathf.Clamp(xRotation, -pI.pD.neckClamp, pI.pD.neckClamp);
-        Vector3 camRotation = transform.eulerAngles;
-        camRotation.x = xRotation;
-        cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
+        CalculateDirection();
+        PerformMovement();
     }
 
-    private void Start()
-    {
-        cam = Camera.main.transform;
-        if (this.gameObject.GetComponent<PlayerInput>() != null)
-            pI = this.gameObject.GetComponent<PlayerInput>();
-        else
-            pI = transform.root.gameObject.GetComponent<PlayerInput>();
+    
 
+    private void CalculateDirection()
+    {
+        _xRotation -= _playerInput.GetMouseY() *
+                      (_playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityY / 400);
+        _xRotation = Mathf.Clamp(_xRotation, -_playerInput.pD.neckClamp, _playerInput.pD.neckClamp);
+        Vector3 camRotation = transform.eulerAngles;
+        camRotation.x = _xRotation;
+        cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
+    }
+    private void PerformMovement()
+    {
+        if (_playerInput.pD.canMove)
+            transform.root.Rotate(Vector3.up,
+                _playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
+                Time.deltaTime);
     }
 
 }
