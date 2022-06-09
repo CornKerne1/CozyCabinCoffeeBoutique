@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    [SerializeField] private Transform cam = null;
+    [FormerlySerializedAs("cam")] [SerializeField] private Transform _cam = null;
 
     private float _mouseX, _mouseY;
     private float _xRotation = 0f;
@@ -16,7 +17,7 @@ public class PlayerCameraController : MonoBehaviour
     
     private void Start()
     {
-        cam = GetComponent<Camera>().transform;
+        _cam = GetComponentInChildren<Camera>().transform;
         _playerInput = GetComponent<PlayerInput>() != null ? GetComponent<PlayerInput>() : transform.root.GetComponent<PlayerInput>();
     }
 
@@ -40,7 +41,7 @@ public class PlayerCameraController : MonoBehaviour
         _xRotation = Mathf.Clamp(_xRotation, -_playerInput.pD.neckClamp, _playerInput.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = _xRotation;
-        cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
+        _cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
     }
     private void PerformMovement()
     {
