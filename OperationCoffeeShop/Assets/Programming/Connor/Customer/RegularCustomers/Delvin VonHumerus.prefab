@@ -121,12 +121,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomConversations: {fileID: 0}
-  CD: {fileID: 11400000, guid: 72ecd56fca152d14f8cb2d5038cc6393, type: 2}
-  PRD: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
+  customerData: {fileID: 11400000, guid: 72ecd56fca152d14f8cb2d5038cc6393, type: 2}
+  playerResearchData: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
   gameMode: {fileID: 0}
   ps: {fileID: 1783690415919917191}
-  Like: {fileID: 2100000, guid: a4a1d91917218d64bb39f2a59a187607, type: 2}
-  Dislike: {fileID: 2100000, guid: a1c5a4134c5fe344a841df4d1b04771f, type: 2}
+  like: {fileID: 2100000, guid: a4a1d91917218d64bb39f2a59a187607, type: 2}
+  dislike: {fileID: 2100000, guid: a1c5a4134c5fe344a841df4d1b04771f, type: 2}
   randomTimeOfDay: 0
   spawnTime: 16
 --- !u!114 &1033753536987892517
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {x: 0, y: 0, z: 0}
-  Destinations: []
+  destinations: []
   agent: {fileID: 5404817027161305983}
-  CD: {fileID: 0}
+  customerData: {fileID: 0}
   stay: 0
   minDistance: 1
   customerLines: []
@@ -168,7 +168,7 @@ MonoBehaviour:
   CAI: {fileID: 1033753536987892517}
   conversation: {fileID: 11400000, guid: 5ca89bfcc3655db44a576c5e56fdf158, type: 2}
   canvas: {fileID: 4316614292114363163}
-  talking: 0
+  dialogueManager: {fileID: 0}
   rCA: {fileID: 11400000, guid: 538bf7d1777b2e845b3d10637778c263, type: 2}
   lookat: {fileID: 7378664472688273545}
 --- !u!54 &927562656731061223

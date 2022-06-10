@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,34 +8,30 @@ public class RandomCustomer : Customer
 
     private string _customerName;
 
-    private CustomerAI _customerAI;
 
     public RandomCustomerSet customerSet;
 
 
     public void Awake()
     {
-        //Instanciate Random Customer from CustomerSet
-        var customer = Instantiate(customerSet.Customers[UnityEngine.Random.Range(0, customerSet.Customers.Count)],
-            gameObject.transform, true) as GameObject;
+        var customer = Instantiate(customerSet.Customers[UnityEngine.Random.Range(0, customerSet.Customers.Count)]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
+        customer.transform.parent = gameObject.transform; // do not refactor
         customer.transform.localPosition = position;
         customer.transform.localScale = scale;
 
-        _customerAI = GetComponent<CustomerAI>();
+        _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+        var favoriteDrink = GetRandomDrink();
 
-        //sets a random name from nameSet
-        _customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
-        DrinkData favoriteDrink = GetRandomDrink();
+        var flavors = new List<Flavors>();
 
-        List<Flavors> flavors = new List<Flavors>();
+        var flavorNodes = new List<FlavorProfile.FlavorNode>();
 
-        List<FlavorProfile.FlavorNode> flavorNodes = new List<FlavorProfile.FlavorNode>();
+        var flavorProfile = new FlavorProfile();
 
-        FlavorProfile flavorProfile = new FlavorProfile();
-
-        foreach (IngredientNode i in favoriteDrink.Ingredients)
+        foreach (var
+                     i in favoriteDrink.Ingredients)
         {
             if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient].flavor))
             {
@@ -45,7 +40,7 @@ public class RandomCustomer : Customer
             }
             else
             {
-                foreach (FlavorProfile.FlavorNode f in flavorNodes)
+                foreach (var f in flavorNodes)
                 {
                     if (f.flavor == flavorProfile.flavorProfile[i.ingredient].flavor)
                     {
@@ -63,7 +58,10 @@ public class RandomCustomer : Customer
 
         var drink = GetRandomDrink();
 
-        var customerDrink = new DrinkData(drink.name, drink.Ingredients);
+        var customerDrink = ScriptableObject.CreateInstance<DrinkData>();
+
+        customerDrink.name = drink.name;
+        customerDrink.Ingredients = drink.Ingredients;
 
         customerDrink.price = favoriteDrink.price; // need to add random ingredients to price
         //Adds a little RNG to the drink orders
@@ -74,22 +72,20 @@ public class RandomCustomer : Customer
 
     public RandomCustomer(RandomNameSet nameSet)
     {
-        //Uses specified nameset to generate random name
         this.nameSet = nameSet;
-        //sets a random name from nameSet
-        _customerName = nameSet.names[UnityEngine.Random.Range(0, nameSet.names.Count)];
+        _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
     }
 
     protected IngredientNode GetRandomAddOn()
     {
-        var ingredient = UnityEngine.Random.Range(0, playerResearchData.learnedIngredients.Count);
-        var target = UnityEngine.Random.value;
+        var ingredient = Random.Range(0, playerResearchData.learnedIngredients.Count);
+        var target = Random.value;
         return new IngredientNode(playerResearchData.learnedIngredients[ingredient], target);
     }
 
     private DrinkData GetRandomDrink()
     {
-        return playerResearchData.learnedDrinks[UnityEngine.Random.Range(0, playerResearchData.learnedDrinks.Count)];
+        return playerResearchData.learnedDrinks[Random.Range(0, playerResearchData.learnedDrinks.Count)];
     }
 
     public override DrinkData GetDrinkOrder()
