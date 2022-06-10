@@ -12,7 +12,7 @@ public abstract class Customer : MonoBehaviour
     public CustomerData customerData;
 
     public PlayerResearchData playerResearchData;
-    public GameMode gameMode;
+    [HideInInspector]public GameMode gameMode;
 
     [SerializeField] public static event EventHandler CustomerRating;
 

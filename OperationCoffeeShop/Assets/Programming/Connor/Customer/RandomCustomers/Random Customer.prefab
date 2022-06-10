@@ -218,14 +218,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomConversations: {fileID: 11400000, guid: 927d41a2338d17d4eaa37b0ae693621d, type: 2}
-  CD: {fileID: 0}
-  PRD: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
+  customerData: {fileID: 0}
+  playerResearchData: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
   gameMode: {fileID: 0}
   ps: {fileID: 1783690415919917191}
-  Like: {fileID: 2100000, guid: a4a1d91917218d64bb39f2a59a187607, type: 2}
-  Dislike: {fileID: 2100000, guid: a1c5a4134c5fe344a841df4d1b04771f, type: 2}
+  like: {fileID: 2100000, guid: a4a1d91917218d64bb39f2a59a187607, type: 2}
+  dislike: {fileID: 2100000, guid: a1c5a4134c5fe344a841df4d1b04771f, type: 2}
   nameSet: {fileID: 11400000, guid: b9e5fd2480107664d9fdcca834fe1b4a, type: 2}
-  CustomerSet: {fileID: 11400000, guid: 471eb7c43f94b8c488cff74007504a58, type: 2}
+  customerSet: {fileID: 11400000, guid: 471eb7c43f94b8c488cff74007504a58, type: 2}
 --- !u!114 &1033753536987892517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,9 +239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {x: 0, y: 0, z: 0}
-  Destinations: []
+  destinations: []
   agent: {fileID: 5404817027161305983}
-  CD: {fileID: 0}
+  customerData: {fileID: 0}
   stay: 0
   minDistance: 1
   customerLines: []

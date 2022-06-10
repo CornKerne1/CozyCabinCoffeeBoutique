@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-
 public class CustomerLine : MonoBehaviour
 {
     public Vector3 lineStartPosition;
@@ -14,8 +12,6 @@ public class CustomerLine : MonoBehaviour
     public static event EventHandler DepositMoney;
 
     public Customer nextCustomer;
-
-
 
     private void Start()
     {
@@ -30,10 +26,9 @@ public class CustomerLine : MonoBehaviour
         customerAI.customerLines.Add(this);
         _queue.Enqueue(customerAI);
         customerAI.setDestination(GetNextSpotInLine(_queue.Count));
-        customerAI.setStay(true);//sets stay
+        customerAI.setStay(true);
 
     }
-
 
     public void MoveLine()
     {
