@@ -13,17 +13,8 @@ public class MachineInteraction : Interactable
         machine = transform.root.GetComponentInChildren<Machine>();
     }
 
-    public override void OnFocus()
-    {
-        if (outline)
-        {
-            outline.OutlineColor = outlineColor ;
-
-        }    }
-
     public override void OnInteract(PlayerInteraction pI)
     {
-
         switch (mD.machineType)
         {
             case MachineData.Type.Default:
@@ -35,24 +26,16 @@ public class MachineInteraction : Interactable
                 {
                     if (!bB.open && machine.currentCapacity > 0)
                     {
-                        machine.StartMachine(); bB.filter.SetActive(false);
+                        machine.StartMachine();
+                        bB.filter.SetActive(false);
                     }
                     else
                     {
                         bB.OpenOrClose();
                     }
                 }
-                return;
 
+                return;
         }
     }
-
-    public override void OnLoseFocus()//
-    {
-        if (outline)
-        {
-            var color = outlineColor;
-            color.a = 0;
-            outline.OutlineColor = color ;
-        }    }
 }
