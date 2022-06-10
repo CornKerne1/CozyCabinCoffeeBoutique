@@ -186,7 +186,7 @@ public class DialogueManager : MonoBehaviour
     public void SetPortraitButtonAndName(CustomerData CD)
     {
         portraitAmazed = CD.portraitAmazed;
-        portraitAnnoyed = CD.protraitAnoyed;
+        portraitAnnoyed = CD.portraitAnnoyed;
         portraitHappy = CD.portraitHappy;
         portraitNeutral = CD.portraitNeutral;
         portrait.sprite = CD.portraitNeutral;

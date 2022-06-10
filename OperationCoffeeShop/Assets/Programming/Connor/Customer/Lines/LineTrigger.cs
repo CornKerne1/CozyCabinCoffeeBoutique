@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class LineTrigger : MonoBehaviour
 {
-    CustomerLine line;
+    private CustomerLine _customerLine;
 
-    string customerTag = "Customer";
+    [SerializeField] private string customerTag = "Customer";
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        line = GetComponentInParent<CustomerLine>();
+        _customerLine = GetComponentInParent<CustomerLine>();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Customer")) {
             //Debug.Log("Yes I love Customers in line!!");
-            line.getInLine(other.gameObject);
+            _customerLine.GetInLine(other.gameObject);
         }
     }
 }

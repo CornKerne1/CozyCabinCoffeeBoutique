@@ -9,148 +9,103 @@ public class CustomerLine : MonoBehaviour
 {
     public Vector3 lineStartPosition;
 
-    Queue<CustomerAI> queue = new Queue<CustomerAI>();
+    private readonly Queue<CustomerAI> _queue = new Queue<CustomerAI>();
 
-    public static event EventHandler DrinkBeGone;
+    public static event EventHandler DepositMoney;
 
-    public static event EventHandler DepositMoney;//
+    public Customer nextCustomer;
 
-    //used for testing
-    public bool next = false;
 
-    public Customer NextCustomer;
 
-    /// <summary>
-    /// only for testing delete when no lonker needed
-    /// </summary>
-    private void Update()
-    {
-        if (next == true)
-        {
-            next = false;
-            moveLine();
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         lineStartPosition = transform.position;
     }
-    /// <summary>
-    /// Puts the customer in the next spot in line. 
-    /// </summary>
-    /// <param name="customer"></param>
-    public void getInLine(GameObject customer)
+
+    public void GetInLine(GameObject customer)
     {
 
-        CustomerAI customerAI = customer.GetComponent<CustomerAI>();
-        //Debug.Log("get in line");
-        if (!customerAI.customerLines.Contains(this))
-        {
-            customerAI.customerLines.Add(this);
-            queue.Enqueue(customerAI);
-            //Debug.Log("que count is: " + queue.Count);
-            customerAI.setDestination(getNextSpotInLine(queue.Count));
-            customerAI.setStay(true);//sets stay
-        }
-        //if line is full
+        var customerAI = customer.GetComponent<CustomerAI>();
+        if (customerAI.customerLines.Contains(this)) return;
+        customerAI.customerLines.Add(this);
+        _queue.Enqueue(customerAI);
+        customerAI.setDestination(GetNextSpotInLine(_queue.Count));
+        customerAI.setStay(true);//sets stay
 
     }
 
-    /// <summary>
-    /// dequeues the 1st person in line and moves each customer up 1 position. 
-    /// </summary>
-    public void moveLine()
+
+    public void MoveLine()
     {
-        int i = 0;
-        if (queue.Count > 0)
+       
+        if (_queue.Count <= 0) return;
+        var currentCustomerAI = _queue.Dequeue();
+        var customerAnimations = currentCustomerAI.customerData.customerAnimations;
+        currentCustomerAI.stay = false;
+        if (!currentCustomerAI.hasOrdered)
         {
-            CustomerAI ai = queue.Dequeue();
-            CustomerAnimations cA = ai.gameObject.GetComponent<CustomerAnimations>();
-            ai.stay = false;
-            if (!ai.hasOrdered)
-            {
-                ai.hasOrdered = true;
-            }
-            else if (!ai.hasOrder)
-            {
-                ai.hasOrder = true;
-            }
-            foreach (CustomerAI AI in queue)
-            {
-                //moves customer up 1 position & incraments position. 
-                StartCoroutine(RandomMoveLine(AI, ++i));
-                cA.RandomizeSpeed();
-            }
-            i = 0;
+            currentCustomerAI.hasOrdered = true;
+        }
+        else if (!currentCustomerAI.hasOrder)
+        {
+            currentCustomerAI.hasOrder = true;
+        }
+        
+        var i = 0;
+        foreach (var customerAI in _queue)
+        {
+            StartCoroutine(CO_RandomMoveLine(customerAI, ++i));
+            customerAnimations.RandomizeSpeed();
         }
     }
 
-    IEnumerator RandomMoveLine(CustomerAI AI, int i)
+    private IEnumerator CO_RandomMoveLine(CustomerAI customerAI, int i)
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(.5f,1.5f));
-        AI.setDestination(getNextSpotInLine(i));
+        customerAI.setDestination(GetNextSpotInLine(i));
     }
-
-    /// <summary>
-    /// returns the appropriate spot in line for a particular postion in line. 
-    /// </summary>
-    public Vector3 getNextSpotInLine(int position)
+    
+    private Vector3 GetNextSpotInLine(int position)
     {
-
         float i = position;
-        Vector3 nextSpot = this.transform.forward * position;
-        //Debug.Log("customer " + position + " is:" + lineStartPosition + nextSpot);
-
+        var nextSpot = this.transform.forward * position;
         return lineStartPosition + nextSpot;
 
     }
-
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void deliverDrink(GameObject drink)
+    public void DeliverDrink(GameObject drink)
     {
-        DrinkData drinkdata = (drink).GetComponent<IngredientContainer>().dD;
-        if (queue.Count > 0 && queue.Peek().hasOrdered == true)
-        {
-            CustomerAI ai = queue.Peek();
-            CustomerInteractable ci = ai.gameObject.GetComponent<CustomerInteractable>();
-            ci.RemoveOrderTicket();
-            ci.RemoveOrderBubble();
-            ai.hasOrder = true;
-            ci.DeliverDrink();
-            ai.CD.recievedDrink = drinkdata;
-            drink.SetActive(false);
-            DepositMoney?.Invoke(ai.CD.orderedDrink.price, EventArgs.Empty);
-            ai.CD.customer.RecieveDrink();
-
-        }
+        var drinkData = (drink).GetComponent<IngredientContainer>().dD;
+        if (_queue.Count <= 0 || _queue.Peek().hasOrdered != true) return;
+        var ai = _queue.Peek();
+        var ci = ai.gameObject.GetComponent<CustomerInteractable>();
+        ci.RemoveOrderTicket();
+        ci.RemoveOrderBubble();
+        ai.hasOrder = true;
+        ci.DeliverDrink();
+        ai.customerData.receivedDrinkData = drinkData;
+        drink.SetActive(false);
+        DepositMoney?.Invoke(ai.customerData.orderedDrinkData.price, EventArgs.Empty);
+        ai.customerData.customer.OnReceivedDrink();
     }
-    public void LeaveWithoutPaying(DrinkData drinkdata)
+    public void LeaveWithoutPaying(DrinkData drinkData)
     {
-        if (queue.Count > 0 && queue.Peek().hasOrdered == true)
-        {
-            CustomerAI ai = queue.Peek();
-            ai.hasOrder = true;
-            moveLine();
-            ai.CD.recievedDrink = drinkdata;
-            ai.CD.customer.RecieveDrink();
-
-        }
+        if (_queue.Count <= 0 || _queue.Peek().hasOrdered != true) return;
+        var ai = _queue.Peek();
+        ai.hasOrder = true;
+        MoveLine();
+        ai.customerData.receivedDrinkData = drinkData;
+        ai.customerData.customer.OnReceivedDrink();
     }
-    public void LeaveWithoutGettingDrink(DrinkData drinkdata)
+    public void LeaveWithoutGettingDrink(DrinkData drinkData)
     {
-        if (queue.Count > 0 && queue.Peek().hasOrdered == true)
+        if (_queue.Count > 0 && _queue.Peek().hasOrdered == true)
         {
-            CustomerAI ai = queue.Peek();
+            CustomerAI ai = _queue.Peek();
             ai.hasOrder = true;
-            moveLine();
-            ai.CD.recievedDrink = drinkdata;
-            DepositMoney?.Invoke(ai.CD.favoriteDrink.price, EventArgs.Empty);
-            ai.CD.customer.RecieveDrink();
+            MoveLine();
+            ai.customerData.receivedDrinkData = drinkData;
+            DepositMoney?.Invoke(ai.customerData.favoriteDrinkData.price, EventArgs.Empty);
+            ai.customerData.customer.OnReceivedDrink();
 
         }
     }

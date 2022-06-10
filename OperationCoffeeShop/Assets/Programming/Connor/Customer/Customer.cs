@@ -3,135 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public abstract class Customer : MonoBehaviour 
+public abstract class Customer : MonoBehaviour
 {
     public RandomConversations randomConversations;
 
 
     [Header("RandomCustomer will be empty")]
-    public CustomerData CD; //holds all realavent variables
+    public CustomerData customerData;
 
-    [Header("Should not be empty")]
-    public PlayerResearchData PRD; //holds all possible ingredients and drinks
-
+    public PlayerResearchData playerResearchData;
     public GameMode gameMode;
 
-    [SerializeField] public static event EventHandler CustomerRating;// publishes the customer rating for all to see. 
+    [SerializeField] public static event EventHandler CustomerRating;
 
     [SerializeField] protected ParticleSystem ps;
-    protected ParticleSystemRenderer psr;
-    [SerializeField] protected Material Like;
-    [SerializeField] protected Material Dislike;
+    private ParticleSystemRenderer _particleSystemRenderer;
+    [SerializeField] protected Material like;
+    [SerializeField] protected Material dislike;
+
     public virtual void Start()
     {
-        gameMode =  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        psr = ps.GetComponent<ParticleSystemRenderer>();
-    }
-    /// <summary>
-    /// Returns Customer's Name.
-    /// </summary>
-    /// <returns></returns>
-    public string GetName()
-    {
-        if (CD != null || CD.name != null)
-            return "Name";
-        return CD.name;
-
-    }
-    /// <summary>
-    /// Attempts to change customer's name.
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public void SetName(string name)
-    {
-        CD.name = name;
-        
-    } 
-
-    public DrinkData GetFavoriteDrink()
-    {
-        if (CD != null || CD.name != null)
-           Debug.Log("Null Favorite drink or CustomerData ");
-        return CD.favoriteDrink;
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _particleSystemRenderer = ps.GetComponent<ParticleSystemRenderer>();
+        customerData.customer = this;
     }
 
-    //public List<DrinkData> GetAcceptableDrinks()
-    //{
-    //   List<DrinkData> AD = new List<DrinkData>();
-    //    foreach(DrinkData drink in CD.desiredFlavors)
-    //    {
-    //        AD.Add(drink);  
-    //    }
-    //    return AD; 
-    //}
+    protected DrinkData GetFavoriteDrink()
+    {
+        if (customerData != null || customerData.name != null)
+            Debug.Log("Null Favorite drink or CustomerData ");
+        return customerData.favoriteDrinkData;
+    }
 
-
-    /// <summary>
-    ///      uses LearnedToppings to randomly return any topping that a customer 
-    ///      may want on top of the default toppings for the random drink. 
-    /// </summary>
-    /// <returns></returns>
-    protected abstract List<Ingredients> GetRandomToppings();
-
-
-
-    /// <summary>
-    ///      uses LearnedIngredients to randomly return any addon that a customer
-    ///      may want on top of the default ingredients for the random drink. 
-    /// </summary>
-    /// <returns></returns>
-    protected abstract IngredientNode GetRandomAddOn();
-
-
-    /// <summary>
-    ///      uses LearnedDrinks to randomly return a drink that this customer would want.
-
-    /// </summary>
-    /// <returns></returns>
-    protected abstract DrinkData GetRandomDrink();
-
-    /// <summary>
-    /// uses GetRandomAddOn and GetRandomDrink to return
-    /// a drink the customer may desired
-    /// </summary>
-    /// <returns></returns>
     public abstract DrinkData GetDrinkOrder();
 
-
-    /// <summary>
-    /// Should return a Tree with the head containing children that represent the next
-    /// possible dialogue options for the player
-    /// </summary>
-    /// <returns></returns>
-    protected abstract Tree DialogueTree();
-
-
-    /// <summary>
-    /// Returns the next dialogue to be expressed to the player
-    /// </summary>
-    /// <returns></returns>
-    public abstract string Dialogue();
-
-    /// <summary>
-    /// lerps customer to next logical location
-    /// aka moving them to new location based on enviromental factors.
-    /// </summary>
-    public abstract void NextMove();
-
-
-    /// <summary>
-    /// Rates the customer recieved drink.
-    /// </summary>
-    public void RecieveDrink()
+    public void OnReceivedDrink()
     {
-        float quality = CD.favoriteDrink.Compare(CD.recievedDrink, CD.orderedDrink);
+        var quality =
+            customerData.favoriteDrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
-        if (quality > .5)
-            psr.material = Like;
-        else
-            psr.material = Dislike;
-            ps.Play();
+        _particleSystemRenderer.material = quality > .5 ? like : dislike;
+        ps.Play();
         Debug.Log("Drink Quality = " + quality);
     }
 }

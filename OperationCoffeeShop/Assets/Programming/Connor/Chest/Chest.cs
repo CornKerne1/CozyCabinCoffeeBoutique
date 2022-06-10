@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class Chest : Interactable
 {
-    Animator animator;
+    private Animator _animator;
+    private static readonly int OpenClose = Animator.StringToHash("OpenClose");
 
+    public override void Start()
+    {
+        base.Start();
+        _animator = GetComponent<Animator>();
+    }
     public override void OnFocus()
     {
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
-        animator.SetTrigger("OpenClose");
+        _animator.SetTrigger(OpenClose);
     }
 
     public override void OnLoseFocus()
     {
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

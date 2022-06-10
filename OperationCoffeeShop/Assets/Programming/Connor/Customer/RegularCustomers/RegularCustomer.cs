@@ -11,43 +11,17 @@ public class RegularCustomer : Customer
 
     public void Awake()
     {
-        CD.customer = this;
+        customerData.customer = this;
         ai = GetComponent<CustomerAI>();
-        CD.orderedDrink = GetFavoriteDrink();
-        //CD.DesiredFlavors(CD.favoriteDrink.);
+        customerData.orderedDrinkData = GetFavoriteDrink();
+        //CD.DesiredFlavors(CD.favoriteDrinkData.);
     }
-    public override string Dialogue()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public override DrinkData GetDrinkOrder()
     {
-        return CD.orderedDrink;
+        return customerData.orderedDrinkData;
     }
 
-    public override void NextMove()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override Tree DialogueTree()
-    {
-        return new Tree();
-    }
-
-    protected override IngredientNode GetRandomAddOn()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override DrinkData GetRandomDrink()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override List<Ingredients> GetRandomToppings()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }
