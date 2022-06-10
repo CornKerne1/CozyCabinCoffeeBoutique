@@ -16,91 +16,92 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private DepthOfField dof;
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
-    private Interactable currentInteractable;
-    Quaternion currentrotation;
-    bool rotate;
-    private float carryDistance;
+    private Interactable _currentInteractable;
+    bool _rotate;
+    private float _carryDistance;
     
-    private bool blur;
-    
-    private MinFloatParameter dofDistanceParametar;
-    private ClampedFloatParameter dofAperture;
-    private ClampedFloatParameter startAperture;
+    private bool _blur;
+
+    private Camera _cam;
+    private MinFloatParameter _dofDistanceParameter;
+    private ClampedFloatParameter _dofAperture;
+    private ClampedFloatParameter _startAperture;
     
     private void Awake()
     {
-        pI = gameObject.GetComponent<PlayerInput>();
-        pD = pI.pD;
-        PlayerInput.InteractEvent += TryInteract;//
-        PlayerInput.RotateEvent += TryRotate;//
-        PlayerInput.RotateCanceledEvent += CancelRotate;
-        PlayerInput.MoveObjEvent += MoveObj;
-        PlayerInput.Alt_InteractEvent += Alt;
+        pI = gameObject.GetComponent<PlayerInput>(); pD = pI.pD; _cam = GetComponentInChildren<Camera>();
+        EventSubscriber();
     }
     private void Start()
     {
-        profile.TryGet<DepthOfField>(out dof);
-        dofDistanceParametar = dof.focusDistance;
-        dofAperture = dof.aperture;
-        var d = dofAperture;
-        startAperture = d;
-        startAperture.value = 32.0f;
-        dofAperture.value = startAperture.value;
-        //pI.InteractEvent += TryInteract;
-        currentrotation = gameObject.transform.localRotation;
-        carryDistance = pD.carryDistance;
+        InitializeDof();
     }
-    
     private void Update()
     {
         RaycastCheck();
         HandleCarrying();
         HandleRotation();
     }
-
-    public PlayerInput GetPlayerInput()
+    private void EventSubscriber()
     {
-        return pI;
+        PlayerInput.InteractEvent += TryInteract; //
+        PlayerInput.RotateEvent += TryRotate; //
+        PlayerInput.RotateCanceledEvent += CancelRotate;
+        PlayerInput.MoveObjEvent += MoveObj;
+        PlayerInput.Alt_InteractEvent += Alt;
     }
-    
-
+    private void InitializeDof()
+    {
+        profile.TryGet<DepthOfField>(out dof);
+        _dofDistanceParameter = dof.focusDistance;
+        _dofAperture = dof.aperture;
+        var d = _dofAperture;
+        _startAperture = d;
+        _startAperture.value = 32.0f;
+        _dofAperture.value = _startAperture.value;
+        _carryDistance = pD.carryDistance;
+    }
     private void MoveObj(object sender, EventArgs e)
     {
-        if (rotate) return;
-        carryDistance = Mathf.Clamp(carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
+        if (_rotate) return;
+        _carryDistance = Mathf.Clamp(_carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
     }
 
-    public void RaycastCheck()
+    private void RaycastCheck()
     {
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
+        if (!pD.busyHands && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
         {
-            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, hit.distance, .5f);
+            _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
             if (hit.distance <= pD.interactDistance)
             {
-                if (hit.collider.gameObject.layer == 3 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+                if (hit.collider.gameObject.layer == 3 && (_currentInteractable == null || hit.collider.gameObject.GetInstanceID() != _currentInteractable.GetInstanceID()))
                 {
-                    hit.collider.TryGetComponent(out currentInteractable);
-                    if (currentInteractable)
-                        currentInteractable.OnFocus();
+                    hit.collider.TryGetComponent(out _currentInteractable);
+                    if (_currentInteractable)
+                        _currentInteractable.OnFocus();
+                }
+                else if (_currentInteractable)
+                {
+                    _currentInteractable.OnLoseFocus();
+                    _currentInteractable = null;
                 }
 
             }
-            else if (currentInteractable)
+            else if (_currentInteractable)
             {
-                currentInteractable.OnLoseFocus();
-                currentInteractable = null;
+                _currentInteractable.OnLoseFocus();
+                _currentInteractable = null;
             }
 
         }
-        else if (currentInteractable)
+        else if (_currentInteractable)
         {
-            dofDistanceParametar.value = Mathf.Lerp(dofDistanceParametar.value, 5, 1);
-            currentInteractable.OnLoseFocus();
-            currentInteractable = null;
+            _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, 5, 1);
+            _currentInteractable.OnLoseFocus();
+            _currentInteractable = null;
         }
         else
         {
-
         }
     }
 
@@ -113,15 +114,16 @@ public class PlayerInteraction : MonoBehaviour
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
         carriedObj = obj;
+        _currentInteractable = carriedObj.GetComponent<Interactable>();
         pD.busyHands = true;
-        carryDistance = Mathf.Clamp(carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
+        _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
     }
 
     private void HandleCarrying()
     {
         if (pD.busyHands && carriedObj != null)
         {
-            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * carryDistance, Time.deltaTime * pD.smooth);
+            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * _carryDistance, Time.deltaTime * pD.smooth);
         }
     }
 
@@ -133,8 +135,8 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Nothing");
             if (!ingredientContainor.IsPouring() && !ingredientContainor.rotating && !ingredientContainor.pouringRotation)
             {
-                if (currentInteractable)
-                    currentInteractable.OnLoseFocus();
+                if (_currentInteractable)
+                    _currentInteractable.OnLoseFocus();
                 carriedObj.GetComponent<Rigidbody>().isKinematic = false;
                 carriedObj.GetComponent<Collider>().isTrigger = false;
                 Debug.Log("1Nothing");
@@ -148,15 +150,15 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (carriedObj != null)
         {
-            if (currentInteractable)
-                currentInteractable.OnLoseFocus();
+            if (_currentInteractable)
+                _currentInteractable.OnLoseFocus();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
-            if (currentInteractable)
+            if (_currentInteractable)
             {
-                currentInteractable.OnDrop();
+                _currentInteractable.OnDrop();
             }
-            currentInteractable = null;
+            _currentInteractable = null;
             pD.busyHands = false;
             carriedObj = null;
             pD.busyHands = false;
@@ -172,10 +174,10 @@ public class PlayerInteraction : MonoBehaviour
                 DropCurrentObj();
                 AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
             }
-            else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
+            else if (pD.canInteract && _currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
             {
                 AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
-                currentInteractable.OnInteract(this);
+                _currentInteractable.OnInteract(this);
             }
         }
     }
@@ -184,26 +186,26 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (carriedObj)
         {
-            if (currentInteractable)
+            if (_currentInteractable)
             {
-                currentInteractable.OnAltInteract(this);
+                _currentInteractable.OnAltInteract(this);
             }
         }
     }
 
     public void TryRotate(object sender, EventArgs e)
     {
-        rotate = true;
+        _rotate = true;
     }
 
 
     public void CancelRotate(object sender, EventArgs e)
     {
-        rotate = false;
+        _rotate = false;
     }
     public void HandleRotation()
     {
-        if (pD.busyHands && carriedObj != null && rotate)
+        if (pD.busyHands && carriedObj != null && _rotate)
         {
             try
             {
@@ -242,15 +244,15 @@ public class PlayerInteraction : MonoBehaviour
 
      public void CameraBlur()
     {
-         if (blur)
+         if (_blur)
          {
-             dofAperture.value = 1.0f;
-             blur = true;
+             _dofAperture.value = 1.0f;
+             _blur = true;
          }
          else
          {
-             dofAperture.value = 32.0f;
-             blur = false;
+             _dofAperture.value = 32.0f;
+             _blur = false;
          }
-     }
+    }
 }
