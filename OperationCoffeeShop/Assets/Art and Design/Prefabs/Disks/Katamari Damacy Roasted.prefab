@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1305809164946119777}
   - component: {fileID: 1305809164946119790}
   - component: {fileID: 1305809164946119791}
+  - component: {fileID: 7650312792417110123}
   - component: {fileID: 1305809164946119788}
-  - component: {fileID: 1305809164946119789}
   - component: {fileID: 1305809164946119786}
   m_Layer: 0
   m_Name: Katamari Damacy Roasted
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305809164946119787}
-  m_LocalRotation: {x: 0.0004142637, y: -0.7400588, z: 0.0034002971, w: 0.67253345}
-  m_LocalPosition: {x: 0.3271, y: -4.7534, z: -10.6066}
-  m_LocalScale: {x: 7.465712, y: 11.970523, z: 7.465712}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.3486, y: -4.7771, z: -10.8607}
+  m_LocalScale: {x: 7.4, y: 7.4, z: 7.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.32, y: -95.473, z: 0.227}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &1305809164946119790
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305809164946119787}
-  m_Mesh: {fileID: 6038096159186469364, guid: 98b885ad9bb65de40b2e48da04412d64, type: 3}
+  m_Mesh: {fileID: 7304764130515397781, guid: 83f4a2c7dabe4634baf52bbbda48d6e4, type: 3}
 --- !u!23 &1305809164946119791
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,6 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: f1b93a9fbfab1844db9c9b4ae1c52c34, type: 2}
   - {fileID: 2100000, guid: 1ee13d5de32fda6408b559323dba5b61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7650312792417110123
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305809164946119787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7304764130515397781, guid: 83f4a2c7dabe4634baf52bbbda48d6e4, type: 3}
 --- !u!54 &1305809164946119788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,20 +114,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!65 &1305809164946119789
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305809164946119787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01828384, y: 0.0001, z: 0.01828384}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_CollisionDetection: 0
 --- !u!114 &1305809164946119786
 MonoBehaviour:
   m_ObjectHideFlags: 0
