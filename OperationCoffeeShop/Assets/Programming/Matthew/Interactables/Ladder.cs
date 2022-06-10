@@ -32,12 +32,4 @@ public class Ladder : Interactable
             }
         }
     }
-
-    public override void OnFocus()
-    {
-    }
-
-    public override void OnLoseFocus()//
-    {
-    }
 }

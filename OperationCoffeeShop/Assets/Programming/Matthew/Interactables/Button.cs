@@ -18,17 +18,6 @@ public class Button : Interactable
         }
         
     }
-
-    public override void OnFocus()
-    {
-
-    }
-
-    public override void OnLoseFocus()
-    {
-        
-    }
-
     public override void OnAltInteract(PlayerInteraction pI)
     {
         

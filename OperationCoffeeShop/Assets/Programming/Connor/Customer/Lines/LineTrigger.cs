@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LineTrigger : MonoBehaviour
@@ -14,11 +12,10 @@ public class LineTrigger : MonoBehaviour
         _customerLine = GetComponentInParent<CustomerLine>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider possibleCustomer)
     {
-        if (other.tag.Equals("Customer")) {
-            //Debug.Log("Yes I love Customers in line!!");
-            _customerLine.GetInLine(other.gameObject);
+        if (possibleCustomer.tag.Equals(customerTag)) {
+            _customerLine.GetInLine(possibleCustomer.gameObject);
         }
     }
 }

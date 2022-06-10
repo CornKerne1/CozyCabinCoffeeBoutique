@@ -10,6 +10,8 @@ public class CustomerAnimations : MonoBehaviour
     public CustomerInteractable customerInteractable;
     Vector3 tempPosition;
 
+    private Customer _customer;
+    
     private NavMeshAgent navMeshAgent;
 
     private float speed;
@@ -17,6 +19,8 @@ public class CustomerAnimations : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _customer = GetComponentInChildren<Customer>();
+        _customer.customerData.customerAnimations = this;
         customerAnimator = gameObject.GetComponentInChildren<Animator>();
         customerInteractable = gameObject.GetComponent<CustomerInteractable>();
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();

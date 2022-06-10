@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -10,47 +11,33 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public GameObject hud;
     [SerializeField] private GameObject pauseM;
     [SerializeField] public static event EventHandler InteractEvent;
-    [SerializeField] public static event EventHandler InteractCanceledEvent;
-    [SerializeField] public static event EventHandler Alt_InteractEvent;
-
-    [SerializeField] public static event EventHandler PauseEvent;
+    [SerializeField] public static event EventHandler AltInteractEvent;
     [SerializeField] public static event EventHandler RotateEvent;
     [SerializeField] public static event EventHandler RotateCanceledEvent;
     [SerializeField] public static event EventHandler MoveObjEvent;
-    [SerializeField] public static event EventHandler ResetObjEvent;
-
-    [SerializeField] public static event EventHandler PourEvent;
-
-    [SerializeField] private PlayerControls pC;
-    [SerializeField] private PlayerControls.FPPlayerActions fPP;
+    
+    [SerializeField] private PlayerControls _pC;
+    [SerializeField] private PlayerControls.FPPlayerActions _fPp;
     [SerializeField] private InputAction interact;
-    [SerializeField] private InputAction alt_interact;
+    [SerializeField] private InputAction altInteract;
     [SerializeField] private InputAction pause;
 
-    private Vector2 mouseInput;
-    private Vector2 currentRotate;
+    private Vector2 _mouseInput;
+    private Vector2 _currentRotate;
 
-    private float horizontalMovement;
-    private float verticalMovement;
-    private Vector2 currentObjDistance;
+    private float _horizontalMovement;
+    private float _verticalMovement;
+    private Vector2 _currentObjDistance;
 
     public bool disabled;
-
-    private void Update()
-    {
-
-    }
-
     private void Awake()
     {
-        pC = new PlayerControls();
-        fPP = pC.FPPlayer;
-        interact = fPP.Interact;
-        alt_interact = fPP.Alt_Interact;
-        pause = fPP.PauseGame;
-
+        _pC = new PlayerControls();
+        _fPp = _pC.FPPlayer;
+        interact = _fPp.Interact;
+        altInteract = _fPp.Alt_Interact;
+        pause = _fPp.PauseGame;
     }
-
     private void Start()
     {
         Instantiate(hud);
@@ -58,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         pauseM.GetComponent<PauseMenu>().CloseOptions();
     }
 
-    void _Pause()
+    private void _Pause()
     {
         if (!pD.inUI)
         {
@@ -75,45 +62,42 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
-
     public void OnEnable()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
 
-        fPP.Enable();
-        fPP.MoveForwardBackwards.started += ctx => verticalMovement = ctx.ReadValue<float>();
-        fPP.MoveForwardBackwards.canceled += ctx => verticalMovement = ctx.ReadValue<float>();
-        fPP.MoveLeftRight.started += ctx => horizontalMovement = ctx.ReadValue<float>();
-        fPP.MoveLeftRight.canceled += ctx => horizontalMovement = ctx.ReadValue<float>();
+        _fPp.Enable();
+        _fPp.MoveForwardBackwards.started += ctx => _verticalMovement = ctx.ReadValue<float>();
+        _fPp.MoveForwardBackwards.canceled += ctx => _verticalMovement = ctx.ReadValue<float>();
+        _fPp.MoveLeftRight.started += ctx => _horizontalMovement = ctx.ReadValue<float>();
+        _fPp.MoveLeftRight.canceled += ctx => _horizontalMovement = ctx.ReadValue<float>();
 
-        fPP.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
-        fPP.MouseX.Enable();
+        _fPp.MouseX.performed += ctx => _mouseInput.x = ctx.ReadValue<float>();
+        _fPp.MouseX.Enable();
 
-        fPP.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
-        fPP.MouseY.Enable();
+        _fPp.MouseY.performed += ctx => _mouseInput.y = ctx.ReadValue<float>();
+        _fPp.MouseY.Enable();
 
         interact.performed += Interact;
-        interact.canceled += InteractCanceled;
         interact.Enable();
 
-        alt_interact.performed += Alt_Interact;
-        alt_interact.Enable();
+        altInteract.performed += Alt_Interact;
+        altInteract.Enable();
 
         pause.canceled += Pause;
         pause.Enable();
 
-        fPP.Rotate.performed += ctx => currentRotate = ctx.ReadValue<Vector2>();
-        fPP.Rotate.performed += Rotate;
-        fPP.Rotate.canceled += RotateCanceled;
-        fPP.Rotate.Enable();
+        _fPp.Rotate.performed += ctx => _currentRotate = ctx.ReadValue<Vector2>();
+        _fPp.Rotate.performed += Rotate;
+        _fPp.Rotate.canceled += RotateCanceled;
+        _fPp.Rotate.Enable();
 
-        fPP.MoveObj.performed += ctx => currentObjDistance = ctx.ReadValue<Vector2>();
-        fPP.MoveObj.performed += MoveObj;
-        fPP.MoveObj.Enable();
+        _fPp.MoveObj.performed += ctx => _currentObjDistance = ctx.ReadValue<Vector2>();
+        _fPp.MoveObj.performed += MoveObj;
+        _fPp.MoveObj.Enable();
     }
-
     private void MoveObj(InputAction.CallbackContext obj)
     {
         MoveObjEvent?.Invoke(this, EventArgs.Empty);
@@ -122,65 +106,55 @@ public class PlayerInput : MonoBehaviour
     public void OnDisable()
     {
         disabled = true;
-        fPP.MoveForwardBackwards.Disable();
-        fPP.MoveLeftRight.Disable();
-        fPP.MouseX.Disable();
-        fPP.MouseY.Disable();
+        _fPp.MoveForwardBackwards.Disable();
+        _fPp.MoveLeftRight.Disable();
+        _fPp.MouseX.Disable();
+        _fPp.MouseY.Disable();
         interact.Disable();
-        fPP.Rotate.Disable();
+        altInteract.Disable();
+        _fPp.Rotate.Disable();
     }
-
     public float GetHorizontalMovement()
     {
-        return horizontalMovement;
+        return _horizontalMovement;
     }
-
     public float GetVerticalMovement()
     {
-        return -verticalMovement;
+        return -_verticalMovement;
     }
-
     public float GetCurrentObjDistance()
     {
 
-        return Mathf.Clamp(currentObjDistance.y, -1, 1);
+        return Mathf.Clamp(_currentObjDistance.y, -1, 1);
     }
-
     public float GetMouseX()
     {
-        return mouseInput.x;
+        return _mouseInput.x;
     }
-
     public float GetMouseY()
     {
-        return mouseInput.y;
+        return _mouseInput.y;
     }
     public Vector2 GetCurrentRotate()
     {
-        return currentRotate;
+        return _currentRotate;
     }
-    public void Interact(InputAction.CallbackContext obj)
+    private void Interact(InputAction.CallbackContext obj)
     {
         InteractEvent?.Invoke(this, EventArgs.Empty);
     }
-    private void InteractCanceled(InputAction.CallbackContext obj)
+    private void Alt_Interact(InputAction.CallbackContext obj)
     {
-        InteractCanceledEvent?.Invoke(this, EventArgs.Empty);
+        AltInteractEvent?.Invoke(this, EventArgs.Empty);
     }
-    public void Alt_Interact(InputAction.CallbackContext obj)
+    private void Pause(InputAction.CallbackContext obj)
     {
-        Alt_InteractEvent?.Invoke(this, EventArgs.Empty);
-    }
-    public void Pause(InputAction.CallbackContext obj)
-    {
-        PauseEvent?.Invoke(this, EventArgs.Empty);
         _Pause();
     }
     private void Rotate(InputAction.CallbackContext obj)
     {
         RotateEvent?.Invoke(this, EventArgs.Empty);
     }
-
     private void RotateCanceled(InputAction.CallbackContext obj)
     {
         RotateCanceledEvent?.Invoke(this, EventArgs.Empty);

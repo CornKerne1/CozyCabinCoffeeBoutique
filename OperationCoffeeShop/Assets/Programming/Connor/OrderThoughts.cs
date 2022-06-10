@@ -23,20 +23,34 @@ public class OrderThoughts : MonoBehaviour
     public Transform pivot;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         customer = GetComponentInParent<Customer>();
         images = GetComponentsInChildren<Image>();
-        drink = customer.GetDrinkOrder();
-        ingredients = drink.Ingredients;
-        int i = 1;
-        foreach (IngredientNode IN in ingredients)
-        {
-            Add(IN.ingredient, i);
-            i++;
-        }
+        StartCoroutine(C0_GetOrderIngredients());
         GM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         player = GM.player;
+    }
+
+    private void Update()
+    {
+        Transform t = pivot.gameObject.transform;
+        t.LookAt(player);
+        t.rotation = new Quaternion(0, player.rotation.y, player.rotation.z, player.rotation.w);
+        this.gameObject.transform.rotation = t.rotation;
+    }
+
+    private IEnumerator C0_GetOrderIngredients()
+    {
+        yield return new WaitForSeconds(.4f);
+        drink = customer.GetDrinkOrder();
+        ingredients = drink.Ingredients;
+        var i = 1;
+        foreach (var ingredientNode in ingredients)
+        {
+            Add(ingredientNode.ingredient, i);
+            i++;
+        }
     }
 
 
@@ -46,33 +60,38 @@ public class OrderThoughts : MonoBehaviour
         {
             case Ingredients.Sugar:
                 images[position].sprite = Sugar;
-                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
+                images[position].color = new Color(images[position].color.r, images[position].color.g,
+                    images[position].color.b, 1);
                 break;
             case Ingredients.BrewedCoffee:
                 images[position].sprite = BrewedCoffee;
-                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
+                images[position].color = new Color(images[position].color.r, images[position].color.g,
+                    images[position].color.b, 1);
                 break;
             case Ingredients.Milk:
                 images[position].sprite = Milk;
-                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
+                images[position].color = new Color(images[position].color.r, images[position].color.g,
+                    images[position].color.b, 1);
                 break;
             case Ingredients.Espresso:
                 images[position].sprite = Esspresso;
-                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 1);
+                images[position].color = new Color(images[position].color.r, images[position].color.g,
+                    images[position].color.b, 1);
                 break;
+            case Ingredients.SteamedMilk:
+            case Ingredients.FoamedMilk:
+            case Ingredients.WhippedCream:
+            case Ingredients.UngroundCoffee:
+            case Ingredients.GroundCoffee:
+            case Ingredients.Salt:
+            case Ingredients.EspressoBeans:
+            case Ingredients.CoffeeFilter:
+            case Ingredients.TeaBag:
             default:
                 images[position].sprite = null;
-                images[position].color = new Color(images[position].color.r, images[position].color.g, images[position].color.b, 0);
+                images[position].color = new Color(images[position].color.r, images[position].color.g,
+                    images[position].color.b, 0);
                 break;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Transform t = pivot.gameObject.transform;
-        t.LookAt(player);
-        t.rotation = new Quaternion(0, player.rotation.y, player.rotation.z, player.rotation.w);
-        this.gameObject.transform.rotation = t.rotation;
     }
 }

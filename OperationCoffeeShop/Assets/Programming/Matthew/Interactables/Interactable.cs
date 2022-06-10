@@ -4,21 +4,57 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    
     public GameMode gM;
     public Vector3 rotateOffset;
+
+    protected Outline outline;
+    protected Color outlineColor;
+
     public virtual void Awake()
     {
-        gameObject.layer = 3;      
+        gameObject.layer = 3;
     }
 
     public virtual void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        outline = gameObject.AddComponent<Outline>();
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+            outline.OutlineWidth = 10;
+            var sunsetYellow = new Color()
+            {
+                r = 1f,
+                g = .7882f,
+                b = .1333f,
+                a = 1f,
+            };
+            outlineColor = sunsetYellow;
+            var color = outlineColor;
+            color.a = 0;
+            outline.OutlineColor = color;
+
     }
+
     public abstract void OnInteract(PlayerInteraction pI);
-    public abstract void OnFocus();
-    public abstract void OnLoseFocus();
-    public virtual void OnAltInteract(PlayerInteraction pI){}
-    public virtual void OnDrop(){}
+
+    public virtual void OnFocus()
+    {
+        outline.OutlineColor = outlineColor;
+    }
+
+    public virtual void OnLoseFocus()
+    {
+        if (!outline) return;
+        var color = outlineColor;
+        color.a = 0;
+        outline.OutlineColor = color;
+    }
+
+    public virtual void OnAltInteract(PlayerInteraction pI)
+    {
+    }
+
+    public virtual void OnDrop()
+    {
+    }
 }

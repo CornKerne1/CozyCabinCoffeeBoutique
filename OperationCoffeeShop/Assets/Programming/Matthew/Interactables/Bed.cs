@@ -105,11 +105,6 @@ public class Bed : Interactable
         TimerRef = null;
     }
 
-    public override void OnFocus()
-    {
-        Debug.Log("We Are Looking At You");
-    }
-
     public override void OnInteract(PlayerInteraction pI)
     {
         if (gM.gMD.currentTime.Hour == 18)//if (gM.gMD.currentTime.Hour > 18 ||gM.gMD.currentTime.Hour ==0)
@@ -124,11 +119,4 @@ public class Bed : Interactable
             running = true;
         }
     }
-
-    public override void OnLoseFocus()//
-    {
-        Debug.Log("Gone!");
-    }
-
-
 }

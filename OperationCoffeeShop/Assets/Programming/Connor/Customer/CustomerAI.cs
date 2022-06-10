@@ -31,7 +31,7 @@ public class CustomerAI : MonoBehaviour
     private void Start()
     {
         customerData = gameObject.GetComponent<Customer>().customerData;
-        customerData.customerAI = this;
+        StartCoroutine(CO_AddSelfToData());
         var path = GameObject.Find("Customer Path");
         foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
@@ -87,6 +87,12 @@ public class CustomerAI : MonoBehaviour
                 new Quaternion(lookat.rotation.x, lookat.rotation.y, lookat.rotation.z, lookat.rotation.w);
             this.gameObject.transform.LookAt(lookat);
         }
+    }
+
+    IEnumerator CO_AddSelfToData()
+    {
+        yield return new WaitForSeconds(.2f);
+        customerData.customerAI = this;
     }
 
     private IEnumerator Die(float death)

@@ -13,14 +13,8 @@ public class MachineInteraction : Interactable
         machine = transform.root.GetComponentInChildren<Machine>();
     }
 
-    public override void OnFocus()
-    {
-        Debug.Log("We Are Looking At You");
-    }
-
     public override void OnInteract(PlayerInteraction pI)
     {
-
         switch (mD.machineType)
         {
             case MachineData.Type.Default:
@@ -32,20 +26,16 @@ public class MachineInteraction : Interactable
                 {
                     if (!bB.open && machine.currentCapacity > 0)
                     {
-                        machine.StartMachine(); bB.filter.SetActive(false);
+                        machine.StartMachine();
+                        bB.filter.SetActive(false);
                     }
                     else
                     {
                         bB.OpenOrClose();
                     }
                 }
+
                 return;
-
         }
-    }
-
-    public override void OnLoseFocus()//
-    {
-        Debug.Log("Gone!");
     }
 }

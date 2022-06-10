@@ -48,7 +48,7 @@ public class CustomerInteractable : Interactable
     {
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         customerData = gameObject.GetComponent<Customer>().customerData;
-        customerData.customerInteractable = this;
+        StartCoroutine(CO_AddSelfToData());  
         orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
         orderCanvas = gameObject.GetComponentInChildren<Canvas>();
         orderCanvas.enabled = false;
@@ -114,6 +114,13 @@ public class CustomerInteractable : Interactable
             Camera.main.transform.LookAt(lookat.position);
             //gM.player.transform.LookAt(this.transform.position);
         }
+    }
+
+    IEnumerator CO_AddSelfToData()
+    {
+        yield return new WaitForSeconds(.2f);
+        customerData.customerInteractable = this;
+
     }
     private void SetConversations()
     {

@@ -9,11 +9,7 @@ public class PlayCube : MachineInteraction
     string isOpen = "isOpen";
 
     private bool canOpen = true;
-
-    public override void OnFocus()
-    {
-    }
-
+    
     public override void OnInteract(PlayerInteraction pI)
     {
         StartCoroutine(interact());
@@ -38,20 +34,14 @@ public class PlayCube : MachineInteraction
         yield return null;
     }
 
-    public override void OnLoseFocus()
-    {
-    }
 
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
+        base.Start();
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

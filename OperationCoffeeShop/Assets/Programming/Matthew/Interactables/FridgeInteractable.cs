@@ -18,6 +18,7 @@ public class FridgeInteractable : Interactable
 
     void Start()
     {
+        base.Start();
         _animator = GetComponent<Animator>();
     }
 
@@ -53,13 +54,5 @@ public class FridgeInteractable : Interactable
             AkSoundEngine.PostEvent("Play_FridgeClosed", gameObject);
         }
     }
-    public override void OnFocus()
-    {
 
-    }
-
-    public override void OnLoseFocus()
-    {
-
-    }
 }

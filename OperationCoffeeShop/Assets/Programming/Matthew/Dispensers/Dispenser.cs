@@ -20,6 +20,7 @@ public class Dispenser : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         ComputerShop.DepositItems += AddItems;
         if (!bottomless)
             try
@@ -83,15 +84,5 @@ public class Dispenser : Interactable
         {
 
         }
-    }
-
-
-
-
-    public override void OnFocus()
-    {
-    }
-    public override void OnLoseFocus()
-    {
     }
 }
