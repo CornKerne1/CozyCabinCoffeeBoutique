@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -44,8 +41,8 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void EventSubscriber()
     {
-        PlayerInput.InteractEvent += TryInteract; //
-        PlayerInput.RotateEvent += TryRotate; //
+        PlayerInput.InteractEvent += TryInteract;
+        PlayerInput.RotateEvent += TryRotate;
         PlayerInput.RotateCanceledEvent += CancelRotate;
         PlayerInput.MoveObjEvent += MoveObj;
         PlayerInput.Alt_InteractEvent += Alt;
@@ -61,12 +58,6 @@ public class PlayerInteraction : MonoBehaviour
         _dofAperture.value = _startAperture.value;
         _carryDistance = pD.carryDistance;
     }
-    private void MoveObj(object sender, EventArgs e)
-    {
-        if (_rotate) return;
-        _carryDistance = Mathf.Clamp(_carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
-    }
-
     private void RaycastCheck()
     {
         if (!pD.busyHands && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
@@ -74,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
             if (hit.distance <= pD.interactDistance)
             {
-                if (hit.collider.gameObject.layer == 3 && (_currentInteractable == null || hit.collider.gameObject.GetInstanceID() != _currentInteractable.GetInstanceID()))
+                if (hit.collider.gameObject.layer == 3 && (!_currentInteractable|| hit.collider.gameObject.GetInstanceID() != _currentInteractable.GetInstanceID()))
                 {
                     RemoveCurrentInteractable();
                     hit.collider.TryGetComponent(out _currentInteractable);
@@ -97,61 +88,113 @@ public class PlayerInteraction : MonoBehaviour
         else
             RemoveCurrentInteractable();
     }
+    private void HandleCarrying()
+    {
+        if (!pD.busyHands || !carriedObj) return;
+        var camTrans = _cam.transform;
+        carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * pD.smooth);
+    }
 
+    private void HandleRotation()
+    {
+        if (!pD.busyHands || !carriedObj || !_rotate) return;
+        try
+        {
+            var root = carriedObj.transform.root;
+            var a =root.GetComponentInChildren<Radio>();
+            var b = !root.GetComponentInChildren<IngredientContainer>().IsPouring();
+        }
+        catch
+        {
+
+            if (pI.GetCurrentRotate().x > 0)
+            {
+                carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
+            }
+            else if (pI.GetCurrentRotate().x < 0)
+            {
+                carriedObj.transform.Rotate(0, pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
+            }
+            else if (pI.GetCurrentRotate().y > 0)
+            {
+                carriedObj.transform.Rotate(0, 0, pI.GetCurrentObjDistance() * pD.objRotationSpeed);
+            }
+            else if (pI.GetCurrentRotate().y < 0)
+            {
+                if (carriedObj.TryGetComponent<Interactable>(out var i))
+                {
+                    var rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x,
+                        Quaternion.identity.y + i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z,
+                        Quaternion.identity.w);
+                    carriedObj.transform.rotation =
+                        Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime * 50);
+                }
+            }
+        }
+    }
+    private void TryInteract(object sender, EventArgs e)
+    {
+        if (!pD.inUI)
+        {
+            if (pD.busyHands)
+            {
+                DropCurrentObj();
+                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
+            }
+            else if (pD.canInteract && _currentInteractable != null && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out var hit, pD.interactDistance, interactionLayer))
+            {
+                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
+                _currentInteractable.OnInteract(this);
+            }
+        }
+    }
+    private void TryRotate(object sender, EventArgs e)
+    {
+        _rotate = true;
+    }
+    private void CancelRotate(object sender, EventArgs e)
+    {
+        _rotate = false;
+    }
+    private void MoveObj(object sender, EventArgs e)
+    {
+        if (_rotate) return;
+        _carryDistance = Mathf.Clamp(_carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
+    }
+    private void Alt(object sender, EventArgs e)
+    {
+        if (carriedObj)
+        {
+            if (_currentInteractable)
+            {
+                _currentInteractable.OnAltInteract(this);
+            }
+        }
+    }
     private void RemoveCurrentInteractable()
     {
         if (!_currentInteractable) return;
         _currentInteractable.OnLoseFocus();
         _currentInteractable = null;
     }
-
-    public void Carry(GameObject obj)
-    {
-        if (pD.busyHands)
-        {
-            DropCurrentObj();
-        }
-        obj.GetComponent<Rigidbody>().isKinematic = true;
-        obj.GetComponent<Collider>().isTrigger = true;
-        _currentInteractable.OnLoseFocus();
-        _currentInteractable = null;
-        carriedObj = obj;
-        _currentInteractable = carriedObj.GetComponent<Interactable>();
-        pD.busyHands = true;
-        _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
-    }
-
-    private void HandleCarrying()
-    {
-        if (pD.busyHands && carriedObj != null)
-        {
-            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, Camera.main.transform.position + Camera.main.transform.forward * _carryDistance, Time.deltaTime * pD.smooth);
-        }
-    }
-
     public void DropCurrentObj()
     {
-        if (carriedObj.TryGetComponent<IngredientContainer>(out IngredientContainer ingredientContainor))
+        if (carriedObj.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
-
-            Debug.Log("Nothing");
-            if (!ingredientContainor.IsPouring() && !ingredientContainor.rotating && !ingredientContainor.pouringRotation)
+            if (ingredientContainer.IsPouring() || ingredientContainer.rotating ||
+                ingredientContainer.pouringRotation) return;
+            if (_currentInteractable)
             {
-                if (_currentInteractable)
-                {
-                    _currentInteractable.OnLoseFocus();
-                    _currentInteractable = null;
-                }
-                carriedObj.GetComponent<Rigidbody>().isKinematic = false;
-                carriedObj.GetComponent<Collider>().isTrigger = false;
-                Debug.Log("1Nothing");
-                ingredientContainor.inHand = false;
-                //ingredientContainor.StopPouring();
-                Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainor.rotateOffset.x, Quaternion.identity.y + ingredientContainor.rotateOffset.y, Quaternion.identity.z + ingredientContainor.rotateOffset.z, Quaternion.identity.w);
-                ingredientContainor.transform.rotation = rot;
-                carriedObj = null;
-                pD.busyHands = false;
+                _currentInteractable.OnLoseFocus();
+                _currentInteractable = null;
             }
+            carriedObj.GetComponent<Rigidbody>().isKinematic = false;
+            carriedObj.GetComponent<Collider>().isTrigger = false;
+            ingredientContainer.inHand = false;
+            Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x, Quaternion.identity.y + ingredientContainer.rotateOffset.y, Quaternion.identity.z + ingredientContainer.rotateOffset.z, Quaternion.identity.w);
+            ingredientContainer.transform.rotation = rot;
+            carriedObj = null;
+            pD.busyHands = false;
         }
         else if (carriedObj != null)
         {
@@ -169,85 +212,22 @@ public class PlayerInteraction : MonoBehaviour
             pD.busyHands = false;
         }
     }
-
-    public void TryInteract(object sender, EventArgs e)
+    public void Carry(GameObject obj)
     {
-        if (!pD.inUI)
+        if (pD.busyHands)
         {
-            if (pD.busyHands)
-            {
-                DropCurrentObj();
-                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
-            }
-            else if (pD.canInteract && _currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
-            {
-                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
-                _currentInteractable.OnInteract(this);
-            }
+            DropCurrentObj();
         }
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.GetComponent<Collider>().isTrigger = true;
+        _currentInteractable.OnLoseFocus();
+        _currentInteractable = null;
+        carriedObj = obj;
+        _currentInteractable = carriedObj.GetComponent<Interactable>();
+        pD.busyHands = true;
+        _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
     }
-
-    public void Alt(object sender, EventArgs e)
-    {
-        if (carriedObj)
-        {
-            if (_currentInteractable)
-            {
-                _currentInteractable.OnAltInteract(this);
-            }
-        }
-    }
-
-    public void TryRotate(object sender, EventArgs e)
-    {
-        _rotate = true;
-    }
-
-
-    public void CancelRotate(object sender, EventArgs e)
-    {
-        _rotate = false;
-    }
-    public void HandleRotation()
-    {
-        if (pD.busyHands && carriedObj != null && _rotate)
-        {
-            try
-            {
-                if (carriedObj.transform.root.GetComponentInChildren<Radio>()||!carriedObj.transform.root.GetComponentInChildren<IngredientContainer>().IsPouring()) {}
-            }
-            catch
-            {
-
-                if (pI.GetCurrentRotate().x > 0)
-                {
-                    carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
-                }
-                else if (pI.GetCurrentRotate().x < 0)
-                {
-                    carriedObj.transform.Rotate(0, pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
-                }
-                else if (pI.GetCurrentRotate().y > 0)
-                {
-                    carriedObj.transform.Rotate(0, 0, pI.GetCurrentObjDistance() * pD.objRotationSpeed);
-                }
-                else if (pI.GetCurrentRotate().y < 0)
-                {
-                    var i = carriedObj.GetComponent<Interactable>();
-                    if (i)
-                    {
-                        Quaternion rot = new Quaternion(Quaternion.identity.x + i.rotateOffset.x,
-                            Quaternion.identity.y + i.rotateOffset.y, Quaternion.identity.z + i.rotateOffset.z,
-                            Quaternion.identity.w);
-                        carriedObj.transform.rotation =
-                            Quaternion.Slerp(carriedObj.transform.rotation, rot, Time.deltaTime * 50);
-                    }
-                }
-            }
-        }
-    }
-
-     public void CameraBlur()
+    public void CameraBlur()
     {
          if (_blur)
          {
