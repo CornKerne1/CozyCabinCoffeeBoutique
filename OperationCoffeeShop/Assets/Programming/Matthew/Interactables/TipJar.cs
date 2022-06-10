@@ -16,16 +16,6 @@ public class TipJar : Interactable
         pI.Carry(gameObject);
     }
 
-    public override void OnFocus()
-    {
-
-    }
-
-    public override void OnLoseFocus()
-    {
-        
-    }
-
     public override void OnAltInteract(PlayerInteraction pI)
     {
         

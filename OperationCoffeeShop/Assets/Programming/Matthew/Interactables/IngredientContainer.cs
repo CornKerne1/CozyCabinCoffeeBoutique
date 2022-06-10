@@ -13,7 +13,7 @@ public class IngredientContainer : Interactable
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
     private float capacity;
-    [SerializeField]private float maxCapacity = 2.0f;
+    [SerializeField] private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
     public float topOfCup;
     private bool pouring;
@@ -113,7 +113,8 @@ public class IngredientContainer : Interactable
             if (hasContentsVisualizer)
             {
                 contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
-                    (contentsVisualizer.transform.localPosition.y - .00048f), contentsVisualizer.transform.localPosition.z);
+                    (contentsVisualizer.transform.localPosition.y - .00048f),
+                    contentsVisualizer.transform.localPosition.z);
                 contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x + .01f,
                     (contentsVisualizer.transform.localScale.y + .01f), contentsVisualizer.transform.localScale.z); //
             }
@@ -176,11 +177,12 @@ public class IngredientContainer : Interactable
         {
             var r = Random.Range(0, outputIngredients.Count);
             Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
-            outputIngredients.Remove(outputIngredients[outputIngredients.Count-1]);
+            outputIngredients.Remove(outputIngredients[outputIngredients.Count - 1]);
             if (hasContentsVisualizer)
             {
                 contentsVisualizer.transform.localPosition = new Vector3(contentsVisualizer.transform.localPosition.x,
-                    (contentsVisualizer.transform.localPosition.y + .00048f), contentsVisualizer.transform.localPosition.z);
+                    (contentsVisualizer.transform.localPosition.y + .00048f),
+                    contentsVisualizer.transform.localPosition.z);
                 contentsVisualizer.transform.localScale = new Vector3(contentsVisualizer.transform.localScale.x - .01f,
                     (contentsVisualizer.transform.localScale.y - .01f), contentsVisualizer.transform.localScale.z); //
             }
@@ -229,23 +231,16 @@ public class IngredientContainer : Interactable
             this.pI = pI;
             pI.Carry(gameObject);
             inHand = true;
-            Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x, Quaternion.identity.y + rotateOffset.y,
+            Quaternion rot = new Quaternion(Quaternion.identity.x + rotateOffset.x,
+                Quaternion.identity.y + rotateOffset.y,
                 Quaternion.identity.z + rotateOffset.z, Quaternion.identity.w);
             transform.rotation = rot;
         }
     }
 
-    public override void OnFocus()
-    {
-    }
-
     public void OnDrop()
     {
         inHand = false;
-    }
-
-    public override void OnLoseFocus()
-    {
     }
 
     public override void OnAltInteract(PlayerInteraction pI)
