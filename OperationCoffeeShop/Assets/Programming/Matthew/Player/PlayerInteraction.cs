@@ -166,10 +166,11 @@ public class PlayerInteraction : MonoBehaviour
             if (pD.busyHands)
             {
                 DropCurrentObj();
+                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
             }
             else if (pD.canInteract && currentInteractable != null && Physics.Raycast(Camera.main.ViewportPointToRay(interactionPoint), out RaycastHit hit, pD.interactDistance, interactionLayer))
             {
-                Debug.Log("tryInteract");
+                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
                 currentInteractable.OnInteract(this);
             }
         }
