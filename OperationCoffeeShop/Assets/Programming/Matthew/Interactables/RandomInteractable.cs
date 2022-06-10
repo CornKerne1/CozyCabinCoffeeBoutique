@@ -6,7 +6,8 @@ public class RandomInteractable : Interactable
 {
     // Start is called before the first frame update
     private PlayerInteraction pI;
-
+    
+    
     public override void OnInteract(PlayerInteraction pI)
     {
         this.pI = pI;
@@ -15,12 +16,21 @@ public class RandomInteractable : Interactable
 
     public override void OnFocus()
     {
+        if (outline)
+        {
+            outline.OutlineColor = outlineColor ;
 
+        }
     }
 
     public override void OnLoseFocus()
     {
-        
+        if (outline)
+        {
+            var color = outlineColor;
+            color.a = 0;
+            outline.OutlineColor = color ;
+        }
     }
 
     public override void OnAltInteract(PlayerInteraction pI)

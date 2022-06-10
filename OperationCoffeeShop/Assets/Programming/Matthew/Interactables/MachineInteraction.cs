@@ -15,8 +15,11 @@ public class MachineInteraction : Interactable
 
     public override void OnFocus()
     {
-        Debug.Log("We Are Looking At You");
-    }
+        if (outline)
+        {
+            outline.OutlineColor = outlineColor ;
+
+        }    }
 
     public override void OnInteract(PlayerInteraction pI)
     {
@@ -46,6 +49,10 @@ public class MachineInteraction : Interactable
 
     public override void OnLoseFocus()//
     {
-        Debug.Log("Gone!");
-    }
+        if (outline)
+        {
+            var color = outlineColor;
+            color.a = 0;
+            outline.OutlineColor = color ;
+        }    }
 }
