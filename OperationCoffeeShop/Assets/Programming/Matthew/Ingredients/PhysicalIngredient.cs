@@ -19,10 +19,7 @@ public class PhysicalIngredient : Interactable
         gameObject.tag = "PickUp";
     }
 
-    public override void OnFocus()
-    {
 
-    }
 
     public override void OnInteract(PlayerInteraction pI)
     {
@@ -37,10 +34,7 @@ public class PhysicalIngredient : Interactable
         inHand = false;
     }
 
-    public override void OnLoseFocus()
-    {
 
-    }
 
     private void OnTriggerEnter(Collider other)
     {

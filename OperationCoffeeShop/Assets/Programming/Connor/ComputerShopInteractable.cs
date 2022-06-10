@@ -13,6 +13,7 @@ public class ComputerShopInteractable : Interactable
 
     private void Start()
     {
+        base.Start();
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         cS = shopUI.gameObject.GetComponent<ComputerShop>();
         
@@ -29,14 +30,5 @@ public class ComputerShopInteractable : Interactable
         gM.pD.canMove = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-    }
-    
-
-
-    public override void OnFocus()
-    {
-    }
-    public override void OnLoseFocus()
-    {
     }
 }
