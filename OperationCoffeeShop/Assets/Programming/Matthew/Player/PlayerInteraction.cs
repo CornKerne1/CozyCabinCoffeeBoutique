@@ -133,6 +133,7 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Nothing");
             if (!ingredientContainor.IsPouring() && !ingredientContainor.rotating && !ingredientContainor.pouringRotation)
             {
+                currentInteractable.OnLoseFocus();
                 carriedObj.GetComponent<Rigidbody>().isKinematic = false;
                 carriedObj.GetComponent<Collider>().isTrigger = false;
                 Debug.Log("1Nothing");
@@ -146,6 +147,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (carriedObj != null)
         {
+            currentInteractable.OnLoseFocus();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
             if (currentInteractable)
