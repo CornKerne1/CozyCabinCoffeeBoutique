@@ -76,33 +76,33 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == 3 && (_currentInteractable == null || hit.collider.gameObject.GetInstanceID() != _currentInteractable.GetInstanceID()))
                 {
+                    RemoveCurrentInteractable();
                     hit.collider.TryGetComponent(out _currentInteractable);
                     if (_currentInteractable)
                         _currentInteractable.OnFocus();
                 }
                 else if (_currentInteractable)
-                {
-                    _currentInteractable.OnLoseFocus();
-                    _currentInteractable = null;
-                }
+                    RemoveCurrentInteractable();
 
             }
             else if (_currentInteractable)
-            {
-                _currentInteractable.OnLoseFocus();
-                _currentInteractable = null;
-            }
+                RemoveCurrentInteractable();
 
         }
         else if (_currentInteractable)
         {
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, 5, 1);
-            _currentInteractable.OnLoseFocus();
-            _currentInteractable = null;
+            RemoveCurrentInteractable();
         }
         else
-        {
-        }
+            RemoveCurrentInteractable();
+    }
+
+    private void RemoveCurrentInteractable()
+    {
+        if (!_currentInteractable) return;
+        _currentInteractable.OnLoseFocus();
+        _currentInteractable = null;
     }
 
     public void Carry(GameObject obj)
@@ -113,6 +113,8 @@ public class PlayerInteraction : MonoBehaviour
         }
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
+        _currentInteractable.OnLoseFocus();
+        _currentInteractable = null;
         carriedObj = obj;
         _currentInteractable = carriedObj.GetComponent<Interactable>();
         pD.busyHands = true;
@@ -136,7 +138,10 @@ public class PlayerInteraction : MonoBehaviour
             if (!ingredientContainor.IsPouring() && !ingredientContainor.rotating && !ingredientContainor.pouringRotation)
             {
                 if (_currentInteractable)
+                {
                     _currentInteractable.OnLoseFocus();
+                    _currentInteractable = null;
+                }
                 carriedObj.GetComponent<Rigidbody>().isKinematic = false;
                 carriedObj.GetComponent<Collider>().isTrigger = false;
                 Debug.Log("1Nothing");
