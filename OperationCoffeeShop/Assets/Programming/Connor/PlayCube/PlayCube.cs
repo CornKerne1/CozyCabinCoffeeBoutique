@@ -36,8 +36,9 @@ public class PlayCube : MachineInteraction
 
 
     
-    void Start()
+    private void Start()
     {
+        base.Start();
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
 
     }

@@ -18,6 +18,7 @@ public class FridgeInteractable : Interactable
 
     void Start()
     {
+        base.Start();
         _animator = GetComponent<Animator>();
     }
 

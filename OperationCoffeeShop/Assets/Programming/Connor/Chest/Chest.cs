@@ -12,18 +12,8 @@ public class Chest : Interactable
         base.Start();
         _animator = GetComponent<Animator>();
     }
-    public override void OnFocus()
-    {
-    }
-
     public override void OnInteract(PlayerInteraction pI)
     {
         _animator.SetTrigger(OpenClose);
     }
-
-    public override void OnLoseFocus()
-    {
-    }
-
-
 }
