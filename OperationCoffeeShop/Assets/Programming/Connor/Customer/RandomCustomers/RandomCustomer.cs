@@ -14,14 +14,13 @@ public class RandomCustomer : Customer
 
     public void Awake()
     {
-        //Instanciate Random Customer from CustomerSet
-        var customer = Instantiate(customerSet.Customers[UnityEngine.Random.Range(0, customerSet.Customers.Count)],
-            gameObject.transform, true) as GameObject;
+        var customer = Instantiate(customerSet.Customers[UnityEngine.Random.Range(0, customerSet.Customers.Count)]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
+        customer.transform.parent = gameObject.transform; // do not refactor
         customer.transform.localPosition = position;
         customer.transform.localScale = scale;
-        
+
         _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
         var favoriteDrink = GetRandomDrink();
 
@@ -31,7 +30,7 @@ public class RandomCustomer : Customer
 
         var flavorProfile = new FlavorProfile();
 
-        foreach (var 
+        foreach (var
                      i in favoriteDrink.Ingredients)
         {
             if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient].flavor))
@@ -63,7 +62,7 @@ public class RandomCustomer : Customer
 
         customerDrink.name = drink.name;
         customerDrink.Ingredients = drink.Ingredients;
-        
+
         customerDrink.price = favoriteDrink.price; // need to add random ingredients to price
         //Adds a little RNG to the drink orders
         //IngredientNode addOn = GetRandomAddOn();
