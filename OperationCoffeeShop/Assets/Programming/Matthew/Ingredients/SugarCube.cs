@@ -6,8 +6,9 @@ using Random = UnityEngine.Random;
 
 public class SugarCube : MonoBehaviour
 {
-    public IngredientNode iN;
+    [SerializeField]private IngredientNode iN;
     [SerializeField] private GameObject sugarCube;
+    private IEnumerator CO_Ref;
     
 
     private void OnTriggerEnter(Collider other)
@@ -18,14 +19,17 @@ public class SugarCube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (CO_Ref != null) return;
+        CO_Ref = MakePickUpable();
         StartCoroutine(MakePickUpable());
     }
 
     public IEnumerator MakePickUpable()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
         Instantiate(sugarCube, transform.position, transform.rotation);
         Destroy(transform.gameObject);
+        CO_Ref = null;
     }
     
     private void TryAddOrDelete(GameObject obj)

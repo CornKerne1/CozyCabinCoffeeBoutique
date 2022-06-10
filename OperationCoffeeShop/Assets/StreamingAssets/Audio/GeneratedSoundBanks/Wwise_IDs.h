@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAY_FRIDGEOPEN = 2104121909U;
         static const AkUniqueID PLAY_GRINDINGCOFFEE = 2302029328U;
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
+        static const AkUniqueID PLAY_INTERACTSOUND = 1147514445U;
         static const AkUniqueID PLAY_LOOPPOUR = 416139438U;
         static const AkUniqueID PLAY_MACHINEBUZZING = 2859911570U;
         static const AkUniqueID PLAY_MENUCLICK = 2576276897U;

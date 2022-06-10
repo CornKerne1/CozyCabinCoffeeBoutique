@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="4017236234">
+		<SoundBank Id="3161908922" Language="SFX" Hash="741069814">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -98,6 +98,14 @@
 						<File Id="759491673" Language="SFX">
 							<ShortName>Grinding_Espresso.wav</ShortName>
 							<Path>SFX\Grinding_Espresso_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1147514445" Name="Play_InteractSound" ObjectPath="\Events\Default Work Unit\Play_InteractSound" DurationType="OneShot" DurationMin="0.072554" DurationMax="0.153736">
+					<IncludedMemoryFiles>
+						<File Id="1042882764" Language="SFX">
+							<ShortName>InteractSound.wav</ShortName>
+							<Path>SFX\InteractSound_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -323,6 +331,10 @@
 				<File Id="903791736" Language="SFX">
 					<ShortName>Breaking_Loose_LoFi.wav</ShortName>
 					<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1042882764" Language="SFX">
+					<ShortName>InteractSound.wav</ShortName>
+					<Path>SFX\InteractSound_10C4C929.wem</Path>
 				</File>
 				<File Id="1052987244" Language="SFX">
 					<ShortName>MenuClick.wav</ShortName>
