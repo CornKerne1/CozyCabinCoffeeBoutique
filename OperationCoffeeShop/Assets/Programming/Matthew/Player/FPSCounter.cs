@@ -7,7 +7,7 @@ using UnityEngine;
 public class FPSCounter : MonoBehaviour
 {
     [SerializeField]private Text fpsCounter;
-    private void FixedUpdate()
+    private void Update()
     {
         var fps = (int)(1f / Time.unscaledDeltaTime);
         fpsCounter.text = fps + "FRAMES";
