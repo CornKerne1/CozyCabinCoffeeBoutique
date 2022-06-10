@@ -7,23 +7,22 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] public PlayerData pD;
     [SerializeField] private PlayerInput pI;
-
-    public GameObject carriedObj;
-    [SerializeField] public VolumeProfile profile;
-    [SerializeField] private DepthOfField dof;
+    
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable _currentInteractable;
     bool _rotate;
     private float _carryDistance;
-    
-    private bool _blur;
+    public GameObject carriedObj;
 
+    [SerializeField] public VolumeProfile profile;
+    [SerializeField] private DepthOfField dof;
     private Camera _cam;
     private MinFloatParameter _dofDistanceParameter;
     private ClampedFloatParameter _dofAperture;
     private ClampedFloatParameter _startAperture;
     
+    private bool _blur;
     private void Awake()
     {
         pI = gameObject.GetComponent<PlayerInput>(); pD = pI.pD; _cam = GetComponentInChildren<Camera>();
@@ -141,7 +140,7 @@ public class PlayerInteraction : MonoBehaviour
                 DropCurrentObj();
                 AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
             }
-            else if (pD.canInteract && _currentInteractable != null && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out var hit, pD.interactDistance, interactionLayer))
+            else if (pD.canInteract && _currentInteractable && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), pD.interactDistance, interactionLayer))
             {
                 AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
                 _currentInteractable.OnInteract(this);
@@ -163,12 +162,10 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Alt(object sender, EventArgs e)
     {
-        if (carriedObj)
+        if (!carriedObj) return;
+        if (_currentInteractable)
         {
-            if (_currentInteractable)
-            {
-                _currentInteractable.OnAltInteract(this);
-            }
+            _currentInteractable.OnAltInteract(this);
         }
     }
     private void RemoveCurrentInteractable()
