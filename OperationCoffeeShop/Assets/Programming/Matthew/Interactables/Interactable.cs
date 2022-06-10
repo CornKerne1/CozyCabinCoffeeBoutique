@@ -44,6 +44,7 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnLoseFocus()
     {
+        if (!outline) return;
         var color = outlineColor;
         color.a = 0;
         outline.OutlineColor = color;

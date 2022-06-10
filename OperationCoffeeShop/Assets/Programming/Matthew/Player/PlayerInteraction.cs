@@ -44,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.RotateEvent += TryRotate;
         PlayerInput.RotateCanceledEvent += CancelRotate;
         PlayerInput.MoveObjEvent += MoveObj;
-        PlayerInput.Alt_InteractEvent += Alt;
+        PlayerInput.AltInteractEvent += Alt;
     }
     private void InitializeDof()
     {
@@ -59,32 +59,29 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void RaycastCheck()
     {
-        if (!pD.busyHands && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000))
+        if (pD.busyHands && !_currentInteractable)
         {
-            _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
-            if (hit.distance <= pD.interactDistance)
+            _currentInteractable = carriedObj.GetComponent<Interactable>(); 
+            return;
+        }
+        if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return;
+        _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
+        if (hit.distance <= pD.interactDistance)
+        {
+            if (hit.collider.gameObject.layer == 3 && (!_currentInteractable ||
+                                                       hit.collider.gameObject.GetInstanceID() !=
+                                                       _currentInteractable.GetInstanceID()))
             {
-                if (hit.collider.gameObject.layer == 3 && (!_currentInteractable|| hit.collider.gameObject.GetInstanceID() != _currentInteractable.GetInstanceID()))
-                {
-                    RemoveCurrentInteractable();
-                    hit.collider.TryGetComponent(out _currentInteractable);
-                    if (_currentInteractable)
-                        _currentInteractable.OnFocus();
-                }
-                else if (_currentInteractable)
-                    RemoveCurrentInteractable();
-
+                RemoveCurrentInteractable();
+                hit.collider.TryGetComponent(out _currentInteractable);
+                if (_currentInteractable)
+                    _currentInteractable.OnFocus();
             }
             else if (_currentInteractable)
                 RemoveCurrentInteractable();
 
         }
         else if (_currentInteractable)
-        {
-            _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, 5, 1);
-            RemoveCurrentInteractable();
-        }
-        else
             RemoveCurrentInteractable();
     }
     private void HandleCarrying()
@@ -180,11 +177,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (ingredientContainer.IsPouring() || ingredientContainer.rotating ||
                 ingredientContainer.pouringRotation) return;
-            if (_currentInteractable)
-            {
-                _currentInteractable.OnLoseFocus();
-                _currentInteractable = null;
-            }
+            RemoveCurrentInteractable();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
             ingredientContainer.inHand = false;
@@ -217,10 +210,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
-        _currentInteractable.OnLoseFocus();
-        _currentInteractable = null;
         carriedObj = obj;
-        _currentInteractable = carriedObj.GetComponent<Interactable>();
         pD.busyHands = true;
         _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
     }

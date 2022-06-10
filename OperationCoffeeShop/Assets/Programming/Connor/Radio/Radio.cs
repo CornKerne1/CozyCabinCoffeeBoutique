@@ -26,13 +26,13 @@ public class Radio : Interactable
                     rC.channel = RadioChannels.Count;
         }
             
-            foreach (RadioChannel rC in RadioChannels)
-            {
-                rC.StartChannel();
-            }
-            currentChannel = Random.Range(0, RadioChannels.Count);
-            RadioChannels[currentChannel].PlayChannel();
-            HandleDial();
+        foreach (var rC in RadioChannels)
+        {
+            rC.StartChannel();
+        }
+        currentChannel = Random.Range(0, RadioChannels.Count);
+        RadioChannels[currentChannel].PlayChannel();
+        HandleDial();
     }
 
     private void Update()
@@ -41,10 +41,12 @@ public class Radio : Interactable
 
     public void HandleDial()
     {
-        var length = Mathf.Abs(sT.position.x) - Mathf.Abs(eT.position.x);
+        var position = sT.localPosition;
+        var length = Mathf.Abs(position.x) - Mathf.Abs(eT.localPosition.x);
         var inc = -length * (1.0f / RadioChannels.Count) * currentChannel;
-        radioDial.transform.position = new Vector3(sT.position.x - inc, radioDial.transform.position.y,
-            radioDial.transform.position.z);
+        var localPosition = radioDial.transform.localPosition;
+        radioDial.transform.localPosition = new Vector3(position.x - inc, localPosition.y,
+            localPosition.z);
     }
     public override void OnFocus()
     {
@@ -61,22 +63,14 @@ public class Radio : Interactable
     {
         currentChannel = currentChannel + 1;
         if (currentChannel > RadioChannels.Count ||currentChannel < 0)
-        {
             currentChannel = 0;
-        }
-
-        foreach (RadioChannel rC in RadioChannels)
+        foreach (var rC in RadioChannels)
         {
             if (rC.channel == currentChannel)
-            {
                 rC.PlayChannel();
-            }
             else
-            {
                 rC.StopChannel();
-            }
         }
-
         HandleDial();
     }
     
