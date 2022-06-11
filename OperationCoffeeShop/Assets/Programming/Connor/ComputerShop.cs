@@ -11,7 +11,7 @@ public class ComputerShop : MonoBehaviour
     PlayerCameraController pcc;
 
     GameMode gM;
-    public CoffeeBankTM cBTM;
+    public CoffeeBankTM coffeeBankTM;
 
     public TextMeshProUGUI balance;
     public string balanceString;
@@ -46,11 +46,11 @@ public class ComputerShop : MonoBehaviour
         orders = new Queue<string>();
 
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        cBTM = gM.gameObject.GetComponent<CoffeeBankTM>();
+        coffeeBankTM = gM.gameObject.GetComponent<CoffeeBankTM>();
         CoffeeBankTM.SuccessfulWithdrawl += EnsureWithdrawl;//
         pcc = gM.player.gameObject.GetComponent<PlayerCameraController>();
         pm = gM.player.gameObject.GetComponent<PlayerMovement>();
-        balance.text = balanceString + cBTM.moneyInBank;
+        balance.text = balanceString + coffeeBankTM.moneyInBank;
         bankUpdate.text = "";
     }
 
@@ -96,7 +96,7 @@ public class ComputerShop : MonoBehaviour
         {
             if ((bool)sender)
             {
-                balance.text = balanceString + cBTM.moneyInBank;
+                balance.text = balanceString + coffeeBankTM.moneyInBank;
                 bankUpdate.color = Color.green;
                 string ingredient = orders.Dequeue();
                 bankUpdate.text = bankSuccessString + ingredient;

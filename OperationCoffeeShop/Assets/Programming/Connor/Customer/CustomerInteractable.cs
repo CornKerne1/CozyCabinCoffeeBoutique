@@ -12,8 +12,6 @@ public class CustomerInteractable : Interactable
 
     public CustomerAI CAI;
 
-    public Conversation conversation;
-
     private GameObject prompt;
 
 

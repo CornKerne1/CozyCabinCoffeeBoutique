@@ -14,7 +14,7 @@ public class RandomCustomer : Customer
 
     public void Awake()
     {
-        var customer = Instantiate(customerSet.Customers[UnityEngine.Random.Range(0, customerSet.Customers.Count)]);
+        var customer = Instantiate(customerSet.Customers[Random.Range(0, customerSet.Customers.Count)]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
         customer.transform.parent = gameObject.transform; // do not refactor

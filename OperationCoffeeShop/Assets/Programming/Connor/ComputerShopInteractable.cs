@@ -7,24 +7,24 @@ public class ComputerShopInteractable : Interactable
 {
 
     public Canvas shopUI;
-    ComputerShop cS;
-    PlayerMovement pm;
-    PlayerCameraController pcc;
+    private ComputerShop _computerShop;
+    private PlayerMovement _playerMovement;
+    private PlayerCameraController _playerCameraController;
 
-    private void Start()
+    public override void Start()
     {
         base.Start();
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        cS = shopUI.gameObject.GetComponent<ComputerShop>();
+        _computerShop = shopUI.gameObject.GetComponent<ComputerShop>();
         
-        pcc = gM.player.gameObject.GetComponent<PlayerCameraController>();
-        pm = gM.player.gameObject.GetComponent<PlayerMovement>();
+        _playerCameraController = gM.player.gameObject.GetComponent<PlayerCameraController>();
+        _playerMovement = gM.player.gameObject.GetComponent<PlayerMovement>();
     }
 
     public override void OnInteract(PlayerInteraction pI)
     {
 
-        cS.balance.text = cS.balanceString + cS.cBTM.moneyInBank;
+        _computerShop.balance.text = _computerShop.balanceString + _computerShop.coffeeBankTM.moneyInBank;
         shopUI.enabled = true;
         gM.pD.canMove = false;
         gM.pD.canMove = false;
