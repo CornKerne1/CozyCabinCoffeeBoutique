@@ -39,6 +39,7 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnFocus()
     {
+        if (!outline) return;
         outline.OutlineColor = outlineColor;
     }
 

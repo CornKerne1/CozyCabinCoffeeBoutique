@@ -90,6 +90,7 @@ public class PlayerInteraction : MonoBehaviour
     private void HandleCarrying()
     {
         if (!pD.busyHands || !carriedObj) return;
+        _currentInteractable.OnFocus();
         var camTrans = _cam.transform;
         carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * pD.smooth);
     }
@@ -211,6 +212,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             DropCurrentObj();
         }
+        RemoveCurrentInteractable();
+        obj.TryGetComponent(out _currentInteractable);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
         carriedObj = obj;

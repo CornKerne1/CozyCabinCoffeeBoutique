@@ -58,6 +58,7 @@ public class Dispenser : Interactable
                 ingCon.inHand = true;
             }
             pI.Carry(obj.gameObject);
+            
         }
     }
 
