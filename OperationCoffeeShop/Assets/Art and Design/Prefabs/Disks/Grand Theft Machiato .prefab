@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6292608402211959761}
   - component: {fileID: 6988475658770087028}
   - component: {fileID: 5123120399477147838}
+  - component: {fileID: 7964310576821794363}
   - component: {fileID: 1473163104926270414}
-  - component: {fileID: 1473163104926270401}
   - component: {fileID: 1473163104926270415}
   m_Layer: 0
   m_Name: 'Grand Theft Machiato '
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6636061387116980587}
-  m_LocalRotation: {x: 0.009967093, y: -0.6014596, z: -0.0004150935, w: 0.798841}
-  m_LocalPosition: {x: 0.5265, y: -4.7906003, z: -10.7067}
-  m_LocalScale: {x: 7.465712, y: 11.970523, z: 7.465712}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.3486, y: -4.7771, z: -10.6948}
+  m_LocalScale: {x: 7.4, y: 7.4, z: 7.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.884, y: -73.959, z: -0.725}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6988475658770087028
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6636061387116980587}
-  m_Mesh: {fileID: 6038096159186469364, guid: 98b885ad9bb65de40b2e48da04412d64, type: 3}
+  m_Mesh: {fileID: 7304764130515397781, guid: 83f4a2c7dabe4634baf52bbbda48d6e4, type: 3}
 --- !u!23 &5123120399477147838
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,6 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: f1b93a9fbfab1844db9c9b4ae1c52c34, type: 2}
   - {fileID: 2100000, guid: 209a8f3f1fdb7df47826193a76ade387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7964310576821794363
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636061387116980587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7304764130515397781, guid: 83f4a2c7dabe4634baf52bbbda48d6e4, type: 3}
 --- !u!54 &1473163104926270414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,20 +114,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!65 &1473163104926270401
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6636061387116980587}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01828384, y: 0.0001, z: 0.01828384}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_CollisionDetection: 0
 --- !u!114 &1473163104926270415
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -59,34 +59,38 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void RaycastCheck()
     {
-        if (pD.busyHands && !_currentInteractable)
+        if (pD.busyHands)
         {
-            _currentInteractable = carriedObj.GetComponent<Interactable>(); 
-            return;
+            if(!_currentInteractable)
+                _currentInteractable = carriedObj.GetComponent<Interactable>();
         }
-        if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return;
-        _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
-        if (hit.distance <= pD.interactDistance)
+        else
         {
-            if (hit.collider.gameObject.layer == 3 && (!_currentInteractable ||
-                                                       hit.collider.gameObject.GetInstanceID() !=
-                                                       _currentInteractable.GetInstanceID()))
+            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return;//
+            _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
+            if (hit.distance <= pD.interactDistance)
             {
-                RemoveCurrentInteractable();
-                hit.collider.TryGetComponent(out _currentInteractable);
-                if (_currentInteractable)
-                    _currentInteractable.OnFocus();
+                if (hit.collider.gameObject.layer == 3 && (!_currentInteractable ||
+                                                           hit.collider.gameObject.GetInstanceID() !=
+                                                           _currentInteractable.GetInstanceID()))
+                {
+                    RemoveCurrentInteractable();
+                    hit.collider.TryGetComponent(out _currentInteractable);
+                    if (_currentInteractable)
+                        _currentInteractable.OnFocus();
+                }
+                else if (_currentInteractable)
+                    RemoveCurrentInteractable();
+
             }
             else if (_currentInteractable)
                 RemoveCurrentInteractable();
-
         }
-        else if (_currentInteractable)
-            RemoveCurrentInteractable();
     }
     private void HandleCarrying()
     {
         if (!pD.busyHands || !carriedObj) return;
+        _currentInteractable.OnFocus();
         var camTrans = _cam.transform;
         carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * pD.smooth);
     }
@@ -208,6 +212,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             DropCurrentObj();
         }
+        RemoveCurrentInteractable();
+        obj.TryGetComponent(out _currentInteractable);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
         carriedObj = obj;

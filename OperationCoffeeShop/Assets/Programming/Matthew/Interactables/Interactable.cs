@@ -7,8 +7,8 @@ public abstract class Interactable : MonoBehaviour
     public GameMode gM;
     public Vector3 rotateOffset;
 
-    private Outline _outline;
-    private Color _outlineColor;
+    protected Outline outline;
+    protected Color outlineColor;
 
     public virtual void Awake()
     {
@@ -18,9 +18,9 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        _outline = gameObject.AddComponent<Outline>();
-            _outline.OutlineMode = Outline.Mode.OutlineVisible;
-            _outline.OutlineWidth = 10;
+        outline = gameObject.AddComponent<Outline>();
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+            outline.OutlineWidth = 10;
             var sunsetYellow = new Color()
             {
                 r = 1f,
@@ -28,10 +28,10 @@ public abstract class Interactable : MonoBehaviour
                 b = .1333f,
                 a = 1f,
             };
-            _outlineColor = sunsetYellow;
-            var color = _outlineColor;
+            outlineColor = sunsetYellow;
+            var color = outlineColor;
             color.a = 0;
-            _outline.OutlineColor = color;
+            outline.OutlineColor = color;
 
     }
 
@@ -39,15 +39,16 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnFocus()
     {
-        _outline.OutlineColor = _outlineColor;
+        if (!outline) return;
+        outline.OutlineColor = outlineColor;
     }
 
     public virtual void OnLoseFocus()
     {
-        if (!_outline) return;
-        var color = _outlineColor;
+        if (!outline) return;
+        var color = outlineColor;
         color.a = 0;
-        _outline.OutlineColor = color;
+        outline.OutlineColor = color;
     }
 
     public virtual void OnAltInteract(PlayerInteraction pI)

@@ -6,7 +6,6 @@ using UnityEngine;
 public class HeadBobController : MonoBehaviour
 {
     [SerializeField] private PlayerData pD;
-    [SerializeField] private bool enable = true;
     [SerializeField] private Transform cam;
     [SerializeField] private Transform holder;
     private Vector3 _startPos;

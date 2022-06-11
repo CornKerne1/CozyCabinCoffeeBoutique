@@ -25,7 +25,6 @@ public class Radio : Interactable
                     RadioChannels.Add(rC);
                     rC.channel = RadioChannels.Count;
         }
-            
         foreach (var rC in RadioChannels)
         {
             rC.StartChannel();
@@ -34,11 +33,6 @@ public class Radio : Interactable
         RadioChannels[currentChannel].PlayChannel();
         HandleDial();
     }
-
-    private void Update()
-    {
-    }
-
     public void HandleDial()
     {
         var position = sT.localPosition;
@@ -48,17 +42,11 @@ public class Radio : Interactable
         radioDial.transform.localPosition = new Vector3(position.x - inc, localPosition.y,
             localPosition.z);
     }
-    public override void OnFocus()
-    {
-        
-    }
-
     public override void OnInteract(PlayerInteraction pI)
     {
         this.pI = pI;
         pI.Carry(gameObject);
     }
-
     public override void OnAltInteract(PlayerInteraction pI)
     {
         currentChannel = currentChannel + 1;
@@ -72,9 +60,5 @@ public class Radio : Interactable
                 rC.StopChannel();
         }
         HandleDial();
-    }
-    
-    public override void OnLoseFocus()
-    {
     }
 }
