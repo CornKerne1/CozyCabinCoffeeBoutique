@@ -8,7 +8,7 @@ public class SugarCube : MonoBehaviour
 {
     [SerializeField]private IngredientNode iN;
     [SerializeField] private GameObject sugarCube;
-    private IEnumerator CO_Ref;
+    private IEnumerator _coRef;
     
 
     private void OnTriggerEnter(Collider other)
@@ -19,17 +19,18 @@ public class SugarCube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (CO_Ref != null) return;
-        CO_Ref = MakePickUpable();
-        StartCoroutine(MakePickUpable());
+        if (_coRef != null) return;
+        _coRef = MakePickUp();
+        StartCoroutine(MakePickUp());
     }
 
-    public IEnumerator MakePickUpable()
+    private IEnumerator MakePickUp()
     {
         yield return new WaitForSeconds(0.2f);
-        Instantiate(sugarCube, transform.position, transform.rotation);
+        var currentTrans = transform;
+        Instantiate(sugarCube, currentTrans.position, currentTrans.rotation);
         Destroy(transform.gameObject);
-        CO_Ref = null;
+        _coRef = null;
     }
     
     private void TryAddOrDelete(GameObject obj)
