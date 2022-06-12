@@ -16,6 +16,7 @@ public class DayNightCycle
 
     private TimeSpan sunriseTime;
     private TimeSpan sunsetTime;
+    private float startTimeRate;
 
     //Constructor!
     public DayNightCycle(DayNightCycle dNC, GameMode gM, GameModeData gMD)
@@ -31,14 +32,20 @@ public class DayNightCycle
     {
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
+        startTimeRate = gMD.timeRate;
     }
 
     //Handles store open timer.
     public void StartTimer()
     {
         //Debug.Log(gMD.currentTime.ToString("HH:mm"));
-        if (gMD.isOpen)
+        if (gMD.currentTime.Hour >= 6 && gMD.currentTime.TimeOfDay.Hours <= gMD.closingHour)
         {
+            if (!gMD.isOpen)
+            {
+                gM.OpenShop();
+            }
+            gMD.timeRate = startTimeRate * 3;
             //Subtracts the amount that passes from the variable.
             TrackTime();
 
@@ -49,6 +56,15 @@ public class DayNightCycle
                 gM.CloseShop();
             }
         }
+        else if(gMD.currentTime.Hour != 0)
+        {
+            gMD.timeRate = startTimeRate;
+            TrackTime();
+        }
+        else
+        {
+            
+        }
     }
     
     public void SleepTimer()
@@ -56,10 +72,10 @@ public class DayNightCycle
         if (gMD.sleeping)
         {
             TrackTime();
-            if (gMD.currentTime.Hour == 6 && gMD.currentTime.Day == gMD.sleepDay)
+            if (gMD.currentTime.Hour == 5 && gMD.currentTime.Day == gMD.sleepDay)
             {
-                Debug.Log("Something");
                 gMD.sleeping = false;
+                gMD.timeRate = startTimeRate;
             }
         }
     }
