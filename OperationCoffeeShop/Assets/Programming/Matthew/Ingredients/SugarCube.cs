@@ -26,9 +26,7 @@ public class SugarCube : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         var currentTrans = transform;
-        Instantiate(sugarCube, currentTrans.position, currentTrans.rotation).GetComponent<Rigidbody>().isKinematic =
-            false;
-
+        Instantiate(sugarCube, currentTrans.position, currentTrans.rotation);
         Destroy(transform.gameObject);
         _coRef = null;
     }
