@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="741069814">
+		<SoundBank Id="3161908922" Language="SFX" Hash="3983709494">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -101,8 +101,12 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1147514445" Name="Play_InteractSound" ObjectPath="\Events\Default Work Unit\Play_InteractSound" DurationType="OneShot" DurationMin="0.072554" DurationMax="0.153736">
+				<Event Id="1147514445" Name="Play_InteractSound" ObjectPath="\Events\Default Work Unit\Play_InteractSound" DurationType="OneShot" DurationMin="0.108707" DurationMax="0.108707">
 					<IncludedMemoryFiles>
+						<File Id="405386485" Language="SFX">
+							<ShortName>Smack.wav</ShortName>
+							<Path>SFX\Smack_10C4C929.wem</Path>
+						</File>
 						<File Id="1042882764" Language="SFX">
 							<ShortName>InteractSound.wav</ShortName>
 							<Path>SFX\InteractSound_10C4C929.wem</Path>
@@ -283,6 +287,10 @@
 				<File Id="386335204" Language="SFX">
 					<ShortName>ChillWurlyPiano.wav</ShortName>
 					<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
+				</File>
+				<File Id="405386485" Language="SFX">
+					<ShortName>Smack.wav</ShortName>
+					<Path>SFX\Smack_10C4C929.wem</Path>
 				</File>
 				<File Id="538996245" Language="SFX">
 					<ShortName>BossaNovaAttempt.wav</ShortName>

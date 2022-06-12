@@ -8,7 +8,7 @@ public class Chest : Interactable
     public override void Start()
     {
         base.Start();
-        _animator = GetComponent<Animator>();
+        _animator = transform.root.GetComponentInChildren<Animator>();
     }
     public override void OnInteract(PlayerInteraction pI)
     {
