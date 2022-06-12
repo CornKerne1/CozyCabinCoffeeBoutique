@@ -106,6 +106,29 @@
 								<ActiveSource Name="InteractSound" ID="{A94B88F3-009D-42C2-B57A-282FE9B59ED9}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Smack" ID="{DE784C33-5ED4-43A5-BF8E-9E309ED41ED3}" ShortID="612226921">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Smack" ID="{F7C3F413-59E6-4ABD-8F4F-AB01C7B5741E}">
+									<Language>SFX</Language>
+									<AudioFile>Smack.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="405386485"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Smack" ID="{F7C3F413-59E6-4ABD-8F4F-AB01C7B5741E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
