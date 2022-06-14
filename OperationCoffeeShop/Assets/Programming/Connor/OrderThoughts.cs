@@ -44,7 +44,7 @@ public class OrderThoughts : MonoBehaviour
     {
         yield return new WaitForSeconds(.4f);
         drink = customer.GetDrinkOrder();
-        ingredients = drink.Ingredients;
+        ingredients = drink.ingredients;
         var i = 1;
         foreach (var ingredientNode in ingredients)
         {

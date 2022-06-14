@@ -47,7 +47,7 @@ public class RandomCustomer : Customer
         var flavorProfile = new FlavorProfile();
 
         foreach (var
-                     i in favoriteDrink.Ingredients)
+                     i in favoriteDrink.ingredients)
         {
             if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient].flavor))
             {
@@ -75,8 +75,8 @@ public class RandomCustomer : Customer
 
     private void SetUpAndModifyDrinkData(DrinkData customerDrink, DrinkData favoriteDrink)
     {
-        customerDrink.name = favoriteDrink.name;
-        customerDrink.Ingredients = favoriteDrink.Ingredients;
+        ((Object)customerDrink).name = ((Object)favoriteDrink).name;
+        customerDrink.ingredients = favoriteDrink.ingredients;
 
         customerDrink.price = favoriteDrink.price; // need to add random ingredients to price
         //Adds a little RNG to the drink orders

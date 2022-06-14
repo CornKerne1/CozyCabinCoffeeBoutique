@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class IngredientContainer : Interactable
@@ -96,8 +94,8 @@ public class IngredientContainer : Interactable
     {
         base.Start();
         gameObject.tag = "PickUp";
-        dD.Ingredients = new List<IngredientNode>();
-        dD.Name = "Cup";
+        dD.ingredients = new List<IngredientNode>();
+        dD.name = "Cup";
     }
 
     public virtual void AddToContainer(IngredientNode iN)
@@ -108,7 +106,7 @@ public class IngredientContainer : Interactable
         }
         else
         {
-            dD.addIngredient(iN);
+            dD.AddIngredient(iN);
             capacity = capacity + iN.target;
             if (hasContentsVisualizer)
             {
@@ -139,7 +137,7 @@ public class IngredientContainer : Interactable
 
     public virtual void RemoveIngredient()
     {
-        foreach (IngredientNode i in dD.Ingredients)
+        foreach (IngredientNode i in dD.ingredients)
         {
             var c = i.target - 0.1f;
             i.target = c;
@@ -153,7 +151,7 @@ public class IngredientContainer : Interactable
 
         foreach (IngredientNode i in garbageList)
         {
-            dD.Ingredients.Remove(i);
+            dD.ingredients.Remove(i);
         }
 
         garbageList = new List<IngredientNode>();
