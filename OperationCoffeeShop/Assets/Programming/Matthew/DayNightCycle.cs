@@ -45,25 +45,17 @@ public class DayNightCycle
             {
                 gM.OpenShop();
             }
-            gMD.timeRate = startTimeRate * 3;
-            //Subtracts the amount that passes from the variable.
             TrackTime();
 
             bool pastClosing = gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour;
             
             if (gMD.isOpen && pastClosing)
-            {
                 gM.CloseShop();
-            }
         }
         else if(gMD.currentTime.Hour != 0)
         {
             gMD.timeRate = startTimeRate;
             TrackTime();
-        }
-        else
-        {
-            
         }
     }
     
