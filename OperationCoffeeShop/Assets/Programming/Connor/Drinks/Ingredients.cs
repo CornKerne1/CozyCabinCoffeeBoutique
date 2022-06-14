@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,27 +23,25 @@ public enum Strength
 
 public class FlavorProfile
 {
-    public Dictionary<Ingredients, FlavorNode> flavorProfile;
+    public readonly Dictionary<Ingredients, FlavorNode> flavorProfile;
 
 
     public FlavorProfile()
     {
-        flavorProfile = new Dictionary<Ingredients, FlavorNode>();
-        flavorProfile.Add(Ingredients.Milk, new FlavorNode(Flavors.Sweet, Strength.Light));
-        flavorProfile.Add(Ingredients.SteamedMilk, new FlavorNode(Flavors.Sweet, Strength.Light));
-        flavorProfile.Add(Ingredients.FoamedMilk, new FlavorNode(Flavors.Sweet, Strength.Light));
-        flavorProfile.Add(Ingredients.Sugar, new FlavorNode(Flavors.Sweet, Strength.Medium));
-        flavorProfile.Add(Ingredients.WhippedCream, new FlavorNode(Flavors.Sweet, Strength.Light));
-
-        flavorProfile.Add(Ingredients.Espresso, new FlavorNode(Flavors.Bitter, Strength.Strong));
-        flavorProfile.Add(Ingredients.GroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
-        flavorProfile.Add(Ingredients.UngroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
-        flavorProfile.Add(Ingredients.BrewedCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium));
-
-        flavorProfile.Add(Ingredients.Salt, new FlavorNode(Flavors.Salty, Strength.Medium));
-
-        flavorProfile.Add(Ingredients.TeaBag, new FlavorNode(Flavors.Herby, Strength.Strong));
-
+        flavorProfile = new Dictionary<Ingredients, FlavorNode>
+        {
+            { Ingredients.Milk, new FlavorNode(Flavors.Sweet, Strength.Light) },
+            { Ingredients.SteamedMilk, new FlavorNode(Flavors.Sweet, Strength.Light) },
+            { Ingredients.FoamedMilk, new FlavorNode(Flavors.Sweet, Strength.Light) },
+            { Ingredients.Sugar, new FlavorNode(Flavors.Sweet, Strength.Medium) },
+            { Ingredients.WhippedCream, new FlavorNode(Flavors.Sweet, Strength.Light) },
+            { Ingredients.Espresso, new FlavorNode(Flavors.Bitter, Strength.Strong) },
+            { Ingredients.GroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium) },
+            { Ingredients.UngroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium) },
+            { Ingredients.BrewedCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium) },
+            { Ingredients.Salt, new FlavorNode(Flavors.Salty, Strength.Medium) },
+            { Ingredients.TeaBag, new FlavorNode(Flavors.Herby, Strength.Strong) }
+        };
     }
     [System.Serializable]
     public class FlavorNode

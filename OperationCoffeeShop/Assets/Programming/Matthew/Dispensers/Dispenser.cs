@@ -37,22 +37,22 @@ public class Dispenser : Interactable
 
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (pI.pD.busyHands || (!bottomless && quantity <= 0)) return;
+        if (playerInteraction.pD.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
         _obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
         if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
-            physicalIngredient.pI = pI;
+            physicalIngredient.pI = playerInteraction;
         }
         else if (_obj.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
-            ingredientContainer.pI = pI;
+            ingredientContainer.pI = playerInteraction;
             ingredientContainer.inHand = true;
         }
-        pI.Carry(_obj.gameObject);
+        playerInteraction.Carry(_obj.gameObject);
     }
 
     private void UpdateQuantity()

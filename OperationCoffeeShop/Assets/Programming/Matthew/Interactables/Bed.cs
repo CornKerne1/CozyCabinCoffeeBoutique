@@ -105,13 +105,13 @@ public class Bed : Interactable
         _coTimerRef = null;
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         if (gM.gMD.currentTime.Hour != 0 && gM.gMD.currentTime.Hour < gM.gMD.closingHour) return;
         _playerTrans = base.gM.player.transform;
         base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
         base.gM.player.GetComponent<Collider>().enabled = false;
-        pI.pD.canMove = false;
+        playerInteraction.pD.canMove = false;
         if(gM.gMD.currentTime.Hour != 0)
             base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
         else

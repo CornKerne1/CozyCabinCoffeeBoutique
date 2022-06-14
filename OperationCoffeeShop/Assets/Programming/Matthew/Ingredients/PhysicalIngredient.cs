@@ -21,11 +21,11 @@ public class PhysicalIngredient : Interactable
 
 
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         Debug.Log("onInteract");
-        this.pI = pI;
-        pI.Carry(gameObject);
+        this.pI = playerInteraction;
+        playerInteraction.Carry(gameObject);
         inHand = true;
     }
 

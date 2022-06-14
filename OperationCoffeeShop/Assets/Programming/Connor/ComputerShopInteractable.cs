@@ -21,7 +21,7 @@ public class ComputerShopInteractable : Interactable
         _playerMovement = gM.player.gameObject.GetComponent<PlayerMovement>();
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
 
         _computerShop.balance.text = _computerShop.balanceString + _computerShop.coffeeBankTM.moneyInBank;

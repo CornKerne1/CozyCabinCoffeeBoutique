@@ -35,7 +35,7 @@ public abstract class Interactable : MonoBehaviour
 
     }
 
-    public abstract void OnInteract(PlayerInteraction pI);
+    public abstract void OnInteract(PlayerInteraction playerInteraction);
 
     public virtual void OnFocus()
     {
@@ -51,7 +51,7 @@ public abstract class Interactable : MonoBehaviour
         outline.OutlineColor = color;
     }
 
-    public virtual void OnAltInteract(PlayerInteraction pI)
+    public virtual void OnAltInteract(PlayerInteraction playerInteraction)
     {
     }
 

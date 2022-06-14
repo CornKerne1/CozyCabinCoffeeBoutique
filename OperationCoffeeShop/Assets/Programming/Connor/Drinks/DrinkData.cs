@@ -86,8 +86,8 @@ public class DrinkData : ScriptableObject
         }
 
         var average = (sum / numberOfDesiredIngredients) - (numberOfBadIngredients * 0.05f);
-        Debug.Log("Drink Comparison => average:" + average + "... or sum: " + sum );
-        return average;
+        Debug.Log("Drink Comparison => average:" + average + "... or sum: " + sum + " >>> currently using sum");
+        return sum;
     }
 }
 

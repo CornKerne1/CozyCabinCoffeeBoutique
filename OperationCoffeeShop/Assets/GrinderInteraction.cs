@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrinderInteraction : MachineInteraction
 {
     public Animator animator;
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
 
         animator.SetTrigger("Press");
