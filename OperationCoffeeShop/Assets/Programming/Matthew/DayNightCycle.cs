@@ -41,10 +41,10 @@ public class DayNightCycle
         //Debug.Log(gMD.currentTime.ToString("HH:mm"));
         if (gMD.currentTime.Hour >= 6 && gMD.currentTime.TimeOfDay.Hours <= gMD.closingHour)
         {
-            if (!gMD.isOpen)
-            {
-                gM.OpenShop();
-            }
+            //if (!gMD.isOpen)
+            //{
+                //gM.OpenShop();
+            //}
             TrackTime();
 
             bool pastClosing = gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour;
