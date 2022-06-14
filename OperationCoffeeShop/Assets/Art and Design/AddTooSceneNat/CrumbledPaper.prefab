@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8553592402571586080}
   - component: {fileID: 4691534124304655749}
   - component: {fileID: 7421749821743927631}
+  - component: {fileID: 3768668903147253693}
+  - component: {fileID: 6771327818478571550}
   m_Layer: 0
   m_Name: CrumbledPaper
   m_TagString: Untagged
@@ -25,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9079158254557343898}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.550836, y: -9.5812, z: -5.9047065}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.33318165, w: 0.9428627}
+  m_LocalPosition: {x: -0.122, y: -5.468, z: -11.0704}
+  m_LocalScale: {x: 8.0535, y: 8.0535, z: 8.0535}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -38.924}
 --- !u!33 &4691534124304655749
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -59,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 25643df5c0ee21440a374eb1f0f51508, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +83,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3768668903147253693
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079158254557343898}
+  serializedVersion: 2
+  m_Mass: 0.00001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6771327818478571550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079158254557343898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
