@@ -39,7 +39,7 @@ public class SpawnRandomCustomer : MonoBehaviour
         }
 
         if (!gMD.isOpen) return;
-        //MinutesSinceOpening(); // uncommenting this will give the minutes since open, for bug testing only  
+        MinutesSinceOpening(); 
         if (gMD.currentTime.TimeOfDay.Minutes == 30) 
         {
             _oneCustomerAtATime = true;
@@ -58,7 +58,7 @@ public class SpawnRandomCustomer : MonoBehaviour
         _pastMinute = currentMinute;
         _minutes++;
 
-        Debug.Log("minutes since opening: " + _minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ _maxCustomerCount);
+        //Debug.Log("minutes since opening: " + _minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ _maxCustomerCount);// uncommenting this will give the minutes since open, for bug testing only  
     }
 
     private void SpawnCustomer()
