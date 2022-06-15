@@ -10,7 +10,7 @@ public class Chest : Interactable
         base.Start();
         _animator = transform.root.GetComponentInChildren<Animator>();
     }
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         _animator.SetTrigger(OpenClose);
     }

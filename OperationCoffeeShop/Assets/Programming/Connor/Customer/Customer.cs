@@ -40,7 +40,7 @@ public abstract class Customer : MonoBehaviour
     public void OnReceivedDrink()
     {
         var quality =
-            customerData.favoriteDrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
+            DrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
         _particleSystemRenderer.material = quality > .5 ? like : dislike;
         ps.Play();

@@ -22,7 +22,7 @@ public class FridgeInteractable : Interactable
         _animator = GetComponent<Animator>();
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         if (!opening)
         {

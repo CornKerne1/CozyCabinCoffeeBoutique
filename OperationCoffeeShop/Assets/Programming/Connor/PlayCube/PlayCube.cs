@@ -10,7 +10,7 @@ public class PlayCube : MachineInteraction
 
     private bool canOpen = true;
     
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         StartCoroutine(interact());
     }

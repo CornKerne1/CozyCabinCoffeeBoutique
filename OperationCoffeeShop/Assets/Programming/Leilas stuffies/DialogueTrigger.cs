@@ -36,7 +36,7 @@ public class DialogueTrigger : Interactable
         }
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
     }

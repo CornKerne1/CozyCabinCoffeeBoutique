@@ -156,16 +156,16 @@ public class CustomerInteractable : Interactable
 
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         //invokes the dialogue interaction thing
         //DialogDisplay
-        this.pI = pI;
+        this.pI = playerInteraction;
         //Debug.Log("dialogueManager.dialogueIsPlaying: " + dialogueManager.dialogueIsPlaying
             //+ " CAI.stay: "+ CAI.stay + " CAI.hasOrdered: " + CAI.hasOrdered + " canInteract: " + canInteract);
         if (!dialogueManager.dialogueIsPlaying && CAI.stay == true && !CAI.hasOrdered && canInteract)
         {
-            pI.pD.inUI = true;
+            playerInteraction.pD.inUI = true;
             dialogueManager.SetCurrentCustomer(gameObject);
             DialogueManager.GetInstance().EnterDialogueMode(IntroConversation);
             if (rCA != null)
@@ -218,7 +218,7 @@ public class CustomerInteractable : Interactable
 
     }
 
-    public override void OnAltInteract(PlayerInteraction pI)
+    public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
     }
 

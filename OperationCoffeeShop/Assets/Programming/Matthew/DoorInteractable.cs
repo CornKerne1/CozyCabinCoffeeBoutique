@@ -11,7 +11,7 @@ public class DoorInteractable : Interactable
         door = transform.root.GetComponentInChildren<Door>();
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         door.PlayerOpen();
     }
@@ -24,7 +24,7 @@ public class DoorInteractable : Interactable
     {
     }
 
-    public override void OnAltInteract(PlayerInteraction pI)
+    public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
        
     }
