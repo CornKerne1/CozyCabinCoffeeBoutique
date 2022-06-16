@@ -278,6 +278,29 @@
 						<ActiveSource Name="BubblePop" ID="{E8FE17DF-DAD9-489E-AF15-4974E97A4C41}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="MouseClick" ID="{3922CA0B-9FAA-495B-ACB8-B169DFDAA8B8}" ShortID="825460920">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="MouseClick" ID="{404C7DF6-AAF4-44B2-9064-772F82C761D2}">
+							<Language>SFX</Language>
+							<AudioFile>MouseClick.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="658751346"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="MouseClick" ID="{404C7DF6-AAF4-44B2-9064-772F82C761D2}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
