@@ -13,7 +13,7 @@ public class MachineInteraction : Interactable
         machine = transform.root.GetComponentInChildren<Machine>();
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         switch (mD.machineType)
         {

@@ -42,12 +42,12 @@ public class Radio : Interactable
         radioDial.transform.localPosition = new Vector3(position.x - inc, localPosition.y,
             localPosition.z);
     }
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        this.pI = pI;
-        pI.Carry(gameObject);
+        this.pI = playerInteraction;
+        playerInteraction.Carry(gameObject);
     }
-    public override void OnAltInteract(PlayerInteraction pI)
+    public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
         currentChannel = currentChannel + 1;
         if (currentChannel > RadioChannels.Count ||currentChannel < 0)

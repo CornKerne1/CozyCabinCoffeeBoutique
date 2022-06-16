@@ -6,6 +6,6 @@ using UnityEngine;
 public class RandomCustomerSet : ScriptableObject
 {
     [SerializeField]
-    public List<GameObject> Customers = new List<GameObject>();
+    public List<GameObject> customers = new List<GameObject>();
    
 }

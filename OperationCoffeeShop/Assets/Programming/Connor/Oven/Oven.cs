@@ -14,7 +14,7 @@ public class Oven : MachineInteraction
     {
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         StartCoroutine(interact());
     }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnRandomCustomer : MonoBehaviour
@@ -11,82 +10,73 @@ public class SpawnRandomCustomer : MonoBehaviour
 
     public RandomNameSet nameSet;
 
-    public bool spawnCustomer = false;
+    public bool spawnCustomer;
 
-    [SerializeField,Header("60 is once per hour")]
+    [SerializeField, Header("60 is once per hour")]
     public int spawnInterval = 60; //60 is once per hour
 
-    int maxCustomerCount = 0;
-    int minutes;
+    private int _maxCustomerCount;
+    private int _minutes;
+    private int _pastMinute;
 
-    bool oneCustomerAtATime = true;
+    private bool _oneCustomerAtATime = true;
 
-    void Start()
+    private void Start()
     {
         DayNightCycle.TimeChanged += ResetMaxCustomers;
         gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
-        if (maxCustomerCount == 0)
-            maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour)*60)/spawnInterval;
-        minutes = 0;
+        if (_maxCustomerCount == 0)
+            _maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
+        _minutes = 0;
     }
 
-    void Update()
+    private void Update()
     {
-        if (spawnCustomer) //for manually spawning customers. 
+        if (spawnCustomer) 
         {
             spawnCustomer = false;
             SpawnCustomer();
         }
-        if (gMD.isOpen) 
+
+        if (!gMD.isOpen) return;
+        MinutesSinceOpening(); 
+        if (gMD.currentTime.TimeOfDay.Minutes == 30) 
         {
-            minutesSinceOpening();
-            if (gMD.currentTime.TimeOfDay.Minutes == 30) //helps ensure only 1 customer spawns at a time. 
-            {
-                oneCustomerAtATime = true;
-            }
-            if (oneCustomerAtATime && minutes % spawnInterval == 0 && maxCustomerCount-- > 0) // once per interval max of count
-            {
-                oneCustomerAtATime = false;
-                SpawnCustomer();
-            }
+            _oneCustomerAtATime = true;
         }
+
+        if (!_oneCustomerAtATime || _minutes % spawnInterval != 0 || _maxCustomerCount-- <= 0) return;
+        _oneCustomerAtATime = false;
+        SpawnCustomer();
     }
 
-    private int pastMinute = 0;
 
-    private int minutesSinceOpening()
+    private void MinutesSinceOpening()
     {
-        int currentMinute = gMD.currentTime.TimeOfDay.Minutes;
-        if (currentMinute != pastMinute)
-        {
-            pastMinute = currentMinute;
-            minutes++;
-        }
-        //Debug.Log("minutes since opening: " + minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ maxCustomerCount);
-        return minutes;
+        var currentMinute = gMD.currentTime.TimeOfDay.Minutes;
+        if (currentMinute == _pastMinute) return;
+        _pastMinute = currentMinute;
+        _minutes++;
+
+        //Debug.Log("minutes since opening: " + _minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ _maxCustomerCount);// uncommenting this will give the minutes since open, for bug testing only  
     }
 
-    public void SpawnCustomer()
+    private void SpawnCustomer()
     {
-        StartCoroutine(Spawn());
-
+        StartCoroutine(CO_Spawn());
     }
 
-    private IEnumerator Spawn()
+    private IEnumerator CO_Spawn()
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
-        Instantiate(customer, this.transform.position, this.transform.rotation);
-
+        var transform1 = transform;
+        Instantiate(customer, transform1.position, transform1.rotation);
     }
 
-    void ResetMaxCustomers(object sender, EventArgs e)
+    private void ResetMaxCustomers(object sender, EventArgs e)
     {
-        if (!gMD.isOpen && gMD.wakeUpHour == gMD.currentTime.Hour )
-        {
-            maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
-            minutes = 0;
-            Debug.Log("reseting maxCustomerCount to :" + maxCustomerCount);
-        }
+        if (gMD.isOpen || gMD.wakeUpHour != gMD.currentTime.Hour) return;
+        _maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
+        _minutes = 0;
     }
-
 }

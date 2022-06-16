@@ -4,45 +4,46 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
+[RequireComponent(typeof(DayCounter))]
 public class Bed : Interactable
 {
     private PlayerInteraction pI;
 
     [SerializeField] private Transform sleepTrans;
     [SerializeField] private Transform startTrans;
-    private Transform playerTrans;
+    private Transform _playerTrans;
     
     public float transportTime = 3f;
 
-    private bool running;
+    private bool _running;
 
-    private IEnumerator TimerRef;
+    private IEnumerator _coTimerRef;
 
-    private bool inBed;
+    private bool _inBed;
 
-    public GameObject DayCounter;
-    GameObject currentDC;
-    DayCounter dC;
+    [FormerlySerializedAs("DayCounter")] public GameObject dayCounter;
+    private GameObject _currentDc;
+    private DayCounter _dC;
     public override void Start()
     {
         base.Start();
-        currentDC = Instantiate(DayCounter);
-        dC = currentDC.GetComponent<DayCounter>();
-        dC.DisplayDay(gM.gMD.currentTime.Day);
+        _currentDc = Instantiate(dayCounter);
+        _dC = _currentDc.GetComponent<DayCounter>();
+        _dC.DisplayDay(gM.gMD.currentTime.Day);
         StartCoroutine(CO_RemoveDisplayDay());
     }
 
-    IEnumerator CO_RemoveDisplayDay()
+    private IEnumerator CO_RemoveDisplayDay()
     {
         yield return new WaitForSeconds(13f);
-        StartCoroutine(dC.CO_HideDisplay());
-        currentDC = null;
+        StartCoroutine(_dC.CO_HideDisplay());
+        _currentDc = null;
     }
 
     public void Update()
     {
-        //Debug.Log(base.gM.gMD.currentTime.Hour);
         HandlePlayerMove();
     }
 
@@ -52,71 +53,70 @@ public class Bed : Interactable
         {
             if (!base.gM.gMD.sleeping && pI.pD.canMove == false)
             {
-                running = true;
-                if (TimerRef == null)
+                _running = true;
+                if (_coTimerRef == null)
                 {
-                    StartCoroutine(Timer());
+                    StartCoroutine(CO_Timer());
                 }
             }
         }
-        if (running)
-        {
-            if (TimerRef == null)
-            {
-                StartCoroutine(Timer());
-            }
-            if (base.gM.gMD.sleeping)
-            {
-                playerTrans.position = Vector3.Lerp(playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime);
-            }
-            else
-            {
-                if (currentDC == null)
-                {
-                    currentDC = Instantiate(DayCounter);
-                    dC = currentDC.GetComponent<DayCounter>();
-                    dC.DisplayDay(gM.gMD.currentTime.Day);
-                }
-               
-                playerTrans.position = Vector3.Lerp(playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
-                StartCoroutine(CO_RemoveDisplayDay());
-            }
-        }
-    }
 
-    IEnumerator Timer()
-    {
-        TimerRef = Timer();
-        yield return new WaitForSeconds(transportTime);
-        if (!inBed)
+        if (!_running) return;
+        if (_coTimerRef == null)
         {
-            running = false;
-            inBed = true;
+            StartCoroutine(CO_Timer());
+        }
+        if (base.gM.gMD.sleeping)
+        {
+            _playerTrans.position = Vector3.Lerp(_playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime);
         }
         else
         {
-            running = false;
+            if (!_currentDc)
+            {
+                _currentDc = Instantiate(dayCounter);
+                _dC = _currentDc.GetComponent<DayCounter>();
+                _dC.DisplayDay(gM.gMD.currentTime.Day);
+            }
+               
+            _playerTrans.position = Vector3.Lerp(_playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
+            StartCoroutine(CO_RemoveDisplayDay());
+        }
+    }
+
+    private IEnumerator CO_Timer()
+    {
+        _coTimerRef = CO_Timer();
+        yield return new WaitForSeconds(transportTime);
+        if (!_inBed)
+        {
+            _running = false;
+            _inBed = true;
+        }
+        else
+        {
+            _running = false;
             pI.pD.canMove = true;
-            playerTrans.GetComponent<Collider>().enabled = true;
-            inBed = false;
+            _playerTrans.GetComponent<Collider>().enabled = true;
+            _inBed = false;
             base.gM.gMD.timeRate = base.gM.gMD.timeRate/30;
         }
 
-        TimerRef = null;
+        _coTimerRef = null;
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (gM.gMD.currentTime.Hour == 18)//if (gM.gMD.currentTime.Hour > 18 ||gM.gMD.currentTime.Hour ==0)
-        {
-           
-            playerTrans = base.gM.player.transform;
-            base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
-            base.gM.player.GetComponent<Collider>().enabled = false;
-            pI.pD.canMove = false;
+        if (gM.gMD.currentTime.Hour != 0 && gM.gMD.currentTime.Hour < gM.gMD.closingHour) return;
+        _playerTrans = base.gM.player.transform;
+        base.gM.gMD.timeRate = 30*base.gM.gMD.timeRate;
+        base.gM.player.GetComponent<Collider>().enabled = false;
+        playerInteraction.pD.canMove = false;
+        if(gM.gMD.currentTime.Hour != 0)
             base.gM.gMD.sleepDay = gM.gMD.currentTime.Day + 1;
-            base.gM.gMD.sleeping = true;
-            running = true;
-        }
+        else
+            base.gM.gMD.sleepDay = gM.gMD.currentTime.Day;
+        base.gM.gMD.sleeping = true;
+        _running = true;
     }
 }

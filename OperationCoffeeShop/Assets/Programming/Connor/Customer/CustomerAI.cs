@@ -100,7 +100,7 @@ public class CustomerAI : MonoBehaviour
         yield return new WaitForSeconds(death);
         DrinkData drink = new DrinkData("nothing");
         drink.price = 0;
-        drink.Ingredients = new List<IngredientNode>();
+        drink.ingredients = new List<IngredientNode>();
         if (hasOrdered)
             customerLines[customerLines.Count - 1].LeaveWithoutGettingDrink(drink);
         else
