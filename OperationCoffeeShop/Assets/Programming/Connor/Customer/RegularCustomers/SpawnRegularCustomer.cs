@@ -27,7 +27,7 @@ public class SpawnRegularCustomer : MonoBehaviour
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
         Instantiate(customer, this.transform.position, this.transform.rotation);
-        customer.GetComponent<CustomerInteractable>().rCA = RCA;
+        customer.GetComponent<CustomerInteractable>().regularCustomerAtlas = RCA;
 
     }
     private void UpdateDic(object sender, EventArgs e)
