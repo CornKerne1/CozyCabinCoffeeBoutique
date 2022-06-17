@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
 
 [CreateAssetMenu(fileName = "DrinkData", menuName = "DrinkData/Generic")]
 public class DrinkData : ScriptableObject
@@ -90,7 +88,6 @@ public class DrinkData : ScriptableObject
         return sum;
     }
 }
-
 
 [System.Serializable]
 public class IngredientNode

@@ -1,10 +1,9 @@
-using System.Collections;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ResearchData", menuName = "ResearchData/Generic")]
 public class ResearchData : ScriptableObject
 {
-    public List<DrinkData> Drinks;
+    [FormerlySerializedAs("Drinks")] public List<DrinkData> drinks;
 }

@@ -1,52 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class OrderThoughts : MonoBehaviour
 {
-    public Sprite Sugar;
-    public Sprite BrewedCoffee;
-    public Sprite Milk;
-    public Sprite Esspresso;
+    [FormerlySerializedAs("Sugar")] public Sprite sugar;
+    [FormerlySerializedAs("BrewedCoffee")] public Sprite brewedCoffee;
+    [FormerlySerializedAs("Milk")] public Sprite milk;
+    [FormerlySerializedAs("Esspresso")] public Sprite esspresso;
 
 
-    Customer customer;
-    DrinkData drink;
-    List<IngredientNode> ingredients;
+    private Customer _customer;
+    private DrinkData _drink;
+    private List<IngredientNode> _ingredients;
 
-    Image[] images;
+    private Image[] _images;
 
-    GameMode GM;
-    Transform player;
+    private GameMode _gameMode;
+    private Transform _player;
 
     public Transform pivot;
 
-    // Start is called before the first frame update
     private void Start()
     {
-        customer = GetComponentInParent<Customer>();
-        images = GetComponentsInChildren<Image>();
+        _customer = GetComponentInParent<Customer>();
+        _images = GetComponentsInChildren<Image>();
         StartCoroutine(C0_GetOrderIngredients());
-        GM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        player = GM.player;
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _player = _gameMode.player;
     }
 
     private void Update()
     {
-        Transform t = pivot.gameObject.transform;
-        t.LookAt(player);
-        t.rotation = new Quaternion(0, player.rotation.y, player.rotation.z, player.rotation.w);
+        var t = pivot.gameObject.transform;
+        t.LookAt(_player);
+        var rotation = _player.rotation;
+        t.rotation = new Quaternion(0, rotation.y, rotation.z, rotation.w);
         this.gameObject.transform.rotation = t.rotation;
     }
 
     private IEnumerator C0_GetOrderIngredients()
     {
         yield return new WaitForSeconds(.4f);
-        drink = customer.GetDrinkOrder();
-        ingredients = drink.ingredients;
+        _drink = _customer.GetDrinkOrder();
+        _ingredients = _drink.ingredients;
         var i = 1;
-        foreach (var ingredientNode in ingredients)
+        foreach (var ingredientNode in _ingredients)
         {
             Add(ingredientNode.ingredient, i);
             i++;
@@ -59,24 +60,24 @@ public class OrderThoughts : MonoBehaviour
         switch (ingredient)
         {
             case Ingredients.Sugar:
-                images[position].sprite = Sugar;
-                images[position].color = new Color(images[position].color.r, images[position].color.g,
-                    images[position].color.b, 1);
+                _images[position].sprite = sugar;
+                _images[position].color = new Color(_images[position].color.r, _images[position].color.g,
+                    _images[position].color.b, 1);
                 break;
             case Ingredients.BrewedCoffee:
-                images[position].sprite = BrewedCoffee;
-                images[position].color = new Color(images[position].color.r, images[position].color.g,
-                    images[position].color.b, 1);
+                _images[position].sprite = brewedCoffee;
+                _images[position].color = new Color(_images[position].color.r, _images[position].color.g,
+                    _images[position].color.b, 1);
                 break;
             case Ingredients.Milk:
-                images[position].sprite = Milk;
-                images[position].color = new Color(images[position].color.r, images[position].color.g,
-                    images[position].color.b, 1);
+                _images[position].sprite = milk;
+                _images[position].color = new Color(_images[position].color.r, _images[position].color.g,
+                    _images[position].color.b, 1);
                 break;
             case Ingredients.Espresso:
-                images[position].sprite = Esspresso;
-                images[position].color = new Color(images[position].color.r, images[position].color.g,
-                    images[position].color.b, 1);
+                _images[position].sprite = esspresso;
+                _images[position].color = new Color(_images[position].color.r, _images[position].color.g,
+                    _images[position].color.b, 1);
                 break;
             case Ingredients.SteamedMilk:
             case Ingredients.FoamedMilk:
@@ -88,9 +89,9 @@ public class OrderThoughts : MonoBehaviour
             case Ingredients.CoffeeFilter:
             case Ingredients.TeaBag:
             default:
-                images[position].sprite = null;
-                images[position].color = new Color(images[position].color.r, images[position].color.g,
-                    images[position].color.b, 0);
+                _images[position].sprite = null;
+                _images[position].color = new Color(_images[position].color.r, _images[position].color.g,
+                    _images[position].color.b, 0);
                 break;
         }
     }

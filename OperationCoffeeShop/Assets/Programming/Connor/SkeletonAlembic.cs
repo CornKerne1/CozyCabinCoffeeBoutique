@@ -1,37 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+
 public class SkeletonAlembic : MonoBehaviour
 {
-
-    Animator animator;
+    private Animator _animator;
 
     public GameObject jumpIdle;
-    PlayableDirector jumpIdleDirector;
+    private PlayableDirector _jumpIdleDirector;
     public GameObject jumpWalking;
-    PlayableDirector jumpWalkingDirector;
+    private PlayableDirector _jumpWalkingDirector;
     public GameObject jumpTalking;
-    PlayableDirector jumpTalkingDirector;
+    private PlayableDirector _jumpTalkingDirector;
     public GameObject jumpIntro;
-    PlayableDirector jumpIntroDirector;
+    private PlayableDirector _jumpIntroDirector;
 
-    private GameObject currentObject;
+    private GameObject _currentObject;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //animator = GetComponent<Animator>();
         //jumpIdleDirector = jumpIdle.GetComponent<PlayableDirector>();
         //jumpWalkingDirector = jumpWalking.GetComponent<PlayableDirector>();
         //jumpTalkingDirector = jumpTalking.GetComponent<PlayableDirector>();
         //jumpIntroDirector = jumpIntroDirector.GetComponent<PlayableDirector>();
-
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //if(animator.speed >.1 && jumpWalkingDirector.time == 0)
         //{

@@ -1,37 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Serialization;
 
 public class DLightUpdate : MonoBehaviour
 {
-    public Light light;
+    [FormerlySerializedAs("light")] public Light _light;
     public int wakeUpHour = 6;
     public int sleepingHour = 18;
-    GameMode gM;
+    private GameMode _gameMode;
 
-    void Start()
+    private void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        if (gM.gMD.currentTime.Hour >= wakeUpHour )
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        if (_gameMode.gMD.currentTime.Hour >= wakeUpHour)
         {
-            light.enabled = true;
+            _light.enabled = true;
         }
+
         DayNightCycle.TimeChanged += AdjustLight;
     }
 
     private void AdjustLight(object sender, EventArgs e)
     {
-        Debug.Log(gM.gMD.currentTime.Hour);
-        if (wakeUpHour == gM.gMD.currentTime.Hour)
+        if (wakeUpHour == _gameMode.gMD.currentTime.Hour)
         {
-            light.enabled = true;
+            _light.enabled = true;
         }
-        else if (sleepingHour == gM.gMD.currentTime.Hour)
+        else if (sleepingHour == _gameMode.gMD.currentTime.Hour)
         {
-            light.enabled = false;
+            _light.enabled = false;
         }
     }
-    
-
 }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class RandomInteractable : Interactable
 {
     // Start is called before the first frame update
-    private PlayerInteraction pI;
+    private PlayerInteraction _pI;
 
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        this.pI = playerInteraction;
+        this._pI = playerInteraction;
         playerInteraction.Carry(gameObject);
     }
 

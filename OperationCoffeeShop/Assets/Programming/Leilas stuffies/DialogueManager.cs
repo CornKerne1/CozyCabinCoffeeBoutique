@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,12 +6,11 @@ using Ink.Runtime;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Dialogue UI")] [SerializeField]
+    private Image portrait;
 
-    [Header("Dialogue UI")]
-    [SerializeField] private Image portrait;
     [SerializeField] private Image buttonImage;
     [SerializeField] private Image dialogueBoxImage;
-
 
 
     [SerializeField] private Sprite portraitNeutral;
@@ -31,61 +29,52 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI button1Text;
     [SerializeField] private TextMeshProUGUI displayName;
 
-    private static DialogueManager instance;
-    private Story currentStory;
-    private List<string> currentTags;
+    private static DialogueManager _instance;
+    private Story _currentStory;
+    private List<string> _currentTags;
 
     public bool dialogueIsPlaying;
-    public bool finishedConversation = false;
+    public bool finishedConversation;
 
     public GameObject currentCustomer;
 
 
-
     private void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Debug.LogWarning("Found more than one Dialogue Manager in the scene");
         }
-        instance = this;
+
+        _instance = this;
     }
 
     public static DialogueManager GetInstance()
     {
-        return instance;
+        return _instance;
     }
 
     private void Start()
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-
     }
 
 
-
-    public void EnterDialogueMode(TextAsset inkJSON)
+    public void EnterDialogueMode(TextAsset inkJson)
     {
-        currentStory = new Story(inkJSON.text);
+        _currentStory = new Story(inkJson.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-        currentTags = currentStory.currentTags;
+        _currentTags = _currentStory.currentTags;
         ApplyTags();
         ContinueStory();
-        if (currentStory.currentChoices.Count > 0)
-        {
-            button1Text.text = currentStory.currentChoices[0].text;
-        }
-        else
-        {
-            button1Text.text = "Continue";
-        }
+        button1Text.text = _currentStory.currentChoices.Count > 0 ? _currentStory.currentChoices[0].text : "Continue";
     }
 
     private void ApplyTags()
     {
-        foreach (string s in currentTags)
+        foreach (var s in _currentTags)
         {
             switch (s.ToLower().Trim())
             {
@@ -94,6 +83,7 @@ public class DialogueManager : MonoBehaviour
                     {
                         portrait.sprite = portraitHappy;
                     }
+
                     break;
 
                 case "portrait:annoyed":
@@ -101,6 +91,7 @@ public class DialogueManager : MonoBehaviour
                     {
                         portrait.sprite = portraitHappy;
                     }
+
                     break;
 
                 case "portrait:amazed":
@@ -108,16 +99,14 @@ public class DialogueManager : MonoBehaviour
                     {
                         portrait.sprite = portraitAmazed;
                     }
+
                     break;
 
                 case "portrait:neutral":
-                    if (portraitNeutral!= null)
+                    if (portraitNeutral != null)
                     {
                         portrait.sprite = portraitNeutral;
                     }
-                    break;
-
-                default:
 
                     break;
             }
@@ -126,9 +115,8 @@ public class DialogueManager : MonoBehaviour
 
     public void ExitDialogueMode()
     {
-        Debug.Log("Exiting dialogue");
-        CustomerAI cAI = currentCustomer.GetComponent<CustomerAI>();
-        CustomerInteractable cI = currentCustomer.GetComponent<CustomerInteractable>();
+        var cAI = currentCustomer.GetComponent<CustomerAI>();
+        var cI = cAI.customerData.customerInteractable;
         if (!cAI.hasOrdered)
         {
             StartCoroutine(cI.MoveLine());
@@ -144,57 +132,55 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueStory()
     {
-        if (currentStory.canContinue)
+        if (_currentStory.canContinue)
         {
-
-            dialogueText.text = currentStory.Continue();
+            dialogueText.text = _currentStory.Continue();
         }
-        else if (currentStory.currentChoices.Count > 0)
+        else if (_currentStory.currentChoices.Count > 0)
         {
-            currentStory.ChooseChoiceIndex(0);
+            _currentStory.ChooseChoiceIndex(0);
 
-            dialogueText.text = currentStory.Continue();
-            if (currentStory.currentChoices.Count > 0)
-            {
-                button1Text.text = currentStory.currentChoices[0].text;
-            }
-            else
-            {
-                button1Text.text = "Continue";
-            }
-
+            dialogueText.text = _currentStory.Continue();
+            button1Text.text = _currentStory.currentChoices.Count > 0
+                ? _currentStory.currentChoices[0].text
+                : "Continue";
         }
         else
         {
             Debug.Log("we are now exiting dialgoue");
             ExitDialogueMode();
         }
-        string dialogue = dialogueText.text;
+
+        var dialogue = dialogueText.text;
         if (dialogue.Trim() == "" && dialogueIsPlaying)
         {
             ExitDialogueMode();
         }
     }
+
     public GameObject GetCurrentCustomer()
     {
         return currentCustomer;
     }
+
     public void SetCurrentCustomer(GameObject customer)
     {
         currentCustomer = customer;
     }
-    public void SetPortraitButtonAndName(CustomerData CD)
+
+    public void SetPortraitButtonAndName(CustomerData customerData)
     {
-        portraitAmazed = CD.portraitAmazed;
-        portraitAnnoyed = CD.portraitAnnoyed;
-        portraitHappy = CD.portraitHappy;
-        portraitNeutral = CD.portraitNeutral;
-        portrait.sprite = CD.portraitNeutral;
-        buttonImage.sprite = CD.buttonImage;
-        dialogueBoxImage.sprite = CD.dialogueBoxImage;
-        displayName.text = CD.name;
+        portraitAmazed = customerData.portraitAmazed;
+        portraitAnnoyed = customerData.portraitAnnoyed;
+        portraitHappy = customerData.portraitHappy;
+        portraitNeutral = customerData.portraitNeutral;
+        portrait.sprite = customerData.portraitNeutral;
+        buttonImage.sprite = customerData.buttonImage;
+        dialogueBoxImage.sprite = customerData.dialogueBoxImage;
+        displayName.text = customerData.name;
     }
-    public void SetDefaultImagesAndName(string name)
+
+    public void SetDefaultImagesAndName(string displayName)
     {
         portraitAmazed = null;
         portraitAnnoyed = null;
@@ -204,11 +190,6 @@ public class DialogueManager : MonoBehaviour
         buttonImage.sprite = defaultButtonImage;
         dialogueBoxImage.sprite = defaultDialogueBox;
 
-        displayName.text = name;
-
+        this.displayName.text = displayName;
     }
-
 }
-
-
-
