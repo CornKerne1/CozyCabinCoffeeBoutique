@@ -28,6 +28,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (!_playerInput.pD.canMove) return;
         CalculateDirection();
         PerformMovement();
     }
@@ -45,8 +46,7 @@ public class PlayerCameraController : MonoBehaviour
     }
     private void PerformMovement()
     {
-        if (_playerInput.pD.canMove)
-            transform.root.Rotate(Vector3.up,
+        transform.root.Rotate(Vector3.up,
                 _playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
                 Time.deltaTime);
     }
