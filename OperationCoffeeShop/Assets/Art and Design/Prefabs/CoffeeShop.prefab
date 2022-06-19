@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 1067946932377328352}
   - component: {fileID: 3711628475375130279}
   - component: {fileID: 1275207474651656277}
+  - component: {fileID: 4629346423522680228}
   m_Layer: 0
   m_Name: CoffeeShop_Glass
   m_TagString: Untagged
@@ -467,6 +468,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4629346423522680228
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020985105893204790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4873139509996397610, guid: 59c1e6da42eeebe41917ea6d0d67c8ed, type: 3}
 --- !u!1 &5135855950226330131
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1012,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7248473767525829005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1072,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8091610260064643923}
   m_LocalRotation: {x: 3.970467e-23, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.002, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8138123337833869982}
@@ -1313,7 +1328,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: 10219c9abe5df0d48bcef9a34ff105db, type: 2}
   - {fileID: 2100000, guid: 4e5395f777fc1b84581628c62392e494, type: 2}
   - {fileID: 2100000, guid: 4e5395f777fc1b84581628c62392e494, type: 2}
-  - {fileID: 2100000, guid: b2a571aa309b95a4896e7be1acb91550, type: 2}
+  - {fileID: 2100000, guid: da90ce2cf7730a64191c34764d2e8b05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

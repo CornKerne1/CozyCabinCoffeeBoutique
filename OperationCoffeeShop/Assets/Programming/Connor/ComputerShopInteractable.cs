@@ -2,23 +2,31 @@ using UnityEngine;
 
 public class ComputerShopInteractable : Interactable
 {
-    public Canvas shopUI;
-    private ComputerShop _computerShop;
+    [SerializeField]private GameObject shopUI;
+    private GameObject _shopRef;
 
     public override void Start()
     {
         base.Start();
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        _computerShop = shopUI.gameObject.GetComponent<ComputerShop>();
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        _computerShop.balance.text = _computerShop.balanceString + _computerShop.coffeeBankTM.moneyInBank;
-        shopUI.enabled = true;
-        gM.pD.canMove = false;
-        gM.pD.canMove = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if (_shopRef)
+        {
+            _shopRef.SetActive(true);
+            gM.pD.canMove = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            _shopRef = Instantiate(shopUI);
+            _shopRef.SetActive(true);
+            gM.pD.canMove = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
