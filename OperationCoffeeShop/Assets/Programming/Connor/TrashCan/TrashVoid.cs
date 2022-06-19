@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashVoid : MonoBehaviour
 {
-    GameMode gM;
-    PlayerInteraction PI;
+    private GameMode _gameMode;
+    private PlayerInteraction _playerInteraction;
+
     private void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        PI = gM.player.gameObject.GetComponent<PlayerInteraction>();
-
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PickUp"&& PI.carriedObj != other.gameObject)
+        if (other.gameObject.CompareTag("PickUp") && _playerInteraction.carriedObj != other.gameObject)
         {
             other.gameObject.SetActive(false);
         }

@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Machine : MonoBehaviour
@@ -20,22 +18,27 @@ public abstract class Machine : MonoBehaviour
     {
         origin = transform.position;
         mD.outputIngredient.Clear();
-        
     }
+
+    private void Update()
+    {
+        Shake();
+    }
+
     public void IngredientInteract(GameObject other)
     {
         if (currentCapacity < mD.maxCapacity && !isRunning)
         {
-            ChooseIngredient(other);            
+            ChooseIngredient(other);
         }
     }
 
-    public virtual void ChooseIngredient(GameObject other)
+    protected virtual void ChooseIngredient(GameObject other)
     {
         //switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         //{
         //    case Ingredients.LightRoastCoffee:                
-                
+
         //        currentCapacity = currentCapacity + 1;
         //        mD.outputIngredient.Add(iD.glCoffee);
         //        other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
@@ -46,14 +49,14 @@ public abstract class Machine : MonoBehaviour
 
     public virtual void StartMachine()
     {
-        if(!isRunning)
+        if (!isRunning)
         {
             StartCoroutine(ActivateMachine(mD.productionTime));
         }
     }
 
 
-    public virtual IEnumerator ActivateMachine(float time)
+    protected virtual IEnumerator ActivateMachine(float time)
     {
         isRunning = true;
         yield return new WaitForSeconds(time);
@@ -62,9 +65,9 @@ public abstract class Machine : MonoBehaviour
         isRunning = false;
     }
 
-    public virtual void OutputIngredients()
+    protected virtual void OutputIngredients()
     {
-        for (int i = 0; i < currentCapacity;)
+        for (var i = 0; i < currentCapacity;)
             if (currentCapacity != 0)
             {
                 currentCapacity = currentCapacity - 1;
@@ -75,24 +78,18 @@ public abstract class Machine : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+
+    protected virtual void Shake()
     {
-        Shake();
+        if (!isRunning) return;
+        var shakePos = origin;
+        shakePos.x = origin.x + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.x;
+        shakePos.y = origin.y + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.y;
+        shakePos.z = origin.z + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.z;
+        transform.position = shakePos;
     }
 
-    public virtual void Shake()
-    {
-
-        if(isRunning)
-        {
-            Vector3 shakePos = origin;
-            shakePos.x = origin.x + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.x;
-            shakePos.y = origin.y + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.y;
-            shakePos.z = origin.z + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.z;
-            transform.position = shakePos;
-        }
-        
-    }
     public void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, this.gameObject);

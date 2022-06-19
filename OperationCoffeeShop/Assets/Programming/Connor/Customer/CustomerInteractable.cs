@@ -18,7 +18,6 @@ public class CustomerInteractable : Interactable
 
     public Canvas canvas;
 
-    private OrderThoughts _orderBubble;
     private Canvas _orderCanvas;
 
     private GameObject _player;
@@ -49,7 +48,6 @@ public class CustomerInteractable : Interactable
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
         StartCoroutine(CO_AddSelfToData());  
-        _orderBubble = gameObject.GetComponentInChildren<OrderThoughts>();
         _orderCanvas = gameObject.GetComponentInChildren<Canvas>();
         _orderCanvas.enabled = false;
         _player = gM.player.gameObject;
@@ -135,7 +133,7 @@ public class CustomerInteractable : Interactable
     private IEnumerator SetRandomConversations()
     {
         yield return new WaitForSeconds(2);
-        Customer rc = this.gameObject.GetComponent<RandomCustomer>();
+        Customer rc = gameObject.GetComponent<RandomCustomer>();
         try
         {
             _introConversation = rc.randomConversations.introConversations[Random.Range(0, rc.randomConversations.introConversations.Count)];
@@ -211,7 +209,7 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink()
     {
-        gameObject.GetComponent<MoneyLancher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price, (int)((customerAI.customerData.orderedDrinkData.price - (int)customerAI.customerData.orderedDrinkData.price)*10));
+        gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price, (int)((customerAI.customerData.orderedDrinkData.price - (int)customerAI.customerData.orderedDrinkData.price)*10));
         if (regularCustomerAtlas != null)
         {
             dialogueManager.SetPortraitButtonAndName(customerAI.customerData);

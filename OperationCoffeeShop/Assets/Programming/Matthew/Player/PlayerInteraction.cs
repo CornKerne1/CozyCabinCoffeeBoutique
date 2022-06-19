@@ -185,10 +185,22 @@ public class PlayerInteraction : MonoBehaviour
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
             ingredientContainer.inHand = false;
-            Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x, Quaternion.identity.y + ingredientContainer.rotateOffset.y, Quaternion.identity.z + ingredientContainer.rotateOffset.z, Quaternion.identity.w);
+            var rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x, Quaternion.identity.y + ingredientContainer.rotateOffset.y, Quaternion.identity.z + ingredientContainer.rotateOffset.z, Quaternion.identity.w);
             ingredientContainer.transform.rotation = rot;
             carriedObj = null;
             pD.busyHands = false;
+        }
+        else if (carriedObj.TryGetComponent<ExamineInteractable>(out var examineInteractable))
+        {
+            if (_currentInteractable)
+                _currentInteractable.OnLoseFocus();
+            carriedObj.GetComponent<Collider>().isTrigger = false;
+            _currentInteractable = null;
+            pD.busyHands = false;
+            carriedObj = null;
+            pD.busyHands = false;
+            examineInteractable.ReturnToOriginalPosition();
+
         }
         else if (carriedObj != null)
         {

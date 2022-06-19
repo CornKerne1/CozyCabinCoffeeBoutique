@@ -1,58 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashCan : MonoBehaviour
 {
+    private Collider _leverCollider;
 
-    Collider leverCollider;
-
-    Animator trashAnimator;
+    private Animator _trashAnimator;
+    private static readonly int Open = Animator.StringToHash("Open");
 
     private void Start()
     {
-        this.trashAnimator = GetComponent<Animator>();
+        this._trashAnimator = GetComponent<Animator>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (!other.CompareTag("Player")) return;
+        if (this._trashAnimator.GetBool(Open))
         {
-           if (this.trashAnimator.GetBool("Open"))
-            {
-
-            }
-           else
-            {
-                this.trashAnimator.SetBool("Open", true);
-            }
+        }
+        else
+        {
+            this._trashAnimator.SetBool(Open, true);
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (!other.CompareTag("Player")) return;
+        if (!this._trashAnimator.GetBool(Open))
         {
-            if (!this.trashAnimator.GetBool("Open"))
-            {
-
-            }
-            else
-            {
-                this.trashAnimator.SetBool("Open", false);
-            }
+        }
+        else
+        {
+            this._trashAnimator.SetBool(Open, false);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (!other.CompareTag("Player")) return;
+        if (this._trashAnimator.GetBool(Open))
         {
-            if (this.trashAnimator.GetBool("Open"))
-            {
-
-            }
-            else
-            {
-                this.trashAnimator.SetBool("Open", true);
-            }
+        }
+        else
+        {
+            this._trashAnimator.SetBool(Open, true);
         }
     }
 }

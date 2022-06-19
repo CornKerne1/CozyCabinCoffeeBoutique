@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EspressoMachine : Machine
 {
-    public override IEnumerator ActivateMachine(float time)
+    protected override IEnumerator ActivateMachine(float time)
     {
         isRunning = true;
         base.PostSoundEvent("Play_GrindingEspresso");
@@ -12,7 +12,8 @@ public class EspressoMachine : Machine
         OutputIngredients();
         transform.position = base.origin;
     }
-    public override void ChooseIngredient(GameObject other)
+
+    protected override void ChooseIngredient(GameObject other)
     {
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
@@ -25,7 +26,8 @@ public class EspressoMachine : Machine
                 break;
         }
     }
-    public override void OutputIngredients()
+
+    protected override void OutputIngredients()
     {
         StartCoroutine(Liquify());
     }

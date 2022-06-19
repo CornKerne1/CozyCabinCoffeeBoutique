@@ -1,54 +1,48 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoneyLancher : MonoBehaviour
+public class MoneyLauncher : MonoBehaviour
 {
-
-    GameMode gM;
+    private GameMode _gameMode;
 
     public GameObject dollarBill;
     public GameObject coin;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
     public void LaunchMoney(int dollars, int change)
     {
         Debug.Log("dollars:" + dollars + " cents: " + change);
         List<GameObject> money = new List<GameObject>();
-        while (dollars-- > 0 && dollarBill!= null)
+        while (dollars-- > 0 && dollarBill != null)
         {
-            Debug.Log("zach");
-            GameObject go = Instantiate(dollarBill, transform.position,transform.rotation);
+            var transform1 = transform;
+            GameObject go = Instantiate(dollarBill, transform1.position, transform1.rotation);
             money.Add(go);
         }
-        while (change-- > 0 && coin!=null)
+
+        while (change-- > 0 && coin != null)
         {
-            Debug.Log("thanstrom");
             GameObject go = Instantiate(coin);
             money.Add(go);
         }
-        foreach(GameObject m in money)
+
+        foreach (GameObject m in money)
         {
-            Debug.Log("sorry i miss spelled your name zaaaaccchhhh");
             Vector3 torque = new Vector3();
             Rigidbody rb = m.GetComponent<Rigidbody>();
             torque.x = Random.Range(-200, 200);
             torque.y = Random.Range(-200, 200);
             torque.z = Random.Range(-200, 200);
             rb.AddTorque(torque);
-            Vector3 v3 = (gM.player.transform.position - transform.position);
-            v3.y = transform.position.y;
-            rb.velocity =  v3* 500;
-
+            var position = transform.position;
+            Vector3 v3 = (_gameMode.player.transform.position - position);
+            v3.y = position.y;
+            rb.velocity = v3 * 500;
         }
-
     }
-
-
 }

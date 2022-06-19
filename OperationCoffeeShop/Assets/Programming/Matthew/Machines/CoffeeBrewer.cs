@@ -5,14 +5,16 @@ using UnityEngine;
 public class CoffeeBrewer : Machine
 {
     public bool hasPitcher;
-    public override IEnumerator ActivateMachine(float time)
+
+    protected override IEnumerator ActivateMachine(float time)
     {
         isRunning = true;
         yield return new WaitForSeconds(time);
         OutputIngredients();
         transform.position = base.origin;
     }
-    public override void ChooseIngredient(GameObject other)
+
+    protected override void ChooseIngredient(GameObject other)
     {
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
@@ -26,7 +28,8 @@ public class CoffeeBrewer : Machine
                 break;
         }
     }
-    public override void OutputIngredients()
+
+    protected override void OutputIngredients()
     {
         StartCoroutine(Liquify());
     }

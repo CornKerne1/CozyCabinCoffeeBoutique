@@ -1,68 +1,58 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class Objectives : MonoBehaviour
 {
-
-     Canvas canvas;
     public List<TextMeshProUGUI> objectives;
-    //public List<Image> ObjectiveImages;
 
-    TextMeshProUGUI currentText;
-    //RectTransform currentRT;
+    private TextMeshProUGUI _currentText;
 
-    GameMode gM;
+    private GameMode _gameMode;
 
-    public int ObjectiveCount = 0;
+    [FormerlySerializedAs("ObjectiveCount")]
+    public int objectiveCount;
 
-    float dist;
+    private float _dist;
 
-    private bool closingObjective = false;
-    private bool openingObjective = false;
+    private bool _closingObjective;
+    private bool _openingObjective;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        canvas = gameObject.GetComponent<Canvas>();
-        foreach (TextMeshProUGUI text in objectives)
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        foreach (var text in objectives)
         {
             text.alpha = 0;
         }
-        if (gM.gMD.currentTime.Day == 1)
-        {
-            currentText = objectives[0];
-            currentText.alpha = 255;
-            ObjectiveCount = 0;
-        }
 
-
+        if (_gameMode.gMD.currentTime.Day != 1) return;
+        _currentText = objectives[0];
+        _currentText.alpha = 255;
+        objectiveCount = 0;
     }
 
-    void Update()
+    private void Update()
     {
-        if (gM.gMD.currentTime.Hour >= gM.gMD.wakeUpHour && gM.gMD.currentTime.Minute >= 1 && !openingObjective)
+        if (_gameMode.gMD.currentTime.Hour >= _gameMode.gMD.wakeUpHour && _gameMode.gMD.currentTime.Minute >= 1 &&
+            !_openingObjective)
         {
-            changeObjective(++ObjectiveCount);
-            openingObjective = true;
+            ChangeObjective(++objectiveCount);
+            _openingObjective = true;
         }
-        if (gM.gMD.currentTime.Hour>= gM.gMD.closingHour && !closingObjective)
-        {
-            changeObjective(++ObjectiveCount);
-            closingObjective = true;
-        }
+
+        if (_gameMode.gMD.currentTime.Hour < _gameMode.gMD.closingHour || _closingObjective) return;
+        ChangeObjective(++objectiveCount);
+        _closingObjective = true;
     }
 
 
-    public void changeObjective(int i)
+    private void ChangeObjective(int i)
     {
-        currentText.alpha = 0;
-        currentText = objectives[i];
-        currentText.alpha = 255;
+        _currentText.alpha = 0;
+        _currentText = objectives[i];
+        _currentText.alpha = 255;
     }
 }
