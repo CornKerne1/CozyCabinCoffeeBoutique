@@ -16,8 +16,12 @@ namespace AK
         static const AkUniqueID PLAY_AFTERHOURS = 4061997089U;
         static const AkUniqueID PLAY_BOSSANOVA = 2993288148U;
         static const AkUniqueID PLAY_BREAKINGLOOSE = 855079117U;
+        static const AkUniqueID PLAY_BUBBLEPOP = 1532331005U;
         static const AkUniqueID PLAY_BUTTONPRESS = 2652178615U;
+        static const AkUniqueID PLAY_ENDDAYJINGLE_BAD_ = 1724926153U;
+        static const AkUniqueID PLAY_ENDDAYJINGLE_GOOD_ = 3857680973U;
         static const AkUniqueID PLAY_EXQUISITETASTE = 3622673270U;
+        static const AkUniqueID PLAY_FOOTSTEPS_TILE_ = 1178155941U;
         static const AkUniqueID PLAY_FRIDGECLOSED = 721548189U;
         static const AkUniqueID PLAY_FRIDGEDOORSQUEAK = 531999063U;
         static const AkUniqueID PLAY_FRIDGEOPEN = 2104121909U;
@@ -27,6 +31,7 @@ namespace AK
         static const AkUniqueID PLAY_LOOPPOUR = 416139438U;
         static const AkUniqueID PLAY_MACHINEBUZZING = 2859911570U;
         static const AkUniqueID PLAY_MENUCLICK = 2576276897U;
+        static const AkUniqueID PLAY_MOUSECLICK = 1802956237U;
         static const AkUniqueID PLAY_NEUROTICBONE = 3754899171U;
         static const AkUniqueID PLAY_PIANO = 1479974693U;
         static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
@@ -37,6 +42,9 @@ namespace AK
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
         static const AkUniqueID PLAY_TITLETHEME = 3107494279U;
+        static const AkUniqueID PLAY_TRUCKDRIFT = 4018064888U;
+        static const AkUniqueID PLAY_TRUCKENGINE = 1128869005U;
+        static const AkUniqueID PLAY_TRUCKHORN = 3078875068U;
         static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
         static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;
         static const AkUniqueID STOP_LOOPPOUR = 4059860068U;
