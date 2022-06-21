@@ -24,7 +24,7 @@ public class SpawnRandomCustomer : MonoBehaviour
     private void Start()
     {
         DayNightCycle.TimeChanged += ResetMaxCustomers;
-        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
+        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData;
         if (_maxCustomerCount == 0)
             _maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
         _minutes = 0;

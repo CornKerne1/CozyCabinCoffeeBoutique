@@ -28,7 +28,7 @@ public class Objectives : MonoBehaviour
             text.alpha = 0;
         }
 
-        if (_gameMode.gMD.currentTime.Day != 1) return;
+        if (_gameMode.gameModeData.currentTime.Day != 1) return;
         _currentText = objectives[0];
         _currentText.alpha = 255;
         objectiveCount = 0;
@@ -36,14 +36,14 @@ public class Objectives : MonoBehaviour
 
     private void Update()
     {
-        if (_gameMode.gMD.currentTime.Hour >= _gameMode.gMD.wakeUpHour && _gameMode.gMD.currentTime.Minute >= 1 &&
+        if (_gameMode.gameModeData.currentTime.Hour >= _gameMode.gameModeData.wakeUpHour && _gameMode.gameModeData.currentTime.Minute >= 1 &&
             !_openingObjective)
         {
             ChangeObjective(++objectiveCount);
             _openingObjective = true;
         }
 
-        if (_gameMode.gMD.currentTime.Hour < _gameMode.gMD.closingHour || _closingObjective) return;
+        if (_gameMode.gameModeData.currentTime.Hour < _gameMode.gameModeData.closingHour || _closingObjective) return;
         ChangeObjective(++objectiveCount);
         _closingObjective = true;
     }

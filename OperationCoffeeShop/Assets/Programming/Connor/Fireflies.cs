@@ -16,8 +16,8 @@ public class Fireflies : MonoBehaviour
 
     private void SummonFireFlies(object sender, EventArgs e)
     {
-        if (_gameMode.gMD.currentTime.Hour < _gameMode.gMD.wakeUpHour ||
-            _gameMode.gMD.currentTime.Hour > _gameMode.gMD.closingHour - 1)
+        if (_gameMode.gameModeData.currentTime.Hour < _gameMode.gameModeData.wakeUpHour ||
+            _gameMode.gameModeData.currentTime.Hour > _gameMode.gameModeData.closingHour - 1)
         {
             if (!_fireflies.isPlaying)
                 _fireflies.Play();

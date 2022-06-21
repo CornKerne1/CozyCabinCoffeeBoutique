@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 
 public class MainMenu : MonoBehaviour
@@ -19,24 +15,29 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsScreen;
 
 
-    [SerializeField] PlayableDirector director;
+    [SerializeField] private PlayableDirector director;
 
-    private Animator animator;
+    private Animator _animator;
 
-    public Animator inroLetterAnimator;
+    [FormerlySerializedAs("inroLetterAnimator")]
+    public Animator introLetterAnimator;
+
+    private static readonly int Start1 = Animator.StringToHash("Start");
 
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
         introLetterCanvas.enabled = false;
-        animator.SetTrigger("Start");
+        _animator.SetTrigger(Start1);
         director.Play();
         Cursor.visible = false;
     }
+
     public void LaunchGame()
     {
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OpenOptions()
@@ -68,17 +69,17 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         AkSoundEngine.PostEvent("Play_TitleTheme", this.gameObject);
-        animator = GetComponent<Animator>();
-        GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD.isOpen = true;
+        _animator = GetComponent<Animator>();
+        GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData.isOpen = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         director.stopped += ReadNote;
-
     }
+
     private void ReadNote(PlayableDirector aDirector)
     {
         Cursor.visible = true;
         introLetterCanvas.enabled = true;
-        inroLetterAnimator.enabled = true;
+        introLetterAnimator.enabled = true;
     }
 }

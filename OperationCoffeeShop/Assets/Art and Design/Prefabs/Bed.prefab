@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 890736104119591838}
   - component: {fileID: 890736104119591827}
   - component: {fileID: 890736104119591839}
+  - component: {fileID: 9077748701204546402}
+  - component: {fileID: 9055063905744011136}
   m_Layer: 3
   m_Name: Bed
   m_TagString: Untagged
@@ -133,6 +135,7 @@ MonoBehaviour:
   sleepTrans: {fileID: 3656013889166984298}
   startTrans: {fileID: 233620768}
   transportTime: 5
+  dayCounter: {fileID: 0}
 --- !u!65 &890736104119591839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146,6 +149,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6232327, y: 1.1723344, z: 0.32508007}
   m_Center: {x: 2.702257e-15, y: 0.7345698, z: 1.1901542}
+--- !u!114 &9077748701204546402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890736104119591836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b7bad4703e757469d7b143c90ce63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayDisplay: {fileID: 0}
+  tutorial: {fileID: 0}
+  day1: {fileID: 0}
+  day2: {fileID: 0}
+  day3: {fileID: 0}
+--- !u!65 &9055063905744011136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890736104119591836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6232327, y: 0.67121154, z: 2.7053878}
+  m_Center: {x: -0, y: 0.48400828, z: 0}
 --- !u!1 &3656013889166984277
 GameObject:
   m_ObjectHideFlags: 0

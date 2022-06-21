@@ -122,8 +122,8 @@ public class CustomerInteractable : Interactable
     }
     private void SetConversations()
     {
-        if (!regularCustomerAtlas.dic.ContainsKey(gM.gMD.currentTime.Day)) return;
-        foreach (var cc in regularCustomerAtlas.dic[gM.gMD.currentTime.Day].Where(cc => cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
+        if (!regularCustomerAtlas.dic.ContainsKey(gM.gameModeData.currentTime.Day)) return;
+        foreach (var cc in regularCustomerAtlas.dic[gM.gameModeData.currentTime.Day].Where(cc => cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
         {
             this._introConversation = cc.IntroConversation;
             this._exitConversation = cc.ExitConversation;

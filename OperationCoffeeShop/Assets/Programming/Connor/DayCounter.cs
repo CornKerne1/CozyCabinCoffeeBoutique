@@ -6,17 +6,16 @@ public class DayCounter : MonoBehaviour
 {
     public Image dayDisplay;
 
+    public Sprite tutorial;
     public Sprite day1;
     public Sprite day2;
     public Sprite day3;
 
-    private GameMode _gameMode;
     private Animator _animator;
     private static readonly int Hide = Animator.StringToHash("Hide");
 
     private void Start()
     {
-        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _animator = transform.root.GetComponentInChildren<Animator>();
     }
 
@@ -25,6 +24,7 @@ public class DayCounter : MonoBehaviour
     {
         dayDisplay.sprite = day switch
         {
+            0 => tutorial,
             1 => day1,
             2 => day2,
             3 => day3,

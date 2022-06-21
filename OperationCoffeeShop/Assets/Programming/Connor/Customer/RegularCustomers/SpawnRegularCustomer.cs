@@ -20,7 +20,7 @@ public class SpawnRegularCustomer : MonoBehaviour
     void Start()
     {
         DayNightCycle.TimeChanged += UpdateDic;
-        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
+        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData;
     }
 
     private IEnumerator Spawn(GameObject customer)

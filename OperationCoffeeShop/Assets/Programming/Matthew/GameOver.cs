@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
-        if (gM.gMD.reputation < 6)
+        if (gM.gameModeData.reputation < 6)
         {
             loseScreen.SetActive(true);
         }

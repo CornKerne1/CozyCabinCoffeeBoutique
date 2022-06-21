@@ -11,7 +11,7 @@ public class Button : Interactable
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
         ButtonAnimator.SetTrigger("Press");
-        if (!gM.gMD.isOpen)
+        if (!gM.gameModeData.isOpen)
         {
             gM.OpenShop();
             AkSoundEngine.PostEvent("Play_buttonpress" , this.gameObject);

@@ -967,10 +967,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 1423995552129583617, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1423995552129583629, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3136,24 +3132,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e82780ade0481543be73e9211119a46, type: 3}
---- !u!1 &511916165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 890736104119591836, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
-  m_PrefabInstance: {fileID: 4453234695079148086}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &511916166
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511916165}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6232327, y: 0.6756768, z: 2.7053878}
-  m_Center: {x: -0, y: 0.4862405, z: 0}
 --- !u!1001 &512688907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17980,7 +17958,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3256594200561549280, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
 --- !u!1001 &1913115165
 PrefabInstance:
@@ -24786,18 +24765,6 @@ PrefabInstance:
       value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 890736104119591824, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 890736104119591824, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 890736104119591824, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 890736104119591824, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.081
       objectReference: {fileID: 0}
@@ -24838,7 +24805,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 890736104119591827, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
-      propertyPath: DayCounter
+      propertyPath: dayCounter
       value: 
       objectReference: {fileID: 8346541557348525982, guid: e97dce055d5aa1743bfd7b62abc73455, type: 3}
     - target: {fileID: 890736104119591836, guid: 440763e75400d5d429242c9e6b904e72, type: 3}
@@ -28330,7 +28297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ece1e69e8aab141b28acc7f3550b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light: {fileID: 8319613493727598455}
   wakeUpHour: 6
   sleepingHour: 18
 --- !u!1 &8319613493729877292

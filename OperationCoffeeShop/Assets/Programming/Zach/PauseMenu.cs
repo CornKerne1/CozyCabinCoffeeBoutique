@@ -1,40 +1,35 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 
 public class PauseMenu : MonoBehaviour
 {
-    private GameMode gM;
-    [SerializeField]private string quitScene;
-    private PlayerInteraction pI;
+    private GameMode _gameMode;
+    [SerializeField] private string quitScene;
+    private PlayerInteraction _playerInteraction;
     public PlayerData pD;
-    
-    
+
+
     public GameObject optionsScreen;
 
-    private Animator animator;
+    private Animator _animator;
 
-    //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        animator.SetTrigger("Reverse");//
+        _animator.SetTrigger("Reverse"); 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
-        gM.pD.canMove = true;
+        _gameMode.pD.canMove = true;
         pD.canMove = true;
         pD.neckClamp = 77.3f;
         pD.inUI = false;
-        this.gameObject.SetActive(false);
-        pI.CameraBlur();
+        gameObject.SetActive(false);
+        _playerInteraction.CameraBlur();
     }
 
+    
+    
     public void OpenOptions()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
@@ -56,28 +51,28 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        animator = GetComponent<Animator>();
-        pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _animator = GetComponent<Animator>();
+        _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gM.pD.canMove = false;
+        _gameMode.pD.canMove = false;
         pD.canMove = false;
         pD.neckClamp = 0.0f;
-        pI.CameraBlur();
+        _playerInteraction.CameraBlur();
     }
-    
+
 
     private void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        animator = GetComponent<Animator>();
-        pI =gM.player.gameObject.GetComponent<PlayerInteraction>();
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _animator = GetComponent<Animator>();
+        _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gM.pD.canMove = false;
+        _gameMode.pD.canMove = false;
         pD.canMove = false;
         pD.neckClamp = 0.0f;
-        pI.CameraBlur();
+        _playerInteraction.CameraBlur();
     }
 }

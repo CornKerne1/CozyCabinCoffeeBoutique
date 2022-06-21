@@ -18,7 +18,7 @@ public class Clock : MonoBehaviour
 
     private void Update()
     {
-        _timeSpan = _gameMode.gMD.currentTime.TimeOfDay;
+        _timeSpan = _gameMode.gameModeData.currentTime.TimeOfDay;
         if (hoursPivot)
             hoursPivot.localRotation = Quaternion.Euler(-HoursToDegrees * (float)_timeSpan.TotalHours, 0f, 0f);
         if (minutesPivot)
