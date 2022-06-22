@@ -266,6 +266,132 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
+						<ActorMixer Name="Customers" ID="{DA6C2804-1039-48B5-A757-C5079D6F15FD}" ShortID="658044363">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Dogs" ID="{2055C72F-C924-48F7-B90D-849D9BA9F40F}" ShortID="79193683">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="1Dogs" ID="{DBCC4261-78DF-4DD3-A6CB-A8C307B4D407}">
+											<Language>SFX</Language>
+											<AudioFile>1Dogs.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="510049455"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="1Dogs" ID="{DBCC4261-78DF-4DD3-A6CB-A8C307B4D407}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Karen" ID="{F647A0CD-B8BF-44DE-8A1F-27029C629DEA}" ShortID="599957188">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="1Karen" ID="{E5BDD201-B901-4F0D-BB5F-F10B24527110}">
+											<Language>SFX</Language>
+											<AudioFile>1Karen.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="157192986"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="1Karen" ID="{E5BDD201-B901-4F0D-BB5F-F10B24527110}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="KarenYelling" ID="{B47D664B-7A7C-473C-997B-20E56F876EF6}" ShortID="651348919">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-1</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="1KarenYelling" ID="{CEE4B0A0-0D1D-428F-8B9C-8A4E8CB6A883}">
+											<Language>SFX</Language>
+											<AudioFile>1KarenYelling.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="905915782"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="1KarenYelling" ID="{CEE4B0A0-0D1D-428F-8B9C-8A4E8CB6A883}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Traveler" ID="{C53064C2-A578-4316-9A76-F19F8E98C96E}" ShortID="365152379">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="1Traveler" ID="{273BB7FC-12E9-4092-BA6D-5AED0B699CCC}">
+											<Language>SFX</Language>
+											<AudioFile>1Traveler.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="974081508"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="1Traveler" ID="{273BB7FC-12E9-4092-BA6D-5AED0B699CCC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</ActorMixer>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
