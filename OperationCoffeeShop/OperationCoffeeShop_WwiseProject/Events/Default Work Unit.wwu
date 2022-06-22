@@ -867,6 +867,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_CabinetOpen" ID="{4303D7F4-2E75-4DAD-BA2A-2FDAC9B851A2}">
+					<ChildrenList>
+						<Action Name="" ID="{A3706938-8440-4E08-A9F4-1E89E2F801DF}" ShortID="414323163">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="CabinetOpen" ID="{9DFEABEF-E8C7-4202-8233-B46C315C21C5}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_CabinetClose" ID="{165EF3E9-3B82-4CC3-8B9D-C5BFC6305447}">
+					<ChildrenList>
+						<Action Name="" ID="{5F63A231-4AF7-4038-86D7-E4ACC3931087}" ShortID="317090728">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="CabinetClose" ID="{45D78CFA-5C33-425C-87BF-9BB4244034D4}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
