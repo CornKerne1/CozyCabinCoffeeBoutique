@@ -573,7 +573,7 @@
 						<Action Name="" ID="{9BECB41D-775C-4F20-92B0-DC63BA283DA5}" ShortID="420489062">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+									<ObjectRef Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -587,7 +587,7 @@
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+									<ObjectRef Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -884,6 +884,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="CabinetClose" ID="{45D78CFA-5C33-425C-87BF-9BB4244034D4}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Pour" ID="{6E730DAA-390C-4BC5-B1BA-BD068519E051}">
+					<ChildrenList>
+						<Action Name="" ID="{34638DAF-D63E-4071-8F4D-159CE6D93D4C}" ShortID="871968465">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
