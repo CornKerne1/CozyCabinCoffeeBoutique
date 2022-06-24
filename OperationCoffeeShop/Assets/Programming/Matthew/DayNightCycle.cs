@@ -1,91 +1,82 @@
-using System;//To use the EventHandler you must INCLUDE
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class DayNightCycle
 {
-    //Events!
     public static event EventHandler TimeChanged;
-    private GameMode gM;
-    public GameModeData gMD;
-    private DayNightCycle dNC;
+    private readonly GameMode _gameMode;
+    private readonly GameModeData _gameModeData;
+    private DayNightCycle _dayNightCycle;
 
-    [SerializeField] float sunriseHour = 6;
-    [SerializeField] float sunsetHour = 18;
+    [SerializeField] private const float SunriseHour = 6;
+    [SerializeField] private const float SunsetHour = 18;
 
-    private TimeSpan sunriseTime;
-    private TimeSpan sunsetTime;
-    private float startTimeRate;
+    private TimeSpan _sunriseTime;
+    private TimeSpan _sunsetTime;
+    private float _startTimeRate;
 
-    //Constructor!
-    public DayNightCycle(DayNightCycle dNC, GameMode gM, GameModeData gMD)
+    public DayNightCycle(DayNightCycle dayNightCycle, GameMode gameMode, GameModeData gameModeData)
     {
-        this.dNC = dNC;
-        this.gM = gM;
-        this.gMD = gMD;
+        _dayNightCycle = dayNightCycle;
+        _gameMode = gameMode;
+        _gameModeData = gameModeData;
     }
-    
 
 
     public void Initialize()
     {
-        sunriseTime = TimeSpan.FromHours(sunriseHour);
-        sunsetTime = TimeSpan.FromHours(sunsetHour);
-        startTimeRate = gMD.timeRate;
+        _sunriseTime = TimeSpan.FromHours(SunriseHour);
+        _sunsetTime = TimeSpan.FromHours(SunsetHour);
+        _startTimeRate = _gameModeData.timeRate;
     }
 
-    //Handles store open timer.
     public void StartTimer()
     {
         //Debug.Log(gMD.currentTime.ToString("HH:mm"));
-        if (gMD.currentTime.Hour >= 6 && gMD.currentTime.TimeOfDay.Hours <= gMD.closingHour)
+        if (_gameModeData.currentTime.Hour >= 6 &&
+            _gameModeData.currentTime.TimeOfDay.Hours <= _gameModeData.closingHour)
         {
             //if (!gMD.isOpen)
             //{
-                //gM.OpenShop();
+            //gM.OpenShop();
             //}
             TrackTime();
 
-            bool pastClosing = gMD.currentTime.TimeOfDay.Hours >= gMD.closingHour;
-            
-            if (gMD.isOpen && pastClosing)
-                gM.CloseShop();
+            var pastClosing = _gameModeData.currentTime.TimeOfDay.Hours >= _gameModeData.closingHour;
+
+            if (_gameModeData.isOpen && pastClosing)
+                _gameMode.CloseShop();
         }
-        else if(gMD.currentTime.Hour != 0)
+        else if (_gameModeData.currentTime.Hour != 0)
         {
-            gMD.timeRate = startTimeRate;
+            _gameModeData.timeRate = _startTimeRate;
             TrackTime();
-        }
-    }
-    
-    public void SleepTimer()
-    {
-        if (gMD.sleeping)
-        {
-            TrackTime();
-            if (gMD.currentTime.Hour == 5 && gMD.currentTime.Day == gMD.sleepDay)
-            {
-                gMD.sleeping = false;
-                gMD.timeRate = startTimeRate;
-            }
         }
     }
 
-    
-    
+    public void SleepTimer()
+    {
+        if (!_gameModeData.sleeping) return;
+        TrackTime();
+
+        if (_gameModeData.currentTime.Hour != 5 || _gameModeData.currentTime.Day != _gameModeData.sleepDay) return;
+        _gameModeData.sleeping = false;
+        _gameModeData.timeRate = _startTimeRate;
+    }
+
+
     public void UpdateTimeOfDay(int hourAdding)
     {
-        gMD.currentTime = gMD.currentTime.AddHours(hourAdding);
+        _gameModeData.currentTime = _gameModeData.currentTime.AddHours(hourAdding);
         //If TimeChanged Event is not null (isValid?) Invoke Event. 
-        if (gMD.currentTime.Hour > 12) gMD.displayTime = -1 * (gMD.currentTime.Hour - 12);
+        if (_gameModeData.currentTime.Hour > 12) _gameModeData.displayTime = -1 * (_gameModeData.currentTime.Hour - 12);
         TimeChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void TrackTime() 
+    private void TrackTime()
     {
-        gMD.currentTime = gMD.currentTime.AddSeconds(Time.deltaTime * gMD.timeRate);
-        if (gMD.currentTime.Hour > 12) gMD.displayTime = -1 * (gMD.currentTime.Hour - 12);
+        _gameModeData.currentTime = _gameModeData.currentTime.AddSeconds(Time.deltaTime * _gameModeData.timeRate);
+        if (_gameModeData.currentTime.Hour > 12) _gameModeData.displayTime = -1 * (_gameModeData.currentTime.Hour - 12);
         TimeChanged?.Invoke(this, EventArgs.Empty);
     }
 
@@ -93,34 +84,35 @@ public class DayNightCycle
     {
         float sunLightRotation;
 
-        if(gMD.currentTime.TimeOfDay > sunriseTime && gMD.currentTime.TimeOfDay < sunsetTime)
+        if (_gameModeData.currentTime.TimeOfDay > _sunriseTime && _gameModeData.currentTime.TimeOfDay < _sunsetTime)
         {
-            TimeSpan sunriseToSunsetDuration = CalculateTimeDifference(sunriseTime, sunsetTime);
-            TimeSpan timeSinceSunrise = CalculateTimeDifference(sunriseTime, gMD.currentTime.TimeOfDay);
+            var sunriseToSunsetDuration = CalculateTimeDifference(_sunriseTime, _sunsetTime);
+            var timeSinceSunrise = CalculateTimeDifference(_sunriseTime, _gameModeData.currentTime.TimeOfDay);
 
-            double percentage = timeSinceSunrise.TotalMinutes / sunriseToSunsetDuration.TotalMinutes;
+            var percentage = timeSinceSunrise.TotalMinutes / sunriseToSunsetDuration.TotalMinutes;
 
             sunLightRotation = Mathf.Lerp(0, 180, (float)percentage);
         }
         else
         {
-            TimeSpan sunsetToSunriseDuration = CalculateTimeDifference(sunsetTime, sunriseTime);
-            TimeSpan timeSinceSunset = CalculateTimeDifference(sunsetTime, gMD.currentTime.TimeOfDay);
+            var sunsetToSunriseDuration = CalculateTimeDifference(_sunsetTime, _sunriseTime);
+            var timeSinceSunset = CalculateTimeDifference(_sunsetTime, _gameModeData.currentTime.TimeOfDay);
 
-            double percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
+            var percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
             sunLightRotation = Mathf.Lerp(180, 360, (float)percentage);
         }
-        gM.sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
+
+        _gameMode.sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
     }
 
-    private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
+    private static TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
     {
-        TimeSpan difference = toTime - fromTime;
-        if(difference.TotalSeconds < 0)
+        var difference = toTime - fromTime;
+        if (difference.TotalSeconds < 0)
         {
             difference += TimeSpan.FromHours(24);
         }
+
         return difference;
     }
-
 }

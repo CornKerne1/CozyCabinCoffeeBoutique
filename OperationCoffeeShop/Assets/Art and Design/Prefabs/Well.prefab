@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7257695314578728004}
   - component: {fileID: 6416729380590030717}
   - component: {fileID: 6484548717677437699}
+  - component: {fileID: 1495846082683075382}
   m_Layer: 0
   m_Name: Crank
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1495846082683075382
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900318599001516851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5728353699891104131, guid: c3ebe96d950199c44b4764fe5e26abee, type: 3}
 --- !u!1 &2544747510747998155
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +299,7 @@ GameObject:
   - component: {fileID: 8558854038636599229}
   - component: {fileID: 4713285237316327448}
   - component: {fileID: 7389286287351868626}
+  - component: {fileID: 1377214461996869009}
   m_Layer: 0
   m_Name: Well
   m_TagString: Untagged
@@ -361,3 +377,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1377214461996869009
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046879299489647879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8012563891942627399, guid: c3ebe96d950199c44b4764fe5e26abee, type: 3}
