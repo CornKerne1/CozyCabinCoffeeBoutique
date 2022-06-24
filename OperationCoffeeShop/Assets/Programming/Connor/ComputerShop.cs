@@ -127,4 +127,9 @@ public class ComputerShop : MonoBehaviour
             bankUpdate.text = bankFailureString + _orders.Dequeue();
         }
     }
+
+    public void PlayMouseClick()
+    {
+        AkSoundEngine.PostEvent("PLAY_MOUSECLICK", gameObject);
+    }
 }

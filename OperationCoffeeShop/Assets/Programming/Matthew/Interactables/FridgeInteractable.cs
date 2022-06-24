@@ -1,22 +1,20 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Timers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class FridgeInteractable : Interactable
 {
     private Animator _animator;
-    private bool opening;
-    private bool open;
+    private bool _opening;
+    private bool _open;
+    private static readonly int Close = Animator.StringToHash("Close");
+    private static readonly int Open = Animator.StringToHash("Open");
 
     private void Update()
     {
        
     }
 
-    void Start()
+    public override void Start()
     {
         base.Start();
         _animator = GetComponent<Animator>();
@@ -24,32 +22,30 @@ public class FridgeInteractable : Interactable
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (!opening)
+        if (_opening) return;
+        if (_open)
         {
-            if (open)
-            {
-                AkSoundEngine.PostEvent("Play_FridgeDoorSqueak", gameObject);
-                _animator.SetTrigger("Close");
-                StartCoroutine(Timer(1f));
-                opening = true;
-            }
-            else
-            {
-                AkSoundEngine.PostEvent("Play_FridgeDoorSqueak", gameObject);
-                AkSoundEngine.PostEvent("Play_FridgeOpen", gameObject);
-                _animator.SetTrigger("Open");
-                StartCoroutine(Timer(1f));
-                opening = true;
-            }
+            AkSoundEngine.PostEvent("Play_FridgeDoorSqueak", gameObject);
+            _animator.SetTrigger(Close);
+            StartCoroutine(Timer(1f));
+            _opening = true;
+        }
+        else
+        {
+            AkSoundEngine.PostEvent("Play_FridgeDoorSqueak", gameObject);
+            AkSoundEngine.PostEvent("Play_FridgeOpen", gameObject);
+            _animator.SetTrigger(Open);
+            StartCoroutine(Timer(1f));
+            _opening = true;
         }
     }
 
-    IEnumerator Timer(float time)
+    private IEnumerator Timer(float time)
     {
         yield return new WaitForSeconds(time);
-        opening = false;
-        open = !open;
-        if (!open)
+        _opening = false;
+        _open = !_open;
+        if (!_open)
         {
             AkSoundEngine.PostEvent("Play_FridgeClosed", gameObject);
         }

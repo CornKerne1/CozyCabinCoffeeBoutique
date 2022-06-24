@@ -1,32 +1,28 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Serialization;
+using System.Collections.Generic;
+
 
 public class Objectives1 : MonoBehaviour
 {
-    public ObjectiveObjects objectives;
+    public List<GameObject> objectiveObjects;
+    [TextArea] public List<string> objectives;
 
     public TextMeshProUGUI textMesh;
 
-    
-    public static event EventHandler ObjectiveComplete;
-
     public int currentObjective;
-    
+
+
     private void Start()
     {
         textMesh.text = objectives[currentObjective];
-        ObjectiveComplete += NextObjective;
     }
 
-    private void NextObjective(object sender, EventArgs e)
+    public void NextObjective(GameObject sender)
     {
-        if (currentObjective == (int) sender)
-        {
-            currentObjective++;
-            textMesh.text = objectives[currentObjective];
-        }
+        Debug.Log("" + ((GameObject)sender).name);
+        if ((GameObject)sender != objectiveObjects[currentObjective]) return;
+        currentObjective++;
+        textMesh.text = objectives[currentObjective];
     }
 }

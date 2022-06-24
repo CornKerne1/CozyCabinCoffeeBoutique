@@ -609,6 +609,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2495775232396187955}
+        m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
+        m_MethodName: PlayMouseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8756745362233418565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,7 +2632,7 @@ GameObject:
   - component: {fileID: 8756745363068816160}
   - component: {fileID: 8756745363068816163}
   m_Layer: 5
-  m_Name: Buy_Sugar
+  m_Name: Buy_Sugar_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2732,6 +2744,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
         m_MethodName: BuyIngredient
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Sugar
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2495775232396187955}
+        m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
+        m_MethodName: PlayMouseClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3569,7 +3593,7 @@ GameObject:
   - component: {fileID: 8756745363399573329}
   - component: {fileID: 8756745363399573328}
   m_Layer: 5
-  m_Name: Buy_Coffee
+  m_Name: Buy_Coffee_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3681,6 +3705,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
         m_MethodName: BuyIngredient
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Coffee
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2495775232396187955}
+        m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
+        m_MethodName: PlayMouseClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5024,6 +5060,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2495775232396187955}
+        m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
+        m_MethodName: PlayMouseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8756745363815354496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,7 +5160,7 @@ GameObject:
   - component: {fileID: 8756745363834502688}
   - component: {fileID: 8756745363834502691}
   m_Layer: 5
-  m_Name: Buy_Milk
+  m_Name: Buy_Milk_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5224,6 +5272,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
         m_MethodName: BuyIngredient
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Milk
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2495775232396187955}
+        m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
+        m_MethodName: PlayMouseClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6105,7 +6165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8756745364233946374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6221,14 +6281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c496b42d217d4bb576d74280ad65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cBTM: {fileID: 0}
+  coffeeBankTM: {fileID: 0}
   balance: {fileID: 3031559348928858858}
   balanceString: 'Checking: '
   bankUpdate: {fileID: 3644936032103769229}
   bankSuccessString: 'Successful Purchase of '
   bankFailureString: 'Failed to Aquire '
   coffeePrice: 12
-  coffeeQuanitiy: 15
+  coffeeQuantity: 15
   coffeeType: {fileID: 11400000, guid: 054c001c8d91c02489981ec4dc14c43a, type: 2}
   espressoPrice: 15
   espressoQuantity: 15
@@ -6460,7 +6520,7 @@ GameObject:
   - component: {fileID: 8756745364308288425}
   - component: {fileID: 8756745364308288424}
   m_Layer: 5
-  m_Name: Buy_Espresso
+  m_Name: Buy_Espresso_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6572,6 +6632,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
         m_MethodName: BuyIngredient
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Espresso
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2495775232396187955}
+        m_TargetAssemblyTypeName: ComputerShop, Assembly-CSharp
+        m_MethodName: PlayMouseClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
