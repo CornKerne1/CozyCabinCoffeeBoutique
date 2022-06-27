@@ -1,16 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MachineInteraction : Interactable
 {
-    protected Machine machine;
+    protected Machine Machine;
     public MachineData mD;
 
     public override void Start()
     {
         base.Start();
-        machine = transform.root.GetComponentInChildren<Machine>();
+        Machine = transform.root.GetComponentInChildren<Machine>();
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)
@@ -18,24 +19,25 @@ public class MachineInteraction : Interactable
         switch (mD.machineType)
         {
             case MachineData.Type.Default:
-                machine.StartMachine();
+                Machine.StartMachine();
                 return;
             case MachineData.Type.Brewer:
                 var bB = transform.root.GetComponentInChildren<BrewerBowl>();
-                if (bB)
+                if (!bB) return;
+                if (!bB.open && Machine.currentCapacity > 0)
                 {
-                    if (!bB.open && machine.currentCapacity > 0)
-                    {
-                        machine.StartMachine();
-                        bB.filter.SetActive(false);
-                    }
-                    else
-                    {
-                        bB.OpenOrClose();
-                    }
+                    Machine.StartMachine();
+                    bB.filter.SetActive(false);
+                }
+                else
+                {
+                    bB.OpenOrClose();
                 }
 
                 return;
+            case MachineData.Type.Grinder:
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }

@@ -5,10 +5,7 @@ using UnityEngine.Serialization;
 
 public class CustomerInteractable : Interactable
 {
-
-    [Header("Visual Cue")]
-
-    private TextAsset _introConversation;
+    [Header("Visual Cue")] private TextAsset _introConversation;
     private TextAsset _exitConversation;
 
     [FormerlySerializedAs("CAI")] public CustomerAI customerAI;
@@ -25,8 +22,6 @@ public class CustomerInteractable : Interactable
     private CustomerData _customerData;
 
     private CustomerLine _line;
-
-    private float _neckclamp;
 
     private Transform _oldLook;
 
@@ -47,12 +42,11 @@ public class CustomerInteractable : Interactable
         _camera = Camera.main;
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
-        StartCoroutine(CO_AddSelfToData());  
+        StartCoroutine(CO_AddSelfToData());
         _orderCanvas = gameObject.GetComponentInChildren<Canvas>();
         _orderCanvas.enabled = false;
         _player = gM.player.gameObject;
         _playerInteraction = _player.GetComponent<PlayerInteraction>();
-        _neckclamp = gM.pD.neckClamp;
         dialogueManager = DialogueManager.GetInstance();
 
         // will be null if random customer or not spawned by a regular spawner
@@ -60,10 +54,10 @@ public class CustomerInteractable : Interactable
             SetConversations();
         else
         {
-
             StartCoroutine(SetRandomConversations());
         }
     }
+
     private void Update()
     {
         switch (dialogueManager.finishedConversation)
@@ -73,7 +67,7 @@ public class CustomerInteractable : Interactable
                 _canInteract = false;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                if (_oldLook != null)
+                if (!_oldLook)
                     _camera.transform.LookAt(_oldLook.position);
                 gM.pD.canMove = true;
                 gM.pD.canMove = true;
@@ -92,7 +86,7 @@ public class CustomerInteractable : Interactable
                 _canInteract = false;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                if (_oldLook != null)
+                if (!_oldLook)
                     _camera.transform.LookAt(_oldLook.position);
                 gM.pD.canMove = true;
                 gM.pD.canMove = true;
@@ -118,27 +112,32 @@ public class CustomerInteractable : Interactable
     {
         yield return new WaitForSeconds(.2f);
         _customerData.customerInteractable = this;
-
     }
+
     private void SetConversations()
     {
         if (!regularCustomerAtlas.dic.ContainsKey(gM.gameModeData.currentTime.Day)) return;
-        foreach (var cc in regularCustomerAtlas.dic[gM.gameModeData.currentTime.Day].Where(cc => cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
+        foreach (var cc in regularCustomerAtlas.dic[gM.gameModeData.currentTime.Day].Where(cc =>
+                     cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
         {
             this._introConversation = cc.IntroConversation;
             this._exitConversation = cc.ExitConversation;
             break;
         }
     }
+
     private IEnumerator SetRandomConversations()
     {
         yield return new WaitForSeconds(2);
         Customer rc = gameObject.GetComponent<RandomCustomer>();
         try
         {
-            _introConversation = rc.randomConversations.introConversations[Random.Range(0, rc.randomConversations.introConversations.Count)];
-            _exitConversation = rc.randomConversations.exitConversations[Random.Range(0, rc.randomConversations.exitConversations.Count)];
-
+            _introConversation =
+                rc.randomConversations.introConversations[
+                    Random.Range(0, rc.randomConversations.introConversations.Count)];
+            _exitConversation =
+                rc.randomConversations.exitConversations[
+                    Random.Range(0, rc.randomConversations.exitConversations.Count)];
         }
         catch
         {
@@ -146,10 +145,9 @@ public class CustomerInteractable : Interactable
         }
     }
 
-    
+
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        
         this._playerInteraction = playerInteraction;
 
         if (dialogueManager.dialogueIsPlaying || customerAI.stay != true || customerAI.hasOrdered ||
@@ -164,20 +162,26 @@ public class CustomerInteractable : Interactable
         else
         {
             dialogueManager.SetDefaultImagesAndName(customerAI.customerData.name);
-
         }
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gM.pD.canMove = false;
         _customerData.customerAnimations.Talk();
-
-
+        Speak();
     }
 
+    public void Speak()
+    {
+        AkSoundEngine.PostEvent(_customerData.soundEngineEnvent, gameObject);
+
+    }
+    
     public void DisplayOrderBubble()
     {
         _orderCanvas.enabled = true;
     }
+
     public void RemoveOrderBubble()
     {
         _orderCanvas.enabled = false;
@@ -185,31 +189,31 @@ public class CustomerInteractable : Interactable
 
     public void DisplayOrderTicket()
     {
-
     }
+
     public void RemoveOrderTicket()
     {
-
     }
 
     public IEnumerator MoveLine()
     {
         yield return new WaitForSeconds(2);
         customerAI.customerLines[customerAI.customerLines.Count - 1].MoveLine();
-
     }
+
     public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
     }
 
     public override void OnFocus()
     {
-        
     }
 
     public void DeliverDrink()
     {
-        gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price, (int)((customerAI.customerData.orderedDrinkData.price - (int)customerAI.customerData.orderedDrinkData.price)*10));
+        gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
+            (int)((customerAI.customerData.orderedDrinkData.price -
+                   (int)customerAI.customerData.orderedDrinkData.price) * 10));
         if (regularCustomerAtlas != null)
         {
             dialogueManager.SetPortraitButtonAndName(customerAI.customerData);
@@ -217,8 +221,8 @@ public class CustomerInteractable : Interactable
         else
         {
             dialogueManager.SetDefaultImagesAndName(customerAI.customerData.name);
-
         }
+
         _playerInteraction.pD.inUI = true;
         DialogueManager.GetInstance().EnterDialogueMode(_exitConversation);
         dialogueManager.SetCurrentCustomer(gameObject);
@@ -229,6 +233,6 @@ public class CustomerInteractable : Interactable
         gM.pD.canMove = false;
         gM.pD.canMove = false;
         _customerData.customerAnimations.Talk();
-
+        Speak();
     }
 }

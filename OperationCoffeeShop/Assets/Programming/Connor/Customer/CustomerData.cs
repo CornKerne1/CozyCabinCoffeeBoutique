@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class CustomerData : ScriptableObject
 {
     
     public new string name;
+    public string soundEngineEnvent = "PLAY_GENERICVOICE";
     
     public DrinkData favoriteDrinkData;
     public DrinkData orderedDrinkData;

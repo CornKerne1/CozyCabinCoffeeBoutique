@@ -12,7 +12,7 @@ public abstract class Customer : MonoBehaviour
     public CustomerData customerData;
 
     public PlayerResearchData playerResearchData;
-    [HideInInspector]public GameMode gameMode;
+    [HideInInspector] public GameMode gameMode;
 
     [SerializeField] public static event EventHandler CustomerRating;
 
@@ -43,6 +43,7 @@ public abstract class Customer : MonoBehaviour
             DrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
         _particleSystemRenderer.material = quality > .5 ? like : dislike;
+        AkSoundEngine.PostEvent(quality > .5f ? "PLAY_SATISFIEDCUSTOMER" : "PLAY_UNSATISFIEDCUSTOMER", gameObject);
         ps.Play();
         Debug.Log("Drink Quality = " + quality);
     }
