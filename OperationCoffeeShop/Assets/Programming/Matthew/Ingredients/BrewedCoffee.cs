@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BrewedCoffee : MonoBehaviour
+public class BrewedCoffee : LiquidIngredients
 {
     public float maxScale;
     public GameObject matOwner;
@@ -15,14 +15,13 @@ public class BrewedCoffee : MonoBehaviour
     float timer;
     public float maxTimer;
 
-    public IngredientNode iN;
-
     private void Awake()
     {
     }
 
     private void Start()
     {
+        
         timer = maxTimer;
         changeColor = true;
         var myMat = GetComponent<MeshRenderer>().materials;
@@ -79,25 +78,6 @@ public class BrewedCoffee : MonoBehaviour
                 animate = false;
                 Destroy(gameObject);
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        TryAddOrDelete(other.gameObject);
-
-    }
-
-    private void TryAddOrDelete(GameObject obj)
-    {
-        try
-        {
-            obj.GetComponent<IngredientContainer>().AddToContainer(iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
-            Destroy(gameObject);
-        }
-        catch
-        {
-            Destroy(gameObject);
         }
     }
 }
