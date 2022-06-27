@@ -1,0 +1,14 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+//This creates a file on the disk for this to be stored in the .asset format
+[CreateAssetMenu(fileName = "SlabData", menuName = "SlabData/Generic")]
+//The class does not inherit from MonoBehavior, since it it a Scriptable Object
+public class SlabData : ScriptableObject
+{
+    public float rot;
+    public float attractionModifier;
+    public float productionModifier;
+}
