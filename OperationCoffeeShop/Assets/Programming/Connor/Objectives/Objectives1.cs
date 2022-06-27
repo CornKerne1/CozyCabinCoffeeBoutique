@@ -21,7 +21,7 @@ public class Objectives1 : MonoBehaviour
     public void NextObjective(GameObject sender)
     {
         Debug.Log("" + ((GameObject)sender).name);
-        if ((GameObject)sender != objectiveObjects[currentObjective]) return;
+        if ((GameObject)sender != objectiveObjects[currentObjective] || currentObjective >= objectives.Count) return;
         currentObjective++;
         textMesh.text = objectives[currentObjective];
     }

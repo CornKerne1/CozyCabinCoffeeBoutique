@@ -19,6 +19,7 @@ public class TutorialBrewerBowl : MonoBehaviour
     private Machine _machine;
     private Objectives1 _objectives1;
     public GameObject objectiveOutputObject;
+    public GameObject objectiveOutputObject1;
 
 
     private void Start()
@@ -74,6 +75,11 @@ public class TutorialBrewerBowl : MonoBehaviour
         {
             if (transform.position != closeTrans.position) yield break;
             open = false;
+            if (filter.activeSelf)
+            {
+                _objectives1.NextObjective(objectiveOutputObject1);
+                
+            }
             _run = false;
         }
         else

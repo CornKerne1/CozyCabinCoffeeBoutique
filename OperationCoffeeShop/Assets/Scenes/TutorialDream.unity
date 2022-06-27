@@ -6591,8 +6591,8 @@ GameObject:
   - component: {fileID: 1156816321517690529}
   - component: {fileID: 2855860257700221188}
   - component: {fileID: 19978727948576206}
-  - component: {fileID: 2475087975550827271}
   - component: {fileID: 7090110766861397030}
+  - component: {fileID: 1965265967346861084}
   m_Layer: 0
   m_Name: Cup Holder (1)
   m_TagString: Untagged
@@ -6600,6 +6600,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1965265967346861084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965265967346861083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2cb71a27668fbf468761f5958090569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+  spawnTrans: {fileID: 4929947625708463482}
+  objType: {fileID: 11400000, guid: 9775f0d7602c8774a9f7e42e8a7831c9, type: 2}
+  text: {fileID: 0}
+  message: ' beans remaining'
+  quantity: 10
+  bottomless: 1
 --- !u!4 &1968441538467172991
 Transform:
   m_ObjectHideFlags: 0
@@ -7978,26 +7998,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2211870191221665337}
   m_Mesh: {fileID: 6817491209096106366, guid: 71bb263a3320b2a42b3bc5d28c7775aa, type: 3}
---- !u!114 &2475087975550827271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965265967346861083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d565a4082b20f24c8a75141080dbf90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rotateOffset: {x: 0, y: 0, z: 0}
-  spawnTrans: {fileID: 4929947625708463482}
-  objType: {fileID: 11400000, guid: 9775f0d7602c8774a9f7e42e8a7831c9, type: 2}
-  text: {fileID: 0}
-  message: ' beans remaing'
-  quantity: 10
-  bottomless: 1
 --- !u!1 &2476326125282966846
 GameObject:
   m_ObjectHideFlags: 0
@@ -24312,6 +24312,7 @@ MonoBehaviour:
   filterTrans: {fileID: 1968441538467172991}
   filter: {fileID: 1160415273346779333}
   objectiveOutputObject: {fileID: 4014140756047983594}
+  objectiveOutputObject1: {fileID: 3088415666237070298}
 --- !u!114 &6286812988430817847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27158,6 +27159,8 @@ MonoBehaviour:
   - {fileID: 4014140756047983594}
   - {fileID: 7178056224376831412}
   - {fileID: 5751273919200786740}
+  - {fileID: 3088415666237070298}
+  - {fileID: 1965265967346861083}
   - {fileID: 6286812988430817845}
   objectives:
   - Get to the Kitchen with   W A S D
@@ -27173,19 +27176,19 @@ MonoBehaviour:
   - 'Open the Coffee Filter Bowl on the red  Brewer with Left Click
 
 '
-  - Grab a Filter from the stack of Filters to your Left
+  - Grab a Filter from the stack of Filters to your left
   - 'Place Filter Int Coffee Fiter Bowl
-
 
 '
   - 'Pick Up Ground Coffee with left click
-
 
 '
   - 'Drop Ground Coffee into Coffee Filter Bowl
 
 '
-  - Close coffee filter bowl and start machine with Left Click
+  - 'Close Coffee Filter Bowl with Left Click '
+  - Pick up Cup from the stack of Cups to your left
+  - Drop cup with Left Click and Start Coffee Brewer with Left Click
   - 'YOU WIN
 
 '
