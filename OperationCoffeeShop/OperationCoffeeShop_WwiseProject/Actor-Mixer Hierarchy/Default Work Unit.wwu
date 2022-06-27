@@ -203,36 +203,6 @@
 										<ActiveSource Name="TruckEngine" ID="{175329C4-DE5A-4B33-A19B-FEEBAB7C336F}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="TruckDrift" ID="{86180FC5-3A93-4C30-9084-89387E31A00C}" ShortID="716282410">
-									<PropertyList>
-										<Property Name="Highpass" Type="int16">
-											<ValueList>
-												<Value>15</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TruckDrift" ID="{66B5DF8A-15DD-4CA2-8D82-26D7DE8A265C}">
-											<Language>SFX</Language>
-											<AudioFile>TruckDrift.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="384787562"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TruckDrift" ID="{66B5DF8A-15DD-4CA2-8D82-26D7DE8A265C}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="TruckHorn" ID="{BF76B9A2-A9B1-40FA-B3A2-98C6534CD527}" ShortID="558021265">
 									<PropertyList>
 										<Property Name="MakeUpGain" Type="Real64">
@@ -261,6 +231,52 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="TruckHorn" ID="{022523B4-0511-4DC5-A880-2AD592E92F3F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Drift" ID="{8DD52CD4-58E9-4967-A175-554095F24F15}" ShortID="594893818">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Drift" ID="{B8D6036A-FBC0-4178-AFCA-4502A57BB285}">
+											<Language>SFX</Language>
+											<AudioFile>Drift.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="9348846"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Drift" ID="{B8D6036A-FBC0-4178-AFCA-4502A57BB285}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="CoffeeShopDelivery" ID="{79C3E79E-00BB-40CA-8FAC-5075A4CD9335}" ShortID="564330196">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="CoffeeShopDelivery" ID="{FCA535A6-8696-4F66-AA85-C18B39CE15D2}">
+											<Language>SFX</Language>
+											<AudioFile>CoffeeShopDelivery.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="95280334"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="CoffeeShopDelivery" ID="{FCA535A6-8696-4F66-AA85-C18B39CE15D2}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
