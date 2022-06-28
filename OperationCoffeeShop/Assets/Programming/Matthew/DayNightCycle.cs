@@ -4,6 +4,7 @@ using UnityEngine;
 public class DayNightCycle
 {
     public static event EventHandler TimeChanged;
+    public static event EventHandler HourChanged;
     private readonly GameMode _gameMode;
     private readonly GameModeData _gameModeData;
     private DayNightCycle _dayNightCycle;
@@ -14,6 +15,7 @@ public class DayNightCycle
     private TimeSpan _sunriseTime;
     private TimeSpan _sunsetTime;
     private float _startTimeRate;
+    private int _currentHour;
 
     public DayNightCycle(DayNightCycle dayNightCycle, GameMode gameMode, GameModeData gameModeData)
     {
@@ -75,6 +77,9 @@ public class DayNightCycle
 
     private void TrackTime()
     {
+        if (_gameModeData.currentTime.Hour != _currentHour)
+            HourChanged?.Invoke(this, EventArgs.Empty);
+        _currentHour = _gameModeData.currentTime.Hour;
         _gameModeData.currentTime = _gameModeData.currentTime.AddSeconds(Time.deltaTime * _gameModeData.timeRate);
         if (_gameModeData.currentTime.Hour > 12) _gameModeData.displayTime = -1 * (_gameModeData.currentTime.Hour - 12);
         TimeChanged?.Invoke(this, EventArgs.Empty);
