@@ -15,7 +15,6 @@ public class Dispenser : Interactable
     public int quantity = 10;
     public bool bottomless;
 
-    // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
@@ -27,14 +26,11 @@ public class Dispenser : Interactable
             if (!bottomless)
                 text.text = quantity + message;
             else text.text = "Bottomless";
-
         }
         catch
         {
             text = null;
         }
-
-
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)
@@ -52,6 +48,7 @@ public class Dispenser : Interactable
             ingredientContainer.pI = playerInteraction;
             ingredientContainer.inHand = true;
         }
+
         playerInteraction.Carry(_obj.gameObject);
     }
 

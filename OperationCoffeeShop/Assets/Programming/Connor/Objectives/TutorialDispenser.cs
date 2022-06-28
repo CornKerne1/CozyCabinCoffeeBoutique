@@ -16,13 +16,12 @@ public class TutorialDispenser : Interactable
     public bool bottomless;
 
     private Objectives1 _objectives1;
-
-    private GameMode _gameMode;
+    private bool _inTutorial;
+    private bool _completedObjective;
 
     public override void Start()
     {
-        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        _objectives1 = GameObject.Find("Objectives").GetComponent<Objectives1>();
+        IfTutorial();
         base.Start();
         ComputerShop.DepositItems += AddItems;
         if (bottomless) return;
@@ -36,6 +35,28 @@ public class TutorialDispenser : Interactable
         catch
         {
             text = null;
+        }
+    }
+
+    private void IfTutorial()
+    {
+        try
+        {
+            _objectives1 = GameObject.Find("Objectives").GetComponent<Objectives1>();
+            _inTutorial = true;
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+    private void IfTutorialObjective()
+    {
+        if (_inTutorial && ! _completedObjective)
+        {
+            _objectives1.NextObjective(gameObject);
+            _completedObjective = true;
         }
     }
 
@@ -57,7 +78,7 @@ public class TutorialDispenser : Interactable
 
         playerInteraction.Carry(_obj.gameObject);
         Debug.Log("pick up bean");
-        _objectives1.NextObjective(gameObject);
+        IfTutorialObjective();
     }
 
     private void UpdateQuantity()

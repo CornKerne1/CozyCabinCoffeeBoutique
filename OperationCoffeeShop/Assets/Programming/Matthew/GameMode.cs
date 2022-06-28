@@ -30,6 +30,8 @@ public class GameMode : MonoBehaviour
 
     static uint[] playingIds = new uint[50];
 
+    [Header("Tutorial Stuffs")] 
+    public Objectives1 Objectives;
 
     private void Start()
     {
