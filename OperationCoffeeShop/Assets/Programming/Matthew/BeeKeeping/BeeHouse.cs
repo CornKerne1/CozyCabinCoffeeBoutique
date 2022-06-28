@@ -3,19 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class BeeHouse : MonoBehaviour
 {
     [SerializeField] private GameObject slabPrefab;
     [SerializeField] private Transform startTrans;
+    [SerializeField] private int attractionChance;
     private List<Slot> _slots = new List<Slot>();
     private Vector3 _lastPos;
     private GameMode _gameMode;
+    private bool occupied;
 
     private void Start()
     {
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        DayNightCycle.HourChanged += AttractBees;
         CreateSlots();
+    }
+
+    private void AttractBees(object sender, EventArgs e)
+    {
+        if (occupied) return;
     }
 
     private void CreateSlots()
@@ -53,6 +62,8 @@ public class BeeHouse : MonoBehaviour
             }
         }
     }
+    
+    
 }
 
 public class Slot
