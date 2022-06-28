@@ -8,7 +8,18 @@ using UnityEngine;
 //The class does not inherit from MonoBehavior, since it it a Scriptable Object
 public class SlabData : ScriptableObject
 {
-    public float rot;
-    public float attractionModifier;
-    public float productionModifier;
+    private float _rot;
+    private float _rotModifier;
+    private float _attractionModifier;
+    private float _productionModifier;
+
+    private void OnEnable()
+    {
+        DayNightCycle.HourChanged += IncreaseRot;
+    }
+    private void IncreaseRot(object sender, EventArgs e)
+    {
+        _rot = _rot + _rotModifier;
+    }
 }
+
