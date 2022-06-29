@@ -4,14 +4,16 @@ using UnityEngine;
 public class WalkInKitchenTrigger : MonoBehaviour
 {
 
-    private Objectives1 _objectives1;
 
     private GameMode _gameMode;
 
     private void Start()
     {
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        _objectives1 = GameObject.Find("Objectives").GetComponent<Objectives1>();
+        if (_gameMode.gameModeData.inTutorial)
+        {
+            _gameMode.Tutorial.AddedGameObject(this.gameObject);
+        }
 
     }
 
@@ -20,7 +22,7 @@ public class WalkInKitchenTrigger : MonoBehaviour
         Debug.Log("enter the kitchen");
         if (other.gameObject == _gameMode.player.gameObject)
         {
-            _objectives1.NextObjective(gameObject);
+            _gameMode.Tutorial.NextObjective(gameObject);
         }
     }
 }

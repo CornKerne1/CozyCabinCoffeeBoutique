@@ -16,7 +16,7 @@ public class PlayCube : MachineInteraction
     public override void Start()
     {
         base.Start();
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)

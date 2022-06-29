@@ -24,7 +24,7 @@ public class TipJar : Interactable
 
     private void Update()
     {
-        if (gM.gameModeData.reputation > 5)
+        if (gameMode.gameModeData.reputation > 5)
         {
             fullJar.SetActive(true);
             halfJar.SetActive(false);

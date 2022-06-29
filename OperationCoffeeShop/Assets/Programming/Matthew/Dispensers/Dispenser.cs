@@ -5,7 +5,7 @@ using TMPro;
 public class Dispenser : Interactable
 {
     [SerializeField] private Transform spawnTrans;
-    [SerializeField] private ObjectHolder objType;
+    [SerializeField] public ObjectHolder objType;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string message = " beans remaining";
 
@@ -38,7 +38,7 @@ public class Dispenser : Interactable
         if (playerInteraction.pD.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
-        _obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
+        _obj = Instantiate(objType.gameObject, spawnTrans.position, spawnTrans.rotation).transform;
         if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
             physicalIngredient.pI = playerInteraction;

@@ -5,7 +5,7 @@ using TMPro;
 public class TutorialDispenser : Interactable
 {
     [SerializeField] private Transform spawnTrans;
-    [SerializeField] private ObjectHolder objType;
+    [SerializeField] public ObjectHolder objType;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string message = " beans remaining";
 
@@ -40,20 +40,11 @@ public class TutorialDispenser : Interactable
 
     private void IfTutorial()
     {
-        try
-        {
-            _objectives1 = GameObject.Find("Objectives").GetComponent<Objectives1>();
-            _inTutorial = true;
-        }
-        catch
-        {
-            // ignored
-        }
     }
 
     private void IfTutorialObjective()
     {
-        if (_inTutorial && ! _completedObjective)
+        if (_inTutorial && !_completedObjective)
         {
             _objectives1.NextObjective(gameObject);
             _completedObjective = true;
@@ -65,7 +56,7 @@ public class TutorialDispenser : Interactable
         if (playerInteraction.pD.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
-        _obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
+        _obj = Instantiate(objType.gameObject, spawnTrans.position, spawnTrans.rotation).transform;
         if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
             physicalIngredient.pI = playerInteraction;

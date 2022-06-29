@@ -40,12 +40,12 @@ public class CustomerInteractable : Interactable
     {
         base.Start();
         _camera = Camera.main;
-        gM = GameObject.Find("GameMode").GetComponent<GameMode>();
+        gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
         StartCoroutine(CO_AddSelfToData());
         _orderCanvas = gameObject.GetComponentInChildren<Canvas>();
         _orderCanvas.enabled = false;
-        _player = gM.player.gameObject;
+        _player = gameMode.player.gameObject;
         _playerInteraction = _player.GetComponent<PlayerInteraction>();
         dialogueManager = DialogueManager.GetInstance();
 
@@ -69,13 +69,13 @@ public class CustomerInteractable : Interactable
                 Cursor.lockState = CursorLockMode.Locked;
                 if (!_oldLook)
                     _camera.transform.LookAt(_oldLook.position);
-                gM.pD.canMove = true;
-                gM.pD.canMove = true;
+                gameMode.pD.canMove = true;
+                gameMode.pD.canMove = true;
                 StartCoroutine(MoveLine());
                 RemoveOrderBubble();
                 RemoveOrderTicket();
                 dialogueManager.finishedConversation = false;
-                gM.pD.neckClamp = 77.3f;
+                gameMode.pD.neckClamp = 77.3f;
                 _playerInteraction.pD.inUI = false;
                 break;
             }
@@ -88,21 +88,21 @@ public class CustomerInteractable : Interactable
                 Cursor.lockState = CursorLockMode.Locked;
                 if (!_oldLook)
                     _camera.transform.LookAt(_oldLook.position);
-                gM.pD.canMove = true;
-                gM.pD.canMove = true;
+                gameMode.pD.canMove = true;
+                gameMode.pD.canMove = true;
                 //StartCoroutine(MoveLine());
                 DisplayOrderBubble();
                 DisplayOrderTicket();
                 dialogueManager.finishedConversation = false;
-                gM.pD.neckClamp = 77.3f;
+                gameMode.pD.neckClamp = 77.3f;
                 _playerInteraction.pD.inUI = false;
                 break;
             }
         }
 
-        if (gM.pD.canMove || dialogueManager.GetCurrentCustomer() != this.gameObject ||
+        if (gameMode.pD.canMove || dialogueManager.GetCurrentCustomer() != this.gameObject ||
             !dialogueManager.dialogueIsPlaying) return;
-        gM.pD.neckClamp = 0;
+        gameMode.pD.neckClamp = 0;
         var c = _camera.transform;
         _oldLook = c;
         _camera.transform.LookAt(lookAt.position);
@@ -116,8 +116,8 @@ public class CustomerInteractable : Interactable
 
     private void SetConversations()
     {
-        if (!regularCustomerAtlas.dic.ContainsKey(gM.gameModeData.currentTime.Day)) return;
-        foreach (var cc in regularCustomerAtlas.dic[gM.gameModeData.currentTime.Day].Where(cc =>
+        if (!regularCustomerAtlas.dic.ContainsKey(gameMode.gameModeData.currentTime.Day)) return;
+        foreach (var cc in regularCustomerAtlas.dic[gameMode.gameModeData.currentTime.Day].Where(cc =>
                      cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
         {
             this._introConversation = cc.IntroConversation;
@@ -166,7 +166,7 @@ public class CustomerInteractable : Interactable
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gM.pD.canMove = false;
+        gameMode.pD.canMove = false;
         _customerData.customerAnimations.Talk();
         Speak();
     }
@@ -226,12 +226,12 @@ public class CustomerInteractable : Interactable
         _playerInteraction.pD.inUI = true;
         DialogueManager.GetInstance().EnterDialogueMode(_exitConversation);
         dialogueManager.SetCurrentCustomer(gameObject);
-        gM.pD.neckClamp = 0;
+        gameMode.pD.neckClamp = 0;
         dialogueManager.finishedConversation = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gM.pD.canMove = false;
-        gM.pD.canMove = false;
+        gameMode.pD.canMove = false;
+        gameMode.pD.canMove = false;
         _customerData.customerAnimations.Talk();
         Speak();
     }

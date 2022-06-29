@@ -8,7 +8,7 @@ public class ComputerShopInteractable : Interactable
     public override void Start()
     {
         base.Start();
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)
@@ -16,7 +16,7 @@ public class ComputerShopInteractable : Interactable
         if (_shopRef)
         {
             _shopRef.SetActive(true);
-            gM.pD.canMove = false;
+            gameMode.pD.canMove = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
@@ -24,7 +24,7 @@ public class ComputerShopInteractable : Interactable
         {
             _shopRef = Instantiate(shopUI);
             _shopRef.SetActive(true);
-            gM.pD.canMove = false;
+            gameMode.pD.canMove = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }

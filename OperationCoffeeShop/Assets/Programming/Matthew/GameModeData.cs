@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Serialization;
 
 //This creates a file on the disk for this to be stored in the .asset format
@@ -23,8 +25,9 @@ public class GameModeData : ScriptableObject
 
     [Range(0, 16)] public int hoursOpen;
 
-    [FormerlySerializedAs("InTutorial")] [Header("DO NOT TOUCH")]
+    [FormerlySerializedAs("InTutorial")] [Header("Tutorial")]
     public bool inTutorial;
+
 
     [Header("DO NOT TOUCH")] public bool sleeping;
     public float reputation;

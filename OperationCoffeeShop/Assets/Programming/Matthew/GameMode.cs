@@ -31,6 +31,7 @@ public class GameMode : MonoBehaviour
     static uint[] playingIds = new uint[50];
 
     [Header("Tutorial Stuffs")] 
+    public Tutorial Tutorial;
     public Objectives1 Objectives;
 
     private void Start()
@@ -45,6 +46,7 @@ public class GameMode : MonoBehaviour
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
         Initialize();
         //Instantiate(sunLight);
+        IfTutorial();
     }
 
     private void Update()
@@ -67,7 +69,7 @@ public class GameMode : MonoBehaviour
         DayNightCycle.UpdateTimeOfDay(time);
     }
 
-    public void Initialize()
+    private void Initialize()
     {
         //if save file exists load DateTime from file else set to startTime
         DayNightCycle.Initialize();
@@ -75,7 +77,13 @@ public class GameMode : MonoBehaviour
             new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
         gameModeData.currentTime = gameModeData.startTime;
     }
-
+    private void IfTutorial()
+    {
+        if (gameModeData.inTutorial)
+        {
+            Tutorial = new Tutorial(Tutorial, this, gameModeData);
+        }
+    }
     public void DeactivateAndDestroy(GameObject obj)
     {
         obj.SetActive(false);

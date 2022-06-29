@@ -15,7 +15,7 @@ public class TutorialBed : Interactable
         base.Start();
         _currentDc = Instantiate(dayCounter);
         _dayCounter = _currentDc.GetComponent<DayCounter>();
-        _dayCounter.DisplayDay(gM.gameModeData.currentTime.Day);
+        _dayCounter.DisplayDay(gameMode.gameModeData.currentTime.Day);
         _dayCounter.DisplayDay(0);
         StartCoroutine(CO_RemoveDisplayDay());
     }

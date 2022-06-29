@@ -28,7 +28,7 @@ public class Bed : Interactable
         base.Start();
         _currentDc = Instantiate(dayCounter);
         _dC = _currentDc.GetComponent<DayCounter>();
-        _dC.DisplayDay(gM.gameModeData.currentTime.Day);
+        _dC.DisplayDay(gameMode.gameModeData.currentTime.Day);
         StartCoroutine(CO_RemoveDisplayDay());
     }
 
@@ -48,7 +48,7 @@ public class Bed : Interactable
     {
         if (_playerInteraction)
         {
-            if (!base.gM.gameModeData.sleeping && _playerInteraction.pD.canMove == false)
+            if (!base.gameMode.gameModeData.sleeping && _playerInteraction.pD.canMove == false)
             {
                 _running = true;
                 if (_coTimerRef == null)
@@ -64,7 +64,7 @@ public class Bed : Interactable
             StartCoroutine(CO_Timer());
         }
 
-        if (base.gM.gameModeData.sleeping)
+        if (base.gameMode.gameModeData.sleeping)
         {
             _playerTrans.position = Vector3.Lerp(_playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime);
         }
@@ -74,7 +74,7 @@ public class Bed : Interactable
             {
                 _currentDc = Instantiate(dayCounter);
                 _dC = _currentDc.GetComponent<DayCounter>();
-                _dC.DisplayDay(gM.gameModeData.currentTime.Day);
+                _dC.DisplayDay(gameMode.gameModeData.currentTime.Day);
             }
 
             _playerTrans.position = Vector3.Lerp(_playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
@@ -97,7 +97,7 @@ public class Bed : Interactable
             _playerInteraction.pD.canMove = true;
             _playerTrans.GetComponent<Collider>().enabled = true;
             _inBed = false;
-            base.gM.gameModeData.timeRate = base.gM.gameModeData.timeRate / 30;
+            base.gameMode.gameModeData.timeRate = base.gameMode.gameModeData.timeRate / 30;
         }
 
         _coTimerRef = null;
@@ -105,17 +105,17 @@ public class Bed : Interactable
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (gM.gameModeData.currentTime.Hour != 0 &&
-            gM.gameModeData.currentTime.Hour < gM.gameModeData.closingHour) return;
-        _playerTrans = base.gM.player.transform;
-        gM.gameModeData.timeRate = 30 * base.gM.gameModeData.timeRate;
-        gM.player.GetComponent<Collider>().enabled = false;
+        if (gameMode.gameModeData.currentTime.Hour != 0 &&
+            gameMode.gameModeData.currentTime.Hour < gameMode.gameModeData.closingHour) return;
+        _playerTrans = base.gameMode.player.transform;
+        gameMode.gameModeData.timeRate = 30 * base.gameMode.gameModeData.timeRate;
+        gameMode.player.GetComponent<Collider>().enabled = false;
         playerInteraction.pD.canMove = false;
-        if (gM.gameModeData.currentTime.Hour != 0)
-            gM.gameModeData.sleepDay = gM.gameModeData.currentTime.Day + 1;
+        if (gameMode.gameModeData.currentTime.Hour != 0)
+            gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day + 1;
         else
-            gM.gameModeData.sleepDay = gM.gameModeData.currentTime.Day;
-        gM.gameModeData.sleeping = true;
+            gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day;
+        gameMode.gameModeData.sleeping = true;
         _running = true;
     }
 }
