@@ -50,6 +50,15 @@ public class Dispenser : Interactable
         }
 
         playerInteraction.Carry(_obj.gameObject);
+        IfTutorial();
+    }
+
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
+        }
     }
 
     private void UpdateQuantity()

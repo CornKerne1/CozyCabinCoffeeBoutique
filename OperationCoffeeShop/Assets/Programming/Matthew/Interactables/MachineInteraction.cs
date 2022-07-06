@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class MachineInteraction : Interactable
 {
@@ -23,9 +22,15 @@ public class MachineInteraction : Interactable
                 return;
             case MachineData.Type.Brewer:
                 var bB = transform.root.GetComponentInChildren<BrewerBowl>();
+
                 if (!bB) return;
+                Debug.Log("sdfgsdfgsdfgsdfg????" + gameObject.name);
+
                 if (!bB.open && Machine.currentCapacity > 0)
                 {
+                    Debug.Log("hellowwwww????" + gameObject.name);
+
+                    IfTutorial();
                     Machine.StartMachine();
                     bB.filter.SetActive(false);
                 }
@@ -38,6 +43,15 @@ public class MachineInteraction : Interactable
             case MachineData.Type.Grinder:
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void IfTutorial()
+    {
+        Debug.Log("teeeeeeesssssssttttttt brewer bowl interaction");
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
         }
     }
 }

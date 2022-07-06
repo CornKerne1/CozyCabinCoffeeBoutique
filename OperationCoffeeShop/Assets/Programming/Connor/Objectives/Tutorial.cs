@@ -9,7 +9,7 @@ public class Tutorial
     //going to have all the logic needed by any tutorial object
     //it will be constructed by the game mode (game mode will have a bool in GameModeData for tutorial)
     private bool _completedObjective;
-    private Objectives1 _objectives1;
+    public Objectives1 Objectives;
     private Tutorial _tutorial;
     private GameMode _gameMode;
     private GameModeData _gameModeData;
@@ -45,7 +45,9 @@ public class Tutorial
     {
         try
         {
+            
             var dispenser = gameObject.GetComponent<Dispenser>();
+            Debug.Log("found a dispenser: " + gameObject);
             switch (dispenser.objType.dispenserType)
             {
                 case DispenserType.Cup:
@@ -78,6 +80,7 @@ public class Tutorial
                 }
                 catch
                 {
+                    
                 }
             }
         }
@@ -85,7 +88,9 @@ public class Tutorial
 
     public void NextObjective(GameObject gameObject)
     {
-        _objectives1.NextObjective(gameObject);
+        Debug.Log("Next Objective attempt with: " + gameObject);
+
+        Objectives.NextObjective(gameObject);
     }
 
     // private void IfTutorialObjective()

@@ -84,7 +84,7 @@ public class TutorialDispenser : Interactable
     {
         try
         {
-            Tuple<ObjectHolder, int> tuple = (Tuple<ObjectHolder, int>)sender;
+            var tuple = (Tuple<ObjectHolder, int>)sender;
 
             if (objType == tuple.Item1)
             {

@@ -22,6 +22,7 @@ public class PhysicalIngredient : Interactable
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
+        IfTutorial();
         pI = playerInteraction;
         playerInteraction.Carry(gameObject);
         inHand = true;
@@ -31,7 +32,13 @@ public class PhysicalIngredient : Interactable
     {
         inHand = false;
     }
-
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameMode.Tutorial.Objectives.gameObject);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

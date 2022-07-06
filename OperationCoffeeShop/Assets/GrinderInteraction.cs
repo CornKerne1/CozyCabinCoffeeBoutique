@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class GrinderInteraction : MachineInteraction
 {
+    
     public Animator animator;
+    [SerializeField,Header("Tutorial Only")]    
+    public GameObject objectiveOutputObject;
+
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
 
         animator.SetTrigger("Press");
         StartCoroutine(Grind());
+        IfTutorial();
         
+    }
+
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(objectiveOutputObject);
+        }
     }
     IEnumerator Grind()
     {

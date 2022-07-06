@@ -19,6 +19,12 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        InitializeOutline();
+        CheckTutorial();
+    }
+
+    private void InitializeOutline()
+    {
         _outline = gameObject.AddComponent<Outline>();
         _outline.OutlineMode = Outline.Mode.OutlineVisible;
         _outline.OutlineWidth = 10;
@@ -35,6 +41,14 @@ public abstract class Interactable : MonoBehaviour
         _outline.OutlineColor = color;
     }
 
+    protected virtual void CheckTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            Debug.Log("Interactable tutorial object: " + gameObject);
+            gameMode.Tutorial.AddedGameObject(gameObject);
+        }
+    }
     public abstract void OnInteract(PlayerInteraction playerInteraction);
 
     public virtual void OnFocus()

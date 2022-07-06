@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Machine : MonoBehaviour
 {
@@ -8,11 +10,10 @@ public abstract class Machine : MonoBehaviour
     public IngredientData iD;
     public bool isRunning;
     public Vector3 origin;
-
+    [FormerlySerializedAs("GameMode")] public GameMode gameMode;
 
     public Transform outputTransform;
 
-    // Start is called before the first frame update
 
     private void Awake()
     {
@@ -20,11 +21,26 @@ public abstract class Machine : MonoBehaviour
         mD.outputIngredient.Clear();
     }
 
+    protected void Start()
+    {
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        CheckTutorial();
+    }
+
     private void Update()
     {
         Shake();
     }
 
+    protected virtual void CheckTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            Debug.Log("Interactable tutorial object: " + gameObject);
+            gameMode.Tutorial.AddedGameObject(gameObject);
+        }
+    }
+    
     public void IngredientInteract(GameObject other)
     {
         if (currentCapacity < mD.maxCapacity && !isRunning)

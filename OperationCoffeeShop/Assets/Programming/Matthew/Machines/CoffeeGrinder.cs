@@ -1,8 +1,16 @@
 using System;
 using UnityEngine;
 
+
 public class CoffeeGrinder : Machine
 {
+    private new void Start()
+    {
+        base.Start();
+    }
+
+    
+
     protected override void ChooseIngredient(GameObject other)
     {
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
@@ -12,6 +20,7 @@ public class CoffeeGrinder : Machine
                 mD.outputIngredient.Add(iD.glCoffee);
                 other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
                 Destroy(other);
+                IfTutorial();
                 break;
             case Ingredients.Milk:
             case Ingredients.SteamedMilk:
@@ -29,4 +38,13 @@ public class CoffeeGrinder : Machine
                 throw new ArgumentOutOfRangeException();
         }
     }
+    private void IfTutorial()
+    {
+        Debug.Log("do the thing grinder");
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
+        }
+    }
+
 }

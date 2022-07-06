@@ -81,7 +81,10 @@ public class GameMode : MonoBehaviour
     {
         if (gameModeData.inTutorial)
         {
-            Tutorial = new Tutorial(Tutorial, this, gameModeData);
+            Tutorial = new Tutorial(Tutorial, this, gameModeData)
+            {
+                Objectives = Objectives
+            };
         }
     }
     public void DeactivateAndDestroy(GameObject obj)
