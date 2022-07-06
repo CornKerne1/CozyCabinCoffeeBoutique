@@ -147,6 +147,29 @@
 										<ActiveSource Name="UnsatisfiedCustomer" ID="{945E72C1-4A18-42A5-BFD4-C4688FF3E8C8}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="TaskComplete" ID="{22429AD7-E146-45E9-AF0F-27777820D14D}" ShortID="681310716">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TaskComplete" ID="{7122A126-4E9B-4947-8C4C-84985DBF8EF4}">
+											<Language>SFX</Language>
+											<AudioFile>TaskComplete.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="455270351"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TaskComplete" ID="{7122A126-4E9B-4947-8C4C-84985DBF8EF4}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
