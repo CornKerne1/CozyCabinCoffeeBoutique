@@ -1,37 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class DLightUpdate : MonoBehaviour
 {
-    public Light light;
+    private Light _light;
     public int wakeUpHour = 6;
     public int sleepingHour = 18;
-    GameMode gM;
+    private GameMode _gameMode;
 
-    void Start()
+    private void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        if (gM.gMD.currentTime.Hour >= wakeUpHour )
+        StartCoroutine(CO_SuperStart());
+    }
+
+    private IEnumerator CO_SuperStart()
+    {
+        yield return new WaitForSeconds(.3f);
+        _light = GetComponent<Light>();
+        Debug.Log("let there be light");
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        if (_gameMode.gameModeData.currentTime.Hour >= wakeUpHour)
         {
-            light.enabled = true;
+            _light.enabled = true;
         }
+
         DayNightCycle.TimeChanged += AdjustLight;
     }
 
     private void AdjustLight(object sender, EventArgs e)
     {
-        Debug.Log(gM.gMD.currentTime.Hour);
-        if (wakeUpHour == gM.gMD.currentTime.Hour)
+        if (!_light) return;
+
+        if (wakeUpHour == _gameMode.gameModeData.currentTime.Hour)
         {
-            light.enabled = true;
+            _light.enabled = true;
         }
-        else if (sleepingHour == gM.gMD.currentTime.Hour)
+        else if (sleepingHour == _gameMode.gameModeData.currentTime.Hour)
         {
-            light.enabled = false;
+            _light.enabled = false;
         }
     }
-    
-
 }

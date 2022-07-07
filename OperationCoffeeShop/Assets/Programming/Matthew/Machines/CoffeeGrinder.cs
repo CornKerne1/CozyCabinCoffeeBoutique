@@ -1,22 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
 
 public class CoffeeGrinder : Machine
 {
-    public override void ChooseIngredient(GameObject other)
+    private new void Start()
+    {
+        base.Start();
+    }
+
+    
+
+    protected override void ChooseIngredient(GameObject other)
     {
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
             case Ingredients.UngroundCoffee:
-                currentCapacity = currentCapacity + 1;
+                currentCapacity += 1;
                 mD.outputIngredient.Add(iD.glCoffee);
-                Debug.Log("Test333");
                 other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
-                Debug.Log("Test22222");
                 Destroy(other);
-                Debug.Log("Test1111");
+                IfTutorial();
                 break;
+            case Ingredients.Milk:
+            case Ingredients.SteamedMilk:
+            case Ingredients.FoamedMilk:
+            case Ingredients.Sugar:
+            case Ingredients.WhippedCream:
+            case Ingredients.Espresso:
+            case Ingredients.GroundCoffee:
+            case Ingredients.Salt:
+            case Ingredients.BrewedCoffee:
+            case Ingredients.EspressoBeans:
+            case Ingredients.CoffeeFilter:
+            case Ingredients.TeaBag:
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
+    private void IfTutorial()
+    {
+        Debug.Log("do the thing grinder");
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
+        }
+    }
+
 }

@@ -1,47 +1,39 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayCube : MachineInteraction
 {
-    public Animator PlayCubeAnimator;
+    [FormerlySerializedAs("PlayCubeAnimator")]
+    public Animator playCubeAnimator;
 
-    string isOpen = "isOpen";
+    private const string IsOpen = "isOpen";
 
-    private bool canOpen = true;
-    
-    public override void OnInteract(PlayerInteraction pI)
+    private bool _canOpen = true;
+    private static readonly int Open = Animator.StringToHash(IsOpen);
+
+
+    public override void Start()
     {
-        StartCoroutine(interact());
+        base.Start();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
-    IEnumerator interact()
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (canOpen)
+        StartCoroutine(CO_Interact());
+    }
+
+    private IEnumerator CO_Interact()
+    {
+        if (_canOpen)
         {
-            canOpen = false;
-            if (PlayCubeAnimator.GetBool(isOpen) == true)
-            {
-                PlayCubeAnimator.SetBool(isOpen, false);
-            }
-            else
-            {
-                PlayCubeAnimator.SetBool(isOpen, true);
-            }
+            _canOpen = false;
+            playCubeAnimator.SetBool(Open, playCubeAnimator.GetBool(Open) != true);
+
             yield return new WaitForSeconds(1);
-            canOpen = true;
+            _canOpen = true;
         }
         yield return null;
     }
-
-
-    
-    private void Start()
-    {
-        base.Start();
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-
-    }
-
-
 }

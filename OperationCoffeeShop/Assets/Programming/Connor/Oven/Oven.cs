@@ -1,57 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Oven : MachineInteraction
 {
     public Animator ovenAnimator;
 
-    string isOpen = "isOpen";
+    private const string IsOpen = "isOpen";
 
-    private bool canOpen =true;
+    private bool _canOpen = true;
+    private static readonly int Open = Animator.StringToHash(IsOpen);
 
-    public override void OnFocus()
+
+    public override void Start()
     {
+        base.Start();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        StartCoroutine(interact());
+        StartCoroutine(CO_Interact());
     }
 
-    IEnumerator interact()
+    private IEnumerator CO_Interact()
     {
-        if (canOpen)
+        if (_canOpen)
         {
-            canOpen = false;
-            if (ovenAnimator.GetBool(isOpen) == true)
-            {
-                ovenAnimator.SetBool(isOpen, false);
-            }
-            else
-            {
-                ovenAnimator.SetBool(isOpen, true);
-            }
+            _canOpen = false;
+            ovenAnimator.SetBool(Open, ovenAnimator.GetBool(Open) != true);
             yield return new WaitForSeconds(1);
-            canOpen = true;
+            _canOpen = true;
         }
+
         yield return null;
-    }
-
-    public override void OnLoseFocus()
-    {
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

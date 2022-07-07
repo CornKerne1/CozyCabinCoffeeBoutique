@@ -8,17 +8,17 @@ public class Button : Interactable
     private PlayerInteraction pI;
 
     public Animator ButtonAnimator;
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
         ButtonAnimator.SetTrigger("Press");
-        if (!gM.gMD.isOpen)
+        if (!gameMode.gameModeData.isOpen)
         {
-            gM.OpenShop();
+            gameMode.OpenShop();
             AkSoundEngine.PostEvent("Play_buttonpress" , this.gameObject);
         }
         
     }
-    public override void OnAltInteract(PlayerInteraction pI)
+    public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
         
     }

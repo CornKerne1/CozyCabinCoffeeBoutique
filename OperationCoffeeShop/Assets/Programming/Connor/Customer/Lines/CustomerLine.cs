@@ -93,15 +93,12 @@ public class CustomerLine : MonoBehaviour
     }
     public void LeaveWithoutGettingDrink(DrinkData drinkData)
     {
-        if (_queue.Count > 0 && _queue.Peek().hasOrdered == true)
-        {
-            CustomerAI ai = _queue.Peek();
-            ai.hasOrder = true;
-            MoveLine();
-            ai.customerData.receivedDrinkData = drinkData;
-            DepositMoney?.Invoke(ai.customerData.favoriteDrinkData.price, EventArgs.Empty);
-            ai.customerData.customer.OnReceivedDrink();
-
-        }
+        if (_queue.Count <= 0 || _queue.Peek().hasOrdered != true) return;
+        var ai = _queue.Peek();
+        ai.hasOrder = true;
+        MoveLine();
+        ai.customerData.receivedDrinkData = drinkData;
+        DepositMoney?.Invoke(ai.customerData.favoriteDrinkData.price, EventArgs.Empty);
+        ai.customerData.customer.OnReceivedDrink();
     }
 }

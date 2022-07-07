@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] public PlayerData pD;
     [SerializeField] private PlayerInput pI;
-    
+
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable _currentInteractable;
@@ -21,23 +21,29 @@ public class PlayerInteraction : MonoBehaviour
     private MinFloatParameter _dofDistanceParameter;
     private ClampedFloatParameter _dofAperture;
     private ClampedFloatParameter _startAperture;
-    
+
     private bool _blur;
+
     private void Awake()
     {
-        pI = gameObject.GetComponent<PlayerInput>(); pD = pI.pD; _cam = GetComponentInChildren<Camera>();
+        pI = gameObject.GetComponent<PlayerInput>();
+        pD = pI.pD;
+        _cam = GetComponentInChildren<Camera>();
         EventSubscriber();
     }
+
     private void Start()
     {
         InitializeDof();
     }
+
     private void Update()
     {
         RaycastCheck();
         HandleCarrying();
         HandleRotation();
     }
+
     private void EventSubscriber()
     {
         PlayerInput.InteractEvent += TryInteract;
@@ -46,6 +52,7 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInput.MoveObjEvent += MoveObj;
         PlayerInput.AltInteractEvent += Alt;
     }
+
     private void InitializeDof()
     {
         profile.TryGet<DepthOfField>(out dof);
@@ -57,16 +64,17 @@ public class PlayerInteraction : MonoBehaviour
         _dofAperture.value = _startAperture.value;
         _carryDistance = pD.carryDistance;
     }
+
     private void RaycastCheck()
     {
         if (pD.busyHands)
         {
-            if(!_currentInteractable)
+            if (!_currentInteractable)
                 _currentInteractable = carriedObj.GetComponent<Interactable>();
         }
         else
         {
-            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return;//
+            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return; //
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
             if (hit.distance <= pD.interactDistance)
             {
@@ -81,18 +89,19 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else if (_currentInteractable)
                     RemoveCurrentInteractable();
-
             }
             else if (_currentInteractable)
                 RemoveCurrentInteractable();
         }
     }
+
     private void HandleCarrying()
     {
         if (!pD.busyHands || !carriedObj) return;
         _currentInteractable.OnFocus();
         var camTrans = _cam.transform;
-        carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * pD.smooth);
+        carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position,
+            camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * pD.smooth);
     }
 
     private void HandleRotation()
@@ -101,12 +110,11 @@ public class PlayerInteraction : MonoBehaviour
         try
         {
             var root = carriedObj.transform.root;
-            var a =root.GetComponentInChildren<Radio>();
+            var a = root.GetComponentInChildren<Radio>();
             var b = !root.GetComponentInChildren<IngredientContainer>().IsPouring();
         }
         catch
         {
-
             if (pI.GetCurrentRotate().x > 0)
             {
                 carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
@@ -132,35 +140,40 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+
     private void TryInteract(object sender, EventArgs e)
     {
-        if (!pD.inUI)
+        if (pD.inUI) return;
+        if (pD.busyHands)
         {
-            if (pD.busyHands)
-            {
-                DropCurrentObj();
-                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
-            }
-            else if (pD.canInteract && _currentInteractable && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), pD.interactDistance, interactionLayer))
-            {
-                AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
-                _currentInteractable.OnInteract(this);
-            }
+            DropCurrentObj();
+            AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
+        }
+        else if (pD.canInteract && _currentInteractable && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint),
+                     pD.interactDistance, interactionLayer))
+        {
+            AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
+            _currentInteractable.OnInteract(this);
         }
     }
+
     private void TryRotate(object sender, EventArgs e)
     {
         _rotate = true;
     }
+
     private void CancelRotate(object sender, EventArgs e)
     {
         _rotate = false;
     }
+
     private void MoveObj(object sender, EventArgs e)
     {
         if (_rotate) return;
-        _carryDistance = Mathf.Clamp(_carryDistance + (pI.GetCurrentObjDistance() / 8), pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
+        _carryDistance = Mathf.Clamp(_carryDistance + (pI.GetCurrentObjDistance() / 8),
+            pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
     }
+
     private void Alt(object sender, EventArgs e)
     {
         if (!carriedObj) return;
@@ -169,12 +182,14 @@ public class PlayerInteraction : MonoBehaviour
             _currentInteractable.OnAltInteract(this);
         }
     }
+
     private void RemoveCurrentInteractable()
     {
         if (!_currentInteractable) return;
         _currentInteractable.OnLoseFocus();
         _currentInteractable = null;
     }
+
     public void DropCurrentObj()
     {
         if (carriedObj.TryGetComponent<IngredientContainer>(out var ingredientContainer))
@@ -185,10 +200,23 @@ public class PlayerInteraction : MonoBehaviour
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
             ingredientContainer.inHand = false;
-            Quaternion rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x, Quaternion.identity.y + ingredientContainer.rotateOffset.y, Quaternion.identity.z + ingredientContainer.rotateOffset.z, Quaternion.identity.w);
+            var rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x,
+                Quaternion.identity.y + ingredientContainer.rotateOffset.y,
+                Quaternion.identity.z + ingredientContainer.rotateOffset.z, Quaternion.identity.w);
             ingredientContainer.transform.rotation = rot;
             carriedObj = null;
             pD.busyHands = false;
+        }
+        else if (carriedObj.TryGetComponent<ExamineInteractable>(out var examineInteractable))
+        {
+            if (_currentInteractable)
+                _currentInteractable.OnLoseFocus();
+            carriedObj.GetComponent<Collider>().isTrigger = false;
+            _currentInteractable = null;
+            pD.busyHands = false;
+            carriedObj = null;
+            pD.busyHands = false;
+            examineInteractable.ReturnToOriginalPosition();
         }
         else if (carriedObj != null)
         {
@@ -200,37 +228,42 @@ public class PlayerInteraction : MonoBehaviour
             {
                 _currentInteractable.OnDrop();
             }
+
             _currentInteractable = null;
             pD.busyHands = false;
             carriedObj = null;
             pD.busyHands = false;
         }
     }
+
     public void Carry(GameObject obj)
     {
         if (pD.busyHands)
         {
             DropCurrentObj();
         }
+
         RemoveCurrentInteractable();
         obj.TryGetComponent(out _currentInteractable);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
         carriedObj = obj;
         pD.busyHands = true;
-        _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
+        _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp,
+            pD.carryDistance + pD.carryDistanceClamp);
     }
+
     public void CameraBlur()
     {
-         if (_blur)
-         {
-             _dofAperture.value = 1.0f;
-             _blur = true;
-         }
-         else
-         {
-             _dofAperture.value = 32.0f;
-             _blur = false;
-         }
+        if (_blur)
+        {
+            _dofAperture.value = 1.0f;
+            _blur = true;
+        }
+        else
+        {
+            _dofAperture.value = 32.0f;
+            _blur = false;
+        }
     }
 }

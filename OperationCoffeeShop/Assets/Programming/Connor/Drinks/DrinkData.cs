@@ -1,128 +1,103 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
 
 [CreateAssetMenu(fileName = "DrinkData", menuName = "DrinkData/Generic")]
 public class DrinkData : ScriptableObject
 {
-    [SerializeField]
-    public string Name;
-    public List<IngredientNode> Ingredients;
+    [SerializeField] public new string name;
+    public List<IngredientNode> ingredients;
 
     public float price;
-    public void addIngredient(Ingredients ingredient, float target)
+
+    public void AddIngredient(Ingredients ingredient, float target)
     {
-        Ingredients.Add(new IngredientNode(ingredient, target));
+        ingredients.Add(new IngredientNode(ingredient, target));
     }
 
-    /// <summary>
-    /// if Drink has a particular Ingredent held in Ingredient Node:
-    /// Add Target of parameter to value in list.
-    /// Else: add Ingredient node to list. 
-    /// </summary>
-    /// <param name="IN"></param>
-    public void addIngredient(IngredientNode IN)
+    public void AddIngredient(IngredientNode @in)
     {
-        if (Ingredients != null)
+        if (ingredients == null) return;
+        var foundIngredient = false;
+        foreach (var ingredient in ingredients.Where(ingredient => ingredient.ingredient == @in.ingredient))
         {
-            bool foundIngredient = false;
-            foreach (IngredientNode ingredient in Ingredients)
-            {
-                if (ingredient.ingredient == IN.ingredient)
-                {
-                    foundIngredient = true;
-                    ingredient.target += IN.target;
-                }
-            }
-            if (!foundIngredient)
-            {
-                Ingredients.Add(IN);
-            }
+            foundIngredient = true;
+            ingredient.target += @in.target;
+        }
+
+        if (!foundIngredient)
+        {
+            ingredients.Add(@in);
         }
     }
 
     public DrinkData(string name)
     {
-        this.name = name;
-        Ingredients = new List<IngredientNode>();
-
+        ((Object)this).name = name;
+        ingredients = new List<IngredientNode>();
     }
-    public DrinkData(string name, List<IngredientNode> Ingredients)
+
+    public DrinkData(string name, List<IngredientNode> ingredients)
     {
-        this.name = name;
-        this.Ingredients = new List<IngredientNode>();
-        foreach (IngredientNode IN in Ingredients)
+        ((Object)this).name = name;
+        this.ingredients = new List<IngredientNode>();
+        foreach (var tempNode in ingredients.Select(@in => new IngredientNode(@in.ingredient, @in.target)))
         {
-            IngredientNode tempNode = new IngredientNode(IN.ingredient, IN.target);
-            this.Ingredients.Add(tempNode);
+            this.ingredients.Add(tempNode);
         }
     }
 
-    /// <summary>
-    /// Compares two drink datas to determine how approximate they are equivalent to eachother. 
-    /// </summary>
-    /// <param name="playerDrink"></param>
-    /// <param name="DesiredDrink"></param>
-    /// <returns>range between 0 and 1. 0 being nothing alike, 1 being aproximatily identical.</returns>
-    public float Compare(DrinkData playerDrink, DrinkData DesiredDrink)
+    public static float Compare(DrinkData playerDrink, DrinkData desiredDrink)
     {
         float sum = 0;
-        float numberofBadIngredients;
-        float numberOfDesiredIngredients = DesiredDrink.Ingredients.Count;
+        float numberOfBadIngredients;
+        float numberOfDesiredIngredients = desiredDrink.ingredients.Count;
         try
         {
-            numberofBadIngredients = playerDrink.Ingredients.Count;
+            numberOfBadIngredients = playerDrink.ingredients.Count;
         }
         catch
         {
-            numberofBadIngredients = 0;
+            numberOfBadIngredients = 0;
         }
 
-        foreach (IngredientNode DesiredIngredientNode in DesiredDrink.Ingredients)
+        foreach (var desiredIngredientNode in desiredDrink.ingredients)
         {
-            bool foundIngredient = false;
-            if (playerDrink != null &&playerDrink.Ingredients != null)
+            var foundIngredient = false;
+            if (playerDrink && playerDrink.ingredients != null)
             {
-                foreach (IngredientNode playerIngredientNode in playerDrink.Ingredients)
+                foreach (var playerIngredientNode in playerDrink.ingredients.Where(playerIngredientNode =>
+                             desiredIngredientNode.ingredient == playerIngredientNode.ingredient))
                 {
-                    if (DesiredIngredientNode.ingredient == playerIngredientNode.ingredient)
-                    {
-                        foundIngredient = true;
-                        float min = Mathf.Min(DesiredIngredientNode.target, playerIngredientNode.target);
-                        float max = Mathf.Max(DesiredIngredientNode.target, playerIngredientNode.target);
-                        sum += min / max;
-                        break;
-                    }
+                    foundIngredient = true;
+                    var min = Mathf.Min(desiredIngredientNode.target, playerIngredientNode.target);
+                    var max = Mathf.Max(desiredIngredientNode.target, playerIngredientNode.target);
+                    sum += min / max;
+                    break;
                 }
             }
+
             if (!foundIngredient)
             {
-                numberofBadIngredients++;
+                numberOfBadIngredients++;
             }
         }
-        float average = (sum / numberOfDesiredIngredients) - (numberofBadIngredients * 0.05f);//evaluation 
+
+        var average = (sum / numberOfDesiredIngredients) - (numberOfBadIngredients * 0.05f);
+        Debug.Log("Drink Comparison => average:" + average + "... or sum: " + sum + " >>> currently using sum");
         return sum;
     }
 }
 
-
-
-
 [System.Serializable]
 public class IngredientNode
 {
-    /// <summary>
-    /// Constructs a new Ingredient node ready to be added to List;
-    /// </summary>
-    /// <param name="ingredient"></param>
-    /// <param name="target">Range between 0 & 100</param>
     public IngredientNode(Ingredients ingredient, float target)
     {
         this.ingredient = ingredient;
         this.target = target;
     }
+
     public Ingredients ingredient;
-    [SerializeField, Range(0, 100)]
-    public float target;
+    [SerializeField, Range(0, 10)] public float target;
 }

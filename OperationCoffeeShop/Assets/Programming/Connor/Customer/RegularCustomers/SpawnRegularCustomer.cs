@@ -20,14 +20,14 @@ public class SpawnRegularCustomer : MonoBehaviour
     void Start()
     {
         DayNightCycle.TimeChanged += UpdateDic;
-        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
+        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData;
     }
 
     private IEnumerator Spawn(GameObject customer)
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
         Instantiate(customer, this.transform.position, this.transform.rotation);
-        customer.GetComponent<CustomerInteractable>().rCA = RCA;
+        customer.GetComponent<CustomerInteractable>().regularCustomerAtlas = RCA;
 
     }
     private void UpdateDic(object sender, EventArgs e)

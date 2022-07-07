@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PhysicalIngredient : Interactable
 {
-    private Vector3 rejectionForce = new Vector3(55, 55, 55);
+    private Objectives1 _objectives1;
+
+    private readonly Vector3 _rejectionForce = new Vector3(55, 55, 55);
     [SerializeField] public Ingredients thisIngredient;
-    bool inHand;
+
+    [FormerlySerializedAs("_inHand")] [SerializeField]
+    private bool inHand;
+
     public PlayerInteraction pI;
 
-    public void Update()
-    {
-       
-    }
     public override void Start()
     {
         base.Start();
@@ -20,46 +20,56 @@ public class PhysicalIngredient : Interactable
     }
 
 
-
-    public override void OnInteract(PlayerInteraction pI)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        Debug.Log("onInteract");
-        this.pI = pI;
-        pI.Carry(gameObject);
+        IfTutorial();
+        pI = playerInteraction;
+        playerInteraction.Carry(gameObject);
         inHand = true;
     }
 
-    public void OnDrop()
+    public override void OnDrop()
     {
         inHand = false;
     }
-
-
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameMode.Tutorial.Objectives.gameObject);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (other.gameObject.layer == 3)
+        var rb = GetComponent<Rigidbody>();
+        if (other.gameObject.layer != 3) return;
+        try
         {
-            //pI.DropCurrentObj();
+            other.GetComponent<Machine>().IngredientInteract(gameObject);
+            rb.AddForce(_rejectionForce);
+            pI.DropCurrentObj();
+        }
+        catch
+        {
             try
             {
-                other.GetComponent<Machine>().IngredientInteract(gameObject);
-                rb.AddForce(rejectionForce); //
+                other.GetComponent<BrewerBowl>().IngredientInteract(gameObject);
+                rb.AddForce(_rejectionForce);
                 pI.DropCurrentObj();
-
             }
             catch
             {
                 try
                 {
-                    other.GetComponent<BrewerBowl>().IngredientInteract(gameObject);
-                    rb.AddForce(rejectionForce);//
+                    other.GetComponent<TutorialBrewerBowl>().IngredientInteract(gameObject);
+                    rb.AddForce(_rejectionForce);
                     pI.DropCurrentObj();
-                
                 }
-                catch {}
-            }
+                catch
+                {
+                    // ignored
+                }            }
         }
     }
 }

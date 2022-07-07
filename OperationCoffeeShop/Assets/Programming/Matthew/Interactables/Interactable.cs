@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public GameMode gM;
+    [FormerlySerializedAs("gM")] public GameMode gameMode;
     public Vector3 rotateOffset;
 
-    protected Outline outline;
-    protected Color outlineColor;
+    private Outline _outline;
+    private Color _outlineColor;
 
     public virtual void Awake()
     {
@@ -17,41 +18,54 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void Start()
     {
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        outline = gameObject.AddComponent<Outline>();
-            outline.OutlineMode = Outline.Mode.OutlineVisible;
-            outline.OutlineWidth = 10;
-            var sunsetYellow = new Color()
-            {
-                r = 1f,
-                g = .7882f,
-                b = .1333f,
-                a = 1f,
-            };
-            outlineColor = sunsetYellow;
-            var color = outlineColor;
-            color.a = 0;
-            outline.OutlineColor = color;
-
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        InitializeOutline();
+        CheckTutorial();
     }
 
-    public abstract void OnInteract(PlayerInteraction pI);
+    private void InitializeOutline()
+    {
+        _outline = gameObject.AddComponent<Outline>();
+        _outline.OutlineMode = Outline.Mode.OutlineVisible;
+        _outline.OutlineWidth = 10;
+        var sunsetYellow = new Color()
+        {
+            r = 1f,
+            g = .7882f,
+            b = .1333f,
+            a = 1f,
+        };
+        _outlineColor = sunsetYellow;
+        var color = _outlineColor;
+        color.a = 0;
+        _outline.OutlineColor = color;
+    }
+
+    protected virtual void CheckTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            Debug.Log("Interactable tutorial object: " + gameObject);
+            gameMode.Tutorial.AddedGameObject(gameObject);
+        }
+    }
+    public abstract void OnInteract(PlayerInteraction playerInteraction);
 
     public virtual void OnFocus()
     {
-        if (!outline) return;
-        outline.OutlineColor = outlineColor;
+        if (!_outline) return;
+        _outline.OutlineColor = _outlineColor;
     }
 
     public virtual void OnLoseFocus()
     {
-        if (!outline) return;
-        var color = outlineColor;
+        if (!_outline) return;
+        var color = _outlineColor;
         color.a = 0;
-        outline.OutlineColor = color;
+        _outline.OutlineColor = color;
     }
 
-    public virtual void OnAltInteract(PlayerInteraction pI)
+    public virtual void OnAltInteract(PlayerInteraction playerInteraction)
     {
     }
 

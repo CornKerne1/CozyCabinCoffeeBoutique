@@ -14,16 +14,32 @@ public class RandomCustomer : Customer
 
     public void Awake()
     {
-        var customer = Instantiate(customerSet.Customers[Random.Range(0, customerSet.Customers.Count)]);
+        SpawnRandomCustomer();
+
+        _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
+
+        var favoriteDrink = GetRandomDrink();
+
+        SetUpCustomerData(favoriteDrink);
+
+        var customerDrink = ScriptableObject.CreateInstance<DrinkData>();
+
+        SetUpAndModifyDrinkData(customerDrink, favoriteDrink);
+    }
+
+    private void SpawnRandomCustomer()
+    {
+        var customer = Instantiate(customerSet.customers[Random.Range(0, customerSet.customers.Count)]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
         customer.transform.parent = gameObject.transform; // do not refactor
         customer.transform.localPosition = position;
         customer.transform.localScale = scale;
+    }
 
-        _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
-        var favoriteDrink = GetRandomDrink();
 
+    private void SetUpCustomerData(DrinkData favoriteDrink)
+    {
         var flavors = new List<Flavors>();
 
         var flavorNodes = new List<FlavorProfile.FlavorNode>();
@@ -31,7 +47,7 @@ public class RandomCustomer : Customer
         var flavorProfile = new FlavorProfile();
 
         foreach (var
-                     i in favoriteDrink.Ingredients)
+                     i in favoriteDrink.ingredients)
         {
             if (!flavors.Contains(flavorProfile.flavorProfile[i.ingredient].flavor))
             {
@@ -51,17 +67,17 @@ public class RandomCustomer : Customer
         }
 
         customerData = (CustomerData)ScriptableObject.CreateInstance("CustomerData");
+        customerData.soundEngineEnvent = "PLAY_GENERICVOICE";
         customerData.name = _customerName;
         customerData.favoriteDrinkData = favoriteDrink;
         customerData.DesiredFlavors(flavorNodes);
         customerData.customer = this;
+    }
 
-        var drink = GetRandomDrink();
-
-        var customerDrink = ScriptableObject.CreateInstance<DrinkData>();
-
-        customerDrink.name = drink.name;
-        customerDrink.Ingredients = drink.Ingredients;
+    private void SetUpAndModifyDrinkData(DrinkData customerDrink, DrinkData favoriteDrink)
+    {
+        ((Object)customerDrink).name = ((Object)favoriteDrink).name;
+        customerDrink.ingredients = favoriteDrink.ingredients;
 
         customerDrink.price = favoriteDrink.price; // need to add random ingredients to price
         //Adds a little RNG to the drink orders
