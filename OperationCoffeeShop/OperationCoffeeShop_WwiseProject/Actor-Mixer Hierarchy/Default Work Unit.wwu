@@ -193,6 +193,29 @@
 										<ActiveSource Name="TapOnGlass" ID="{F830B9B3-B68E-4949-96E7-F4AD212FA943}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="DreamScape" ID="{D43E8ADA-E69C-4A19-8EA7-4A29FB4E2239}" ShortID="288400181">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="DreamScape" ID="{6E8BD86D-9DAA-4748-90B2-6352BF66F119}">
+											<Language>SFX</Language>
+											<AudioFile>DreamScape.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1066248193"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="DreamScape" ID="{6E8BD86D-9DAA-4748-90B2-6352BF66F119}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
