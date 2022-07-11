@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &50884593 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1268005155, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
-  m_PrefabInstance: {fileID: 1978266450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &80941881
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +189,11 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!1 &165561650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 928347462, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
+  m_PrefabInstance: {fileID: 1978266450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &183999448
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,11 +719,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
---- !u!1 &491981475 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8675541021117073078, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
-  m_PrefabInstance: {fileID: 1978266450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &633873407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -956,6 +951,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1423995552129583617, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
   m_PrefabInstance: {fileID: 820394394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &821416655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3348366779825758361, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
+  m_PrefabInstance: {fileID: 1978266450}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &922450983 stripped
 MonoBehaviour:
@@ -1630,11 +1630,11 @@ PrefabInstance:
     - target: {fileID: 1785624811, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
       propertyPath: objectiveOutputObject
       value: 
-      objectReference: {fileID: 1396198377}
+      objectReference: {fileID: 165561650}
     - target: {fileID: 1785624811, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
       propertyPath: objectiveOutputObject1
       value: 
-      objectReference: {fileID: 491981475}
+      objectReference: {fileID: 1396198377}
     - target: {fileID: 3775402947523511549, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -24713,6 +24713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ac914e9c150f1499c8fa353ed9dd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMode: {fileID: 0}
+  _objectives1: {fileID: 0}
 --- !u!4 &6958521335085182076
 Transform:
   m_ObjectHideFlags: 0
@@ -25893,8 +25895,8 @@ MonoBehaviour:
   - {fileID: 1929488392}
   - {fileID: 1396198377}
   - {fileID: 7178056224376831412}
-  - {fileID: 491981475}
-  - {fileID: 50884593}
+  - {fileID: 821416655}
+  - {fileID: 165561650}
   - {fileID: 1663136319}
   - {fileID: 1949440139}
   objectives:

@@ -29,8 +29,13 @@ public class TutorialBed : Interactable
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        if (gameMode.Objectives.objectives.Count-1 == gameMode.Objectives.currentObjective)
+        {
+            AkSoundEngine.PostEvent("PLAY_WAKING", gameObject);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+        
 
     }
 }

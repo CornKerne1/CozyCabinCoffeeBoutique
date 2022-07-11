@@ -30,8 +30,7 @@ public class GameMode : MonoBehaviour
 
     static uint[] playingIds = new uint[50];
 
-    [Header("Tutorial Stuffs")] 
-    public Tutorial Tutorial;
+    [Header("Tutorial Stuffs")] public Tutorial Tutorial;
     public Objectives1 Objectives;
 
     private void Start()
@@ -77,16 +76,19 @@ public class GameMode : MonoBehaviour
             new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
         gameModeData.currentTime = gameModeData.startTime;
     }
+
     private void IfTutorial()
     {
         if (gameModeData.inTutorial)
         {
+            AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
             Tutorial = new Tutorial(Tutorial, this, gameModeData)
             {
                 Objectives = Objectives
             };
         }
     }
+
     public void DeactivateAndDestroy(GameObject obj)
     {
         obj.SetActive(false);

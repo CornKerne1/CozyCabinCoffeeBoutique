@@ -21,6 +21,7 @@ namespace AK
         static const AkUniqueID PLAY_CABINETCLOSE = 684088502U;
         static const AkUniqueID PLAY_CABINETOPEN = 1255478370U;
         static const AkUniqueID PLAY_DOGS = 2681854759U;
+        static const AkUniqueID PLAY_DREAMSCAPE_ = 1813095574U;
         static const AkUniqueID PLAY_ENDDAYJINGLE_BAD_ = 1724926153U;
         static const AkUniqueID PLAY_ENDDAYJINGLE_GOOD_ = 3857680973U;
         static const AkUniqueID PLAY_EXQUISITETASTE = 3622673270U;
@@ -41,6 +42,7 @@ namespace AK
         static const AkUniqueID PLAY_MOUSECLICK = 1802956237U;
         static const AkUniqueID PLAY_NEUROTICBONE = 3754899171U;
         static const AkUniqueID PLAY_PIANO = 1479974693U;
+        static const AkUniqueID PLAY_POUR = 1719581924U;
         static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
         static const AkUniqueID PLAY_ROASTBLEND = 3453202434U;
         static const AkUniqueID PLAY_SATISFIEDCUSTOMER = 2754920038U;
@@ -48,6 +50,8 @@ namespace AK
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
+        static const AkUniqueID PLAY_TAPONGLASS = 1122006298U;
+        static const AkUniqueID PLAY_TASKCOMPLETE = 338641160U;
         static const AkUniqueID PLAY_TELLINGSTORIES = 315754304U;
         static const AkUniqueID PLAY_TITLETHEME = 3107494279U;
         static const AkUniqueID PLAY_TRAVELER = 847946271U;
