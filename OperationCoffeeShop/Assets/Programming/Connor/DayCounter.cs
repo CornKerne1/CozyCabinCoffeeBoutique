@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class DayCounter : MonoBehaviour
     public Sprite day1;
     public Sprite day2;
     public Sprite day3;
+    private bool uiOn;
 
     private Animator _animator;
     private static readonly int Hide = Animator.StringToHash("Hide");
@@ -17,6 +19,20 @@ public class DayCounter : MonoBehaviour
     private void Start()
     {
         _animator = transform.root.GetComponentInChildren<Animator>();
+        PlayerInput.FreeCamEvent += ToggleUI;
+    }
+
+    private void ToggleUI(object sender, EventArgs e)
+    {
+        uiOn = !uiOn;
+        try
+        {
+            transform.root.GetComponent<Bed>().currentDc.GetComponentInChildren<Canvas>().enabled = !uiOn;
+        }
+        catch
+        {
+            // ignored
+        }
     }
 
 

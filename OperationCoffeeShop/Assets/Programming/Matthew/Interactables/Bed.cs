@@ -20,14 +20,14 @@ public class Bed : Interactable
     private bool _inBed;
 
     [FormerlySerializedAs("DayCounter")] public GameObject dayCounter;
-    private GameObject _currentDc;
+    [FormerlySerializedAs("_currentDc")] public GameObject currentDc;
     private DayCounter _dC;
 
     public override void Start()
     {
         base.Start();
-        _currentDc = Instantiate(dayCounter);
-        _dC = _currentDc.GetComponent<DayCounter>();
+        currentDc = Instantiate(dayCounter);
+        _dC = currentDc.GetComponent<DayCounter>();
         _dC.DisplayDay(gameMode.gameModeData.currentTime.Day);
         StartCoroutine(CO_RemoveDisplayDay());
     }
@@ -36,7 +36,7 @@ public class Bed : Interactable
     {
         yield return new WaitForSeconds(13f);
         StartCoroutine(_dC.CO_HideDisplay());
-        _currentDc = null;
+        currentDc = null;
     }
 
     public void Update()
@@ -70,10 +70,10 @@ public class Bed : Interactable
         }
         else
         {
-            if (!_currentDc)
+            if (!currentDc)
             {
-                _currentDc = Instantiate(dayCounter);
-                _dC = _currentDc.GetComponent<DayCounter>();
+                currentDc = Instantiate(dayCounter);
+                _dC = currentDc.GetComponent<DayCounter>();
                 _dC.DisplayDay(gameMode.gameModeData.currentTime.Day);
             }
 

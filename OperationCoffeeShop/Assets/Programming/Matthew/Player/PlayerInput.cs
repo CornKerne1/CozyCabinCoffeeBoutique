@@ -6,12 +6,15 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
+    [SerializeField] public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
     public static event EventHandler InteractEvent;
     public static event EventHandler AltInteractEvent;
     public static event EventHandler RotateEvent;
     public static event EventHandler RotateCanceledEvent;
     public static event EventHandler MoveObjEvent;
+    
+    public static event EventHandler FreeCamEvent;
 
     private PlayerControls _pC;
     private PlayerControls.FPPlayerActions _fPp;
@@ -39,13 +42,11 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(hud);
+        hudRef=Instantiate(hud);
         pauseM.SetActive(false);
         pauseM.GetComponent<PauseMenu>().CloseOptions();
+        FreeCamEvent+=ToggleHud;
     }
-
-    
-    
     private void _Pause()
     {
         if (!pauseM) return;
@@ -98,6 +99,9 @@ public class PlayerInput : MonoBehaviour
         _fPp.MoveObj.performed += ctx => _currentObjDistance = ctx.ReadValue<Vector2>();
         _fPp.MoveObj.performed += MoveObj;
         _fPp.MoveObj.Enable();
+        
+        _fPp.FreeCam.performed += FreeCam;
+        _fPp.FreeCam.Enable();
     }
 
     private void MoveObj(InputAction.CallbackContext obj)
@@ -115,6 +119,11 @@ public class PlayerInput : MonoBehaviour
         interact.Disable();
         altInteract.Disable();
         _fPp.Rotate.Disable();
+        _fPp.FreeCam.Disable();
+    }
+    private void ToggleHud(object sender, EventArgs e)
+    {
+        hudRef.SetActive(!hudRef.activeSelf);
     }
 
     public float GetHorizontalMovement()
@@ -171,4 +180,10 @@ public class PlayerInput : MonoBehaviour
     {
         RotateCanceledEvent?.Invoke(this, EventArgs.Empty);
     }
+
+    private void FreeCam(InputAction.CallbackContext obj)
+    {
+        FreeCamEvent?.Invoke(null, EventArgs.Empty);
+    }
+
 }
