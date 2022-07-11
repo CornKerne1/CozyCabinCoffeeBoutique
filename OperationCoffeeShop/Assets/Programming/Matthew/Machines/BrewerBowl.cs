@@ -115,6 +115,11 @@ public class BrewerBowl : MonoBehaviour
         }
     }
 
+    public void RemoveFilter()
+    {
+        filter.SetActive(false);
+    }
+
     private void IfTutorial1()
     {
         Debug.Log("tutorial1 with: " + objectiveOutputObject1);
