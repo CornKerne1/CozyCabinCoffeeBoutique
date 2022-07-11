@@ -933,6 +933,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Stop_DreamScape" ID="{B6295558-2E6C-4C0A-831D-CE0DA75C9761}">
+					<ChildrenList>
+						<Action Name="" ID="{DB16EFF5-7907-45FA-9711-D3AC9CB9CF77}" ShortID="835296304">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DreamScape" ID="{D43E8ADA-E69C-4A19-8EA7-4A29FB4E2239}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
