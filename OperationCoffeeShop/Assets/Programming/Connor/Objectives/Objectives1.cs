@@ -23,6 +23,7 @@ public class Objectives1 : MonoBehaviour
         Debug.Log("" + ((GameObject)sender).name);
         if ((GameObject)sender != objectiveObjects[currentObjective] || currentObjective + 1 >= objectives.Count) return;
         currentObjective++;
+        
         textMesh.text = objectives[currentObjective];
     }
 }

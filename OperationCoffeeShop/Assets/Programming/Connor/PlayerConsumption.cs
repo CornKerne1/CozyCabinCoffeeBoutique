@@ -5,29 +5,23 @@ using UnityEngine;
 
 public class PlayerConsumption : MonoBehaviour
 {
+    public GameMode gameMode;
     
-
-    
-    //tutorial stuffs
+    [SerializeField,Header("Tutorial Stuff")]
     private Objectives1 _objectives1;
-    private bool _inTutorial;
     private bool _completedObjective;
-    
     
     private void Start()
     {
-      IfTutorial();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+
+      SetTutorial();
     }
-    private void IfTutorial()
+    private void SetTutorial()
     {
-        try
+        if (gameMode.gameModeData.inTutorial)
         {
-            _objectives1 = GameObject.Find("Objectives").GetComponent<Objectives1>();
-            _inTutorial = true;
-        }
-        catch
-        {
-            // ignored
+            _objectives1 = gameMode.Tutorial.Objectives;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -36,12 +30,17 @@ public class PlayerConsumption : MonoBehaviour
         {
             liquid.gameObject.SetActive(false); 
             Debug.Log("Drinking the coffee");
-            if (_inTutorial && !_completedObjective)
-            {
-                _completedObjective = true;
-                _objectives1.NextObjective(gameObject);
+            IfTutorial();
+        }
+    }
 
-            }
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial && !_completedObjective)
+        {
+            _completedObjective = true;
+            _objectives1.NextObjective(gameObject);
+
         }
     }
 }

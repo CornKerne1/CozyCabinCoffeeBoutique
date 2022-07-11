@@ -19,7 +19,7 @@ public class CoffeeBrewer : Machine
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
             case Ingredients.GroundCoffee:
-
+                IfTutorial();
                 currentCapacity = currentCapacity + 1;
                 mD.outputIngredient.Add(iD.brewedCoffee);
                 other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
@@ -29,6 +29,15 @@ public class CoffeeBrewer : Machine
         }
     }
 
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
+        }
+    }
+    
+    
     protected override void OutputIngredients()
     {
         StartCoroutine(Liquify());

@@ -19,7 +19,7 @@ public class BrewerBowl : MonoBehaviour
     private Machine _machine;
     public GameMode gameMode;
 
-    [FormerlySerializedAs("objectiveOutputObject1")] [SerializeField, Header("Tutorial stuff")]
+    [SerializeField, Header("Tutorial stuff")]
     public GameObject objectiveOutputObject;
 
     public GameObject objectiveOutputObject1;
@@ -41,7 +41,7 @@ public class BrewerBowl : MonoBehaviour
             StartCoroutine(CO_ImitateUpdate());
         }
 
-        IfTutorial2();
+        //IfTutorial2();
     }
 
     protected virtual void CheckTutorial()
