@@ -23,7 +23,8 @@ public class Objectives1 : MonoBehaviour
         Debug.Log("" + ((GameObject)sender).name);
         if ((GameObject)sender != objectiveObjects[currentObjective] || currentObjective + 1 >= objectives.Count) return;
         currentObjective++;
-        
+        AkSoundEngine.PostEvent("PLAY_TASKCOMPLETE", gameObject);
+
         textMesh.text = objectives[currentObjective];
     }
 }
