@@ -56,6 +56,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="EndDayJingle(Good)" ID="{AB3D1E1E-AADB-4273-A61E-939657634215}" ShortID="719492980">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -79,6 +82,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="EndDayJingle(Bad)" ID="{C6CC2C42-B77E-47CE-B980-5291DD27013F}" ShortID="216479291">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -102,6 +108,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="SatisfiedCustomer" ID="{432F73C4-D9B5-44E6-AF0E-34D0E797195F}" ShortID="698789329">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -125,6 +134,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="UnsatisfiedCustomer" ID="{958D1EA8-213A-44F1-A6BB-3579E044CA74}" ShortID="630430084">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -148,6 +160,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="TaskComplete" ID="{22429AD7-E146-45E9-AF0F-27777820D14D}" ShortID="681310716">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -194,6 +209,10 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="DreamScape" ID="{D43E8ADA-E69C-4A19-8EA7-4A29FB4E2239}" ShortID="288400181">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -211,9 +230,87 @@
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
+									<PositioningInfo>
+										<Position Name="" ID="{37600ADB-5D36-4337-A46D-5B88E799E6D7}"/>
+									</PositioningInfo>
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="DreamScape" ID="{6E8BD86D-9DAA-4748-90B2-6352BF66F119}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="FallingAsleep" ID="{88443B52-A13B-429D-B66C-D4BB9378169B}" ShortID="963608087">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FallingAsleep" ID="{CC81D681-E6C7-4502-AFE8-7FB248AA6DBA}">
+											<Language>SFX</Language>
+											<AudioFile>FallingAsleep.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="194100186"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="FallingAsleep" ID="{CC81D681-E6C7-4502-AFE8-7FB248AA6DBA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Waking" ID="{0A2BBCB2-A139-4BA7-87FA-F8CAFE8E8C60}" ShortID="795027662">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Waking" ID="{1D79EEB4-1993-4327-BFE6-3B8291756C17}">
+											<Language>SFX</Language>
+											<AudioFile>Waking.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="273690636"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Waking" ID="{1D79EEB4-1993-4327-BFE6-3B8291756C17}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Whistle" ID="{8E0485DC-FEC2-4B8A-901F-06F500AE2C7B}" ShortID="26657370">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Whistle" ID="{1E122C2C-2E4B-443D-8F05-14B4832A7E74}">
+											<Language>SFX</Language>
+											<AudioFile>Whistle.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="544960085"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Whistle" ID="{1E122C2C-2E4B-443D-8F05-14B4832A7E74}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
