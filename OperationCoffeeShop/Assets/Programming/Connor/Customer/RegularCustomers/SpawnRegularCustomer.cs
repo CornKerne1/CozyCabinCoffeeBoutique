@@ -78,11 +78,17 @@ public class SpawnRegularCustomer : MonoBehaviour
         }
         else if (_Time_Customer.ContainsKey(gMD.currentTime.Hour))
         {
+            Debug.Log("moved regular span back an hour");
             foreach (var customer in _Time_Customer[gMD.currentTime.Hour])
             {
-                _Time_Customer[gMD.currentTime.Hour+1].Add(customer);
-                
+                if (_Time_Customer.ContainsKey(gMD.currentTime.Hour + 1))
+                    _Time_Customer[gMD.currentTime.Hour + 1].Add(customer);
+                else
+                {
+                    _Time_Customer[gMD.currentTime.Hour + 1] = new List<GameObject> { customer };
+                }
             }
+
             _Time_Customer.Remove(gMD.currentTime.Hour);
         }
     }
