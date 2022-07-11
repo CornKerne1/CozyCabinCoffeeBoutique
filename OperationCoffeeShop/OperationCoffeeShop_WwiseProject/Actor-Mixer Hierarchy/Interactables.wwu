@@ -688,42 +688,9 @@
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
-				<Sound Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" ShortID="489687652">
+				<Sound Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" ShortID="489687652">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Lowpass" Type="int16">
-							<ValueList>
-								<Value>25</Value>
-							</ValueList>
-						</Property>
-						<Property Name="Volume" Type="Real64">
-							<RTPCList>
-								<RTPC Name="" ID="{3293A6EB-E713-4140-9B63-F13E8D3D8EC9}" ShortID="786403322">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<ObjectRef Name="SFXVolume" ID="{0581A918-066E-4F92-B031-D826DB7345F1}" WorkUnitID="{0F05DF7E-1268-4178-8969-72A0EB6B2CBC}"/>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{D8791CAF-0757-4371-BCE4-11B25B643F19}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="3"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>-200</YPos>
-												<Flags>5</Flags>
-											</Point>
-											<Point>
-												<XPos>100</XPos>
-												<YPos>0</YPos>
-												<Flags>37</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -734,17 +701,17 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="LoopPour" ID="{FFB9479A-F510-4EC1-BDFA-D81D0ADCD448}">
+						<AudioFileSource Name="pour" ID="{54C50861-5E58-4256-A31A-FDC7DDEA8A24}">
 							<Language>SFX</Language>
-							<AudioFile>LoopPour.wav</AudioFile>
+							<AudioFile>pour.wav</AudioFile>
 							<MediaIDList>
-								<MediaID ID="588977900"/>
+								<MediaID ID="1061196224"/>
 							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
-						<ActiveSource Name="LoopPour" ID="{FFB9479A-F510-4EC1-BDFA-D81D0ADCD448}" Platform="Linked"/>
+						<ActiveSource Name="pour" ID="{54C50861-5E58-4256-A31A-FDC7DDEA8A24}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<ActorMixer Name="Fridge" ID="{6EBB9C19-B79B-4A20-A88C-0FD3F39B87B1}" ShortID="51588706">

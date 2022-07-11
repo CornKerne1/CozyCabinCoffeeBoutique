@@ -573,7 +573,7 @@
 						<Action Name="" ID="{9BECB41D-775C-4F20-92B0-DC63BA283DA5}" ShortID="420489062">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+									<ObjectRef Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -587,7 +587,7 @@
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="LoopPour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+									<ObjectRef Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -884,6 +884,50 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="CabinetClose" ID="{45D78CFA-5C33-425C-87BF-9BB4244034D4}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Pour" ID="{6E730DAA-390C-4BC5-B1BA-BD068519E051}">
+					<ChildrenList>
+						<Action Name="" ID="{34638DAF-D63E-4071-8F4D-159CE6D93D4C}" ShortID="871968465">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Pour" ID="{B52BC37D-8AC3-413C-925C-70D65D0F26B7}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TaskComplete" ID="{920EE439-76EC-480D-BED0-D83AA48D4DE0}">
+					<ChildrenList>
+						<Action Name="" ID="{E5C86834-D3D0-4335-8F51-EE89B8D8CECD}" ShortID="395390905">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TaskComplete" ID="{22429AD7-E146-45E9-AF0F-27777820D14D}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TapOnGlass" ID="{E5CD0AA2-2EEF-4CE5-97F3-54A463EFB7C6}">
+					<ChildrenList>
+						<Action Name="" ID="{F02ADECA-358E-4F57-A566-1FB559024817}" ShortID="212535887">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TapOnGlass" ID="{92EB20C9-478E-46CA-85D0-9F41FC05229B}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_DreamScape" ID="{B5C823AC-806D-4EBA-AD49-8ACE73033179}">
+					<ChildrenList>
+						<Action Name="" ID="{A8E71697-4B8F-4D73-A60D-476B003AF835}" ShortID="937314572">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DreamScape" ID="{E3D50E17-9342-4CEF-B58B-47406B6D199D}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
