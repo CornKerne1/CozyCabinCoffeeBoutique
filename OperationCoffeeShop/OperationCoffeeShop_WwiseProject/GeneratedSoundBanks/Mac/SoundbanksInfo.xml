@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="147828696">
+		<SoundBank Id="3161908922" Language="SFX" Hash="127750280">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -85,11 +85,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1813095574" Name="Play_DreamScape_" ObjectPath="\Events\Default Work Unit\Play_DreamScape_" DurationType="OneShot" DurationMin="8." DurationMax="8.">
+				<Event Id="1813095574" Name="Play_DreamScape_" ObjectPath="\Events\Default Work Unit\Play_DreamScape_" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="1066248193" Language="SFX">
 							<ShortName>DreamScape.wav</ShortName>
-							<Path>SFX\DreamScape_10C4C929.wem</Path>
+							<Path>SFX\DreamScape_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -114,6 +114,14 @@
 						<File Id="551003881" Language="SFX">
 							<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
 							<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4036628837" Name="Play_FallingAsleep" ObjectPath="\Events\Default Work Unit\Play_FallingAsleep" DurationType="OneShot" DurationMin="3.70932" DurationMax="3.70932">
+					<IncludedMemoryFiles>
+						<File Id="194100186" Language="SFX">
+							<ShortName>FallingAsleep.wav</ShortName>
+							<Path>SFX\FallingAsleep_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -386,6 +394,23 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1615511115" Name="Play_Waking" ObjectPath="\Events\Default Work Unit\Play_Waking" DurationType="OneShot" DurationMin="3.5" DurationMax="3.5">
+					<IncludedMemoryFiles>
+						<File Id="273690636" Language="SFX">
+							<ShortName>Waking.wav</ShortName>
+							<Path>SFX\Waking_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2693257580" Name="Play_Whistle" ObjectPath="\Events\Default Work Unit\Play_Whistle" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="544960085" Language="SFX">
+							<ShortName>Whistle.wav</ShortName>
+							<Path>SFX\Whistle_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4252214477" Name="Stop_DreamScape" ObjectPath="\Events\Default Work Unit\Stop_DreamScape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -465,6 +490,10 @@
 					<ShortName>1Karen.wav</ShortName>
 					<Path>SFX\1Karen_10C4C929.wem</Path>
 				</File>
+				<File Id="194100186" Language="SFX">
+					<ShortName>FallingAsleep.wav</ShortName>
+					<Path>SFX\FallingAsleep_10C4C929.wem</Path>
+				</File>
 				<File Id="203743960" Language="SFX">
 					<ShortName>CabinetOpen.wav</ShortName>
 					<Path>SFX\CabinetOpen_10C4C929.wem</Path>
@@ -476,6 +505,10 @@
 				<File Id="230495110" Language="SFX">
 					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
 					<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
+				</File>
+				<File Id="273690636" Language="SFX">
+					<ShortName>Waking.wav</ShortName>
+					<Path>SFX\Waking_10C4C929.wem</Path>
 				</File>
 				<File Id="281651751" Language="SFX">
 					<ShortName>FridgeClosed.wav</ShortName>
@@ -516,6 +549,10 @@
 				<File Id="538996245" Language="SFX">
 					<ShortName>BossaNovaAttempt.wav</ShortName>
 					<Path>SFX\BossaNovaAttempt_D79FB2B7.wem</Path>
+				</File>
+				<File Id="544960085" Language="SFX">
+					<ShortName>Whistle.wav</ShortName>
+					<Path>SFX\Whistle_10C4C929.wem</Path>
 				</File>
 				<File Id="551003881" Language="SFX">
 					<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
@@ -607,7 +644,7 @@
 				</File>
 				<File Id="1066248193" Language="SFX">
 					<ShortName>DreamScape.wav</ShortName>
-					<Path>SFX\DreamScape_10C4C929.wem</Path>
+					<Path>SFX\DreamScape_D79FB2B7.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 			<GameParameters>

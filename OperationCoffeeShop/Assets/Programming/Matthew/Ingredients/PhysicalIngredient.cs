@@ -32,6 +32,7 @@ public class PhysicalIngredient : Interactable
     {
         inHand = false;
     }
+
     private void IfTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
@@ -60,16 +61,8 @@ public class PhysicalIngredient : Interactable
             }
             catch
             {
-                try
-                {
-                    other.GetComponent<TutorialBrewerBowl>().IngredientInteract(gameObject);
-                    rb.AddForce(_rejectionForce);
-                    pI.DropCurrentObj();
-                }
-                catch
-                {
-                    // ignored
-                }            }
+                // ignored
+            }
         }
     }
 }

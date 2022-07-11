@@ -25,6 +25,7 @@ namespace AK
         static const AkUniqueID PLAY_ENDDAYJINGLE_BAD_ = 1724926153U;
         static const AkUniqueID PLAY_ENDDAYJINGLE_GOOD_ = 3857680973U;
         static const AkUniqueID PLAY_EXQUISITETASTE = 3622673270U;
+        static const AkUniqueID PLAY_FALLINGASLEEP = 4036628837U;
         static const AkUniqueID PLAY_FAUCET = 1367656534U;
         static const AkUniqueID PLAY_FOOTSTEPS_TILE_ = 1178155941U;
         static const AkUniqueID PLAY_FRIDGECLOSED = 721548189U;
@@ -59,6 +60,9 @@ namespace AK
         static const AkUniqueID PLAY_TRUCKENGINE = 1128869005U;
         static const AkUniqueID PLAY_TRUCKHORN = 3078875068U;
         static const AkUniqueID PLAY_UNSATISFIEDCUSTOMER = 4105520773U;
+        static const AkUniqueID PLAY_WAKING = 1615511115U;
+        static const AkUniqueID PLAY_WHISTLE = 2693257580U;
+        static const AkUniqueID STOP_DREAMSCAPE = 4252214477U;
         static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
         static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;
         static const AkUniqueID STOP_LOOPPOUR = 4059860068U;
