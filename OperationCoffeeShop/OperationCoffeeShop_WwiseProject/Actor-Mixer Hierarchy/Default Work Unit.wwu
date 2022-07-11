@@ -270,6 +270,29 @@
 										<ActiveSource Name="Waking" ID="{1D79EEB4-1993-4327-BFE6-3B8291756C17}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="Whistle" ID="{8E0485DC-FEC2-4B8A-901F-06F500AE2C7B}" ShortID="26657370">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Whistle" ID="{1E122C2C-2E4B-443D-8F05-14B4832A7E74}">
+											<Language>SFX</Language>
+											<AudioFile>Whistle.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="544960085"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Whistle" ID="{1E122C2C-2E4B-443D-8F05-14B4832A7E74}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
