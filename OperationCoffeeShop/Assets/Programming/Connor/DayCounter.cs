@@ -5,48 +5,39 @@ using UnityEngine.UI;
 
 public class DayCounter : MonoBehaviour
 {
-    public GameMode gameMode;
     public Image dayDisplay;
 
     public Sprite tutorial;
     public Sprite day1;
     public Sprite day2;
     public Sprite day3;
-
+    private bool uiOn;
 
     private Animator _animator;
     private static readonly int Hide = Animator.StringToHash("Hide");
-    private GameObject _currentDc;
 
     private void Start()
     {
-        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _animator = transform.root.GetComponentInChildren<Animator>();
-        if (gameMode.gameModeData.inTutorial)
-        {
-            DisplayDay(0);
-        }
-        else
-        {
-            DisplayDay(gameMode.gameModeData.currentTime.Day);
-        }
-
-        StartCoroutine(CO_RemoveDisplayDay());
-        Bed.NewDay += NewDay;
-        _currentDc = gameObject;
+        PlayerInput.FreeCamEvent += ToggleUI;
     }
 
-    private IEnumerator CO_RemoveDisplayDay()
+    private void ToggleUI(object sender, EventArgs e)
     {
-        yield return new WaitForSeconds(13f);
-        StartCoroutine(CO_HideDisplay());
-        _currentDc = null;
+        uiOn = !uiOn;
+        try
+        {
+            transform.root.GetComponent<Bed>().currentDc.GetComponentInChildren<Canvas>().enabled = !uiOn;
+        }
+        catch
+        {
+            // ignored
+        }
     }
 
-    private void DisplayDay(int day)
+
+    public void DisplayDay(int day)
     {
-        Debug.Log( dayDisplay.sprite);
-        
         dayDisplay.sprite = day switch
         {
             0 => tutorial,
@@ -63,18 +54,10 @@ public class DayCounter : MonoBehaviour
         StartCoroutine(CO_HideDisplay());
     }
 
-    private IEnumerator CO_HideDisplay()
+    public IEnumerator CO_HideDisplay()
     {
         _animator.SetTrigger(Hide);
         yield return new WaitForSeconds(2.0f);
         Destroy(transform.root.gameObject);
-    }
-
-    private void NewDay(object sender, EventArgs eventArgs)
-    {
-        if (_currentDc) return;
-        _currentDc = gameObject;
-        DisplayDay(gameMode.gameModeData.currentTime.Day);
-        StartCoroutine(CO_RemoveDisplayDay());
     }
 }

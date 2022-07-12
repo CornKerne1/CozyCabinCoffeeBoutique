@@ -192,6 +192,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public void DropCurrentObj()
     {
+        if(!carriedObj)
+            return;
         if (carriedObj.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
             if (ingredientContainer.IsPouring() || ingredientContainer.rotating ||

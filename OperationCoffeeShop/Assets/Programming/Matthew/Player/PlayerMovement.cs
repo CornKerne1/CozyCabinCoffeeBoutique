@@ -16,12 +16,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public bool isGrounded;
     [SerializeField] public LayerMask groundMask;
     private Vector3 _currentMovement;
+    public bool freeCam;
+    private Camera _camera;
+
     private void Start()
     {
+        _camera = Camera.main;
         _playerInput = this.gameObject.GetComponent<PlayerInput>();
         controller = this.gameObject.GetComponent<CharacterController>();
         _playerInput.pD.currentMovement = transform.position;
         _playerInput.pD.isClimbing = false;
+        PlayerInput.FreeCamEvent += ToggleFreeCam;
         StartCoroutine(CO_EditorFix());
     }
     private void Update()
@@ -48,6 +53,14 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleLadderMovement();
         }
+        else if (freeCam)
+        {
+            if (_camera)
+            {
+                controller.Move(_camera.transform.forward * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetVerticalMovement()));
+                controller.Move(_camera.transform.right * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetHorizontalMovement()));
+            }
+        }
         else
         {
             Vector3 rawMovement = new Vector3(_playerInput.GetHorizontalMovement() * .75f, 0.0f, _playerInput.GetVerticalMovement());
@@ -58,10 +71,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(_velocity * Time.deltaTime);
         }
     }
-
     
-
-
     private void HandleLadderMovement()
     {
         Vector3 lM = new Vector3(Vector3.up.x * _playerInput.GetVerticalMovement(), Vector3.up.y * _playerInput.GetVerticalMovement(),
@@ -72,6 +82,38 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && _playerInput.GetVerticalMovement() < 0)
         {
             _playerInput.pD.isClimbing = false;
+        }
+    }
+
+    private void ToggleFreeCam(object sender, EventArgs e)
+    {
+        freeCam = !freeCam;
+        if (freeCam)
+        {
+           var colliders= transform.root.GetComponentsInChildren<Collider>();
+           foreach (var c in colliders)
+           {
+               if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
+               {
+                   gameObject.layer = 8;
+                   return;
+               }
+
+               c.enabled = false;
+           }
+        }
+        else
+        {
+            var colliders= transform.root.GetComponentsInChildren<Collider>();
+            foreach (var c in colliders)
+            {
+                if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
+                {
+                    gameObject.layer = 2;
+                    return;
+                }
+                c.enabled = true;
+            }
         }
     }
 }

@@ -24,6 +24,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float closeSpeed;
     [SerializeField] public float openSpeed;
     [SerializeField] public bool canMove;
+    [SerializeField] public float cameraFov=60f;
+    private Camera _camera;
 
     [Header("Headbob Stuff")]
     [Range(0f, 1f)] [SerializeField] public float amplitude = 0.0003f;
