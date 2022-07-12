@@ -32,7 +32,7 @@ public class MachineInteraction : Interactable
 
                     IfTutorial();
                     Machine.StartMachine();
-                    bB.RemoveFilter();
+                    bB.filter.SetActive(false);
                 }
                 else
                 {
