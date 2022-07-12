@@ -685,6 +685,32 @@
 								<ActiveSource Name="MachineBuzzing" ID="{FF081C88-B56C-4A8B-8964-302DEC7C2206}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Brewer" ID="{714303BE-CB4D-4471-AA0E-778148B52ECD}" ShortID="1008811382">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Brewer" ID="{D98DAECF-E4B1-49C8-AD7E-5987BCC06D24}">
+									<Language>SFX</Language>
+									<AudioFile>Brewer.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="319928094"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Brewer" ID="{D98DAECF-E4B1-49C8-AD7E-5987BCC06D24}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
