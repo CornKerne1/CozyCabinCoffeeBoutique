@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
 
-public class Objectives : MonoBehaviour
+public class Objectives_Old : MonoBehaviour
 {
     public List<TextMeshProUGUI> objectives;
 

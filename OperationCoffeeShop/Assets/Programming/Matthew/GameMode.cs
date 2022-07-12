@@ -20,7 +20,7 @@ public class GameMode : MonoBehaviour
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
 
-    private List<GameObject> toBeDestroyed = new List<GameObject>();
+    private List<GameObject> _toBeDestroyed = new List<GameObject>();
 
 
     [SerializeField] public GameObject sunLight;
@@ -31,7 +31,7 @@ public class GameMode : MonoBehaviour
     static uint[] playingIds = new uint[50];
 
     [Header("Tutorial Stuffs")] public Tutorial Tutorial;
-    public Objectives1 Objectives;
+    [FormerlySerializedAs("Objectives")] public Objectives objectives;
 
     private void Start()
     {
@@ -84,7 +84,7 @@ public class GameMode : MonoBehaviour
             AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
             Tutorial = new Tutorial(Tutorial, this, gameModeData)
             {
-                Objectives = Objectives
+                Objectives = objectives
             };
         }
     }
@@ -92,7 +92,7 @@ public class GameMode : MonoBehaviour
     public void DeactivateAndDestroy(GameObject obj)
     {
         obj.SetActive(false);
-        toBeDestroyed.Add(obj);
+        _toBeDestroyed.Add(obj);
     }
 
     public void OpenShop()
@@ -120,7 +120,7 @@ public class GameMode : MonoBehaviour
         var testEventId = AkSoundEngine.GetIDFromString(eventName);
 
         var count = (uint)playingIds.Length;
-        AKRESULT result = AkSoundEngine.GetPlayingIDsFromGameObject(go, ref count, playingIds);
+        var result = AkSoundEngine.GetPlayingIDsFromGameObject(go, ref count, playingIds);
 
         for (var i = 0; i < count; i++)
         {

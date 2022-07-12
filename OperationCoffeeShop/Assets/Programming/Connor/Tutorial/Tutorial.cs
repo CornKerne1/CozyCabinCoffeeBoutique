@@ -9,7 +9,7 @@ public class Tutorial
     //going to have all the logic needed by any tutorial object
     //it will be constructed by the game mode (game mode will have a bool in GameModeData for tutorial)
     private bool _completedObjective;
-    public Objectives1 Objectives;
+    public Objectives Objectives;
     private Tutorial _tutorial;
     private GameMode _gameMode;
     private GameModeData _gameModeData;

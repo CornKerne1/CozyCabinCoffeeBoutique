@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -49,6 +47,7 @@ public abstract class Interactable : MonoBehaviour
             gameMode.Tutorial.AddedGameObject(gameObject);
         }
     }
+
     public abstract void OnInteract(PlayerInteraction playerInteraction);
 
     public virtual void OnFocus()

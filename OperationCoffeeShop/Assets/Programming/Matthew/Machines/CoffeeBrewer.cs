@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,8 +25,22 @@ public class CoffeeBrewer : Machine
                 mD.outputIngredient.Add(iD.brewedCoffee);
                 other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
                 Destroy(other);
-                
+
                 break;
+            case Ingredients.Milk:
+            case Ingredients.SteamedMilk:
+            case Ingredients.FoamedMilk:
+            case Ingredients.Sugar:
+            case Ingredients.WhippedCream:
+            case Ingredients.Espresso:
+            case Ingredients.UngroundCoffee:
+            case Ingredients.Salt:
+            case Ingredients.BrewedCoffee:
+            case Ingredients.EspressoBeans:
+            case Ingredients.CoffeeFilter:
+            case Ingredients.TeaBag:
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -36,25 +51,28 @@ public class CoffeeBrewer : Machine
             gameMode.Tutorial.NextObjective(gameObject);
         }
     }
-    
-    
+
+
     protected override void OutputIngredients()
     {
-        StartCoroutine(Liquify());
+        StartCoroutine(CO_Liquefy());
     }
-    private IEnumerator Liquify()
+
+    private IEnumerator CO_Liquefy()
     {
-        for (int i = 0; i < currentCapacity;)
+        for (var i = 0; i < currentCapacity;)
             if (currentCapacity != 0)
             {
-                for (int k = 0; k < 100 * (i + 1); k++)
+                for (var k = 0; k < 100 * (i + 1); k++)
                 {
                     Instantiate(mD.outputIngredient[i], outputTransform.position, outputTransform.rotation);
                     yield return new WaitForSeconds(.04f);
                 }
+
                 currentCapacity--;
                 mD.outputIngredient.RemoveAt(i);
             }
+
         yield return new WaitForSeconds(.04f);
         base.isRunning = false;
     }
