@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Ladder : Interactable
 {
     public PlayerInteraction pI;
     public bool canClimb;
-    
+
     public override void Start()
     {
         base.Start();
@@ -17,19 +12,24 @@ public class Ladder : Interactable
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
         this.pI = playerInteraction;
-        if (!base.gameMode.gameModeData.isOpen)
+        if (gameMode.gameModeData.isOpen) return;
+        if (pI.pD.isClimbing)
         {
-            if (this.pI.pD.isClimbing)
-            {
-                this.pI.pD.isClimbing = false;
-            }
-            else
-            {
-                if (canClimb)
-                {
-                    this.pI.pD.isClimbing = true;
-                }
-            }
+            pI.pD.isClimbing = false;
+        }
+        else
+        {
+            if (!canClimb) return;
+            pI.pD.isClimbing = true;
+            IfTutorial();
+        }
+    }
+
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
         }
     }
 }

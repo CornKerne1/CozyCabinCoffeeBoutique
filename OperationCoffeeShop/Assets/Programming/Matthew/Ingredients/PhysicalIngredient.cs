@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 public class PhysicalIngredient : Interactable
 {
-    private Objectives1 _objectives1;
+    private Objectives _objectives;
 
     private readonly Vector3 _rejectionForce = new Vector3(55, 55, 55);
     [SerializeField] public Ingredients thisIngredient;
@@ -32,6 +32,7 @@ public class PhysicalIngredient : Interactable
     {
         inHand = false;
     }
+
     private void IfTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
@@ -60,16 +61,8 @@ public class PhysicalIngredient : Interactable
             }
             catch
             {
-                try
-                {
-                    other.GetComponent<TutorialBrewerBowl>().IngredientInteract(gameObject);
-                    rb.AddForce(_rejectionForce);
-                    pI.DropCurrentObj();
-                }
-                catch
-                {
-                    // ignored
-                }            }
+                // ignored
+            }
         }
     }
 }

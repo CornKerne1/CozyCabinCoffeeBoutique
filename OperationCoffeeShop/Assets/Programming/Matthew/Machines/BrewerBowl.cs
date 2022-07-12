@@ -19,7 +19,7 @@ public class BrewerBowl : MonoBehaviour
     private Machine _machine;
     public GameMode gameMode;
 
-    [FormerlySerializedAs("objectiveOutputObject1")] [SerializeField, Header("Tutorial stuff")]
+    [SerializeField, Header("Tutorial stuff")]
     public GameObject objectiveOutputObject;
 
     public GameObject objectiveOutputObject1;
@@ -40,8 +40,6 @@ public class BrewerBowl : MonoBehaviour
         {
             StartCoroutine(CO_ImitateUpdate());
         }
-
-        IfTutorial2();
     }
 
     protected virtual void CheckTutorial()
@@ -85,7 +83,7 @@ public class BrewerBowl : MonoBehaviour
             if (transform.position != closeTrans.position) yield break;
             open = false;
 
-            IfTutorial3();
+            IfTutorial(3);
 
 
             _run = false;
@@ -94,7 +92,7 @@ public class BrewerBowl : MonoBehaviour
         {
             if (transform.position != openTrans.position) yield break;
             open = true;
-            IfTutorial4();
+            IfTutorial(2);
 
             _run = false;
         }
@@ -109,53 +107,44 @@ public class BrewerBowl : MonoBehaviour
                 break;
             case true when other.GetComponent<PhysicalIngredient>().thisIngredient == Ingredients.CoffeeFilter:
                 filter.SetActive(true);
-                IfTutorial1();
+                IfTutorial(1);
                 Destroy(other);
                 break;
         }
     }
 
-    public void RemoveFilter()
+    private void IfTutorial(int i)
     {
-        filter.SetActive(false);
-    }
-
-    private void IfTutorial1()
-    {
-        Debug.Log("tutorial1 with: " + objectiveOutputObject1);
-        if (gameMode.gameModeData.inTutorial)
+        switch (i)
         {
-            gameMode.Tutorial.NextObjective(objectiveOutputObject1);
+            case 1:
+                Debug.Log("tutorial1 with: " + objectiveOutputObject1);
+                if (gameMode.gameModeData.inTutorial)
+                {
+                    gameMode.Tutorial.NextObjective(objectiveOutputObject1);
+                }
+
+                break;
+            case 2:
+                Debug.Log("tutorial2 with: " + gameObject);
+
+                if (gameMode.gameModeData.inTutorial)
+                {
+                    gameMode.Tutorial.NextObjective(gameObject);
+                }
+
+                break;
+            case 3:
+
+                Debug.Log("tutorial3  with: " + objectiveOutputObject);
+
+                if (filter.activeSelf && gameMode.gameModeData.inTutorial)
+                {
+                    gameMode.Tutorial.NextObjective(objectiveOutputObject);
+                }
+
+                break;
         }
     }
-
-    private void IfTutorial2()
-    {
-        Debug.Log("tutorial2 with: " + gameObject);
-
-        if (!filter.activeSelf && gameMode.gameModeData.inTutorial)
-        {
-            gameMode.Tutorial.NextObjective(gameObject);
-        }
-    }
-
-    private void IfTutorial3()
-    {
-        Debug.Log("tutorial3  with: " + objectiveOutputObject);
-
-        if (filter.activeSelf && gameMode.gameModeData.inTutorial)
-        {
-            gameMode.Tutorial.NextObjective(objectiveOutputObject);
-        }
-    }
-
-    private void IfTutorial4()
-    {
-        Debug.Log("tutorial4 with: " + gameObject);
-
-        if (gameMode.gameModeData.inTutorial)
-        {
-            gameMode.Tutorial.NextObjective(gameObject);
-        }
-    }
+    
 }

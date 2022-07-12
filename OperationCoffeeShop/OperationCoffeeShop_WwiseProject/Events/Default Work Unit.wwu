@@ -762,7 +762,7 @@
 						<Action Name="" ID="{00C5F1E8-6094-4FA7-BC70-75C80971A992}" ShortID="70658787">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TruckDrift" ID="{86180FC5-3A93-4C30-9084-89387E31A00C}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+									<ObjectRef Name="Drift" ID="{8DD52CD4-58E9-4967-A175-554095F24F15}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -922,12 +922,59 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_DreamScape" ID="{B5C823AC-806D-4EBA-AD49-8ACE73033179}">
+				<Event Name="Play_DreamScape_" ID="{D4946977-CD0B-4A47-ACE3-9B46FFFE375A}">
 					<ChildrenList>
-						<Action Name="" ID="{A8E71697-4B8F-4D73-A60D-476B003AF835}" ShortID="937314572">
+						<Action Name="" ID="{11B478B5-CF6F-4B2B-993A-5A22ECB8E067}" ShortID="641146795">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="DreamScape" ID="{E3D50E17-9342-4CEF-B58B-47406B6D199D}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+									<ObjectRef Name="DreamScape" ID="{D43E8ADA-E69C-4A19-8EA7-4A29FB4E2239}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_DreamScape" ID="{B6295558-2E6C-4C0A-831D-CE0DA75C9761}">
+					<ChildrenList>
+						<Action Name="" ID="{DB16EFF5-7907-45FA-9711-D3AC9CB9CF77}" ShortID="835296304">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DreamScape" ID="{D43E8ADA-E69C-4A19-8EA7-4A29FB4E2239}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_FallingAsleep" ID="{C05E0D66-41DA-4460-840C-CBE22175A32B}">
+					<ChildrenList>
+						<Action Name="" ID="{E2A6D5D9-4F53-4C21-A232-1A90B2CC1612}" ShortID="342909515">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FallingAsleep" ID="{88443B52-A13B-429D-B66C-D4BB9378169B}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Waking" ID="{6705F97C-BA34-4046-8E6C-69C2092A12AB}">
+					<ChildrenList>
+						<Action Name="" ID="{3B4C45F7-BD10-4408-891E-2EC345D2347E}" ShortID="81698128">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Waking" ID="{0A2BBCB2-A139-4BA7-87FA-F8CAFE8E8C60}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Whistle" ID="{A54E19DC-BC3D-45DC-AE08-850506EDEE8E}">
+					<ChildrenList>
+						<Action Name="" ID="{51F1277E-7949-429D-9DE7-F97D1F237B81}" ShortID="98731394">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Whistle" ID="{8E0485DC-FEC2-4B8A-901F-06F500AE2C7B}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
