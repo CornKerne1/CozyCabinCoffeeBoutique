@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="127750280">
+		<SoundBank Id="3161908922" Language="SFX" Hash="3809148974">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -290,6 +290,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1571211755" Name="Play_SFX_BellChime" ObjectPath="\Events\Default Work Unit\Play_SFX_BellChime" DurationType="OneShot" DurationMin="2.229116" DurationMax="2.229116">
+					<IncludedMemoryFiles>
+						<File Id="505142991" Language="SFX">
+							<ShortName>SFX_BellChime.wav</ShortName>
+							<Path>SFX\SFX_BellChime_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1306435193" Name="Play_Slider" ObjectPath="\Events\Default Work Unit\Play_Slider" DurationType="OneShot" DurationMin="0.496145" DurationMax="0.496145">
 					<IncludedMemoryFiles>
 						<File Id="30486242" Language="SFX">
@@ -330,7 +338,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.708662" DurationMax="0.708662">
+				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.688488" DurationMax="0.729428">
 					<IncludedMemoryFiles>
 						<File Id="455270351" Language="SFX">
 							<ShortName>TaskComplete.wav</ShortName>
@@ -541,6 +549,10 @@
 				<File Id="455270351" Language="SFX">
 					<ShortName>TaskComplete.wav</ShortName>
 					<Path>SFX\TaskComplete_10C4C929.wem</Path>
+				</File>
+				<File Id="505142991" Language="SFX">
+					<ShortName>SFX_BellChime.wav</ShortName>
+					<Path>SFX\SFX_BellChime_10C4C929.wem</Path>
 				</File>
 				<File Id="510049455" Language="SFX">
 					<ShortName>1Dogs.wav</ShortName>

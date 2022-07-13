@@ -47,6 +47,7 @@ namespace AK
         static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
         static const AkUniqueID PLAY_ROASTBLEND = 3453202434U;
         static const AkUniqueID PLAY_SATISFIEDCUSTOMER = 2754920038U;
+        static const AkUniqueID PLAY_SFX_BELLCHIME = 1571211755U;
         static const AkUniqueID PLAY_SLIDER = 1306435193U;
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;

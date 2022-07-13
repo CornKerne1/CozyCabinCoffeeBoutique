@@ -60,6 +60,7 @@ public class CoffeeBrewer : Machine
 
     private IEnumerator CO_Liquefy()
     {
+        AkSoundEngine.PostEvent("PLAY_LOOPPOUR", gameObject);
         for (var i = 0; i < currentCapacity;)
             if (currentCapacity != 0)
             {
@@ -75,5 +76,6 @@ public class CoffeeBrewer : Machine
 
         yield return new WaitForSeconds(.04f);
         base.isRunning = false;
+        AkSoundEngine.PostEvent("STOP_LOOPPOUR", gameObject);
     }
 }
