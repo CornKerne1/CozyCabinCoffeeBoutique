@@ -1002,6 +1002,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Stop_Brewer" ID="{93E1BDDA-0CB1-4623-A7CD-E6B4F5B9140C}">
+					<ChildrenList>
+						<Action Name="" ID="{52E688F7-611D-4E44-8078-10AF3C157C77}" ShortID="114094248">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Brewer" ID="{714303BE-CB4D-4471-AA0E-778148B52ECD}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
