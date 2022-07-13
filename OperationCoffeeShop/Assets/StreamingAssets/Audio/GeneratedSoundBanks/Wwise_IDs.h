@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID PLAY_AFTERHOURS = 4061997089U;
         static const AkUniqueID PLAY_BOSSANOVA = 2993288148U;
         static const AkUniqueID PLAY_BREAKINGLOOSE = 855079117U;
+        static const AkUniqueID PLAY_BREWER = 20894835U;
         static const AkUniqueID PLAY_BUBBLEPOP = 1532331005U;
         static const AkUniqueID PLAY_BUTTONPRESS = 2652178615U;
         static const AkUniqueID PLAY_CABINETCLOSE = 684088502U;
@@ -63,6 +64,7 @@ namespace AK
         static const AkUniqueID PLAY_UNSATISFIEDCUSTOMER = 4105520773U;
         static const AkUniqueID PLAY_WAKING = 1615511115U;
         static const AkUniqueID PLAY_WHISTLE = 2693257580U;
+        static const AkUniqueID STOP_BREWER = 2540658777U;
         static const AkUniqueID STOP_DREAMSCAPE = 4252214477U;
         static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
         static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;

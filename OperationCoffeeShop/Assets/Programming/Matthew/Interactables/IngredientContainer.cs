@@ -62,6 +62,7 @@ public class IngredientContainer : Interactable
         }
         else
         {
+            AkSoundEngine.PostEvent("stop_looppour", gameObject);
             _pouring = false;
             transform.Rotate(-2, 0, 0);
             pouringRotation = false;
@@ -177,6 +178,11 @@ public class IngredientContainer : Interactable
         yield return new WaitForSeconds(.04f);
         if (outputIngredients.Count > 0)
         {
+            if (!GameMode.IsEventPlayingOnGameObject("play_looppour", gameObject))
+            {
+                AkSoundEngine.PostEvent("play_looppour", gameObject);
+            }
+
             var r = Random.Range(0, outputIngredients.Count);
             Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
             outputIngredients.Remove(outputIngredients[outputIngredients.Count - 1]);
@@ -192,6 +198,10 @@ public class IngredientContainer : Interactable
                     (localScale.y - .01f), localScale.z); //
                 contentsVisualizer.transform.localScale = localScale;
             }
+        }
+        else
+        {
+            AkSoundEngine.PostEvent("stop_looppour", gameObject);
         }
 
         _coRef2 = null;

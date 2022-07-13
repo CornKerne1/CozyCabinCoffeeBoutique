@@ -9,8 +9,10 @@ public class CoffeeBrewer : Machine
 
     protected override IEnumerator ActivateMachine(float time)
     {
+        AkSoundEngine.PostEvent("PLAY_Brewer", gameObject);
         isRunning = true;
         yield return new WaitForSeconds(time);
+        AkSoundEngine.PostEvent("STOP_Brewer", gameObject);
         OutputIngredients();
         transform.position = base.origin;
     }
