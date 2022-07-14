@@ -1509,6 +1509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
+--- !u!1 &1722268809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8675541021117073078, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
+  m_PrefabInstance: {fileID: 1978266450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1741386236 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1913682163838826855, guid: eabccf650d7cc8747b54c593ecb1191d, type: 3}
@@ -25613,60 +25618,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73f72d0523657d489790d49518cbd16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectiveObjects:
-  - {fileID: 1467130950}
-  - {fileID: 701463050}
-  - {fileID: 198477505}
-  - {fileID: 1741386236}
-  - {fileID: 1949440139}
-  - {fileID: 1929488392}
-  - {fileID: 1396198377}
-  - {fileID: 7178056224376831412}
-  - {fileID: 821416655}
-  - {fileID: 165561650}
-  - {fileID: 1663136319}
-  - {fileID: 1101657741}
-  - {fileID: 1949440139}
-  - {fileID: 36641339}
-  - {fileID: 1577384394517143557}
-  - {fileID: 890736104092674018}
   objectives:
-  - Get to the Kitchen with   W A S D
-  - 'Pick up Coffee Bean from bag with Left Click
-
-'
-  - 'Drop Bean into green Coffee Grinder with Left Click
-
-'
-  - 'Press Button on Gridder with Left Click
-
-'
-  - 'Open the Coffee Filter Bowl on the red  Brewer with Left Click
-
-'
-  - Grab a Filter from the stack of Filters to your left
-  - 'Place Filter Int Coffee Fiter Bowl
-
-'
-  - 'Pick Up Ground Coffee with left click
-
-'
-  - 'Drop Ground Coffee into Coffee Filter Bowl
-
-'
-  - 'Close Coffee Filter Bowl with Left Click '
-  - Pick up Cup from the stack of Cups to your left
-  - "Drop cup under Coffee Brewer with Left Click \n"
-  - ' Start Coffee Brewer with Left Click'
-  - 'Drink Coffee by raising above head and Right Click
-
-'
-  - 'Left Click on Ladder to Begin Climbing with WASD
-
-'
-  - 'Left Click on Bed to wake Up
-
-'
+  - triggerGameObject: {fileID: 1467130950}
+    outlineGameObject: {fileID: 0}
+    useOutline: 0
+    objectiveText: Get to the Kitchen with WASD
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 701463050}
+    outlineGameObject: {fileID: 701463050}
+    useOutline: 1
+    objectiveText: Pick up Coffee Bean from bag with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 198477505}
+    outlineGameObject: {fileID: 198477505}
+    useOutline: 1
+    objectiveText: Drop Bean into Green Coffee Grinder with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1741386236}
+    outlineGameObject: {fileID: 1741386236}
+    useOutline: 1
+    objectiveText: Press Button on Grinder with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1949440139}
+    outlineGameObject: {fileID: 1949440139}
+    useOutline: 1
+    objectiveText: Open the Coffee Filter Bowl on the red Brewer with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1929488392}
+    outlineGameObject: {fileID: 1929488392}
+    useOutline: 1
+    objectiveText: Grab a Filter from the stack of Filters to your left
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1396198377}
+    outlineGameObject: {fileID: 1949440139}
+    useOutline: 1
+    objectiveText: place filter into COffee Filter Bowl
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 7178056224376831412}
+    outlineGameObject: {fileID: 0}
+    useOutline: 0
+    objectiveText: Pick Up Ground Coffee Filter Bowl
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 821416655}
+    outlineGameObject: {fileID: 1949440139}
+    useOutline: 1
+    objectiveText: Drop ground Coffee into Coffee Filter Bowl
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 165561650}
+    outlineGameObject: {fileID: 1949440139}
+    useOutline: 1
+    objectiveText: Close Coffee Filter Bowl with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1663136319}
+    outlineGameObject: {fileID: 1663136319}
+    useOutline: 1
+    objectiveText: Pick up Cup from the stack of Cups to your left
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1101657741}
+    outlineGameObject: {fileID: 1101657741}
+    useOutline: 0
+    objectiveText: Drop Cup under Coffee Brewer with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1722268809}
+    outlineGameObject: {fileID: 1949440139}
+    useOutline: 1
+    objectiveText: Start Coffee Brewer with Left Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 36641339}
+    outlineGameObject: {fileID: 0}
+    useOutline: 0
+    objectiveText: Drink Coffee by raising above head and Rickt Click
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 1577384394517143557}
+    outlineGameObject: {fileID: 1577384394517143557}
+    useOutline: 1
+    objectiveText: Left click on Ladder to begin climbing with WASD
+    objectiveComplete: 0
+  - triggerGameObject: {fileID: 890736104092674018}
+    outlineGameObject: {fileID: 890736104092674018}
+    useOutline: 1
+    objectiveText: Left Click on Bed to Wake Up
+    objectiveComplete: 0
   textMesh: {fileID: 7178056224608441384}
   currentObjective: 0
 --- !u!114 &7178056224608441384
@@ -30253,20 +30285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef457b738e1127146bd4745ecbbd770c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMode: {fileID: 0}
-  rotateOffset: {x: 0, y: 0, z: 0}
-  _outline: {fileID: 0}
-  _outlineColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  Machine: {fileID: 0}
-  mD: {fileID: 11400000, guid: 1b3d0a4870d4c4e4c81ea180a149ca9c, type: 2}
-  objectiveOutputObject: {fileID: 0}
-  _objectives1: {fileID: 0}
-  _gameMode: {fileID: 0}
-  animator: {fileID: 4014140755002179597}
 --- !u!114 &9036424530884645851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30279,15 +30297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd70332df4b90994f9d90193f4c99697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCapacity: 0
-  mD: {fileID: 11400000, guid: 1b3d0a4870d4c4e4c81ea180a149ca9c, type: 2}
-  iD: {fileID: 11400000, guid: f14f0725997f93b48a3b281ade6964e7, type: 2}
-  isRunning: 0
-  origin: {x: 0, y: 0, z: 0}
-  gameMode: {fileID: 0}
-  outputTransform: {fileID: 1250096444992798662}
-  _objectives1: {fileID: 0}
-  _gameMode: {fileID: 0}
 --- !u!1 &9036621527184329109
 GameObject:
   m_ObjectHideFlags: 0
