@@ -1113,6 +1113,7 @@ GameObject:
   - component: {fileID: 1101657743}
   - component: {fileID: 1101657747}
   - component: {fileID: 1101657744}
+  - component: {fileID: 1101657748}
   m_Layer: 0
   m_Name: CupTrigger
   m_TagString: Untagged
@@ -1220,6 +1221,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1101657748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101657741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.7882353, b: 0.13333334, a: 0}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1157031688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1509,16 +1528,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
---- !u!1 &1722268809 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8675541021117073078, guid: 82b2fa8318ec8da48894a2485d9099aa, type: 3}
-  m_PrefabInstance: {fileID: 1978266450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1741386236 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1913682163838826855, guid: eabccf650d7cc8747b54c593ecb1191d, type: 3}
   m_PrefabInstance: {fileID: 653685062}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1741386240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741386236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.7882353, b: 0.13333334, a: 0}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1802936892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25676,10 +25708,10 @@ MonoBehaviour:
     objectiveComplete: 0
   - triggerGameObject: {fileID: 1101657741}
     outlineGameObject: {fileID: 1101657741}
-    useOutline: 0
+    useOutline: 1
     objectiveText: Drop Cup under Coffee Brewer with Left Click
     objectiveComplete: 0
-  - triggerGameObject: {fileID: 1722268809}
+  - triggerGameObject: {fileID: 1949440139}
     outlineGameObject: {fileID: 1949440139}
     useOutline: 1
     objectiveText: Start Coffee Brewer with Left Click
