@@ -80,14 +80,14 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == 3 && (!_currentInteractable ||
                                                            hit.collider.gameObject.GetInstanceID() !=
-                                                           _currentInteractable.GetInstanceID()))
+                                                           _currentInteractable.gameObject.GetInstanceID()))
                 {
                     RemoveCurrentInteractable();
                     hit.collider.TryGetComponent(out _currentInteractable);
                     if (_currentInteractable)
                         _currentInteractable.OnFocus();
                 }
-                else if (_currentInteractable)
+                else if (hit.collider.gameObject.layer != 3)
                     RemoveCurrentInteractable();
             }
             else if (_currentInteractable)
@@ -192,7 +192,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void DropCurrentObj()
     {
-        if(!carriedObj)
+        if (!carriedObj)
             return;
         if (carriedObj.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {

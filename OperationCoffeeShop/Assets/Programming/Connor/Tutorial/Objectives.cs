@@ -24,9 +24,11 @@ public class Objectives : MonoBehaviour
 
     private void Update()
     {
-        if (objectives[currentObjective].useOutline && _outline.OutlineColor != Color.green)
+        if (objectives[currentObjective].useOutline && (_outline.OutlineColor != Color.green || !_outline.enabled) )
         {
+            _outline.enabled = true;
             _outline.OutlineColor = Color.green;
+            _outline.OutlineMode = Outline.Mode.OutlineAll;
         }
     }
 
@@ -39,6 +41,7 @@ public class Objectives : MonoBehaviour
             _outline.OutlineColor = _prevOutlineColor;
             _outline.OutlineMode = Outline.Mode.OutlineVisible;
             objectiveStruct.objectiveComplete = true;
+            _outline.enabled = false;
         }
 
         Debug.Log("" + ((GameObject)sender).name);
@@ -47,6 +50,7 @@ public class Objectives : MonoBehaviour
         if (objectives[++currentObjective].useOutline)
         {
             _outline = objectives[currentObjective].outlineGameObject.GetComponent<Outline>();
+            _outline.enabled = true;
             _prevOutlineColor = _outline.OutlineColor;
             _prevOutlineColor.a = 0;
             _outline.OutlineColor = Color.green;
