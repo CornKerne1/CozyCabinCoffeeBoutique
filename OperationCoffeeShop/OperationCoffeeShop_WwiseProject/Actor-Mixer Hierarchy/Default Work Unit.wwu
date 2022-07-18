@@ -772,6 +772,78 @@
 										<ActiveSource Name="Mason Jar Open" ID="{B4AD1162-DBAC-441C-9DB0-D1658E8980F1}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="BeesSleeping" ID="{4E43FCEB-E720-4CA0-A452-68732F8C3F1D}" ShortID="435487064">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="BeesSleeping" ID="{A9738AD1-F827-45DF-BA2B-E2FF2DF58ED4}">
+											<Language>SFX</Language>
+											<AudioFile>BeesSleeping.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="710138040"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="BeesSleeping" ID="{A9738AD1-F827-45DF-BA2B-E2FF2DF58ED4}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="SmokerNoise" ID="{C3638222-5B81-4097-A1EE-6A3F4BCDA63A}" ShortID="410935250">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SmokerNoise" ID="{F61B86CA-D574-442E-92B5-FD8CABA8C9BB}">
+											<Language>SFX</Language>
+											<AudioFile>SmokerNoise.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="433883949"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="SmokerNoise" ID="{F61B86CA-D574-442E-92B5-FD8CABA8C9BB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="SmokerPump" ID="{1F039100-A230-4E02-BEC6-A7D2827D4B1D}" ShortID="32771962">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SmokerPump" ID="{D98F1069-025B-4113-BA5C-4472AEE836BC}">
+											<Language>SFX</Language>
+											<AudioFile>SmokerPump.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="54605514"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="SmokerPump" ID="{D98F1069-025B-4113-BA5C-4472AEE836BC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
