@@ -29,6 +29,8 @@ public class GameModeData : ScriptableObject
     public bool inTutorial;
 
 
+    [Header("Physics Related")] public float breakSpeed = 15f;
+
     [Header("DO NOT TOUCH")] public bool sleeping;
     public float reputation;
     public int displayTime;
