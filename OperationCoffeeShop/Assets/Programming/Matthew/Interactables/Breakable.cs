@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class Breakable : Interactable
 {
     [SerializeField] private GameObject breakablePrefab;
+    private GameObject _breakableRef;
     private PlayerInteraction _pI;
     private Rigidbody _rb;
+    List<GameObject> fragments = new List<GameObject>();
 
     public override void Start()
     {
@@ -26,7 +29,9 @@ public class Breakable : Interactable
         _rb.isKinematic = true;
         yield return new WaitForSeconds(.02f);
         var transform1 = transform;
-        Instantiate(breakablePrefab, transform1.position, transform1.rotation);
+        _breakableRef = Instantiate(breakablePrefab, transform1.position, transform1.rotation);
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
         yield return new WaitForSeconds(.02f);
         Destroy(gameObject);
     }
