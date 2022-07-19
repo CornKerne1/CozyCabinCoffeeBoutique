@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     private Story _currentStory;
     private List<string> _currentTags;
 
+
+    private bool _firstMessage = true;
     public bool dialogueIsPlaying;
     public bool finishedConversation;
 
@@ -132,6 +134,8 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueStory()
     {
+        if (!_firstMessage) AkSoundEngine.PostEvent("PLAY_bubblepop", gameObject);
+        else _firstMessage = false;
         if (_currentStory.canContinue)
         {
             dialogueText.text = _currentStory.Continue();

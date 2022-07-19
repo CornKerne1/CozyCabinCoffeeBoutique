@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="127750280">
+		<SoundBank Id="3161908922" Language="SFX" Hash="169025862">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -42,6 +42,14 @@
 						<File Id="903791736" Language="SFX">
 							<ShortName>Breaking_Loose_LoFi.wav</ShortName>
 							<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="20894835" Name="Play_Brewer" ObjectPath="\Events\Default Work Unit\Play_Brewer" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="319928094" Language="SFX">
+							<ShortName>Brewer.wav</ShortName>
+							<Path>SFX\Brewer_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -290,6 +298,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1571211755" Name="Play_SFX_BellChime" ObjectPath="\Events\Default Work Unit\Play_SFX_BellChime" DurationType="OneShot" DurationMin="2.229116" DurationMax="2.229116">
+					<IncludedMemoryFiles>
+						<File Id="505142991" Language="SFX">
+							<ShortName>SFX_BellChime.wav</ShortName>
+							<Path>SFX\SFX_BellChime_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1306435193" Name="Play_Slider" ObjectPath="\Events\Default Work Unit\Play_Slider" DurationType="OneShot" DurationMin="0.496145" DurationMax="0.496145">
 					<IncludedMemoryFiles>
 						<File Id="30486242" Language="SFX">
@@ -330,7 +346,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.708662" DurationMax="0.708662">
+				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.688488" DurationMax="0.729428">
 					<IncludedMemoryFiles>
 						<File Id="455270351" Language="SFX">
 							<ShortName>TaskComplete.wav</ShortName>
@@ -410,6 +426,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2540658777" Name="Stop_Brewer" ObjectPath="\Events\Default Work Unit\Stop_Brewer" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4252214477" Name="Stop_DreamScape" ObjectPath="\Events\Default Work Unit\Stop_DreamScape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -522,6 +539,10 @@
 					<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
 					<Path>SFX\Grinding_Coffee_Beans1_10C4C929.wem</Path>
 				</File>
+				<File Id="319928094" Language="SFX">
+					<ShortName>Brewer.wav</ShortName>
+					<Path>SFX\Brewer_D79FB2B7.wem</Path>
+				</File>
 				<File Id="366206813" Language="SFX">
 					<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
 					<Path>SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</Path>
@@ -541,6 +562,10 @@
 				<File Id="455270351" Language="SFX">
 					<ShortName>TaskComplete.wav</ShortName>
 					<Path>SFX\TaskComplete_10C4C929.wem</Path>
+				</File>
+				<File Id="505142991" Language="SFX">
+					<ShortName>SFX_BellChime.wav</ShortName>
+					<Path>SFX\SFX_BellChime_10C4C929.wem</Path>
 				</File>
 				<File Id="510049455" Language="SFX">
 					<ShortName>1Dogs.wav</ShortName>

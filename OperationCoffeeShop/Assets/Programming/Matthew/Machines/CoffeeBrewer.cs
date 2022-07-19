@@ -9,8 +9,10 @@ public class CoffeeBrewer : Machine
 
     protected override IEnumerator ActivateMachine(float time)
     {
+        AkSoundEngine.PostEvent("PLAY_Brewer", gameObject);
         isRunning = true;
         yield return new WaitForSeconds(time);
+        AkSoundEngine.PostEvent("STOP_Brewer", gameObject);
         OutputIngredients();
         transform.position = base.origin;
     }
@@ -60,6 +62,7 @@ public class CoffeeBrewer : Machine
 
     private IEnumerator CO_Liquefy()
     {
+        AkSoundEngine.PostEvent("PLAY_LOOPPOUR", gameObject);
         for (var i = 0; i < currentCapacity;)
             if (currentCapacity != 0)
             {
@@ -75,5 +78,6 @@ public class CoffeeBrewer : Machine
 
         yield return new WaitForSeconds(.04f);
         base.isRunning = false;
+        AkSoundEngine.PostEvent("STOP_LOOPPOUR", gameObject);
     }
 }
