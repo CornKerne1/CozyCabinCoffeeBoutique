@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8454908945420082423}
   - component: {fileID: 5958589592748271677}
   - component: {fileID: 5003705944197652558}
-  - component: {fileID: 5003705944197652557}
   - component: {fileID: 5003705944197652553}
   - component: {fileID: 5003705944197652559}
+  - component: {fileID: 800609705781135061}
   m_Layer: 0
   m_Name: Feather Duster 1
   m_TagString: Untagged
@@ -101,19 +101,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5003705944197652557
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5310260568206477800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2475736, y: 0.09698371, z: 0.24757507}
-  m_Center: {x: -1.1196971e-16, y: 0.2578791, z: 0}
 --- !u!65 &5003705944197652553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,3 +128,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+--- !u!135 &800609705781135061
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310260568206477800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.10171939
+  m_Center: {x: 6.444392e-16, y: 0.20465156, z: 0}

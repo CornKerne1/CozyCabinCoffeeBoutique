@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,16 @@ using UnityEngine.Serialization;
 
 public abstract class Interactable : MonoBehaviour
 {
-    [FormerlySerializedAs("gM")] public GameMode gameMode;
+    public GameMode gameMode;
     public Vector3 rotateOffset;
+    [SerializeField] private bool isBreakable;
+    
+    //Breakable
+    [SerializeField] private GameObject breakablePrefab;
+    private GameObject _breakableRef;
+    private PlayerInteraction _pI;
+    private Rigidbody _rB;
+   private  bool _isWaiting;
 
     private Outline _outline;
     private Color _outlineColor;
@@ -14,6 +23,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Awake()
     {
         gameObject.layer = 3;
+        _rB = GetComponent<Rigidbody>();
     }
 
     public virtual void Start()
@@ -52,7 +62,12 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    public abstract void OnInteract(PlayerInteraction playerInteraction);
+    public virtual void OnInteract(PlayerInteraction playerInteraction)
+    {
+        if (!isBreakable) return;
+        _pI = playerInteraction;
+        _pI.Carry(gameObject);
+    }
 
     public virtual void OnFocus()
     {
@@ -82,5 +97,37 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnDrop()
     {
+    }
+
+    IEnumerator CO_FreezeForClipping()
+    {
+        if (!isBreakable) yield break;
+        _rB.isKinematic = true;
+        yield return new WaitForSeconds(.02f);
+        var transform1 = transform;
+        _breakableRef = Instantiate(breakablePrefab, transform1.position, transform1.rotation);
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
+        yield return new WaitForSeconds(.02f);
+        Radio r;
+        TryGetComponent<Radio>(out r);
+        foreach (var rC in r.radioChannels)
+            rC.StopChannel();
+        Destroy(gameObject);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        try
+        {
+            var speed = _rB.velocity.magnitude*10f;
+            if (speed >= gameMode.gameModeData.breakSpeed)
+            {
+                StartCoroutine(CO_FreezeForClipping());
+            }
+        }
+        catch
+        {
+            gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        }
     }
 }
