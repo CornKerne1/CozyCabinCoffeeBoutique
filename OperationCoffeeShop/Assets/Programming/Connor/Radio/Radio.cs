@@ -23,6 +23,7 @@ public class Radio : Interactable
 
     public override void Start()
     {
+        base.Start();
         for (var i = 0; i < 10; i++)
         {
             Transform transform1;
@@ -53,7 +54,7 @@ public class Radio : Interactable
         radioDial.transform.localPosition = new Vector3(position.x - inc, localPosition.y,
             localPosition.z);
     }
-    
+
 
     public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
