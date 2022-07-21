@@ -18,7 +18,7 @@ public class CoffeeGrinder : Machine
             case Ingredients.UngroundCoffee:
                 currentCapacity += 1;
                 mD.outputIngredient.Add(iD.glCoffee);
-                other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
+                other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
                 Destroy(other);
                 IfTutorial();
                 break;

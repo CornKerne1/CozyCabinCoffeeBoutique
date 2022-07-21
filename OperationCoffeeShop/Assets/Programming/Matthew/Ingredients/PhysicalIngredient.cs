@@ -11,7 +11,7 @@ public class PhysicalIngredient : Interactable
     [FormerlySerializedAs("_inHand")] [SerializeField]
     private bool inHand;
 
-    public PlayerInteraction pI;
+    [FormerlySerializedAs("pI")] public PlayerInteraction playerInteraction;
 
     public override void Start()
     {
@@ -23,7 +23,7 @@ public class PhysicalIngredient : Interactable
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
         IfTutorial();
-        pI = playerInteraction;
+        this.playerInteraction = playerInteraction;
         playerInteraction.Carry(gameObject);
         inHand = true;
     }
@@ -49,7 +49,7 @@ public class PhysicalIngredient : Interactable
         {
             other.GetComponent<Machine>().IngredientInteract(gameObject);
             rb.AddForce(_rejectionForce);
-            pI.DropCurrentObj();
+            playerInteraction.DropCurrentObj();
         }
         catch
         {
@@ -57,7 +57,7 @@ public class PhysicalIngredient : Interactable
             {
                 other.GetComponent<BrewerBowl>().IngredientInteract(gameObject);
                 rb.AddForce(_rejectionForce);
-                pI.DropCurrentObj();
+                playerInteraction.DropCurrentObj();
             }
             catch
             {

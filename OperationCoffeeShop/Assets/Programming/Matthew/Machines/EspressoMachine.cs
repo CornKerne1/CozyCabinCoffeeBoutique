@@ -21,7 +21,7 @@ public class EspressoMachine : Machine
 
                 currentCapacity = currentCapacity + 1;
                 mD.outputIngredient.Add(iD.espresso);
-                other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
+                other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
                 Destroy(other);
                 break;
         }

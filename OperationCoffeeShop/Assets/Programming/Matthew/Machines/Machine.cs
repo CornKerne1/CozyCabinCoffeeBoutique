@@ -40,7 +40,7 @@ public abstract class Machine : MonoBehaviour
             gameMode.Tutorial.AddedGameObject(gameObject);
         }
     }
-    
+
     public void IngredientInteract(GameObject other)
     {
         if (currentCapacity < mD.maxCapacity && !isRunning)
@@ -92,8 +92,6 @@ public abstract class Machine : MonoBehaviour
                 mD.outputIngredient.RemoveAt(i);
             }
     }
-
-    // Update is called once per frame
 
 
     protected virtual void Shake()

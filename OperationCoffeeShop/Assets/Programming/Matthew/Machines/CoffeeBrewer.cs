@@ -7,6 +7,11 @@ public class CoffeeBrewer : Machine
 {
     public bool hasPitcher;
 
+    private new void Start()
+    {
+        base.Start();
+    }
+
     protected override IEnumerator ActivateMachine(float time)
     {
         AkSoundEngine.PostEvent("PLAY_Brewer", gameObject);
@@ -23,9 +28,9 @@ public class CoffeeBrewer : Machine
         {
             case Ingredients.GroundCoffee:
                 IfTutorial();
-                currentCapacity = currentCapacity + 1;
+                currentCapacity++;
                 mD.outputIngredient.Add(iD.brewedCoffee);
-                other.GetComponent<PhysicalIngredient>().pI.DropCurrentObj();
+                other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
                 Destroy(other);
 
                 break;
