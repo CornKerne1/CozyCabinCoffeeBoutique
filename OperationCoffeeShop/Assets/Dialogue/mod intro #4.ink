@@ -2,10 +2,16 @@
 
 
 === main ===
-Hey friend do you mind doing me a favor?
+Hey, there friend!
 * [Yeah. What's up?]
-- Can you take my order?
-* [Sure thing.]
+* [I don't think I've seen you before...]
+
+- What's something you would recommend?
+* [What's here NOT to love?!]
+* [You want my honest opinion?]
+
+- I'll have you surprise me! There's too much order in my life as it is...
+* [Coming right up!]
 -> DONE
 
 
