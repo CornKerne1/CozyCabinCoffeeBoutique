@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 #if UNITY_2018_3_OR_NEWER
-
+using UnityEditor.Experimental.SceneManagement;
 #endif
 
 namespace Sisus.HierarchyFolders.Prefabs
@@ -22,7 +22,7 @@ namespace Sisus.HierarchyFolders.Prefabs
 		public static bool IsPrefabAssetOrOpenInPrefabStage(this GameObject gameObject)
 		{
 			#if UNITY_2018_3_OR_NEWER
-			return PrefabUtility.IsPartOfPrefabAsset(gameObject) || UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject) != null;
+			return PrefabUtility.IsPartOfPrefabAsset(gameObject) || PrefabStageUtility.GetPrefabStage(gameObject) != null;
 			#else
 			return PrefabUtility.GetPrefabType(gameObject) == PrefabType.Prefab;
 			#endif
@@ -109,7 +109,7 @@ namespace Sisus.HierarchyFolders.Prefabs
 		public static bool IsOpenInPrefabStage(this GameObject gameObject)
 		{
 			#if UNITY_2018_3_OR_NEWER
-			return UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject) != null;
+			return PrefabStageUtility.GetPrefabStage(gameObject) != null;
 			#else
 			return false;
 			#endif
