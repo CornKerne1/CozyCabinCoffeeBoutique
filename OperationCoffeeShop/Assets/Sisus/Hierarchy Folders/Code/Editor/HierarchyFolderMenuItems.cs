@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Sisus.HierarchyFolders.Prefabs;
 #if UNITY_2018_3_OR_NEWER
-using UnityEditor.Experimental.SceneManagement;
+
 #endif
 
 namespace Sisus.HierarchyFolders
@@ -29,7 +29,7 @@ namespace Sisus.HierarchyFolders
 			if(!prefabsAllowed)
 			{
 				#if UNITY_2018_3_OR_NEWER
-				if(PrefabStageUtility.GetCurrentPrefabStage() != null)
+				if(UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null)
 				{
 					Debug.LogWarning(HierarchyFolderMessages.PrefabNotAllowed);
 					return false;
@@ -77,7 +77,7 @@ namespace Sisus.HierarchyFolders
 			bool prefabsNotAllowed = HierarchyFolderPreferences.Get().foldersInPrefabs == HierachyFoldersInPrefabs.NotAllowed;
 
 			#if UNITY_2018_3_OR_NEWER
-			if(prefabsNotAllowed && PrefabStageUtility.GetCurrentPrefabStage() != null)
+			if(prefabsNotAllowed && UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null)
 			{
 				Debug.LogWarning(HierarchyFolderMessages.PrefabNotAllowed);
 				return;
@@ -161,7 +161,7 @@ namespace Sisus.HierarchyFolders
 			}
 
 			#if UNITY_2018_3_OR_NEWER
-			if(PrefabStageUtility.GetCurrentPrefabStage() != null)
+			if(UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null)
 			{
 				return false;
 			}
@@ -274,7 +274,7 @@ namespace Sisus.HierarchyFolders
 			int moveToIndex = -1;
 
 			#if UNITY_2018_3_OR_NEWER
-			var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+			var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
 			if(prefabStage != null)
 			{
 				if(placeBelow == null || placeBelow.gameObject.scene != prefabStage.scene || placeBelow.gameObject == prefabStage.prefabContentsRoot)
