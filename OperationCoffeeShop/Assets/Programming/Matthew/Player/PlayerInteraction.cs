@@ -268,4 +268,13 @@ public class PlayerInteraction : MonoBehaviour
             _blur = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        PlayerInput.InteractEvent -= TryInteract;
+        PlayerInput.RotateEvent -= TryRotate;
+        PlayerInput.RotateCanceledEvent -= CancelRotate;
+        PlayerInput.MoveObjEvent -= MoveObj;
+        PlayerInput.AltInteractEvent -= Alt;
+    }
 }
