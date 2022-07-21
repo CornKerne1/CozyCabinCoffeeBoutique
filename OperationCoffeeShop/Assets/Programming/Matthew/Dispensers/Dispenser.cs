@@ -41,7 +41,7 @@ public class Dispenser : Interactable
         _obj = Instantiate(objType.gameObject, spawnTrans.position, spawnTrans.rotation).transform;
         if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
-            physicalIngredient.pI = playerInteraction;
+            physicalIngredient.playerInteraction = playerInteraction;
         }
         else if (_obj.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
