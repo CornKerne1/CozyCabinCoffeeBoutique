@@ -110,15 +110,19 @@ public abstract class Interactable : MonoBehaviour
         GetComponent<Renderer>().enabled = false;
         yield return new WaitForSeconds(.02f);
         Radio r;
-        TryGetComponent<Radio>(out r);
-        foreach (var rC in r.radioChannels)
-            rC.StopChannel();
+        if (TryGetComponent<Radio>(out r))
+        {
+            foreach (var rC in r.radioChannels)
+                rC.StopChannel();
+        }
         Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {
         try
         {
+            if(!gameMode)
+                gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
             var speed = _rB.velocity.magnitude*10f;
             if (speed >= gameMode.gameModeData.breakSpeed)
             {
@@ -127,7 +131,6 @@ public abstract class Interactable : MonoBehaviour
         }
         catch
         {
-            gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         }
     }
 }
