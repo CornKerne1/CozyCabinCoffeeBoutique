@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -24,6 +26,7 @@ public abstract class Interactable : MonoBehaviour
     private void InitializeOutline()
     {
         _outline = gameObject.AddComponent<Outline>();
+        _outline.enabled = true;
         _outline.OutlineMode = Outline.Mode.OutlineVisible;
         _outline.OutlineWidth = 10;
         var sunsetYellow = new Color()
@@ -37,6 +40,7 @@ public abstract class Interactable : MonoBehaviour
         var color = _outlineColor;
         color.a = 0;
         _outline.OutlineColor = color;
+        StartCoroutine(CO_DisableOutline());
     }
 
     protected virtual void CheckTutorial()
@@ -53,6 +57,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void OnFocus()
     {
         if (!_outline) return;
+        _outline.enabled = true;
         _outline.OutlineColor = _outlineColor;
     }
 
@@ -62,6 +67,13 @@ public abstract class Interactable : MonoBehaviour
         var color = _outlineColor;
         color.a = 0;
         _outline.OutlineColor = color;
+        StartCoroutine(CO_DisableOutline());
+    }
+
+    private IEnumerator CO_DisableOutline()
+    {
+        yield return new WaitForSeconds(.01f);
+        _outline.enabled = false;
     }
 
     public virtual void OnAltInteract(PlayerInteraction playerInteraction)
