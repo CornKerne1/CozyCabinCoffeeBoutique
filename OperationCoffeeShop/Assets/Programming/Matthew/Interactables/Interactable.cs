@@ -13,7 +13,7 @@ public abstract class Interactable : MonoBehaviour
     //Breakable
     [SerializeField] private GameObject breakablePrefab;
     private GameObject _breakableRef;
-    private PlayerInteraction _pI;
+    public PlayerInteraction _pI;
     private Rigidbody _rB;
    private  bool _isWaiting;
 

@@ -24,14 +24,15 @@ public class CoffeeBrewer : Machine
 
     protected override void ChooseIngredient(GameObject other)
     {
-        switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
+        var pI = other.GetComponent<PhysicalIngredient>();
+        switch (pI.thisIngredient)
         {
             case Ingredients.GroundCoffee:
                 IfTutorial();
                 currentCapacity++;
                 mD.outputIngredient.Add(iD.brewedCoffee);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                Destroy(other);
+                pI.dispenser.ReleasePoolObject(other.transform.root.gameObject);
 
                 break;
             case Ingredients.Milk:

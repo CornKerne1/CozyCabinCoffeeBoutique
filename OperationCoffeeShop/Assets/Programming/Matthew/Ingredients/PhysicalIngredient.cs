@@ -8,10 +8,10 @@ public class PhysicalIngredient : Interactable
     private readonly Vector3 _rejectionForce = new Vector3(55, 55, 55);
     [SerializeField] public Ingredients thisIngredient;
 
-    [FormerlySerializedAs("_inHand")] [SerializeField]
-    private bool inHand;
+    [SerializeField] private bool inHand;
 
-    [FormerlySerializedAs("pI")] public PlayerInteraction playerInteraction;
+    public PlayerInteraction playerInteraction;
+    public Dispenser dispenser;
 
     public override void Start()
     {

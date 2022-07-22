@@ -100,15 +100,16 @@ public class BrewerBowl : MonoBehaviour
 
     public void IngredientInteract(GameObject other)
     {
+        var _pI = other.GetComponent<PhysicalIngredient>();
         switch (open)
         {
             case true when filter.activeSelf:
                 _machine.IngredientInteract(other);
                 break;
-            case true when other.GetComponent<PhysicalIngredient>().thisIngredient == Ingredients.CoffeeFilter:
+            case true when _pI.thisIngredient == Ingredients.CoffeeFilter:
                 filter.SetActive(true);
                 IfTutorial(1);
-                Destroy(other);
+                _pI.dispenser.ReleasePoolObject(other.transform.root.gameObject);
                 break;
         }
     }

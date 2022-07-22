@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Pool;
 using TMPro;
 
 public class Dispenser : Interactable
@@ -8,6 +9,7 @@ public class Dispenser : Interactable
     [SerializeField] public ObjectHolder objType;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string message = " beans remaining";
+    private ObjectPool<GameObject> _pool;
 
 
     private Transform _obj;
@@ -19,6 +21,20 @@ public class Dispenser : Interactable
     {
         base.Start();
         ComputerShop.DepositItems += AddItems;
+        _pool = new ObjectPool<GameObject>(() =>
+            {
+                return Instantiate(objType.gameObject);
+            }, gameObject =>
+            {
+                gameObject.SetActive(true);
+            },
+            gameObject =>
+            {
+                gameObject.SetActive(false);
+            },gameObject =>
+            {
+                Destroy(gameObject);
+            }, true, 100, 100);
         if (bottomless) return;
         try
         {
@@ -33,22 +49,30 @@ public class Dispenser : Interactable
         }
     }
 
+    public void ReleasePoolObject(GameObject obj)
+    {
+        _pool.Release(obj);
+    }
+
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
         if (playerInteraction.pD.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
-        _obj = Instantiate(objType.gameObject, spawnTrans.position, spawnTrans.rotation).transform;
+        var _obj = _pool.Get();
+        _obj.transform.position = spawnTrans.position;
+        _obj.transform.rotation = spawnTrans.rotation;
         if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
             physicalIngredient.playerInteraction = playerInteraction;
+            physicalIngredient.dispenser = this;
         }
         else if (_obj.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
             ingredientContainer.pI = playerInteraction;
             ingredientContainer.inHand = true;
         }
-
+        
         playerInteraction.Carry(_obj.gameObject);
         IfTutorial();
     }
