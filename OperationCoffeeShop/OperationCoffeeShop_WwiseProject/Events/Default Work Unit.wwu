@@ -762,7 +762,7 @@
 						<Action Name="" ID="{00C5F1E8-6094-4FA7-BC70-75C80971A992}" ShortID="70658787">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Drift" ID="{8DD52CD4-58E9-4967-A175-554095F24F15}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+									<ObjectRef Name="TruckDrift" ID="{86180FC5-3A93-4C30-9084-89387E31A00C}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -1002,15 +1002,89 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Stop_Brewer" ID="{93E1BDDA-0CB1-4623-A7CD-E6B4F5B9140C}">
+				<Event Name="Play_BeeFrameSlide" ID="{57B2C2C5-009C-493A-837C-BFB5E10A1A2F}">
 					<ChildrenList>
-						<Action Name="" ID="{52E688F7-611D-4E44-8078-10AF3C157C77}" ShortID="114094248">
-							<PropertyList>
-								<Property Name="ActionType" Type="int16" Value="2"/>
-							</PropertyList>
+						<Action Name="" ID="{17CEC13E-CCBA-42B4-A5B8-54C01011A9E3}" ShortID="267176139">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Brewer" ID="{714303BE-CB4D-4471-AA0E-778148B52ECD}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+									<ObjectRef Name="BeeFrameSlide" ID="{249993B2-36ED-41BA-920B-BF3EF12038CA}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Bees" ID="{962638F8-A716-4A1B-AF76-E54274D2FE88}">
+					<ChildrenList>
+						<Action Name="" ID="{42713070-F792-4791-A859-F2588D9BBB9B}" ShortID="484312451">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Bees" ID="{45FFD53E-C7AA-42CF-8DE7-60F1FA3FCD67}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Mason_Jar_Close" ID="{6F167BE8-F495-43F8-B777-30CBB03B43D3}">
+					<ChildrenList>
+						<Action Name="" ID="{EE9BA805-CA66-4BD0-BA58-47EA10B8ECD1}" ShortID="802469791">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Mason Jar Close" ID="{2DBFB278-4739-4D16-8394-0E4F46EA5554}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Mason_Jar_Open" ID="{49F758AE-7A3E-4854-83BB-8E77A45A74AA}">
+					<ChildrenList>
+						<Action Name="" ID="{ECCEC391-C6EC-4DE2-9941-AFE44A32E252}" ShortID="807134466">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Mason Jar Open" ID="{E443126F-B0E9-45B0-B105-E74B6077D15E}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_BeesSleeping" ID="{0E1C343B-3FAB-4915-A454-218A1CA94094}">
+					<ChildrenList>
+						<Action Name="" ID="{B8816706-2C5C-4B37-8C5A-2AA583CA0675}" ShortID="83929180">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BeesSleeping" ID="{4E43FCEB-E720-4CA0-A452-68732F8C3F1D}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_SmokerPump" ID="{513C7147-820B-4015-9F6B-60323AE7EAA9}">
+					<ChildrenList>
+						<Action Name="" ID="{1873C828-106C-4B31-97CB-F4DF546D451C}" ShortID="64109796">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SmokerPump" ID="{1F039100-A230-4E02-BEC6-A7D2827D4B1D}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_SmokerNoise" ID="{7BD4DF36-932F-464B-9732-5852C0AB9F81}">
+					<ChildrenList>
+						<Action Name="" ID="{1EB2B527-D419-410E-AD1C-9A7BF3AEB11F}" ShortID="526704463">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SmokerNoise" ID="{C3638222-5B81-4097-A1EE-6A3F4BCDA63A}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_BeesSleeping_01" ID="{9CCB104A-75E9-43EF-A325-E9E89CEF7A5B}">
+					<ChildrenList>
+						<Action Name="" ID="{49860B73-8723-43F9-8EAF-5581A914762A}" ShortID="1051698963">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BeesSleeping" ID="{4E43FCEB-E720-4CA0-A452-68732F8C3F1D}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

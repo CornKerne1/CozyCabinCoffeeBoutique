@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 3810799645724592806}
   - component: {fileID: 7930774406792488812}
   - component: {fileID: 5326405977672569766}
-  - component: {fileID: 5975096328552673905}
   - component: {fileID: 263851077832978396}
   - component: {fileID: 3743816757022874656}
+  - component: {fileID: 93300780677277052}
   m_Layer: 0
   m_Name: Radio
   m_TagString: Untagged
@@ -58,7 +58,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3489125399563247106}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.015, y: -9.082, z: 0.634}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -67,7 +67,7 @@ Transform:
   - {fileID: 4889863407384078025}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &7930774406792488812
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117,22 +117,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &5975096328552673905
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3489125399563247106}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &263851077832978396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,13 +129,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcaba287f812e74896025c82ca58387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 1
+  breakablePrefab: {fileID: 798202446625055978, guid: a599ed26e446f2e44a38efeaa3b3f274, type: 3}
   sT: {fileID: 6075466753525144413}
   eT: {fileID: 4889863407384078025}
   radioChannel: {fileID: 5047478299777401921, guid: 9b6905a254aa80349b5c7a0433fd7f96, type: 3}
   currentChannel: 0
-  RadioChannels: []
+  radioChannels: []
   radioDial: {fileID: 7456920106666707917}
 --- !u!64 &3743816757022874656
 MeshCollider:
@@ -167,6 +153,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4762477281045989054, guid: 3f80f1bbf7e045247a14243f103ee72a, type: 3}
+--- !u!54 &93300780677277052
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489125399563247106}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &5768170663823578100
 GameObject:
   m_ObjectHideFlags: 0

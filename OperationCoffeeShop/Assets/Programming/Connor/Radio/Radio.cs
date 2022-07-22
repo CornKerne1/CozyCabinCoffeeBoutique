@@ -23,6 +23,7 @@ public class Radio : Interactable
 
     public override void Start()
     {
+        base.Start();
         for (var i = 0; i < 10; i++)
         {
             Transform transform1;
@@ -54,10 +55,6 @@ public class Radio : Interactable
             localPosition.z);
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
-    {
-        playerInteraction.Carry(gameObject);
-    }
 
     public override void OnAltInteract(PlayerInteraction playerInteraction)
     {
