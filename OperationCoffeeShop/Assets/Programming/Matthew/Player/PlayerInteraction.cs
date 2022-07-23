@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
     private Interactable _currentInteractable;
-    bool _rotate;
+    private bool _rotate;
     private float _carryDistance;
     public GameObject carriedObj;
 
