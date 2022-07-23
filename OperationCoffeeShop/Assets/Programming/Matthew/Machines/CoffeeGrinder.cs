@@ -13,13 +13,14 @@ public class CoffeeGrinder : Machine
 
     protected override void ChooseIngredient(GameObject other)
     {
-        switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
+        var pI = other.GetComponent<PhysicalIngredient>();
+        switch (pI.thisIngredient)
         {
             case Ingredients.UngroundCoffee:
                 currentCapacity += 1;
                 mD.outputIngredient.Add(iD.glCoffee);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                Destroy(other);
+                pI.dispenser.ReleasePoolObject(other.transform.root.gameObject);
                 IfTutorial();
                 break;
             case Ingredients.Milk:
