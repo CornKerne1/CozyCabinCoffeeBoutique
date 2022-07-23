@@ -13,14 +13,14 @@ public class Ladder : Interactable
     {
         this.pI = playerInteraction;
         if (gameMode.gameModeData.isOpen) return;
-        if (pI.pD.isClimbing)
+        if (pI.playerData.isClimbing)
         {
-            pI.pD.isClimbing = false;
+            pI.playerData.isClimbing = false;
         }
         else
         {
             if (!canClimb) return;
-            pI.pD.isClimbing = true;
+            pI.playerData.isClimbing = true;
             IfTutorial();
         }
     }

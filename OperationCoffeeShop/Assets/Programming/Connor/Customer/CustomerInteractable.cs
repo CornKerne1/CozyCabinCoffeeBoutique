@@ -76,7 +76,7 @@ public class CustomerInteractable : Interactable
                 RemoveOrderTicket();
                 dialogueManager.finishedConversation = false;
                 gameMode.pD.neckClamp = 77.3f;
-                _playerInteraction.pD.inUI = false;
+                _playerInteraction.playerData.inUI = false;
                 break;
             }
             case true when dialogueManager.GetCurrentCustomer() == this.gameObject:
@@ -95,7 +95,7 @@ public class CustomerInteractable : Interactable
                 DisplayOrderTicket();
                 dialogueManager.finishedConversation = false;
                 gameMode.pD.neckClamp = 77.3f;
-                _playerInteraction.pD.inUI = false;
+                _playerInteraction.playerData.inUI = false;
                 break;
             }
         }
@@ -152,7 +152,7 @@ public class CustomerInteractable : Interactable
 
         if (dialogueManager.dialogueIsPlaying || customerAI.stay != true || customerAI.hasOrdered ||
             !_canInteract) return;
-        playerInteraction.pD.inUI = true;
+        playerInteraction.playerData.inUI = true;
         dialogueManager.SetCurrentCustomer(gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(_introConversation);
         if (regularCustomerAtlas != null)
@@ -223,7 +223,7 @@ public class CustomerInteractable : Interactable
             dialogueManager.SetDefaultImagesAndName(customerAI.customerData.name);
         }
 
-        _playerInteraction.pD.inUI = true;
+        _playerInteraction.playerData.inUI = true;
         DialogueManager.GetInstance().EnterDialogueMode(_exitConversation);
         dialogueManager.SetCurrentCustomer(gameObject);
         gameMode.pD.neckClamp = 0;

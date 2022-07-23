@@ -117,6 +117,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ExitDialogueMode()
     {
+        if (!currentCustomer) return;
         var cAI = currentCustomer.GetComponent<CustomerAI>();
         var cI = cAI.customerData.customerInteractable;
         if (!cAI.hasOrdered)

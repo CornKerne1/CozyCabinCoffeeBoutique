@@ -2,11 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] public PlayerData pD;
-    [SerializeField] private PlayerInput pI;
+    public PlayerData playerData;
+    [SerializeField] private PlayerInput playerInput;
 
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
@@ -26,8 +27,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
-        pI = gameObject.GetComponent<PlayerInput>();
-        pD = pI.pD;
+        playerInput = gameObject.GetComponent<PlayerInput>();
+        playerData = playerInput.pD;
         _cam = GetComponentInChildren<Camera>();
         EventSubscriber();
     }
@@ -62,12 +63,12 @@ public class PlayerInteraction : MonoBehaviour
         _startAperture = d;
         _startAperture.value = 32.0f;
         _dofAperture.value = _startAperture.value;
-        _carryDistance = pD.carryDistance;
+        _carryDistance = playerData.carryDistance;
     }
 
     private void RaycastCheck()
     {
-        if (pD.busyHands)
+        if (playerData.busyHands)
         {
             if (!_currentInteractable)
                 _currentInteractable = carriedObj.GetComponent<Interactable>();
@@ -76,7 +77,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return; //
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
-            if (hit.distance <= pD.interactDistance)
+            if (hit.distance <= playerData.interactDistance)
             {
                 if (hit.collider.gameObject.layer == 3 && (!_currentInteractable ||
                                                            hit.collider.gameObject.GetInstanceID() !=
@@ -97,16 +98,16 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleCarrying()
     {
-        if (!pD.busyHands || !carriedObj) return;
+        if (!playerData.busyHands || !carriedObj) return;
         _currentInteractable.OnFocus();
         var camTrans = _cam.transform;
         carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position,
-            camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * pD.smooth);
+            camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * playerData.smooth);
     }
 
     private void HandleRotation()
     {
-        if (!pD.busyHands || !carriedObj || !_rotate) return;
+        if (!playerData.busyHands || !carriedObj || !_rotate) return;
         try
         {
             var root = carriedObj.transform.root;
@@ -115,19 +116,19 @@ public class PlayerInteraction : MonoBehaviour
         }
         catch
         {
-            if (pI.GetCurrentRotate().x > 0)
+            if (playerInput.GetCurrentRotate().x > 0)
             {
-                carriedObj.transform.Rotate(pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0, 0);
+                carriedObj.transform.Rotate(playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0, 0);
             }
-            else if (pI.GetCurrentRotate().x < 0)
+            else if (playerInput.GetCurrentRotate().x < 0)
             {
-                carriedObj.transform.Rotate(0, pI.GetCurrentObjDistance() * pD.objRotationSpeed, 0);
+                carriedObj.transform.Rotate(0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0);
             }
-            else if (pI.GetCurrentRotate().y > 0)
+            else if (playerInput.GetCurrentRotate().y > 0)
             {
-                carriedObj.transform.Rotate(0, 0, pI.GetCurrentObjDistance() * pD.objRotationSpeed);
+                carriedObj.transform.Rotate(0, 0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed);
             }
-            else if (pI.GetCurrentRotate().y < 0)
+            else if (playerInput.GetCurrentRotate().y < 0)
             {
                 if (carriedObj.TryGetComponent<Interactable>(out var i))
                 {
@@ -143,14 +144,15 @@ public class PlayerInteraction : MonoBehaviour
 
     private void TryInteract(object sender, EventArgs e)
     {
-        if (pD.inUI) return;
-        if (pD.busyHands)
+        if (playerData.inUI) return;
+        if (playerData.busyHands)
         {
             DropCurrentObj();
             AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
         }
-        else if (pD.canInteract && _currentInteractable && Physics.Raycast(_cam.ViewportPointToRay(interactionPoint),
-                     pD.interactDistance, interactionLayer))
+        else if (playerData.canInteract && _currentInteractable && Physics.Raycast(
+                     _cam.ViewportPointToRay(interactionPoint),
+                     playerData.interactDistance, interactionLayer))
         {
             AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
             _currentInteractable.OnInteract(this);
@@ -170,8 +172,9 @@ public class PlayerInteraction : MonoBehaviour
     private void MoveObj(object sender, EventArgs e)
     {
         if (_rotate) return;
-        _carryDistance = Mathf.Clamp(_carryDistance + (pI.GetCurrentObjDistance() / 8),
-            pD.carryDistance - pD.carryDistanceClamp, pD.carryDistance + pD.carryDistanceClamp);
+        _carryDistance = Mathf.Clamp(_carryDistance + (playerInput.GetCurrentObjDistance() / 8),
+            playerData.carryDistance - playerData.carryDistanceClamp,
+            playerData.carryDistance + playerData.carryDistanceClamp);
     }
 
     private void Alt(object sender, EventArgs e)
@@ -207,7 +210,7 @@ public class PlayerInteraction : MonoBehaviour
                 Quaternion.identity.z + ingredientContainer.rotateOffset.z, Quaternion.identity.w);
             ingredientContainer.transform.rotation = rot;
             carriedObj = null;
-            pD.busyHands = false;
+            playerData.busyHands = false;
         }
         else if (carriedObj.TryGetComponent<ExamineInteractable>(out var examineInteractable))
         {
@@ -215,9 +218,9 @@ public class PlayerInteraction : MonoBehaviour
                 _currentInteractable.OnLoseFocus();
             carriedObj.GetComponent<Collider>().isTrigger = false;
             _currentInteractable = null;
-            pD.busyHands = false;
+            playerData.busyHands = false;
             carriedObj = null;
-            pD.busyHands = false;
+            playerData.busyHands = false;
             examineInteractable.ReturnToOriginalPosition();
         }
         else if (carriedObj != null)
@@ -232,15 +235,15 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             _currentInteractable = null;
-            pD.busyHands = false;
+            playerData.busyHands = false;
             carriedObj = null;
-            pD.busyHands = false;
+            playerData.busyHands = false;
         }
     }
 
     public void Carry(GameObject obj)
     {
-        if (pD.busyHands)
+        if (playerData.busyHands)
         {
             DropCurrentObj();
         }
@@ -250,9 +253,9 @@ public class PlayerInteraction : MonoBehaviour
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
         carriedObj = obj;
-        pD.busyHands = true;
-        _carryDistance = Mathf.Clamp(_carryDistance - 1, pD.carryDistance - pD.carryDistanceClamp,
-            pD.carryDistance + pD.carryDistanceClamp);
+        playerData.busyHands = true;
+        _carryDistance = Mathf.Clamp(_carryDistance - 1, playerData.carryDistance - playerData.carryDistanceClamp,
+            playerData.carryDistance + playerData.carryDistanceClamp);
     }
 
     public void CameraBlur()

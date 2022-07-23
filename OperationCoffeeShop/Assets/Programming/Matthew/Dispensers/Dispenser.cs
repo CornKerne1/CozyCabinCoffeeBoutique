@@ -56,7 +56,7 @@ public class Dispenser : Interactable
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (playerInteraction.pD.busyHands || (!bottomless && quantity <= 0)) return;
+        if (playerInteraction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
         var _obj = _pool.Get();

@@ -22,9 +22,9 @@ public class LadderTriggerScript : MonoBehaviour
         if (other.gameObject.layer.Equals(2))
         {
             ladder.canClimb = false;
-            if (ladder.pI !=null &&ladder.pI.pD)
+            if (ladder.pI !=null &&ladder.pI.playerData)
             {
-                ladder.pI.pD.isClimbing = false;
+                ladder.pI.playerData.isClimbing = false;
             }
         }
     }

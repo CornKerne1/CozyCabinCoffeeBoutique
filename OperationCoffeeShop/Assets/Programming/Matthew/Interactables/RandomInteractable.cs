@@ -9,7 +9,7 @@ public class RandomInteractable : Interactable
 
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        _pI = playerInteraction;
+        base.playerInteraction = playerInteraction;
         playerInteraction.Carry(gameObject);
     }
 
