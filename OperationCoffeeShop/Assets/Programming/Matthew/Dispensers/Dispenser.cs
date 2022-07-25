@@ -31,6 +31,9 @@ public class Dispenser : Interactable
             gameObject =>
             {
                 gameObject.SetActive(false);
+                Debug.Log("be free to dissapear" +
+                          "");
+
             },gameObject =>
             {
                 Destroy(gameObject);
@@ -52,6 +55,7 @@ public class Dispenser : Interactable
     public void ReleasePoolObject(GameObject obj)
     {
         _pool.Release(obj);
+        Debug.Log("We release you coffee bean");
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)

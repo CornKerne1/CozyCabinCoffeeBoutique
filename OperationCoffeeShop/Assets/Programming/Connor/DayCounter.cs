@@ -4,11 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-using System;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class DayCounter : MonoBehaviour
 {
     public GameMode gameMode;
@@ -23,8 +18,8 @@ public class DayCounter : MonoBehaviour
     private Animator _animator;
     private static readonly int Hide = Animator.StringToHash("Hide");
     private GameObject _currentDc;
-    
-    private bool uiOn;
+
+    private bool _uiOn;
 
     private void Start()
     {
@@ -54,8 +49,6 @@ public class DayCounter : MonoBehaviour
 
     private void DisplayDay(int day)
     {
-        Debug.Log( dayDisplay.sprite);
-        
         dayDisplay.sprite = day switch
         {
             0 => tutorial,
@@ -89,10 +82,10 @@ public class DayCounter : MonoBehaviour
 
     private void ToggleUI(object sender, EventArgs e)
     {
-        uiOn = !uiOn;
+        _uiOn = !_uiOn;
         try
         {
-            _currentDc.GetComponentInChildren<Canvas>().enabled = !uiOn;
+            _currentDc.GetComponentInChildren<Canvas>().enabled = !_uiOn;
         }
         catch
         {

@@ -24,8 +24,6 @@ public class MachineInteraction : Interactable
                 var bB = transform.root.GetComponentInChildren<BrewerBowl>();
 
                 if (!bB) return;
-                Debug.Log("sdfgsdfgsdfgsdfg????" + gameObject.name);
-
                 if (!bB.open && Machine.currentCapacity > 0)
                 {
                     Debug.Log("hellowwwww????" + gameObject.name);

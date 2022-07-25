@@ -100,16 +100,16 @@ public class BrewerBowl : MonoBehaviour
 
     public void IngredientInteract(GameObject other)
     {
-        var _pI = other.GetComponent<PhysicalIngredient>();
+        var physicalIngredient = other.GetComponent<PhysicalIngredient>();
         switch (open)
         {
             case true when filter.activeSelf:
                 _machine.IngredientInteract(other);
                 break;
-            case true when _pI.thisIngredient == Ingredients.CoffeeFilter:
+            case true when physicalIngredient.thisIngredient == Ingredients.CoffeeFilter:
                 filter.SetActive(true);
                 IfTutorial(1);
-                _pI.dispenser.ReleasePoolObject(other.transform.root.gameObject);
+                physicalIngredient.dispenser.ReleasePoolObject(other.transform.root.gameObject);
                 break;
         }
     }
@@ -119,7 +119,6 @@ public class BrewerBowl : MonoBehaviour
         switch (i)
         {
             case 1:
-                Debug.Log("tutorial1 with: " + objectiveOutputObject1);
                 if (gameMode.gameModeData.inTutorial)
                 {
                     gameMode.Tutorial.NextObjective(objectiveOutputObject1);
@@ -127,8 +126,6 @@ public class BrewerBowl : MonoBehaviour
 
                 break;
             case 2:
-                Debug.Log("tutorial2 with: " + gameObject);
-
                 if (gameMode.gameModeData.inTutorial)
                 {
                     gameMode.Tutorial.NextObjective(gameObject);
@@ -136,9 +133,6 @@ public class BrewerBowl : MonoBehaviour
 
                 break;
             case 3:
-
-                Debug.Log("tutorial3  with: " + objectiveOutputObject);
-
                 if (filter.activeSelf && gameMode.gameModeData.inTutorial)
                 {
                     gameMode.Tutorial.NextObjective(objectiveOutputObject);
@@ -147,5 +141,4 @@ public class BrewerBowl : MonoBehaviour
                 break;
         }
     }
-    
 }

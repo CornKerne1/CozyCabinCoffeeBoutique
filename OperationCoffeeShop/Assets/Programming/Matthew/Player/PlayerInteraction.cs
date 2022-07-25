@@ -24,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool _blur;
 
-    private void Awake()
+    private void Awake()//
     {
         playerInput = gameObject.GetComponent<PlayerInput>();
         playerData = playerInput.pD;
@@ -55,7 +55,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void InitializeDof()
     {
-        profile.TryGet<DepthOfField>(out dof);
+        profile.TryGet(out dof);
         _dofDistanceParameter = dof.focusDistance;
         _dofAperture = dof.aperture;
         var d = _dofAperture;

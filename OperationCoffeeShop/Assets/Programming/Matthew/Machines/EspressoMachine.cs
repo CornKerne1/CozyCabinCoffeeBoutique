@@ -20,7 +20,7 @@ public class EspressoMachine : Machine
             case Ingredients.EspressoBeans:
 
                 currentCapacity = currentCapacity + 1;
-                mD.outputIngredient.Add(iD.espresso);
+                machineData.outputIngredient.Add(iD.espresso);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
                 Destroy(other);
                 break;
@@ -35,14 +35,14 @@ public class EspressoMachine : Machine
     {
         if (currentCapacity != 0)
         {
-            int current = mD.outputIngredient.Count - 1;
+            int current = machineData.outputIngredient.Count - 1;
             for (int k = 0; k < 20; k++)
             {
-                Instantiate(mD.outputIngredient[current], outputTransform.position, outputTransform.rotation);
+                Instantiate(machineData.outputIngredient[current], outputTransform.position, outputTransform.rotation);
                 yield return new WaitForSeconds(.08f);
             }
             currentCapacity--;
-            mD.outputIngredient.RemoveAt(current);
+            machineData.outputIngredient.RemoveAt(current);
         }
         yield return new WaitForSeconds(.08f);
         base.isRunning = false;

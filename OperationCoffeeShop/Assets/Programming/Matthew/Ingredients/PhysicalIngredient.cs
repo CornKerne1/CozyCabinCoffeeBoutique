@@ -12,6 +12,7 @@ public class PhysicalIngredient : Interactable
 
     public PlayerInteraction playerInteraction;
     public Dispenser dispenser;
+    public Machine machine;
 
     public override void Start()
     {

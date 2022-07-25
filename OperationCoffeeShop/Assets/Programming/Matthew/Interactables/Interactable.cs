@@ -29,10 +29,10 @@ public abstract class Interactable : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!isBreakable )
+        if (!isBreakable)
 
-return;
-    if (_rB.velocity.magnitude * 10 > speed)
+            return;
+        if (_rB.velocity.magnitude * 10 > speed)
         {
             speed = _rB.velocity.magnitude * 10f;
         }
@@ -98,7 +98,8 @@ return;
         var color = _outlineColor;
         color.a = 0;
         _outline.OutlineColor = color;
-        StartCoroutine(CO_DisableOutline());
+        if (gameObject.activeSelf)
+            StartCoroutine(CO_DisableOutline());
     }
 
     private IEnumerator CO_DisableOutline()

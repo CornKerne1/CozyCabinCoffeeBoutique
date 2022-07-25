@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoffeeGrinder : Machine
 {
+
     private new void Start()
     {
         base.Start();
@@ -18,7 +19,7 @@ public class CoffeeGrinder : Machine
         {
             case Ingredients.UngroundCoffee:
                 currentCapacity += 1;
-                mD.outputIngredient.Add(iD.glCoffee);
+                machineData.outputIngredient.Add(iD.glCoffee);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
                 pI.dispenser.ReleasePoolObject(other.transform.root.gameObject);
                 IfTutorial();
@@ -41,7 +42,6 @@ public class CoffeeGrinder : Machine
     }
     private void IfTutorial()
     {
-        Debug.Log("do the thing grinder");
         if (gameMode.gameModeData.inTutorial)
         {
             gameMode.Tutorial.NextObjective(gameObject);
