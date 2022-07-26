@@ -148,7 +148,7 @@ public abstract class Interactable : MonoBehaviour
         {
             if (!gameMode)
                 gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-            if (speed >= gameMode.gameModeData.breakSpeed)
+            if (speed >= gameMode.gameModeData.breakSpeed || collision.rigidbody.velocity.magnitude*10f>= gameMode.gameModeData.breakSpeed/4f)
             {
                 StartCoroutine(CO_FreezeForClipping());
             }
