@@ -10,7 +10,7 @@ public class PhysicalIngredient : Interactable
 
     [SerializeField] private bool inHand;
 
-    public PlayerInteraction playerInteraction;
+    public new PlayerInteraction playerInteraction;
     public Dispenser dispenser;
     public Machine machine;
 

@@ -40,7 +40,7 @@ public class CustomerInteractable : Interactable
     {
         base.Start();
         _camera = Camera.main;
-        gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
         StartCoroutine(CO_AddSelfToData());
         _orderCanvas = gameObject.GetComponentInChildren<Canvas>();
@@ -174,9 +174,8 @@ public class CustomerInteractable : Interactable
     public void Speak()
     {
         AkSoundEngine.PostEvent(_customerData.soundEngineEnvent, gameObject);
-
     }
-    
+
     public void DisplayOrderBubble()
     {
         _orderCanvas.enabled = true;
