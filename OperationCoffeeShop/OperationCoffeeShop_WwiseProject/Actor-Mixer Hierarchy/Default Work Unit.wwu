@@ -349,6 +349,29 @@
 										<ActiveSource Name="SFX_BellChime" ID="{471A7E9C-C15A-4002-8D6F-5A9D4C557CB9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="Surprise" ID="{69380C66-B8BD-4EAF-BAA0-2483DD360D97}" ShortID="832283986">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Surprise" ID="{6D222AC2-0E11-4584-8744-43F22D70D19E}">
+											<Language>SFX</Language>
+											<AudioFile>Surprise.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="643386282"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Surprise" ID="{6D222AC2-0E11-4584-8744-43F22D70D19E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
