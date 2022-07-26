@@ -71,16 +71,16 @@ public class CustomerLine : MonoBehaviour
     {
         var drinkData = (drink).GetComponent<IngredientContainer>().dD;
         if (_queue.Count <= 0 || _queue.Peek().hasOrdered != true) return;
-        var ai = _queue.Peek();
-        var ci = ai.gameObject.GetComponent<CustomerInteractable>();
-        ci.RemoveOrderTicket();
-        ci.RemoveOrderBubble();
-        ai.hasOrder = true;
-        ci.DeliverDrink();
-        ai.customerData.receivedDrinkData = drinkData;
+        var customerAI = _queue.Peek();
+        var customerInteractable = customerAI.gameObject.GetComponent<CustomerInteractable>();
+        customerInteractable.RemoveOrderTicket();
+        customerInteractable.RemoveOrderBubble();
+        customerAI.hasOrder = true;
+        customerInteractable.DeliverDrink();
+        customerAI.customerData.receivedDrinkData = drinkData;
         drink.SetActive(false);
-        DepositMoney?.Invoke(ai.customerData.orderedDrinkData.price, EventArgs.Empty);
-        ai.customerData.customer.OnReceivedDrink();
+        DepositMoney?.Invoke(customerAI.customerData.orderedDrinkData.price, EventArgs.Empty);
+        customerAI.customerData.customer.OnReceivedDrink();
     }
     public void LeaveWithoutPaying(DrinkData drinkData)
     {

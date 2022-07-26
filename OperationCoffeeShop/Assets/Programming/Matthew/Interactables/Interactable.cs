@@ -8,6 +8,7 @@ public abstract class Interactable : MonoBehaviour
     public GameMode gameMode;
     public Vector3 rotateOffset;
     [SerializeField] private bool isBreakable;
+    public string breakableSoundEngineEnvent = "PLAY_CERAMICBOWLBREAKING";
 
     //Breakable
     [SerializeField] private GameObject breakablePrefab;
@@ -123,6 +124,11 @@ public abstract class Interactable : MonoBehaviour
         yield return new WaitForSeconds(.02f);
         var transform1 = transform;
         _breakableRef = Instantiate(breakablePrefab, transform1.position, transform1.rotation);
+        AkSoundEngine.PostEvent(breakableSoundEngineEnvent, _breakableRef);
+        switch (breakablePrefab)
+        {
+        }
+
         gameMode.Surprise(gameObject);
         GetComponent<Collider>().enabled = false;
         GetComponent<Renderer>().enabled = false;

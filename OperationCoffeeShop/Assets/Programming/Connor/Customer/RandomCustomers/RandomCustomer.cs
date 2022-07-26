@@ -12,6 +12,8 @@ public class RandomCustomer : Customer
     public RandomCustomerSet customerSet;
 
 
+    
+    
     public void Awake()
     {
         SpawnRandomCustomer();

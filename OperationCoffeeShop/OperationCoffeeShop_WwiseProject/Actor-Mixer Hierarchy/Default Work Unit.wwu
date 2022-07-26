@@ -349,6 +349,29 @@
 										<ActiveSource Name="SFX_BellChime" ID="{471A7E9C-C15A-4002-8D6F-5A9D4C557CB9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="Surprise" ID="{69380C66-B8BD-4EAF-BAA0-2483DD360D97}" ShortID="832283986">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Surprise" ID="{6D222AC2-0E11-4584-8744-43F22D70D19E}">
+											<Language>SFX</Language>
+											<AudioFile>Surprise.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="643386282"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Surprise" ID="{6D222AC2-0E11-4584-8744-43F22D70D19E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
@@ -842,6 +865,163 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="SmokerPump" ID="{D98F1069-025B-4113-BA5C-4472AEE836BC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</ActorMixer>
+						<ActorMixer Name="Breakables" ID="{B7375775-A602-4E32-B6CD-4A571DD68739}" ShortID="561829826">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="RadioDrop" ID="{1A8294DB-9B12-4E27-ADD1-255A74277F37}" ShortID="1062599648">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>15</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-660</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="RadioDrop" ID="{0D84B554-B53E-487A-966D-ACB352CECA0A}">
+											<Language>SFX</Language>
+											<AudioFile>RadioDrop.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="755106047"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="RadioDrop" ID="{0D84B554-B53E-487A-966D-ACB352CECA0A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Shatter" ID="{B7824C25-22CC-450C-BA71-5376F79208F4}" ShortID="629585474">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{D730B49E-744A-4A67-AD6C-CAB654EED852}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="50"/>
+															<Property Name="Min" Type="Real64" Value="-50"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="GlassCupShatter" ID="{F27E256A-D903-4A1A-B8A5-5B33AAC94572}">
+											<Language>SFX</Language>
+											<AudioFile>GlassCupShatter.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="542234410"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="GlassCupShatter" ID="{F27E256A-D903-4A1A-B8A5-5B33AAC94572}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="CeramicBowlBreaking" ID="{AF38968B-9DC8-4360-8079-FF1699C7B950}" ShortID="552482776">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-530</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{AED6C8CF-8B1C-4902-8AD5-17070EF9F0BA}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="50"/>
+															<Property Name="Min" Type="Real64" Value="-50"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="CeramicBowlBreaking" ID="{8EEE39BD-9147-4341-84E7-0D905E167BFC}">
+											<Language>SFX</Language>
+											<AudioFile>CeramicBowlBreaking.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="456754872"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="CeramicBowlBreaking" ID="{8EEE39BD-9147-4341-84E7-0D905E167BFC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="GlassCup" ID="{DF80FF5B-3C86-44CA-BB31-D7AAB3923176}" ShortID="330487388">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-300</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="GlassCup" ID="{4F6361D0-B7CD-4507-BA2F-2C1863C7CE7A}">
+											<Language>SFX</Language>
+											<AudioFile>GlassCup.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="770791138"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="GlassCup" ID="{4F6361D0-B7CD-4507-BA2F-2C1863C7CE7A}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>

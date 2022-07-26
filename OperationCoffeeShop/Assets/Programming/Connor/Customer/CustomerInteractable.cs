@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 public class CustomerInteractable : Interactable
 {
     [Header("Visual Cue")] private TextAsset _introConversation;
-    private TextAsset _exitConversation;
+    private TextAsset _exitConversationPositive;
+    private TextAsset _exitConversationNegative;
 
     [FormerlySerializedAs("CAI")] public CustomerAI customerAI;
 
@@ -40,7 +41,7 @@ public class CustomerInteractable : Interactable
     {
         base.Start();
         _camera = Camera.main;
-        gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
         StartCoroutine(CO_AddSelfToData());
         _orderCanvas = gameObject.GetComponentInChildren<Canvas>();
@@ -121,7 +122,7 @@ public class CustomerInteractable : Interactable
                      cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
         {
             this._introConversation = cc.IntroConversation;
-            this._exitConversation = cc.ExitConversation;
+            this._exitConversationPositive = cc.ExitConversation;
             break;
         }
     }
@@ -135,9 +136,12 @@ public class CustomerInteractable : Interactable
             _introConversation =
                 rc.randomConversations.introConversations[
                     Random.Range(0, rc.randomConversations.introConversations.Count)];
-            _exitConversation =
-                rc.randomConversations.exitConversations[
-                    Random.Range(0, rc.randomConversations.exitConversations.Count)];
+            _exitConversationPositive =
+                rc.randomConversations.exitConversationsPositive[
+                    Random.Range(0, rc.randomConversations.exitConversationsPositive.Count)];
+            _exitConversationNegative =
+                rc.randomConversations.exitConversationsNegative[
+                    Random.Range(0, rc.randomConversations.exitConversationsNegative.Count)];
         }
         catch
         {
@@ -174,9 +178,8 @@ public class CustomerInteractable : Interactable
     public void Speak()
     {
         AkSoundEngine.PostEvent(_customerData.soundEngineEnvent, gameObject);
-
     }
-    
+
     public void DisplayOrderBubble()
     {
         _orderCanvas.enabled = true;
@@ -224,7 +227,7 @@ public class CustomerInteractable : Interactable
         }
 
         _playerInteraction.playerData.inUI = true;
-        DialogueManager.GetInstance().EnterDialogueMode(_exitConversation);
+        DialogueManager.GetInstance().EnterDialogueMode(_exitConversationPositive);
         dialogueManager.SetCurrentCustomer(gameObject);
         gameMode.pD.neckClamp = 0;
         dialogueManager.finishedConversation = false;
