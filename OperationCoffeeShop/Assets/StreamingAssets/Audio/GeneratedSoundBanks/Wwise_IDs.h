@@ -38,6 +38,7 @@ namespace AK
         static const AkUniqueID PLAY_FRIDGEDOORSQUEAK = 531999063U;
         static const AkUniqueID PLAY_FRIDGEOPEN = 2104121909U;
         static const AkUniqueID PLAY_GENERICVOICE = 3455056121U;
+        static const AkUniqueID PLAY_GLASSCUP = 3945794402U;
         static const AkUniqueID PLAY_GLASSCUPSHATTER = 128711729U;
         static const AkUniqueID PLAY_GRINDINGCOFFEE = 2302029328U;
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
@@ -78,7 +79,6 @@ namespace AK
         static const AkUniqueID PLAY_UNSATISFIEDCUSTOMER = 4105520773U;
         static const AkUniqueID PLAY_WAKING = 1615511115U;
         static const AkUniqueID PLAY_WHISTLE = 2693257580U;
-        static const AkUniqueID STOP_BREWER = 2540658777U;
         static const AkUniqueID STOP_DREAMSCAPE = 4252214477U;
         static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
         static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;

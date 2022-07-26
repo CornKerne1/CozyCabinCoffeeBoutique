@@ -123,8 +123,8 @@ public abstract class Interactable : MonoBehaviour
         _rB.isKinematic = true;
         yield return new WaitForSeconds(.02f);
         var transform1 = transform;
+        AkSoundEngine.PostEvent(breakableSoundEngineEnvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform1.position, transform1.rotation);
-        AkSoundEngine.PostEvent(breakableSoundEngineEnvent, _breakableRef);
         switch (breakablePrefab)
         {
         }
