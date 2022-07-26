@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 88fc2fb2395cfb4a8770a0be5ea58358
     GuidInternal: 
-    m_lastTime: -8585468670595528119
+    m_lastTime: -8585431604732882326
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 8dfa1223c7b8be4797dd30e5c25fae74
     GuidInternal: 
-    m_lastTime: -8585468670620517634
+    m_lastTime: -8585431604758850452
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 2c25838c71943b43b2aef5aa7bf5e5ac
     GuidInternal: 
-    m_lastTime: -8585431744671848554
+    m_lastTime: -8585427426932875353
     List:
     - name: Main
       guid: cf9b4fb222a8f245b39f19c6f5cc49c3
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 472f67ffee43f247ac6e540f705b2067
     GuidInternal: 
-    m_lastTime: -8585434207706261010
+    m_lastTime: -8585427426932925218
     List:
     - name: Play_AfterHours
       guid: 96d1815459ad9748b910183b40218c63
@@ -128,8 +128,8 @@ MonoBehaviour:
         guid: c5c2b2579c003a49837cbfb5e10a1a2f
       Path: Events\Default Work Unit\Play_BeeFrameSlide
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.882834
+      minDuration: 0.882834
     - name: Play_Bees
       guid: f838269616a71b4aaf76e54274d2fe88
       id: 2063165417
@@ -300,6 +300,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.3261
       minDuration: 0.3261
+    - name: Play_CeramicBowlBreaking
+      guid: ef874fb18c05bd429f5a7a6067831a63
+      id: 2073519945
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_CeramicBowlBreaking
+        ObjectType: 3
+        guid: ef874fb18c05bd429f5a7a6067831a63
+      Path: Events\Default Work Unit\Play_CeramicBowlBreaking
+      maxAttenuation: 0
+      maxDuration: 0.587332
+      minDuration: 0.554368
     - name: Play_Dogs
       guid: 08b0bf92eded594a84fe5ea99602416f
       id: 2681854759
@@ -504,6 +521,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 2.448107
       minDuration: 1.633916
+    - name: Play_GlassCupShatter
+      guid: 525be459e230e14a8d37f83308f5a1d2
+      id: 128711729
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_GlassCupShatter
+        ObjectType: 3
+        guid: 525be459e230e14a8d37f83308f5a1d2
+      Path: Events\Default Work Unit\Play_GlassCupShatter
+      maxAttenuation: 0
+      maxDuration: 0.663678
+      minDuration: 0.626429
     - name: Play_GrindingCoffee
       guid: ae721d7e71da57488c7eeb124cbdcbc4
       id: 2302029328
@@ -538,6 +572,23 @@ MonoBehaviour:
       maxAttenuation: 10
       maxDuration: 4.519184
       minDuration: 4.519184
+    - name: Play_Gulp
+      guid: c27904969a6c4c43b743dfa643d05690
+      id: 203113690
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_Gulp
+        ObjectType: 3
+        guid: c27904969a6c4c43b743dfa643d05690
+      Path: Events\Default Work Unit\Play_Gulp
+      maxAttenuation: 0
+      maxDuration: 0.338548
+      minDuration: 0.301612
     - name: Play_InteractSound
       guid: 023a5936d48ec744bd838b84758c8ce1
       id: 1147514445
@@ -638,8 +689,8 @@ MonoBehaviour:
         guid: e87b166f95f4f843b77730cbb03b43d3
       Path: Events\Default Work Unit\Play_Mason_Jar_Close
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.593764
+      minDuration: 0.593764
     - name: Play_Mason_Jar_Open
       guid: ae58f7493e7a544883bb8e77a45a74aa
       id: 3659292941
@@ -655,8 +706,8 @@ MonoBehaviour:
         guid: ae58f7493e7a544883bb8e77a45a74aa
       Path: Events\Default Work Unit\Play_Mason_Jar_Open
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.312517
+      minDuration: 0.312517
     - name: Play_MenuClick
       guid: 10c1bb63621df9478c4cd7a83afd16ea
       id: 2576276897
@@ -742,6 +793,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Play_RadioDrop
+      guid: 81eb3fedbe6ee44bb51fd1ef777f3c39
+      id: 3412867708
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_RadioDrop
+        ObjectType: 3
+        guid: 81eb3fedbe6ee44bb51fd1ef777f3c39
+      Path: Events\Default Work Unit\Play_RadioDrop
+      maxAttenuation: 0
+      maxDuration: 1.804477
+      minDuration: 1.804477
     - name: Play_RedPandaTheme
       guid: a3da0a94d368bb48bd04123b1c3442e5
       id: 3700200612
@@ -827,6 +895,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.496145
       minDuration: 0.496145
+    - name: Play_Slurp1_2
+      guid: 43b011097a18584c8b55f3ca0d55c418
+      id: 207402092
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_Slurp1_2
+        ObjectType: 3
+        guid: 43b011097a18584c8b55f3ca0d55c418
+      Path: Events\Default Work Unit\Play_Slurp1_2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_SmokerNoise
       guid: 36dfd47b2f934b4697325852c0ab9f81
       id: 3405882561
@@ -842,8 +927,8 @@ MonoBehaviour:
         guid: 36dfd47b2f934b4697325852c0ab9f81
       Path: Events\Default Work Unit\Play_SmokerNoise
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 1.375011
+      minDuration: 1.375011
     - name: Play_SmokerPump
       guid: 47713c510b8215409f6b60323ae7eaa9
       id: 2451981543
@@ -859,8 +944,8 @@ MonoBehaviour:
         guid: 47713c510b8215409f6b60323ae7eaa9
       Path: Events\Default Work Unit\Play_SmokerPump
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.437506
+      minDuration: 0.437506
     - name: Play_SomedayWakeUp
       guid: f100fcd173a2864c892f53ffc76b5d10
       id: 43930435
@@ -895,6 +980,23 @@ MonoBehaviour:
       maxAttenuation: 12
       maxDuration: -1
       minDuration: -1
+    - name: Play_Surprise
+      guid: c93ba653ca84724bb4f7204e56b13091
+      id: 3361877211
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_Surprise
+        ObjectType: 3
+        guid: c93ba653ca84724bb4f7204e56b13091
+      Path: Events\Default Work Unit\Play_Surprise
+      maxAttenuation: 0
+      maxDuration: 0.310884
+      minDuration: 0.310884
     - name: Play_TakingShape
       guid: f8c17648614d3e45b8442214e09fc5da
       id: 3915894401
@@ -1099,6 +1201,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1
       minDuration: 1
+    - name: Stop_Brewer
+      guid: cc09c561db36564aaf6a4de11e3c4d49
+      id: 2540658777
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Stop_Brewer
+        ObjectType: 3
+        guid: cc09c561db36564aaf6a4de11e3c4d49
+      Path: Events\Default Work Unit\Stop_Brewer
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Stop_DreamScape
       guid: 585529b66c2e0a4c831dce0da75c9761
       id: 4252214477
@@ -1621,7 +1740,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 7edf050f68127841896972a0eb6b2cbc
     GuidInternal: 
-    m_lastTime: -8585468668508812542
+    m_lastTime: -8585431604778267575
     List:
     - name: MasterVolume
       guid: 6adb56c555d60d49a84962dee3ea048f
@@ -1700,7 +1819,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 03b29a074c901b4080052b0df1891c30
     GuidInternal: 
-    m_lastTime: -8585468668478383602
+    m_lastTime: -8585431604732902272
     List:
     - name: Loop
       guid: d558b34fdcfa5c46869f9fc2da654a48
@@ -1748,7 +1867,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 7acc27cb55fffe4083b787bac19c3787
     GuidInternal: 
-    m_lastTime: -8585468670595538091
+    m_lastTime: -8585431604732892301
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -1762,7 +1881,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: 46c4de4054d6de499ebbff1b184e5bbd
     GuidInternal: 
-    m_lastTime: -8585468670595538091
+    m_lastTime: -8585431604732892301
     List: []
   ExpandedFileSystemItemIds: 
   ExpandedWaapiItemIds: 
