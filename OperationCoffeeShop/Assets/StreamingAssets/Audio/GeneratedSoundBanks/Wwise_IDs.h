@@ -14,6 +14,10 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_AFTERHOURS = 4061997089U;
+        static const AkUniqueID PLAY_BEEFRAMESLIDE = 3692656996U;
+        static const AkUniqueID PLAY_BEES = 2063165417U;
+        static const AkUniqueID PLAY_BEESSLEEPING = 733698582U;
+        static const AkUniqueID PLAY_BEESSLEEPING_01 = 3330708836U;
         static const AkUniqueID PLAY_BOSSANOVA = 2993288148U;
         static const AkUniqueID PLAY_BREAKINGLOOSE = 855079117U;
         static const AkUniqueID PLAY_BREWER = 20894835U;
@@ -21,6 +25,7 @@ namespace AK
         static const AkUniqueID PLAY_BUTTONPRESS = 2652178615U;
         static const AkUniqueID PLAY_CABINETCLOSE = 684088502U;
         static const AkUniqueID PLAY_CABINETOPEN = 1255478370U;
+        static const AkUniqueID PLAY_CERAMICBOWLBREAKING = 2073519945U;
         static const AkUniqueID PLAY_DOGS = 2681854759U;
         static const AkUniqueID PLAY_DREAMSCAPE_ = 1813095574U;
         static const AkUniqueID PLAY_ENDDAYJINGLE_BAD_ = 1724926153U;
@@ -33,25 +38,34 @@ namespace AK
         static const AkUniqueID PLAY_FRIDGEDOORSQUEAK = 531999063U;
         static const AkUniqueID PLAY_FRIDGEOPEN = 2104121909U;
         static const AkUniqueID PLAY_GENERICVOICE = 3455056121U;
+        static const AkUniqueID PLAY_GLASSCUPSHATTER = 128711729U;
         static const AkUniqueID PLAY_GRINDINGCOFFEE = 2302029328U;
         static const AkUniqueID PLAY_GRINDINGESPRESSO = 579639504U;
+        static const AkUniqueID PLAY_GULP = 203113690U;
         static const AkUniqueID PLAY_INTERACTSOUND = 1147514445U;
         static const AkUniqueID PLAY_KAREN = 985514065U;
         static const AkUniqueID PLAY_KARENYELLING = 2176068757U;
         static const AkUniqueID PLAY_LOOPPOUR = 416139438U;
         static const AkUniqueID PLAY_MACHINEBUZZING = 2859911570U;
+        static const AkUniqueID PLAY_MASON_JAR_CLOSE = 1409598283U;
+        static const AkUniqueID PLAY_MASON_JAR_OPEN = 3659292941U;
         static const AkUniqueID PLAY_MENUCLICK = 2576276897U;
         static const AkUniqueID PLAY_MOUSECLICK = 1802956237U;
         static const AkUniqueID PLAY_NEUROTICBONE = 3754899171U;
         static const AkUniqueID PLAY_PIANO = 1479974693U;
         static const AkUniqueID PLAY_POUR = 1719581924U;
+        static const AkUniqueID PLAY_RADIODROP = 3412867708U;
         static const AkUniqueID PLAY_REDPANDATHEME = 3700200612U;
         static const AkUniqueID PLAY_ROASTBLEND = 3453202434U;
         static const AkUniqueID PLAY_SATISFIEDCUSTOMER = 2754920038U;
         static const AkUniqueID PLAY_SFX_BELLCHIME = 1571211755U;
         static const AkUniqueID PLAY_SLIDER = 1306435193U;
+        static const AkUniqueID PLAY_SLURP1_2 = 207402092U;
+        static const AkUniqueID PLAY_SMOKERNOISE = 3405882561U;
+        static const AkUniqueID PLAY_SMOKERPUMP = 2451981543U;
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
+        static const AkUniqueID PLAY_SURPRISE = 3361877211U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TAPONGLASS = 1122006298U;
         static const AkUniqueID PLAY_TASKCOMPLETE = 338641160U;

@@ -71,6 +71,7 @@ public abstract class Customer : MonoBehaviour
         Debug.Log("play surprise with distance: " + distance);
 
         if (distance > distanceToSurprise) return;
+        AkSoundEngine.PostEvent("PLAY_SURPRISE", gameObject);
         var particleSystem = _surprisePool.Get();
         particleSystem.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         particleSystem.gameObject.transform.localRotation = new Quaternion(-90, 0, 0, 0);
