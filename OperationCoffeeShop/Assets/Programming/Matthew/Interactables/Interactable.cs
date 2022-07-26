@@ -142,6 +142,8 @@ public abstract class Interactable : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
         try
