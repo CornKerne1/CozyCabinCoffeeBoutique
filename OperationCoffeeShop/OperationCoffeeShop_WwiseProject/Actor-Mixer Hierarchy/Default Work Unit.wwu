@@ -858,6 +858,26 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="CeramicBowlBreaking" ID="{63E4FB72-2515-427C-8D78-850992D6ACE4}" ShortID="793717462">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{149A0638-36E5-49E9-BC1F-459D31FA8718}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="50"/>
+															<Property Name="Min" Type="Real64" Value="-50"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
@@ -878,6 +898,74 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="CeramicBowlBreaking" ID="{014ABE03-618B-4863-8B06-699AD9D7B25F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="RadioDrop" ID="{1A8294DB-9B12-4E27-ADD1-255A74277F37}" ShortID="1062599648">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-350</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="RadioDrop" ID="{0D84B554-B53E-487A-966D-ACB352CECA0A}">
+											<Language>SFX</Language>
+											<AudioFile>RadioDrop.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="755106047"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="RadioDrop" ID="{0D84B554-B53E-487A-966D-ACB352CECA0A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="GlassCupShatter" ID="{B7824C25-22CC-450C-BA71-5376F79208F4}" ShortID="629585474">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{D730B49E-744A-4A67-AD6C-CAB654EED852}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="50"/>
+															<Property Name="Min" Type="Real64" Value="-50"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="GlassCupShatter" ID="{F27E256A-D903-4A1A-B8A5-5B33AAC94572}">
+											<Language>SFX</Language>
+											<AudioFile>GlassCupShatter.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="542234410"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="GlassCupShatter" ID="{F27E256A-D903-4A1A-B8A5-5B33AAC94572}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
