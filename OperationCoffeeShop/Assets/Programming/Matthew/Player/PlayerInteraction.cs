@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class PlayerInteraction : MonoBehaviour
 {
     public PlayerData playerData;
-    [SerializeField] private PlayerInput playerInput;
+    /*[SerializeField]*/ public PlayerInput playerInput;
 
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
