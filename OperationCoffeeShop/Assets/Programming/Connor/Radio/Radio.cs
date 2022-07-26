@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -41,7 +42,11 @@ public class Radio : Interactable
         }
 
         currentChannel = Random.Range(0, radioChannels.Count);
-        radioChannels[currentChannel].PlayChannel();
+        foreach (var rC in radioChannels)
+            if (rC.channel == currentChannel)
+                rC.PlayChannel();
+            else
+                rC.StopChannel();
         HandleDial();
     }
 
@@ -56,19 +61,16 @@ public class Radio : Interactable
     }
 
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction pInteraction)
     {
         currentChannel += 1;
         if (currentChannel > radioChannels.Count || currentChannel < 0)
             currentChannel = 0;
         foreach (var rC in radioChannels)
-        {
             if (rC.channel == currentChannel)
                 rC.PlayChannel();
             else
                 rC.StopChannel();
-        }
-
         HandleDial();
     }
 }
