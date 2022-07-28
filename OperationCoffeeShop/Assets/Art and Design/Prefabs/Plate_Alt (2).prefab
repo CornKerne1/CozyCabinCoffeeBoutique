@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.005951537, z: 0, w: 0.9999823}
   m_LocalPosition: {x: -4.213, y: -9.521, z: -6.212}
   m_LocalScale: {x: 8.5064, y: 8.5064, z: 8.5064}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -125,5 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 1
+  breakablePrefab: {fileID: 7352810104423357991, guid: 12c2e3b86de39234c969439578d71345, type: 3}
+  playerInteraction: {fileID: 0}
