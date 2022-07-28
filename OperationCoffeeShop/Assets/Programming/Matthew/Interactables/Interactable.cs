@@ -143,14 +143,15 @@ public abstract class Interactable : MonoBehaviour
     }
 
 
-
     private void OnCollisionEnter(Collision collision)
     {
         try
         {
             if (!gameMode)
                 gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-            if (speed >= gameMode.gameModeData.breakSpeed || collision.rigidbody.velocity.magnitude*10f>= gameMode.gameModeData.breakSpeed/4f)
+            if (speed >= gameMode.gameModeData.breakSpeed ||
+                (collision.gameObject.TryGetComponent<LiquidIngredients>(out _) &&
+                 collision.rigidbody.velocity.magnitude * 10f >= gameMode.gameModeData.breakSpeed / 4f))
             {
                 StartCoroutine(CO_FreezeForClipping());
             }

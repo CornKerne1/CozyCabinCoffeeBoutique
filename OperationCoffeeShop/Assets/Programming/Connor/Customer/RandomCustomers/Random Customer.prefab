@@ -231,8 +231,7 @@ MonoBehaviour:
   dislike: {fileID: 2100000, guid: a1c5a4134c5fe344a841df4d1b04771f, type: 2}
   surprise: {fileID: 2100000, guid: 064594173f2b7e7408a58828f7aea0de, type: 2}
   surpriseParticleSystem: {fileID: 5281370212658672672, guid: fb0c48646a3c99a46a129d5bebafde75, type: 3}
-  distanceToSurprise: 0
-  spawnParticlesAtRuntime: 0
+  distanceToSurprise: 10
   nameSet: {fileID: 11400000, guid: b9e5fd2480107664d9fdcca834fe1b4a, type: 2}
   customerSet: {fileID: 11400000, guid: 471eb7c43f94b8c488cff74007504a58, type: 2}
 --- !u!114 &9203058362976567349
@@ -250,6 +249,7 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
   customerAI: {fileID: 7461629815669221821}
