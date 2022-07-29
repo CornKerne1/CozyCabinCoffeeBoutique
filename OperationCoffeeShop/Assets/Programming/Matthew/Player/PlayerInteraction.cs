@@ -69,7 +69,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (playerData.busyHands)
         {
-            if (!_currentInteractable)
+            if (!_currentInteractable && carriedObj)
                 _currentInteractable = carriedObj.GetComponent<Interactable>();
         }
         else

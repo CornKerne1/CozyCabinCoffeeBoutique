@@ -27,7 +27,7 @@ public abstract class Customer : MonoBehaviour
     [SerializeField] protected Material dislike;
     [SerializeField] protected Material surprise;
     [SerializeField] protected ParticleSystem surpriseParticleSystem;
-    public float distanceToSurprise;
+    public float distanceToSurprise = 10;
 
     private ObjectPool<ParticleSystem> _surprisePool;
 
@@ -37,7 +37,6 @@ public abstract class Customer : MonoBehaviour
         _particleSystemRenderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         customerData.customer = this;
         GameMode.SurpriseCustomers += OnSurprise;
-        distanceToSurprise = 100;
         _surprisePool = new ObjectPool<ParticleSystem>(
             () => Instantiate(surpriseParticleSystem, gameObject.transform, false),
             particleSystem => { particleSystem.gameObject.SetActive(true); },
@@ -75,7 +74,14 @@ public abstract class Customer : MonoBehaviour
         var particleSystem = _surprisePool.Get();
         particleSystem.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         particleSystem.gameObject.transform.localRotation = new Quaternion(-90, 0, 0, 0);
-        StartCoroutine(CO_SuppressSurprise(particleSystem));
+        try
+        {
+            StartCoroutine(CO_SuppressSurprise(particleSystem));
+        }
+        catch
+        {
+            // ignored
+        }
 
 
         Debug.Log("play surprise");
