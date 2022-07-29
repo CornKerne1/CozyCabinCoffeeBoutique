@@ -882,14 +882,9 @@
 							<ChildrenList>
 								<Sound Name="RadioDrop" ID="{1A8294DB-9B12-4E27-ADD1-255A74277F37}" ShortID="1062599648">
 									<PropertyList>
-										<Property Name="Highpass" Type="int16">
-											<ValueList>
-												<Value>15</Value>
-											</ValueList>
-										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
-												<Value>-660</Value>
+												<Value>-910</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -953,52 +948,16 @@
 										<ActiveSource Name="GlassCupShatter" ID="{F27E256A-D903-4A1A-B8A5-5B33AAC94572}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="CeramicBowlBreaking" ID="{AF38968B-9DC8-4360-8079-FF1699C7B950}" ShortID="552482776">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-530</Value>
-											</ValueList>
-											<ModifierList>
-												<ModifierInfo>
-													<Modifier Name="" ID="{AED6C8CF-8B1C-4902-8AD5-17070EF9F0BA}">
-														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="50"/>
-															<Property Name="Min" Type="Real64" Value="-50"/>
-														</PropertyList>
-													</Modifier>
-												</ModifierInfo>
-											</ModifierList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="CeramicBowlBreaking" ID="{8EEE39BD-9147-4341-84E7-0D905E167BFC}">
-											<Language>SFX</Language>
-											<AudioFile>CeramicBowlBreaking.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="456754872"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="CeramicBowlBreaking" ID="{8EEE39BD-9147-4341-84E7-0D905E167BFC}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="GlassCup" ID="{DF80FF5B-3C86-44CA-BB31-D7AAB3923176}" ShortID="330487388">
 									<PropertyList>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>-300</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1022,6 +981,36 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="GlassCup" ID="{4F6361D0-B7CD-4507-BA2F-2C1863C7CE7A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="CeramicBowlBreaking-1" ID="{89659B8A-B09F-4AC3-9CED-F63DCD557156}" ShortID="336625981">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-530</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="CeramicBowlBreaking-1" ID="{817945E6-7F81-40E4-B5BF-F4A68BA52EB9}">
+											<Language>SFX</Language>
+											<AudioFile>CeramicBowlBreaking-1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="944973680"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="CeramicBowlBreaking-1" ID="{817945E6-7F81-40E4-B5BF-F4A68BA52EB9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
