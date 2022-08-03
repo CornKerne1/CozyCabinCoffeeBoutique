@@ -21,11 +21,11 @@ public class SinkInteraction : MachineInteraction
             }
             else
             {
-                if (sink.Animator.GetBool(HotOpen) && !sink.Animator.GetBool((ColdOpen)))
+                if (sink.animator.GetBool(HotOpen) && !sink.animator.GetBool((ColdOpen)))
                     sink.isRunning = false;
             }
 
-            sink.Animator.SetBool(HotOpen, !sink.Animator.GetBool(HotOpen));
+            sink.animator.SetBool(HotOpen, !sink.animator.GetBool(HotOpen));
         }
         else
         {
@@ -37,15 +37,15 @@ public class SinkInteraction : MachineInteraction
             }
             else
             {
-                if (!sink.Animator.GetBool(HotOpen) && sink.Animator.GetBool((ColdOpen)))
+                if (!sink.animator.GetBool(HotOpen) && sink.animator.GetBool((ColdOpen)))
                     sink.isRunning = false;
-                else if (!sink.Animator.GetBool((ColdOpen)))
+                else if (!sink.animator.GetBool((ColdOpen)))
                     sink.isHotWater = false;
-                else if (sink.Animator.GetBool(HotOpen))
+                else if (sink.animator.GetBool(HotOpen))
                     sink.isHotWater = true;
             }
 
-            sink.Animator.SetBool(ColdOpen, !sink.Animator.GetBool(ColdOpen));
+            sink.animator.SetBool(ColdOpen, !sink.animator.GetBool(ColdOpen));
         }
     }
 }

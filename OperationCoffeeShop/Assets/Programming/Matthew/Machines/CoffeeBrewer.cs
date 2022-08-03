@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class CoffeeBrewer : Machine
 {
     public bool hasPitcher;
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<LiquidIngredients> _pool;
 
 
     private int _i;
@@ -15,18 +15,17 @@ public class CoffeeBrewer : Machine
     private new void Start()
     {
         base.Start();
-        _pool = new ObjectPool<GameObject>(() =>
+        _pool = new ObjectPool<LiquidIngredients>(() =>
+                Instantiate(machineData.outputIngredient[_i].GetComponentInChildren<LiquidIngredients>(),
+                    outputTransform.position,
+                    outputTransform.rotation), liquidIngredients =>
             {
-                return Instantiate(machineData.outputIngredient[_i], outputTransform.position,
-                    outputTransform.rotation);
-                ;
-            }, gameObject =>
-            {
-                gameObject.SetActive(true);
-                gameObject.transform.position = outputTransform.position;
-                gameObject.transform.rotation = outputTransform.rotation;
+                liquidIngredients.gameObject.SetActive(true);
+                var transform1 = liquidIngredients.transform;
+                transform1.position = outputTransform.position;
+                transform1.rotation = outputTransform.rotation;
             },
-            gameObject => { gameObject.SetActive(false); }, gameObject => { Destroy(gameObject); }, true, 100, 100);
+            liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
     protected override IEnumerator ActivateMachine(float time)

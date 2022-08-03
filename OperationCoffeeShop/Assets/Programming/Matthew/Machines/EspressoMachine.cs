@@ -1,9 +1,30 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EspressoMachine : Machine
 {
+    private ObjectPool<LiquidIngredients> _pool;
+
+    private int _current;
+
+    private new void Start()
+    {
+        base.Start();
+        _pool = new ObjectPool<LiquidIngredients>(() =>
+                Instantiate(machineData.outputIngredient[_current].GetComponentInChildren<LiquidIngredients>(),
+                    outputTransform.position,
+                    outputTransform.rotation), liquidIngredients =>
+            {
+                liquidIngredients.gameObject.SetActive(true);
+                var transform1 = liquidIngredients.transform;
+                transform1.position = outputTransform.position;
+                transform1.rotation = outputTransform.rotation;
+            },
+            liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+    }
+
     protected override IEnumerator ActivateMachine(float time)
     {
         isRunning = true;
@@ -15,6 +36,8 @@ public class EspressoMachine : Machine
 
     protected override void ChooseIngredient(GameObject other)
     {
+        var physicalIngredient = other.GetComponent<PhysicalIngredient>();
+
         switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         {
             case Ingredients.EspressoBeans:
@@ -22,8 +45,23 @@ public class EspressoMachine : Machine
                 currentCapacity = currentCapacity + 1;
                 machineData.outputIngredient.Add(iD.espresso);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                Destroy(other);
+                other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
+                physicalIngredient.machine.ReleasePoolObject(other.transform.root.gameObject);
                 break;
+            case Ingredients.Milk:
+            case Ingredients.SteamedMilk:
+            case Ingredients.FoamedMilk:
+            case Ingredients.Sugar:
+            case Ingredients.WhippedCream:
+            case Ingredients.Espresso:
+            case Ingredients.UngroundCoffee:
+            case Ingredients.GroundCoffee:
+            case Ingredients.Salt:
+            case Ingredients.BrewedCoffee:
+            case Ingredients.CoffeeFilter:
+            case Ingredients.TeaBag:
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -31,19 +69,22 @@ public class EspressoMachine : Machine
     {
         StartCoroutine(Liquify());
     }
+
     private IEnumerator Liquify()
     {
         if (currentCapacity != 0)
         {
-            int current = machineData.outputIngredient.Count - 1;
+            _current = machineData.outputIngredient.Count - 1;
             for (int k = 0; k < 20; k++)
             {
-                Instantiate(machineData.outputIngredient[current], outputTransform.position, outputTransform.rotation);
+                _pool.Get();
                 yield return new WaitForSeconds(.08f);
             }
+
             currentCapacity--;
-            machineData.outputIngredient.RemoveAt(current);
+            machineData.outputIngredient.RemoveAt(_current);
         }
+
         yield return new WaitForSeconds(.08f);
         base.isRunning = false;
     }

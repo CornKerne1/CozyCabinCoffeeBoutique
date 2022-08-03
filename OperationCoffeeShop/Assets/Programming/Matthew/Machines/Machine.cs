@@ -127,6 +127,5 @@ public abstract class Machine : MonoBehaviour
     public void ReleasePoolObject(GameObject obj)
     {
         _pool.Release(obj);
-        Debug.Log("We release you coffee bean");
     }
 }

@@ -3,40 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 public class Sink : Machine
 {
-    private ObjectPool<GameObject> _hotWaterPool;
-    private ObjectPool<GameObject> _coldWaterPool;
+    private ObjectPool<LiquidIngredients> _hotWaterPool;
+    private ObjectPool<LiquidIngredients> _coldWaterPool;
 
-    public Animator Animator;
+    [FormerlySerializedAs("Animator")] public Animator animator;
 
     public bool isHotWater;
 
     private new void Start()
     {
         base.Start();
-        _hotWaterPool = new ObjectPool<GameObject>(
-            () => { return Instantiate(iD.hotWater, outputTransform.position, outputTransform.rotation); },
-            gameObject =>
+        _hotWaterPool = new ObjectPool<LiquidIngredients>(
+            () => Instantiate(iD.hotWater.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
+                outputTransform.rotation),
+            ingredient =>
             {
                 gameObject.SetActive(true);
-                Debug.Log("spawning hot water");
-                gameObject.transform.position = outputTransform.position;
-                gameObject.transform.rotation = outputTransform.rotation;
+                //Debug.Log("spawning hot water");
+                var o = ingredient.gameObject;
+                o.transform.position = outputTransform.position;
+                o.transform.rotation = outputTransform.rotation;
             },
-            gameObject => { gameObject.SetActive(false); }, gameObject => { Destroy(gameObject); }, true, 100, 100);
-        _coldWaterPool = new ObjectPool<GameObject>(
-            () => { return Instantiate(iD.coldWater, outputTransform.position, outputTransform.rotation); },
-            gameObject =>
+            ingredient => { ingredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+        _coldWaterPool = new ObjectPool<LiquidIngredients>(
+            () => Instantiate(iD.coldWater.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
+                outputTransform.rotation),
+            ingredient =>
             {
-                gameObject.SetActive(true);
-                Debug.Log("spawning cold water");
+                GameObject o;
+                (o = ingredient.gameObject).SetActive(true);
+                //Debug.Log("spawning cold water");
 
-                gameObject.transform.position = outputTransform.position;
-                gameObject.transform.rotation = outputTransform.rotation;
+                o.transform.position = outputTransform.position;
+                o.transform.rotation = outputTransform.rotation;
             },
-            gameObject => { gameObject.SetActive(false); }, gameObject => { Destroy(gameObject); }, true, 100, 100);
+            ingredient => { ingredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
     protected override IEnumerator ActivateMachine(float _)
@@ -54,7 +59,7 @@ public class Sink : Machine
                 _coldWaterPool.Get();
             }
 
-            yield return new WaitForSeconds(.04f);
+            yield return new WaitForSeconds(.05f);
         }
 
         AkSoundEngine.PostEvent("STOP_LOOPPOUR", gameObject);

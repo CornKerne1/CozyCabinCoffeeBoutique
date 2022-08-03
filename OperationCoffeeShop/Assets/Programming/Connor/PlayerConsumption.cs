@@ -27,8 +27,6 @@ public class PlayerConsumption : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Drinking the coffee");
-
         if (!other.TryGetComponent<LiquidIngredients>(out var liquid)) return;
         liquid.gameObject.SetActive(false);
         Debug.Log("Drinking the coffee");

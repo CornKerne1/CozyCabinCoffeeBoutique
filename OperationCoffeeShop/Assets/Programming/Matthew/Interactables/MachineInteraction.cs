@@ -46,7 +46,6 @@ public class MachineInteraction : Interactable
 
     private void IfTutorial()
     {
-        Debug.Log("teeeeeeesssssssttttttt brewer bowl interaction");
         if (gameMode.gameModeData.inTutorial)
         {
             gameMode.Tutorial.NextObjective(gameObject);
