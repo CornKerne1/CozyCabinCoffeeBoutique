@@ -145,28 +145,28 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        try
+        if (_isBroken)
         {
-            if (_isBroken)
+            
+        }
+        else
+        {
+            try
             {
-
-            }
-            else
-            {
-                _isBroken = true;
                 if (!gameMode)
                     gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
                 if (speed >= gameMode.gameModeData.breakSpeed ||
                     (collision.gameObject.TryGetComponent<LiquidIngredients>(out _) &&
                      collision.rigidbody.velocity.magnitude * 10f >= gameMode.gameModeData.breakSpeed / 4f))
                 {
+                    _isBroken = true;
                     StartCoroutine(CO_FreezeForClipping());
                 }
             }
-        }
-        catch
-        {
-            // ignored
+            catch
+            {
+                // ignored
+            }
         }
     }
 }
