@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "RegularCustomerAtlas", menuName = "RegularCustomerAtlas/Generic")]
 public class RegularCustomerAtlas : ScriptableObject
@@ -28,7 +29,10 @@ public class RegularCustomerAtlas : ScriptableObject
     {
         public GameObject customer;
         public TextAsset IntroConversation;
-        public TextAsset ExitConversation;
+        [FormerlySerializedAs("ExitConversation")] public TextAsset ExitConversationPositive;
+        public TextAsset ExitConversationNegative;
+
+        
     }
     
 }

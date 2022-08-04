@@ -65,6 +65,9 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJson)
     {
+        Debug.Log("ink json" + inkJson);
+        Debug.Log("ink json.text" + inkJson.text);
+
         _currentStory = new Story(inkJson.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
@@ -119,6 +122,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!currentCustomer) return;
         var cAI = currentCustomer.GetComponent<CustomerAI>();
+        currentCustomer = null;
         var cI = cAI.customerData.customerInteractable;
         if (!cAI.hasOrdered)
         {

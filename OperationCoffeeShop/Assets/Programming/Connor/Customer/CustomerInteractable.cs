@@ -121,8 +121,10 @@ public class CustomerInteractable : Interactable
         foreach (var cc in regularCustomerAtlas.dic[gameMode.gameModeData.currentTime.Day].Where(cc =>
                      cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
         {
-            this._introConversation = cc.IntroConversation;
-            this._exitConversationPositive = cc.ExitConversation;
+            _introConversation = cc.IntroConversation;
+            _exitConversationPositive = cc.ExitConversationPositive;
+            _exitConversationNegative = cc.ExitConversationNegative;
+
             break;
         }
     }
@@ -200,6 +202,8 @@ public class CustomerInteractable : Interactable
 
     public IEnumerator MoveLine()
     {
+        Debug.Log(gameObject + " is getting out of line: " +
+                  customerAI.customerLines[customerAI.customerLines.Count - 1]);
         yield return new WaitForSeconds(2);
         customerAI.customerLines[customerAI.customerLines.Count - 1].MoveLine();
     }
@@ -212,7 +216,7 @@ public class CustomerInteractable : Interactable
     {
     }
 
-    public void DeliverDrink()
+    public void DeliverDrink(bool isGoodDrink)
     {
         gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
             (int)((customerAI.customerData.orderedDrinkData.price -
@@ -227,7 +231,8 @@ public class CustomerInteractable : Interactable
         }
 
         _playerInteraction.playerData.inUI = true;
-        DialogueManager.GetInstance().EnterDialogueMode(_exitConversationPositive);
+        DialogueManager.GetInstance()
+            .EnterDialogueMode(isGoodDrink ? _exitConversationPositive : _exitConversationNegative);
         dialogueManager.SetCurrentCustomer(gameObject);
         gameMode.pD.neckClamp = 0;
         dialogueManager.finishedConversation = false;
