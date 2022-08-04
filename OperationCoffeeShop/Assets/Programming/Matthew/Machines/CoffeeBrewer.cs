@@ -10,14 +10,14 @@ public class CoffeeBrewer : Machine
     private ObjectPool<GameObject> _pool;
 
 
-    private int _iterations;
+    private int _i;
 
     private new void Start()
     {
         base.Start();
         _pool = new ObjectPool<GameObject>(() =>
             {
-                return Instantiate(machineData.outputIngredient[_iterations], outputTransform.position,
+                return Instantiate(machineData.outputIngredient[_i], outputTransform.position,
                     outputTransform.rotation);
                 ;
             }, gameObject =>
@@ -38,7 +38,7 @@ public class CoffeeBrewer : Machine
         OutputIngredients();
         transform.position = base.origin;
     }
-//
+
     protected override void ChooseIngredient(GameObject other)
     {
         var physicalIngredient = other.GetComponent<PhysicalIngredient>();
@@ -86,17 +86,17 @@ public class CoffeeBrewer : Machine
     private IEnumerator CO_Liquefy()
     {
         AkSoundEngine.PostEvent("PLAY_LOOPPOUR", gameObject);
-        for (_iterations = 0; _iterations < currentCapacity;)
+        for (_i = 0; _i < currentCapacity;)
             if (currentCapacity != 0)
             {
-                for (var k = 0; k < 100 * (_iterations + 1); k++)
+                for (var k = 0; k < 100 * (_i + 1); k++)
                 {
                     _pool.Get();
                     yield return new WaitForSeconds(.04f);
                 }
 
                 currentCapacity--;
-                machineData.outputIngredient.RemoveAt(_iterations);
+                machineData.outputIngredient.RemoveAt(_i);
             }
 
         yield return new WaitForSeconds(.04f);
