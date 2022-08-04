@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     private GameObject _breakableRef;
     [FormerlySerializedAs("_pI")] public PlayerInteraction playerInteraction;
     private Rigidbody _rB;
-    private bool _isWaiting;
+    private bool _isWaiting, _isBroken;
 
     private Outline _outline;
     private Color _outlineColor;
@@ -147,13 +147,21 @@ public abstract class Interactable : MonoBehaviour
     {
         try
         {
-            if (!gameMode)
-                gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-            if (speed >= gameMode.gameModeData.breakSpeed ||
-                (collision.gameObject.TryGetComponent<LiquidIngredients>(out _) &&
-                 collision.rigidbody.velocity.magnitude * 10f >= gameMode.gameModeData.breakSpeed / 4f))
+            if (_isBroken)
             {
-                StartCoroutine(CO_FreezeForClipping());
+                
+            }
+            else
+            {
+                _isBroken = true;
+                if (!gameMode)
+                    gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+                if (speed >= gameMode.gameModeData.breakSpeed ||
+                    (collision.gameObject.TryGetComponent<LiquidIngredients>(out _) &&
+                     collision.rigidbody.velocity.magnitude * 10f >= gameMode.gameModeData.breakSpeed / 4f))
+                {
+                    StartCoroutine(CO_FreezeForClipping());
+                }
             }
         }
         catch
