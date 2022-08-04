@@ -20,8 +20,8 @@ public class CoffeeGrinder : Machine
             case Ingredients.UngroundCoffee:
                 currentCapacity += 1;
                 machineData.outputIngredient.Add(iD.glCoffee);
-                other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                pI.dispenser.ReleasePoolObject(other.transform.root.gameObject);
+                pI.playerInteraction.DropCurrentObj();
+                pI.dispenser.ReleasePoolObject(pI);
                 IfTutorial();
                 break;
             case Ingredients.Milk:

@@ -9,7 +9,7 @@ public class Dispenser : Interactable
     [SerializeField] public ObjectHolder objType;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string message = " beans remaining";
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<PhysicalIngredient> _pool;
 
 
     private Transform _obj;
@@ -21,23 +21,10 @@ public class Dispenser : Interactable
     {
         base.Start();
         ComputerShop.DepositItems += AddItems;
-        _pool = new ObjectPool<GameObject>(() =>
-            {
-                return Instantiate(objType.gameObject);
-            }, gameObject =>
-            {
-                gameObject.SetActive(true);
-            },
-            gameObject =>
-            {
-                gameObject.SetActive(false);
-                Debug.Log("be free to dissapear" +
-                          "");
-
-            },gameObject =>
-            {
-                Destroy(gameObject);
-            }, true, 100, 100);
+        _pool = new ObjectPool<PhysicalIngredient>(
+            () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(true); },
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         if (bottomless) return;
         try
         {
@@ -52,10 +39,9 @@ public class Dispenser : Interactable
         }
     }
 
-    public void ReleasePoolObject(GameObject obj)
+    public void ReleasePoolObject(PhysicalIngredient physicalIngredient)
     {
-        _pool.Release(obj);
-        Debug.Log("We release you coffee bean");
+        _pool.Release(physicalIngredient);
     }
 
     public override void OnInteract(PlayerInteraction playerInteraction)
@@ -63,21 +49,22 @@ public class Dispenser : Interactable
         if (playerInteraction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
-        var _obj = _pool.Get();
-        _obj.transform.position = spawnTrans.position;
-        _obj.transform.rotation = spawnTrans.rotation;
-        if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
+        var ingredient = _pool.Get().transform;
+        var transform1 = ingredient.transform;
+        transform1.position = spawnTrans.position;
+        transform1.rotation = spawnTrans.rotation;
+        if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
             physicalIngredient.playerInteraction = playerInteraction;
             physicalIngredient.dispenser = this;
         }
-        else if (_obj.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
+        else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
             ingredientContainer.pI = playerInteraction;
             ingredientContainer.inHand = true;
         }
-        
-        playerInteraction.Carry(_obj.gameObject);
+
+        playerInteraction.Carry(ingredient.gameObject);
         IfTutorial();
     }
 
@@ -103,11 +90,9 @@ public class Dispenser : Interactable
         {
             Tuple<ObjectHolder, int> tuple = (Tuple<ObjectHolder, int>)sender;
 
-            if (objType == tuple.Item1)
-            {
-                this.quantity += tuple.Item2;
-                UpdateQuantity();
-            }
+            if (objType != tuple.Item1) return;
+            this.quantity += tuple.Item2;
+            UpdateQuantity();
         }
         catch
         {

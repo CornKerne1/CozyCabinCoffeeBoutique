@@ -109,7 +109,7 @@ public class BrewerBowl : MonoBehaviour
             case true when physicalIngredient.thisIngredient == Ingredients.CoffeeFilter:
                 filter.SetActive(true);
                 IfTutorial(1);
-                physicalIngredient.dispenser.ReleasePoolObject(other.transform.root.gameObject);
+                physicalIngredient.dispenser.ReleasePoolObject(physicalIngredient);
                 break;
         }
     }
