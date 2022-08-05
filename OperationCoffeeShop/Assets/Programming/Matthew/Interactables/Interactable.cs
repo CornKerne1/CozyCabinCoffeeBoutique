@@ -125,10 +125,11 @@ public abstract class Interactable : MonoBehaviour
         var transform1 = transform;
         AkSoundEngine.PostEvent(breakableSoundEngineEnvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform1.position, transform1.rotation);
-        switch (breakablePrefab)
-        {
-        }
 
+        foreach (var obj in _breakableRef.GetChildren(transform))
+        {
+            obj.GetComponent<Rigidbody>().AddForce(Vector3.up*10f);
+        }
         gameMode.Surprise(gameObject);
         GetComponent<Collider>().enabled = false;
         GetComponent<Renderer>().enabled = false;
