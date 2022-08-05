@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
@@ -17,10 +16,11 @@ public abstract class Customer : MonoBehaviour
 
     public static event EventHandler CustomerRating;
 
-    public float DesiredQuality = .5f;
+    [FormerlySerializedAs("DesiredQuality")]
+    public float desiredQuality = .5f;
 
     [FormerlySerializedAs("ps")] [SerializeField]
-    protected ParticleSystem particleSystem;
+    protected new ParticleSystem particleSystem;
 
     private ParticleSystemRenderer _particleSystemRenderer;
     [SerializeField] protected Material like;
@@ -31,22 +31,24 @@ public abstract class Customer : MonoBehaviour
 
     private ObjectPool<ParticleSystem> _surprisePool;
 
-    public virtual void Start()
+    public virtual void Awake()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        _particleSystemRenderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         customerData.customer = this;
         GameMode.SurpriseCustomers += OnSurprise;
         _surprisePool = new ObjectPool<ParticleSystem>(
             () => Instantiate(surpriseParticleSystem, gameObject.transform, false),
-            particleSystem => { particleSystem.gameObject.SetActive(true); },
-            particleSystem => { particleSystem.gameObject.SetActive(false); }, Destroy, true, 10, 10);
+            system => { system.gameObject.SetActive(true); },
+            system => { system.gameObject.SetActive(false); }, Destroy, true, 10, 10);
     }
 
     protected DrinkData GetFavoriteDrink()
     {
-        if (customerData != null || customerData.name != null)
-            Debug.Log("Null Favorite drink or CustomerData ");
+        if (customerData.favoriteDrinkData != null)
+            Debug.Log("Null Favorite drink ");
+        if (customerData != null)
+            Debug.Log("Null  CustomerData ");
+
         return customerData.favoriteDrinkData;
     }
 
@@ -54,14 +56,32 @@ public abstract class Customer : MonoBehaviour
 
     public void OnReceivedDrink()
     {
+        _particleSystemRenderer = particleSystem.GetComponent<ParticleSystemRenderer>();
+
         var quality =
             DrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
-        _particleSystemRenderer.material = quality > DesiredQuality ? like : dislike;
-        AkSoundEngine.PostEvent(quality > DesiredQuality ? "PLAY_SATISFIEDCUSTOMER" : "PLAY_UNSATISFIEDCUSTOMER",
+        Debug.Log(_particleSystemRenderer);
+        Debug.Log(_particleSystemRenderer.material);
+
+        Debug.Log(like);
+
+        _particleSystemRenderer.material = like;
+        isGoodDrink();
+        _particleSystemRenderer.material = dislike;
+
+        _particleSystemRenderer.material = isGoodDrink() ? like : dislike;
+        AkSoundEngine.PostEvent(isGoodDrink() ? "PLAY_SATISFIEDCUSTOMER" : "PLAY_UNSATISFIEDCUSTOMER",
             gameObject);
         particleSystem.Play();
         Debug.Log("Drink Quality = " + quality);
+    }
+
+    public bool isGoodDrink()
+    {
+        var quality =
+            DrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
+        return quality > desiredQuality;
     }
 
     protected void OnSurprise(object sender, EventArgs eventArgs)
@@ -71,12 +91,13 @@ public abstract class Customer : MonoBehaviour
 
         if (distance > distanceToSurprise) return;
         AkSoundEngine.PostEvent("PLAY_SURPRISE", gameObject);
-        var particleSystem = _surprisePool.Get();
-        particleSystem.gameObject.transform.localPosition = new Vector3(0, 1, 0);
-        particleSystem.gameObject.transform.localRotation = new Quaternion(-90, 0, 0, 0);
+        var system = _surprisePool.Get();
+        var o = system.gameObject;
+        o.transform.localPosition = new Vector3(0, 1, 0);
+        o.transform.localRotation = new Quaternion(-90, 0, 0, 0);
         try
         {
-            StartCoroutine(CO_SuppressSurprise(particleSystem));
+            StartCoroutine(CO_SuppressSurprise(system));
         }
         catch
         {
@@ -87,9 +108,9 @@ public abstract class Customer : MonoBehaviour
         Debug.Log("play surprise");
     }
 
-    private IEnumerator CO_SuppressSurprise(ParticleSystem particleSystem)
+    private IEnumerator CO_SuppressSurprise(ParticleSystem system)
     {
         yield return new WaitForSeconds(1.5f);
-        _surprisePool.Release(particleSystem);
+        _surprisePool.Release(system);
     }
 }

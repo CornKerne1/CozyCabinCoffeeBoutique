@@ -20,19 +20,16 @@ public class CustomerLine : MonoBehaviour
 
     public void GetInLine(GameObject customer)
     {
-
         var customerAI = customer.GetComponent<CustomerAI>();
         if (customerAI.customerLines.Contains(this)) return;
         customerAI.customerLines.Add(this);
         _queue.Enqueue(customerAI);
         customerAI.setDestination(GetNextSpotInLine(_queue.Count));
         customerAI.setStay(true);
-
     }
 
     public void MoveLine()
     {
-       
         if (_queue.Count <= 0) return;
         var currentCustomerAI = _queue.Dequeue();
         var customerAnimations = currentCustomerAI.customerData.customerAnimations;
@@ -41,11 +38,8 @@ public class CustomerLine : MonoBehaviour
         {
             currentCustomerAI.hasOrdered = true;
         }
-        else if (!currentCustomerAI.hasOrder)
-        {
-            currentCustomerAI.hasOrder = true;
-        }
-        
+
+
         var i = 0;
         foreach (var customerAI in _queue)
         {
@@ -56,17 +50,16 @@ public class CustomerLine : MonoBehaviour
 
     private IEnumerator CO_RandomMoveLine(CustomerAI customerAI, int i)
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(.5f,1.5f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(.5f, 1.5f));
         customerAI.setDestination(GetNextSpotInLine(i));
     }
-    
+
     private Vector3 GetNextSpotInLine(int position)
     {
-        float i = position;
-        var nextSpot = this.transform.forward * position;
+        var nextSpot = transform.forward * position;
         return lineStartPosition + nextSpot;
-
     }
+
     public void DeliverDrink(GameObject drink)
     {
         var drinkData = (drink).GetComponent<IngredientContainer>().dD;
@@ -76,12 +69,23 @@ public class CustomerLine : MonoBehaviour
         customerInteractable.RemoveOrderTicket();
         customerInteractable.RemoveOrderBubble();
         customerAI.hasOrder = true;
-        customerInteractable.DeliverDrink();
+
         customerAI.customerData.receivedDrinkData = drinkData;
-        drink.SetActive(false);
+        customerInteractable.DeliverDrink(customerAI.customerData.customer.isGoodDrink());
+        var container = drink.GetComponent<IngredientContainer>();
+        try
+        {
+            ((CupDispenser)container.dispenser).ReleasePoolObject(container);
+        }
+        catch
+        {
+            container.gameObject.SetActive(false);
+        }
+
         DepositMoney?.Invoke(customerAI.customerData.orderedDrinkData.price, EventArgs.Empty);
         customerAI.customerData.customer.OnReceivedDrink();
     }
+
     public void LeaveWithoutPaying(DrinkData drinkData)
     {
         if (_queue.Count <= 0 || _queue.Peek().hasOrdered != true) return;
@@ -91,6 +95,7 @@ public class CustomerLine : MonoBehaviour
         ai.customerData.receivedDrinkData = drinkData;
         ai.customerData.customer.OnReceivedDrink();
     }
+
     public void LeaveWithoutGettingDrink(DrinkData drinkData)
     {
         if (_queue.Count <= 0 || _queue.Peek().hasOrdered != true) return;

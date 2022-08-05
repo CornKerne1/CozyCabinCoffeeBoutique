@@ -5,10 +5,10 @@ using TMPro;
 
 public class Dispenser : Interactable
 {
-    [SerializeField] private Transform spawnTrans;
+    [SerializeField] protected Transform spawnTrans;
     [SerializeField] public ObjectHolder objType;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private string message = " beans remaining";
+    [SerializeField] protected TextMeshProUGUI text;
+    [SerializeField] protected string message = " beans remaining";
     private ObjectPool<PhysicalIngredient> _pool;
 
 
@@ -68,7 +68,7 @@ public class Dispenser : Interactable
         IfTutorial();
     }
 
-    private void IfTutorial()
+    protected void IfTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
         {
@@ -76,7 +76,7 @@ public class Dispenser : Interactable
         }
     }
 
-    private void UpdateQuantity()
+    protected void UpdateQuantity()
     {
         if (text != null)
         {
@@ -84,11 +84,11 @@ public class Dispenser : Interactable
         }
     }
 
-    private void AddItems(object sender, EventArgs e)
+    protected void AddItems(object sender, EventArgs e)
     {
         try
         {
-            Tuple<ObjectHolder, int> tuple = (Tuple<ObjectHolder, int>)sender;
+            var tuple = (Tuple<ObjectHolder, int>)sender;
 
             if (objType != tuple.Item1) return;
             this.quantity += tuple.Item2;
