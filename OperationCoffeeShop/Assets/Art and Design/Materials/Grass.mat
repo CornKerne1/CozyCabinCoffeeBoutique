@@ -27,8 +27,9 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -95,6 +96,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Vector1_1: 1
+    - Vector1_2: 1
     - Vector1_21e8aecf028349a7bbdd68ef5251acaa: 53.5
     - Vector1_2bbe639e855f4817b791bb6979d168d5: 1.1
     - Vector1_354fb95a830f41f2b2de56eced39be61: 0.852
@@ -103,6 +106,7 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -128,7 +132,9 @@ Material:
     - _Surface: 0
     - _UVSec: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - Color_6fb2544751c5406f9758132fabc97ea4: {r: 0.97335386, g: 1, b: 0.89056605, a: 0}
     - Vector2_adabc86bd5924f0490e0154d146bde26: {r: 100, g: 100, b: 100, a: 100}

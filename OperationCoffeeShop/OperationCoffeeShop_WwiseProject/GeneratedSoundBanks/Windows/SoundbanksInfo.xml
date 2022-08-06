@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="3602299010">
+		<SoundBank Id="3161908922" Language="SFX" Hash="956054848">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -26,6 +26,38 @@
 						<File Id="752191520" Language="SFX">
 							<ShortName>After_Hours.wav</ShortName>
 							<Path>SFX\After_Hours_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3692656996" Name="Play_BeeFrameSlide" ObjectPath="\Events\Default Work Unit\Play_BeeFrameSlide" DurationType="OneShot" DurationMin="0.882834" DurationMax="0.882834">
+					<IncludedMemoryFiles>
+						<File Id="547639350" Language="SFX">
+							<ShortName>BeeFrameSlide.wav</ShortName>
+							<Path>SFX\BeeFrameSlide_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2063165417" Name="Play_Bees" ObjectPath="\Events\Default Work Unit\Play_Bees" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="565781944" Language="SFX">
+							<ShortName>Bees.wav</ShortName>
+							<Path>SFX\Bees_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="733698582" Name="Play_BeesSleeping" ObjectPath="\Events\Default Work Unit\Play_BeesSleeping" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="710138040" Language="SFX">
+							<ShortName>BeesSleeping.wav</ShortName>
+							<Path>SFX\BeesSleeping_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3330708836" Name="Play_BeesSleeping_01" ObjectPath="\Events\Default Work Unit\Play_BeesSleeping_01" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="710138040" Language="SFX">
+							<ShortName>BeesSleeping.wav</ShortName>
+							<Path>SFX\BeesSleeping_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -82,6 +114,14 @@
 						<File Id="203743960" Language="SFX">
 							<ShortName>CabinetOpen.wav</ShortName>
 							<Path>SFX\CabinetOpen_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2073519945" Name="Play_CeramicBowlBreaking" ObjectPath="\Events\Default Work Unit\Play_CeramicBowlBreaking" DurationType="OneShot" DurationMin="0.871355" DurationMax="0.871355">
+					<IncludedMemoryFiles>
+						<File Id="944973680" Language="SFX">
+							<ShortName>CeramicBowlBreaking-1.wav</ShortName>
+							<Path>SFX\CeramicBowlBreaking-1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -174,6 +214,22 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3945794402" Name="Play_GlassCup" ObjectPath="\Events\Default Work Unit\Play_GlassCup" DurationType="OneShot" DurationMin="0.841425" DurationMax="0.841425">
+					<IncludedMemoryFiles>
+						<File Id="770791138" Language="SFX">
+							<ShortName>GlassCup.wav</ShortName>
+							<Path>SFX\GlassCup_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="128711729" Name="Play_GlassCupShatter" ObjectPath="\Events\Default Work Unit\Play_GlassCupShatter" DurationType="OneShot" DurationMin="0.626429" DurationMax="0.663678">
+					<IncludedMemoryFiles>
+						<File Id="542234410" Language="SFX">
+							<ShortName>GlassCupShatter.wav</ShortName>
+							<Path>SFX\GlassCupShatter_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="10." DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
 					<IncludedMemoryFiles>
 						<File Id="285469530" Language="SFX">
@@ -187,6 +243,14 @@
 						<File Id="759491673" Language="SFX">
 							<ShortName>Grinding_Espresso.wav</ShortName>
 							<Path>SFX\Grinding_Espresso_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="203113690" Name="Play_Gulp" ObjectPath="\Events\Default Work Unit\Play_Gulp" DurationType="OneShot" DurationMin="0.301612" DurationMax="0.338548">
+					<IncludedMemoryFiles>
+						<File Id="936223522" Language="SFX">
+							<ShortName>Gulp.wav</ShortName>
+							<Path>SFX\Gulp_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -234,6 +298,22 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1409598283" Name="Play_Mason_Jar_Close" ObjectPath="\Events\Default Work Unit\Play_Mason_Jar_Close" DurationType="OneShot" DurationMin="0.593764" DurationMax="0.593764">
+					<IncludedMemoryFiles>
+						<File Id="763396996" Language="SFX">
+							<ShortName>Mason Jar Close.wav</ShortName>
+							<Path>SFX\Mason Jar Close_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3659292941" Name="Play_Mason_Jar_Open" ObjectPath="\Events\Default Work Unit\Play_Mason_Jar_Open" DurationType="OneShot" DurationMin="0.312517" DurationMax="0.312517">
+					<IncludedMemoryFiles>
+						<File Id="457168489" Language="SFX">
+							<ShortName>Mason Jar Open.wav</ShortName>
+							<Path>SFX\Mason Jar Open_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2576276897" Name="Play_MenuClick" ObjectPath="\Events\Default Work Unit\Play_MenuClick" DurationType="OneShot" DurationMin="0.434785" DurationMax="0.434785">
 					<IncludedMemoryFiles>
 						<File Id="1052987244" Language="SFX">
@@ -271,6 +351,14 @@
 						<File Id="1061196224" Language="SFX">
 							<ShortName>pour.wav</ShortName>
 							<Path>SFX\pour_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3412867708" Name="Play_RadioDrop" ObjectPath="\Events\Default Work Unit\Play_RadioDrop" DurationType="OneShot" DurationMin="1.247702" DurationMax="1.247702">
+					<IncludedMemoryFiles>
+						<File Id="755106047" Language="SFX">
+							<ShortName>RadioDrop.wav</ShortName>
+							<Path>SFX\RadioDrop_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -314,6 +402,30 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="207402092" Name="Play_Slurp1_2" ObjectPath="\Events\Default Work Unit\Play_Slurp1_2" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="408789105" Language="SFX">
+							<ShortName>Slurp1.2.wav</ShortName>
+							<Path>SFX\Slurp1.2_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3405882561" Name="Play_SmokerNoise" ObjectPath="\Events\Default Work Unit\Play_SmokerNoise" DurationType="OneShot" DurationMin="1.375011" DurationMax="1.375011">
+					<IncludedMemoryFiles>
+						<File Id="433883949" Language="SFX">
+							<ShortName>SmokerNoise.wav</ShortName>
+							<Path>SFX\SmokerNoise_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2451981543" Name="Play_SmokerPump" ObjectPath="\Events\Default Work Unit\Play_SmokerPump" DurationType="OneShot" DurationMin="0.437506" DurationMax="0.437506">
+					<IncludedMemoryFiles>
+						<File Id="54605514" Language="SFX">
+							<ShortName>SmokerPump.wav</ShortName>
+							<Path>SFX\SmokerPump_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="43930435" Name="Play_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\Play_SomedayWakeUp" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="626169617" Language="SFX">
@@ -327,6 +439,14 @@
 						<File Id="366206813" Language="SFX">
 							<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
 							<Path>SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3361877211" Name="Play_Surprise" ObjectPath="\Events\Default Work Unit\Play_Surprise" DurationType="OneShot" DurationMin="0.310884" DurationMax="0.310884">
+					<IncludedMemoryFiles>
+						<File Id="643386282" Language="SFX">
+							<ShortName>Surprise.wav</ShortName>
+							<Path>SFX\Surprise_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -458,220 +578,6 @@
 				<Event Id="3252269563" Name="VolumeZero_TakingShape" ObjectPath="\Events\Default Work Unit\VolumeZero_TakingShape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3876908550" Name="VolumeZero_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeZero_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
-			<IncludedMemoryFiles>
-				<File Id="2409473" Language="SFX">
-					<ShortName>RedPandaTheme.wav</ShortName>
-					<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
-				</File>
-				<File Id="4925453" Language="SFX">
-					<ShortName>FridgeDoorSqueak.wav</ShortName>
-					<Path>SFX\FridgeDoorSqueak_10C4C929.wem</Path>
-				</File>
-				<File Id="9348846" Language="SFX">
-					<ShortName>Drift.wav</ShortName>
-					<Path>SFX\Drift_10C4C929.wem</Path>
-				</File>
-				<File Id="14505751" Language="SFX">
-					<ShortName>TapOnGlass.wav</ShortName>
-					<Path>SFX\TapOnGlass_10C4C929.wem</Path>
-				</File>
-				<File Id="30486242" Language="SFX">
-					<ShortName>Slider1Shake.wav</ShortName>
-					<Path>SFX\Slider1Shake_10C4C929.wem</Path>
-				</File>
-				<File Id="31117576" Language="SFX">
-					<ShortName>BubblePop.wav</ShortName>
-					<Path>SFX\BubblePop_10C4C929.wem</Path>
-				</File>
-				<File Id="75577650" Language="SFX">
-					<ShortName>EndDayJingle(Good).wav</ShortName>
-					<Path>SFX\EndDayJingle(Good)_10C4C929.wem</Path>
-				</File>
-				<File Id="95280334" Language="SFX">
-					<ShortName>CoffeeShopDelivery.wav</ShortName>
-					<Path>SFX\CoffeeShopDelivery_10C4C929.wem</Path>
-				</File>
-				<File Id="138462402" Language="SFX">
-					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
-					<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
-				</File>
-				<File Id="152778883" Language="SFX">
-					<ShortName>UnsatisfiedCustomer.wav</ShortName>
-					<Path>SFX\UnsatisfiedCustomer_10C4C929.wem</Path>
-				</File>
-				<File Id="155462499" Language="SFX">
-					<ShortName>GenericVoice.wav</ShortName>
-					<Path>SFX\GenericVoice_10C4C929.wem</Path>
-				</File>
-				<File Id="157192986" Language="SFX">
-					<ShortName>1Karen.wav</ShortName>
-					<Path>SFX\1Karen_10C4C929.wem</Path>
-				</File>
-				<File Id="194100186" Language="SFX">
-					<ShortName>FallingAsleep.wav</ShortName>
-					<Path>SFX\FallingAsleep_10C4C929.wem</Path>
-				</File>
-				<File Id="203743960" Language="SFX">
-					<ShortName>CabinetOpen.wav</ShortName>
-					<Path>SFX\CabinetOpen_10C4C929.wem</Path>
-				</File>
-				<File Id="205128343" Language="SFX">
-					<ShortName>TruckHorn.wav</ShortName>
-					<Path>SFX\TruckHorn_10C4C929.wem</Path>
-				</File>
-				<File Id="230495110" Language="SFX">
-					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
-					<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
-				</File>
-				<File Id="273690636" Language="SFX">
-					<ShortName>Waking.wav</ShortName>
-					<Path>SFX\Waking_10C4C929.wem</Path>
-				</File>
-				<File Id="281651751" Language="SFX">
-					<ShortName>FridgeClosed.wav</ShortName>
-					<Path>SFX\FridgeClosed_10C4C929.wem</Path>
-				</File>
-				<File Id="282050569" Language="SFX">
-					<ShortName>MachineBuzzing.wav</ShortName>
-					<Path>SFX\MachineBuzzing_10C4C929.wem</Path>
-				</File>
-				<File Id="285469530" Language="SFX">
-					<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
-					<Path>SFX\Grinding_Coffee_Beans1_10C4C929.wem</Path>
-				</File>
-				<File Id="319928094" Language="SFX">
-					<ShortName>Brewer.wav</ShortName>
-					<Path>SFX\Brewer_D79FB2B7.wem</Path>
-				</File>
-				<File Id="366206813" Language="SFX">
-					<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
-					<Path>SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</Path>
-				</File>
-				<File Id="386335204" Language="SFX">
-					<ShortName>ChillWurlyPiano.wav</ShortName>
-					<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
-				</File>
-				<File Id="388542937" Language="SFX">
-					<ShortName>Faucet.wav</ShortName>
-					<Path>SFX\Faucet_D79FB2B7.wem</Path>
-				</File>
-				<File Id="405386485" Language="SFX">
-					<ShortName>Smack.wav</ShortName>
-					<Path>SFX\Smack_10C4C929.wem</Path>
-				</File>
-				<File Id="455270351" Language="SFX">
-					<ShortName>TaskComplete.wav</ShortName>
-					<Path>SFX\TaskComplete_10C4C929.wem</Path>
-				</File>
-				<File Id="505142991" Language="SFX">
-					<ShortName>SFX_BellChime.wav</ShortName>
-					<Path>SFX\SFX_BellChime_10C4C929.wem</Path>
-				</File>
-				<File Id="510049455" Language="SFX">
-					<ShortName>1Dogs.wav</ShortName>
-					<Path>SFX\1Dogs_10C4C929.wem</Path>
-				</File>
-				<File Id="538996245" Language="SFX">
-					<ShortName>BossaNovaAttempt.wav</ShortName>
-					<Path>SFX\BossaNovaAttempt_D79FB2B7.wem</Path>
-				</File>
-				<File Id="544960085" Language="SFX">
-					<ShortName>Whistle.wav</ShortName>
-					<Path>SFX\Whistle_10C4C929.wem</Path>
-				</File>
-				<File Id="551003881" Language="SFX">
-					<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
-					<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
-				</File>
-				<File Id="593250550" Language="SFX">
-					<ShortName>EndDayJingle(Bad).wav</ShortName>
-					<Path>SFX\EndDayJingle(Bad)_10C4C929.wem</Path>
-				</File>
-				<File Id="626169617" Language="SFX">
-					<ShortName>Someday_Youd_Better_Wake_Up_LoFi_playlist.wav</ShortName>
-					<Path>SFX\Someday_Youd_Better_Wake_Up_LoFi_playlist_D79FB2B7.wem</Path>
-				</File>
-				<File Id="636649444" Language="SFX">
-					<ShortName>Taking_Shape.wav</ShortName>
-					<Path>SFX\Taking_Shape_D79FB2B7.wem</Path>
-				</File>
-				<File Id="647119287" Language="SFX">
-					<ShortName>SatisfiedCustomer.wav</ShortName>
-					<Path>SFX\SatisfiedCustomer_10C4C929.wem</Path>
-				</File>
-				<File Id="658751346" Language="SFX">
-					<ShortName>MouseClick.wav</ShortName>
-					<Path>SFX\MouseClick_10C4C929.wem</Path>
-				</File>
-				<File Id="682548690" Language="SFX">
-					<ShortName>TruckEngine.wav</ShortName>
-					<Path>SFX\TruckEngine_D79FB2B7.wem</Path>
-				</File>
-				<File Id="752191520" Language="SFX">
-					<ShortName>After_Hours.wav</ShortName>
-					<Path>SFX\After_Hours_D79FB2B7.wem</Path>
-				</File>
-				<File Id="759491673" Language="SFX">
-					<ShortName>Grinding_Espresso.wav</ShortName>
-					<Path>SFX\Grinding_Espresso_10C4C929.wem</Path>
-				</File>
-				<File Id="760450632" Language="SFX">
-					<ShortName>Telling_Stories_AC_Playlist.wav</ShortName>
-					<Path>SFX\Telling_Stories_AC_Playlist_D79FB2B7.wem</Path>
-				</File>
-				<File Id="776190147" Language="SFX">
-					<ShortName>Roast Blend.wav</ShortName>
-					<Path>SFX\Roast Blend_D79FB2B7.wem</Path>
-				</File>
-				<File Id="873507374" Language="SFX">
-					<ShortName>FridgeOpen.wav</ShortName>
-					<Path>SFX\FridgeOpen_10C4C929.wem</Path>
-				</File>
-				<File Id="873684257" Language="SFX">
-					<ShortName>buttonpress.wav</ShortName>
-					<Path>SFX\buttonpress_10C4C929.wem</Path>
-				</File>
-				<File Id="903791736" Language="SFX">
-					<ShortName>Breaking_Loose_LoFi.wav</ShortName>
-					<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
-				</File>
-				<File Id="905915782" Language="SFX">
-					<ShortName>1KarenYelling.wav</ShortName>
-					<Path>SFX\1KarenYelling_10C4C929.wem</Path>
-				</File>
-				<File Id="912586703" Language="SFX">
-					<ShortName>DirtWalk.wav</ShortName>
-					<Path>SFX\DirtWalk_10C4C929.wem</Path>
-				</File>
-				<File Id="919934793" Language="SFX">
-					<ShortName>Footsteps(Wood).wav</ShortName>
-					<Path>SFX\Footsteps(Wood)_10C4C929.wem</Path>
-				</File>
-				<File Id="974081508" Language="SFX">
-					<ShortName>1Traveler.wav</ShortName>
-					<Path>SFX\1Traveler_10C4C929.wem</Path>
-				</File>
-				<File Id="1042882764" Language="SFX">
-					<ShortName>InteractSound.wav</ShortName>
-					<Path>SFX\InteractSound_10C4C929.wem</Path>
-				</File>
-				<File Id="1047615776" Language="SFX">
-					<ShortName>CabinetClose.wav</ShortName>
-					<Path>SFX\CabinetClose_10C4C929.wem</Path>
-				</File>
-				<File Id="1052987244" Language="SFX">
-					<ShortName>MenuClick.wav</ShortName>
-					<Path>SFX\MenuClick_10C4C929.wem</Path>
-				</File>
-				<File Id="1061196224" Language="SFX">
-					<ShortName>pour.wav</ShortName>
-					<Path>SFX\pour_D79FB2B7.wem</Path>
-				</File>
-				<File Id="1066248193" Language="SFX">
-					<ShortName>DreamScape.wav</ShortName>
-					<Path>SFX\DreamScape_D79FB2B7.wem</Path>
-				</File>
-			</IncludedMemoryFiles>
 			<GameParameters>
 				<GameParameter Id="988953028" Name="SFXVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFXVolume"/>
 				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MusicVolume"/>

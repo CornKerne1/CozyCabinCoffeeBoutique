@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 public class CustomerInteractable : Interactable
 {
     [Header("Visual Cue")] private TextAsset _introConversation;
-    private TextAsset _exitConversation;
+    private TextAsset _exitConversationPositive;
+    private TextAsset _exitConversationNegative;
 
     [FormerlySerializedAs("CAI")] public CustomerAI customerAI;
 
@@ -40,7 +41,7 @@ public class CustomerInteractable : Interactable
     {
         base.Start();
         _camera = Camera.main;
-        gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
         StartCoroutine(CO_AddSelfToData());
         _orderCanvas = gameObject.GetComponentInChildren<Canvas>();
@@ -76,7 +77,7 @@ public class CustomerInteractable : Interactable
                 RemoveOrderTicket();
                 dialogueManager.finishedConversation = false;
                 gameMode.pD.neckClamp = 77.3f;
-                _playerInteraction.pD.inUI = false;
+                _playerInteraction.playerData.inUI = false;
                 break;
             }
             case true when dialogueManager.GetCurrentCustomer() == this.gameObject:
@@ -95,7 +96,7 @@ public class CustomerInteractable : Interactable
                 DisplayOrderTicket();
                 dialogueManager.finishedConversation = false;
                 gameMode.pD.neckClamp = 77.3f;
-                _playerInteraction.pD.inUI = false;
+                _playerInteraction.playerData.inUI = false;
                 break;
             }
         }
@@ -120,8 +121,10 @@ public class CustomerInteractable : Interactable
         foreach (var cc in regularCustomerAtlas.dic[gameMode.gameModeData.currentTime.Day].Where(cc =>
                      cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
         {
-            this._introConversation = cc.IntroConversation;
-            this._exitConversation = cc.ExitConversation;
+            _introConversation = cc.IntroConversation;
+            _exitConversationPositive = cc.ExitConversationPositive;
+            _exitConversationNegative = cc.ExitConversationNegative;
+
             break;
         }
     }
@@ -135,9 +138,12 @@ public class CustomerInteractable : Interactable
             _introConversation =
                 rc.randomConversations.introConversations[
                     Random.Range(0, rc.randomConversations.introConversations.Count)];
-            _exitConversation =
-                rc.randomConversations.exitConversations[
-                    Random.Range(0, rc.randomConversations.exitConversations.Count)];
+            _exitConversationPositive =
+                rc.randomConversations.exitConversationsPositive[
+                    Random.Range(0, rc.randomConversations.exitConversationsPositive.Count)];
+            _exitConversationNegative =
+                rc.randomConversations.exitConversationsNegative[
+                    Random.Range(0, rc.randomConversations.exitConversationsNegative.Count)];
         }
         catch
         {
@@ -152,7 +158,7 @@ public class CustomerInteractable : Interactable
 
         if (dialogueManager.dialogueIsPlaying || customerAI.stay != true || customerAI.hasOrdered ||
             !_canInteract) return;
-        playerInteraction.pD.inUI = true;
+        playerInteraction.playerData.inUI = true;
         dialogueManager.SetCurrentCustomer(gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(_introConversation);
         if (regularCustomerAtlas != null)
@@ -174,9 +180,8 @@ public class CustomerInteractable : Interactable
     public void Speak()
     {
         AkSoundEngine.PostEvent(_customerData.soundEngineEnvent, gameObject);
-
     }
-    
+
     public void DisplayOrderBubble()
     {
         _orderCanvas.enabled = true;
@@ -197,6 +202,8 @@ public class CustomerInteractable : Interactable
 
     public IEnumerator MoveLine()
     {
+        Debug.Log(gameObject + " is getting out of line: " +
+                  customerAI.customerLines[customerAI.customerLines.Count - 1]);
         yield return new WaitForSeconds(2);
         customerAI.customerLines[customerAI.customerLines.Count - 1].MoveLine();
     }
@@ -209,7 +216,7 @@ public class CustomerInteractable : Interactable
     {
     }
 
-    public void DeliverDrink()
+    public void DeliverDrink(bool isGoodDrink)
     {
         gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
             (int)((customerAI.customerData.orderedDrinkData.price -
@@ -223,8 +230,9 @@ public class CustomerInteractable : Interactable
             dialogueManager.SetDefaultImagesAndName(customerAI.customerData.name);
         }
 
-        _playerInteraction.pD.inUI = true;
-        DialogueManager.GetInstance().EnterDialogueMode(_exitConversation);
+        _playerInteraction.playerData.inUI = true;
+        DialogueManager.GetInstance()
+            .EnterDialogueMode(isGoodDrink ? _exitConversationPositive : _exitConversationNegative);
         dialogueManager.SetCurrentCustomer(gameObject);
         gameMode.pD.neckClamp = 0;
         dialogueManager.finishedConversation = false;

@@ -30,7 +30,7 @@ public class Bed : Interactable
     {
         if (_playerInteraction)
         {
-            if (!gameMode.gameModeData.sleeping && _playerInteraction.pD.canMove == false)
+            if (!gameMode.gameModeData.sleeping && _playerInteraction.playerData.canMove == false)
             {
                 _running = true;
                 if (_coTimerRef == null)
@@ -69,7 +69,7 @@ public class Bed : Interactable
         else
         {
             _running = false;
-            _playerInteraction.pD.canMove = true;
+            _playerInteraction.playerData.canMove = true;
             _playerTrans.GetComponent<Collider>().enabled = true;
             _inBed = false;
             gameMode.gameModeData.timeRate = gameMode.gameModeData.timeRate / 30;
@@ -85,7 +85,7 @@ public class Bed : Interactable
         _playerTrans = gameMode.player.transform;
         gameMode.gameModeData.timeRate = 30 * gameMode.gameModeData.timeRate;
         gameMode.player.GetComponent<Collider>().enabled = false;
-        playerInteraction.pD.canMove = false;
+        playerInteraction.playerData.canMove = false;
         if (gameMode.gameModeData.currentTime.Hour != 0)
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day + 1;
         else

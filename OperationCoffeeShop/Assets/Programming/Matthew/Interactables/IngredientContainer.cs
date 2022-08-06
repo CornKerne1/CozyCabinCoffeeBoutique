@@ -19,6 +19,7 @@ public class IngredientContainer : Interactable
     private bool _pouringAction;
     public bool rotating;
     public bool pouringRotation;
+    public Dispenser dispenser;
 
     public IngredientData iD;
 

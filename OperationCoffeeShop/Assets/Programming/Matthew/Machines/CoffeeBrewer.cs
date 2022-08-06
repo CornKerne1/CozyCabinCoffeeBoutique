@@ -2,14 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class CoffeeBrewer : Machine
 {
     public bool hasPitcher;
+    private ObjectPool<LiquidIngredients> _pool;
+
+
+    private int _iterations;
 
     private new void Start()
     {
         base.Start();
+        _pool = new ObjectPool<LiquidIngredients>(() =>
+                Instantiate(machineData.outputIngredient[_iterations].GetComponentInChildren<LiquidIngredients>(),
+                    outputTransform.position,
+                    outputTransform.rotation), liquidIngredients =>
+            {
+                liquidIngredients.gameObject.SetActive(true);
+                var transform1 = liquidIngredients.transform;
+                transform1.position = outputTransform.position;
+                transform1.rotation = outputTransform.rotation;
+            },
+            liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
     protected override IEnumerator ActivateMachine(float time)
@@ -24,14 +40,15 @@ public class CoffeeBrewer : Machine
 
     protected override void ChooseIngredient(GameObject other)
     {
-        switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
+        var physicalIngredient = other.GetComponent<PhysicalIngredient>();
+        switch (physicalIngredient.thisIngredient)
         {
             case Ingredients.GroundCoffee:
                 IfTutorial();
                 currentCapacity++;
-                mD.outputIngredient.Add(iD.brewedCoffee);
+                machineData.outputIngredient.Add(iD.brewedCoffee);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                Destroy(other);
+                physicalIngredient.machine.ReleasePoolObject(other.transform.root.gameObject);
 
                 break;
             case Ingredients.Milk:
@@ -68,17 +85,17 @@ public class CoffeeBrewer : Machine
     private IEnumerator CO_Liquefy()
     {
         AkSoundEngine.PostEvent("PLAY_LOOPPOUR", gameObject);
-        for (var i = 0; i < currentCapacity;)
+        for (_iterations = 0; _iterations < currentCapacity;)
             if (currentCapacity != 0)
             {
-                for (var k = 0; k < 100 * (i + 1); k++)
+                for (var k = 0; k < 100 * (_iterations + 1); k++)
                 {
-                    Instantiate(mD.outputIngredient[i], outputTransform.position, outputTransform.rotation);
+                    _pool.Get();
                     yield return new WaitForSeconds(.04f);
                 }
 
                 currentCapacity--;
-                mD.outputIngredient.RemoveAt(i);
+                machineData.outputIngredient.RemoveAt(_iterations);
             }
 
         yield return new WaitForSeconds(.04f);

@@ -19,6 +19,8 @@ public class GameMode : MonoBehaviour
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
+    public static event EventHandler SurpriseCustomers;
+
 
     private List<GameObject> _toBeDestroyed = new List<GameObject>();
 
@@ -33,9 +35,10 @@ public class GameMode : MonoBehaviour
     [Header("Tutorial Stuffs")] public Tutorial Tutorial;
     [FormerlySerializedAs("Objectives")] public Objectives objectives;
 
+
     private void Start()
     {
-        pD = player.GetComponent<PlayerInteraction>().pD;
+        pD = player.GetComponent<PlayerInteraction>().playerData;
         pD.moveSpeed = pD.closeSpeed;
     }
 
@@ -132,5 +135,11 @@ public class GameMode : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Surprise(GameObject breakableSource)
+    {
+        Debug.Log("suprise!!!");
+        SurpriseCustomers?.Invoke(breakableSource, EventArgs.Empty);
     }
 }

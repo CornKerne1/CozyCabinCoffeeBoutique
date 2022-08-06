@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
 public abstract class Machine : MonoBehaviour
 {
     public int currentCapacity;
-    public MachineData mD;
+    [FormerlySerializedAs("mD")] public MachineData machineData;
     public IngredientData iD;
     public bool isRunning;
     public Vector3 origin;
@@ -14,17 +15,32 @@ public abstract class Machine : MonoBehaviour
 
     public Transform outputTransform;
 
+    private ObjectPool<GameObject> _pool;
+    private int _i;
 
     private void Awake()
     {
         origin = transform.position;
-        mD.outputIngredient.Clear();
+        machineData.outputIngredient.Clear();
     }
 
     protected void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         CheckTutorial();
+        _pool = new ObjectPool<GameObject>(() =>
+            {
+                var gameObject = Instantiate(machineData.outputIngredient[_i], outputTransform.position,
+                    outputTransform.rotation);
+                gameObject.GetComponent<PhysicalIngredient>().machine = this;
+                return gameObject;
+            }, o =>
+            {
+                o.SetActive(true);
+                o.transform.position = outputTransform.position;
+                o.transform.rotation = outputTransform.rotation;
+            },
+            gameObject => { gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
     private void Update()
@@ -43,7 +59,7 @@ public abstract class Machine : MonoBehaviour
 
     public void IngredientInteract(GameObject other)
     {
-        if (currentCapacity < mD.maxCapacity && !isRunning)
+        if (currentCapacity < machineData.maxCapacity && !isRunning)
         {
             ChooseIngredient(other);
         }
@@ -67,7 +83,7 @@ public abstract class Machine : MonoBehaviour
     {
         if (!isRunning)
         {
-            StartCoroutine(ActivateMachine(mD.productionTime));
+            StartCoroutine(ActivateMachine(machineData.productionTime));
         }
     }
 
@@ -83,13 +99,12 @@ public abstract class Machine : MonoBehaviour
 
     protected virtual void OutputIngredients()
     {
-        for (var i = 0; i < currentCapacity;)
+        for (_i = 0; _i < currentCapacity;)
             if (currentCapacity != 0)
             {
-                currentCapacity = currentCapacity - 1;
-                Debug.Log(currentCapacity);
-                Instantiate(mD.outputIngredient[i], outputTransform.position, outputTransform.rotation);
-                mD.outputIngredient.RemoveAt(i);
+                currentCapacity--;
+                _pool.Get();
+                machineData.outputIngredient.RemoveAt(_i);
             }
     }
 
@@ -98,14 +113,19 @@ public abstract class Machine : MonoBehaviour
     {
         if (!isRunning) return;
         var shakePos = origin;
-        shakePos.x = origin.x + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.x;
-        shakePos.y = origin.y + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.y;
-        shakePos.z = origin.z + Mathf.Sin(Time.time * mD.vibeSpeed) * mD.vibeAmt.z;
+        shakePos.x = origin.x + Mathf.Sin(Time.time * machineData.vibeSpeed) * machineData.vibeAmt.x;
+        shakePos.y = origin.y + Mathf.Sin(Time.time * machineData.vibeSpeed) * machineData.vibeAmt.y;
+        shakePos.z = origin.z + Mathf.Sin(Time.time * machineData.vibeSpeed) * machineData.vibeAmt.z;
         transform.position = shakePos;
     }
 
     public void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, this.gameObject);
+    }
+
+    public void ReleasePoolObject(GameObject obj)
+    {
+        _pool.Release(obj);
     }
 }
