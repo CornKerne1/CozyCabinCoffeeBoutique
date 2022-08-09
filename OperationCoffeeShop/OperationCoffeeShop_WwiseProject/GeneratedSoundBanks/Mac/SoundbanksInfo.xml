@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="1780520592">
+		<SoundBank Id="3161908922" Language="SFX" Hash="3493432183">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -133,7 +133,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3948318594" Name="Play_DragonFlies" ObjectPath="\Events\Default Work Unit\Play_DragonFlies" DurationType="Infinite">
+				<Event Id="3948318594" Name="Play_DragonFlies" ObjectPath="\Events\Default Work Unit\Play_DragonFlies" MaxAttenuation="15." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="407082388" Language="SFX">
 							<ShortName>DragonFlies.wav</ShortName>
@@ -581,6 +581,7 @@
 				<Event Id="2540658777" Name="Stop_Brewer" ObjectPath="\Events\Default Work Unit\Stop_Brewer" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2232275612" Name="Stop_DragonFlies" ObjectPath="\Events\Default Work Unit\Stop_DragonFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4252214477" Name="Stop_DreamScape" ObjectPath="\Events\Default Work Unit\Stop_DreamScape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4099702875" Name="Stop_FireFlies" ObjectPath="\Events\Default Work Unit\Stop_FireFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>

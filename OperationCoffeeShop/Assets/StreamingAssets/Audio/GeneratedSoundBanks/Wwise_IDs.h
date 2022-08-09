@@ -86,6 +86,7 @@ namespace AK
         static const AkUniqueID STOP_BREWER = 2540658777U;
         static const AkUniqueID STOP_DRAGONFLIES = 2232275612U;
         static const AkUniqueID STOP_DREAMSCAPE = 4252214477U;
+        static const AkUniqueID STOP_FIREFLIES = 4099702875U;
         static const AkUniqueID STOP_GRINDINGCOFFEE = 1506977314U;
         static const AkUniqueID STOP_GRINDINGESPRESSO = 623871430U;
         static const AkUniqueID STOP_LOOPPOUR = 4059860068U;
