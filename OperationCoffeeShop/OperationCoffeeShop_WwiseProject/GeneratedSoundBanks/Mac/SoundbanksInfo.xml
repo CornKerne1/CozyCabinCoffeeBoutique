@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="2495409481">
+		<SoundBank Id="3161908922" Language="SFX" Hash="3493432183">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
@@ -93,7 +93,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2652178615" Name="Play_buttonpress" ObjectPath="\Events\Default Work Unit\Play_buttonpress" MaxAttenuation="10." DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
+				<Event Id="2652178615" Name="Play_buttonpress" ObjectPath="\Events\Default Work Unit\Play_buttonpress" MaxAttenuation="15." DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
 					<IncludedMemoryFiles>
 						<File Id="873684257" Language="SFX">
 							<ShortName>buttonpress.wav</ShortName>
@@ -130,6 +130,14 @@
 						<File Id="510049455" Language="SFX">
 							<ShortName>1Dogs.wav</ShortName>
 							<Path>SFX\1Dogs_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3948318594" Name="Play_DragonFlies" ObjectPath="\Events\Default Work Unit\Play_DragonFlies" MaxAttenuation="15." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="407082388" Language="SFX">
+							<ShortName>DragonFlies.wav</ShortName>
+							<Path>SFX\DragonFlies_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -178,6 +186,14 @@
 						<File Id="388542937" Language="SFX">
 							<ShortName>Faucet.wav</ShortName>
 							<Path>SFX\Faucet_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4161070465" Name="Play_FireFlies" ObjectPath="\Events\Default Work Unit\Play_FireFlies" MaxAttenuation="15." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="475361175" Language="SFX">
+							<ShortName>FireFlies.wav</ShortName>
+							<Path>SFX\FireFlies_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -230,7 +246,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="10." DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
+				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="15." DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
 					<IncludedMemoryFiles>
 						<File Id="285469530" Language="SFX">
 							<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
@@ -238,7 +254,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="579639504" Name="Play_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Play_GrindingEspresso" MaxAttenuation="10." DurationType="OneShot" DurationMin="4.519184" DurationMax="4.519184">
+				<Event Id="579639504" Name="Play_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Play_GrindingEspresso" MaxAttenuation="15." DurationType="OneShot" DurationMin="4.519184" DurationMax="4.519184">
 					<IncludedMemoryFiles>
 						<File Id="759491673" Language="SFX">
 							<ShortName>Grinding_Espresso.wav</ShortName>
@@ -490,6 +506,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1489182122" Name="Play_TrashCan" ObjectPath="\Events\Default Work Unit\Play_TrashCan" DurationType="OneShot" DurationMin="0.419949" DurationMax="0.471377">
+					<IncludedMemoryFiles>
+						<File Id="161250347" Language="SFX">
+							<ShortName>TrashCan.wav</ShortName>
+							<Path>SFX\TrashCan_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="847946271" Name="Play_Traveler" ObjectPath="\Events\Default Work Unit\Play_Traveler" DurationType="OneShot" DurationMin="2.187506" DurationMax="2.187506">
 					<IncludedMemoryFiles>
 						<File Id="974081508" Language="SFX">
@@ -538,6 +562,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2092044786" Name="Play_WaterFall1_2" ObjectPath="\Events\Default Work Unit\Play_WaterFall1_2" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="865454399" Language="SFX">
+							<ShortName>WaterFall1.2.wav</ShortName>
+							<Path>SFX\WaterFall1.2_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2693257580" Name="Play_Whistle" ObjectPath="\Events\Default Work Unit\Play_Whistle" DurationType="OneShot" DurationMin="1." DurationMax="1.">
 					<IncludedMemoryFiles>
 						<File Id="544960085" Language="SFX">
@@ -547,7 +579,9 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2540658777" Name="Stop_Brewer" ObjectPath="\Events\Default Work Unit\Stop_Brewer" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2232275612" Name="Stop_DragonFlies" ObjectPath="\Events\Default Work Unit\Stop_DragonFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4252214477" Name="Stop_DreamScape" ObjectPath="\Events\Default Work Unit\Stop_DreamScape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4099702875" Name="Stop_FireFlies" ObjectPath="\Events\Default Work Unit\Stop_FireFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>

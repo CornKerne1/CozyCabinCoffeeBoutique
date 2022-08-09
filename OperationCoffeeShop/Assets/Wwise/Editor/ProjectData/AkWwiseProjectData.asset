@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 2c25838c71943b43b2aef5aa7bf5e5ac
     GuidInternal: 
-    m_lastTime: -8585425644675242587
+    m_lastTime: -8585415309948029461
     List:
     - name: Main
       guid: cf9b4fb222a8f245b39f19c6f5cc49c3
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 472f67ffee43f247ac6e540f705b2067
     GuidInternal: 
-    m_lastTime: -8585425644676641037
+    m_lastTime: -8585415305382077663
     List:
     - name: Play_AfterHours
       guid: 96d1815459ad9748b910183b40218c63
@@ -263,7 +263,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: d41e1c08b7df944e987db5f80bf9a810
       Path: Events\Default Work Unit\Play_buttonpress
-      maxAttenuation: 10
+      maxAttenuation: 15
       maxDuration: 0.875
       minDuration: 0.875
     - name: Play_CabinetClose
@@ -334,6 +334,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1.75
       minDuration: 1.75
+    - name: Play_DragonFlies
+      guid: c2ff530eababeb4784bdcd3e290df143
+      id: 3948318594
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_DragonFlies
+        ObjectType: 3
+        guid: c2ff530eababeb4784bdcd3e290df143
+      Path: Events\Default Work Unit\Play_DragonFlies
+      maxAttenuation: 15
+      maxDuration: -1
+      minDuration: -1
     - name: Play_DreamScape_
       guid: 776994d40bcd474aace39b46fffe375a
       id: 1813095574
@@ -434,6 +451,23 @@ MonoBehaviour:
         guid: bf196157b8a95840b7a2abcba4f251fc
       Path: Events\Default Work Unit\Play_Faucet
       maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_FireFlies
+      guid: 78f7f229a92a44438f82d80b9ad22d25
+      id: 4161070465
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_FireFlies
+        ObjectType: 3
+        guid: 78f7f229a92a44438f82d80b9ad22d25
+      Path: Events\Default Work Unit\Play_FireFlies
+      maxAttenuation: 15
       maxDuration: -1
       minDuration: -1
     - name: Play_Footsteps_Tile_
@@ -569,7 +603,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: ae721d7e71da57488c7eeb124cbdcbc4
       Path: Events\Default Work Unit\Play_GrindingCoffee
-      maxAttenuation: 10
+      maxAttenuation: 15
       maxDuration: 3.75
       minDuration: 3.75
     - name: Play_GrindingEspresso
@@ -586,7 +620,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 0e6ffe96e7a4ab468b8eca941c938282
       Path: Events\Default Work Unit\Play_GrindingEspresso
-      maxAttenuation: 10
+      maxAttenuation: 15
       maxDuration: 4.519184
       minDuration: 4.519184
     - name: Play_Gulp
@@ -1099,6 +1133,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Play_TrashCan
+      guid: fe0d4149618b4447abf8189443c4e7d4
+      id: 1489182122
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_TrashCan
+        ObjectType: 3
+        guid: fe0d4149618b4447abf8189443c4e7d4
+      Path: Events\Default Work Unit\Play_TrashCan
+      maxAttenuation: 0
+      maxDuration: 0.471377
+      minDuration: 0.419949
     - name: Play_Traveler
       guid: 7619d1ec8834c249b1551910071a1eab
       id: 847946271
@@ -1201,6 +1252,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 3.5
       minDuration: 3.5
+    - name: Play_WaterFall1_2
+      guid: 29420510e2278b41a8e6eee8d8b59ca4
+      id: 2092044786
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_WaterFall1_2
+        ObjectType: 3
+        guid: 29420510e2278b41a8e6eee8d8b59ca4
+      Path: Events\Default Work Unit\Play_WaterFall1_2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_Whistle
       guid: dc194ea53dbcdc45ae08850506edee8e
       id: 2693257580
@@ -1232,6 +1300,23 @@ MonoBehaviour:
         ObjectType: 3
         guid: 017cfb33664fc64284c2661598fab5bd
       Path: Events\Default Work Unit\Stop_Brewer
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Stop_DragonFlies
+      guid: 56a445103088df4db30fac3acb79c2f1
+      id: 2232275612
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Stop_DragonFlies
+        ObjectType: 3
+        guid: 56a445103088df4db30fac3acb79c2f1
+      Path: Events\Default Work Unit\Stop_DragonFlies
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
