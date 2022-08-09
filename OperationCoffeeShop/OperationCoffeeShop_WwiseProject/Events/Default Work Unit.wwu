@@ -1217,6 +1217,23 @@
 				<Event Name="Play_DragonFlies" ID="{0E53FFC2-ABAB-47EB-84BD-CD3E290DF143}">
 					<ChildrenList>
 						<Action Name="" ID="{F4A169C5-0366-4EA1-A142-E1EB694B492D}" ShortID="664368771">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="6"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DragonFlies" ID="{4728BC93-025D-4627-8D37-F3DDEFE81C49}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_DragonFlies" ID="{1045A456-8830-4DDF-B30F-AC3ACB79C2F1}">
+					<ChildrenList>
+						<Action Name="" ID="{674BDA6F-5951-40A0-890C-0A518703B4BE}" ShortID="827255897">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="DragonFlies" ID="{4728BC93-025D-4627-8D37-F3DDEFE81C49}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
