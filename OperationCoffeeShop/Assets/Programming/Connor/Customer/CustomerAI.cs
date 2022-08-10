@@ -30,8 +30,9 @@ public class CustomerAI : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        customerData = gameObject.GetComponent<Customer>().customerData;
+        StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
+
         var path = GameObject.Find("Customer Path");
         foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
@@ -63,6 +64,13 @@ public class CustomerAI : MonoBehaviour
         GameMode.ShopClosed += ShopClosed;
     }
 
+    private IEnumerator CO_Wait()
+    {
+        yield return new WaitForSeconds(.4f);
+        customerData = gameObject.GetComponent<Customer>().customerData;
+
+    }
+
     private void Update()
     {
         if (!stay) //when not in line
@@ -91,7 +99,7 @@ public class CustomerAI : MonoBehaviour
 
     IEnumerator CO_AddSelfToData()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.45f);
         customerData.customerAI = this;
     }
 
