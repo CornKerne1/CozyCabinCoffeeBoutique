@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3523769876306941984}
   - component: {fileID: 1104458313662548846}
   - component: {fileID: 1852858730019821921}
-  m_Layer: 1
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.00943, y: 0.037124, z: -0.079106}
   m_LocalScale: {x: 0.01, y: 0.053890042, z: 0.0035330313}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498647118534905442}
   m_RootOrder: 0
@@ -97,6 +98,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.5821505, y: -9.841307, z: -2.8972585}
   m_LocalScale: {x: 80, y: 80, z: 80}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6032552962981101110}
   m_Father: {fileID: 0}
@@ -121,6 +123,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -163,8 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f8779ce1293ed469be1f69985944e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  playerInteraction: {fileID: 0}
   pI: {fileID: 0}
   canClimb: 0
 --- !u!65 &4377772893339231308
