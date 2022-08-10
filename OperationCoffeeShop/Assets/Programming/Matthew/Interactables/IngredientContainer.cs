@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class IngredientContainer : Interactable
@@ -29,6 +30,11 @@ public class IngredientContainer : Interactable
     public List<GameObject> outputIngredients = new List<GameObject>();
     private List<IngredientNode> _garbageList = new List<IngredientNode>();
 
+    [FormerlySerializedAs("contentVisualizer")]
+    public Vector3 contentVisualizerStartPosition;
+
+    public Vector3 contentVisualizerStartScale;
+
     private void FixedUpdate()
     {
         HandlePourRotation();
@@ -42,6 +48,16 @@ public class IngredientContainer : Interactable
         rotating = false;
         _pouringAction = !_pouringAction;
         _coRef1 = null;
+    }
+
+    public void ResetCup()
+    {
+        outputIngredients = new List<GameObject>();
+        contentsVisualizer.transform.localPosition =
+            contentVisualizerStartPosition;
+
+        contentsVisualizer.transform.localScale =
+            contentVisualizerStartScale;
     }
 
     public bool IsPouring()
@@ -90,6 +106,8 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.ingredients = new List<IngredientNode>();
         dD.name = "Cup";
+        contentVisualizerStartPosition = contentsVisualizer.transform.localPosition;
+        contentVisualizerStartScale = new Vector3(5, 5, 5);
     }
 
     public virtual void AddToContainer(IngredientNode iN)
