@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerConsumption : MonoBehaviour
 {
-    public GameMode gameMode;
+    [HideInInspector] public GameMode gameMode;
 
     [SerializeField, Header("Tutorial Stuff")]
     private Objectives objectives;
@@ -29,7 +29,9 @@ public class PlayerConsumption : MonoBehaviour
     {
         if (!other.TryGetComponent<LiquidIngredients>(out var liquid)) return;
         liquid.gameObject.SetActive(false);
-        Debug.Log("Drinking the coffee");
+        if (!GameMode.IsEventPlayingOnGameObject("Play_Gulp", gameObject))
+            AkSoundEngine.PostEvent("Play_Gulp", gameObject);
+        //Debug.Log("Drinking the coffee");
         IfTutorial();
     }
 

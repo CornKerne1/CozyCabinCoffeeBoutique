@@ -53,8 +53,8 @@ public class ComputerShop : MonoBehaviour
     public void CloseShop()
     {
         _orders = new Queue<string>();
-        _gameMode.pD.canMove = true;
-        _gameMode.pD.canMove = true;
+        _gameMode.playerData.canMove = true;
+        _gameMode.playerData.canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         this.gameObject.SetActive(false);

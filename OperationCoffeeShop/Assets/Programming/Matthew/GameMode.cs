@@ -8,7 +8,7 @@ public class GameMode : MonoBehaviour
     //This class keeps track of the game
 
     [SerializeField] public Transform player;
-    [SerializeField] public PlayerData pD;
+    [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
     [SerializeField] public GameObject playerPref;
 
     [SerializeField] private Gate gate;
@@ -38,8 +38,8 @@ public class GameMode : MonoBehaviour
 
     private void Start()
     {
-        pD = player.GetComponent<PlayerInteraction>().playerData;
-        pD.moveSpeed = pD.closeSpeed;
+        playerData = player.GetComponent<PlayerInteraction>().playerData;
+        playerData.moveSpeed = playerData.closeSpeed;
     }
 
     private void Awake()
@@ -103,13 +103,13 @@ public class GameMode : MonoBehaviour
         if (gameModeData.currentTime.Hour >= 18 || gameModeData.currentTime.Hour <= 5) return;
         gameModeData.isOpen = true;
         gate.OpenGate();
-        pD.moveSpeed = pD.openSpeed;
+        playerData.moveSpeed = playerData.openSpeed;
     }
 
     public void CloseShop()
     {
         gameModeData.isOpen = false;
-        pD.moveSpeed = pD.closeSpeed;
+        playerData.moveSpeed = playerData.closeSpeed;
         ShopClosed?.Invoke(this, EventArgs.Empty);
         if (gameModeData.currentTime.Day > 2)
         {
