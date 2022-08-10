@@ -7,11 +7,17 @@ public class TutorialBed : Interactable
 {
     private GameObject _currentDc;
 
+    [SerializeField] private bool loadingNextScene;
+
     public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        //if (gameMode.objectives.objectives.Count - 1 != gameMode.objectives.currentObjective) return;
+        
+        if (gameMode.objectives.objectives.Count - 1 != gameMode.objectives.currentObjective) return;
+        if(loadingNextScene) return;
+        loadingNextScene = true;
         AkSoundEngine.PostEvent("STOP_DREAMSCAPE", gameObject);
         AkSoundEngine.PostEvent("PLAY_WAKING", gameObject);
+       
         StartCoroutine(CO_LoadNextScene());
     }
 
