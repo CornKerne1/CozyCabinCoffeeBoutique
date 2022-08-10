@@ -38,7 +38,11 @@ public abstract class Customer : MonoBehaviour
         GameMode.SurpriseCustomers += OnSurprise;
         _surprisePool = new ObjectPool<ParticleSystem>(
             () => Instantiate(surpriseParticleSystem, gameObject.transform, false),
-            system => { system.gameObject.SetActive(true); },
+            system =>
+            {
+                system.gameObject.SetActive(true);
+                system.Play();
+            },
             system => { system.gameObject.SetActive(false); }, Destroy, true, 10, 10);
     }
 
@@ -84,7 +88,7 @@ public abstract class Customer : MonoBehaviour
         return quality > desiredQuality;
     }
 
-    protected void OnSurprise(object sender, EventArgs eventArgs)
+    private void OnSurprise(object sender, EventArgs eventArgs)
     {
         var distance = Vector3.Distance(((GameObject)sender).transform.position, gameObject.transform.position);
         Debug.Log("play surprise with distance: " + distance);

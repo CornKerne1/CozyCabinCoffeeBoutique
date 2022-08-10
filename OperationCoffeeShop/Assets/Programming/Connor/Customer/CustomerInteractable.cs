@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -44,13 +45,13 @@ public class CustomerInteractable : Interactable
         _orderCanvas.enabled = false;
         _player = gameMode.player.gameObject;
         _playerInteraction = _player.GetComponent<PlayerInteraction>();
-
+        customerAI = gameObject.GetComponent<CustomerAI>();
 
         dialogueManager = DialogueManager.GetInstance();
 
         // will be null if random customer or not spawned by a regular spawner
         if (regularCustomerAtlas != null)
-            SetConversations();
+            StartCoroutine(CO_SetConversations());
         else
         {
             StartCoroutine(SetRandomConversations());
@@ -67,16 +68,17 @@ public class CustomerInteractable : Interactable
         _customerData.customerInteractable = this;
     }
 
-    private void SetConversations()
+    private IEnumerator CO_SetConversations()
     {
-        if (!regularCustomerAtlas.dic.ContainsKey(gameMode.gameModeData.currentTime.Day)) return;
+        yield return new WaitForSeconds(.4f);
+        if (!regularCustomerAtlas.dic.ContainsKey(gameMode.gameModeData.currentTime.Day)) yield break;
+
         foreach (var cc in regularCustomerAtlas.dic[gameMode.gameModeData.currentTime.Day].Where(cc =>
-                     cc.customer.GetComponent<Customer>().customerData == customerAI.customerData))
+                     cc.customer.GetComponent<Customer>().customerData.name.Equals(_customerData.name)))
         {
             _introConversation = cc.IntroConversation;
             _exitConversationPositive = cc.ExitConversationPositive;
             _exitConversationNegative = cc.ExitConversationNegative;
-
             break;
         }
     }

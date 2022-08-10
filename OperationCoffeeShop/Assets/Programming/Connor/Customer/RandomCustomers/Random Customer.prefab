@@ -225,7 +225,7 @@ MonoBehaviour:
   customerData: {fileID: 0}
   playerResearchData: {fileID: 11400000, guid: 62e3181fda8c2a44796cb835dfa0e588, type: 2}
   gameMode: {fileID: 0}
-  desiredQuality: 0
+  desiredQuality: 0.5
   particleSystem: {fileID: 1783690415919917191}
   like: {fileID: 2100000, guid: a4a1d91917218d64bb39f2a59a187607, type: 2}
   dislike: {fileID: 2100000, guid: a1c5a4134c5fe344a841df4d1b04771f, type: 2}
@@ -254,9 +254,9 @@ MonoBehaviour:
   playerInteraction: {fileID: 0}
   customerAI: {fileID: 7461629815669221821}
   canvas: {fileID: 6982124169780741249}
+  canInteract: 1
   dialogueManager: {fileID: 3008080769157578209, guid: d5e14428dc67c984e89352c448688aa2, type: 3}
   regularCustomerAtlas: {fileID: 0}
-  lookAt: {fileID: 2494170554375294215}
 --- !u!54 &927562656731061223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -539,28 +539,28 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
+          value: 0.49475098
+          inSlope: 0.505249
+          outSlope: 0.505249
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0.505249
+          outSlope: 0.505249
           tangentMode: 34
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.33333334
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -855,7 +855,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 16
+    maxNumParticles: 8
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
