@@ -10,6 +10,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
+    [SerializeField] private LayerMask dofLayer;
     private Interactable _currentInteractable;
     private bool _rotate;
     private float _carryDistance;
@@ -75,7 +76,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return; //
+            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000, dofLayer)) return; //
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
             if (hit.distance <= playerData.interactDistance)
             {
