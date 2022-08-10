@@ -14,7 +14,11 @@ public class CupDispenser : Dispenser
         ComputerShop.DepositItems += AddItems;
         _pool = new ObjectPool<IngredientContainer>(
             () => Instantiate(objType.gameObject.GetComponentInChildren<IngredientContainer>()),
-            ingredientContainer => { ingredientContainer.gameObject.SetActive(true); },
+            ingredientContainer =>
+            {
+                ingredientContainer.ResetCup();
+                ingredientContainer.gameObject.SetActive(true);
+            },
             ingredientContainer => { ingredientContainer.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         if (bottomless) return;
         try
