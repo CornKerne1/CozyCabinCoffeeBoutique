@@ -58,6 +58,7 @@ public class PlayerInteraction : MonoBehaviour
         profile.TryGet(out dof);
         _dofDistanceParameter = dof.focusDistance;
         _dofAperture = dof.aperture;
+        _dofDistanceParameter.value = 5f;
         var d = _dofAperture;
         _startAperture = d;
         _startAperture.value = 32.0f;
