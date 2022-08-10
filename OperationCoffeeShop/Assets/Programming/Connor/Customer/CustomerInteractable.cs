@@ -24,23 +24,19 @@ public class CustomerInteractable : Interactable
 
     private CustomerLine _line;
 
-    private Transform _oldLook;
 
-    private bool _canInteract = true;
+    [FormerlySerializedAs("_canInteract")] public bool canInteract = true;
 
     public DialogueManager dialogueManager;
-    private PlayerInteraction _playerInteraction;
 
     //[HideInInspector]
     [FormerlySerializedAs("rCA")] public RegularCustomerAtlas regularCustomerAtlas;
 
-    [FormerlySerializedAs("lookat")] public Transform lookAt;
-    private Camera _camera;
+    private PlayerInteraction _playerInteraction;
 
     public override void Start()
     {
         base.Start();
-        _camera = Camera.main;
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _customerData = gameObject.GetComponent<Customer>().customerData;
         StartCoroutine(CO_AddSelfToData());
@@ -48,6 +44,8 @@ public class CustomerInteractable : Interactable
         _orderCanvas.enabled = false;
         _player = gameMode.player.gameObject;
         _playerInteraction = _player.GetComponent<PlayerInteraction>();
+
+
         dialogueManager = DialogueManager.GetInstance();
 
         // will be null if random customer or not spawned by a regular spawner
@@ -61,52 +59,6 @@ public class CustomerInteractable : Interactable
 
     private void Update()
     {
-        switch (dialogueManager.finishedConversation)
-        {
-            case true when customerAI.hasOrder && customerAI.hasOrdered:
-            {
-                _canInteract = false;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                if (!_oldLook)
-                    _camera.transform.LookAt(_oldLook.position);
-                gameMode.pD.canMove = true;
-                gameMode.pD.canMove = true;
-                StartCoroutine(MoveLine());
-                RemoveOrderBubble();
-                RemoveOrderTicket();
-                dialogueManager.finishedConversation = false;
-                gameMode.pD.neckClamp = 77.3f;
-                _playerInteraction.playerData.inUI = false;
-                break;
-            }
-            case true when dialogueManager.GetCurrentCustomer() == this.gameObject:
-            {
-                Debug.Log("testing my patience");
-
-                _canInteract = false;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                if (!_oldLook)
-                    _camera.transform.LookAt(_oldLook.position);
-                gameMode.pD.canMove = true;
-                gameMode.pD.canMove = true;
-                //StartCoroutine(MoveLine());
-                DisplayOrderBubble();
-                DisplayOrderTicket();
-                dialogueManager.finishedConversation = false;
-                gameMode.pD.neckClamp = 77.3f;
-                _playerInteraction.playerData.inUI = false;
-                break;
-            }
-        }
-
-        if (gameMode.pD.canMove || dialogueManager.GetCurrentCustomer() != this.gameObject ||
-            !dialogueManager.dialogueIsPlaying) return;
-        gameMode.pD.neckClamp = 0;
-        var c = _camera.transform;
-        _oldLook = c;
-        _camera.transform.LookAt(lookAt.position);
     }
 
     private IEnumerator CO_AddSelfToData()
@@ -157,7 +109,7 @@ public class CustomerInteractable : Interactable
         this._playerInteraction = playerInteraction;
 
         if (dialogueManager.dialogueIsPlaying || customerAI.stay != true || customerAI.hasOrdered ||
-            !_canInteract) return;
+            !canInteract) return;
         playerInteraction.playerData.inUI = true;
         dialogueManager.SetCurrentCustomer(gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(_introConversation);
@@ -172,7 +124,7 @@ public class CustomerInteractable : Interactable
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gameMode.pD.canMove = false;
+        gameMode.playerData.canMove = false;
         _customerData.customerAnimations.Talk();
         Speak();
     }
@@ -234,12 +186,12 @@ public class CustomerInteractable : Interactable
         DialogueManager.GetInstance()
             .EnterDialogueMode(isGoodDrink ? _exitConversationPositive : _exitConversationNegative);
         dialogueManager.SetCurrentCustomer(gameObject);
-        gameMode.pD.neckClamp = 0;
+        gameMode.playerData.neckClamp = 0;
         dialogueManager.finishedConversation = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gameMode.pD.canMove = false;
-        gameMode.pD.canMove = false;
+        gameMode.playerData.canMove = false;
+        gameMode.playerData.canMove = false;
         _customerData.customerAnimations.Talk();
         Speak();
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +41,12 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject currentCustomer;
 
+    private Camera _camera;
+    public GameMode gameMode;
+    private Transform _oldLook;
+    private GameObject _player;
+    public Transform lookAt;
+
 
     private void Awake()
     {
@@ -58,8 +65,38 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+        _player = gameMode.player.gameObject;
+
+        _camera = Camera.main;
+    }
+
+
+    private void Update()
+    {
+        if (gameMode.playerData.canMove || GetCurrentCustomer() != this.gameObject ||
+            !dialogueIsPlaying) return;
+        gameMode.playerData.neckClamp = 0;
+        var c = _camera.transform;
+        _oldLook = c;
+        _camera.transform.LookAt(lookAt.position);
+    }
+
+
+    private void FinishedConversation()
+    {
+        Debug.Log("testing my patience");
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        gameMode.playerData.canMove = true;
+        gameMode.playerData.canMove = true;
+        //StartCoroutine(MoveLine());
+        finishedConversation = false;
+        gameMode.playerData.neckClamp = 77.3f;
+        gameMode.playerData.inUI = false;
     }
 
 
@@ -122,19 +159,22 @@ public class DialogueManager : MonoBehaviour
     {
         if (!currentCustomer) return;
         var cAI = currentCustomer.GetComponent<CustomerAI>();
-        currentCustomer = null;
         var cI = cAI.customerData.customerInteractable;
+        cI.canInteract = false;
         if (!cAI.hasOrdered)
         {
             StartCoroutine(cI.MoveLine());
             cI.DisplayOrderBubble();
             cI.DisplayOrderTicket();
         }
+        else StartCoroutine(cI.MoveLine());
 
         finishedConversation = true;
+        FinishedConversation();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        currentCustomer = null;
     }
 
     public void ContinueStory()

@@ -91,7 +91,7 @@ public class OptionsMenu : MonoBehaviour
         sfxSlider.value = sO.SFXVol;
         
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        mouseSlider.value = gM.pD.mouseSensitivity;
+        mouseSlider.value = gM.playerData.mouseSensitivity;
 
         mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
@@ -176,7 +176,7 @@ public class OptionsMenu : MonoBehaviour
     public void SetMouse()
     {
         StartCoroutine(CO_PlayAudioWWisely());
-        gM.pD.mouseSensitivity = mouseSlider.value;
+        gM.playerData.mouseSensitivity = mouseSlider.value;
     }
     public void CloseOptions()
     {
