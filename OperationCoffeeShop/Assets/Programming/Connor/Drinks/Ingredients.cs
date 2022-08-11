@@ -8,12 +8,12 @@ using UnityEngine;
 public enum Ingredients 
 {
     Milk, SteamedMilk,FoamedMilk, Sugar, WhippedCream,
-    Espresso, UngroundCoffee, GroundCoffee, Salt, BrewedCoffee, EspressoBeans, CoffeeFilter, TeaBag
+    Espresso, UngroundCoffee, GroundCoffee, Salt, BrewedCoffee, EspressoBeans, CoffeeFilter, TeaBag, Water
 
 }
 public enum Flavors
 {
-    Bitter, Sweet, Salty, Herby
+    Bitter, Sweet, Salty, Herby, Water
 }
 
 public enum Strength
@@ -40,7 +40,8 @@ public class FlavorProfile
             { Ingredients.UngroundCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium) },
             { Ingredients.BrewedCoffee, new FlavorNode(Flavors.Bitter, Strength.Medium) },
             { Ingredients.Salt, new FlavorNode(Flavors.Salty, Strength.Medium) },
-            { Ingredients.TeaBag, new FlavorNode(Flavors.Herby, Strength.Strong) }
+            { Ingredients.TeaBag, new FlavorNode(Flavors.Herby, Strength.Strong) },
+            {Ingredients.Water, new FlavorNode(Flavors.Water, Strength.Strong) }
         };
     }
     [System.Serializable]
