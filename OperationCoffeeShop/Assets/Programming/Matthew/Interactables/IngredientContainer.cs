@@ -30,11 +30,6 @@ public class IngredientContainer : Interactable
     public List<GameObject> outputIngredients = new List<GameObject>();
     private List<IngredientNode> _garbageList = new List<IngredientNode>();
 
-    [FormerlySerializedAs("contentVisualizer")]
-    public Vector3 contentVisualizerStartPosition;
-
-    public Vector3 contentVisualizerStartScale;
-
     private void FixedUpdate()
     {
         HandlePourRotation();
@@ -54,10 +49,10 @@ public class IngredientContainer : Interactable
     {
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
-            contentVisualizerStartPosition;
+            new Vector3(0, 0.0343f, 0);
 
         contentsVisualizer.transform.localScale =
-            contentVisualizerStartScale;
+            new Vector3(5, 5, 5);
     }
 
     public bool IsPouring()
@@ -106,8 +101,6 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.ingredients = new List<IngredientNode>();
         dD.name = "Cup";
-        contentVisualizerStartPosition = contentsVisualizer.transform.localPosition;
-        contentVisualizerStartScale = new Vector3(5, 5, 5);
     }
 
     public virtual void AddToContainer(IngredientNode iN)
