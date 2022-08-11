@@ -30,6 +30,9 @@ public class SugarCube : PhysicalIngredient
         ingredientContainer.AddToContainer(
             iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
         _hasCollided = true;
-        dispenser.ReleasePoolObject(this);
-        }
+        if(dispenser)
+            dispenser.ReleasePoolObject(this);
+        else
+            Destroy(gameObject);
+    }
 }
