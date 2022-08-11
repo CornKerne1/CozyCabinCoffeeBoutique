@@ -49,7 +49,7 @@ public class DayNightCycle
             if (_gameModeData.isOpen && pastClosing)
                 _gameMode.CloseShop();
         }
-        else if (_gameModeData.currentTime.Hour != 0)
+        else if (_gameModeData.currentTime.Hour != 0 && !_gameModeData.sleeping)
         {
             _gameModeData.timeRate = _startTimeRate;
             TrackTime();

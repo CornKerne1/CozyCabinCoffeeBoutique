@@ -52,7 +52,6 @@ public class Bed : Interactable
         }
         else
         {
-            NewDay?.Invoke(this, EventArgs.Empty);
             _playerTrans.position = Vector3.Lerp(_playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
         }
     }
@@ -73,6 +72,7 @@ public class Bed : Interactable
             _playerTrans.GetComponent<Collider>().enabled = true;
             _inBed = false;
             gameMode.gameModeData.timeRate = gameMode.gameModeData.timeRate / 30;
+            NewDay?.Invoke(this, EventArgs.Empty);
         }
 
         _coTimerRef = null;
@@ -82,6 +82,7 @@ public class Bed : Interactable
     {
         if (gameMode.gameModeData.currentTime.Hour != 0 &&
             gameMode.gameModeData.currentTime.Hour < gameMode.gameModeData.closingHour) return;
+        _playerInteraction = playerInteraction;
         _playerTrans = gameMode.player.transform;
         gameMode.gameModeData.timeRate = 30 * gameMode.gameModeData.timeRate;
         gameMode.player.GetComponent<Collider>().enabled = false;
