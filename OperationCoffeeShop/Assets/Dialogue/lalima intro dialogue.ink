@@ -3,9 +3,12 @@
 === main ===
 
 Howdy! 
-* [Good morning!]
+* [Morning! What can I get for you today?]
 
-- These beauties keep me going! I think I’m in the mood for something a lil’ bitter tah-day. 
-* [They sure are colorful! I’ll get that for you right awayy.] 
+- It sure is a good one! Might be a lil, muggy later, but there’s nothing my mushrooms can’t handle! 
+* [They sure are colorful!]
+
+- These beauties keep me going! I think I’m in the mood for something a lil’ bitter tah-day.
+* [I’ll get that for you right away. ]
 -> DONE
 -> END
