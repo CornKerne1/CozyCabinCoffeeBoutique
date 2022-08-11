@@ -18,7 +18,7 @@ public abstract class LiquidIngredients : MonoBehaviour
             obj.GetComponent<IngredientContainer>()
                 .AddToContainer(
                     iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
-            Destroy(gameObject);
+           
         }
         catch
         {

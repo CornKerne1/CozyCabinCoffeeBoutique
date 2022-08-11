@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6492814658333753537}
   - component: {fileID: 6492814658333753550}
   - component: {fileID: 6492814658333753551}
-  - component: {fileID: 4980521379487760957}
+  - component: {fileID: 1204149834589821805}
   m_Layer: 0
   m_Name: SugarCube
   m_TagString: Untagged
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.073, y: -9.0155, z: -7.220953}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -113,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &4980521379487760957
+--- !u!114 &1204149834589821805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,9 +124,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6492814658333753549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46dd5ced0517cda4a86c2a6a572b8478, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c8232778b6f7b648ba4c1821a51117b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  sugarCube: {fileID: 5846061564870485500, guid: 3692c752e1c50ea48abde42b7c1e1111, type: 3}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  thisIngredient: 3
+  inHand: 0
+  dispenser: {fileID: 0}
+  machine: {fileID: 0}
+  iN:
+    ingredient: 3
+    target: 0.1

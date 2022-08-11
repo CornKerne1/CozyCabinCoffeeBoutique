@@ -4,25 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SugarCube : LiquidIngredients
+public class SugarCube : PhysicalIngredient
 {
-    [SerializeField] private GameObject sugarCube;
-    private IEnumerator _coRef;
-    
+    [SerializeField] private IngredientNode iN;
+    private PhysicalIngredient _physicalIngredient;
+    private bool _hasCollided;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (_coRef != null) return;
-        _coRef = CO_MakePickUp();
-        StartCoroutine(CO_MakePickUp());
+        TryAddOrDelete(other.gameObject);
     }
 
-    private IEnumerator CO_MakePickUp()
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        yield return new WaitForSeconds(0.2f);
-        var currentTrans = transform;
-        Instantiate(sugarCube, currentTrans.position, currentTrans.rotation);
-        Destroy(transform.gameObject);
-        _coRef = null;
+        this.playerInteraction = playerInteraction;
+        playerInteraction.Carry(gameObject);
     }
+
+    private void TryAddOrDelete(GameObject obj)
+    {
+        if (_hasCollided) return;
+        var ingredientContainer = obj.GetComponent<IngredientContainer>();
+        if (!ingredientContainer) return;
+        playerInteraction.DropCurrentObj();
+        ingredientContainer.AddToContainer(
+            iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
+        _hasCollided = true;
+        dispenser.ReleasePoolObject(this);
+        }
 }
