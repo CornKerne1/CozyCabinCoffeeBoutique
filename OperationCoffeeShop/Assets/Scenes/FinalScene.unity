@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1.7767104, g: 2.0084553, b: 2.4622889, a: 1}
+  m_AmbientSkyColor: {r: 0.5411765, g: 0.6117647, b: 0.7490196, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2.55
@@ -553,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &96726224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +625,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2550,13 +2550,17 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 910057894983351658, guid: 6d83b1a01b960c549b642a6b9be0dea2, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3878193095936146769, guid: 6d83b1a01b960c549b642a6b9be0dea2, type: 3}
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5754871069890890720, guid: 6d83b1a01b960c549b642a6b9be0dea2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272283264521392619, guid: 6d83b1a01b960c549b642a6b9be0dea2, type: 3}
       propertyPath: m_Name
@@ -2657,9 +2661,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -3830,7 +3838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &520599878
 Light:
   m_ObjectHideFlags: 0
@@ -4267,9 +4275,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -6927,7 +6939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -7344,7 +7356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &753604420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7383,7 +7395,7 @@ Light:
   m_InnerSpotAngle: 47.17163
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -7506,9 +7518,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -9356,9 +9372,13 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8448777660460487856, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -10101,7 +10121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1050981458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10338,7 +10358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1076252236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14056,9 +14076,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -14303,6 +14327,10 @@ PrefabInstance:
     - target: {fileID: 3614624654093042572, guid: 3b226dfd40887004ca4a32fc883b8780, type: 3}
       propertyPath: m_RenderMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614624654093042572, guid: 3b226dfd40887004ca4a32fc883b8780, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3614624654093042572, guid: 3b226dfd40887004ca4a32fc883b8780, type: 3}
       propertyPath: m_ColorTemperature
@@ -14997,7 +15025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -15595,7 +15623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -16724,10 +16752,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cup Holder (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4031826898864015715, guid: 518c916b2d8153349b872fe255d2cf92, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 10219c9abe5df0d48bcef9a34ff105db, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 518c916b2d8153349b872fe255d2cf92, type: 3}
 --- !u!114 &1607574148 stripped
@@ -17135,7 +17159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -17751,7 +17775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -18117,9 +18141,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -18312,9 +18340,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -18472,7 +18504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -20004,7 +20036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -20344,9 +20376,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -22596,7 +22632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529323864852412211, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7676696832994313031, guid: f25f37c03dd64dd4c92139c4e0446d66, type: 3}
@@ -23191,9 +23227,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792424972070179857, guid: 7867cef034272c642b60635d92890102, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792424972070179863, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472019186035716972, guid: 7867cef034272c642b60635d92890102, type: 3}
       propertyPath: m_Name
@@ -27556,7 +27596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754871069890890720, guid: 6d83b1a01b960c549b642a6b9be0dea2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272283264521392619, guid: 6d83b1a01b960c549b642a6b9be0dea2, type: 3}
       propertyPath: m_Name
@@ -28126,39 +28166,39 @@ PrefabInstance:
       objectReference: {fileID: 508443103}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: deepColor.b
-      value: 0.3330754
+      value: 0.3330776
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: deepColor.g
-      value: 0.3490104
+      value: 0.3490126
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shoreColor.b
-      value: 0.30189657
+      value: 0.30189875
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shallowColor.b
-      value: 0.17932555
+      value: 0.17932764
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shallowColor.g
-      value: 0.24527377
+      value: 0.24527597
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shallowColor.r
-      value: 0.18228936
+      value: 0.18229145
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: surfaceFoamColor2.b
-      value: 0.27352074
+      value: 0.27352294
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: surfaceFoamColor2.g
-      value: 0.27352074
+      value: 0.27352294
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: surfaceFoamColor2.r
-      value: 0.27352074
+      value: 0.27352294
       objectReference: {fileID: 0}
     - target: {fileID: 7538149287068331231, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: m_PolyMesh.m_Mesh
@@ -30082,7 +30122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8319613493524135340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30115,8 +30155,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.9755233, b: 0.88235295, a: 1}
-  m_Intensity: 1
-  m_Range: 1.3914704
+  m_Intensity: 10
+  m_Range: 15
   m_SpotAngle: 86.20738
   m_InnerSpotAngle: 78.00946
   m_CookieSize: 10
@@ -30157,7 +30197,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -30237,7 +30277,7 @@ Light:
   m_InnerSpotAngle: 78.00946
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -30270,7 +30310,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -30327,7 +30367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8319613493729877293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30360,8 +30400,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.9755233, b: 0.88235295, a: 1}
-  m_Intensity: 1
-  m_Range: 1.1366322
+  m_Intensity: 10
+  m_Range: 15
   m_SpotAngle: 86.20738
   m_InnerSpotAngle: 78.00946
   m_CookieSize: 10
@@ -30402,7 +30442,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -30442,7 +30482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8319613494750861168
 Transform:
   m_ObjectHideFlags: 0
@@ -30490,8 +30530,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.9755233, b: 0.88235295, a: 1}
-  m_Intensity: 1
-  m_Range: 1.1541995
+  m_Intensity: 10
+  m_Range: 10
   m_SpotAngle: 86.20738
   m_InnerSpotAngle: 78.00946
   m_CookieSize: 10
@@ -30532,7 +30572,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -30557,7 +30597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &8319613494938131398
 Light:
   m_ObjectHideFlags: 0

@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 4121363116389555695}
   - component: {fileID: 1053242522111103562}
   - component: {fileID: 2988465146937222784}
+  - component: {fileID: 482229674}
   m_Layer: 0
   m_Name: Floor_Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4121363116389555695
 Transform:
@@ -25,9 +26,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3637172677220468565}
-  m_LocalRotation: {x: -0, y: 0.74610204, z: -0, w: 0.6658316}
+  m_LocalRotation: {x: 0, y: 0.74610394, z: 0, w: 0.66582954}
   m_LocalPosition: {x: -4.0019, y: -5.607, z: -0.24935}
   m_LocalScale: {x: 0.75924486, y: 0.75924486, z: 0.75924486}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -81,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &482229674
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3637172677220468565}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.38058734, y: 2.0174744, z: 0.38058734}
+  m_Center: {x: -0.02607111, y: 1.0087372, z: -0.19029367}

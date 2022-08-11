@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &5782060446239669161
 Transform:
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -3.5527137e-15, w: 1}
   m_LocalPosition: {x: 0, y: -0.0374, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6625711149926182596}
   m_RootOrder: 0
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -95,7 +97,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &709132762304942253
 Transform:
@@ -107,6 +109,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6625711149926182596}
   m_RootOrder: 1
@@ -129,7 +132,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &6625711149926182596
 Transform:
@@ -141,6 +144,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.73210907, z: 0, w: 0.68118745}
   m_LocalPosition: {x: -4.4204226, y: -8.779, z: -5.4116125}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5782060446239669161}
   - {fileID: 709132762304942253}
@@ -167,6 +171,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -209,8 +214,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d565a4082b20f24c8a75141080dbf90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  playerInteraction: {fileID: 0}
   spawnTrans: {fileID: 709132762304942253}
   objType: {fileID: 11400000, guid: cccf0c40de2667145b204cf5b7bda58d, type: 2}
   text: {fileID: 5190250818224140079}
@@ -237,6 +246,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6625711149926182596}
     m_Modifications:
+    - target: {fileID: 2597242072528317537, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7109011562341233569, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_text
       value: 10 Sugar Cubes Left
@@ -260,6 +273,10 @@ PrefabInstance:
     - target: {fileID: 7109011562341233569, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_enableAutoSizing
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109011562341233575, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7109011563112581968, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_Pivot.x
@@ -356,6 +373,10 @@ PrefabInstance:
     - target: {fileID: 7109011563112581972, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_Name
       value: Sticky Notes
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109011563112581972, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
