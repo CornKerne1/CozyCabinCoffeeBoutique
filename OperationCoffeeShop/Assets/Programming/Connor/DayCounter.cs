@@ -92,4 +92,12 @@ public class DayCounter : MonoBehaviour
             // ignored
         }
     }
+
+    private void OnDisable()
+    {
+        PlayerInput.FreeCamEvent -= ToggleUI;
+        Bed.NewDay -= NewDay;
+
+
+    }
 }
