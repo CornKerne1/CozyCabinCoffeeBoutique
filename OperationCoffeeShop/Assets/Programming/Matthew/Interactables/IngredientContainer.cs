@@ -263,11 +263,11 @@ public class IngredientContainer : Interactable
         }
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         if (IsPouring()) return;
-        this.pI = playerInteraction;
-        playerInteraction.Carry(gameObject);
+        this.pI = interaction;
+        interaction.Carry(gameObject);
         inHand = true;
         var rot = new Quaternion(Quaternion.identity.x + rotateOffset.x,
             Quaternion.identity.y + rotateOffset.y,
@@ -280,7 +280,7 @@ public class IngredientContainer : Interactable
         inHand = false;
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         rotating = true;
     }

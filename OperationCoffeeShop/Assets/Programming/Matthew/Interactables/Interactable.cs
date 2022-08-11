@@ -30,7 +30,7 @@ public abstract class Interactable : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(!_rB) return;
+        if (!_rB) return;
         if (_rB.velocity.magnitude * 10 > speed)
         {
             speed = _rB.velocity.magnitude * 10f;
@@ -77,10 +77,10 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    public virtual void OnInteract(PlayerInteraction playerInteraction)
+    public virtual void OnInteract(PlayerInteraction interaction)
     {
         if (!isBreakable) return;
-        this.playerInteraction = playerInteraction;
+        this.playerInteraction = interaction;
         this.playerInteraction.Carry(gameObject);
     }
 
@@ -104,10 +104,13 @@ public abstract class Interactable : MonoBehaviour
     private IEnumerator CO_DisableOutline()
     {
         yield return new WaitForSeconds(.01f);
+        var color = _outlineColor;
+        color.a = 0;
+        _outline.OutlineColor = color;
         _outline.enabled = false;
     }
 
-    public virtual void OnAltInteract(PlayerInteraction playerInteraction)
+    public virtual void OnAltInteract(PlayerInteraction interaction)
     {
     }
 
@@ -126,8 +129,9 @@ public abstract class Interactable : MonoBehaviour
 
         foreach (var obj in _breakableRef.GetChildren(transform))
         {
-            obj.GetComponent<Rigidbody>().AddForce(Vector3.up*10f);
+            obj.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f);
         }
+
         gameMode.Surprise(gameObject);
         GetComponent<Collider>().enabled = false;
         GetComponent<Renderer>().enabled = false;
@@ -145,7 +149,7 @@ public abstract class Interactable : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (_isBroken) return;
-        if(collision.gameObject.TryGetComponent<LiquidIngredients>(out _)) return;
+        if (collision.gameObject.TryGetComponent<LiquidIngredients>(out _)) return;
         try
         {
             if (!gameMode)
@@ -161,6 +165,5 @@ public abstract class Interactable : MonoBehaviour
         {
             // ignored
         }
-
     }
 }

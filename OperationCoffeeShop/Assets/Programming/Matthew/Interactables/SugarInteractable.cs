@@ -8,13 +8,13 @@ public class SugarInteractable : Interactable
     private PlayerInteraction pI;
     [SerializeField] private GameObject sugarCube;
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        this.pI = playerInteraction;
-        playerInteraction.Carry(gameObject);
+        this.pI = interaction;
+        interaction.Carry(gameObject);
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         
     }

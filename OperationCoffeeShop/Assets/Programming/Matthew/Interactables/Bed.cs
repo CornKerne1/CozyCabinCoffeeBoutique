@@ -79,15 +79,15 @@ public class Bed : Interactable
         _coTimerRef = null;
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         if (gameMode.gameModeData.currentTime.Hour != 0 &&
             gameMode.gameModeData.currentTime.Hour < gameMode.gameModeData.closingHour) return;
-        _playerInteraction = playerInteraction;
+        _playerInteraction = interaction;
         _playerTrans = gameMode.player.transform;
         gameMode.gameModeData.timeRate = 30 * gameMode.gameModeData.timeRate;
         gameMode.player.GetComponent<Collider>().enabled = false;
-        playerInteraction.playerData.canMove = false;
+        interaction.playerData.canMove = false;
         if (gameMode.gameModeData.currentTime.Hour != 0)
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day + 1;
         else

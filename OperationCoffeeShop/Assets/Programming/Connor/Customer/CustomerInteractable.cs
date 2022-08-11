@@ -106,13 +106,13 @@ public class CustomerInteractable : Interactable
     }
 
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        this._playerInteraction = playerInteraction;
+        this._playerInteraction = interaction;
 
         if (dialogueManager.dialogueIsPlaying || customerAI.stay != true || customerAI.hasOrdered ||
             !canInteract) return;
-        playerInteraction.playerData.inUI = true;
+        interaction.playerData.inUI = true;
         dialogueManager.SetCurrentCustomer(gameObject);
         DialogueManager.GetInstance().EnterDialogueMode(_introConversation);
         if (regularCustomerAtlas != null)
@@ -162,7 +162,7 @@ public class CustomerInteractable : Interactable
         customerAI.customerLines[customerAI.customerLines.Count - 1].MoveLine();
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
     }
 

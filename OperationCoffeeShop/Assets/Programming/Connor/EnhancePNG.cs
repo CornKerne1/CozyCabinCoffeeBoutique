@@ -12,7 +12,7 @@ public class EnhancePNG : Interactable
         base.Start();
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         
     }
