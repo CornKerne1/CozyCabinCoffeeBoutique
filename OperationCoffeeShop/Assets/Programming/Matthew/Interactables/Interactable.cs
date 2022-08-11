@@ -30,9 +30,6 @@ public abstract class Interactable : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!isBreakable)
-
-            return;
         if (_rB.velocity.magnitude * 10 > speed)
         {
             speed = _rB.velocity.magnitude * 10f;
