@@ -1256,6 +1256,31 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_Nostalgia" ID="{8ED3F9B1-3B8F-4F84-81BD-18CC2C48069B}">
+					<ChildrenList>
+						<Action Name="" ID="{C18A287F-12CB-4024-A528-1DDB92BA8121}" ShortID="229728884">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Nostalgia" ID="{94BB9881-40D3-47FD-8E27-47022785EB6A}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Nostalgia" ID="{6F033B34-1EA8-4867-8E06-CD4DA1B72722}">
+					<ChildrenList>
+						<Action Name="" ID="{E227A26E-9558-42F0-BD62-D5986B3FB301}" ShortID="613907156">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Nostalgia" ID="{94BB9881-40D3-47FD-8E27-47022785EB6A}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
