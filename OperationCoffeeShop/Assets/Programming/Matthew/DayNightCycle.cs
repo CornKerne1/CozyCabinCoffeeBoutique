@@ -51,7 +51,6 @@ public class DayNightCycle
         }
         else if (_gameModeData.currentTime.Hour != 0 && !_gameModeData.sleeping)
         {
-            _gameModeData.timeRate = _startTimeRate;
             TrackTime();
         }
     }

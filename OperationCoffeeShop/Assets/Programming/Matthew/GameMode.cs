@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class GameMode : MonoBehaviour
 {
     //This class keeps track of the game
-
+    [SerializeField] private float defaultTimeRate;
     [SerializeField] public Transform player;
     [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
     [SerializeField] public GameObject playerPref;
@@ -40,6 +40,8 @@ public class GameMode : MonoBehaviour
     {
         playerData = player.GetComponent<PlayerInteraction>().playerData;
         playerData.moveSpeed = playerData.closeSpeed;
+        gameModeData.timeRate = defaultTimeRate;
+
     }
 
     private void Awake()
@@ -100,7 +102,7 @@ public class GameMode : MonoBehaviour
 
     public void OpenShop()
     {
-        if (gameModeData.currentTime.Hour >= 18 || gameModeData.currentTime.Hour <= 5) return;
+        if (gameModeData.currentTime.Hour is >= 18 or <= 5) return;
         gameModeData.isOpen = true;
         gate.OpenGate();
         playerData.moveSpeed = playerData.openSpeed;
@@ -142,4 +144,6 @@ public class GameMode : MonoBehaviour
         Debug.Log("suprise!!!");
         SurpriseCustomers?.Invoke(breakableSource, EventArgs.Empty);
     }
+
+   
 }
