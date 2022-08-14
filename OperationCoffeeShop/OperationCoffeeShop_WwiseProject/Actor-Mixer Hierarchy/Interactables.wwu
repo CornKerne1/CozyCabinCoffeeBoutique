@@ -463,6 +463,29 @@
 								<ActiveSource Name="RedPandaTheme" ID="{223BFC34-B8D9-47ED-9E23-30F64D75A351}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Nostalgia" ID="{94BB9881-40D3-47FD-8E27-47022785EB6A}" ShortID="844302629">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Nostalgia" ID="{9B07B058-04BB-4697-B33B-DC6117315394}">
+									<Language>SFX</Language>
+									<AudioFile>Nostalgia.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="702921066"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Nostalgia" ID="{9B07B058-04BB-4697-B33B-DC6117315394}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
