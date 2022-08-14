@@ -17,6 +17,7 @@ public class PhysicalIngredient : Interactable
     {
         base.Start();
         gameObject.tag = "PickUp";
+        playerInteraction = gameMode.player.GetComponent<PlayerInteraction>();
     }
 
 

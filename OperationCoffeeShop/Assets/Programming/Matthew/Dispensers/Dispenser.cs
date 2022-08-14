@@ -23,7 +23,9 @@ public class Dispenser : Interactable
         ComputerShop.DepositItems += AddItems;
         _pool = new ObjectPool<PhysicalIngredient>(
             () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
-            physicalIngredient => { physicalIngredient.gameObject.SetActive(true); },
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(true);
+                physicalIngredient.dispenser = this;
+            },
             physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         if (bottomless) return;
         try
