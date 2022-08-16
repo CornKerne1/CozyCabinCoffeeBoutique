@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2266841952458475029}
   - component: {fileID: 4076188633481966303}
   - component: {fileID: 1225420483960316206}
-  - component: {fileID: 2967919005567082238}
   m_Layer: 0
   m_Name: Flowers_Grass_A
   m_TagString: Untagged
@@ -30,7 +29,6 @@ Transform:
   m_LocalRotation: {x: -6.123234e-17, y: 6.123234e-17, z: -6.123234e-17, w: 1}
   m_LocalPosition: {x: 4.032746, y: -11.8796425, z: 26.856192}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,7 +52,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -98,22 +95,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matSlot: 0
---- !u!205 &2967919005567082238
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2562965482810561290}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 3.277028, z: 0.08001709}
-  m_Size: 10
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.02
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 4076188633481966303}
-  m_Enabled: 1
