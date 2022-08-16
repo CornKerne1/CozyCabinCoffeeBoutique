@@ -12,7 +12,7 @@ public class Piano : Interactable
     {
         animator = gameObject.GetComponent<Animator>();
     }
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         if (!GameMode.IsEventPlayingOnGameObject("Play_Piano", this.gameObject))
         {

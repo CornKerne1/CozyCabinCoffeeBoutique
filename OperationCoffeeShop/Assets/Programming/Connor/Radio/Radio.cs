@@ -61,7 +61,7 @@ public class Radio : Interactable
     }
 
 
-    public override void OnAltInteract(PlayerInteraction pInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         currentChannel += 1;
         if (currentChannel > radioChannels.Count || currentChannel < 0)

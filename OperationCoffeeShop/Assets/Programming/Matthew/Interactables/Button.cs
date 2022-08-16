@@ -13,7 +13,7 @@ public class Button : Interactable
     [FormerlySerializedAs("ButtonAnimator")]
     public Animator buttonAnimator;
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         buttonAnimator.SetTrigger("Press");
         if (!gameMode.gameModeData.isOpen)
@@ -27,7 +27,7 @@ public class Button : Interactable
         }
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
     }
 }

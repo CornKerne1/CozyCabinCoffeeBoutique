@@ -46,9 +46,9 @@ public class Dispenser : Interactable
         _pool.Release(physicalIngredient);
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        if (playerInteraction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
+        if (interaction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
         var ingredient = _pool.Get().transform;
@@ -57,16 +57,16 @@ public class Dispenser : Interactable
         transform1.rotation = spawnTrans.rotation;
         if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
-            physicalIngredient.playerInteraction = playerInteraction;
+            physicalIngredient.playerInteraction = interaction;
             physicalIngredient.dispenser = this;
         }
         else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
-            ingredientContainer.pI = playerInteraction;
+            ingredientContainer.pI = interaction;
             ingredientContainer.inHand = true;
         }
 
-        playerInteraction.Carry(ingredient.gameObject);
+        interaction.Carry(ingredient.gameObject);
         IfTutorial();
     }
 

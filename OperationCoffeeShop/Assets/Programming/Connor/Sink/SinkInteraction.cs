@@ -9,7 +9,7 @@ public class SinkInteraction : MachineInteraction
     private static readonly int ColdOpen = Animator.StringToHash("Cold Open");
 
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         var sink = (Sink)Machine;
         if (hotWater)

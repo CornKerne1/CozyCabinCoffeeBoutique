@@ -9,7 +9,7 @@ public class GrinderInteraction : MachineInteraction
     [SerializeField,Header("Tutorial Only")]    
     public GameObject objectiveOutputObject;
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
 
         animator.SetTrigger("Press");

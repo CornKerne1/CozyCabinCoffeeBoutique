@@ -11,7 +11,7 @@ public class ComputerShopInteractable : Interactable
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         if (_shopRef)
         {
