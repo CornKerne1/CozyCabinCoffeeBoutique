@@ -7,13 +7,13 @@ public class RandomInteractable : Interactable
     // Start is called before the first frame update
 
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        base.playerInteraction = playerInteraction;
-        playerInteraction.Carry(gameObject);
+        base.playerInteraction = interaction;
+        interaction.Carry(gameObject);
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
     }
 }

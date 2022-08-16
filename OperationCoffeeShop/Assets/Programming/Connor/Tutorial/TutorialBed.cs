@@ -9,7 +9,7 @@ public class TutorialBed : Interactable
 
     [SerializeField] private bool loadingNextScene;
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         
         if (gameMode.objectives.objectives.Count - 1 != gameMode.objectives.currentObjective) return;

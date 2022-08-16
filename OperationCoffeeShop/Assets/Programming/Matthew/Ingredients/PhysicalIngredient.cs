@@ -17,13 +17,14 @@ public class PhysicalIngredient : Interactable
     {
         base.Start();
         gameObject.tag = "PickUp";
+        playerInteraction = gameMode.player.GetComponent<PlayerInteraction>();
     }
 
 
-    public override void OnInteract(PlayerInteraction pInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         IfTutorial();
-        base.playerInteraction = pInteraction;
+        base.playerInteraction = interaction;
         base.playerInteraction.Carry(gameObject);
         inHand = true;
     }

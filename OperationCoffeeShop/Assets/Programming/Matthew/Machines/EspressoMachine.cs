@@ -38,15 +38,14 @@ public class EspressoMachine : Machine
     {
         var physicalIngredient = other.GetComponent<PhysicalIngredient>();
 
-        switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
+        switch (physicalIngredient.thisIngredient)
         {
             case Ingredients.EspressoBeans:
 
                 currentCapacity = currentCapacity + 1;
                 machineData.outputIngredient.Add(iD.espresso);
                 other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                other.GetComponent<PhysicalIngredient>().playerInteraction.DropCurrentObj();
-                physicalIngredient.machine.ReleasePoolObject(other.transform.root.gameObject);
+                physicalIngredient.dispenser.ReleasePoolObject(physicalIngredient);
                 break;
             case Ingredients.Milk:
             case Ingredients.SteamedMilk:

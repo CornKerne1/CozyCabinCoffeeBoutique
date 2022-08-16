@@ -19,7 +19,7 @@ public class PlayCube : MachineInteraction
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         StartCoroutine(CO_Interact());
     }

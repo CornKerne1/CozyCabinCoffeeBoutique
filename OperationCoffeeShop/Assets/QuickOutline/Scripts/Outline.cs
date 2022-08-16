@@ -113,6 +113,7 @@ public class Outline : MonoBehaviour
                 materials.Add(outlineMaskMaterial);
             if (!materials.Contains(outlineFillMaterial))
                 materials.Add(outlineFillMaterial);
+            materials[materials.IndexOf(outlineMaskMaterial)].SetFloat("_ZTest", 8);
 
             renderer.materials = materials.ToArray();
         }
@@ -154,10 +155,20 @@ public class Outline : MonoBehaviour
             // Remove outline shaders
             var materials = renderer.sharedMaterials.ToList();
 
-            materials.Remove(outlineMaskMaterial);
-            materials.Remove(outlineFillMaterial);
+            materials[materials.IndexOf(outlineMaskMaterial)].SetFloat("_ZTest", 1);
+            //materials.Remove(outlineMaskMaterial);
+            //materials.Remove(outlineFillMaterial);
 
             renderer.materials = materials.ToArray();
+            OnValidate();
+            if (needsUpdate)
+            {
+                needsUpdate = false;
+
+                UpdateMaterialProperties();
+                materials[materials.IndexOf(outlineMaskMaterial)].SetFloat("_ZTest", 1);
+                
+            }
         }
     }
 
