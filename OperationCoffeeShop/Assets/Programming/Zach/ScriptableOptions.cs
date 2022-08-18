@@ -20,11 +20,4 @@ public class ScriptableOptions : ScriptableObject
         if (sfxVol == 0)
             sfxVol = .4f;
     }
-
-    public void InitializeAudio()
-    {
-        AkSoundEngine.SetRTPCValue("MasterVolume", masterVol);
-        AkSoundEngine.SetRTPCValue("MasterVolume", musicVol);
-        AkSoundEngine.SetRTPCValue("MasterVolume", sfxVol);
-    }
 }
