@@ -86,14 +86,12 @@ public class GameMode : MonoBehaviour
 
     private void IfTutorial()
     {
-        if (gameModeData.inTutorial)
+        if (!gameModeData.inTutorial) return;
+        AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
+        Tutorial = new Tutorial(Tutorial, this, gameModeData)
         {
-            AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
-            Tutorial = new Tutorial(Tutorial, this, gameModeData)
-            {
-                Objectives = objectives
-            };
-        }
+            Objectives = objectives
+        };
     }
 
     public void DeactivateAndDestroy(GameObject obj)
