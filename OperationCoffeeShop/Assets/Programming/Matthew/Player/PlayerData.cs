@@ -18,7 +18,6 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float mouseSensitivityX;
     [Range(0, 100)]
     [SerializeField] public float mouseSensitivityY;
-    [SerializeField] public float mouseSensitivity = .75f;
     [SerializeField] public float neckClamp = 77.3f;
     [SerializeField] public LayerMask groundMask;
     [SerializeField] public float closeSpeed;
@@ -51,6 +50,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float smooth;
     [SerializeField] public bool inUI = false;
     
+    [Header("Menus")]
+    public float mouseSensitivityOptions;
+    
     private void OnEnable()
     {
         busyHands = false;
@@ -58,5 +60,7 @@ public class PlayerData : ScriptableObject
         neckClamp = 77.3f;
         inUI = false;
         canMove = true;
+        if (mouseSensitivityOptions == 0)
+            mouseSensitivityOptions = .5f;
     }
 }

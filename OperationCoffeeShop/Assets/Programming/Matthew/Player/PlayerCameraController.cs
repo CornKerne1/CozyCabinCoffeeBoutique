@@ -42,13 +42,13 @@ public class PlayerCameraController : MonoBehaviour
     {
 
         _xRotation -= _playerInput.GetMouseY() *
-                      (_playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityY / 400);
+                      (_playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityY / 400);
         _xRotation = Mathf.Clamp(_xRotation, -_playerInput.pD.neckClamp, _playerInput.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = _xRotation;
         _cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
         transform.root.Rotate(Vector3.up,
-            _playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
+            _playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
             Time.deltaTime);
     }
 
@@ -56,7 +56,7 @@ public class PlayerCameraController : MonoBehaviour
     private void CalculateDirection()
     {
         _xRotation -= _playerInput.GetMouseY() *
-                      (_playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityY / 400);
+                      (_playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityY / 400);
         _xRotation = Mathf.Clamp(_xRotation, -_playerInput.pD.neckClamp, _playerInput.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = _xRotation;
@@ -66,7 +66,7 @@ public class PlayerCameraController : MonoBehaviour
     private void PerformMovement()
     {
         transform.root.Rotate(Vector3.up,
-            _playerInput.pD.mouseSensitivity * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
+            _playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
             Time.deltaTime);
     }
 }
