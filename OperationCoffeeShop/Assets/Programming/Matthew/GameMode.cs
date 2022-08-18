@@ -10,6 +10,7 @@ public class GameMode : MonoBehaviour
     [SerializeField] public Transform player;
     [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
     [SerializeField] public GameObject playerPref;
+    [SerializeField] public ScriptableOptions scriptableOptions;
 
     [SerializeField] private Gate gate;
 
@@ -80,6 +81,7 @@ public class GameMode : MonoBehaviour
         gameModeData.startTime =
             new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
         gameModeData.currentTime = gameModeData.startTime;
+        scriptableOptions.InitializeAudio();
     }
 
     private void IfTutorial()
