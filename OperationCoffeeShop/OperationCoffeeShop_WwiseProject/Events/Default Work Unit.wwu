@@ -1382,6 +1382,45 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_SynthWaveSong" ID="{700521DB-9751-4DE7-8BC4-F3A81982BAB4}">
+					<ChildrenList>
+						<Action Name="" ID="{9465F5DF-6CEC-4B96-BE2C-2137E9A19DA2}" ShortID="455473897">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SynthWaveSong" ID="{5AA5E042-8660-4F3A-BDDD-410E9AF73DC7}" WorkUnitID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_SynthWaveSong" ID="{8E133D5F-2834-4B68-B6CA-2EEE173ADF56}">
+					<ChildrenList>
+						<Action Name="" ID="{FE60E1CD-261A-41AF-9F26-6E88B458BF63}" ShortID="600719523">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SynthWaveSong" ID="{5AA5E042-8660-4F3A-BDDD-410E9AF73DC7}" WorkUnitID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Pause_SynthWaveSong" ID="{5D16B5B3-9461-4044-8AAA-16EF75E082C7}">
+					<ChildrenList>
+						<Action Name="" ID="{F09E025E-1507-4403-8434-75B663050340}" ShortID="931972210">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="7"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SynthWaveSong" ID="{5AA5E042-8660-4F3A-BDDD-410E9AF73DC7}" WorkUnitID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
