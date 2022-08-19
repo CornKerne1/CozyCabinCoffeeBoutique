@@ -1306,6 +1306,31 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_Helicopter" ID="{E188F08C-B487-4D71-B24B-D59A3A034537}">
+					<ChildrenList>
+						<Action Name="" ID="{9836E5DD-52CD-4297-B2D4-2BB8A4F3A537}" ShortID="916961291">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Helicopter" ID="{4CC8A2A5-6944-4F6F-9421-03B0B9FE12E4}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Helicopter" ID="{E7CDCBCA-719B-4AD2-AFB9-6597DF8FE636}">
+					<ChildrenList>
+						<Action Name="" ID="{15177022-3302-4225-9E3C-0F02DFC46A59}" ShortID="290930401">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Helicopter" ID="{4CC8A2A5-6944-4F6F-9421-03B0B9FE12E4}" WorkUnitID="{3EEA16E6-CB9D-4DD9-B112-77425419DB1E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
