@@ -1005,6 +1005,29 @@
 								<ActiveSource Name="TvStatic" ID="{0785EB6F-28D8-4273-A6B6-8CE7204CA3AD}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="PlayCubeStartup" ID="{1BD2E385-C317-4D5C-8D4B-40A05F83145D}" ShortID="1000894285">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PlayCubeStartup" ID="{85285373-E7C4-4CA3-B26E-20CDAFC61890}">
+									<Language>SFX</Language>
+									<AudioFile>PlayCubeStartup.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="457717867"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PlayCubeStartup" ID="{85285373-E7C4-4CA3-B26E-20CDAFC61890}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
