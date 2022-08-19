@@ -964,6 +964,50 @@
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
+				<ActorMixer Name="TV" ID="{4D8E4D87-BF5C-4D8F-8991-9CEE2BD8FA9F}" ShortID="1010462962">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="TvStatic" ID="{7BA600B7-F4EB-4D7E-BF26-AF322E9F1FB8}" ShortID="534209250">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>27</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TvStatic" ID="{0785EB6F-28D8-4273-A6B6-8CE7204CA3AD}">
+									<Language>SFX</Language>
+									<AudioFile>TvStatic.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="454672396"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="TvStatic" ID="{0785EB6F-28D8-4273-A6B6-8CE7204CA3AD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

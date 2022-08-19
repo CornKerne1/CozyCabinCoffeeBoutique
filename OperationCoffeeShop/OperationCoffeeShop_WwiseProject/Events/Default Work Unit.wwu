@@ -1281,6 +1281,31 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_TvStatic" ID="{BADD0DD8-71A2-469A-9A3C-49697529CFFB}">
+					<ChildrenList>
+						<Action Name="" ID="{73E56B3F-954B-4228-B001-6E496C177DAA}" ShortID="609257378">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TvStatic" ID="{7BA600B7-F4EB-4D7E-BF26-AF322E9F1FB8}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_TvStatic" ID="{DDEBC0FE-C30B-4F43-8D4F-D43EA6044554}">
+					<ChildrenList>
+						<Action Name="" ID="{2425703C-B70A-49C4-9777-9DB849F50B44}" ShortID="410729386">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TvStatic" ID="{7BA600B7-F4EB-4D7E-BF26-AF322E9F1FB8}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
