@@ -1343,6 +1343,45 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_GrandTheft_Machiato" ID="{E355E187-6816-4DE3-A870-C5767E97B7A9}">
+					<ChildrenList>
+						<Action Name="" ID="{3BF31989-3DAC-45A5-AB08-EBA6AE9DA8CE}" ShortID="145373675">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="GrandTheft Machiato" ID="{EF23100F-41D8-46DB-818C-C43E4A67A81C}" WorkUnitID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_GrandTheft_Machiato" ID="{A5975B4F-309B-43CE-A0F3-C8C83799F4CC}">
+					<ChildrenList>
+						<Action Name="" ID="{AF7E27C5-6775-43A7-B08C-FE9CB03A7D31}" ShortID="121627894">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="GrandTheft Machiato" ID="{EF23100F-41D8-46DB-818C-C43E4A67A81C}" WorkUnitID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Pause_GrandTheft_Machiato" ID="{0C54AD55-A09A-472D-9A3C-BB1185D42A03}">
+					<ChildrenList>
+						<Action Name="" ID="{4A97F98C-CD8B-4569-9E69-1AF75E34693C}" ShortID="152573463">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="7"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="GrandTheft Machiato" ID="{EF23100F-41D8-46DB-818C-C43E4A67A81C}" WorkUnitID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
