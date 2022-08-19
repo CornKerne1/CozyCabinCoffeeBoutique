@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,8 +19,11 @@ public class PlayCube : MachineInteraction
     [FormerlySerializedAs("_tvRenderer")] [SerializeField]
     private Renderer tvRenderer;
 
-    [FormerlySerializedAs("_screenSaverTexture")] [SerializeField]private Texture screenSaverTexture;
+    [FormerlySerializedAs("_screenSaverTexture")] [SerializeField]
+    private Texture screenSaverTexture;
+
     public Texture gameTexture;
+    private static readonly int Emission = Shader.PropertyToID("_emission");
 
     public override void Start()
     {
@@ -48,11 +49,11 @@ public class PlayCube : MachineInteraction
 
         if (!playCubeAnimator.GetBool(Open) && hasDisk)
         {
-            tvRenderer.material.SetTexture("_EmissionMap", gameTexture);
+            tvRenderer.material.SetTexture(Emission, gameTexture);
         }
         else
         {
-            tvRenderer.material.SetTexture("_EmissionMap", screenSaverTexture);
+            tvRenderer.material.SetTexture(Emission, screenSaverTexture);
         }
 
         yield return null;
