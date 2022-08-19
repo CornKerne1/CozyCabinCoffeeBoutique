@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameMode.playerData.canMove || GetCurrentCustomer() != this.gameObject ||
+        if (gameMode.playerData.canMove || GetCurrentCustomer() != gameObject ||
             !dialogueIsPlaying) return;
         gameMode.playerData.neckClamp = 0;
         var c = _camera.transform;
