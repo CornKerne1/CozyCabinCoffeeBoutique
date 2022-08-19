@@ -81,7 +81,9 @@ public class GameMode : MonoBehaviour
         gameModeData.startTime =
             new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
         gameModeData.currentTime = gameModeData.startTime;
-        scriptableOptions.InitializeAudio();
+        AkSoundEngine.SetRTPCValue("MasterVolume", scriptableOptions.masterVol);
+        AkSoundEngine.SetRTPCValue("MusicVolume", scriptableOptions.musicVol);
+        AkSoundEngine.SetRTPCValue("SFXVolume", scriptableOptions.masterVol);
     }
 
     private void IfTutorial()
