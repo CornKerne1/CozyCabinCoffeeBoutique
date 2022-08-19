@@ -26,6 +26,8 @@ public class PlayCube : MachineInteraction
     private static readonly int Emission = Shader.PropertyToID("_emission");
     private static readonly int Noise = Shader.PropertyToID("_Noise");
 
+    private DiskInteractable _diskInteractable;
+
     public override void Start()
     {
         base.Start();
@@ -51,23 +53,31 @@ public class PlayCube : MachineInteraction
         if (!playCubeAnimator.GetBool(Open) && hasDisk)
         {
             tvRenderer.material.SetTexture(Emission, gameTexture);
-            tvRenderer.material.SetFloat(Noise, 400 );
-
+            tvRenderer.material.SetFloat(Noise, 400);
+            _diskInteractable.PlayMusic();
         }
         else
         {
+            if (hasDisk)
+            {
+                _diskInteractable.StopMusic();
+                _diskInteractable = null;
+            }
+
             tvRenderer.material.SetTexture(Emission, screenSaverTexture);
-            tvRenderer.material.SetFloat(Noise, 200 );
+            tvRenderer.material.SetFloat(Noise, 200);
         }
 
         yield return null;
     }
 
-    public void DiskInteract(GameObject disk)
+    public void DiskInteract(DiskInteractable disk)
     {
+        _diskInteractable = disk;
         hasDisk = true;
-        disk.transform.position = gameDisk.transform.position;
-        disk.transform.rotation = gameDisk.transform.rotation;
-        disk.GetComponent<Rigidbody>().isKinematic = true;
+        var o = disk.gameObject;
+        o.transform.position = gameDisk.transform.position;
+        o.transform.rotation = gameDisk.transform.rotation;
+        o.GetComponent<Rigidbody>().isKinematic = true;
     }
 }

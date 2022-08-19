@@ -9,7 +9,15 @@ public class DiskInteractable : RandomInteractable
 
     private Rigidbody _rigidbody;
 
-    [FormerlySerializedAs("_tvEmissionTexture")] [SerializeField]private Texture tvEmissionTexture;
+    [FormerlySerializedAs("_tvEmissionTexture")] [SerializeField]
+    private Texture tvEmissionTexture;
+
+    [FormerlySerializedAs("wwiseMusicCall")] [SerializeField]
+    private string wwiseMusicPlay;
+
+    [SerializeField] private string wwiseMusicStop;
+    [SerializeField] private string wwiseMusicPause;
+    private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
     public override void Start()
     {
@@ -38,9 +46,9 @@ public class DiskInteractable : RandomInteractable
         {
             playCube = other.GetComponentInParent<PlayCube>();
 
-            if (!playCube.hasDisk && playCube.playCubeAnimator.GetBool("isOpen"))
+            if (!playCube.hasDisk && playCube.playCubeAnimator.GetBool(IsOpen))
             {
-                playCube.DiskInteract(gameObject);
+                playCube.DiskInteract(this);
                 playCube.gameTexture = tvEmissionTexture;
                 playerInteraction.DropCurrentObj();
             }
@@ -55,5 +63,26 @@ public class DiskInteractable : RandomInteractable
         {
             //ignore
         }
+    }
+
+    public void PlayMusic()
+    {
+        if (wwiseMusicPlay.Equals("")) return;
+
+        AkSoundEngine.PostEvent(wwiseMusicPlay, gameObject);
+    }
+
+    public void StopMusic()
+    {
+        if (wwiseMusicStop.Equals("")) return;
+
+        AkSoundEngine.PostEvent(wwiseMusicStop, gameObject);
+    }
+
+    public void PauseMusic()
+    {
+        if (wwiseMusicPause.Equals("")) return;
+
+        AkSoundEngine.PostEvent(wwiseMusicPause, gameObject);
     }
 }
