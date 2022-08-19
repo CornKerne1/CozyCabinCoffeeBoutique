@@ -24,6 +24,7 @@ public class PlayCube : MachineInteraction
 
     public Texture gameTexture;
     private static readonly int Emission = Shader.PropertyToID("_emission");
+    private static readonly int Noise = Shader.PropertyToID("_Noise");
 
     public override void Start()
     {
@@ -50,10 +51,13 @@ public class PlayCube : MachineInteraction
         if (!playCubeAnimator.GetBool(Open) && hasDisk)
         {
             tvRenderer.material.SetTexture(Emission, gameTexture);
+            tvRenderer.material.SetFloat(Noise, 400 );
+
         }
         else
         {
             tvRenderer.material.SetTexture(Emission, screenSaverTexture);
+            tvRenderer.material.SetFloat(Noise, 200 );
         }
 
         yield return null;
