@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PAUSE_GRANDTHEFT_MACHIATO = 2630402114U;
+        static const AkUniqueID PAUSE_SYNTHWAVESONG = 4139861594U;
         static const AkUniqueID PLAY_AFTERHOURS = 4061997089U;
         static const AkUniqueID PLAY_BEEFRAMESLIDE = 3692656996U;
         static const AkUniqueID PLAY_BEES = 2063165417U;
@@ -74,6 +75,7 @@ namespace AK
         static const AkUniqueID PLAY_SOMEDAYWAKEUP = 43930435U;
         static const AkUniqueID PLAY_SPASHEDSEA = 4221615279U;
         static const AkUniqueID PLAY_SURPRISE = 3361877211U;
+        static const AkUniqueID PLAY_SYNTHWAVESONG = 1092545136U;
         static const AkUniqueID PLAY_TAKINGSHAPE = 3915894401U;
         static const AkUniqueID PLAY_TAPONGLASS = 1122006298U;
         static const AkUniqueID PLAY_TASKCOMPLETE = 338641160U;
@@ -100,6 +102,7 @@ namespace AK
         static const AkUniqueID STOP_LOOPPOUR = 4059860068U;
         static const AkUniqueID STOP_MACHINEBUZZING = 3762348028U;
         static const AkUniqueID STOP_NOSTALGIA = 2667958284U;
+        static const AkUniqueID STOP_SYNTHWAVESONG = 1839160882U;
         static const AkUniqueID STOP_TITLETHEME = 1450757357U;
         static const AkUniqueID STOP_TVSTATIC = 4243093612U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;

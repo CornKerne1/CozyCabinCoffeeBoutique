@@ -16,12 +16,13 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="2223952376">
+		<SoundBank Id="3161908922" Language="SFX" Hash="185792866">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
 				<Event Id="2630402114" Name="Pause_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Pause_GrandTheft_Machiato" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4139861594" Name="Pause_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Pause_SynthWaveSong" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4061997089" Name="Play_AfterHours" ObjectPath="\Events\Default Work Unit\Play_AfterHours" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="752191520" Language="SFX">
@@ -503,6 +504,18 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1092545136" Name="Play_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Play_SynthWaveSong" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="273705753" Language="SFX">
+							<ShortName>GTMSynthLoop.wav</ShortName>
+							<Path>SFX\GTMSynthLoop_D79FB2B7.wem</Path>
+						</File>
+						<File Id="908209051" Language="SFX">
+							<ShortName>GTMSynthIntro.wav</ShortName>
+							<Path>SFX\GTMSynthIntro_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3915894401" Name="Play_TakingShape" ObjectPath="\Events\Default Work Unit\Play_TakingShape" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="636649444" Language="SFX">
@@ -634,6 +647,7 @@
 				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3762348028" Name="Stop_MachineBuzzing" ObjectPath="\Events\Default Work Unit\Stop_MachineBuzzing" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2667958284" Name="Stop_Nostalgia" ObjectPath="\Events\Default Work Unit\Stop_Nostalgia" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1839160882" Name="Stop_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Stop_SynthWaveSong" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1450757357" Name="Stop_TitleTheme" ObjectPath="\Events\Default Work Unit\Stop_TitleTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4243093612" Name="Stop_TvStatic" ObjectPath="\Events\Default Work Unit\Stop_TvStatic" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
