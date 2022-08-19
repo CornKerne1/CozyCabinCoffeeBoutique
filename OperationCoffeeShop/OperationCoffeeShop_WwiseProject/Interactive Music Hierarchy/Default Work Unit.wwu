@@ -4,7 +4,19 @@
 		<WorkUnit Name="Default Work Unit" ID="{B2A70D68-85E6-4B2B-8296-5F0E24551F27}" PersistMode="Standalone">
 			<ChildrenList>
 				<MusicPlaylistContainer Name="GrandTheft Machiato" ID="{EF23100F-41D8-46DB-818C-C43E4A67A81C}" ShortID="885042619">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="50"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-10</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="TV attenuation" ID="{50E569D4-8394-4024-AC23-E555296C1EA9}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+						</Reference>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
 						</Reference>

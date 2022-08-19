@@ -32,6 +32,8 @@ public class PlayCube : MachineInteraction
     {
         base.Start();
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
+
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -54,6 +56,8 @@ public class PlayCube : MachineInteraction
         {
             tvRenderer.material.SetTexture(Emission, gameTexture);
             tvRenderer.material.SetFloat(Noise, 400);
+            AkSoundEngine.PostEvent("STOP_TVSTATIC", gameObject);
+
             _diskInteractable.PlayMusic();
         }
         else
@@ -61,6 +65,9 @@ public class PlayCube : MachineInteraction
             if (hasDisk)
             {
                 _diskInteractable.StopMusic();
+                AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
+
+                
                 _diskInteractable = null;
             }
 

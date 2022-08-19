@@ -976,14 +976,19 @@
 					<ChildrenList>
 						<Sound Name="TvStatic" ID="{7BA600B7-F4EB-4D7E-BF26-AF322E9F1FB8}" ShortID="534209250">
 							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="2"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>27</Value>
 									</ValueList>
 								</Property>
+								<Property Name="OverridePositioning" Type="bool" Value="True"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="TV attenuation" ID="{50E569D4-8394-4024-AC23-E555296C1EA9}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
 								</Reference>
