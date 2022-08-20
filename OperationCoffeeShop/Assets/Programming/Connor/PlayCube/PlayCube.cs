@@ -33,7 +33,6 @@ public class PlayCube : MachineInteraction
         base.Start();
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
-
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -66,9 +65,6 @@ public class PlayCube : MachineInteraction
             {
                 _diskInteractable.StopMusic();
                 AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
-
-                
-                _diskInteractable = null;
             }
 
             tvRenderer.material.SetTexture(Emission, screenSaverTexture);

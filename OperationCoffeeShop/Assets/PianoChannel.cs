@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PianoChannel : MonoBehaviour
 {
-    public int channel; //
+    public int channel; 
     public string eventName;
     public Piano piano;
 
@@ -11,7 +11,10 @@ public class PianoChannel : MonoBehaviour
         eventName = channel switch
         {
             1 => "Play_Piano",
+
             0 => "Play_AfterHours",
+            2 => "Play_BreakingLoose",
+
             _ => eventName
         };
         PostSoundEvent(eventName);
@@ -24,6 +27,8 @@ public class PianoChannel : MonoBehaviour
         {
             1 => "VolumeOne_Piano",
             0 => "VolumeOne_AfterHours",
+            2 => "VolumeOne_BreakingLoose",
+
             _ => eventName
         };
         PostSoundEvent(eventName);
@@ -35,6 +40,8 @@ public class PianoChannel : MonoBehaviour
         {
             1 => "VolumeZero_Piano",
             0 => "VolumeZero_AfterHours",
+            2 => "VolumeZero_BreakingLoose",
+
             _ => eventName
         };
         PostSoundEvent(eventName);
@@ -42,7 +49,7 @@ public class PianoChannel : MonoBehaviour
 
     private void PostSoundEvent(string s)
     {
-        Debug.Log("piano is playing: " + s);
-        AkSoundEngine.PostEvent(s, gameObject);
+        Debug.Log("piano is playing: " + s + " on gameObject: " + this.gameObject);
+        AkSoundEngine.PostEvent(s, this.gameObject);
     }
 }

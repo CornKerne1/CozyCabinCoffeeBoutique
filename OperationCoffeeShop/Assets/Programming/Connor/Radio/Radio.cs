@@ -17,8 +17,8 @@ public class Radio : Interactable
 
     [SerializeField] private GameObject radioDial;
 
-    [SerializeField] private  int numberOfChannels = 9;
-    
+    [SerializeField] private int numberOfChannels = 9;
+
     public void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, gameObject);
@@ -35,7 +35,7 @@ public class Radio : Interactable
             rC.radio = this;
             rC.transform.SetParent(this.transform);
             radioChannels.Add(rC);
-            rC.channel = radioChannels.Count-1;
+            rC.channel = radioChannels.Count - 1;
         }
 
         foreach (var rC in radioChannels)

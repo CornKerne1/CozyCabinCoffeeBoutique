@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RadioChannel: MonoBehaviour
+public class RadioChannel : MonoBehaviour
 {
     public int channel;
     public string eventName;
     public Radio radio;
+
     public void StartChannel()
     {
         eventName = channel switch
@@ -26,12 +25,12 @@ public class RadioChannel: MonoBehaviour
         PostSoundEvent(eventName);
         StopChannel();
     }
+
     public void PlayChannel()
     {
         eventName = channel switch
         {
-            0 => "VolumeOne_TellingStories" //
-            ,
+            0 => "VolumeOne_TellingStories",
             1 => "VolumeOne_BossaNova",
             2 => "VolumeOne_BreakingLoose",
             3 => "VolumeOne_ExquisiteTaste",
@@ -45,6 +44,7 @@ public class RadioChannel: MonoBehaviour
         };
         PostSoundEvent(eventName);
     }
+
     public void StopChannel()
     {
         eventName = channel switch
@@ -59,13 +59,13 @@ public class RadioChannel: MonoBehaviour
             7 => "VolumeZero_SpashedSea",
             8 => "VolumeZero_TakingShape",
             9 => "VolumeZero_RedPandaTheme",
- 
+
             _ => eventName
         };
         PostSoundEvent(eventName);
     }
 
-    public void PostSoundEvent(string s)
+    private void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, this.gameObject);
     }

@@ -21,7 +21,7 @@ public class Piano : Interactable
 
 
     [FormerlySerializedAs("_numberOfChannels")] [SerializeField]
-    private int numberOfChannels = 2;
+    private int numberOfChannels = 3;
 
     public override void Start()
     {
@@ -30,7 +30,7 @@ public class Piano : Interactable
         for (var i = 0; i < numberOfChannels; i++)
         {
             Transform transform1;
-            var pC = Instantiate(pianoChannel, (transform1 = transform).position, transform1.rotation)
+            PianoChannel pC = Instantiate(pianoChannel, (transform1 = transform).position, transform1.rotation)
                 .GetComponent<PianoChannel>();
             pC.piano = this;
             pC.transform.SetParent(this.transform);
@@ -41,10 +41,10 @@ public class Piano : Interactable
         foreach (var pC in pianoChannels)
         {
             pC.StartChannel();
-          
         }
 
         currentChannel = Random.Range(0, pianoChannels.Count);
+       
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -68,8 +68,6 @@ public class Piano : Interactable
             foreach (var p in pianoChannels)
                 if (p.channel == currentChannel)
                     p.PlayChannel();
-                else
-                    p.StopChannel();
         }
     }
 }
