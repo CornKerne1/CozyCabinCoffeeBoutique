@@ -10,8 +10,8 @@ public class PianoChannel : MonoBehaviour
     {
         eventName = channel switch
         {
-            0 => "Play_Piano",
-            1 => "Play_AfterHours",
+            1 => "Play_Piano",
+            0 => "Play_AfterHours",
             _ => eventName
         };
         PostSoundEvent(eventName);
@@ -22,8 +22,8 @@ public class PianoChannel : MonoBehaviour
     {
         eventName = channel switch
         {
-            0 => "VolumeOne_Piano",
-            1 => "VolumeOne_AfterHours",
+            1 => "VolumeOne_Piano",
+            0 => "VolumeOne_AfterHours",
             _ => eventName
         };
         PostSoundEvent(eventName);
@@ -33,8 +33,8 @@ public class PianoChannel : MonoBehaviour
     {
         eventName = channel switch
         {
-            0 => "VolumeZero_Piano",
-            1 => "VolumeZero_AfterHours",
+            1 => "VolumeZero_Piano",
+            0 => "VolumeZero_AfterHours",
             _ => eventName
         };
         PostSoundEvent(eventName);
@@ -42,6 +42,7 @@ public class PianoChannel : MonoBehaviour
 
     private void PostSoundEvent(string s)
     {
+        Debug.Log("piano is playing: " + s);
         AkSoundEngine.PostEvent(s, gameObject);
     }
 }

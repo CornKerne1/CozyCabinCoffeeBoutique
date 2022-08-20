@@ -41,7 +41,7 @@ public class Piano : Interactable
         foreach (var pC in pianoChannels)
         {
             pC.StartChannel();
-            pC.StopChannel();
+          
         }
 
         currentChannel = Random.Range(0, pianoChannels.Count);
@@ -63,7 +63,7 @@ public class Piano : Interactable
             _on = true;
             _animator.SetBool(On, true);
             currentChannel += 1;
-            if (currentChannel + 1 > pianoChannels.Count || currentChannel < 0)
+            if (currentChannel >= pianoChannels.Count || currentChannel < 0)
                 currentChannel = 0;
             foreach (var p in pianoChannels)
                 if (p.channel == currentChannel)
