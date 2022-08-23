@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
 public class PlayCube : MachineInteraction
@@ -28,11 +30,20 @@ public class PlayCube : MachineInteraction
 
     private DiskInteractable _diskInteractable;
 
+    [SerializeField] private Canvas onScreenPrompt;
+    public string onScreenPromptText;
+    private TextMeshProUGUI varOnScreenPromt;
+    private ObjectPool<Canvas> _poolOfOnScreenPrompt;
+
     public override void Start()
     {
         base.Start();
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
+        _poolOfOnScreenPrompt = new ObjectPool<Canvas>(
+            () => Instantiate(onScreenPrompt, gameObject.transform),
+            prompt => { prompt.gameObject.SetActive(true); },
+            prompt => { prompt.gameObject.SetActive(false); }, Destroy, true, 10, 10);
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -82,5 +93,28 @@ public class PlayCube : MachineInteraction
         o.transform.position = gameDisk.transform.position;
         o.transform.rotation = gameDisk.transform.rotation;
         o.GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public override void OnFocus()
+    {
+        if (!varOnScreenPromt)
+        {
+            varOnScreenPromt = _poolOfOnScreenPrompt.Get().GetComponentInChildren<TextMeshProUGUI>();
+            varOnScreenPromt.text = onScreenPromptText;
+            Debug.Log("focusing on playcube");
+        }
+
+        base.OnFocus();
+    }
+
+    public override void OnLoseFocus()
+    {
+        if (varOnScreenPromt)
+        {
+            _poolOfOnScreenPrompt.Release(varOnScreenPromt.GetComponentInParent<Canvas>());
+            varOnScreenPromt = null;
+        }
+
+        base.OnLoseFocus();
     }
 }
