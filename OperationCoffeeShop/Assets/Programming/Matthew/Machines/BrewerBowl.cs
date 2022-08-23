@@ -1,89 +1,144 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BrewerBowl : MonoBehaviour
 {
-    public bool open = false;
-    private bool run = false;
-    [SerializeField] private Transform OpenTrans;
-    [SerializeField] private Transform CloseTrans;
+    public bool open;
+    private bool _run;
+
+    [FormerlySerializedAs("OpenTrans")] [SerializeField]
+    private Transform openTrans;
+
+    [FormerlySerializedAs("CloseTrans")] [SerializeField]
+    private Transform closeTrans;
+
     [SerializeField] private Transform filterTrans;
     public GameObject filter;
-    private IEnumerator iU;
-    private Machine m;
+    private IEnumerator _ieEnumerator;
+    private Machine _machine;
+    public GameMode gameMode;
+
+    [SerializeField, Header("Tutorial stuff")]
+    public GameObject objectiveOutputObject;
+
+    public GameObject objectiveOutputObject1;
 
     private void Start()
     {
-        iU = ImitateUpdate();
-        m = transform.root.GetComponentInChildren<Machine>();
+        _ieEnumerator = CO_ImitateUpdate();
+        _machine = transform.root.GetComponentInChildren<Machine>();
         filter = filterTrans.gameObject;
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        CheckTutorial();
     }
 
     private void Update()
     {
-        if (run)
+        if (!_run) return;
+        if (_ieEnumerator != null)
         {
-            if (iU != null)
-            {
-                StartCoroutine(ImitateUpdate());
-            }
+            StartCoroutine(CO_ImitateUpdate());
         }
     }
+
+    protected virtual void CheckTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            Debug.Log("Interactable tutorial object: " + gameObject);
+            gameMode.Tutorial.AddedGameObject(gameObject);
+        }
+    }
+
 
     public void OpenOrClose()
     {
-        if (!run)
+        if (!_run)
         {
-            run = true;
+            _run = true;
         }
     }
 
-    public IEnumerator ImitateUpdate()
+    private IEnumerator CO_ImitateUpdate()
     {
         if (open)
         {
-            transform.position = Vector3.MoveTowards(transform.position, CloseTrans.position, Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, CloseTrans.rotation, .1f);
+            Transform transform1;
+            (transform1 = transform).position =
+                Vector3.MoveTowards(transform.position, closeTrans.position, Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform1.rotation, closeTrans.rotation, .1f);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, OpenTrans.position, Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, OpenTrans.rotation, .1f);
+            Transform transform1;
+            (transform1 = transform).position =
+                Vector3.MoveTowards(transform.position, openTrans.position, Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform1.rotation, openTrans.rotation, .1f);
         }
+
         yield return new WaitForSeconds(.02f * 10);
         if (open)
         {
-            if (transform.position == CloseTrans.position)
-            {
-                open = false;
-                run = false;
-            }
+            if (transform.position != closeTrans.position) yield break;
+            open = false;
+
+            IfTutorial(3);
+
+
+            _run = false;
         }
         else
         {
-            if (transform.position == OpenTrans.position)
-            {
-                open = true;
-                run = false;
-            }
+            if (transform.position != openTrans.position) yield break;
+            open = true;
+            IfTutorial(2);
+
+            _run = false;
         }
     }
-    
+
     public void IngredientInteract(GameObject other)
     {
-        if (open && filter.activeSelf)
+        var physicalIngredient = other.GetComponent<PhysicalIngredient>();
+        switch (open)
         {
-            m.IngredientInteract(other);
-        }
-        else if(open && other.GetComponent<PhysicalIngredient>().thisIngredient == Ingredients.CoffeeFilter)
-        {
-            filter.SetActive(true);
-            Destroy(other);
+            case true when filter.activeSelf:
+                _machine.IngredientInteract(other);
+                break;
+            case true when physicalIngredient.thisIngredient == Ingredients.CoffeeFilter:
+                filter.SetActive(true);
+                IfTutorial(1);
+                physicalIngredient.dispenser.ReleasePoolObject(physicalIngredient);
+                break;
         }
     }
 
+    private void IfTutorial(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                if (gameMode.gameModeData.inTutorial)
+                {
+                    gameMode.Tutorial.NextObjective(objectiveOutputObject1);
+                }
 
+                break;
+            case 2:
+                if (gameMode.gameModeData.inTutorial)
+                {
+                    gameMode.Tutorial.NextObjective(gameObject);
+                }
+
+                break;
+            case 3:
+                if (filter.activeSelf && gameMode.gameModeData.inTutorial)
+                {
+                    gameMode.Tutorial.NextObjective(objectiveOutputObject);
+                }
+
+                break;
+        }
+    }
 }

@@ -152,6 +152,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FreeCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""623f3f07-bf02-44b9-9491-3cd64de8c467"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -407,6 +416,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Alt_Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efebcd80-fa03-4f3f-9957-2ed063eac19f"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FreeCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -429,6 +449,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_FPPlayer_MiniGames = m_FPPlayer.FindAction("MiniGames", throwIfNotFound: true);
         m_FPPlayer_Rotate = m_FPPlayer.FindAction("Rotate", throwIfNotFound: true);
         m_FPPlayer_MoveObj = m_FPPlayer.FindAction("MoveObj", throwIfNotFound: true);
+        m_FPPlayer_FreeCam = m_FPPlayer.FindAction("FreeCam", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -502,6 +523,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FPPlayer_MiniGames;
     private readonly InputAction m_FPPlayer_Rotate;
     private readonly InputAction m_FPPlayer_MoveObj;
+    private readonly InputAction m_FPPlayer_FreeCam;
     public struct FPPlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -520,6 +542,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MiniGames => m_Wrapper.m_FPPlayer_MiniGames;
         public InputAction @Rotate => m_Wrapper.m_FPPlayer_Rotate;
         public InputAction @MoveObj => m_Wrapper.m_FPPlayer_MoveObj;
+        public InputAction @FreeCam => m_Wrapper.m_FPPlayer_FreeCam;
         public InputActionMap Get() { return m_Wrapper.m_FPPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -571,6 +594,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MoveObj.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMoveObj;
                 @MoveObj.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMoveObj;
                 @MoveObj.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMoveObj;
+                @FreeCam.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnFreeCam;
+                @FreeCam.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnFreeCam;
+                @FreeCam.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnFreeCam;
             }
             m_Wrapper.m_FPPlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -617,6 +643,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MoveObj.started += instance.OnMoveObj;
                 @MoveObj.performed += instance.OnMoveObj;
                 @MoveObj.canceled += instance.OnMoveObj;
+                @FreeCam.started += instance.OnFreeCam;
+                @FreeCam.performed += instance.OnFreeCam;
+                @FreeCam.canceled += instance.OnFreeCam;
             }
         }
     }
@@ -637,5 +666,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMiniGames(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnMoveObj(InputAction.CallbackContext context);
+        void OnFreeCam(InputAction.CallbackContext context);
     }
 }

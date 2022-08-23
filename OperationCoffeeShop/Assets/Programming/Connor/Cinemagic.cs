@@ -1,13 +1,14 @@
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Serialization;
 
 public class Cinemagic : MonoBehaviour
 {
-    public CinemachineVirtualCamera vcam4;
+    [FormerlySerializedAs("vcam4")] public CinemachineVirtualCamera virtualCamera4;
 
 
     public void HoldCamera4()
     {
-        vcam4.Priority = 500;
+        virtualCamera4.Priority = 500;
     }
 }

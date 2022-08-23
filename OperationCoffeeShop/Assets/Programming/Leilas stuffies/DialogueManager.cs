@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,10 +34,18 @@ public class DialogueManager : MonoBehaviour
     private Story _currentStory;
     private List<string> _currentTags;
 
+
+    private bool _firstMessage = true;
     public bool dialogueIsPlaying;
     public bool finishedConversation;
 
     public GameObject currentCustomer;
+
+    private Camera _camera;
+    public GameMode gameMode;
+    private Transform _oldLook;
+    private GameObject _player;
+    public Transform lookAt;
 
 
     private void Awake()
@@ -56,13 +65,46 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+        _player = gameMode.player.gameObject;
+
+        _camera = Camera.main;
+    }
+
+
+    private void Update()
+    {
+        if (gameMode.playerData.canMove || GetCurrentCustomer() != gameObject ||
+            !dialogueIsPlaying) return;
+        gameMode.playerData.neckClamp = 0;
+        var c = _camera.transform;
+        _oldLook = c;
+        _camera.transform.LookAt(lookAt.position);
+    }
+
+
+    private void FinishedConversation()
+    {
+        Debug.Log("testing my patience");
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        gameMode.playerData.canMove = true;
+        gameMode.playerData.canMove = true;
+        //StartCoroutine(MoveLine());
+        finishedConversation = false;
+        gameMode.playerData.neckClamp = 77.3f;
+        gameMode.playerData.inUI = false;
     }
 
 
     public void EnterDialogueMode(TextAsset inkJson)
     {
+        Debug.Log("ink json" + inkJson);
+        Debug.Log("ink json.text" + inkJson.text);
+
         _currentStory = new Story(inkJson.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
@@ -115,23 +157,30 @@ public class DialogueManager : MonoBehaviour
 
     public void ExitDialogueMode()
     {
+        if (!currentCustomer) return;
         var cAI = currentCustomer.GetComponent<CustomerAI>();
         var cI = cAI.customerData.customerInteractable;
+        cI.canInteract = false;
         if (!cAI.hasOrdered)
         {
             StartCoroutine(cI.MoveLine());
             cI.DisplayOrderBubble();
             cI.DisplayOrderTicket();
         }
+        else StartCoroutine(cI.MoveLine());
 
         finishedConversation = true;
+        FinishedConversation();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        currentCustomer = null;
     }
 
     public void ContinueStory()
     {
+        if (!_firstMessage) AkSoundEngine.PostEvent("PLAY_bubblepop", gameObject);
+        else _firstMessage = false;
         if (_currentStory.canContinue)
         {
             dialogueText.text = _currentStory.Continue();

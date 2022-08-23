@@ -10,7 +10,7 @@ public class LadderTriggerScript : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer.Equals(2))
+        if (other.gameObject.layer.Equals(7))
         {
             owner.GetComponent<Ladder>().canClimb = true;
         }
@@ -19,12 +19,12 @@ public class LadderTriggerScript : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Ladder ladder = owner.GetComponent<Ladder>();
-        if (other.gameObject.layer.Equals(2))
+        if (other.gameObject.layer.Equals(7))
         {
             ladder.canClimb = false;
-            if (ladder.pI !=null &&ladder.pI.pD)
+            if (ladder.pI !=null &&ladder.pI.playerData)
             {
-                ladder.pI.pD.isClimbing = false;
+                ladder.pI.playerData.isClimbing = false;
             }
         }
     }

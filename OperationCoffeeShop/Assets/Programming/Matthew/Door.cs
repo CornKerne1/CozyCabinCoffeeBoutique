@@ -1,66 +1,64 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
     [SerializeField] private GameObject door;
-    private Transform startTrans;
+    private Transform _startTrans;
 
     [SerializeField] private Transform openTrans;
-    
-     [SerializeField] private bool playerDoor;
-    
-    private bool open;
 
-    private bool running;
+    [SerializeField] private bool playerDoor;
 
-    private bool occupied;
-    
-    // Start is called before the first frame update
-    void Start()
+    private bool _open;
+
+    private bool _running;
+
+    private bool _occupied;
+
+    private void Start()
     {
-        startTrans = transform;
+        _startTrans = transform;
     }
 
     public void PlayerOpen()
     {
         if (playerDoor)
         {
-            if (running && open)
+            if (_running && _open)
             {
-                open = false;
+                _open = false;
             }
-            else if (!open)
+            else if (!_open)
             {
-                running = true;
+                _running = true;
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (running)
+        if (_running)
         {
-            if (!open)
+            if (!_open)
             {
-                door.transform.rotation = Quaternion.Lerp(door.transform.rotation, openTrans.rotation, 2.5f * Time.deltaTime);
+                door.transform.rotation =
+                    Quaternion.Lerp(door.transform.rotation, openTrans.rotation, 2.5f * Time.deltaTime);
                 if (door.transform.rotation == openTrans.rotation)
                 {
-                    open = true;
-                    running = false;
+                    _open = true;
+                    _running = false;
                     StartCoroutine(TryClose());
                 }
             }
             else
             {
-                door.transform.rotation = Quaternion.Lerp(door.transform.rotation, startTrans.rotation, 2.5f * Time.deltaTime);
-                if (door.transform.rotation == startTrans.rotation)
+                door.transform.rotation =
+                    Quaternion.Lerp(door.transform.rotation, _startTrans.rotation, 2.5f * Time.deltaTime);
+                if (door.transform.rotation == _startTrans.rotation)
                 {
-                    open = false;
-                    running = false;
+                    _open = false;
+                    _running = false;
                 }
             }
         }
@@ -69,9 +67,9 @@ public class Door : MonoBehaviour
     private IEnumerator TryClose()
     {
         yield return new WaitForSeconds(1f);
-        if (!occupied)
+        if (!_occupied)
         {
-            running = true;
+            _running = true;
         }
         else
         {
@@ -81,43 +79,44 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(playerDoor)
+        if (playerDoor)
         {
-            if (running && open)
+            if (_running && _open)
             {
-                open = false;
+                _open = false;
             }
-            else if (!open)
+            else if (!_open)
             {
-                running = true;
+                _running = true;
             }
         }
-        else if (other.tag == "Customer")
+        else if (other.CompareTag("Customer"))
         {
-            if (running && open)
+            if (_running && _open)
             {
-                open = false;
+                _open = false;
             }
-            else if (!open)
+            else if (!_open)
             {
-                running = true;
+                AkSoundEngine.PostEvent("PLAY_SFX_BELLCHIME", gameObject);
+                _running = true;
             }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Customer")
+        if (other.CompareTag("Customer"))
         {
-            occupied = true;
+            _occupied = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Customer")
+        if (other.CompareTag("Customer"))
         {
-            occupied = false;
-        } 
+            _occupied = false;
+        }
     }
 }

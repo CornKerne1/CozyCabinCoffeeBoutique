@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class GrinderInteraction : MachineInteraction
 {
+    
     public Animator animator;
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    [SerializeField,Header("Tutorial Only")]    
+    public GameObject objectiveOutputObject;
+
+    public override void OnInteract(PlayerInteraction interaction)
     {
 
         animator.SetTrigger("Press");
         StartCoroutine(Grind());
+        IfTutorial();
         
+    }
+
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(objectiveOutputObject);
+        }
     }
     IEnumerator Grind()
     {
@@ -18,18 +31,18 @@ public class GrinderInteraction : MachineInteraction
         switch (mD.machineType)
         {
             case MachineData.Type.Default:
-                if(!machine.isRunning)
-                    machine.PostSoundEvent("Play_GrindingCoffee");
+                if(!Machine.isRunning)
+                    Machine.PostSoundEvent("Play_GrindingCoffee");
                 
-                machine.StartMachine();
+                Machine.StartMachine();
                 break;
             case MachineData.Type.Brewer:
                 var bB = transform.root.GetComponentInChildren<BrewerBowl>();
                 if (bB)
                 {
-                    if (!bB.open && machine.currentCapacity > 0)
+                    if (!bB.open && Machine.currentCapacity > 0)
                     {
-                        machine.StartMachine(); bB.filter.SetActive(false);
+                        Machine.StartMachine(); bB.filter.SetActive(false);
                     }
                     else
                     {

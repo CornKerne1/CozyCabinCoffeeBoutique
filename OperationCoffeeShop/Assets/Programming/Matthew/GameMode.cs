@@ -1,56 +1,67 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using UnityEngine.Serialization;
 
 public class GameMode : MonoBehaviour
 {
     //This class keeps track of the game
+    [SerializeField] private float defaultTimeRate;
+    [SerializeField] public Transform player;
+    [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
+    [SerializeField] public GameObject playerPref;
+    [SerializeField] public ScriptableOptions scriptableOptions;
 
-    [SerializeField]public Transform player;
-    [SerializeField]public PlayerData pD;
-    [SerializeField]public GameObject playerPref;
-    [SerializeField]private Gate gate;
+    [SerializeField] private Gate gate;
+
     //This is the Scriptable Object that contains the data for this class.
-    public GameModeData gMD;
-    //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
-    public DayNightCycle dNC;
-    public static event EventHandler ShopClosed;
+    [FormerlySerializedAs("gMD")] public GameModeData gameModeData;
 
-    private List<GameObject> toBeDestroyed = new List<GameObject>();
-    
+    //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
+    public DayNightCycle DayNightCycle;
+    public static event EventHandler ShopClosed;
+    public static event EventHandler SurpriseCustomers;
+
+
+    private List<GameObject> _toBeDestroyed = new List<GameObject>();
+
 
     [SerializeField] public GameObject sunLight;
 
-    [SerializeField] private GameObject GameOver;
+    [FormerlySerializedAs("GameOver")] [SerializeField]
+    private GameObject gameOver;
 
     static uint[] playingIds = new uint[50];
 
+    [Header("Tutorial Stuffs")] public Tutorial Tutorial;
+    [FormerlySerializedAs("Objectives")] public Objectives objectives;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        pD = player.GetComponent<PlayerInteraction>().pD;
-        pD.moveSpeed = pD.closeSpeed;
+        playerData = player.GetComponent<PlayerInteraction>().playerData;
+        playerData.moveSpeed = playerData.closeSpeed;
+        gameModeData.timeRate = defaultTimeRate;
+
     }
-    
-    void Awake()
+
+    private void Awake()
     {
         //Creates new DayNightCycle component.
-        dNC = new DayNightCycle(dNC, this, gMD);
+        DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
         Initialize();
         //Instantiate(sunLight);
+        IfTutorial();
     }
-    
-    //Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         //Handles the timer when the store is open.
-        dNC.StartTimer();
-        dNC.SleepTimer();
-        dNC.RotateSun();
+        DayNightCycle.StartTimer();
+        DayNightCycle.SleepTimer();
+        DayNightCycle.RotateSun();
     }
+
     public void UpdateReputation(int reputation)
     {
         //gMD.reputation = reputation + gMD.reputation;
@@ -60,57 +71,68 @@ public class GameMode : MonoBehaviour
     //This is the method to call to change the time of day.
     public void UpdateTimeOfDay(int time)
     {
-        dNC.UpdateTimeOfDay(time);
+        DayNightCycle.UpdateTimeOfDay(time);
     }
 
-    public void Initialize()
+    private void Initialize()
     {
         //if save file exists load DateTime from file else set to startTime
-        dNC.Initialize();
-        gMD.startTime = new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
-        gMD.currentTime = gMD.startTime;
+        DayNightCycle.Initialize();
+        gameModeData.startTime =
+            new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
+        gameModeData.currentTime = gameModeData.startTime;
+        AkSoundEngine.SetRTPCValue("MasterVolume", scriptableOptions.masterVol);
+        AkSoundEngine.SetRTPCValue("MusicVolume", scriptableOptions.musicVol);
+        AkSoundEngine.SetRTPCValue("SFXVolume", scriptableOptions.masterVol);
+    }
 
+    private void IfTutorial()
+    {
+        if (!gameModeData.inTutorial) return;
+        AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
+        Tutorial = new Tutorial(Tutorial, this, gameModeData)
+        {
+            Objectives = objectives
+        };
     }
 
     public void DeactivateAndDestroy(GameObject obj)
     {
         obj.SetActive(false);
-        toBeDestroyed.Add(obj);
+        _toBeDestroyed.Add(obj);
     }
 
     public void OpenShop()
     {
-        if (gMD.currentTime.Hour < 18 && gMD.currentTime.Hour > 5)
-        {
-            gMD.isOpen = true;
-            gate.OpenGate();
-            pD.moveSpeed = pD.openSpeed;
-        }
-    }
-    public void CloseShop()
-    {
-        gMD.isOpen = false;
-        pD.moveSpeed = pD.closeSpeed;
-        ShopClosed?.Invoke(this, EventArgs.Empty);
-        if (gMD.currentTime.Day > 2)
-        {
-            Instantiate(GameOver);
-        }
+        if (gameModeData.currentTime.Hour is >= 18 or <= 5) return;
+        gameModeData.isOpen = true;
+        gate.OpenGate();
+        playerData.moveSpeed = playerData.openSpeed;
     }
 
+    public void CloseShop()
+    {
+        gameModeData.isOpen = false;
+        playerData.moveSpeed = playerData.closeSpeed;
+        ShopClosed?.Invoke(this, EventArgs.Empty);
+        if (gameModeData.currentTime.Day > 2)
+        {
+            Instantiate(gameOver);
+        }
+    }
 
 
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
     {
-        uint testEventId = AkSoundEngine.GetIDFromString(eventName);
+        var testEventId = AkSoundEngine.GetIDFromString(eventName);
 
-        uint count = (uint)playingIds.Length;
-        AKRESULT result = AkSoundEngine.GetPlayingIDsFromGameObject(go, ref count, playingIds);
+        var count = (uint)playingIds.Length;
+        var result = AkSoundEngine.GetPlayingIDsFromGameObject(go, ref count, playingIds);
 
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
-            uint playingId = playingIds[i];
-            uint eventId = AkSoundEngine.GetEventIDFromPlayingID(playingId);
+            var playingId = playingIds[i];
+            var eventId = AkSoundEngine.GetEventIDFromPlayingID(playingId);
 
             if (eventId == testEventId)
                 return true;
@@ -118,4 +140,12 @@ public class GameMode : MonoBehaviour
 
         return false;
     }
+
+    public void Surprise(GameObject breakableSource)
+    {
+        Debug.Log("suprise!!!");
+        SurpriseCustomers?.Invoke(breakableSource, EventArgs.Empty);
+    }
+
+   
 }

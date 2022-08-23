@@ -1,26 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Button : Interactable
 {
     // Start is called before the first frame update
-    private PlayerInteraction pI;
+    private PlayerInteraction _playerInteraction;
 
-    public Animator ButtonAnimator;
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public static event EventHandler OpenShop;
+
+
+    [FormerlySerializedAs("ButtonAnimator")]
+    public Animator buttonAnimator;
+
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        ButtonAnimator.SetTrigger("Press");
-        if (!gM.gMD.isOpen)
+        buttonAnimator.SetTrigger("Press");
+        if (!gameMode.gameModeData.isOpen)
         {
-            gM.OpenShop();
-            AkSoundEngine.PostEvent("Play_buttonpress" , this.gameObject);
+            gameMode.OpenShop();
+            AkSoundEngine.PostEvent("Play_buttonpress", this.gameObject);
+            if (gameMode.gameModeData.isOpen)
+            {
+                OpenShop?.Invoke(this, EventArgs.Empty);
+            }
         }
-        
     }
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
-        
     }
-    
 }

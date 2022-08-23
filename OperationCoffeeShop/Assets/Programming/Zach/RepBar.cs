@@ -33,6 +33,6 @@ public class RepBar : MonoBehaviour
     {
         //Debug.Log("proccessing Reputation");
         slider.value = reputation;
-        gameMode.gMD.reputation = slider.value;
+        gameMode.gameModeData.reputation = slider.value;
     }
 }

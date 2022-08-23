@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &233620768
 Transform:
@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.7939038, z: -0, w: 0.60804325}
   m_LocalPosition: {x: -1.102, y: 0.532, z: -0.271}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 890736104119591824}
   m_RootOrder: 2
@@ -43,12 +44,13 @@ GameObject:
   - component: {fileID: 890736104119591838}
   - component: {fileID: 890736104119591827}
   - component: {fileID: 890736104119591839}
+  - component: {fileID: 9055063905744011136}
   m_Layer: 3
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &890736104119591824
 Transform:
@@ -60,6 +62,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.17, y: -5.743, z: -9.869}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3656013889166984298}
   - {fileID: 3656013890706093530}
@@ -86,6 +89,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -128,8 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4f1ef0a4dc164381a18cbbb35fc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  playerInteraction: {fileID: 0}
   sleepTrans: {fileID: 3656013889166984298}
   startTrans: {fileID: 233620768}
   transportTime: 5
@@ -146,6 +154,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6232327, y: 1.1723344, z: 0.32508007}
   m_Center: {x: 2.702257e-15, y: 0.7345698, z: 1.1901542}
+--- !u!65 &9055063905744011136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890736104119591836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6232327, y: 0.67121154, z: 2.7053878}
+  m_Center: {x: -0, y: 0.48400828, z: 0}
 --- !u!1 &3656013889166984277
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +181,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &3656013889166984298
 Transform:
@@ -172,6 +193,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.9999445, z: -0, w: -0.010532814}
   m_LocalPosition: {x: -9.13, y: 0.216, z: 0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 890736104119591824}
   m_RootOrder: 0
@@ -191,7 +213,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &3656013890706093530
 Transform:
@@ -203,6 +225,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 890736104119591824}
   m_RootOrder: 1

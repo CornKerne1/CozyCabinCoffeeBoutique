@@ -12,8 +12,9 @@ public class RandomCustomer : Customer
     public RandomCustomerSet customerSet;
 
 
-    public void Awake()
+    public new void Awake()
     {
+
         SpawnRandomCustomer();
 
         _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
@@ -25,6 +26,7 @@ public class RandomCustomer : Customer
         var customerDrink = ScriptableObject.CreateInstance<DrinkData>();
 
         SetUpAndModifyDrinkData(customerDrink, favoriteDrink);
+        base.Awake();
     }
 
     private void SpawnRandomCustomer()
@@ -67,6 +69,7 @@ public class RandomCustomer : Customer
         }
 
         customerData = (CustomerData)ScriptableObject.CreateInstance("CustomerData");
+        customerData.soundEngineEnvent = "PLAY_GENERICVOICE";
         customerData.name = _customerName;
         customerData.favoriteDrinkData = favoriteDrink;
         customerData.DesiredFlavors(flavorNodes);

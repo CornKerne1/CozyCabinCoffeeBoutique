@@ -1,35 +1,35 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Ladder : Interactable
 {
     public PlayerInteraction pI;
     public bool canClimb;
-    
+
     public override void Start()
     {
         base.Start();
         canClimb = false;
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        this.pI = playerInteraction;
-        if (!base.gM.gMD.isOpen)
+        this.pI = interaction;
+        if (gameMode.gameModeData.isOpen) return;
+        if (pI.playerData.isClimbing)
         {
-            if (this.pI.pD.isClimbing)
-            {
-                this.pI.pD.isClimbing = false;
-            }
-            else
-            {
-                if (canClimb)
-                {
-                    this.pI.pD.isClimbing = true;
-                }
-            }
+            pI.playerData.isClimbing = false;
+        }
+        else
+        {
+            if (!canClimb) return;
+            pI.playerData.isClimbing = true;
+            IfTutorial();
+        }
+    }
+
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
         }
     }
 }

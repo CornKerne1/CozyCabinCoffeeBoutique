@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class IngredientContainer : Interactable
@@ -19,6 +20,7 @@ public class IngredientContainer : Interactable
     private bool _pouringAction;
     public bool rotating;
     public bool pouringRotation;
+    public Dispenser dispenser;
 
     public IngredientData iD;
 
@@ -43,6 +45,16 @@ public class IngredientContainer : Interactable
         _coRef1 = null;
     }
 
+    public void ResetCup()
+    {
+        outputIngredients = new List<GameObject>();
+        contentsVisualizer.transform.localPosition =
+            new Vector3(0, 0.0343f, 0);
+
+        contentsVisualizer.transform.localScale =
+            new Vector3(5, 5, 5);
+    }
+
     public bool IsPouring()
     {
         return _pouringAction ? _pouringAction : _pouring;
@@ -62,6 +74,7 @@ public class IngredientContainer : Interactable
         }
         else
         {
+            AkSoundEngine.PostEvent("stop_looppour", gameObject);
             _pouring = false;
             transform.Rotate(-2, 0, 0);
             pouringRotation = false;
@@ -177,6 +190,11 @@ public class IngredientContainer : Interactable
         yield return new WaitForSeconds(.04f);
         if (outputIngredients.Count > 0)
         {
+            if (!GameMode.IsEventPlayingOnGameObject("play_looppour", gameObject))
+            {
+                AkSoundEngine.PostEvent("play_looppour", gameObject);
+            }
+
             var r = Random.Range(0, outputIngredients.Count);
             Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
             outputIngredients.Remove(outputIngredients[outputIngredients.Count - 1]);
@@ -192,6 +210,10 @@ public class IngredientContainer : Interactable
                     (localScale.y - .01f), localScale.z); //
                 contentsVisualizer.transform.localScale = localScale;
             }
+        }
+        else
+        {
+            AkSoundEngine.PostEvent("stop_looppour", gameObject);
         }
 
         _coRef2 = null;
@@ -241,11 +263,11 @@ public class IngredientContainer : Interactable
         }
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         if (IsPouring()) return;
-        this.pI = playerInteraction;
-        playerInteraction.Carry(gameObject);
+        this.pI = interaction;
+        interaction.Carry(gameObject);
         inHand = true;
         var rot = new Quaternion(Quaternion.identity.x + rotateOffset.x,
             Quaternion.identity.y + rotateOffset.y,
@@ -258,7 +280,7 @@ public class IngredientContainer : Interactable
         inHand = false;
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         rotating = true;
     }

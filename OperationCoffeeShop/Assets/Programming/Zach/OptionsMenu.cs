@@ -84,14 +84,14 @@ public class OptionsMenu : MonoBehaviour
         }
 
         float vol = 0f;
-        masterSlider.value = sO.MasterVol;
+        masterSlider.value = sO.masterVol;
         
-        musicSlider.value = sO.MusicVol;
+        musicSlider.value = sO.musicVol;
         
-        sfxSlider.value = sO.SFXVol;
+        sfxSlider.value = sO.sfxVol;
         
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        mouseSlider.value = gM.pD.mouseSensitivity;
+        mouseSlider.value = gM.playerData.mouseSensitivityOptions;
 
         mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
@@ -153,30 +153,30 @@ public class OptionsMenu : MonoBehaviour
     {
         StartCoroutine(CO_PlayAudioWWisely());
         mastLabel.text = Mathf.RoundToInt(masterSlider.value) .ToString();
-        sO.MasterVol = masterSlider.value;
-        AkSoundEngine.SetRTPCValue("MasterVolume", sO.MasterVol);
+        sO.masterVol = masterSlider.value;
+        AkSoundEngine.SetRTPCValue("MasterVolume", sO.masterVol);
 
     }
     public void SetMusicVol()
     {
         StartCoroutine(CO_PlayAudioWWisely());
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
-        sO.MusicVol = musicSlider.value;
-        AkSoundEngine.SetRTPCValue("MusicVolume", sO.MusicVol);
+        sO.musicVol = musicSlider.value;
+        AkSoundEngine.SetRTPCValue("MusicVolume", sO.musicVol);
 
     }
     public void SetSFXVol()
     {
         StartCoroutine(CO_PlayAudioWWisely());
         sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
-        sO.SFXVol = sfxSlider.value;
-        AkSoundEngine.SetRTPCValue("SFXVolume", sO.SFXVol);
+        sO.sfxVol = sfxSlider.value;
+        AkSoundEngine.SetRTPCValue("SFXVolume", sO.sfxVol);
         
     }
     public void SetMouse()
     {
         StartCoroutine(CO_PlayAudioWWisely());
-        gM.pD.mouseSensitivity = mouseSlider.value;
+        gM.playerData.mouseSensitivityOptions = mouseSlider.value;
     }
     public void CloseOptions()
     {

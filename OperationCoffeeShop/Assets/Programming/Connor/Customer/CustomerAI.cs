@@ -30,8 +30,9 @@ public class CustomerAI : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        customerData = gameObject.GetComponent<Customer>().customerData;
+        StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
+
         var path = GameObject.Find("Customer Path");
         foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
@@ -63,6 +64,13 @@ public class CustomerAI : MonoBehaviour
         GameMode.ShopClosed += ShopClosed;
     }
 
+    private IEnumerator CO_Wait()
+    {
+        yield return new WaitForSeconds(.4f);
+        customerData = gameObject.GetComponent<Customer>().customerData;
+
+    }
+
     private void Update()
     {
         if (!stay) //when not in line
@@ -91,7 +99,7 @@ public class CustomerAI : MonoBehaviour
 
     IEnumerator CO_AddSelfToData()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.45f);
         customerData.customerAI = this;
     }
 
@@ -107,7 +115,7 @@ public class CustomerAI : MonoBehaviour
             customerLines[customerLines.Count - 1].LeaveWithoutPaying(drink);
         hasOrder = true;
         hasOrdered = true;
-        Vector3 finalDestination = _destinationQueue.ToArray()[(_destinationQueue.ToArray().Length - 1)];
+        var finalDestination = _destinationQueue.ToArray()[(_destinationQueue.ToArray().Length - 1)];
         _destinationQueue.Clear();
         gameObject.GetComponent<CustomerInteractable>().dialogueManager.ExitDialogueMode();
         //gameObject.SetActive(false);// use at last resort

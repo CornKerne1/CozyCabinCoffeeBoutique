@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Pool;
 using TMPro;
 
 public class Dispenser : Interactable
 {
-    [SerializeField] private Transform spawnTrans;
-    [SerializeField] private ObjectHolder objType;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private string message = " beans remaining";
+    [SerializeField] protected Transform spawnTrans;
+    [SerializeField] public ObjectHolder objType;
+    [SerializeField] protected TextMeshProUGUI text;
+    [SerializeField] protected string message = " beans remaining";
+    private ObjectPool<PhysicalIngredient> _pool;
 
 
     private Transform _obj;
@@ -15,11 +17,16 @@ public class Dispenser : Interactable
     public int quantity = 10;
     public bool bottomless;
 
-    // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         ComputerShop.DepositItems += AddItems;
+        _pool = new ObjectPool<PhysicalIngredient>(
+            () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(true);
+                physicalIngredient.dispenser = this;
+            },
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         if (bottomless) return;
         try
         {
@@ -27,35 +34,51 @@ public class Dispenser : Interactable
             if (!bottomless)
                 text.text = quantity + message;
             else text.text = "Bottomless";
-
         }
         catch
         {
             text = null;
         }
-
-
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public void ReleasePoolObject(PhysicalIngredient physicalIngredient)
     {
-        if (playerInteraction.pD.busyHands || (!bottomless && quantity <= 0)) return;
+        _pool.Release(physicalIngredient);
+    }
+
+    public override void OnInteract(PlayerInteraction interaction)
+    {
+        if (interaction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
-        _obj = Instantiate(objType.gObj, spawnTrans.position, spawnTrans.rotation).transform;
-        if (_obj.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
+        var ingredient = _pool.Get().transform;
+        var transform1 = ingredient.transform;
+        transform1.position = spawnTrans.position;
+        transform1.rotation = spawnTrans.rotation;
+        if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
         {
-            physicalIngredient.pI = playerInteraction;
+            physicalIngredient.playerInteraction = interaction;
+            physicalIngredient.dispenser = this;
         }
-        else if (_obj.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
+        else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {
-            ingredientContainer.pI = playerInteraction;
+            ingredientContainer.pI = interaction;
             ingredientContainer.inHand = true;
         }
-        playerInteraction.Carry(_obj.gameObject);
+
+        interaction.Carry(ingredient.gameObject);
+        IfTutorial();
     }
 
-    private void UpdateQuantity()
+    protected void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameObject);
+        }
+    }
+
+    protected void UpdateQuantity()
     {
         if (text != null)
         {
@@ -63,17 +86,15 @@ public class Dispenser : Interactable
         }
     }
 
-    private void AddItems(object sender, EventArgs e)
+    protected void AddItems(object sender, EventArgs e)
     {
         try
         {
-            Tuple<ObjectHolder, int> tuple = (Tuple<ObjectHolder, int>)sender;
+            var tuple = (Tuple<ObjectHolder, int>)sender;
 
-            if (objType == tuple.Item1)
-            {
-                this.quantity += tuple.Item2;
-                UpdateQuantity();
-            }
+            if (objType != tuple.Item1) return;
+            this.quantity += tuple.Item2;
+            UpdateQuantity();
         }
         catch
         {

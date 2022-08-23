@@ -3,25 +3,29 @@ using UnityEngine.Serialization;
 
 public class PhysicalIngredient : Interactable
 {
+    private Objectives _objectives;
+
     private readonly Vector3 _rejectionForce = new Vector3(55, 55, 55);
     [SerializeField] public Ingredients thisIngredient;
 
-    [FormerlySerializedAs("_inHand")] [SerializeField]
-    private bool inHand;
-
-    public PlayerInteraction pI;
+    [SerializeField] private bool inHand;
+    
+    public Dispenser dispenser;
+    public Machine machine;
 
     public override void Start()
     {
         base.Start();
         gameObject.tag = "PickUp";
+        playerInteraction = gameMode.player.GetComponent<PlayerInteraction>();
     }
 
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        pI = playerInteraction;
-        playerInteraction.Carry(gameObject);
+        IfTutorial();
+        base.playerInteraction = interaction;
+        base.playerInteraction.Carry(gameObject);
         inHand = true;
     }
 
@@ -30,6 +34,13 @@ public class PhysicalIngredient : Interactable
         inHand = false;
     }
 
+    private void IfTutorial()
+    {
+        if (gameMode.gameModeData.inTutorial)
+        {
+            gameMode.Tutorial.NextObjective(gameMode.Tutorial.Objectives.gameObject);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,7 +50,7 @@ public class PhysicalIngredient : Interactable
         {
             other.GetComponent<Machine>().IngredientInteract(gameObject);
             rb.AddForce(_rejectionForce);
-            pI.DropCurrentObj();
+            playerInteraction.DropCurrentObj();
         }
         catch
         {
@@ -47,7 +58,7 @@ public class PhysicalIngredient : Interactable
             {
                 other.GetComponent<BrewerBowl>().IngredientInteract(gameObject);
                 rb.AddForce(_rejectionForce);
-                pI.DropCurrentObj();
+                playerInteraction.DropCurrentObj();
             }
             catch
             {

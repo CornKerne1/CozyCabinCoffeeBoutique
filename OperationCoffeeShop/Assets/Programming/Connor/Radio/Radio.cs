@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,6 +17,8 @@ public class Radio : Interactable
 
     [SerializeField] private GameObject radioDial;
 
+    [SerializeField] private int numberOfChannels = 9;
+
     public void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, gameObject);
@@ -23,7 +26,8 @@ public class Radio : Interactable
 
     public override void Start()
     {
-        for (var i = 0; i < 10; i++)
+        base.Start();
+        for (var i = 0; i < numberOfChannels; i++)
         {
             Transform transform1;
             RadioChannel rC = Instantiate(radioChannel, (transform1 = transform).position, transform1.rotation)
@@ -31,7 +35,7 @@ public class Radio : Interactable
             rC.radio = this;
             rC.transform.SetParent(this.transform);
             radioChannels.Add(rC);
-            rC.channel = radioChannels.Count;
+            rC.channel = radioChannels.Count - 1;
         }
 
         foreach (var rC in radioChannels)
@@ -40,7 +44,11 @@ public class Radio : Interactable
         }
 
         currentChannel = Random.Range(0, radioChannels.Count);
-        radioChannels[currentChannel].PlayChannel();
+        foreach (var rC in radioChannels)
+            if (rC.channel == currentChannel)
+                rC.PlayChannel();
+            else
+                rC.StopChannel();
         HandleDial();
     }
 
@@ -54,24 +62,17 @@ public class Radio : Interactable
             localPosition.z);
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
-    {
-        playerInteraction.Carry(gameObject);
-    }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         currentChannel += 1;
         if (currentChannel > radioChannels.Count || currentChannel < 0)
             currentChannel = 0;
         foreach (var rC in radioChannels)
-        {
             if (rC.channel == currentChannel)
                 rC.PlayChannel();
             else
                 rC.StopChannel();
-        }
-
         HandleDial();
     }
 }

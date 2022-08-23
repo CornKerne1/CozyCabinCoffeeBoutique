@@ -16,16 +16,22 @@ public class Fireflies : MonoBehaviour
 
     private void SummonFireFlies(object sender, EventArgs e)
     {
-        if (_gameMode.gMD.currentTime.Hour < _gameMode.gMD.wakeUpHour ||
-            _gameMode.gMD.currentTime.Hour > _gameMode.gMD.closingHour - 1)
+        if (_gameMode.gameModeData.currentTime.Hour < _gameMode.gameModeData.wakeUpHour ||
+            _gameMode.gameModeData.currentTime.Hour > _gameMode.gameModeData.closingHour - 1)
         {
-            if (!_fireflies.isPlaying)
-                _fireflies.Play();
+            if (_fireflies.isPlaying) return;
+            _fireflies.Play();
+            AkSoundEngine.PostEvent("PLAY_FIREFLIES", gameObject);
+
+
         }
         else
         {
-            if (_fireflies.isPlaying)
-                _fireflies.Stop();
+            if (!_fireflies.isPlaying) return;
+            _fireflies.Stop();
+            AkSoundEngine.PostEvent("STOP_FIREFLIES", gameObject);
+
+
         }
     }
 }

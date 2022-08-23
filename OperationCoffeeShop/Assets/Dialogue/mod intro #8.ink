@@ -2,8 +2,10 @@
 
 
 === main ===
-Any chance I can get a LarBocks Coffee?
-* [Does this look like a LarBocks to you? Absolutely not.]
+Any chance I can something quick?
+* [Define quick...]
+- Less than 1 minute. Please!
+* [You got it!]
 -> DONE
 
 

@@ -4,45 +4,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SugarCube : MonoBehaviour
+public class SugarCube : PhysicalIngredient
 {
     [SerializeField] private IngredientNode iN;
-    [SerializeField] private GameObject sugarCube;
-    private IEnumerator _coRef;
+    private PhysicalIngredient _physicalIngredient;
+    private bool _hasCollided;
 
     private void OnTriggerEnter(Collider other)
     {
         TryAddOrDelete(other.gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        if (_coRef != null) return;
-        _coRef = CO_MakePickUp();
-        StartCoroutine(CO_MakePickUp());
-    }
-
-    private IEnumerator CO_MakePickUp()
-    {
-        yield return new WaitForSeconds(0.2f);
-        var currentTrans = transform;
-        Instantiate(sugarCube, currentTrans.position, currentTrans.rotation);
-        Destroy(transform.gameObject);
-        _coRef = null;
+        this.playerInteraction = playerInteraction;
+        playerInteraction.Carry(gameObject);
     }
 
     private void TryAddOrDelete(GameObject obj)
     {
-        try
-        {
-            obj.GetComponent<IngredientContainer>()
-                .AddToContainer(
-                    iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
+        if (_hasCollided) return;
+        var ingredientContainer = obj.GetComponent<IngredientContainer>();
+        if (!ingredientContainer) return;
+        playerInteraction.DropCurrentObj();
+        ingredientContainer.AddToContainer(
+            iN); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
+        _hasCollided = true;
+        if(dispenser)
+            dispenser.ReleasePoolObject(this);
+        else
             Destroy(gameObject);
-        }
-        catch
-        {
-            Destroy(gameObject);
-        }
     }
 }

@@ -4,7 +4,7 @@
 === main ===
 Thank you…
 * [No problem!]
-- But next time, please work faster. 
+- You could strive to work a little faster, though. 
 * [Ok, buh-bye now!]
 -> DONE
 

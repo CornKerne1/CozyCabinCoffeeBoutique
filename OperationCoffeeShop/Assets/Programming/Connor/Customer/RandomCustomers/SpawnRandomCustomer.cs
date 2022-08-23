@@ -24,23 +24,24 @@ public class SpawnRandomCustomer : MonoBehaviour
     private void Start()
     {
         DayNightCycle.TimeChanged += ResetMaxCustomers;
-        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gMD;
+        gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData;
         if (_maxCustomerCount == 0)
             _maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
         _minutes = 0;
+        Button.OpenShop += SpawnInitialCustomer;
     }
 
     private void Update()
     {
-        if (spawnCustomer) 
+        if (spawnCustomer)
         {
             spawnCustomer = false;
             SpawnCustomer();
         }
 
         if (!gMD.isOpen) return;
-        MinutesSinceOpening(); 
-        if (gMD.currentTime.TimeOfDay.Minutes == 30) 
+        MinutesSinceOpening();
+        if (gMD.currentTime.TimeOfDay.Minutes == 30)
         {
             _oneCustomerAtATime = true;
         }
@@ -78,5 +79,10 @@ public class SpawnRandomCustomer : MonoBehaviour
         if (gMD.isOpen || gMD.wakeUpHour != gMD.currentTime.Hour) return;
         _maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
         _minutes = 0;
+    }
+
+    private void SpawnInitialCustomer(object sender, EventArgs eventArgs)
+    {
+        SpawnCustomer();
     }
 }
