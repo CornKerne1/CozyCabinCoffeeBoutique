@@ -974,6 +974,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!65 &112764909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17643,6 +17646,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1832242969740901290, guid: c3545d14bc12bff44957646b788a03e6, type: 3}
     - target: {fileID: 4305255638318496729, guid: 3ce4704023787ac489c6ad3d7ab101aa, type: 3}
+      propertyPath: hasOnScreenText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305255638318496729, guid: 3ce4704023787ac489c6ad3d7ab101aa, type: 3}
       propertyPath: onScreenPromptText
       value: Insert Disk
       objectReference: {fileID: 0}
@@ -18740,6 +18747,22 @@ PrefabInstance:
     - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: onScreenPrompt
+      value: 
+      objectReference: {fileID: 1832242969740901290, guid: c3545d14bc12bff44957646b788a03e6, type: 3}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: hasOnScreenText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: onScreenPromptText
+      value: ALT CLICK to Change Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: onScreenPromptText2
+      value: PICK UP to Change Station
       objectReference: {fileID: 0}
     - target: {fileID: 3489125399563247106, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_Name
