@@ -75,4 +75,10 @@ public class Radio : Interactable
                 rC.StopChannel();
         HandleDial();
     }
+
+    public override void ShowOnScreenText()
+    {
+        if (!_isBroken && playerInteraction)
+            base.ShowOnScreenText();
+    }
 }

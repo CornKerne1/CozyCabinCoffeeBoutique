@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
 public abstract class Interactable : MonoBehaviour
@@ -15,10 +17,15 @@ public abstract class Interactable : MonoBehaviour
     private GameObject _breakableRef;
     [FormerlySerializedAs("_pI")] public PlayerInteraction playerInteraction;
     private Rigidbody _rB;
-    private bool _isWaiting, _isBroken;
+    protected bool _isWaiting, _isBroken;
+    public bool hasOnScreenText;
 
     private Outline _outline;
     private Color _outlineColor;
+    protected ObjectPool<Canvas> _poolOfOnScreenPrompt;
+    protected TextMeshProUGUI varOnScreenPromt;
+    [SerializeField] protected Canvas onScreenPrompt;
+    public string onScreenPromptText;
 
     private float speed;
 
@@ -46,6 +53,15 @@ public abstract class Interactable : MonoBehaviour
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         InitializeOutline();
         CheckTutorial();
+        OnFocusTextPool();
+    }
+
+    private void OnFocusTextPool()
+    {
+        _poolOfOnScreenPrompt = new ObjectPool<Canvas>(
+            () => Instantiate(onScreenPrompt, gameObject.transform),
+            prompt => { prompt.gameObject.SetActive(true); },
+            prompt => { prompt.gameObject.SetActive(false); }, Destroy, true, 10, 10);
     }
 
     private void InitializeOutline()
@@ -70,35 +86,49 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void CheckTutorial()
     {
-        if (gameMode.gameModeData.inTutorial)
-        {
-            Debug.Log("Interactable tutorial object: " + gameObject);
-            gameMode.Tutorial.AddedGameObject(gameObject);
-        }
+        if (!gameMode.gameModeData.inTutorial) return;
+        Debug.Log("Interactable tutorial object: " + gameObject);
+        gameMode.Tutorial.AddedGameObject(gameObject);
     }
 
     public virtual void OnInteract(PlayerInteraction interaction)
     {
         if (!isBreakable) return;
-        this.playerInteraction = interaction;
-        this.playerInteraction.Carry(gameObject);
+        playerInteraction = interaction;
+        playerInteraction.Carry(gameObject);
     }
 
     public virtual void OnFocus()
     {
+        if (hasOnScreenText) ShowOnScreenText();
         if (!_outline) return;
         _outline.enabled = true;
         _outline.OutlineColor = _outlineColor;
     }
 
+    public virtual void ShowOnScreenText()
+    {
+        if (varOnScreenPromt) return;
+        varOnScreenPromt = _poolOfOnScreenPrompt.Get().GetComponentInChildren<TextMeshProUGUI>();
+        varOnScreenPromt.text = onScreenPromptText;
+    }
+
     public virtual void OnLoseFocus()
     {
+        if (hasOnScreenText) HideOnScreenText();
         if (!_outline) return;
         var color = _outlineColor;
         color.a = 0;
         _outline.OutlineColor = color;
         if (gameObject.activeSelf)
             StartCoroutine(CO_DisableOutline());
+    }
+
+    protected virtual void HideOnScreenText()
+    {
+        if (!varOnScreenPromt) return;
+        _poolOfOnScreenPrompt.Release(varOnScreenPromt.GetComponentInParent<Canvas>());
+        varOnScreenPromt = null;
     }
 
     private IEnumerator CO_DisableOutline()
@@ -116,6 +146,7 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnDrop()
     {
+        playerInteraction = null;
     }
 
     private IEnumerator CO_FreezeForClipping()

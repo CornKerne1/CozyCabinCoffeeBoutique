@@ -51,6 +51,7 @@ public class MachineInteraction : Interactable
 
     private void IfTutorial()
     {
+        
         if (gameMode.gameModeData.inTutorial)
         {
             gameMode.Tutorial.NextObjective(gameObject);
