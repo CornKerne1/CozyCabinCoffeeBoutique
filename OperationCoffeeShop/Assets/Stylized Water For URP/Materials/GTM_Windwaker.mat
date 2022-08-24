@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WindwakerPond
+  m_Name: GTM_Windwaker
   m_Shader: {fileID: -6465566751694194690, guid: a9aea49e19495174f80f910ddb189a37, type: 3}
   m_ValidKeywords:
   - INTERSECTION_EFFECTS_ON
@@ -15,6 +15,7 @@ Material:
   - SURFACE_FOAM_ON
   - WORLD_SPACE_UV_ON
   m_InvalidKeywords:
+  - FOAM_SHADOWS_ON
   - WATER_LIGHTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -26,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _IntersectionFoamTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 772031b03d9d46e4ab03e15c8e17718c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceFoamTexture:
@@ -51,36 +52,36 @@ Material:
     - REFRACTION: 1
     - SURFACE_FOAM: 1
     - WORLD_SPACE_UV: 1
-    - _IntersectionFoamBlend: 0
-    - _IntersectionFoamDepth: 0
-    - _IntersectionFoamScale: 0
+    - _IntersectionFoamBlend: 1
+    - _IntersectionFoamDepth: 0.6
+    - _IntersectionFoamScale: 0.25
     - _IntersectionWaterBlend: 0
     - _QueueControl: 1
     - _QueueOffset: 0
-    - _RefractionStrength: 0.011
+    - _RefractionStrength: 0.0025
     - _ShoreBlend: 0
     - _ShoreDepth: 0
     - _ShoreFade: 0
     - _SurfaceFoamBlend: 1
-    - _WaterColorDepth: 2.59
-    - _WaterColorHorizonDistance: 20
+    - _WaterColorDepth: 3.45
+    - _WaterColorHorizonDistance: 45
     m_Colors:
-    - _IntersectionFoamColor: {r: 0, g: 0, b: 0, a: 0}
-    - _IntersectionFoamMovement: {r: 0, g: 0, b: 0, a: 0}
-    - _IntersectionFoamSampling: {r: 0, g: 0, b: 0, a: 0}
-    - _NormalsMovement: {r: -0.101, g: 0.048, b: 0, a: 0}
-    - _ShoreColor: {r: 0, g: 0.98039216, b: 0.30187246, a: 0}
-    - _SurfaceFoamColor1: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.3215686}
-    - _SurfaceFoamColor2: {r: 0.27349666, g: 0.27349666, b: 0.27349666, a: 0.7294118}
-    - _SurfaceFoamMovement: {r: 0.7, g: 0, b: -1, a: 0.01}
-    - _SurfaceFoamSampling: {r: 0.62, g: 0, b: 0, a: 0}
-    - _SurfaceFoamTilingAndOffset: {r: -1, g: -1, b: 2, a: 3}
-    - _WaterColorDeep: {r: 0, g: 0.34898633, b: 0.33305132, a: 1}
-    - _WaterColorHorizon: {r: 0.7248576, g: 0.76285124, b: 0.8584906, a: 1}
-    - _WaterColorShallow: {r: 0.18226653, g: 0.24524969, b: 0.17930272, a: 1}
+    - _IntersectionFoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _IntersectionFoamMovement: {r: 5, g: 0.1, b: 0, a: 0}
+    - _IntersectionFoamSampling: {r: 1, g: 0, b: 0, a: 0}
+    - _NormalsMovement: {r: -0.02, g: 0.048, b: 0, a: 0}
+    - _ShoreColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SurfaceFoamColor1: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0.27058825}
+    - _SurfaceFoamColor2: {r: 0.27354816, g: 0.27354816, b: 0.27354816, a: 0.7294118}
+    - _SurfaceFoamMovement: {r: 0.7, g: 0.0125, b: -1, a: 0.02}
+    - _SurfaceFoamSampling: {r: 0.39, g: 0.45, b: 0, a: 0}
+    - _SurfaceFoamTilingAndOffset: {r: -1, g: 0.52, b: 31.9, a: 6.53}
+    - _WaterColorDeep: {r: 0.012709122, g: 0.28551015, b: 0.3962264, a: 1}
+    - _WaterColorHorizon: {r: 0.5295123, g: 0.5791008, b: 0.6981132, a: 1}
+    - _WaterColorShallow: {r: 0.46363476, g: 0.53599983, b: 0.5754717, a: 1}
     - _WaveColor: {r: 0, g: 0, b: 0, a: 0}
-    - _WaveDirections: {r: 0, g: 0.64, b: -1, a: 0.33}
-    - _WaveVisuals: {r: 0.069, g: 3.21, b: 0.73, a: 0}
+    - _WaveDirections: {r: 1.53, g: 0.64, b: -1, a: 1.05}
+    - _WaveVisuals: {r: 0.1, g: 15, b: 2.05, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3884871068361501984
 MonoBehaviour:
