@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 106276107}
   - component: {fileID: 106276105}
   - component: {fileID: 1511616897}
-  - component: {fileID: 1511616898}
+  - component: {fileID: 8373600995041695477}
   m_Layer: 0
   m_Name: PlayCube-360_Controller
   m_TagString: Untagged
@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0.5455935, y: 0.44980857, z: -0.44980857, w: 0.5455935}
   m_LocalPosition: {x: 0.485, y: -4.7053, z: -10.374}
   m_LocalScale: {x: 11.865022, y: 11.865022, z: 11.865022}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -55,6 +56,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -110,8 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!54 &1511616897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,16 +137,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!65 &1511616898
-BoxCollider:
+--- !u!64 &8373600995041695477
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915590325771011325}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9d410242fad84604681648b6de12d823, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.020000009, y: 0.015000006, z: 0.0052513336}
-  m_Center: {x: 3.039817e-10, y: -0.0055000014, z: -0.0026256652}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5092354350263437408, guid: c32f26ec080cf3344b6c842c6ba43c59, type: 3}
