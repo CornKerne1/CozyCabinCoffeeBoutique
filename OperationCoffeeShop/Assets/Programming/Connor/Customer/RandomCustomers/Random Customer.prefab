@@ -184,12 +184,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 2.2
-  m_Acceleration: 8
+  m_Acceleration: 8.8
   avoidancePriority: 77
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
@@ -252,6 +252,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   customerAI: {fileID: 7461629815669221821}
   canvas: {fileID: 6982124169780741249}
   canInteract: 1
