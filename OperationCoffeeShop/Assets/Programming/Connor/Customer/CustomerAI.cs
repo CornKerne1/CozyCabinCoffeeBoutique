@@ -26,15 +26,13 @@ public class CustomerAI : MonoBehaviour
     [SerializeField] public bool hasOrdered = false;
     [SerializeField] public bool hasOrder = false;
     [SerializeField] public bool lookAtBool = false;
-
-    public GameObject path;
-
     // Start is called before the first frame update
     private void Start()
     {
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
+        var path = GameObject.Find("Customer Path");
         foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
             destinations.Add(dest.gameObject);
@@ -69,6 +67,7 @@ public class CustomerAI : MonoBehaviour
     {
         yield return new WaitForSeconds(.4f);
         customerData = gameObject.GetComponent<Customer>().customerData;
+
     }
 
     private void Update()
@@ -90,10 +89,15 @@ public class CustomerAI : MonoBehaviour
         }
         else if (lookAtBool == false) // when in line
         {
-            Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
-            lookat.rotation =
-                new Quaternion(lookat.rotation.x, lookat.rotation.y, lookat.rotation.z, lookat.rotation.w);
-            this.gameObject.transform.LookAt(lookat);
+            if (agent.velocity.magnitude < 2f)
+            {
+                Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
+                var direction = lookat.position - transform.position;
+                direction.y = 0.0f;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction),
+                    Time.time *.06f);
+
+            }
         }
     }
 
