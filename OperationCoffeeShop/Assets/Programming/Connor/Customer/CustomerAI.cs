@@ -27,13 +27,14 @@ public class CustomerAI : MonoBehaviour
     [SerializeField] public bool hasOrder = false;
     [SerializeField] public bool lookAtBool = false;
 
+    public GameObject path;
+
     // Start is called before the first frame update
     private void Start()
     {
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
-        var path = GameObject.Find("Customer Path");
         foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
             destinations.Add(dest.gameObject);
@@ -68,7 +69,6 @@ public class CustomerAI : MonoBehaviour
     {
         yield return new WaitForSeconds(.4f);
         customerData = gameObject.GetComponent<Customer>().customerData;
-
     }
 
     private void Update()

@@ -21,6 +21,8 @@ public class SpawnRandomCustomer : MonoBehaviour
 
     private bool _oneCustomerAtATime = true;
 
+    [SerializeField] private GameObject customerPath;
+    
     private void Start()
     {
         DayNightCycle.TimeChanged += ResetMaxCustomers;
@@ -29,6 +31,7 @@ public class SpawnRandomCustomer : MonoBehaviour
             _maxCustomerCount = ((gMD.closingHour - gMD.wakeUpHour) * 60) / spawnInterval;
         _minutes = 0;
         Button.OpenShop += SpawnInitialCustomer;
+
     }
 
     private void Update()
@@ -72,6 +75,7 @@ public class SpawnRandomCustomer : MonoBehaviour
         yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
         var transform1 = transform;
         Instantiate(customer, transform1.position, transform1.rotation);
+        customer.GetComponent<CustomerAI>().path = customerPath;
     }
 
     private void ResetMaxCustomers(object sender, EventArgs e)
