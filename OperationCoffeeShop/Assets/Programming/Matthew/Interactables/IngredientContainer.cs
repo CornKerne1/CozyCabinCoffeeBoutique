@@ -47,6 +47,7 @@ public class IngredientContainer : Interactable
 
     public void ResetCup()
     {
+        capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
             new Vector3(0, 0.0343f, 0);
