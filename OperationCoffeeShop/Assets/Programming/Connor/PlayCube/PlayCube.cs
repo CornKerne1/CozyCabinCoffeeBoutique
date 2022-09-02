@@ -33,7 +33,6 @@ public class PlayCube : MachineInteraction
         base.Start();
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
-
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -55,7 +54,7 @@ public class PlayCube : MachineInteraction
         if (!playCubeAnimator.GetBool(Open) && hasDisk)
         {
             tvRenderer.material.SetTexture(Emission, gameTexture);
-            tvRenderer.material.SetFloat(Noise, 400);
+            tvRenderer.material.SetFloat(Noise, 1000);
             AkSoundEngine.PostEvent("STOP_TVSTATIC", gameObject);
 
             _diskInteractable.PlayMusic();
@@ -66,9 +65,6 @@ public class PlayCube : MachineInteraction
             {
                 _diskInteractable.StopMusic();
                 AkSoundEngine.PostEvent("PLAY_TVSTATIC", gameObject);
-
-                
-                _diskInteractable = null;
             }
 
             tvRenderer.material.SetTexture(Emission, screenSaverTexture);
@@ -86,5 +82,12 @@ public class PlayCube : MachineInteraction
         o.transform.position = gameDisk.transform.position;
         o.transform.rotation = gameDisk.transform.rotation;
         o.GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+
+    public override void ShowOnScreenText()
+    {
+        if (!hasDisk)
+            base.ShowOnScreenText();
     }
 }

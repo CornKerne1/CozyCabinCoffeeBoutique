@@ -1421,6 +1421,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Stop_Faucet" ID="{AC63E724-5A08-47EB-B51E-EE53A5D95993}">
+					<ChildrenList>
+						<Action Name="" ID="{C45DBB89-8AFF-4159-8371-7ADBCC7C7B50}" ShortID="589075499">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Faucet" ID="{3CAE0AB4-EBD5-49DE-BCA1-1E351548CEE0}" WorkUnitID="{38E626C6-CB5D-4FA4-B983-0128DA17A8BA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

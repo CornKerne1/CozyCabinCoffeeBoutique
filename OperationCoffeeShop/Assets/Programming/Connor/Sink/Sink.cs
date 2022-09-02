@@ -46,7 +46,7 @@ public class Sink : Machine
 
     protected override IEnumerator ActivateMachine(float _)
     {
-        AkSoundEngine.PostEvent("PLAY_LOOPPOUR", gameObject);
+        AkSoundEngine.PostEvent("PLAY_FAUCET", gameObject);
         isRunning = true;
         while (isRunning)
         {
@@ -62,6 +62,6 @@ public class Sink : Machine
             yield return new WaitForSeconds(.05f);
         }
 
-        AkSoundEngine.PostEvent("STOP_LOOPPOUR", gameObject);
+        AkSoundEngine.PostEvent("STOP_FAUCET", gameObject);
     }
 }

@@ -59,6 +59,7 @@
 				</ActorMixer>
 				<ActorMixer Name="Radio" ID="{F7775B84-0D2C-4405-AB84-56283F2F9535}" ShortID="131508901">
 					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
 						<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 						<Property Name="MaxSoundPerInstance" Type="int16">
 							<ValueList>
@@ -138,49 +139,6 @@
 								<ActiveSource Name="Roast Blend" ID="{CFF32B61-B6D2-4010-A11B-FE49FA691E05}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="After_Hours" ID="{D9426BE0-C0AE-4394-8813-FB68683CB597}" ShortID="319683270">
-							<PropertyList>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-								<Property Name="LoopCount" Type="int32" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="After_Hours" ID="{75FA8BC3-7659-48EB-93B1-C06D655765D7}">
-									<Language>SFX</Language>
-									<AudioFile>After_Hours.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="752191520"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="After_Hours" ID="{75FA8BC3-7659-48EB-93B1-C06D655765D7}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="BossaNovaAttempt" ID="{0C1F79CF-CCB7-41FB-8FA7-03A87B38542C}" ShortID="463320490">
 							<PropertyList>
 								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
@@ -243,58 +201,6 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Breaking_Loose_LoFi" ID="{0936B9C9-61C5-4425-9A5C-515F4A55829D}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="ChillWurlyPiano" ID="{CFDEB9C4-7105-4B14-A55E-98BA17AE49F2}" ShortID="338537132">
-							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="ChillWurlyPiano" ID="{10224147-6209-4B53-80CA-F1DB6F53EF22}">
-									<Language>SFX</Language>
-									<AudioFile>ChillWurlyPiano.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="386335204"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="ChillWurlyPiano" ID="{10224147-6209-4B53-80CA-F1DB6F53EF22}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="exquisite_tasteACPlaylist" ID="{4F431E79-7530-42CC-B31B-4FC1A9A5905A}" ShortID="979107693">
-							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="exquisite_tasteACPlaylist" ID="{03CEE175-3C39-4CBC-87AC-998AD5F55A0C}">
-									<Language>SFX</Language>
-									<AudioFile>exquisite_tasteACPlaylist.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="551003881"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="exquisite_tasteACPlaylist" ID="{03CEE175-3C39-4CBC-87AC-998AD5F55A0C}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="Neurotic_to_the_Bone_LoFi_Playlist" ID="{3E614882-078A-4A04-80B3-7433B24BE395}" ShortID="712824735">
@@ -464,7 +370,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="Nostalgia" ID="{94BB9881-40D3-47FD-8E27-47022785EB6A}" ShortID="844302629">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="2"/>
+							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="RadioAttenuation" ID="{3BCBD0C3-46AA-4496-A85D-32D2C0728AC1}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
 								</Reference>
@@ -484,6 +396,36 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Nostalgia" ID="{9B07B058-04BB-4697-B33B-DC6117315394}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="exquisite_tasteACPlaylist" ID="{4F431E79-7530-42CC-B31B-4FC1A9A5905A}" ShortID="979107693">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="2"/>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="RadioAttenuation" ID="{3BCBD0C3-46AA-4496-A85D-32D2C0728AC1}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="exquisite_tasteACPlaylist" ID="{03CEE175-3C39-4CBC-87AC-998AD5F55A0C}">
+									<Language>SFX</Language>
+									<AudioFile>exquisite_tasteACPlaylist.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="551003881"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="exquisite_tasteACPlaylist" ID="{03CEE175-3C39-4CBC-87AC-998AD5F55A0C}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -1031,6 +973,107 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="PlayCubeStartup" ID="{85285373-E7C4-4CA3-B26E-20CDAFC61890}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
+				<ActorMixer Name="Piano" ID="{E811957D-3090-4AE1-893A-B5D36C62A04F}" ShortID="594940810">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+						<Property Name="MaxSoundPerInstance" Type="int16">
+							<ValueList>
+								<Value>11</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverridePositioning" Type="bool" Value="True"/>
+						<Property Name="UseMaxSoundPerInstance" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="RadioAttenuation" ID="{3BCBD0C3-46AA-4496-A85D-32D2C0728AC1}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="ChillWurlyPiano" ID="{CFDEB9C4-7105-4B14-A55E-98BA17AE49F2}" ShortID="338537132">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="RadioAttenuation" ID="{3BCBD0C3-46AA-4496-A85D-32D2C0728AC1}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ChillWurlyPiano" ID="{10224147-6209-4B53-80CA-F1DB6F53EF22}">
+									<Language>SFX</Language>
+									<AudioFile>ChillWurlyPiano.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="386335204"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ChillWurlyPiano" ID="{10224147-6209-4B53-80CA-F1DB6F53EF22}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="After_Hours" ID="{D9426BE0-C0AE-4394-8813-FB68683CB597}" ShortID="319683270">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="LoopCount" Type="int32" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="RadioAttenuation" ID="{3BCBD0C3-46AA-4496-A85D-32D2C0728AC1}" WorkUnitID="{DCA0609E-BD4A-4D40-BD4C-3CC268695599}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{CDD95D94-9595-49AA-93AD-A5AE698E3F44}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{2312FA8D-B8C7-47BE-97DD-30E5C25FAE74}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="After_Hours" ID="{75FA8BC3-7659-48EB-93B1-C06D655765D7}">
+									<Language>SFX</Language>
+									<AudioFile>After_Hours.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="752191520"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="After_Hours" ID="{75FA8BC3-7659-48EB-93B1-C06D655765D7}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
