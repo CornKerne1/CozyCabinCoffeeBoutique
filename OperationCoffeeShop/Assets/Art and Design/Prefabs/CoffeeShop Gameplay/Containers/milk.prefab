@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.0042999983, y: 0.021699985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2315578045160328026}
   m_Father: {fileID: 3043166582576148030}
@@ -46,6 +47,7 @@ GameObject:
   - component: {fileID: 106225317}
   - component: {fileID: 389920648}
   - component: {fileID: 8883205018090853507}
+  - component: {fileID: 9113893510985886532}
   m_Layer: 3
   m_Name: milk
   m_TagString: PickUp
@@ -63,6 +65,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.142, y: -9.031, z: -4.234106}
   m_LocalScale: {x: 8.5, y: 8.5, z: 8.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1844950689}
   m_Father: {fileID: 0}
@@ -87,6 +90,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -158,8 +162,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26b609d3b755b84ba3d187d7e268da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   pourTransform: {fileID: 1844950689}
   contentsVisualizer: {fileID: 8407925731901608042}
   inHand: 0
@@ -170,6 +181,7 @@ MonoBehaviour:
   topOfCup: 0
   rotating: 0
   pouringRotation: 0
+  dispenser: {fileID: 0}
   iD: {fileID: 11400000, guid: 56f2929078d5c4c48888b9619f2e1256, type: 2}
   outputIngredients: []
 --- !u!114 &8883205018090853507
@@ -184,6 +196,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02824e20b65a53445bd354a4ba361d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &9113893510985886532
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2409618553146324100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011041396, y: 0.028895104, z: 0.012}
+  m_Center: {x: 0.0034793015, y: 0.004717038, z: 0.0000000017530778}
 --- !u!1 &8407925731901608042
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +235,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1844950689}
   m_RootOrder: 0
