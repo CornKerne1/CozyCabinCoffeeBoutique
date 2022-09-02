@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class GameMode : MonoBehaviour
 {
     //This class keeps track of the game
-    [SerializeField] private float defaultTimeRate;
+    [SerializeField] protected float defaultTimeRate;
     [SerializeField] public Transform player;
     [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
     [SerializeField] public GameObject playerPref;
@@ -37,7 +37,7 @@ public class GameMode : MonoBehaviour
     [FormerlySerializedAs("Objectives")] public Objectives objectives;
 
 
-    private void Start()
+    protected void Start()
     {
         playerData = player.GetComponent<PlayerInteraction>().playerData;
         playerData.moveSpeed = playerData.closeSpeed;
@@ -74,7 +74,7 @@ public class GameMode : MonoBehaviour
         DayNightCycle.UpdateTimeOfDay(time);
     }
 
-    private void Initialize()
+    protected virtual void Initialize()
     {
         //if save file exists load DateTime from file else set to startTime
         DayNightCycle.Initialize();
