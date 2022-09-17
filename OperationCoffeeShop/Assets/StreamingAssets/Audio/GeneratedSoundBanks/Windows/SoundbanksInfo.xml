@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\Hartz\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Hartz\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Hartz\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\Hartz\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,11 +16,13 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="1391094468">
+		<SoundBank Id="3161908922" Language="SFX" Hash="1363428043">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
+				<Event Id="2630402114" Name="Pause_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Pause_GrandTheft_Machiato" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4139861594" Name="Pause_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Pause_SynthWaveSong" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4061997089" Name="Play_AfterHours" ObjectPath="\Events\Default Work Unit\Play_AfterHours" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="752191520" Language="SFX">
@@ -246,6 +248,18 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2172856220" Name="Play_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Play_GrandTheft_Machiato" MaxAttenuation="4." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="602676466" Language="SFX">
+							<ShortName>GTMTheme_Intro.wav</ShortName>
+							<Path>SFX\GTMTheme_Intro_D79FB2B7.wem</Path>
+						</File>
+						<File Id="787409315" Language="SFX">
+							<ShortName>GTMTheme_Looping_section.wav</ShortName>
+							<Path>SFX\GTMTheme_Looping_section_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="15." DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
 					<IncludedMemoryFiles>
 						<File Id="285469530" Language="SFX">
@@ -267,6 +281,14 @@
 						<File Id="936223522" Language="SFX">
 							<ShortName>Gulp.wav</ShortName>
 							<Path>SFX\Gulp_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="774814993" Name="Play_Helicopter" ObjectPath="\Events\Default Work Unit\Play_Helicopter" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="96484927" Language="SFX">
+							<ShortName>Helicopter.wav</ShortName>
+							<Path>SFX\Helicopter_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -354,11 +376,27 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2102535970" Name="Play_Nostalgia" ObjectPath="\Events\Default Work Unit\Play_Nostalgia" MaxAttenuation="12." DurationType="OneShot" DurationMin="115." DurationMax="115.">
+					<IncludedMemoryFiles>
+						<File Id="702921066" Language="SFX">
+							<ShortName>Nostalgia.wav</ShortName>
+							<Path>SFX\Nostalgia_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1479974693" Name="Play_Piano" ObjectPath="\Events\Default Work Unit\Play_Piano" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="386335204" Language="SFX">
 							<ShortName>ChillWurlyPiano.wav</ShortName>
 							<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3371475622" Name="Play_PlayCubeStartup" ObjectPath="\Events\Default Work Unit\Play_PlayCubeStartup" DurationType="OneShot" DurationMin="9.504966" DurationMax="9.504966">
+					<IncludedMemoryFiles>
+						<File Id="457717867" Language="SFX">
+							<ShortName>PlayCubeStartup.wav</ShortName>
+							<Path>SFX\PlayCubeStartup_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -466,6 +504,18 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1092545136" Name="Play_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Play_SynthWaveSong" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="273705753" Language="SFX">
+							<ShortName>GTMSynthLoop.wav</ShortName>
+							<Path>SFX\GTMSynthLoop_D79FB2B7.wem</Path>
+						</File>
+						<File Id="908209051" Language="SFX">
+							<ShortName>GTMSynthIntro.wav</ShortName>
+							<Path>SFX\GTMSynthIntro_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3915894401" Name="Play_TakingShape" ObjectPath="\Events\Default Work Unit\Play_TakingShape" MaxAttenuation="12." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="636649444" Language="SFX">
@@ -482,7 +532,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.688488" DurationMax="0.729428">
+				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.708662" DurationMax="0.708662">
 					<IncludedMemoryFiles>
 						<File Id="455270351" Language="SFX">
 							<ShortName>TaskComplete.wav</ShortName>
@@ -546,6 +596,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1950478834" Name="Play_TvStatic" ObjectPath="\Events\Default Work Unit\Play_TvStatic" MaxAttenuation="4." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="454672396" Language="SFX">
+							<ShortName>TvStatic.wav</ShortName>
+							<Path>SFX\TvStatic_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="4105520773" Name="Play_UnsatisfiedCustomer" ObjectPath="\Events\Default Work Unit\Play_UnsatisfiedCustomer" DurationType="OneShot" DurationMin="1.875011" DurationMax="1.875011">
 					<IncludedMemoryFiles>
 						<File Id="152778883" Language="SFX">
@@ -581,12 +639,18 @@
 				<Event Id="2540658777" Name="Stop_Brewer" ObjectPath="\Events\Default Work Unit\Stop_Brewer" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2232275612" Name="Stop_DragonFlies" ObjectPath="\Events\Default Work Unit\Stop_DragonFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4252214477" Name="Stop_DreamScape" ObjectPath="\Events\Default Work Unit\Stop_DreamScape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3639146620" Name="Stop_Faucet" ObjectPath="\Events\Default Work Unit\Stop_Faucet" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4099702875" Name="Stop_FireFlies" ObjectPath="\Events\Default Work Unit\Stop_FireFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2019721402" Name="Stop_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Stop_GrandTheft_Machiato" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3999941067" Name="Stop_Helicopter" ObjectPath="\Events\Default Work Unit\Stop_Helicopter" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3762348028" Name="Stop_MachineBuzzing" ObjectPath="\Events\Default Work Unit\Stop_MachineBuzzing" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2667958284" Name="Stop_Nostalgia" ObjectPath="\Events\Default Work Unit\Stop_Nostalgia" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1839160882" Name="Stop_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Stop_SynthWaveSong" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1450757357" Name="Stop_TitleTheme" ObjectPath="\Events\Default Work Unit\Stop_TitleTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4243093612" Name="Stop_TvStatic" ObjectPath="\Events\Default Work Unit\Stop_TvStatic" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeOne_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>

@@ -974,6 +974,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!65 &112764909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1297,13 +1300,9 @@ PrefabInstance:
       value: Customer Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 473171037196344874, guid: 87ddf844b13522849a21dfd87271cbef, type: 3}
-      propertyPath: customer
+      propertyPath: customerPath
       value: 
-      objectReference: {fileID: 8382161432092520763, guid: bcf59fa30e5e7eb45a894c9d2b05612e, type: 3}
-    - target: {fileID: 473171037196344874, guid: 87ddf844b13522849a21dfd87271cbef, type: 3}
-      propertyPath: spawnCustomer
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 161067611}
     - target: {fileID: 473171037196344875, guid: 87ddf844b13522849a21dfd87271cbef, type: 3}
       propertyPath: m_RootOrder
       value: 175
@@ -1618,6 +1617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f4a75d18ef66a4ba1e6d398a9c6f85, type: 3}
+--- !u!1 &161067611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7378908152977540598, guid: 4497cc94e7bc9104096377f600597986, type: 3}
+  m_PrefabInstance: {fileID: 7378908153514085700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &198471997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10958,6 +10962,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7800108036994927341, guid: f9d1414911923bb4484b7ebeb8e42be5, type: 3}
+      propertyPath: customerPath
+      value: 
+      objectReference: {fileID: 161067611}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9d1414911923bb4484b7ebeb8e42be5, type: 3}
 --- !u!1001 &1026386908
@@ -17643,6 +17651,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1832242969740901290, guid: c3545d14bc12bff44957646b788a03e6, type: 3}
     - target: {fileID: 4305255638318496729, guid: 3ce4704023787ac489c6ad3d7ab101aa, type: 3}
+      propertyPath: hasOnScreenText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305255638318496729, guid: 3ce4704023787ac489c6ad3d7ab101aa, type: 3}
       propertyPath: onScreenPromptText
       value: Insert Disk
       objectReference: {fileID: 0}
@@ -18740,6 +18752,22 @@ PrefabInstance:
     - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: onScreenPrompt
+      value: 
+      objectReference: {fileID: 1832242969740901290, guid: c3545d14bc12bff44957646b788a03e6, type: 3}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: hasOnScreenText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: onScreenPromptText
+      value: ALT CLICK to Change Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 263851077832978396, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
+      propertyPath: onScreenPromptText2
+      value: PICK UP to Change Station
       objectReference: {fileID: 0}
     - target: {fileID: 3489125399563247106, guid: 26d26b0d1ceabd14fab7aecb00682823, type: 3}
       propertyPath: m_Name

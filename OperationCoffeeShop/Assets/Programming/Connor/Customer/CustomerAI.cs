@@ -26,14 +26,26 @@ public class CustomerAI : MonoBehaviour
     [SerializeField] public bool hasOrdered = false;
     [SerializeField] public bool hasOrder = false;
     [SerializeField] public bool lookAtBool = false;
-
+    
+    [SerializeField] public GameObject path;
+    
     // Start is called before the first frame update
     private void Start()
     {
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
-        var path = GameObject.Find("Customer Path");
+        if (path)
+        {
+            PathConditioning(path);
+        }
+
+        GameMode.ShopClosed += ShopClosed;
+    }
+
+    public void PathConditioning(GameObject givenPath)
+    {
+        path = givenPath;
         foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
             destinations.Add(dest.gameObject);
@@ -56,14 +68,11 @@ public class CustomerAI : MonoBehaviour
             }
         }
 
-        this.setStay(false);
-        this.customerLines = new List<CustomerLine>();
-        this.hasOrder = false;
-        this.hasOrdered = false;
-
-        GameMode.ShopClosed += ShopClosed;
+        setStay(false);
+        customerLines = new List<CustomerLine>();
+        hasOrder = false;
+        hasOrdered = false;
     }
-
     private IEnumerator CO_Wait()
     {
         yield return new WaitForSeconds(.4f);
@@ -90,10 +99,15 @@ public class CustomerAI : MonoBehaviour
         }
         else if (lookAtBool == false) // when in line
         {
-            Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
-            lookat.rotation =
-                new Quaternion(lookat.rotation.x, lookat.rotation.y, lookat.rotation.z, lookat.rotation.w);
-            this.gameObject.transform.LookAt(lookat);
+            if (agent.velocity.magnitude < 2f)
+            {
+                Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
+                var direction = lookat.position - transform.position;
+                direction.y = 0.0f;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction),
+                    Time.time *.06f);
+
+            }
         }
     }
 
