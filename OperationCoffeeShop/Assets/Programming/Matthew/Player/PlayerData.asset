@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2151d413d07c44f81f03b5984194ca, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 2.5
   inertiaVar: 3
   mouseSensitivityX: 20
   mouseSensitivityY: 80
-  mouseSensitivity: 1.1188248
   neckClamp: 0
   groundMask:
     serializedVersion: 2
@@ -24,6 +23,7 @@ MonoBehaviour:
   closeSpeed: 2
   openSpeed: 3
   canMove: 0
+  cameraFov: 60
   amplitude: 0.1
   frequency: 11
   currentMovement: {x: -0.545, y: -5.551, z: -3.778}
@@ -37,3 +37,4 @@ MonoBehaviour:
   carryDistance: 0.7
   smooth: 10
   inUI: 1
+  mouseSensitivityOptions: 0.5

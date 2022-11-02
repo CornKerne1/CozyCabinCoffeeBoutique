@@ -157,7 +157,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 105
+  m_RootOrder: 104
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165561650 stripped
 GameObject:
@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3043166582576148030, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
       propertyPath: m_RootOrder
-      value: 114
+      value: 113
       objectReference: {fileID: 0}
     - target: {fileID: 3043166582576148030, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1446,7 +1446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3043166582576148030, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
       propertyPath: m_RootOrder
-      value: 116
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 3043166582576148030, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1538,8 +1538,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31083968, y: 0.124276854, z: 0.9507431}
-  m_Center: {x: -0.004023813, y: -0.10755505, z: 0.26990744}
+  m_Size: {x: 0.8622416, y: 0.91054285, z: 0.950743}
+  m_Center: {x: -0.017979933, y: -0.022024313, z: 0.26990747}
 --- !u!23 &1467130953
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1945,7 +1945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3043166582576148030, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
       propertyPath: m_RootOrder
-      value: 118
+      value: 117
       objectReference: {fileID: 0}
     - target: {fileID: 3043166582576148030, guid: 2a7036d6910cf824ea045d362b6f9e6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2490,6 +2490,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!4 &203533279971556312
 Transform:
   m_ObjectHideFlags: 0
@@ -2583,7 +2586,7 @@ Transform:
   m_Children:
   - {fileID: 5039833102640231888}
   m_Father: {fileID: 0}
-  m_RootOrder: 48
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &272962004683218043
 MeshFilter:
@@ -2726,6 +2729,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!33 &354531450822462568
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3087,14 +3093,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4284188157347416952}
   m_Mesh: {fileID: 411480072993813340, guid: b854827b0f2c6da43bf4b268d0571dae, type: 3}
---- !u!33 &545064575490080825
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284188157202863398}
-  m_Mesh: {fileID: -5495902117074765545, guid: 71c85fe73c39a8445a2e0e208f553b32, type: 3}
 --- !u!114 &555249710622165840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,6 +3111,13 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  pianoChannel: {fileID: 5047478299777401921, guid: 24a46138423f8434b8afefa424b29406, type: 3}
+  currentChannel: 0
+  pianoChannels: []
+  numberOfChannels: 3
 --- !u!1 &561718906931051401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,6 +3895,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   loadingNextScene: 0
 --- !u!64 &890736104092674020
 MeshCollider:
@@ -4804,7 +4812,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 103
+  m_RootOrder: 102
   m_LocalEulerAnglesHint: {x: 0, y: -143.595, z: 0}
 --- !u!1 &1265044163595453287
 GameObject:
@@ -4940,7 +4948,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
       propertyPath: m_RootOrder
-      value: 56
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
       propertyPath: m_LocalScale.x
@@ -5729,7 +5737,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 93
+  m_RootOrder: 92
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 92.843}
 --- !u!65 &1591064913953748961
 BoxCollider:
@@ -5880,20 +5888,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1675995794053411449
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284188157202863398}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 71c85fe73c39a8445a2e0e208f553b32, type: 3}
 --- !u!23 &1677726413912347047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6035,7 +6029,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 94
+  m_RootOrder: 93
   m_LocalEulerAnglesHint: {x: 0, y: -92.843, z: -4.349}
 --- !u!4 &1780930513164120123
 Transform:
@@ -6050,7 +6044,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 92
+  m_RootOrder: 91
   m_LocalEulerAnglesHint: {x: 0, y: 93.142, z: 0}
 --- !u!4 &1780930513614072547
 Transform:
@@ -6065,7 +6059,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 89
+  m_RootOrder: 88
   m_LocalEulerAnglesHint: {x: 0, y: -44.371, z: 0}
 --- !u!4 &1780930513704493438
 Transform:
@@ -6080,7 +6074,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 98
+  m_RootOrder: 97
   m_LocalEulerAnglesHint: {x: 0, y: 188.097, z: 0}
 --- !u!4 &1780930514088273349
 Transform:
@@ -6095,7 +6089,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 97
+  m_RootOrder: 96
   m_LocalEulerAnglesHint: {x: 0, y: 173.085, z: 0}
 --- !u!33 &1788336489973263142
 MeshFilter:
@@ -6493,7 +6487,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 52
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 49.995}
 --- !u!33 &1929740354077259421
 MeshFilter:
@@ -6705,7 +6699,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 109
+  m_RootOrder: 108
   m_LocalEulerAnglesHint: {x: -6.14, y: 133.525, z: 64.673}
 --- !u!4 &1974083919169381070
 Transform:
@@ -6989,7 +6983,7 @@ Transform:
   m_Children:
   - {fileID: 6610639191460585785}
   m_Father: {fileID: 0}
-  m_RootOrder: 53
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130077043271290372
 GameObject:
@@ -7434,48 +7428,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!23 &2338637172337063155
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284188157202863398}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f96d8f63ab6996943a6a57d76c47a961, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &2338637172586640358
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7785,7 +7737,7 @@ Transform:
   m_Children:
   - {fileID: 2544050851449849631}
   m_Father: {fileID: 0}
-  m_RootOrder: 113
+  m_RootOrder: 112
   m_LocalEulerAnglesHint: {x: 0, y: 30.721, z: 92.592}
 --- !u!4 &2393587520465858362
 Transform:
@@ -7857,7 +7809,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 106
+  m_RootOrder: 105
   m_LocalEulerAnglesHint: {x: -171.774, y: 21.662003, z: -32.260986}
 --- !u!33 &2428383186802049672
 MeshFilter:
@@ -8616,7 +8568,7 @@ Transform:
   - {fileID: 3354615229662259777}
   - {fileID: 900844111191253299}
   m_Father: {fileID: 0}
-  m_RootOrder: 81
+  m_RootOrder: 80
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2617401002654769916
 MeshFilter:
@@ -8867,6 +8819,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!4 &2740143590308842272
 Transform:
   m_ObjectHideFlags: 0
@@ -9368,7 +9323,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 67
+  m_RootOrder: 66
   m_LocalEulerAnglesHint: {x: -0.29, y: 90, z: 0.061}
 --- !u!4 &2898632245984964490
 Transform:
@@ -9383,7 +9338,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 68
+  m_RootOrder: 67
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!4 &2898632246362223632
 Transform:
@@ -9398,7 +9353,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 66
+  m_RootOrder: 65
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &2898632246639097593
 Transform:
@@ -9413,7 +9368,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 69
+  m_RootOrder: 68
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
 --- !u!4 &2898632246811172072
 Transform:
@@ -9428,7 +9383,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 60
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: -0.126, z: 0}
 --- !u!4 &2898632247649668344
 Transform:
@@ -9443,7 +9398,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 64
+  m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &2898632247876055482
 Transform:
@@ -9458,7 +9413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 65
+  m_RootOrder: 64
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &2901175090688474345
 Transform:
@@ -9743,6 +9698,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!33 &2978471629060307982
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10099,7 +10057,7 @@ Transform:
   - {fileID: 5100654172356508201}
   - {fileID: 3894444144758934163}
   m_Father: {fileID: 0}
-  m_RootOrder: 58
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &3120474874037875567
 MeshRenderer:
@@ -10373,7 +10331,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 99
+  m_RootOrder: 98
   m_LocalEulerAnglesHint: {x: 0, y: 24.916, z: 0}
 --- !u!33 &3272531222893860472
 MeshFilter:
@@ -10898,23 +10856,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 83
+  m_RootOrder: 82
   m_LocalEulerAnglesHint: {x: 0, y: -37.282, z: 0}
---- !u!4 &3476689588682182556
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284188157202863398}
-  m_LocalRotation: {x: -0, y: 0.28927913, z: -0, w: 0.9572448}
-  m_LocalPosition: {x: -1.1211, y: -9.521, z: -3.4731}
-  m_LocalScale: {x: 0.0758998, y: 0.0758998, z: 0.0758998}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 44
-  m_LocalEulerAnglesHint: {x: 0, y: 33.63, z: 0}
 --- !u!4 &3476689588952378769
 Transform:
   m_ObjectHideFlags: 0
@@ -10945,7 +10888,7 @@ Transform:
   m_Children:
   - {fileID: 4106262682144768951}
   m_Father: {fileID: 0}
-  m_RootOrder: 49
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3476689589161408518
 Transform:
@@ -10975,7 +10918,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 47
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: -33.941, z: 0}
 --- !u!4 &3476689589462861901
 Transform:
@@ -10990,7 +10933,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 50
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 24.176}
 --- !u!4 &3476689589718495209
 Transform:
@@ -11005,7 +10948,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 46
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &3481755645229696357
 Transform:
@@ -11535,9 +11478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecb65c08543cdc41835b87d111c1395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultTimeRate: 0
   player: {fileID: 1817465924}
-  playerData: {fileID: 0}
+  playerData: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
   playerPref: {fileID: 1817465918}
+  scriptableOptions: {fileID: 11400000, guid: 79858d2f3f5d5cd41a096c893775f3a9, type: 2}
   gate: {fileID: 922450983}
   gameModeData: {fileID: 11400000, guid: b7133bacdeacbc24c8c1b28d6afd6138, type: 2}
   sunLight: {fileID: 1822805714}
@@ -11967,7 +11912,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 96
+  m_RootOrder: 95
   m_LocalEulerAnglesHint: {x: 0, y: -13.118, z: 0}
 --- !u!114 &4014140754143673568
 MonoBehaviour:
@@ -12082,7 +12027,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 95
+  m_RootOrder: 94
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4014140754169168150
 BoxCollider:
@@ -13964,7 +13909,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 85
+  m_RootOrder: 84
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4014140754669990391
 GameObject:
@@ -14051,6 +13996,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!1001 &4014140754774123030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14243,7 +14191,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 90
+  m_RootOrder: 89
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4014140755000016554
 GameObject:
@@ -14430,7 +14378,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 88
+  m_RootOrder: 87
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4014140755705723366
 GameObject:
@@ -14507,7 +14455,7 @@ Transform:
   - {fileID: 9159200384067534482}
   - {fileID: 2485090412704522469}
   m_Father: {fileID: 0}
-  m_RootOrder: 84
+  m_RootOrder: 83
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4014140756053723872
 GameObject:
@@ -14563,7 +14511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 87
+  m_RootOrder: 86
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4014140756053723878
 BoxCollider:
@@ -16816,7 +16764,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 55
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4116776360775525941
 Transform:
@@ -16942,7 +16890,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 91
+  m_RootOrder: 90
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4156599801900303764
 MeshFilter:
@@ -17362,27 +17310,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &4284188157202863398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3476689588682182556}
-  - component: {fileID: 545064575490080825}
-  - component: {fileID: 2338637172337063155}
-  - component: {fileID: 1675995794053411449}
-  - component: {fileID: 6889348543522305219}
-  - component: {fileID: 5138380679419299231}
-  m_Layer: 0
-  m_Name: French_press
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &4284188157347416952
 GameObject:
   m_ObjectHideFlags: 0
@@ -17545,7 +17472,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 110
+  m_RootOrder: 109
   m_LocalEulerAnglesHint: {x: -23.38, y: 407.921, z: 129.576}
 --- !u!1 &4302807509426154525
 GameObject:
@@ -18318,7 +18245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 104
+  m_RootOrder: 103
   m_LocalEulerAnglesHint: {x: 0, y: -63.736, z: 0}
 --- !u!4 &4658128012537537538
 Transform:
@@ -18438,7 +18365,7 @@ Transform:
   - {fileID: 608492059356137401}
   - {fileID: 3578165064771994555}
   m_Father: {fileID: 0}
-  m_RootOrder: 76
+  m_RootOrder: 75
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &4734706518668670621
 MeshRenderer:
@@ -18793,7 +18720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 62
+  m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4869502321854019795
 Transform:
@@ -19012,7 +18939,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 74
+  m_RootOrder: 73
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &4953999013648871090
 GameObject:
@@ -19257,7 +19184,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 77
+  m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &4953999013844260254
 GameObject:
@@ -19328,7 +19255,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 71
+  m_RootOrder: 70
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &4953999014041171230
 MonoBehaviour:
@@ -19525,7 +19452,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 72
+  m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &4953999014684501800
 MonoBehaviour:
@@ -19640,7 +19567,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 73
+  m_RootOrder: 72
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &4953999014784078708
 Light:
@@ -19717,7 +19644,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 70
+  m_RootOrder: 69
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &4953999014784078711
 GameObject:
@@ -19832,7 +19759,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 78
+  m_RootOrder: 77
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &4953999014965649347
 MonoBehaviour:
@@ -19885,7 +19812,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 75
+  m_RootOrder: 74
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &4953999015589971324
 MonoBehaviour:
@@ -20346,7 +20273,7 @@ Transform:
   - {fileID: 1498992813800271413}
   - {fileID: 4014140754774123032}
   m_Father: {fileID: 0}
-  m_RootOrder: 80
+  m_RootOrder: 79
   m_LocalEulerAnglesHint: {x: 0, y: 94.127, z: 0}
 --- !u!23 &5111444106688031696
 MeshRenderer:
@@ -20426,6 +20353,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!33 &5130392679372245149
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20467,24 +20397,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5138380679419299231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284188157202863398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameMode: {fileID: 0}
-  rotateOffset: {x: 0, y: 0, z: 0}
-  isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
-  breakablePrefab: {fileID: 0}
-  playerInteraction: {fileID: 0}
 --- !u!33 &5139094436136585585
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20612,6 +20524,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!114 &5195372015515327028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20630,6 +20545,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!114 &5199189209288810749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20648,6 +20566,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   mD: {fileID: 11400000, guid: f2d3ebd94cc75444da972136842bfa62, type: 2}
 --- !u!23 &5200863803948631690
 MeshRenderer:
@@ -21165,6 +21086,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   halfJar: {fileID: 2721911865961754875}
   fullJar: {fileID: 561718906931051401}
 --- !u!4 &5490790995518142893
@@ -21254,6 +21178,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!4 &5558610925169739057
 Transform:
   m_ObjectHideFlags: 0
@@ -21989,7 +21916,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 102
+  m_RootOrder: 101
   m_LocalEulerAnglesHint: {x: 0, y: -119.361, z: 0}
 --- !u!4 &5749628884438457602
 Transform:
@@ -22241,6 +22168,12 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  playerDoor: 0
+  door: {fileID: 0}
+  openTrans: {fileID: 0}
 --- !u!23 &5842450569194857031
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23311,7 +23244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 108
+  m_RootOrder: 107
   m_LocalEulerAnglesHint: {x: -50.963, y: 166.048, z: 47.522}
 --- !u!4 &6211026072838857903
 Transform:
@@ -24029,7 +23962,7 @@ Transform:
   m_Children:
   - {fileID: 6355897521390620878}
   m_Father: {fileID: 0}
-  m_RootOrder: 115
+  m_RootOrder: 114
   m_LocalEulerAnglesHint: {x: 0, y: 30.721, z: 92.592}
 --- !u!1 &6532529073435833310
 GameObject:
@@ -24230,7 +24163,7 @@ Transform:
   - {fileID: 3930583608225742828}
   - {fileID: 5066212398291750742}
   m_Father: {fileID: 0}
-  m_RootOrder: 82
+  m_RootOrder: 81
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6610639191460585785
 Transform:
@@ -24876,22 +24809,6 @@ Transform:
   m_Father: {fileID: 4796204090363378270}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6889348543522305219
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284188157202863398}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &6890268987458480651
 Transform:
   m_ObjectHideFlags: 0
@@ -24920,7 +24837,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 101
+  m_RootOrder: 100
   m_LocalEulerAnglesHint: {x: 0, y: -144.277, z: 0}
 --- !u!4 &6914777006106270270
 Transform:
@@ -25223,7 +25140,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 54
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: -75.5, z: 0}
 --- !u!4 &6991321023632107585
 Transform:
@@ -25605,6 +25522,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   spawnTrans: {fileID: 1498992813800271413}
   objType: {fileID: 11400000, guid: cccf0c40de2667145b204cf5b7bda58d, type: 2}
   text: {fileID: 4014140754774123031}
@@ -25924,6 +25844,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!1 &7146005115265364317
 GameObject:
   m_ObjectHideFlags: 0
@@ -25985,7 +25908,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 59
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7174739483245241984
 GameObject:
@@ -26546,7 +26469,7 @@ Transform:
   m_Children:
   - {fileID: 5699127049101588316}
   m_Father: {fileID: 0}
-  m_RootOrder: 79
+  m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!33 &7231332934800908575
 MeshFilter:
@@ -26683,7 +26606,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 100
+  m_RootOrder: 99
   m_LocalEulerAnglesHint: {x: 0, y: 0.682, z: 0}
 --- !u!23 &7332621876485913034
 MeshRenderer:
@@ -27422,7 +27345,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 51
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -89.969}
 --- !u!23 &7628581271353068048
 MeshRenderer:
@@ -27562,7 +27485,7 @@ Transform:
   m_Children:
   - {fileID: 9221255110050680166}
   m_Father: {fileID: 0}
-  m_RootOrder: 63
+  m_RootOrder: 62
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 64.999}
 --- !u!4 &7670845365322285199
 Transform:
@@ -27578,7 +27501,7 @@ Transform:
   m_Children:
   - {fileID: 9221255111430375966}
   m_Father: {fileID: 0}
-  m_RootOrder: 61
+  m_RootOrder: 60
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -10.949}
 --- !u!23 &7677951569209062295
 MeshRenderer:
@@ -28315,7 +28238,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 107
+  m_RootOrder: 106
   m_LocalEulerAnglesHint: {x: -166.881, y: -19.13501, z: 13.651001}
 --- !u!1 &7974697944975121818
 GameObject:
@@ -28693,7 +28616,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 45
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 90.354, z: 0}
 --- !u!23 &8100879205035153216
 MeshRenderer:
@@ -28819,7 +28742,7 @@ Transform:
   - {fileID: 7725898546551723274}
   - {fileID: 1070749096654040746}
   m_Father: {fileID: 0}
-  m_RootOrder: 86
+  m_RootOrder: 85
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8149980193436969879
 Transform:
@@ -28850,7 +28773,7 @@ Transform:
   m_Children:
   - {fileID: 6557817268212814086}
   m_Father: {fileID: 0}
-  m_RootOrder: 111
+  m_RootOrder: 110
   m_LocalEulerAnglesHint: {x: -1.487, y: 481.363, z: -16.486}
 --- !u!33 &8162418916687372281
 MeshFilter:
@@ -29328,7 +29251,7 @@ Transform:
   m_Children:
   - {fileID: 8609774130027145622}
   m_Father: {fileID: 0}
-  m_RootOrder: 112
+  m_RootOrder: 111
   m_LocalEulerAnglesHint: {x: 0, y: 30.721, z: 92.592}
 --- !u!1 &8443518515010092039
 GameObject:
@@ -29530,6 +29453,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!23 &8538364514399654656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29682,7 +29608,7 @@ Transform:
   - {fileID: 2642669790983840785}
   - {fileID: 8425816005721909353}
   m_Father: {fileID: 0}
-  m_RootOrder: 57
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &8604471161304390788
 MeshRenderer:
@@ -30052,7 +29978,7 @@ Transform:
   m_Children:
   - {fileID: 8844214176900862982}
   m_Father: {fileID: 0}
-  m_RootOrder: 117
+  m_RootOrder: 116
   m_LocalEulerAnglesHint: {x: 0, y: 30.721, z: 92.592}
 --- !u!4 &8753773922830173284
 Transform:
@@ -30159,6 +30085,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
   pI: {fileID: 0}
   canClimb: 0
 --- !u!4 &8768815516664137436
@@ -31261,6 +31190,9 @@ MonoBehaviour:
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
 --- !u!4 &9159200384067534482
 Transform:
   m_ObjectHideFlags: 0

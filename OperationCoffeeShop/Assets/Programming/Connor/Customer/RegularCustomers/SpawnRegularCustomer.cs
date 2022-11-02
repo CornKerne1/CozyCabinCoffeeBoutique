@@ -16,6 +16,7 @@ public class SpawnRegularCustomer : MonoBehaviour
     private int _currentDay = -1;
     private int _currentHour = -1;
 
+    [SerializeField] private GameObject customerPath;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class SpawnRegularCustomer : MonoBehaviour
         var transform1 = transform;
         Instantiate(customer, transform1.position, transform1.rotation);
         customer.GetComponent<CustomerInteractable>().regularCustomerAtlas = regularCustomerAtlas;
+        customer.GetComponent<CustomerAI>().PathConditioning(customerPath);
     }
 
     private void UpdateDic(object sender, EventArgs e)
@@ -85,7 +87,7 @@ public class SpawnRegularCustomer : MonoBehaviour
                     _Time_Customer[gMD.currentTime.Hour + 1].Add(customer);
                 else
                 {
-                    _Time_Customer[gMD.currentTime.Hour + 1] = new List<GameObject> { customer };
+                    _Time_Customer[gMD.currentTime.Hour + 1] = new List<GameObject> {customer};
                 }
             }
 
