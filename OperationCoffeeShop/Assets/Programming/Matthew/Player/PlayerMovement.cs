@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public bool isGrounded;
     [SerializeField] public LayerMask groundMask;
     private Vector3 _currentMovement;
-    public bool freeCam;
     private Camera _camera;
+    private Vector3 _camModeReset;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         controller = this.gameObject.GetComponent<CharacterController>();
         _playerInput.pD.currentMovement = transform.position;
         _playerInput.pD.isClimbing = false;
-        PlayerInput.FreeCamEvent += ToggleFreeCam;
+        PlayerInput.CamModeEvent += ToggleCamMode;
         StartCoroutine(CO_EditorFix());
     }
     private void Update()
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleLadderMovement();
         }
-        else if (freeCam)
+        else if ( _playerInput.pD.camMode)
         {
             if (_camera)
             {
@@ -85,12 +86,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ToggleFreeCam(object sender, EventArgs e)
+    private void ToggleCamMode(object sender, EventArgs e)
     {
-        freeCam = !freeCam;
-        if (freeCam)
+        _playerInput.pD.camMode = ! _playerInput.pD.camMode;
+        if ( _playerInput.pD.camMode)
         {
-           var colliders= transform.root.GetComponentsInChildren<Collider>();
+            _camModeReset = transform.position;
+            var colliders= transform.root.GetComponentsInChildren<Collider>();
            foreach (var c in colliders)
            {
                if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
@@ -104,6 +106,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            GetComponent<CharacterController>().enabled = false;
+            transform.position = _camModeReset;
+            GetComponent<CharacterController>().enabled = true;
             var colliders= transform.root.GetComponentsInChildren<Collider>();
             foreach (var c in colliders)
             {

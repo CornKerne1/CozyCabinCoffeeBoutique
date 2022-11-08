@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -22,6 +24,8 @@ public class PlayerInteraction : MonoBehaviour
     private MinFloatParameter _dofDistanceParameter;
     private ClampedFloatParameter _dofAperture;
     private ClampedFloatParameter _startAperture;
+
+    private IEnumerator _coRoutine;
 
     private bool _blur;
 
@@ -119,15 +123,15 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (playerInput.GetCurrentRotate().x > 0)
             {
-                carriedObj.transform.Rotate(playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0, 0);
+                carriedObj.transform.Rotate(playerData.objRotationSpeed, 0, 0);
             }
             else if (playerInput.GetCurrentRotate().x < 0)
             {
-                carriedObj.transform.Rotate(0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0);
+                carriedObj.transform.Rotate(0, playerData.objRotationSpeed, 0);
             }
             else if (playerInput.GetCurrentRotate().y > 0)
             {
-                carriedObj.transform.Rotate(0, 0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed);
+                carriedObj.transform.Rotate(0, 0, playerData.objRotationSpeed);
             }
             else if (playerInput.GetCurrentRotate().y < 0)
             {
@@ -146,6 +150,11 @@ public class PlayerInteraction : MonoBehaviour
     private void TryInteract(object sender, EventArgs e)
     {
         if (playerData.inUI) return;
+        if (playerData.camMode)
+        {
+            TryTakePicture();
+            return;
+        }
         if (playerData.busyHands)
         {
             DropCurrentObj();
@@ -158,6 +167,53 @@ public class PlayerInteraction : MonoBehaviour
             AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
             _currentInteractable.OnInteract(this);
         }
+    }
+
+    private void TryTakePicture()
+    {
+        if (_coRoutine==null)
+        {
+            StartCoroutine(TakePicture());
+        }
+    }
+
+    private IEnumerator TakePicture()
+    {
+        _coRoutine = TakePicture();
+        yield return new WaitForEndOfFrame();
+        var i = playerData.screenShots.Count.ToString();
+        SaveScreenShot(i);
+        LoadIntoPlayerData(i);
+        _coRoutine = null;
+    }
+
+    private void LoadIntoPlayerData(string i)
+    {
+        byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png");
+        var sS = new Texture2D(0, 0);
+        sS.LoadImage(textureBytes);
+        sS.filterMode = FilterMode.Point;
+        playerData.screenShots.Add(sS);
+    }
+    private static Texture2D ScaleTexture(Texture2D source,int targetWidth,int targetHeight) 
+    {
+        Texture2D result=new Texture2D(targetWidth,targetHeight,source.format,true);
+        Color[] rpixels=result.GetPixels(0);
+        float incX=(1.0f / (float)targetWidth);
+        float incY=(1.0f / (float)targetHeight); 
+        for(int px=0; px<rpixels.Length; px++) { 
+            rpixels[px] = source.GetPixelBilinear(incX*((float)px%targetWidth), incY*((float)Mathf.Floor(px/targetWidth))); 
+        } 
+        result.SetPixels(rpixels,0); 
+        result.Apply(); 
+        return result; 
+    }
+    
+    private static void SaveScreenShot(string i)
+    {
+        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 480,270);
+        byte[] textureBytes = sS.EncodeToPNG();
+        File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
     }
 
     private void TryRotate(object sender, EventArgs e)

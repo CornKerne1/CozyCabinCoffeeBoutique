@@ -1,5 +1,6 @@
 
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float openSpeed;
     [SerializeField] public bool canMove;
     [SerializeField] public float cameraFov=60f;
+    [SerializeField] public bool camMode;
     private Camera _camera;
 
     [Header("Headbob Stuff")]
@@ -49,14 +51,29 @@ public class PlayerData : ScriptableObject
     [Range(0, 10)]
     [SerializeField] public float smooth;
     [SerializeField] public bool inUI = false;
-    
+    public List<Texture2D> screenShots = new List<Texture2D>();
+
     [Header("Menus")]
     public float mouseSensitivityOptions;
     
     private void OnEnable()
     {
+        var c = screenShots.Count;
+        screenShots = new List<Texture2D>();
+        for (int i = 0; i <= c; i++)
+        {
+            if (File.Exists(Application.persistentDataPath + "ScreenShot" + i + ".png"))
+            {
+                byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png");
+                var sS = new Texture2D(0, 0);
+                sS.LoadImage(textureBytes);
+                sS.filterMode = FilterMode.Point;
+                screenShots.Insert(i,sS);
+            }
+        }
         busyHands = false;
         isClimbing = false;
+        camMode = false;
         neckClamp = 77.3f;
         inUI = false;
         canMove = true;

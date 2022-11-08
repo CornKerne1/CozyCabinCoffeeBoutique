@@ -25,7 +25,7 @@ public class DayCounter : MonoBehaviour
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _animator = transform.root.GetComponentInChildren<Animator>();
-        PlayerInput.FreeCamEvent += ToggleUI;
+        PlayerInput.CamModeEvent += ToggleUI;
         if (gameMode.gameModeData.inTutorial)
         {
             DisplayDay(0);
@@ -95,7 +95,7 @@ public class DayCounter : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInput.FreeCamEvent -= ToggleUI;
+        PlayerInput.CamModeEvent -= ToggleUI;
         Bed.NewDay -= NewDay;
 
 

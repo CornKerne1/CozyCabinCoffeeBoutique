@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     public static event EventHandler RotateCanceledEvent;
     public static event EventHandler MoveObjEvent;
     
-    public static event EventHandler FreeCamEvent;
+    public static event EventHandler CamModeEvent;
 
     private PlayerControls _pC;
     private PlayerControls.FPPlayerActions _fPp;
@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         hudRef=Instantiate(hud);
         pauseM.SetActive(false);
         pauseM.GetComponent<PauseMenu>().CloseOptions();
-        FreeCamEvent+=ToggleHud;
+        CamModeEvent+=ToggleHud;
     }
     private void _Pause()
     {
@@ -183,7 +183,7 @@ public class PlayerInput : MonoBehaviour
 
     private void FreeCam(InputAction.CallbackContext obj)
     {
-        FreeCamEvent?.Invoke(null, EventArgs.Empty);
+        CamModeEvent?.Invoke(null, EventArgs.Empty);
     }
 
 }
