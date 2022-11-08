@@ -18,8 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _currentMovement;
     public bool freeCam;
     private Camera _camera;
-    private Vector3 _cameraModeReset;
-    private CharacterController _cC;
 
     private void Start()
     {
@@ -28,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         controller = this.gameObject.GetComponent<CharacterController>();
         _playerInput.pD.currentMovement = transform.position;
         _playerInput.pD.isClimbing = false;
-        _cC = GetComponent<CharacterController>();
         PlayerInput.FreeCamEvent += ToggleFreeCam;
         StartCoroutine(CO_EditorFix());
     }
@@ -44,11 +41,10 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator CO_EditorFix()
     {
         var playerInteractable = GetComponent<PlayerInteraction>();
-        var enabledVar = playerInteractable.enabled;
-        enabledVar = false;
+        playerInteractable.enabled = false;
         yield return new WaitForSeconds(.1f);
-        enabledVar = true;
-        playerInteractable.enabled = enabledVar;
+        playerInteractable.enabled = true;
+
     }
 
     private void HandleMovement()
@@ -94,11 +90,10 @@ public class PlayerMovement : MonoBehaviour
         freeCam = !freeCam;
         if (freeCam)
         {
-            _cameraModeReset = transform.position;
-            var colliders= transform.root.GetComponentsInChildren<Collider>();
+           var colliders= transform.root.GetComponentsInChildren<Collider>();
            foreach (var c in colliders)
            {
-               if (c.GetInstanceID() ==_cC.GetInstanceID())
+               if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
                {
                    gameObject.layer = 8;
                    return;
@@ -109,13 +104,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _cC.enabled = false;
-            transform.position = _cameraModeReset;
-            _cC.enabled = true;
             var colliders= transform.root.GetComponentsInChildren<Collider>();
             foreach (var c in colliders)
             {
-                if (c.GetInstanceID() ==_cC.GetInstanceID())
+                if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
                 {
                     gameObject.layer = 2;
                     return;
