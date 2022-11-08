@@ -16,7 +16,7 @@ public class PictureFrame : Interactable
     {
         yield return new WaitForSeconds(.1f);
         MeshRenderer meshRenderer = picture.GetComponent<MeshRenderer>();
-        picture.GetComponent<MeshRenderer>().material.mainTexture = gameMode.playerData.screenShots[Random.Range(0,gameMode.playerData.screenShots.Count)];
+        picture.GetComponent<MeshRenderer>().material.mainTexture = gameMode.playerData.screenShots[Random.Range(0,gameMode.playerData.screenShots.Count-1)];
     }
 
     public override void OnInteract(PlayerInteraction interaction)
