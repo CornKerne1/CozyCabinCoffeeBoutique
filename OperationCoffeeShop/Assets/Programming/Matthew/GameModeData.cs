@@ -14,19 +14,6 @@ public class GameModeData : ScriptableObject
     public void OnEnable()
     {
         isOpen = false;
-        var c = screenShots.Count;
-        screenShots = new List<Texture2D>();
-        for (int i = 0; i <= c; i++)
-        {
-            if (File.Exists(Application.persistentDataPath + "ScreenShot" + i + ".png"))
-            {
-                byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png");
-                var sS = new Texture2D(0, 0);
-                sS.LoadImage(textureBytes);
-                sS.filterMode = FilterMode.Point;
-                screenShots.Insert(i,sS);
-            }
-        }
     }
 
     [Header("Day Night Cycle")] public float timeRate;
@@ -51,7 +38,6 @@ public class GameModeData : ScriptableObject
     public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
-    public List<Texture2D> screenShots = new List<Texture2D>();
 
     public string time;
 

@@ -150,18 +150,14 @@ public class GameMode : MonoBehaviour
 
     public void TakePicture()
     {
-        var i = gameModeData.screenShots.Count.ToString();
-        SaveScreenShot(i);
-        LoadIntoPlayerData(i);
-    }
-    
-    private void LoadIntoPlayerData(string i)
-    {
-        byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png");
-        var sS = new Texture2D(0, 0);
-        sS.LoadImage(textureBytes);
-        sS.filterMode = FilterMode.Point;
-        gameModeData.screenShots.Add(sS);
+        for (int i = 1; i <=100; i++)
+        {
+            if (!File.Exists(Application.persistentDataPath + "ScreenShot" + i + ".png"))
+            {
+                SaveScreenShot(i);
+                break;
+            }
+        }
     }
     private static Texture2D ScaleTexture(Texture2D source,int targetWidth,int targetHeight) 
     {
@@ -176,8 +172,18 @@ public class GameMode : MonoBehaviour
         result.Apply(); 
         return result; 
     }
+
+    public static Texture2D LoadTextureFromDisk(int i)
+    {
+        byte[] textureBytes =
+            File.ReadAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png");
+        var sS = new Texture2D(0, 0);
+        sS.LoadImage(textureBytes);
+        sS.filterMode = FilterMode.Point;
+        return sS;
+    }
     
-    private static void SaveScreenShot(string i)
+    private static void SaveScreenShot(int i)
     {
         var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 480,270);
         byte[] textureBytes = sS.EncodeToPNG();

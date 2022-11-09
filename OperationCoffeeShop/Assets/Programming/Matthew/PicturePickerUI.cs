@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PicturePickerUI : MonoBehaviour
@@ -15,25 +16,23 @@ public class PicturePickerUI : MonoBehaviour
     }
     public void OnLeftButtonClicked()
     {
+        if (_currentPic == 0) return;
+        if (File.Exists(Application.persistentDataPath + "ScreenShot" + (_currentPic - 1) + ".png"))
+        {
+            _currentPic = _currentPic - 1;
+            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(_currentPic));
+        }
 
-        int pic;
-        if (_currentPic == 0)
-            pic = gameMode.gameModeData.screenShots.Count-1;
-        else
-            pic = _currentPic - 1;
-        _currentPic = pic;
-        physicalRef.ChangePicture(_currentPic);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
     }
     public void OnRightButtonClicked()
     {
-        int pic;
-        if (_currentPic == gameMode.gameModeData.screenShots.Count-1)
-            pic = 0;
-        else
-            pic = _currentPic + 1;
-        _currentPic = pic;
-        physicalRef.ChangePicture(_currentPic);
+       
+        if(File.Exists(Application.persistentDataPath + "ScreenShot" + (_currentPic+1) + ".png"))
+        {
+            _currentPic = _currentPic + 1;
+            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(_currentPic));
+        }
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
     }
 }

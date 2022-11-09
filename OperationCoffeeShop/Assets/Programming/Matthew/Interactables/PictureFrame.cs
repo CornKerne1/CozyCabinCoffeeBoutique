@@ -13,11 +13,11 @@ public class PictureFrame : Interactable
     private int currentPic;
     private static readonly int EmissionMap = Shader.PropertyToID("_EmissionMap");
 
-    public void ChangePicture(int i)
+    public void ChangePicture(Texture2D t)
     {
         MeshRenderer meshRenderer = picture.GetComponent<MeshRenderer>();
-        meshRenderer.material.mainTexture = gameMode.gameModeData.screenShots[i];
-        meshRenderer.material.SetTexture(EmissionMap, gameMode.gameModeData.screenShots[i]);
+        meshRenderer.material.mainTexture = t;
+        meshRenderer.material.SetTexture(EmissionMap, t);
     }
 
     public override void OnInteract(PlayerInteraction interaction)
