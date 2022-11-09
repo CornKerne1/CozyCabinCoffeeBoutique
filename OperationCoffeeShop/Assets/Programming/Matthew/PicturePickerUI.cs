@@ -12,37 +12,28 @@ public class PicturePickerUI : MonoBehaviour
     private void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        PlayerInput.AltInteractEvent += Close;
     }
-
-    private void Close(object sender, EventArgs e)
-    {
-        gameMode.playerData.canMove = true;
-        gameMode.playerData.inUI = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Destroy(gameObject.transform.root.gameObject);
-    }
-
     public void OnLeftButtonClicked()
     {
 
         int pic;
         if (_currentPic == 0)
-            pic = gameMode.playerData.screenShots.Count-1;
+            pic = gameMode.gameModeData.screenShots.Count-1;
         else
             pic = _currentPic - 1;
         _currentPic = pic;
         physicalRef.ChangePicture(_currentPic);
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
     }
     public void OnRightButtonClicked()
     {
         int pic;
-        if (_currentPic == gameMode.playerData.screenShots.Count)
+        if (_currentPic == gameMode.gameModeData.screenShots.Count-1)
             pic = 0;
         else
             pic = _currentPic + 1;
         _currentPic = pic;
         physicalRef.ChangePicture(_currentPic);
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
     }
 }

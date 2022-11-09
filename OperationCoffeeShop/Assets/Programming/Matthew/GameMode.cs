@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -15,7 +16,7 @@ public class GameMode : MonoBehaviour
     [SerializeField] private Gate gate;
 
     //This is the Scriptable Object that contains the data for this class.
-    [FormerlySerializedAs("gMD")] public GameModeData gameModeData;
+    [FormerlySerializedAs("GameModeData")] [FormerlySerializedAs("gMD")] public GameModeData gameModeData;
 
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle DayNightCycle;
@@ -147,5 +148,39 @@ public class GameMode : MonoBehaviour
         SurpriseCustomers?.Invoke(breakableSource, EventArgs.Empty);
     }
 
-   
+    public void TakePicture()
+    {
+        var i = gameModeData.screenShots.Count.ToString();
+        SaveScreenShot(i);
+        LoadIntoPlayerData(i);
+    }
+    
+    private void LoadIntoPlayerData(string i)
+    {
+        byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png");
+        var sS = new Texture2D(0, 0);
+        sS.LoadImage(textureBytes);
+        sS.filterMode = FilterMode.Point;
+        gameModeData.screenShots.Add(sS);
+    }
+    private static Texture2D ScaleTexture(Texture2D source,int targetWidth,int targetHeight) 
+    {
+        Texture2D result=new Texture2D(targetWidth,targetHeight,source.format,true);
+        Color[] rpixels=result.GetPixels(0);
+        float incX=(1.0f / (float)targetWidth);
+        float incY=(1.0f / (float)targetHeight); 
+        for(int px=0; px<rpixels.Length; px++) { 
+            rpixels[px] = source.GetPixelBilinear(incX*((float)px%targetWidth), incY*((float)Mathf.Floor(px/targetWidth))); 
+        } 
+        result.SetPixels(rpixels,0); 
+        result.Apply(); 
+        return result; 
+    }
+    
+    private static void SaveScreenShot(string i)
+    {
+        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 480,270);
+        byte[] textureBytes = sS.EncodeToPNG();
+        File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
+    }
 }

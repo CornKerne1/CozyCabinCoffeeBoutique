@@ -100,7 +100,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.MoveObj.performed += MoveObj;
         _fPp.MoveObj.Enable();
         
-        _fPp.FreeCam.performed += FreeCam;
+        //_fPp.FreeCam.performed += FreeCam;
         _fPp.FreeCam.Enable();
     }
 
@@ -121,7 +121,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.Rotate.Disable();
         _fPp.FreeCam.Disable();
     }
-    private void ToggleHud(object sender, EventArgs e)
+    public void ToggleHud(object sender, EventArgs e)
     {
         hudRef.SetActive(!hudRef.activeSelf);
     }
@@ -181,9 +181,13 @@ public class PlayerInput : MonoBehaviour
         RotateCanceledEvent?.Invoke(this, EventArgs.Empty);
     }
 
-    private void FreeCam(InputAction.CallbackContext obj)
+    public void FreeCam()
     {
         CamModeEvent?.Invoke(null, EventArgs.Empty);
     }
 
+    public void ToggleHud()
+    {
+        hudRef.SetActive(!hudRef.activeSelf);
+    }
 }
