@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     public PlayerData pD;
     private float _previousTimeRate;
     private bool _couldMovePreviously = true;
+    public PlayerInput playerInput;
 
     public GameObject optionsScreen;
 
@@ -33,6 +35,7 @@ public class PauseMenu : MonoBehaviour
             pD.inUI = false;
             gameObject.SetActive(false);
             _playerInteraction.CameraBlur();
+            playerInput.ToggleHud();
         }
         else
         {
@@ -41,6 +44,7 @@ public class PauseMenu : MonoBehaviour
             AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
             _animator.SetTrigger("Reverse");
             gameObject.SetActive(false);
+            playerInput.ToggleHud();
         }
     }
 

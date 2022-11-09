@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -22,6 +24,9 @@ public class PlayerInteraction : MonoBehaviour
     private MinFloatParameter _dofDistanceParameter;
     private ClampedFloatParameter _dofAperture;
     private ClampedFloatParameter _startAperture;
+    private GameMode _gameMode;
+
+    private IEnumerator _coRoutine;
 
     private bool _blur;
 
@@ -36,6 +41,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Start()
     {
         InitializeDof();
+       _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
     private void Update()
@@ -119,15 +125,15 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (playerInput.GetCurrentRotate().x > 0)
             {
-                carriedObj.transform.Rotate(playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0, 0);
+                carriedObj.transform.Rotate(playerData.objRotationSpeed, 0, 0);
             }
             else if (playerInput.GetCurrentRotate().x < 0)
             {
-                carriedObj.transform.Rotate(0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0);
+                carriedObj.transform.Rotate(0, playerData.objRotationSpeed, 0);
             }
             else if (playerInput.GetCurrentRotate().y > 0)
             {
-                carriedObj.transform.Rotate(0, 0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed);
+                carriedObj.transform.Rotate(0, 0, playerData.objRotationSpeed);
             }
             else if (playerInput.GetCurrentRotate().y < 0)
             {
@@ -146,6 +152,11 @@ public class PlayerInteraction : MonoBehaviour
     private void TryInteract(object sender, EventArgs e)
     {
         if (playerData.inUI) return;
+        if (playerData.camMode)
+        {
+            TryTakePicture();
+            return;
+        }
         if (playerData.busyHands)
         {
             DropCurrentObj();
@@ -158,6 +169,22 @@ public class PlayerInteraction : MonoBehaviour
             AkSoundEngine.PostEvent("Play_InteractSound", gameObject);
             _currentInteractable.OnInteract(this);
         }
+    }
+
+    private void TryTakePicture()
+    {
+        if (_coRoutine==null)
+        {
+            StartCoroutine(TakePicture());
+        }
+    }
+
+    private IEnumerator TakePicture()
+    {
+        _coRoutine = TakePicture();
+        yield return new WaitForEndOfFrame();
+        _gameMode.TakePicture();
+        _coRoutine = null;
     }
 
     private void TryRotate(object sender, EventArgs e)
@@ -181,6 +208,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Alt(object sender, EventArgs e)
     {
         if (!carriedObj) return;
+        if(playerData.inUI) return;
         if (_currentInteractable)
         {
             _currentInteractable.OnAltInteract(this);

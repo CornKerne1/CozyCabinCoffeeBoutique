@@ -14,7 +14,8 @@ public class PlayerInput : MonoBehaviour
     public static event EventHandler RotateCanceledEvent;
     public static event EventHandler MoveObjEvent;
     
-    public static event EventHandler FreeCamEvent;
+    public static event EventHandler CamModeEvent;
+    public static event EventHandler PauseEvent;
 
     private PlayerControls _pC;
     private PlayerControls.FPPlayerActions _fPp;
@@ -42,12 +43,16 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        hudRef=Instantiate(hud);
+        hudRef = Instantiate(hud);
         pauseM.SetActive(false);
-        pauseM.GetComponent<PauseMenu>().CloseOptions();
-        FreeCamEvent+=ToggleHud;
+        var pM = pauseM.GetComponent<PauseMenu>();
+        pM.playerInput = this;
+        pM.CloseOptions();
+        CamModeEvent += ToggleHud;
+        PauseEvent += _Pause;
     }
-    private void _Pause()
+
+    private void _Pause(object sender, EventArgs e)
     {
         if (!pauseM) return;
         if (!pD.inUI)
@@ -55,12 +60,14 @@ public class PlayerInput : MonoBehaviour
             pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
+            ToggleHud(); 
         }
         else
         {
             if (!pauseM) return;
             pauseM.GetComponent<PauseMenu>().StartGame();
             pD.inUI = false;
+            ToggleHud();
         }
     }
 
@@ -100,7 +107,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.MoveObj.performed += MoveObj;
         _fPp.MoveObj.Enable();
         
-        _fPp.FreeCam.performed += FreeCam;
+        //_fPp.FreeCam.performed += FreeCam;
         _fPp.FreeCam.Enable();
     }
 
@@ -121,7 +128,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.Rotate.Disable();
         _fPp.FreeCam.Disable();
     }
-    private void ToggleHud(object sender, EventArgs e)
+    public void ToggleHud(object sender, EventArgs e)
     {
         hudRef.SetActive(!hudRef.activeSelf);
     }
@@ -165,12 +172,6 @@ public class PlayerInput : MonoBehaviour
     {
         AltInteractEvent?.Invoke(this, EventArgs.Empty);
     }
-
-    private void Pause(InputAction.CallbackContext obj)
-    {
-        _Pause();
-    }
-
     private void Rotate(InputAction.CallbackContext obj)
     {
         RotateEvent?.Invoke(this, EventArgs.Empty);
@@ -181,9 +182,18 @@ public class PlayerInput : MonoBehaviour
         RotateCanceledEvent?.Invoke(this, EventArgs.Empty);
     }
 
-    private void FreeCam(InputAction.CallbackContext obj)
+    public void FreeCam()
     {
-        FreeCamEvent?.Invoke(null, EventArgs.Empty);
+        CamModeEvent?.Invoke(null, EventArgs.Empty);
     }
 
+    public void ToggleHud()
+    {
+        hudRef.SetActive(!hudRef.activeSelf);
+    }
+
+    private static void Pause(InputAction.CallbackContext obj)
+    {
+        PauseEvent?.Invoke(null, EventArgs.Empty);
+    }
 }

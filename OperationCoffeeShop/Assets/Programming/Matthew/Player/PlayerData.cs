@@ -1,5 +1,6 @@
 
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float openSpeed;
     [SerializeField] public bool canMove;
     [SerializeField] public float cameraFov=60f;
+    [SerializeField] public bool camMode;
     private Camera _camera;
 
     [Header("Headbob Stuff")]
@@ -49,7 +51,7 @@ public class PlayerData : ScriptableObject
     [Range(0, 10)]
     [SerializeField] public float smooth;
     [SerializeField] public bool inUI = false;
-    
+
     [Header("Menus")]
     public float mouseSensitivityOptions;
     
@@ -57,6 +59,7 @@ public class PlayerData : ScriptableObject
     {
         busyHands = false;
         isClimbing = false;
+        camMode = false;
         neckClamp = 77.3f;
         inUI = false;
         canMove = true;
