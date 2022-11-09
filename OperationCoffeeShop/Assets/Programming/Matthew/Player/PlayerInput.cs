@@ -45,7 +45,9 @@ public class PlayerInput : MonoBehaviour
     {
         hudRef = Instantiate(hud);
         pauseM.SetActive(false);
-        pauseM.GetComponent<PauseMenu>().CloseOptions();
+        var pM = pauseM.GetComponent<PauseMenu>();
+        pM.playerInput = this;
+        pM.CloseOptions();
         CamModeEvent += ToggleHud;
         PauseEvent += _Pause;
     }
@@ -58,7 +60,7 @@ public class PlayerInput : MonoBehaviour
             pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
-            ToggleHud();
+            ToggleHud(); 
         }
         else
         {

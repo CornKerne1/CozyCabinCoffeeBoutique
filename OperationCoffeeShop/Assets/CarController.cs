@@ -65,7 +65,10 @@ public class CarController : MonoBehaviour
     {
         foreach(var wheel in wheels)
         {
-            wheel.WheelCollider.motorTorque = moveInput * 3500 * maxAcceleration * Time.deltaTime;
+            if (wheel.WheelCollider.isGrounded)
+                wheel.WheelCollider.motorTorque = moveInput * 3500 * maxAcceleration * Time.deltaTime;
+            else
+                wheel.WheelCollider.motorTorque = 0;
         }
     }
 
