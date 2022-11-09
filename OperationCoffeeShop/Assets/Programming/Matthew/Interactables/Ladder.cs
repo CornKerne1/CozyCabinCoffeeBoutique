@@ -12,7 +12,7 @@ public class Ladder : Interactable
     public override void OnInteract(PlayerInteraction interaction)
     {
         this.pI = interaction;
-        if (gameMode.gameModeData.isOpen) return;
+        if (gameMode.gameModeData.isOpen&& !gameMode.gameModeData.inTutorial) return;
         if (pI.playerData.isClimbing)
         {
             pI.playerData.isClimbing = false;
