@@ -208,6 +208,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Alt(object sender, EventArgs e)
     {
         if (!carriedObj) return;
+        if(playerData.inUI) return;
         if (_currentInteractable)
         {
             _currentInteractable.OnAltInteract(this);

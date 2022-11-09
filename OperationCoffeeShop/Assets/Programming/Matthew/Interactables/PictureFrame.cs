@@ -13,6 +13,12 @@ public class PictureFrame : Interactable
     private int currentPic;
     private static readonly int EmissionMap = Shader.PropertyToID("_EmissionMap");
 
+    public override void Start()
+    {
+        base.Start();
+        PlayerInput.PauseEvent += DestroyUI;
+    }
+
     public void ChangePicture(Texture2D t)
     {
         MeshRenderer meshRenderer = picture.GetComponent<MeshRenderer>();
@@ -28,33 +34,23 @@ public class PictureFrame : Interactable
 
     public override void OnAltInteract(PlayerInteraction interaction)
     {
-        if (interaction.carriedObj == this.gameObject)
-        {
-            if (!ui)
-            {
-                gameMode.playerData.canMove = false;
-                gameMode.playerData.inUI = true;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                ui = Instantiate(uiPref);
-                ui.GetComponent<PicturePickerUI>().physicalRef = this;
-                interaction.playerInput.ToggleHud();
-                for (int i = 0; i <= 10; i++)
-                {
-                    transform.LookAt(interaction.transform);
-                    //Thread.Sleep(1);
-                }
-            }
-            else
-            {
-                DestroyUI();
-                interaction.playerInput.ToggleHud();
-            }
-        }
+        if (!playerInteraction) playerInteraction = interaction;
+        if (interaction.carriedObj != this.gameObject) return;
+        if (ui) return;
+        gameMode.playerData.canMove = false;
+        gameMode.playerData.inUI = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        ui = Instantiate(uiPref);
+        ui.GetComponent<PicturePickerUI>().physicalRef = this;
+        interaction.playerInput.ToggleHud();
+        for (int i = 0; i <= 10; i++)
+            transform.LookAt(interaction.transform);
     }
-
-    private void DestroyUI()
+    private void DestroyUI(object sender, EventArgs e)
     {
+        if (!ui) return;
+        playerInteraction.playerInput.ToggleHud();
         gameMode.playerData.canMove = true;
         gameMode.playerData.inUI = false;
         Cursor.visible = false;
