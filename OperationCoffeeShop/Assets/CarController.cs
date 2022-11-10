@@ -29,9 +29,8 @@ public class CarController : MonoBehaviour
 
     public List<Wheel> wheels;
 
-    float moveInput;
-    float steerInput;
-
+    public PlayerInput playerInput;
+    
     private Rigidbody carRb;
 
     void Start()
@@ -39,11 +38,6 @@ public class CarController : MonoBehaviour
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = centerOfMass;
     }
-    void Update()
-    {
-        GetInputs();
-    }
-
     void FixedUpdate()
     {
         Move();
@@ -54,19 +48,13 @@ public class CarController : MonoBehaviour
       
         Steer();
     }
-    
-    void GetInputs()
-    {
-        moveInput = Input.GetAxis("Vertical");
-        steerInput = Input.GetAxis("Horizontal");
-    }
 
     void Move()
     {
         foreach(var wheel in wheels)
         {
             if (wheel.WheelCollider.isGrounded)
-                wheel.WheelCollider.motorTorque = moveInput * 3500 * maxAcceleration * Time.deltaTime;
+                wheel.WheelCollider.motorTorque = playerInput.GetVerticalMovement() * 3500 * maxAcceleration * Time.deltaTime;
             else
                 wheel.WheelCollider.motorTorque = 0;
         }
@@ -78,7 +66,7 @@ public class CarController : MonoBehaviour
         {
             if(wheel.axel == Axel.Front)
             {
-                var steerAngle = steerInput * turnSensitivity * maxSteerAngle;
+                var steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
                 wheel.WheelCollider.steerAngle = Mathf.Lerp(wheel.WheelCollider.steerAngle, steerAngle, 0.6f);
             }
         }
