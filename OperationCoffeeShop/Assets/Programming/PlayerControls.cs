@@ -55,6 +55,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""723a6272-67ec-4d51-aa8f-4e36ad45b53a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Crouch"",
                     ""type"": ""PassThrough"",
                     ""id"": ""3ea3144a-5a2a-4a72-a50f-d5969353c8ec"",
@@ -427,6 +436,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""FreeCam"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82a7b3f9-f166-4dfc-b4b7-e7b76fd6c6ca"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -438,6 +458,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_FPPlayer_MoveForwardBackwards = m_FPPlayer.FindAction("Move Forward/Backwards", throwIfNotFound: true);
         m_FPPlayer_MoveLeftRight = m_FPPlayer.FindAction("Move Left/Right", throwIfNotFound: true);
         m_FPPlayer_Jump = m_FPPlayer.FindAction("Jump", throwIfNotFound: true);
+        m_FPPlayer_Sprint = m_FPPlayer.FindAction("Sprint", throwIfNotFound: true);
         m_FPPlayer_Crouch = m_FPPlayer.FindAction("Crouch", throwIfNotFound: true);
         m_FPPlayer_MouseX = m_FPPlayer.FindAction("MouseX", throwIfNotFound: true);
         m_FPPlayer_MouseY = m_FPPlayer.FindAction("MouseY", throwIfNotFound: true);
@@ -512,6 +533,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FPPlayer_MoveForwardBackwards;
     private readonly InputAction m_FPPlayer_MoveLeftRight;
     private readonly InputAction m_FPPlayer_Jump;
+    private readonly InputAction m_FPPlayer_Sprint;
     private readonly InputAction m_FPPlayer_Crouch;
     private readonly InputAction m_FPPlayer_MouseX;
     private readonly InputAction m_FPPlayer_MouseY;
@@ -531,6 +553,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MoveForwardBackwards => m_Wrapper.m_FPPlayer_MoveForwardBackwards;
         public InputAction @MoveLeftRight => m_Wrapper.m_FPPlayer_MoveLeftRight;
         public InputAction @Jump => m_Wrapper.m_FPPlayer_Jump;
+        public InputAction @Sprint => m_Wrapper.m_FPPlayer_Sprint;
         public InputAction @Crouch => m_Wrapper.m_FPPlayer_Crouch;
         public InputAction @MouseX => m_Wrapper.m_FPPlayer_MouseX;
         public InputAction @MouseY => m_Wrapper.m_FPPlayer_MouseY;
@@ -561,6 +584,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnJump;
+                @Sprint.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnSprint;
                 @Crouch.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnCrouch;
@@ -610,6 +636,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
@@ -655,6 +684,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMoveForwardBackwards(InputAction.CallbackContext context);
         void OnMoveLeftRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);

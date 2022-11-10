@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public GameObject hud;
     [SerializeField] public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
+    public static event EventHandler SprintEvent;
+    public static event EventHandler SprintCanceledEvent;
     public static event EventHandler InteractEvent;
     public static event EventHandler AltInteractEvent;
     public static event EventHandler RotateEvent;
@@ -22,6 +24,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private InputAction interact;
     [SerializeField] private InputAction altInteract;
     [SerializeField] private InputAction pause;
+    [SerializeField] private InputAction sprint;
 
     private Vector2 _mouseInput;
     private Vector2 _currentRotate;
@@ -39,6 +42,7 @@ public class PlayerInput : MonoBehaviour
         interact = _fPp.Interact;
         altInteract = _fPp.Alt_Interact;
         pause = _fPp.PauseGame;
+        sprint = _fPp.Sprint;
     }
 
     private void Start()
@@ -89,6 +93,10 @@ public class PlayerInput : MonoBehaviour
         _fPp.MouseY.performed += ctx => _mouseInput.y = ctx.ReadValue<float>();
         _fPp.MouseY.Enable();
 
+        sprint.performed += Sprint;
+        sprint.canceled += SprintCanceled;
+        sprint.Enable();
+        
         interact.performed += Interact;
         interact.Enable();
 
@@ -123,6 +131,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.MoveLeftRight.Disable();
         _fPp.MouseX.Disable();
         _fPp.MouseY.Disable();
+        sprint.Disable();
         interact.Disable();
         altInteract.Disable();
         _fPp.Rotate.Disable();
@@ -195,5 +204,14 @@ public class PlayerInput : MonoBehaviour
     private static void Pause(InputAction.CallbackContext obj)
     {
         PauseEvent?.Invoke(null, EventArgs.Empty);
+    }
+
+    private static void Sprint(InputAction.CallbackContext obj)
+    {
+        SprintEvent?.Invoke(null, EventArgs.Empty);
+    }
+    private static void SprintCanceled(InputAction.CallbackContext obj)
+    {
+        SprintCanceledEvent?.Invoke(null, EventArgs.Empty);
     }
 }

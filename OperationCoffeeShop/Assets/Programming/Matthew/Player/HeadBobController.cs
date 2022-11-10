@@ -11,11 +11,14 @@ public class HeadBobController : MonoBehaviour
     private Vector3 _startPos;
     private Vector3 _lastPosition;
     private CharacterController _controller;
+    private float _sprintModifier = 1;
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _startPos = cam.localPosition;
         _lastPosition = transform.root.position;
+        PlayerInput.SprintEvent += Sprint;
+        PlayerInput.SprintCanceledEvent += SprintCanceled;
     }
     private void Update()
     {
@@ -56,8 +59,16 @@ public class HeadBobController : MonoBehaviour
     private Vector3 Motion()
     {
         var pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude;
-        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2;
+        pos.y += Mathf.Sin(Time.time * pD.frequency*_sprintModifier) * pD.amplitude*_sprintModifier;
+        pos.x += Mathf.Cos(Time.time * pD.frequency * _sprintModifier/ 2) * pD.amplitude * 2*_sprintModifier;
         return pos;
+    }
+    private void Sprint(object sender, EventArgs e)
+    {
+        _sprintModifier = pD.sprintSpeed;
+    }
+    private void SprintCanceled(object sender, EventArgs e)
+    {
+        _sprintModifier = 1;
     }
 }

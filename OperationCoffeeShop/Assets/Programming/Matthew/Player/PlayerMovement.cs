@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _currentMovement;
     private Camera _camera;
     private Vector3 _camModeReset;
+    private float _sprintModifier = 1;
 
     private void Start()
     {
@@ -28,8 +29,11 @@ public class PlayerMovement : MonoBehaviour
         _playerInput.pD.currentMovement = transform.position;
         _playerInput.pD.isClimbing = false;
         PlayerInput.CamModeEvent += ToggleCamMode;
+        PlayerInput.SprintEvent += Sprint;
+        PlayerInput.SprintCanceledEvent += SprintCanceled;
         StartCoroutine(CO_EditorFix());
     }
+
     private void Update()
     {
         isGrounded = Physics.CheckSphere(transform.position, GroundDistance, groundMask);
@@ -64,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Vector3 rawMovement = new Vector3(_playerInput.GetHorizontalMovement() * .75f, 0.0f, _playerInput.GetVerticalMovement());
+            Vector3 rawMovement = new Vector3(_playerInput.GetHorizontalMovement() * .75f, 0.0f, _playerInput.GetVerticalMovement()*_sprintModifier);
             _currentMovement = Vector3.MoveTowards(_currentMovement, rawMovement, _playerInput.pD.inertiaVar * Time.deltaTime);
             Vector3 finalMovement = transform.TransformVector(_currentMovement);
             controller.Move( _playerInput.pD.moveSpeed * Time.deltaTime* finalMovement );
@@ -85,7 +89,15 @@ public class PlayerMovement : MonoBehaviour
             _playerInput.pD.isClimbing = false;
         }
     }
-
+    
+    private void Sprint(object sender, EventArgs e)
+    {
+        _sprintModifier = _playerInput.pD.sprintSpeed;
+    }
+    private void SprintCanceled(object sender, EventArgs e)
+    {
+        _sprintModifier = 1;
+    }
     private void ToggleCamMode(object sender, EventArgs e)
     {
         _playerInput.pD.camMode = ! _playerInput.pD.camMode;

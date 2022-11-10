@@ -13,6 +13,8 @@ public class PlayerData : ScriptableObject
     [Header("Controller Variables")]
     [Range(0, 10)]
     [SerializeField] public float moveSpeed;
+    [Range(1, 2)]
+    [SerializeField] public float sprintSpeed;
     [Range(0, 5)]
     [SerializeField] public float inertiaVar;
     [Range(0, 100)]
@@ -22,7 +24,6 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float neckClamp = 77.3f;
     [SerializeField] public LayerMask groundMask;
     [SerializeField] public float closeSpeed;
-    [SerializeField] public float openSpeed;
     [SerializeField] public bool canMove;
     [SerializeField] public float cameraFov=60f;
     [SerializeField] public bool camMode;

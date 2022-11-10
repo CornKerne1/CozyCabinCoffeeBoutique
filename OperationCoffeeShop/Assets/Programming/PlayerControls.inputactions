@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "723a6272-67ec-4d51-aa8f-4e36ad45b53a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Crouch",
                     "type": "PassThrough",
                     "id": "3ea3144a-5a2a-4a72-a50f-d5969353c8ec",
@@ -403,6 +412,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "FreeCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82a7b3f9-f166-4dfc-b4b7-e7b76fd6c6ca",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
