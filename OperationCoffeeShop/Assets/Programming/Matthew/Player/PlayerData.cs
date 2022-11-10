@@ -15,6 +15,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float moveSpeed;
     [Range(1, 2)]
     [SerializeField] public float sprintSpeed;
+    [Range(2,6)]
+    [SerializeField] public float jumpHeight;
     [Range(0, 5)]
     [SerializeField] public float inertiaVar;
     [Range(0, 100)]
@@ -25,10 +27,20 @@ public class PlayerData : ScriptableObject
     [SerializeField] public LayerMask groundMask;
     [SerializeField] public float closeSpeed;
     [SerializeField] public bool canMove;
+    [SerializeField] public bool canJump;
+    [SerializeField] public bool canSprint;
+    [SerializeField] public bool canCrouch;
+    [SerializeField] public bool isSprinting;
     [SerializeField] public float cameraFov=60f;
     [SerializeField] public bool camMode;
     private Camera _camera;
-
+    
+    [Header("Crouch Variables")]
+    [SerializeField] public float crouchHeight = .5f;
+    [SerializeField] public float standHeight = 1f;
+    [SerializeField] public Vector3 crouchingCenter = new Vector3(0,.7f,0);
+    [SerializeField] public Vector3 standingCenter = new Vector3(0,.5f,0);
+    
     [Header("Headbob Stuff")]
     [Range(0f, 1f)] [SerializeField] public float amplitude = 0.0003f;
     [Range(0, 30)] [SerializeField] public float frequency = 10.0f;
@@ -64,6 +76,9 @@ public class PlayerData : ScriptableObject
         neckClamp = 77.3f;
         inUI = false;
         canMove = true;
+        canSprint = true;
+        canJump = true;
+        canCrouch = true;
         if (mouseSensitivityOptions == 0)
             mouseSensitivityOptions = .5f;
     }

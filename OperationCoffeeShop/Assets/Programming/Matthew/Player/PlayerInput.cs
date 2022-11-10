@@ -9,7 +9,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
     public static event EventHandler SprintEvent;
-    public static event EventHandler SprintCanceledEvent;
+    public static event EventHandler JumpEvent;
+    public static event EventHandler CrouchEvent;
     public static event EventHandler InteractEvent;
     public static event EventHandler AltInteractEvent;
     public static event EventHandler RotateEvent;
@@ -25,6 +26,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private InputAction altInteract;
     [SerializeField] private InputAction pause;
     [SerializeField] private InputAction sprint;
+    [SerializeField] private InputAction jump;
+    [SerializeField] private InputAction crouch;
 
     private Vector2 _mouseInput;
     private Vector2 _currentRotate;
@@ -43,6 +46,8 @@ public class PlayerInput : MonoBehaviour
         altInteract = _fPp.Alt_Interact;
         pause = _fPp.PauseGame;
         sprint = _fPp.Sprint;
+        jump = _fPp.Jump;
+        crouch = _fPp.Crouch;
     }
 
     private void Start()
@@ -94,8 +99,13 @@ public class PlayerInput : MonoBehaviour
         _fPp.MouseY.Enable();
 
         sprint.performed += Sprint;
-        sprint.canceled += SprintCanceled;
         sprint.Enable();
+        
+        jump.performed += Jump;
+        jump.Enable();
+        
+        crouch.performed += Crouch;
+        crouch.Enable();
         
         interact.performed += Interact;
         interact.Enable();
@@ -132,6 +142,8 @@ public class PlayerInput : MonoBehaviour
         _fPp.MouseX.Disable();
         _fPp.MouseY.Disable();
         sprint.Disable();
+        jump.Disable();
+        crouch.Disable();
         interact.Disable();
         altInteract.Disable();
         _fPp.Rotate.Disable();
@@ -210,8 +222,12 @@ public class PlayerInput : MonoBehaviour
     {
         SprintEvent?.Invoke(null, EventArgs.Empty);
     }
-    private static void SprintCanceled(InputAction.CallbackContext obj)
+    private static void Jump(InputAction.CallbackContext obj)
     {
-        SprintCanceledEvent?.Invoke(null, EventArgs.Empty);
+        JumpEvent?.Invoke(null, EventArgs.Empty);
+    }
+    private static void Crouch(InputAction.CallbackContext obj)
+    {
+        CrouchEvent?.Invoke(null, EventArgs.Empty);
     }
 }

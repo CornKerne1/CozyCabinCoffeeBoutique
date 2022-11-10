@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public CharacterController controller;
 
     private Vector3 _velocity;
-    private const float Gravity = -9.81f;
+    private const float Gravity = -13f;
     private const float GroundDistance = .4f;
     [SerializeField] public bool isGrounded;
     [SerializeField] public LayerMask groundMask;
@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     private Camera _camera;
     private Vector3 _camModeReset;
     private float _sprintModifier = 1;
+    private float _crouchTime = .25f;
+    private Vector3 _crouchingCenter = new Vector3(0,.7f,0);
+    private Vector3 _standingCenter = new Vector3(0,.5f,0);
+    private bool isCrouching;
+    private IEnumerator _coRunning;
 
     private void Start()
     {
@@ -30,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
         _playerInput.pD.isClimbing = false;
         PlayerInput.CamModeEvent += ToggleCamMode;
         PlayerInput.SprintEvent += Sprint;
-        PlayerInput.SprintCanceledEvent += SprintCanceled;
+        PlayerInput.JumpEvent += Jump;
+        PlayerInput.CrouchEvent += Crouch;
         StartCoroutine(CO_EditorFix());
     }
 
@@ -41,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y = -2f;
         if (_playerInput.pD.canMove)
             HandleMovement();
+        if (_playerInput.GetVerticalMovement() != 0f) return;
+        _playerInput.pD.isSprinting = false;
+        _sprintModifier = 1;
     }
 
     private IEnumerator CO_EditorFix()
@@ -92,12 +101,69 @@ public class PlayerMovement : MonoBehaviour
     
     private void Sprint(object sender, EventArgs e)
     {
-        _sprintModifier = _playerInput.pD.sprintSpeed;
+        if(!_playerInput.pD.canMove) return;
+        if(!_playerInput.pD.canSprint) return;
+        if (Math.Abs(_sprintModifier - 1) < .01f) //if sprint modifier == 1
+        {
+            _sprintModifier = _playerInput.pD.sprintSpeed;
+            _playerInput.pD.isSprinting = true;
+        }
+        else
+        {
+            _sprintModifier = 1;
+            _playerInput.pD.isSprinting = false;
+        }
     }
-    private void SprintCanceled(object sender, EventArgs e)
+    private void Jump(object sender, EventArgs e)
     {
-        _sprintModifier = 1;
+       if(!_playerInput.pD.canMove) return;
+       if(!_playerInput.pD.canJump) return;
+       if(!controller.isGrounded) return;
+       _sprintModifier = 0;
+       _velocity.y = _playerInput.pD.jumpHeight;
+       _sprintModifier = 1;
     }
+
+    private void Crouch(object sender, EventArgs e)
+    {
+        if(!_playerInput.pD.canMove) return;
+        if(!_playerInput.pD.canCrouch) return;
+        if(!controller.isGrounded) return;
+        if(_coRunning==null)
+            StartCoroutine(CO_CrouchStand());
+    }
+
+    private IEnumerator CO_CrouchStand()
+    {
+        _coRunning = CO_CrouchStand();
+        float timeElapsed = 0;
+        var targetHeight = isCrouching ? _playerInput.pD.standHeight : _playerInput.pD.crouchHeight;
+        float currentHeight = controller.height;
+        Vector3 targetCenter = isCrouching ? _standingCenter : _crouchingCenter;
+        Vector3 currentCenter = controller.center;
+        if (isCrouching)
+        {
+            _velocity.y = _playerInput.pD.jumpHeight / 1.25f;
+            _sprintModifier = 1;
+        }
+        else
+        {
+            _sprintModifier = .5f;
+        }
+
+        while (timeElapsed < _crouchTime)
+        {
+            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _crouchTime);
+            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _crouchTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        controller.height = targetHeight;
+        controller.center = targetCenter;
+        isCrouching = !isCrouching;
+        _coRunning = null;
+    }
+
     private void ToggleCamMode(object sender, EventArgs e)
     {
         _playerInput.pD.camMode = ! _playerInput.pD.camMode;

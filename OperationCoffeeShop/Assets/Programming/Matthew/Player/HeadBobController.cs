@@ -12,14 +12,15 @@ public class HeadBobController : MonoBehaviour
     private Vector3 _lastPosition;
     private CharacterController _controller;
     private float _sprintModifier = 1;
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _startPos = cam.localPosition;
         _lastPosition = transform.root.position;
         PlayerInput.SprintEvent += Sprint;
-        PlayerInput.SprintCanceledEvent += SprintCanceled;
     }
+
     private void Update()
     {
         CheckMotion();
@@ -33,15 +34,18 @@ public class HeadBobController : MonoBehaviour
 
         PlayMotion(Motion());
     }
+
     private void ResetPosition()
     {
         if (cam.localPosition == _startPos) return;
         cam.localPosition = Vector3.Lerp(cam.localPosition, _startPos, 8 * Time.deltaTime);
-    } 
+    }
+
     private void PlayMotion(Vector3 motion)
     {
         cam.localPosition += motion * Time.deltaTime;
     }
+
     private Vector3 FocusTarget()
     {
         var currentPosition = transform.position;
@@ -49,6 +53,7 @@ public class HeadBobController : MonoBehaviour
         pos += holder.forward * 15.0f;
         return pos;
     }
+
     private float GetSpeed()
     {
         var currentRootTrans = transform.root.position;
@@ -56,19 +61,24 @@ public class HeadBobController : MonoBehaviour
         _lastPosition = currentRootTrans;
         return speed;
     }
+
     private Vector3 Motion()
     {
+        if(!pD.isSprinting)
+            _sprintModifier = 1;
         var pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * pD.frequency*_sprintModifier) * pD.amplitude*_sprintModifier;
-        pos.x += Mathf.Cos(Time.time * pD.frequency * _sprintModifier/ 2) * pD.amplitude * 2*_sprintModifier;
+        pos.y += Mathf.Sin(Time.time * pD.frequency * _sprintModifier) * pD.amplitude * _sprintModifier;
+        pos.x += Mathf.Cos(Time.time * pD.frequency * _sprintModifier / 2) * pD.amplitude * 2 * _sprintModifier;
         return pos;
     }
+
     private void Sprint(object sender, EventArgs e)
     {
-        _sprintModifier = pD.sprintSpeed;
-    }
-    private void SprintCanceled(object sender, EventArgs e)
-    {
-        _sprintModifier = 1;
+        if(!pD.canMove) return;
+        if(!pD.canSprint) return;
+        if (Math.Abs(_sprintModifier - 1) < .01f)
+            _sprintModifier = pD.sprintSpeed;
+        else
+            _sprintModifier = 1;
     }
 }
