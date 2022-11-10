@@ -8,7 +8,6 @@ public class PicturePickerUI : MonoBehaviour
 {
     public PictureFrame physicalRef;
     public GameMode gameMode;
-    private int _currentPic;
 
     private void Start()
     {
@@ -16,11 +15,11 @@ public class PicturePickerUI : MonoBehaviour
     }
     public void OnLeftButtonClicked()
     {
-        if (_currentPic == 0) return;
-        if (File.Exists(Application.persistentDataPath + "ScreenShot" + (_currentPic - 1) + ".png"))
+        if (physicalRef.currentPic == 0) return;
+        if (File.Exists(Application.persistentDataPath + "ScreenShot" + (physicalRef.currentPic - 1) + ".png"))
         {
-            _currentPic = _currentPic - 1;
-            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(_currentPic));
+            physicalRef.currentPic = physicalRef.currentPic - 1;
+            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(physicalRef.currentPic));
         }
 
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
@@ -28,11 +27,16 @@ public class PicturePickerUI : MonoBehaviour
     public void OnRightButtonClicked()
     {
        
-        if(File.Exists(Application.persistentDataPath + "ScreenShot" + (_currentPic+1) + ".png"))
+        if(File.Exists(Application.persistentDataPath + "ScreenShot" + (physicalRef.currentPic+1) + ".png"))
         {
-            _currentPic = _currentPic + 1;
-            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(_currentPic));
+            physicalRef.currentPic = physicalRef.currentPic + 1;
+            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(physicalRef.currentPic));
         }
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+    }
+
+    public void OnCloseClicked()
+    {
+        physicalRef.DestroyUI();
     }
 }
