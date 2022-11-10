@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!_playerInput.pD.canMove) return;
         if(!_playerInput.pD.canSprint) return;
+        if(isCrouching)StartCoroutine(CO_CrouchStand());
         if (Math.Abs(_sprintModifier - 1) < .01f) //if sprint modifier == 1
         {
             _sprintModifier = _playerInput.pD.sprintSpeed;
@@ -119,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
        if(!_playerInput.pD.canMove) return;
        if(!_playerInput.pD.canJump) return;
        if(!controller.isGrounded) return;
+       if (isCrouching) StartCoroutine(CO_CrouchStand());
        _sprintModifier = 0;
        _velocity.y = _playerInput.pD.jumpHeight;
        _sprintModifier = 1;
@@ -129,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         if(!_playerInput.pD.canMove) return;
         if(!_playerInput.pD.canCrouch) return;
         if(!controller.isGrounded) return;
+        if (isCrouching && Physics.Raycast(_camera.transform.position, Vector3.up, .5f)) return;
         if(_coRunning==null)
             StartCoroutine(CO_CrouchStand());
     }

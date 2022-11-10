@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics.Eventing.Reader;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -19,14 +20,13 @@ public abstract class Interactable : MonoBehaviour
     private Rigidbody _rB;
     protected bool _isWaiting, _isBroken;
     public bool hasOnScreenText;
-
     private Outline _outline;
     private Color _outlineColor;
     protected ObjectPool<Canvas> _poolOfOnScreenPrompt;
     protected TextMeshProUGUI varOnScreenPromt;
     [SerializeField] protected Canvas onScreenPrompt;
     public string onScreenPromptText;
-
+    public bool lookAtPlayer;
     private float speed;
 
     public virtual void Awake()
@@ -149,6 +149,12 @@ public abstract class Interactable : MonoBehaviour
         playerInteraction = null;
     }
 
+    protected virtual void LookAtPlayer()
+    {
+        if (!playerInteraction) return;
+        StartCoroutine(LookAt(playerInteraction));
+    }
+
     private IEnumerator CO_FreezeForClipping()
     {
         if (!isBreakable) yield break;
@@ -176,7 +182,15 @@ public abstract class Interactable : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    private IEnumerator LookAt(PlayerInteraction interaction)
+    {
+        while (lookAtPlayer)
+        {
+            if (gameMode.camera) transform.LookAt(gameMode.camera.transform);
+            yield return null;
+        }
+    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (_isBroken) return;

@@ -18,7 +18,6 @@ public class HeadBobController : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _startPos = cam.localPosition;
         _lastPosition = transform.root.position;
-        PlayerInput.SprintEvent += Sprint;
     }
 
     private void Update()
@@ -26,6 +25,8 @@ public class HeadBobController : MonoBehaviour
         CheckMotion();
         ResetPosition();
         cam.LookAt(FocusTarget());
+        _sprintModifier = pD.isSprinting?pD.sprintSpeed:1;
+        _sprintModifier = pD.camMode ? 0:_sprintModifier;
     }
 
     private void CheckMotion()
@@ -71,14 +72,5 @@ public class HeadBobController : MonoBehaviour
         pos.x += Mathf.Cos(Time.time * pD.frequency * _sprintModifier / 2) * pD.amplitude * 2 * _sprintModifier;
         return pos;
     }
-
-    private void Sprint(object sender, EventArgs e)
-    {
-        if(!pD.canMove) return;
-        if(!pD.canSprint) return;
-        if (Math.Abs(_sprintModifier - 1) < .01f)
-            _sprintModifier = pD.sprintSpeed;
-        else
-            _sprintModifier = 1;
-    }
+    
 }

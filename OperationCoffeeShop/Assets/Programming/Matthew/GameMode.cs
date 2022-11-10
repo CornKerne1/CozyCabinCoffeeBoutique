@@ -9,6 +9,7 @@ public class GameMode : MonoBehaviour
     //This class keeps track of the game
     [SerializeField] protected float defaultTimeRate;
     [SerializeField] public Transform player;
+    [SerializeField] public Camera camera;
     [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
     [SerializeField] public GameObject playerPref;
     [SerializeField] public ScriptableOptions scriptableOptions;
@@ -43,7 +44,7 @@ public class GameMode : MonoBehaviour
         playerData = player.GetComponent<PlayerInteraction>().playerData;
         playerData.moveSpeed = playerData.closeSpeed;
         gameModeData.timeRate = defaultTimeRate;
-
+        camera = player.GetComponentInChildren<Camera>();
     }
 
     private void Awake()
