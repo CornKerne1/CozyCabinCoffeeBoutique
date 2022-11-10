@@ -16,7 +16,15 @@ public class PictureFrame : Interactable
     public override void Start()
     {
         base.Start();
-        PlayerInput.PauseEvent += DestroyUI;
+    }
+
+    private void Update()
+    {
+        if (ui)
+        {
+            transform.position = Vector3.Lerp(transform.position,
+                Camera.main.transform.position + Camera.main.transform.forward * .45f, Time.deltaTime);
+        }
     }
 
     public void ChangePicture(Texture2D t)
@@ -44,10 +52,11 @@ public class PictureFrame : Interactable
         ui = Instantiate(uiPref);
         ui.GetComponent<PicturePickerUI>().physicalRef = this;
         interaction.playerInput.ToggleHud();
+
         for (int i = 0; i <= 10; i++)
             transform.LookAt(interaction.transform);
     }
-    private void DestroyUI(object sender, EventArgs e)
+    public void DestroyUI()
     {
         if (!ui) return;
         playerInteraction.playerInput.ToggleHud();
