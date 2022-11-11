@@ -121,9 +121,10 @@ public class PlayerMovement : MonoBehaviour
        if(!_playerInput.pD.canJump) return;
        if(!controller.isGrounded) return;
        if (isCrouching) StartCoroutine(CO_CrouchStand());
+       var sM = _sprintModifier;
        _sprintModifier = 0;
        _velocity.y = _playerInput.pD.jumpHeight;
-       _sprintModifier = 1;
+       _sprintModifier = sM;
     }
 
     private void Crouch(object sender, EventArgs e)
