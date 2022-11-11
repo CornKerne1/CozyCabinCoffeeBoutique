@@ -21,6 +21,7 @@ public class GameMode : MonoBehaviour
 
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle DayNightCycle;
+    public SaveSystem SaveSystem;
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
 
@@ -51,6 +52,7 @@ public class GameMode : MonoBehaviour
     {
         //Creates new DayNightCycle component.
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
+        SaveSystem = new SaveSystem(SaveSystem, this, gameModeData);
         Initialize();
         //Instantiate(sunLight);
         IfTutorial();
@@ -80,9 +82,6 @@ public class GameMode : MonoBehaviour
     {
         //if save file exists load DateTime from file else set to startTime
         DayNightCycle.Initialize();
-        gameModeData.startTime =
-            new DateTime(2027, 1, 1, 5, 30, 0); //gMD.startTime = new DateTime(2027, 1, 1, 5, 0, 0);
-        gameModeData.currentTime = gameModeData.startTime;
         AkSoundEngine.SetRTPCValue("MasterVolume", scriptableOptions.masterVol);
         AkSoundEngine.SetRTPCValue("MusicVolume", scriptableOptions.musicVol);
         AkSoundEngine.SetRTPCValue("SFXVolume", scriptableOptions.masterVol);
@@ -149,7 +148,7 @@ public class GameMode : MonoBehaviour
 
     public void TakePicture()
     {
-        for (int i = 1; i <=100; i++)
+        for (int i = 1; i <=1000; i++)
         {
             if (!File.Exists(Application.persistentDataPath + "ScreenShot" + i + ".png"))
             {
@@ -184,8 +183,17 @@ public class GameMode : MonoBehaviour
     
     private static void SaveScreenShot(int i)
     {
-        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 480,270);
+        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 128,128);
         byte[] textureBytes = sS.EncodeToPNG();
         File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
+    }
+
+    private void OnEnable()
+    {
+        SaveSystem.LoadVariables();
+    }
+    private void OnDisable()
+    {
+        SaveSystem.SaveVariables();
     }
 }

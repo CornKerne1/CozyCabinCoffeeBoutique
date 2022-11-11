@@ -60,7 +60,7 @@ public class DayNightCycle
         if (!_gameModeData.sleeping) return;
         TrackTime();
 
-        if (_gameModeData.currentTime.Hour != 5 || _gameModeData.currentTime.Day != _gameModeData.sleepDay) return;
+        if (_gameModeData.currentTime.Hour != 6 || _gameModeData.currentTime.Day != _gameModeData.sleepDay) return;
         _gameModeData.sleeping = false;
         _gameModeData.timeRate = _startTimeRate;
     }

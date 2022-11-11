@@ -71,7 +71,6 @@ public class Bed : Interactable
             _playerInteraction.playerData.canMove = true;
             _playerTrans.GetComponent<Collider>().enabled = true;
             _inBed = false;
-            gameMode.gameModeData.timeRate = gameMode.gameModeData.timeRate / 30;
             _playerInteraction = null;
             NewDay?.Invoke(this, EventArgs.Empty);
         }
