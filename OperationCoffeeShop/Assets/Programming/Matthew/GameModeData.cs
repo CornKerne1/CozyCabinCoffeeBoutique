@@ -42,4 +42,5 @@ public class GameModeData : ScriptableObject
     public string time;
 
     [SerializeField] public List<Material> treeMats = new List<Material>();
+    public GameObject breakParticle;
 }

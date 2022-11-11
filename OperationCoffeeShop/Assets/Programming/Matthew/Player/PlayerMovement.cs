@@ -69,11 +69,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else if ( _playerInput.pD.camMode)
         {
-            if (_camera)
-            {
-                controller.Move(_camera.transform.forward * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetVerticalMovement()));
-                controller.Move(_camera.transform.right * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetHorizontalMovement()));
-            }
+            if (!_camera) return;
+            controller.Move(_camera.transform.forward * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetVerticalMovement()*2.5f));
+            controller.Move(_camera.transform.right * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetHorizontalMovement()*2.5f));
         }
         else
         {
