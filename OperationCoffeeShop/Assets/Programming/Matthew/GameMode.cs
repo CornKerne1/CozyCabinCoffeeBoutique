@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GameMode : MonoBehaviour
+public class GameMode : MonoBehaviour,ISaveState
 {
     //This class keeps track of the game
     [SerializeField] protected float defaultTimeRate;
@@ -21,7 +21,6 @@ public class GameMode : MonoBehaviour
 
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle DayNightCycle;
-    public SaveSystem SaveSystem;
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
 
@@ -52,7 +51,6 @@ public class GameMode : MonoBehaviour
     {
         //Creates new DayNightCycle component.
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
-        SaveSystem = new SaveSystem(SaveSystem, this, gameModeData);
         Initialize();
         //Instantiate(sunLight);
         IfTutorial();
@@ -107,12 +105,14 @@ public class GameMode : MonoBehaviour
     {
         if (gameModeData.currentTime.Hour is >= 18 or <= 5) return;
         gameModeData.isOpen = true;
+        playerData.canJump = false;
         gate.OpenGate();
     }
 
     public void CloseShop()
     {
         gameModeData.isOpen = false;
+        playerData.canJump = true;
         ShopClosed?.Invoke(this, EventArgs.Empty);
         if (gameModeData.currentTime.Day > 2)
         {
@@ -188,12 +188,15 @@ public class GameMode : MonoBehaviour
         File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
     }
 
-    private void OnEnable()
+    void OnEnable() => Load(0);
+
+    public void Save(int gameNumber)
     {
-        SaveSystem.LoadVariables();
+        throw new NotImplementedException();
     }
-    private void OnDisable()
+
+    public void Load(int gameNumber)
     {
-        SaveSystem.SaveVariables();
+        gameModeData.currentTime = new DateTime(2027, 1, 1, 6, 0,0);
     }
 }

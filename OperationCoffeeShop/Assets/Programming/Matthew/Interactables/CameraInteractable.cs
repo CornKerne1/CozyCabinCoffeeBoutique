@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraInteractable : Interactable
 {
     private Camera _camera;
+    public GameObject cameraUi;
+    private GameObject uiRef;
 
     // Start is called before the first frame update
 
@@ -19,6 +21,12 @@ public class CameraInteractable : Interactable
     {
         GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled;
         interaction.playerInput.FreeCam();
+        if (interaction.playerData.camMode)
+        {
+            uiRef = Instantiate(cameraUi);
+        }
+        else
+            Destroy(uiRef);
     }
 
     public override void OnDrop()

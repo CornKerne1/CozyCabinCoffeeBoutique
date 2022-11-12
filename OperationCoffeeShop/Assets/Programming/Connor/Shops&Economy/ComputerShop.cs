@@ -101,22 +101,22 @@ public class ComputerShop : MonoBehaviour
             switch (ingredient)
             {
                 case "Coffee":
-                    Tuple<ObjectHolder, int> coffee = new Tuple<ObjectHolder, int>(coffeeType, coffeeQuantity);
+                    var coffee = new Tuple<ObjectHolder, int>(coffeeType, coffeeQuantity);
                     DepositItems?.Invoke(coffee, EventArgs.Empty);
                     break;
 
                 case "Milk":
-                    Tuple<Ingredients, int> milk = new Tuple<Ingredients, int>(Ingredients.Milk, milkQuantity);
+                    var milk = new Tuple<Ingredients, int>(Ingredients.Milk, milkQuantity);
                     DepositItems?.Invoke(milk, EventArgs.Empty);
                     break;
 
                 case "Espresso":
-                    Tuple<ObjectHolder, int> espresso = new Tuple<ObjectHolder, int>(espressoType, espressoQuantity);
+                    var espresso = new Tuple<ObjectHolder, int>(espressoType, espressoQuantity);
                     DepositItems?.Invoke(espresso, EventArgs.Empty);
                     break;
 
                 case "Sugar":
-                    Tuple<ObjectHolder, int> sugar = new Tuple<ObjectHolder, int>(sugarType, sugarQuantity);
+                    var sugar = new Tuple<ObjectHolder, int>(sugarType, sugarQuantity);
                     DepositItems?.Invoke(sugar, EventArgs.Empty);
                     break;
             }
