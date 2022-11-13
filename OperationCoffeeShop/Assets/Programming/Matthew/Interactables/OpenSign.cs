@@ -29,7 +29,7 @@ public class OpenSign : Interactable
             if (gameMode.gameModeData.isOpen)
             {
                 OpenShop?.Invoke(this, EventArgs.Empty);
-                _animator.SetTrigger(Open);
+                _animator.SetBool(Open,true);
                 gameMode.player.GetComponent<CharacterController>().enabled = false;
                 gameMode.player.transform.position = openTrans.position;
                 gameMode.player.GetComponent<CharacterController>().enabled = true;
