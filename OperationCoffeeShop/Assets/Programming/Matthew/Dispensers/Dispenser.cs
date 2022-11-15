@@ -51,7 +51,7 @@ public class Dispenser : Interactable
                 physicalIngredient.gameObject.SetActive(true);
                 physicalIngredient.dispenser = this;
             },
-            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, true, 100, 100);
     }
 
     public void ReleasePoolObject(PhysicalIngredient physicalIngredient)
