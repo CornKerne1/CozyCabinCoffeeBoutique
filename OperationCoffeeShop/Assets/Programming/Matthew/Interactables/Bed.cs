@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Bed : Interactable
@@ -30,7 +31,7 @@ public class Bed : Interactable
     {
         if (_playerInteraction)
         {
-            if (!gameMode.gameModeData.sleeping && _playerInteraction.playerData.canMove == false)
+            if (!gameMode.playerData.sleeping && _playerInteraction.playerData.canMove == false)
             {
                 _running = true;
                 if (_coTimerRef == null)
@@ -46,13 +47,19 @@ public class Bed : Interactable
             StartCoroutine(CO_Timer());
         }
 
-        if (gameMode.gameModeData.sleeping)
+        if (gameMode.playerData.sleeping)
         {
-            _playerTrans.position = Vector3.Lerp(_playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation((sleepTrans.position+Vector3.up*1.1f) - gameMode.camera.transform.position);
+            gameMode.camera.transform.rotation =
+                Quaternion.Lerp(gameMode.camera.transform.rotation, lookRotation, Time.deltaTime);
+            _playerTrans.position = Vector3.Lerp(_playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime*.75f);
         }
         else
         {
-            _playerTrans.position = Vector3.Lerp(_playerTrans.position, startTrans.position, 0.5f * Time.deltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation((startTrans.position+Vector3.up*1.1f) - gameMode.camera.transform.position);
+            gameMode.camera.transform.rotation =
+                Quaternion.Lerp(gameMode.camera.transform.rotation, lookRotation, Time.deltaTime);
+            _playerTrans.position = Vector3.Lerp(_playerTrans.position, startTrans.position, 0.5f * Time.deltaTime*.75f);
         }
     }
 
@@ -73,6 +80,8 @@ public class Bed : Interactable
             _inBed = false;
             _playerInteraction = null;
             NewDay?.Invoke(this, EventArgs.Empty);
+            gameMode.player.GetComponentInChildren<HeadBobController>().enabled = true;
+            gameMode.player.GetComponent<PlayerCameraController>().enabled = true;
         }
 
         _coTimerRef = null;
@@ -91,7 +100,9 @@ public class Bed : Interactable
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day + 1;
         else
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day;
-        gameMode.gameModeData.sleeping = true;
+        gameMode.playerData.sleeping = true;
         _running = true;
+        interaction.GetComponent<PlayerCameraController>().enabled = false;
+        interaction.GetComponentInChildren<HeadBobController>().enabled = false;
     }
 }

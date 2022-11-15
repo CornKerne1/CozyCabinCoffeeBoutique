@@ -64,6 +64,7 @@ public class PlayerData : ScriptableObject
     [Range(0, 10)]
     [SerializeField] public float smooth;
     [SerializeField] public bool inUI = false;
+    public bool sleeping;
 
     [Header("Menus")]
     public float mouseSensitivityOptions;

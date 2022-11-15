@@ -26,7 +26,7 @@ public class HeadBobController : MonoBehaviour
         ResetPosition();
         cam.LookAt(FocusTarget());
         _sprintModifier = pD.isSprinting?pD.sprintSpeed:1;
-        _sprintModifier = pD.camMode ? 0:_sprintModifier;
+        _sprintModifier = pD.camMode? 0:_sprintModifier;
     }
 
     private void CheckMotion()

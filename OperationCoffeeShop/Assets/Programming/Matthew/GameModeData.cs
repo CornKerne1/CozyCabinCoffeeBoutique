@@ -32,7 +32,7 @@ public class GameModeData : ScriptableObject
 
     [Header("Physics Related")] public float breakSpeed = 15f;
 
-    [Header("DO NOT TOUCH")] public bool sleeping;
+    [Header("DO NOT TOUCH")]
     public float reputation;
     public int displayTime;
     public int day = 1;

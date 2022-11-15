@@ -49,7 +49,7 @@ public class DayNightCycle
             if (_gameModeData.isOpen && pastClosing)
                 _gameMode.CloseShop();
         }
-        else if (_gameModeData.currentTime.Hour != 0 && !_gameModeData.sleeping)
+        else if (_gameModeData.currentTime.Hour != 0 && !_gameMode.playerData.sleeping)
         {
             TrackTime();
         }
@@ -57,11 +57,11 @@ public class DayNightCycle
 
     public void SleepTimer()
     {
-        if (!_gameModeData.sleeping) return;
+        if (!_gameMode.playerData.sleeping) return;
         TrackTime();
 
         if (_gameModeData.currentTime.Hour != 6 || _gameModeData.currentTime.Day != _gameModeData.sleepDay) return;
-        _gameModeData.sleeping = false;
+        _gameMode.playerData.sleeping = false;
         _gameModeData.timeRate = _startTimeRate;
     }
 
