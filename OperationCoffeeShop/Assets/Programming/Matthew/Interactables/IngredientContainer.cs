@@ -188,7 +188,7 @@ public class IngredientContainer : Interactable
     private IEnumerator Liquefy()
     {
         RemoveIngredient();
-        yield return new WaitForSeconds(.04f);
+        yield return new WaitForSeconds(.1f);
         if (outputIngredients.Count > 0)
         {
             if (!GameMode.IsEventPlayingOnGameObject("play_looppour", gameObject))

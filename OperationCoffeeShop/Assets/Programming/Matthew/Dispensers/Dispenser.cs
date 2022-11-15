@@ -10,6 +10,7 @@ public class Dispenser : Interactable
     [SerializeField] protected TextMeshProUGUI text;
     [SerializeField] protected string message = " beans remaining";
     private ObjectPool<PhysicalIngredient> _pool;
+    private bool deliveryMode;
 
 
     private Transform _obj;
@@ -48,28 +49,37 @@ public class Dispenser : Interactable
 
     public override void OnInteract(PlayerInteraction interaction)
     {
-        if (interaction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
-        quantity--;
-        UpdateQuantity();
-        var ingredient = _pool.Get().transform;
-        var transform1 = ingredient.transform;
-        transform1.position = spawnTrans.position;
-        transform1.rotation = spawnTrans.rotation;
-        if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
+        if (deliveryMode)
         {
-            physicalIngredient.playerInteraction = interaction;
-            physicalIngredient.dispenser = this;
+            if(interaction.carriedObj== gameObject)
+                interaction.DropCurrentObj();
+            else
+                interaction.Carry(this.gameObject);
         }
-        else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
+        else
         {
-            ingredientContainer.pI = interaction;
-            ingredientContainer.inHand = true;
-        }
+            if (interaction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
+            quantity--;
+            UpdateQuantity();
+            var ingredient = _pool.Get().transform;
+            var transform1 = ingredient.transform;
+            transform1.position = spawnTrans.position;
+            transform1.rotation = spawnTrans.rotation;
+            if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
+            {
+                physicalIngredient.playerInteraction = interaction;
+                physicalIngredient.dispenser = this;
+            }
+            else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
+            {
+                ingredientContainer.pI = interaction;
+                ingredientContainer.inHand = true;
+            }
 
-        interaction.Carry(ingredient.gameObject);
-        IfTutorial();
+            interaction.Carry(ingredient.gameObject);
+            IfTutorial();
+        }
     }
-
     protected void IfTutorial()
     {
         if (gameMode.gameModeData.inTutorial)

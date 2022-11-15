@@ -15,6 +15,11 @@ public class CoffeeBrewer : Machine
     private new void Start()
     {
         base.Start();
+        CreatePool();
+    }
+
+    private void CreatePool()
+    {
         _pool = new ObjectPool<LiquidIngredients>(() =>
                 Instantiate(machineData.outputIngredient[_iterations].GetComponentInChildren<LiquidIngredients>(),
                     outputTransform.position,
@@ -25,7 +30,7 @@ public class CoffeeBrewer : Machine
                 transform1.position = outputTransform.position;
                 transform1.rotation = outputTransform.rotation;
             },
-            liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+            liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, true, 100, 100);
     }
 
     protected override IEnumerator ActivateMachine(float time)

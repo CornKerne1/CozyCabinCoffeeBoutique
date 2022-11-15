@@ -93,7 +93,6 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnInteract(PlayerInteraction interaction)
     {
-        if (!isBreakable) return;
         playerInteraction = interaction;
         playerInteraction.Carry(gameObject);
     }
@@ -170,13 +169,20 @@ public abstract class Interactable : MonoBehaviour
 
         float timeElapsed = 0;
         gameMode.Surprise(gameObject);
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Renderer>().enabled = false;
+        var colliders = GetComponentsInChildren<Collider>();
+        var renderers = GetComponentsInChildren<Renderer>();
+        foreach (var c in colliders)
+            c.enabled = false;
+        foreach (var rE in renderers)
+            rE.enabled = false;
         yield return new WaitForSeconds(.02f);
         if (TryGetComponent<Radio>(out var r))
         {
             foreach (var rC in r.radioChannels)
+            {
                 rC.StopChannel();
+                Destroy(rC.gameObject);
+            }
         }
         while (timeElapsed < 1f)
         {
