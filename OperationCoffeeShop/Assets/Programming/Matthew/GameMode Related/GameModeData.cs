@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
+using Object = UnityEngine.Object;
 
 //This creates a file on the disk for this to be stored in the .asset format
 [CreateAssetMenu(fileName = "GameModeData", menuName = "GameModeData/Generic")]
@@ -34,7 +35,6 @@ public class GameModeData : ScriptableObject
 
     [Header("DO NOT TOUCH")]
     public float reputation;
-    public int displayTime;
     public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
@@ -43,4 +43,7 @@ public class GameModeData : ScriptableObject
 
     [SerializeField] public List<Material> treeMats = new List<Material>();
     public GameObject breakParticle;
+    public bool deliveryQueued;
+    public GameObject deliveryBoxPref;
+    public Vector3 deliveryPosition;
 }

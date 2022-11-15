@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -24,6 +25,7 @@ public class GameMode : MonoBehaviour,ISaveState
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
 
+    public DeliveryManager DeliveryManager;
 
     private List<GameObject> _toBeDestroyed = new List<GameObject>();
 
@@ -37,43 +39,35 @@ public class GameMode : MonoBehaviour,ISaveState
 
     [Header("Tutorial Stuffs")] public Tutorial Tutorial;
     [FormerlySerializedAs("Objectives")] public Objectives objectives;
-
-
+    
+    private void Awake()
+    {
+        //Creates new DayNightCycle component.
+        DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
+        DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
+        Initialize();
+        //Instantiate(sunLight);
+        IfTutorial();
+    }
     protected void Start()
     {
         playerData = player.GetComponent<PlayerInteraction>().playerData;
         playerData.moveSpeed = playerData.closeSpeed;
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();
-    }
-
-    private void Awake()
-    {
-        //Creates new DayNightCycle component.
-        DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
-        Initialize();
-        //Instantiate(sunLight);
-        IfTutorial();
+        DayNightCycle.HourChanged += CheckForDelivery;
     }
 
     private void Update()
     {
         //Handles the timer when the store is open.
-        DayNightCycle.StartTimer();
-        DayNightCycle.SleepTimer();
-        DayNightCycle.RotateSun();
+        DayNightCycle.HandleDnc();
     }
 
     public void UpdateReputation(int reputation)
     {
         //gMD.reputation = reputation + gMD.reputation;
         //Call method to change reputation slider.
-    }
-
-    //This is the method to call to change the time of day.
-    public void UpdateTimeOfDay(int time)
-    {
-        DayNightCycle.UpdateTimeOfDay(time);
     }
 
     protected virtual void Initialize()
@@ -119,8 +113,14 @@ public class GameMode : MonoBehaviour,ISaveState
             Instantiate(gameOver);
         }
     }
-
-
+    private void CheckForDelivery(object sender, EventArgs e)
+    {
+        if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
+        {
+            SpawnDeliveryBox();
+        }
+    }
+    
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
     {
         var testEventId = AkSoundEngine.GetIDFromString(eventName);
@@ -144,6 +144,11 @@ public class GameMode : MonoBehaviour,ISaveState
     {
         Debug.Log("suprise!!!");
         SurpriseCustomers?.Invoke(breakableSource, EventArgs.Empty);
+    }
+
+    public void SpawnDeliveryBox()
+    {
+        Instantiate(gameModeData.deliveryBoxPref,gameModeData.deliveryPosition,quaternion.identity);
     }
 
     public void TakePicture()

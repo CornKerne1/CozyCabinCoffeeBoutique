@@ -32,20 +32,20 @@ public class DayNightCycle
         _startTimeRate = _gameModeData.timeRate;
     }
 
+    public void HandleDnc()
+    {
+        StartTimer();
+        SleepTimer();
+        RotateSun();
+    }
     public void StartTimer()
     {
         //Debug.Log(gMD.currentTime.ToString("HH:mm"));
         if (_gameModeData.currentTime.Hour >= 6 &&
             _gameModeData.currentTime.TimeOfDay.Hours <= _gameModeData.closingHour)
         {
-            //if (!gMD.isOpen)
-            //{
-            //gM.OpenShop();
-            //}
             TrackTime();
-
             var pastClosing = _gameModeData.currentTime.TimeOfDay.Hours >= _gameModeData.closingHour;
-
             if (_gameModeData.isOpen && pastClosing)
                 _gameMode.CloseShop();
         }
@@ -65,22 +65,12 @@ public class DayNightCycle
         _gameModeData.timeRate = _startTimeRate;
     }
 
-
-    public void UpdateTimeOfDay(int hourAdding)
-    {
-        _gameModeData.currentTime = _gameModeData.currentTime.AddHours(hourAdding);
-        //If TimeChanged Event is not null (isValid?) Invoke Event. 
-        if (_gameModeData.currentTime.Hour > 12) _gameModeData.displayTime = -1 * (_gameModeData.currentTime.Hour - 12);
-        TimeChanged?.Invoke(this, EventArgs.Empty);
-    }
-
     private void TrackTime()
     {
         if (_gameModeData.currentTime.Hour != _currentHour)
             HourChanged?.Invoke(this, EventArgs.Empty);
         _currentHour = _gameModeData.currentTime.Hour;
         _gameModeData.currentTime = _gameModeData.currentTime.AddSeconds(Time.deltaTime * _gameModeData.timeRate);
-        if (_gameModeData.currentTime.Hour > 12) _gameModeData.displayTime = -1 * (_gameModeData.currentTime.Hour - 12);
         TimeChanged?.Invoke(this, EventArgs.Empty);
     }
 

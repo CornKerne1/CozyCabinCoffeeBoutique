@@ -14,22 +14,9 @@ public class ComputerShop : MonoBehaviour
     public TextMeshProUGUI bankUpdate;
     public string bankSuccessString;
     public string bankFailureString;
-
-
-    public float coffeePrice = 12;
-
-    [FormerlySerializedAs("coffeeQuanitiy")]
-    public int coffeeQuantity = 15;
-
-    public ObjectHolder coffeeType;
-    public float espressoPrice = 15;
-    public int espressoQuantity = 15;
-    public ObjectHolder espressoType;
-    public float milkPrice = 7;
-    public int milkQuantity = 10;
-    public float sugarPrice = 10;
-    public int sugarQuantity = 25;
-    public ObjectHolder sugarType;
+    public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10;
+    public int coffeeQuantity = 15,espressoQuantity = 15,milkQuantity = 10,sugarQuantity = 25;
+    public ObjectHolder coffeeType,espressoType,sugarType;
 
 
     public static event EventHandler SpendMoney;
@@ -81,8 +68,6 @@ public class ComputerShop : MonoBehaviour
 
             case "Sugar":
                 _orders.Enqueue("Sugar");
-                Debug.Log("buy ingredient sugar " + _orders.Count);
-
                 SpendMoney?.Invoke(sugarPrice, EventArgs.Empty);
                 break;
         }
@@ -101,23 +86,19 @@ public class ComputerShop : MonoBehaviour
             switch (ingredient)
             {
                 case "Coffee":
-                    var coffee = new Tuple<ObjectHolder, int>(coffeeType, coffeeQuantity);
-                    DepositItems?.Invoke(coffee, EventArgs.Empty);
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Coffee", coffeeQuantity ));
                     break;
 
                 case "Milk":
-                    var milk = new Tuple<Ingredients, int>(Ingredients.Milk, milkQuantity);
-                    DepositItems?.Invoke(milk, EventArgs.Empty);
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Milk", milkQuantity ));
                     break;
 
                 case "Espresso":
-                    var espresso = new Tuple<ObjectHolder, int>(espressoType, espressoQuantity);
-                    DepositItems?.Invoke(espresso, EventArgs.Empty);
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Espresso", espressoQuantity));
                     break;
 
                 case "Sugar":
-                    var sugar = new Tuple<ObjectHolder, int>(sugarType, sugarQuantity);
-                    DepositItems?.Invoke(sugar, EventArgs.Empty);
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Sugar", sugarQuantity));
                     break;
             }
         }

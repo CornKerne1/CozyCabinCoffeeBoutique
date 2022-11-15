@@ -121,12 +121,14 @@ public class Dispenser : Interactable
         text.transform.parent.gameObject.SetActive(true);
         deliveryMode = false;
         float timeElapsed = 0;
-        while (timeElapsed < 1f)
+        var rB = GetComponent<Rigidbody>();
+        while ((int)rB.velocity.magnitude !=0 ||timeElapsed <=1f)
         {
-            timeElapsed -= Time.deltaTime;
+            timeElapsed += Time.deltaTime;
             yield return null;
         }
         GetComponent<Rigidbody>().isKinematic = true;
+
     }
 
     protected void UpdateQuantity()
