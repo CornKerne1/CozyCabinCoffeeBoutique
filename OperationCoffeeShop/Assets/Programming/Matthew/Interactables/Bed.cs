@@ -21,12 +21,24 @@ public class Bed : Interactable
     private IEnumerator _coTimerRef;
 
     private bool _inBed;
+    private Collider playerCollider { get; set; }
+    private PlayerCameraController playerCc { get; set; }
+    private HeadBobController playerHbc { get; set; }
+
 
     public void Update()
     {
         HandlePlayerMove();
     }
 
+    public override void Start()
+    {
+        base.Start();
+        var player = gameMode.player;
+        playerCollider = player.GetComponent<Collider>();
+        playerHbc = player.GetComponentInChildren<HeadBobController>();
+        playerCc = player.GetComponent<PlayerCameraController>();
+    }
     private void HandlePlayerMove()
     {
         if (_playerInteraction)
@@ -47,20 +59,16 @@ public class Bed : Interactable
             StartCoroutine(CO_Timer());
         }
 
-        if (gameMode.playerData.sleeping)
-        {
-            Quaternion lookRotation = Quaternion.LookRotation((sleepTrans.position+Vector3.up*1.1f) - gameMode.camera.transform.position);
-            gameMode.camera.transform.rotation =
-                Quaternion.Lerp(gameMode.camera.transform.rotation, lookRotation, Time.deltaTime);
-            _playerTrans.position = Vector3.Lerp(_playerTrans.position, sleepTrans.position, 0.5f * Time.deltaTime*.75f);
-        }
-        else
-        {
-            Quaternion lookRotation = Quaternion.LookRotation((startTrans.position+Vector3.up*1.1f) - gameMode.camera.transform.position);
-            gameMode.camera.transform.rotation =
-                Quaternion.Lerp(gameMode.camera.transform.rotation, lookRotation, Time.deltaTime);
-            _playerTrans.position = Vector3.Lerp(_playerTrans.position, startTrans.position, 0.5f * Time.deltaTime*.75f);
-        }
+        MoveToAndRotateTowards(gameMode.playerData.sleeping ? sleepTrans.position : startTrans.position);
+    }
+
+    private void MoveToAndRotateTowards(Vector3 targetPos)
+    {
+        Quaternion lookRotation =
+            Quaternion.LookRotation((targetPos + Vector3.up * 1.1f) - gameMode.camera.transform.position);
+        gameMode.camera.transform.rotation =
+            Quaternion.Lerp(gameMode.camera.transform.rotation, lookRotation, Time.deltaTime);
+        _playerTrans.position = Vector3.Lerp(_playerTrans.position, targetPos, 0.5f * Time.deltaTime * .75f);
     }
 
     private IEnumerator CO_Timer()
@@ -76,12 +84,12 @@ public class Bed : Interactable
         {
             _running = false;
             _playerInteraction.playerData.canMove = true;
-            _playerTrans.GetComponent<Collider>().enabled = true;
+            playerCollider.enabled = true;
             _inBed = false;
             _playerInteraction = null;
             NewDay?.Invoke(this, EventArgs.Empty);
-            gameMode.player.GetComponentInChildren<HeadBobController>().enabled = true;
-            gameMode.player.GetComponent<PlayerCameraController>().enabled = true;
+            playerHbc.enabled = true;
+            playerCc.enabled = true;
         }
 
         _coTimerRef = null;
@@ -94,7 +102,7 @@ public class Bed : Interactable
         _playerInteraction = interaction;
         _playerTrans = gameMode.player.transform;
         gameMode.gameModeData.timeRate = 30 * gameMode.gameModeData.timeRate;
-        gameMode.player.GetComponent<Collider>().enabled = false;
+        playerCollider.enabled = false;
         interaction.playerData.canMove = false;
         if (gameMode.gameModeData.currentTime.Hour != 0)
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day + 1;
@@ -102,7 +110,7 @@ public class Bed : Interactable
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day;
         gameMode.playerData.sleeping = true;
         _running = true;
-        interaction.GetComponent<PlayerCameraController>().enabled = false;
-        interaction.GetComponentInChildren<HeadBobController>().enabled = false;
+        playerHbc.enabled = false;
+        playerCc.enabled = false;
     }
 }

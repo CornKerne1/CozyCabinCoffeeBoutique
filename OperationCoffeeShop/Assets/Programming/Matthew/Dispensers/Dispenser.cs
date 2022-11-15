@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 using TMPro;
@@ -10,11 +11,8 @@ public class Dispenser : Interactable
     [SerializeField] protected TextMeshProUGUI text;
     [SerializeField] protected string message = " beans remaining";
     private ObjectPool<PhysicalIngredient> _pool;
-    private bool deliveryMode;
-
-
+    public bool deliveryMode;
     private Transform _obj;
-
     public int quantity = 10;
     public bool bottomless;
 
@@ -22,12 +20,14 @@ public class Dispenser : Interactable
     {
         base.Start();
         ComputerShop.DepositItems += AddItems;
-        _pool = new ObjectPool<PhysicalIngredient>(
-            () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
-            physicalIngredient => { physicalIngredient.gameObject.SetActive(true);
-                physicalIngredient.dispenser = this;
-            },
-            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+        CreatePool();
+        StickyNoteSetup();
+        if (!deliveryMode) return;
+        text.transform.parent.gameObject.SetActive(false);
+    }
+
+    private void StickyNoteSetup()
+    {
         if (bottomless) return;
         try
         {
@@ -42,6 +42,18 @@ public class Dispenser : Interactable
         }
     }
 
+    private void CreatePool()
+    {
+        _pool = new ObjectPool<PhysicalIngredient>(
+            () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
+            physicalIngredient =>
+            {
+                physicalIngredient.gameObject.SetActive(true);
+                physicalIngredient.dispenser = this;
+            },
+            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+    }
+
     public void ReleasePoolObject(PhysicalIngredient physicalIngredient)
     {
         _pool.Release(physicalIngredient);
@@ -49,43 +61,72 @@ public class Dispenser : Interactable
 
     public override void OnInteract(PlayerInteraction interaction)
     {
+        playerInteraction = interaction;
         if (deliveryMode)
         {
-            if(interaction.carriedObj== gameObject)
-                interaction.DropCurrentObj();
+            if (playerInteraction.carriedObj == gameObject)
+                playerInteraction.DropCurrentObj();
             else
-                interaction.Carry(this.gameObject);
+                playerInteraction.Carry(this.gameObject);
         }
         else
         {
-            if (interaction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
-            quantity--;
-            UpdateQuantity();
-            var ingredient = _pool.Get().transform;
-            var transform1 = ingredient.transform;
-            transform1.position = spawnTrans.position;
-            transform1.rotation = spawnTrans.rotation;
-            if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
-            {
-                physicalIngredient.playerInteraction = interaction;
-                physicalIngredient.dispenser = this;
-            }
-            else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
-            {
-                ingredientContainer.pI = interaction;
-                ingredientContainer.inHand = true;
-            }
-
-            interaction.Carry(ingredient.gameObject);
-            IfTutorial();
+            TakeFromDispenser();
         }
     }
+
+    private void TakeFromDispenser()
+    {
+        if (playerInteraction.playerData.busyHands) return;
+        quantity--;
+        UpdateQuantity();
+        var ingredient = _pool.Get().transform;
+        var transform1 = ingredient.transform;
+        transform1.position = spawnTrans.position;
+        transform1.rotation = spawnTrans.rotation;
+        if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
+        {
+            physicalIngredient.playerInteraction = playerInteraction;
+            physicalIngredient.dispenser = this;
+        }
+        else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
+        {
+            ingredientContainer.pI = playerInteraction;
+            ingredientContainer.inHand = true;
+        }
+
+        playerInteraction.Carry(ingredient.gameObject);
+        IfTutorial();
+        if (quantity == 0)
+            Destroy(gameObject);
+    }
+
     protected void IfTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
         {
             gameMode.Tutorial.NextObjective(gameObject);
         }
+    }
+
+    public override void OnAltInteract(PlayerInteraction interaction)
+    {
+        if (!deliveryMode) return;
+        interaction.DropCurrentObj();
+        StartCoroutine(CancelDeliveryMode());
+    }
+
+    private IEnumerator CancelDeliveryMode()
+    {
+        text.transform.parent.gameObject.SetActive(true);
+        deliveryMode = false;
+        float timeElapsed = 0;
+        while (timeElapsed < 1f)
+        {
+            timeElapsed -= Time.deltaTime;
+            yield return null;
+        }
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     protected void UpdateQuantity()
