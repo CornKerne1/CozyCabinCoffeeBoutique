@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -64,8 +66,16 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        _gameMode.Save(0);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        StartCoroutine(WaitForSave());
+    }
+
+    private IEnumerator WaitForSave()
+    {
+        yield return new WaitForSeconds(.04f);
         Application.Quit();
+        EditorApplication.ExitPlaymode();
     }
 
     private void OnEnable()

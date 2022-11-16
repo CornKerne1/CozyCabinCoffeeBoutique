@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Ink.Runtime;
 using Unity.Mathematics;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Serialization;
 [Serializable]
@@ -28,7 +29,6 @@ public class GameMode : MonoBehaviour,ISaveState
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
     public static event EventHandler SaveGameEvent;
-    public static event EventHandler LoadGameEvent;
 
     public DeliveryManager DeliveryManager;
     public CoffeeBankTM CoffeeBankTM;
@@ -210,10 +210,9 @@ public class GameMode : MonoBehaviour,ISaveState
     }
 
     void OnEnable() => Load(0);
-    void OnDisable() => Save(0);
-
     public void Save(int gameNumber)
     {
+        SaveGameEvent?.Invoke(null, EventArgs.Empty);
         saveGameData.deliveryPackages = new List<DeliveryPackage>();
         foreach (var d in DeliveryManager.GetQueue())
         {
@@ -226,9 +225,10 @@ public class GameMode : MonoBehaviour,ISaveState
         var pastClosing = gameModeData.currentTime.TimeOfDay.Hours >= gameModeData.closingHour;
         var cT = gameModeData.currentTime;
         saveGameData.savedDate = pastClosing? new DateTime(cT.Year,cT.Month,cT.Day+1) : new DateTime(cT.Year,cT.Month,cT.Day);
-        saveGameData.playerPosition = player.transform.position;
+        
         SaveGameToDisk(gameNumber);
     }
+
     public void Load(int gameNumber)
     {
         if (File.Exists(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
@@ -241,7 +241,6 @@ public class GameMode : MonoBehaviour,ISaveState
             var sD = saveGameData.savedDate;
             gameModeData.currentTime = new DateTime(sD.Year,sD.Month,sD.Day,6,0,0);
             gameModeData.moneyInBank = saveGameData.playerMoney;
-            player.transform.position = saveGameData.playerPosition;
             DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
             foreach (var dP in saveGameData.deliveryPackages)
             {
@@ -257,7 +256,6 @@ public class GameMode : MonoBehaviour,ISaveState
             {
                 playerMoney = gameModeData.moneyInBank,
                 savedDate = gameModeData.currentTime,
-                playerPosition = player.transform.position,
                 deliveryPackages = new List<DeliveryPackage>(),
                 respawnables = new List<RespawbableData>()
             };

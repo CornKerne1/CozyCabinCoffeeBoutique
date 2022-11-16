@@ -32,7 +32,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     private bool _respawnable;
     public DeliveryManager.ObjType objTypeShop;
     void OnEnable() => Load(0);
-    void OnDisable() => Save(0);
+    void OnSaveEvent(object sender, EventArgs e) => Save(0);
     public virtual void Awake()
     {
         gameObject.layer = 3;
@@ -57,6 +57,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         InitializeOutline();
         CheckTutorial();
         OnFocusTextPool();
+        GameMode.SaveGameEvent += OnSaveEvent;
     }
     private void OnFocusTextPool()
     {

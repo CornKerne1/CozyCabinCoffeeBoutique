@@ -99,6 +99,7 @@ public class Bed : Interactable
     {
         if (gameMode.gameModeData.currentTime.Hour != 0 &&
             gameMode.gameModeData.currentTime.Hour < gameMode.gameModeData.closingHour) return;
+        gameMode.Save(0);
         _playerInteraction = interaction;
         _playerTrans = gameMode.player.transform;
         gameMode.gameModeData.timeRate = 30 * gameMode.gameModeData.timeRate;
