@@ -211,10 +211,13 @@ public class GameMode : MonoBehaviour,ISaveState
 
     public void Save(int gameNumber)
     {
-        saveGameData.Deliveries = new List<DeliveryData>();
+        saveGameData.deliveryPackages = new List<DeliveryPackage>();
         for (int i = 0; i < DeliveryManager.GetQueue().Count; i++)
         {
-            saveGameData.Deliveries.Add(DeliveryManager.GetQueue().Dequeue());
+            foreach (var dP in DeliveryManager.GetQueue().Dequeue().GetDeliveryPackages())
+            {
+                saveGameData.deliveryPackages.Add(dP);
+            }
         }
         saveGameData.playerMoney = gameModeData.moneyInBank;
         var pastClosing = gameModeData.currentTime.TimeOfDay.Hours >= gameModeData.closingHour;
@@ -237,13 +240,9 @@ public class GameMode : MonoBehaviour,ISaveState
             gameModeData.moneyInBank = saveGameData.playerMoney;
             player.transform.position = saveGameData.playerPosition;
             DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
-            Debug.Log(saveGameData.Deliveries);
-            if (saveGameData.Deliveries != null)
+            foreach (var dP in saveGameData.deliveryPackages)
             {
-                for (int i = 0; i < saveGameData.Deliveries.Count; i++)
-                {
-                    DeliveryManager.GetQueue().Enqueue(saveGameData.Deliveries[i]);
-                }
+                DeliveryManager.AddToDelivery(dP);
             }
             
         }
@@ -255,7 +254,7 @@ public class GameMode : MonoBehaviour,ISaveState
                 playerMoney = gameModeData.moneyInBank,
                 savedDate = gameModeData.currentTime,
                 playerPosition = player.transform.position,
-                Deliveries = new List<DeliveryData>()
+                deliveryPackages = new List<DeliveryPackage>(),
             };
         }
     }

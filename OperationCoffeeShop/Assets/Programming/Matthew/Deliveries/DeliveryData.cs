@@ -19,6 +19,7 @@ public class DeliveryManager
         _deliveryManager = deliveryManager;
         _gameMode = gameMode;
         _gameModeData = gameModeData;
+        gameModeData.deliveryQueued = false;
     }
     public DeliveryData GetDelivery()
     {

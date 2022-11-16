@@ -9,7 +9,7 @@ public class SaveGameData
    public float playerMoney;
    public Vector3 playerPosition;
    public DateTime savedDate;
-   public List<DeliveryData> Deliveries;
+   public List<DeliveryPackage> deliveryPackages;
    
    public SaveGameData()
    {
