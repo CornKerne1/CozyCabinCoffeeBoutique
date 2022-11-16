@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Ink.Runtime;
 using Unity.Mathematics;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Serialization;
 [Serializable]
@@ -124,10 +125,18 @@ public class GameMode : MonoBehaviour,ISaveState
     {
         if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
         {
-             SpawnDeliveryBox();
+            StartCoroutine(CO_StartDelivery());
         }
     }
-    
+
+    private IEnumerator CO_StartDelivery()
+    {
+        var truck =Instantiate(gameModeData._deliveryPrefabs.truckPrefab,Vector3.zero, Quaternion.identity);
+        yield return new WaitForSeconds(8f);
+        SpawnDeliveryBox();
+        yield return new WaitForSeconds(8f);
+        Destroy(truck);
+    }
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
     {
         var testEventId = AkSoundEngine.GetIDFromString(eventName);
