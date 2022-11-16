@@ -14,8 +14,8 @@ public class ComputerShop : MonoBehaviour
     public TextMeshProUGUI bankUpdate;
     public string bankSuccessString;
     public string bankFailureString;
-    public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10;
-    public int coffeeQuantity = 15,espressoQuantity = 15,milkQuantity = 10,sugarQuantity = 25;
+    public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10,cameraPrice = 100,pictureFramePrice=15;
+    public int coffeeQuantity = 15,espressoQuantity = 15,sugarQuantity = 25;
     public ObjectHolder coffeeType,espressoType,sugarType;
 
 
@@ -68,6 +68,12 @@ public class ComputerShop : MonoBehaviour
             case DeliveryManager.ObjType.Sugar:
                 SpendMoney?.Invoke(sugarPrice, EventArgs.Empty);
                 break;
+            case DeliveryManager.ObjType.Camera:
+                SpendMoney?.Invoke(cameraPrice, EventArgs.Empty);
+                break;
+            case DeliveryManager.ObjType.PictureFrame:
+                SpendMoney?.Invoke(pictureFramePrice, EventArgs.Empty);
+                break;
         }
     }
 
@@ -79,7 +85,7 @@ public class ComputerShop : MonoBehaviour
             balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
             bankUpdate.color = Color.green;
             var ingredient = _orders.Dequeue();
-            bankUpdate.text = bankSuccessString + ingredient;
+            bankUpdate.text = bankSuccessString + ingredient.ToString();
 
             switch (ingredient)
             {
@@ -88,7 +94,7 @@ public class ComputerShop : MonoBehaviour
                     break;
 
                 case DeliveryManager.ObjType.Milk:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, milkQuantity));
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
 
                 case DeliveryManager.ObjType.Espresso:
@@ -97,6 +103,12 @@ public class ComputerShop : MonoBehaviour
 
                 case DeliveryManager.ObjType.Sugar:
                     _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
+                    break;
+                case DeliveryManager.ObjType.Camera:
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    break;
+                case DeliveryManager.ObjType.PictureFrame:
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
             }
         }

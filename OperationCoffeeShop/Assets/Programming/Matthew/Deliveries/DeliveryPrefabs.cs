@@ -7,6 +7,6 @@ using UnityEngine;
 //The class does not inherit from MonoBehavior, since it it a Scriptable Object
 public class DeliveryPrefabs : ScriptableObject
 {
-    public GameObject coffeeDispenserPrefab,espressoDispenserPrefab,sugarDispenserPrefab,milkDispenserPrefab,openBoxPrefab;
+    public GameObject coffeeDispenserPrefab,espressoDispenserPrefab,sugarDispenserPrefab,milkDispenserPrefab,cameraPrefab,pictureFramePrefab ,openBoxPrefab;
 }
 

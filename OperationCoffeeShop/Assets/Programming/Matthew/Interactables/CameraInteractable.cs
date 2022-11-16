@@ -7,8 +7,14 @@ public class CameraInteractable : Interactable
     private Camera _camera;
     public GameObject cameraUi;
     private GameObject uiRef;
+    private MeshRenderer _meshRenderer;
 
     // Start is called before the first frame update
+    public override void Start()
+    {
+        base.Start();
+        _meshRenderer = GetComponent<MeshRenderer>();
+    }
 
     public override void OnInteract(PlayerInteraction interaction)
     {
@@ -19,7 +25,7 @@ public class CameraInteractable : Interactable
     }
     public override void OnAltInteract(PlayerInteraction interaction)
     {
-        GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled;
+        _meshRenderer.enabled = ! _meshRenderer.enabled;
         interaction.playerInput.FreeCam();
         if (interaction.playerData.camMode)
         {
@@ -33,5 +39,13 @@ public class CameraInteractable : Interactable
     {
         base.OnDrop();
         lookAtPlayer = false;
+    }
+
+    public override void Save(int gameNumber)
+    {
+        var position = new Vector3(.65f, -5.42f, -6f);
+        var rotation = new Quaternion(0, -76.9f, 0, 0);
+        if(delivered)
+            gameMode.saveGameData.respawnables.Add(new RespawbableData(objTypeShop,position,rotation,0));
     }
 }

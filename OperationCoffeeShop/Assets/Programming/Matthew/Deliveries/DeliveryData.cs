@@ -11,7 +11,7 @@ public class DeliveryManager
     private readonly GameMode _gameMode;
     private readonly GameModeData _gameModeData;
     private Queue<DeliveryData> _deliveries;
-    public enum ObjType { Coffee, Espresso, Milk, Sugar}
+    public enum ObjType { Coffee, Espresso, Milk, Sugar,Camera,PictureFrame}
 
     public DeliveryManager(DeliveryManager deliveryManager, GameMode gameMode, GameModeData gameModeData)
     {

@@ -17,8 +17,4 @@ public class RandomInteractable : Interactable
     {
     }
 
-    public override void Load(int gameNumber)
-    {
-        Debug.Log(gameNumber+"FuckYOU!");
-    }
 }

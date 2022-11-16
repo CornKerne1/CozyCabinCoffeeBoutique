@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using UnityEngine;
 
@@ -67,5 +68,17 @@ public class PictureFrame : Interactable
         Cursor.lockState = CursorLockMode.Locked;
         Destroy(_ui);
     }
-    
+
+    public override void Load(int gameNumber)
+    {
+        if (File.Exists(Application.persistentDataPath + "ScreenShot" + (currentPic - 1) + ".png"))
+        {
+            ChangePicture(GameMode.LoadTextureFromDisk(currentPic));
+        }
+    }
+    public override void Save(int gameNumber)
+    {
+        if(delivered)
+            gameMode.saveGameData.respawnables.Add(new RespawbableData(objTypeShop,transform.position,transform.rotation,currentPic));
+    }
 }

@@ -46,6 +46,8 @@ public class DeliveryBox : Interactable
                         case DeliveryManager.ObjType.Milk:
                             var obj1 = Instantiate(_deliveryPrefabs.milkDispenserPrefab, box.transform);
                             obj1.transform.position = spawnPos;
+                            var iC = obj1.GetComponent<IngredientContainer>();
+                            iC.delivered = true;
                             obj1.GetComponent<Rigidbody>().isKinematic = true;
                             break;
 
@@ -67,6 +69,18 @@ public class DeliveryBox : Interactable
                             disp2.deliveryMode = true;
                             disp2.delivered = true;
                             disp2.quantity = delivery.GetDeliveryPackages()[i].quantity;
+                            break;
+                        case DeliveryManager.ObjType.Camera:
+                            var obj4 = Instantiate(_deliveryPrefabs.cameraPrefab, box.transform);
+                            obj4.transform.position = spawnPos;
+                            obj4.GetComponent<Rigidbody>().isKinematic = true;
+                            obj4.GetComponent<Interactable>().delivered= true;
+                            break;
+                        case DeliveryManager.ObjType.PictureFrame:
+                            var obj5 = Instantiate(_deliveryPrefabs.pictureFramePrefab, box.transform);
+                            obj5.transform.position = spawnPos;
+                            obj5.GetComponent<Rigidbody>().isKinematic = true;
+                            obj5.GetComponent<PictureFrame>().delivered = true;
                             break;
                     }
         }

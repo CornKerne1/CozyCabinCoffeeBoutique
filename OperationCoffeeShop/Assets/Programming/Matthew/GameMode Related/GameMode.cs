@@ -63,14 +63,12 @@ public class GameMode : MonoBehaviour,ISaveState
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();
         DayNightCycle.HourChanged += CheckForDelivery;
-        CheckForDelivery(this, EventArgs.Empty);
     }
 
     private void Update()
     {
         //Handles the timer when the store is open.
         DayNightCycle.HandleDnc();
-        Debug.Log(DeliveryManager.GetQueue().Count);
     }
 
     public void UpdateReputation(int reputation)
@@ -124,14 +122,10 @@ public class GameMode : MonoBehaviour,ISaveState
     }
     private void CheckForDelivery(object sender, EventArgs e)
     {
-        if (gameModeData.deliveryQueued)
+        if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
         {
-            SpawnDeliveryBox();
+             SpawnDeliveryBox();
         }
-        // if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
-        // {
-        //     SpawnDeliveryBox();
-        // }
     }
     
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
@@ -212,9 +206,9 @@ public class GameMode : MonoBehaviour,ISaveState
     public void Save(int gameNumber)
     {
         saveGameData.deliveryPackages = new List<DeliveryPackage>();
-        for (int i = 0; i < DeliveryManager.GetQueue().Count; i++)
+        foreach (var d in DeliveryManager.GetQueue())
         {
-            foreach (var dP in DeliveryManager.GetQueue().Dequeue().GetDeliveryPackages())
+            foreach (var dP in d.GetDeliveryPackages())
             {
                 saveGameData.deliveryPackages.Add(dP);
             }
@@ -228,9 +222,9 @@ public class GameMode : MonoBehaviour,ISaveState
     }
     public void Load(int gameNumber)
     {
-        if (File.Exists($"SaveGame{gameNumber}.json"))
+        if (File.Exists(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
         {
-            using (StreamReader streamReader = new StreamReader($"SaveGame{gameNumber}.json"))
+            using (StreamReader streamReader = new StreamReader(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
             {
                 var json = streamReader.ReadToEnd();
                 saveGameData = JsonUtility.FromJson<SaveGameData>(json);
@@ -244,24 +238,26 @@ public class GameMode : MonoBehaviour,ISaveState
             {
                 DeliveryManager.AddToDelivery(dP);
             }
-            
+            SpawnSavedObjects();
         }
         else
         {
             gameModeData.currentTime = new DateTime(2027, 1, 1, 6, 0,0);
+            DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
             saveGameData = new SaveGameData
             {
                 playerMoney = gameModeData.moneyInBank,
                 savedDate = gameModeData.currentTime,
                 playerPosition = player.transform.position,
                 deliveryPackages = new List<DeliveryPackage>(),
+                respawnables = new List<RespawbableData>()
             };
         }
     }
     private void SaveGameToDisk(int gameNumber)
     {
         var json = JsonUtility.ToJson(saveGameData);
-        using (StreamWriter streamWriter = new StreamWriter($"SaveGame{gameNumber}.json"))
+        using (StreamWriter streamWriter = new StreamWriter(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
         {
             streamWriter.Write(json);
         }
@@ -270,27 +266,48 @@ public class GameMode : MonoBehaviour,ISaveState
     {
         foreach (var r in saveGameData.respawnables)
         {
+            Debug.Log(r.objType);
             switch (r.objType)
             {
                 case DeliveryManager.ObjType.Coffee:
                     var obj = Instantiate(gameModeData._deliveryPrefabs.coffeeDispenserPrefab, r.position, r.rotation);
-                    obj.GetComponent<Dispenser>().quantity = r.wildCard;
+                    var disp = obj.GetComponent<Dispenser>();
+                    disp.quantity = r.wildCard;
+                    disp.delivered = true;
                     break;
 
                 case DeliveryManager.ObjType.Milk:
                     var obj1 = Instantiate(gameModeData._deliveryPrefabs.milkDispenserPrefab, r.position, r.rotation);
+                    var disp1 = obj1.GetComponent<IngredientContainer>();
+                    disp1.delivered = true;
                     break;
 
                 case DeliveryManager.ObjType.Espresso:
                     var obj2 = Instantiate(gameModeData._deliveryPrefabs.espressoDispenserPrefab, r.position, r.rotation);
-                    obj2.GetComponent<Dispenser>().quantity = r.wildCard;
+                    var disp2 = obj2.GetComponent<Dispenser>();
+                    disp2.quantity = r.wildCard;
+                    disp2.delivered = true;
                     break;
 
                 case DeliveryManager.ObjType.Sugar:
                     var obj3 = Instantiate(gameModeData._deliveryPrefabs.sugarDispenserPrefab, r.position, r.rotation);
-                    obj3.GetComponent<Dispenser>().quantity = r.wildCard;
+                    var disp3 = obj3.GetComponent<Dispenser>();
+                    disp3.quantity = r.wildCard;
+                    disp3.delivered = true;
+                    break;
+                case DeliveryManager.ObjType.Camera:
+                    var obj4 = Instantiate(gameModeData._deliveryPrefabs.cameraPrefab, r.position, r.rotation);
+                    var disp4 = obj4.GetComponent<Interactable>();
+                    disp4.delivered = true;
+                    break;
+                case DeliveryManager.ObjType.PictureFrame:
+                    var obj5 = Instantiate(gameModeData._deliveryPrefabs.pictureFramePrefab, r.position, r.rotation);
+                    var disp5 = obj5.GetComponent<PictureFrame>();
+                    disp5.currentPic= r.wildCard;
+                    disp5.delivered = true;
                     break;
             }
         }
+        saveGameData.respawnables = new List<RespawbableData>();
     }
 }

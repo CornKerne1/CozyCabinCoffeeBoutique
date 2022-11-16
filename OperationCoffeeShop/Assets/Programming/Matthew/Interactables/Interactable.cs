@@ -31,7 +31,6 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     public bool delivered;
     private bool _respawnable;
     public DeliveryManager.ObjType objTypeShop;
-
     void OnEnable() => Load(0);
     void OnDisable() => Save(0);
     public virtual void Awake()

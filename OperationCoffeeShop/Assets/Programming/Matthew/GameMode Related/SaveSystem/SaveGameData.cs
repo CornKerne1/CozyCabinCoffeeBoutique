@@ -13,7 +13,7 @@ public class SaveGameData
    
    public SaveGameData()
    {
-      respawnables = new List<RespawbableData>();
+      
    }
 }
 [Serializable]
