@@ -16,4 +16,9 @@ public class RandomInteractable : Interactable
     public override void OnAltInteract(PlayerInteraction interaction)
     {
     }
+
+    public override void Load(int gameNumber)
+    {
+        Debug.Log(gameNumber+"FuckYOU!");
+    }
 }

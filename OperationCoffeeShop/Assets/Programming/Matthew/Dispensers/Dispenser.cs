@@ -154,4 +154,14 @@ public class Dispenser : Interactable
             // ignored
         }
     }
+
+    public override void Load(int gameNumber)
+    {
+        
+    }
+    public override void Save(int gameNumber)
+    {
+       if(delivered)
+        gameMode.saveGameData.respawnables.Add(new RespawbableData(base.objTypeShop,transform.position,transform.rotation,quantity));
+    }
 }

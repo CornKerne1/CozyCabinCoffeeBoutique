@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Ink.Runtime;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+[Serializable]
 public class GameMode : MonoBehaviour,ISaveState
 {
     //This class keeps track of the game
@@ -24,8 +26,11 @@ public class GameMode : MonoBehaviour,ISaveState
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
+    public static event EventHandler SaveGameEvent;
+    public static event EventHandler LoadGameEvent;
 
     public DeliveryManager DeliveryManager;
+    public CoffeeBankTM CoffeeBankTM;
 
     private List<GameObject> _toBeDestroyed = new List<GameObject>();
 
@@ -40,11 +45,13 @@ public class GameMode : MonoBehaviour,ISaveState
     [Header("Tutorial Stuffs")] public Tutorial Tutorial;
     [FormerlySerializedAs("Objectives")] public Objectives objectives;
     
+    public SaveGameData saveGameData;
+    
     private void Awake()
     {
         //Creates new DayNightCycle component.
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
-        DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
+        CoffeeBankTM = new CoffeeBankTM(CoffeeBankTM, this, gameModeData);
         Initialize();
         //Instantiate(sunLight);
         IfTutorial();
@@ -56,12 +63,14 @@ public class GameMode : MonoBehaviour,ISaveState
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();
         DayNightCycle.HourChanged += CheckForDelivery;
+        CheckForDelivery(this, EventArgs.Empty);
     }
 
     private void Update()
     {
         //Handles the timer when the store is open.
         DayNightCycle.HandleDnc();
+        Debug.Log(DeliveryManager.GetQueue().Count);
     }
 
     public void UpdateReputation(int reputation)
@@ -115,10 +124,14 @@ public class GameMode : MonoBehaviour,ISaveState
     }
     private void CheckForDelivery(object sender, EventArgs e)
     {
-        if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
+        if (gameModeData.deliveryQueued)
         {
             SpawnDeliveryBox();
         }
+        // if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
+        // {
+        //     SpawnDeliveryBox();
+        // }
     }
     
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
@@ -194,14 +207,91 @@ public class GameMode : MonoBehaviour,ISaveState
     }
 
     void OnEnable() => Load(0);
+    void OnDisable() => Save(0);
 
     public void Save(int gameNumber)
     {
-        throw new NotImplementedException();
+        saveGameData.Deliveries = new List<DeliveryData>();
+        for (int i = 0; i < DeliveryManager.GetQueue().Count; i++)
+        {
+            saveGameData.Deliveries.Add(DeliveryManager.GetQueue().Dequeue());
+        }
+        saveGameData.playerMoney = gameModeData.moneyInBank;
+        var pastClosing = gameModeData.currentTime.TimeOfDay.Hours >= gameModeData.closingHour;
+        var cT = gameModeData.currentTime;
+        saveGameData.savedDate = pastClosing? new DateTime(cT.Year,cT.Month,cT.Day+1) : new DateTime(cT.Year,cT.Month,cT.Day);
+        saveGameData.playerPosition = player.transform.position;
+        SaveGameToDisk(gameNumber);
     }
-
     public void Load(int gameNumber)
     {
-        gameModeData.currentTime = new DateTime(2027, 1, 1, 6, 0,0);
+        if (File.Exists($"SaveGame{gameNumber}.json"))
+        {
+            using (StreamReader streamReader = new StreamReader($"SaveGame{gameNumber}.json"))
+            {
+                var json = streamReader.ReadToEnd();
+                saveGameData = JsonUtility.FromJson<SaveGameData>(json);
+            }
+            var sD = saveGameData.savedDate;
+            gameModeData.currentTime = new DateTime(sD.Year,sD.Month,sD.Day,6,0,0);
+            gameModeData.moneyInBank = saveGameData.playerMoney;
+            player.transform.position = saveGameData.playerPosition;
+            DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
+            Debug.Log(saveGameData.Deliveries);
+            if (saveGameData.Deliveries != null)
+            {
+                for (int i = 0; i < saveGameData.Deliveries.Count; i++)
+                {
+                    DeliveryManager.GetQueue().Enqueue(saveGameData.Deliveries[i]);
+                }
+            }
+            
+        }
+        else
+        {
+            gameModeData.currentTime = new DateTime(2027, 1, 1, 6, 0,0);
+            saveGameData = new SaveGameData
+            {
+                playerMoney = gameModeData.moneyInBank,
+                savedDate = gameModeData.currentTime,
+                playerPosition = player.transform.position,
+                Deliveries = new List<DeliveryData>()
+            };
+        }
+    }
+    private void SaveGameToDisk(int gameNumber)
+    {
+        var json = JsonUtility.ToJson(saveGameData);
+        using (StreamWriter streamWriter = new StreamWriter($"SaveGame{gameNumber}.json"))
+        {
+            streamWriter.Write(json);
+        }
+    }
+    private void SpawnSavedObjects()
+    {
+        foreach (var r in saveGameData.respawnables)
+        {
+            switch (r.objType)
+            {
+                case DeliveryManager.ObjType.Coffee:
+                    var obj = Instantiate(gameModeData._deliveryPrefabs.coffeeDispenserPrefab, r.position, r.rotation);
+                    obj.GetComponent<Dispenser>().quantity = r.wildCard;
+                    break;
+
+                case DeliveryManager.ObjType.Milk:
+                    var obj1 = Instantiate(gameModeData._deliveryPrefabs.milkDispenserPrefab, r.position, r.rotation);
+                    break;
+
+                case DeliveryManager.ObjType.Espresso:
+                    var obj2 = Instantiate(gameModeData._deliveryPrefabs.espressoDispenserPrefab, r.position, r.rotation);
+                    obj2.GetComponent<Dispenser>().quantity = r.wildCard;
+                    break;
+
+                case DeliveryManager.ObjType.Sugar:
+                    var obj3 = Instantiate(gameModeData._deliveryPrefabs.sugarDispenserPrefab, r.position, r.rotation);
+                    obj3.GetComponent<Dispenser>().quantity = r.wildCard;
+                    break;
+            }
+        }
     }
 }

@@ -1,25 +1,26 @@
 using UnityEngine;
 using System;
 
-public class CoffeeBankTM : MonoBehaviour
+public class CoffeeBankTM
 {
-    public static event EventHandler SuccessfulWithdrawal;
-
-
-    public float moneyInBank = 30;
-
-
-    private void Start()
+    public CoffeeBankTM(CoffeeBankTM coffeeBankTM, GameMode gameMode,GameModeData gameModeData)
     {
+        _coffeeBankTM = coffeeBankTM;
+        _gameMode = gameMode;
+        _gameModeData = gameModeData;
         CustomerLine.DepositMoney += DepositMoneyInBank;
         ComputerShop.SpendMoney += WithdrawMoneyInBank;
     }
+    public static event EventHandler SuccessfulWithdrawal;
+    private CoffeeBankTM _coffeeBankTM;
+    private GameMode _gameMode;
+    private GameModeData _gameModeData;
 
     private void DepositMoneyInBank(object sender, EventArgs e)
     {
         try
         {
-            moneyInBank += (float)sender;
+            _gameModeData.moneyInBank += (float)sender;
         }
         catch
         {
@@ -30,12 +31,12 @@ public class CoffeeBankTM : MonoBehaviour
     private void WithdrawMoneyInBank(object sender, EventArgs e)
     {
         //Debug.Log("making a withdraw for " + (float)sender + " from an account with " + moneyInBank);
-        if (moneyInBank - (float)sender >= 0)
+        if ( _gameModeData.moneyInBank - (float)sender >= 0)
         {
-            moneyInBank -= (float)sender;
+            _gameModeData.moneyInBank -= (float)sender;
             SuccessfulWithdrawal?.Invoke(true, EventArgs.Empty);
 
-            Debug.Log("withdrawing money, money in bank now =" + moneyInBank);
+            Debug.Log("withdrawing money, money in bank now =" +  _gameModeData.moneyInBank);
         }
         else
         {

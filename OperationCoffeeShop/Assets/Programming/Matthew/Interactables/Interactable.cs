@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
-public abstract class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour,ISaveState
 {
     public GameMode gameMode;
     public Vector3 rotateOffset;
@@ -28,7 +28,12 @@ public abstract class Interactable : MonoBehaviour
     public string onScreenPromptText;
     public bool lookAtPlayer;
     private float speed;
+    public bool delivered;
+    private bool _respawnable;
+    public DeliveryManager.ObjType objTypeShop;
 
+    void OnEnable() => Load(0);
+    void OnDisable() => Save(0);
     public virtual void Awake()
     {
         gameObject.layer = 3;
@@ -47,7 +52,6 @@ public abstract class Interactable : MonoBehaviour
             speed = 0;
         }
     }
-
     public virtual void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
@@ -55,7 +59,6 @@ public abstract class Interactable : MonoBehaviour
         CheckTutorial();
         OnFocusTextPool();
     }
-
     private void OnFocusTextPool()
     {
         _poolOfOnScreenPrompt = new ObjectPool<Canvas>(
@@ -221,5 +224,13 @@ public abstract class Interactable : MonoBehaviour
         {
             // ignored
         }
+    }
+
+    public virtual void Save(int gameNumber)
+    {
+    }
+
+    public virtual void Load(int gameNumber)
+    {
     }
 }

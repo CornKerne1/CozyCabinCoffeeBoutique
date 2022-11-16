@@ -285,4 +285,10 @@ public class IngredientContainer : Interactable
     {
         rotating = true;
     }
+
+    public override void Save(int gameNumber)
+    {
+        if(delivered)
+            gameMode.saveGameData.respawnables.Add(new RespawbableData(base.objTypeShop,transform.position,transform.rotation,0));
+    }
 }

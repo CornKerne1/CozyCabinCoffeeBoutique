@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+[Serializable]
 public class DeliveryManager
 {
     private readonly DeliveryManager _deliveryManager;
     private readonly GameMode _gameMode;
     private readonly GameModeData _gameModeData;
     private Queue<DeliveryData> _deliveries;
+    public enum ObjType { Coffee, Espresso, Milk, Sugar}
 
     public DeliveryManager(DeliveryManager deliveryManager, GameMode gameMode, GameModeData gameModeData)
     {
+        _deliveries = new Queue<DeliveryData>();
         _deliveryManager = deliveryManager;
         _gameMode = gameMode;
         _gameModeData = gameModeData;
-        _deliveries = new Queue<DeliveryData>();
     }
-
     public DeliveryData GetDelivery()
     {
         if (_deliveries.Count <= 1)
@@ -31,19 +31,17 @@ public class DeliveryManager
         var condition = false;
         foreach (var d in _deliveries)
         {
-            condition=d;
+            condition = d != null;
             break;
         }
 
         return condition;
     }
-
     private void CreateNewDeliveryData()
     {
-        _deliveries.Enqueue( (DeliveryData)ScriptableObject.CreateInstance("DeliveryData"));
+        _deliveries.Enqueue( new DeliveryData());
         _gameModeData.deliveryQueued = true;
     }
-
     private void ModifyDelivery(DeliveryPackage deliveryPackage)
     {
         var success = false;
@@ -57,7 +55,6 @@ public class DeliveryManager
         CreateNewDeliveryData();
         AddToDelivery(deliveryPackage);
     }
-
     public void AddToDelivery(DeliveryPackage deliveryPackage)
     {
         if(HasDeliveryData())
@@ -68,16 +65,29 @@ public class DeliveryManager
             ModifyDelivery(deliveryPackage);
         }
     }
+
+    public Queue<DeliveryData> GetQueue()
+    {
+        return _deliveries;
+    }
+    public void SetQueue(Queue<DeliveryData> deliveries)
+    {
+        deliveries = _deliveries;
+    }
 }
-public class DeliveryData : ScriptableObject
+[Serializable]
+public class DeliveryData
 {
     private List<DeliveryPackage> _deliveryPackages;
     private int _maxPackages = 16;
+    public DeliveryData()
+    {
+        _deliveryPackages = new List<DeliveryPackage>();
+    }
     public void AddToList(DeliveryPackage i)
     {
         _deliveryPackages.Add(i);
     }
-
     public List<DeliveryPackage> GetDeliveryPackages()
     {
         return _deliveryPackages;
@@ -86,18 +96,16 @@ public class DeliveryData : ScriptableObject
     {
         return _deliveryPackages.Count >= _maxPackages;
     }
-    private void OnEnable()
-    {
-        _deliveryPackages = new List<DeliveryPackage>();
-    }
+
 }
+[Serializable]
 public class DeliveryPackage
 {
-    public DeliveryPackage(string objType, int quantity)
+    public DeliveryPackage(DeliveryManager.ObjType objType, int quantity)
     {
         this.objType = objType;
         this.quantity = quantity;
     }
-    public string objType;
+    public DeliveryManager.ObjType objType;
     public int quantity;
 }

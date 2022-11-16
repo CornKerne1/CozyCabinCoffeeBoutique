@@ -23,23 +23,23 @@ public class ComputerShop : MonoBehaviour
     public static event EventHandler DepositItems;
 
 
-    private Queue<string> _orders;
+    private Queue<DeliveryManager.ObjType> _orders;
 
     // Start is called before the first frame update
     private void Start()
     {
-        _orders = new Queue<string>();
+        _orders = new Queue<DeliveryManager.ObjType>();
 
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        coffeeBankTM = _gameMode.gameObject.GetComponent<CoffeeBankTM>();
+        coffeeBankTM = _gameMode.CoffeeBankTM;
         CoffeeBankTM.SuccessfulWithdrawal += EnsureWithdrawal; //
-        balance.text = balanceString + coffeeBankTM.moneyInBank;
+        balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
         bankUpdate.text = "";
     }
 
     public void CloseShop()
     {
-        _orders = new Queue<string>();
+        _orders = new Queue<DeliveryManager.ObjType>();
         _gameMode.playerData.canMove = true;
         _gameMode.playerData.canMove = true;
         Cursor.visible = false;
@@ -47,27 +47,25 @@ public class ComputerShop : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void BuyIngredient(string ingredient)
+    public void BuyIngredient(string i)
     {
+        DeliveryManager.ObjType.TryParse<DeliveryManager.ObjType>(i,out var ingredient);
+        _orders.Enqueue(ingredient);
         switch (ingredient)
         {
-            case "Coffee":
-                _orders.Enqueue("Coffee");
+            case DeliveryManager.ObjType.Coffee:
                 SpendMoney?.Invoke(coffeePrice, EventArgs.Empty);
                 break;
 
-            case "Milk":
-                _orders.Enqueue("Milk");
+            case DeliveryManager.ObjType.Milk:
                 SpendMoney?.Invoke(milkPrice, EventArgs.Empty);
                 break;
 
-            case "Espresso":
-                _orders.Enqueue("Espresso");
+            case DeliveryManager.ObjType.Espresso:
                 SpendMoney?.Invoke(espressoPrice, EventArgs.Empty);
                 break;
 
-            case "Sugar":
-                _orders.Enqueue("Sugar");
+            case DeliveryManager.ObjType.Sugar:
                 SpendMoney?.Invoke(sugarPrice, EventArgs.Empty);
                 break;
         }
@@ -78,27 +76,27 @@ public class ComputerShop : MonoBehaviour
         if (_orders.Count <= 0) return;
         if ((bool)sender)
         {
-            balance.text = balanceString + coffeeBankTM.moneyInBank;
+            balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
             bankUpdate.color = Color.green;
             var ingredient = _orders.Dequeue();
             bankUpdate.text = bankSuccessString + ingredient;
 
             switch (ingredient)
             {
-                case "Coffee":
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Coffee", coffeeQuantity ));
+                case DeliveryManager.ObjType.Coffee:
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, coffeeQuantity));
                     break;
 
-                case "Milk":
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Milk", milkQuantity ));
+                case DeliveryManager.ObjType.Milk:
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, milkQuantity));
                     break;
 
-                case "Espresso":
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Espresso", espressoQuantity));
+                case DeliveryManager.ObjType.Espresso:
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, espressoQuantity));
                     break;
 
-                case "Sugar":
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage("Sugar", sugarQuantity));
+                case DeliveryManager.ObjType.Sugar:
+                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
                     break;
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
-
+[Serializable]
 //This creates a file on the disk for this to be stored in the .asset format
 [CreateAssetMenu(fileName = "GameModeData", menuName = "GameModeData/Generic")]
 //The class does not inherit from MonoBehavior, since it it a Scriptable Object
@@ -44,6 +44,9 @@ public class GameModeData : ScriptableObject
     [SerializeField] public List<Material> treeMats = new List<Material>();
     public GameObject breakParticle;
     public bool deliveryQueued;
+    public DeliveryPrefabs _deliveryPrefabs;
     public GameObject deliveryBoxPref;
     public Vector3 deliveryPosition;
+    public float moneyInBank = 30;
 }
+
