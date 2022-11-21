@@ -66,6 +66,8 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        if (_playerInteraction.playerData.camMode)
+            _playerInteraction.carriedObj.SetActive(true);
         _gameMode.Save(0);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         StartCoroutine(WaitForSave());

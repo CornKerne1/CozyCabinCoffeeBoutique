@@ -204,7 +204,7 @@ public class GameMode : MonoBehaviour,ISaveState
     
     private static void SaveScreenShot(int i)
     {
-        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 128,128);
+        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 256,256);
         byte[] textureBytes = sS.EncodeToPNG();
         File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
     }
@@ -222,9 +222,12 @@ public class GameMode : MonoBehaviour,ISaveState
             }
         }
         saveGameData.playerMoney = gameModeData.moneyInBank;
-        var pastClosing = gameModeData.currentTime.TimeOfDay.Hours >= gameModeData.closingHour;
+        var tooEarly = gameModeData.currentTime.Hour is >= 0 and < 6;
         var cT = gameModeData.currentTime;
-        saveGameData.savedDate = pastClosing? new DateTime(cT.Year,cT.Month,cT.Day+1) : new DateTime(cT.Year,cT.Month,cT.Day);
+        saveGameData.savedHour = tooEarly? 6 : gameModeData.currentTime.Hour;
+        saveGameData.savedDay = gameModeData.currentTime.Day;
+        saveGameData.savedMonth =gameModeData.currentTime.Month;
+        saveGameData.savedYear =gameModeData.currentTime.Year;
         
         SaveGameToDisk(gameNumber);
     }
@@ -238,8 +241,10 @@ public class GameMode : MonoBehaviour,ISaveState
                 var json = streamReader.ReadToEnd();
                 saveGameData = JsonUtility.FromJson<SaveGameData>(json);
             }
-            var sD = saveGameData.savedDate;
-            gameModeData.currentTime = new DateTime(sD.Year,sD.Month,sD.Day,6,0,0);
+
+            var saveDate = new DateTime(saveGameData.savedYear, saveGameData.savedMonth, saveGameData.savedDay,
+                saveGameData.savedHour, 0, 0);
+            gameModeData.currentTime = saveDate;
             gameModeData.moneyInBank = saveGameData.playerMoney;
             DeliveryManager = new DeliveryManager(DeliveryManager, this, gameModeData);
             foreach (var dP in saveGameData.deliveryPackages)
@@ -255,7 +260,6 @@ public class GameMode : MonoBehaviour,ISaveState
             saveGameData = new SaveGameData
             {
                 playerMoney = gameModeData.moneyInBank,
-                savedDate = gameModeData.currentTime,
                 deliveryPackages = new List<DeliveryPackage>(),
                 respawnables = new List<RespawbableData>()
             };

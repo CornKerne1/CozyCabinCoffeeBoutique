@@ -8,7 +8,7 @@ public class SaveGameData
    public List<RespawbableData> respawnables;
    public float playerMoney;
    public Vector3 playerPosition;
-   public DateTime savedDate;
+   public int savedHour,savedDay,savedMonth,savedYear;
    public List<DeliveryPackage> deliveryPackages;
    
    public SaveGameData()

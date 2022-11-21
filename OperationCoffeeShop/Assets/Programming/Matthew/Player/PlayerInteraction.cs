@@ -114,7 +114,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleRotation()
     {
-        if (!playerData.busyHands || !carriedObj || !_rotate) return;
+        if (!playerData.busyHands || !carriedObj || !_rotate||playerData.inUI) return;
         try
         {
             var root = carriedObj.transform.root;
@@ -199,7 +199,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void MoveObj(object sender, EventArgs e)
     {
-        if (_rotate) return;
+        if (_rotate||playerData.inUI) return;
         _carryDistance = Mathf.Clamp(_carryDistance + (playerInput.GetCurrentObjDistance() / 8),
             playerData.carryDistance - playerData.carryDistanceClamp,
             playerData.carryDistance + playerData.carryDistanceClamp);
