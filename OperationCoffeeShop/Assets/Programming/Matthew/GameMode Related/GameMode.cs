@@ -17,7 +17,6 @@ public class GameMode : MonoBehaviour,ISaveState
     [SerializeField] public Camera camera;
     [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
     [SerializeField] public GameObject playerPref;
-    [SerializeField] public ScriptableOptions scriptableOptions;
 
     [SerializeField] private Gate gate;
 
@@ -47,6 +46,7 @@ public class GameMode : MonoBehaviour,ISaveState
     [FormerlySerializedAs("Objectives")] public Objectives objectives;
     
     public SaveGameData saveGameData;
+    public SaveOptionsData saveOptionsData;
     
     private void Awake()
     {
@@ -82,9 +82,28 @@ public class GameMode : MonoBehaviour,ISaveState
     {
         //if save file exists load DateTime from file else set to startTime
         DayNightCycle.Initialize();
-        AkSoundEngine.SetRTPCValue("MasterVolume", scriptableOptions.masterVol);
-        AkSoundEngine.SetRTPCValue("MusicVolume", scriptableOptions.musicVol);
-        AkSoundEngine.SetRTPCValue("SFXVolume", scriptableOptions.masterVol);
+        if (saveOptionsData == null)
+        {
+            saveOptionsData = new SaveOptionsData();
+            var gameNumber = 0;
+            if (File.Exists(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
+            {
+                using (StreamReader streamReader = new StreamReader(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
+                {
+                    var json = streamReader.ReadToEnd();
+                    saveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
+                }
+                AkSoundEngine.SetRTPCValue("MasterVolume", saveOptionsData.masterVol);
+                AkSoundEngine.SetRTPCValue("MusicVolume", saveOptionsData.musicVol);
+                AkSoundEngine.SetRTPCValue("SFXVolume", saveOptionsData.masterVol);
+            }
+            else
+            {
+                AkSoundEngine.SetRTPCValue("MasterVolume", .4f);
+                AkSoundEngine.SetRTPCValue("MusicVolume", .4f);
+                AkSoundEngine.SetRTPCValue("SFXVolume", .4f);
+            }
+        }
     }
 
     private void IfTutorial()
@@ -228,8 +247,8 @@ public class GameMode : MonoBehaviour,ISaveState
         saveGameData.savedDay = gameModeData.currentTime.Day;
         saveGameData.savedMonth =gameModeData.currentTime.Month;
         saveGameData.savedYear =gameModeData.currentTime.Year;
-        
-        SaveGameToDisk(gameNumber);
+        var json = JsonUtility.ToJson(saveGameData);
+        SaveGameToDisk(gameNumber,"SaveGame",json);
     }
 
     public void Load(int gameNumber)
@@ -265,10 +284,9 @@ public class GameMode : MonoBehaviour,ISaveState
             };
         }
     }
-    private void SaveGameToDisk(int gameNumber)
+    public void SaveGameToDisk(int gameNumber,string fileName,string json)
     {
-        var json = JsonUtility.ToJson(saveGameData);
-        using (StreamWriter streamWriter = new StreamWriter(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
+        using (StreamWriter streamWriter = new StreamWriter(Application.persistentDataPath +fileName+gameNumber+".json"))
         {
             streamWriter.Write(json);
         }
