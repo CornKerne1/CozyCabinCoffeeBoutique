@@ -22,8 +22,14 @@ public class Dispenser : Interactable
         ComputerShop.DepositItems += AddItems;
         CreatePool();
         StickyNoteSetup();
-        if (!deliveryMode) return;
-        text.transform.parent.gameObject.SetActive(false);
+        if (!deliveryMode)
+        {
+            TryGetComponent<Rigidbody>(out var rB);
+            if(rB)
+                rB.isKinematic = true;
+        }
+        else
+            text.transform.parent.gameObject.SetActive(false);
     }
 
     private void StickyNoteSetup()
