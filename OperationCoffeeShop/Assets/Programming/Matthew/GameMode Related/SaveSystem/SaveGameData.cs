@@ -8,7 +8,7 @@ public class SaveGameData
    public List<RespawbableData> respawnables;
    public float playerMoney;
    public Vector3 playerPosition;
-   public DateTime savedDate;
+   public int savedHour,savedDay,savedMonth,savedYear;
    public List<DeliveryPackage> deliveryPackages;
    
    public SaveGameData()
@@ -32,3 +32,11 @@ public class RespawbableData
    }
 }
 
+[Serializable]
+public class SaveOptionsData
+{
+   public float masterVol;
+   public float musicVol;
+   public float sfxVol;
+   public bool performanceMode;
+}

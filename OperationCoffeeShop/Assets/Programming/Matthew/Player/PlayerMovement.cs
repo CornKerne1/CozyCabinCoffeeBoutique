@@ -25,10 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _standingCenter = new Vector3(0,.5f,0);
     private bool isCrouching;
     private IEnumerator _coRunning;
+    private CharacterController _characterController;
 
     private void Start()
     {
         _camera = Camera.main;
+        _characterController = GetComponent<CharacterController>();
         _playerInput = this.gameObject.GetComponent<PlayerInput>();
         controller = this.gameObject.GetComponent<CharacterController>();
         _playerInput.pD.currentMovement = transform.position;
@@ -175,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             var colliders= transform.root.GetComponentsInChildren<Collider>();
            foreach (var c in colliders)
            {
-               if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
+               if (c.GetInstanceID() ==_characterController.GetInstanceID())
                {
                    gameObject.layer = 8;
                    return;
@@ -186,13 +188,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            GetComponent<CharacterController>().enabled = false;
+            _characterController.enabled = false;
             transform.position = _camModeReset;
-            GetComponent<CharacterController>().enabled = true;
+            _characterController.enabled = true;
             var colliders= transform.root.GetComponentsInChildren<Collider>();
             foreach (var c in colliders)
             {
-                if (c.GetInstanceID() ==GetComponent<CharacterController>().GetInstanceID())
+                if (c.GetInstanceID() ==_characterController.GetInstanceID())
                 {
                     gameObject.layer = 2;
                     return;

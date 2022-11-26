@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering.Universal;
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenu : MonoBehaviour, ISaveState
 {
-    [SerializeField]private ScriptableOptions sO;
     public GameObject optionsScreen;
     
     public GameMode gM;
@@ -24,6 +25,9 @@ public class OptionsMenu : MonoBehaviour
     public Slider masterSlider, musicSlider, sfxSlider, mouseSlider;
 
     public UniversalRenderPipelineAsset urpA;
+
+    private void OnEnable() => Load(0);
+    private void OnDisable() => Save(0);
 
     public void TogglePerformace(bool lowQuality)
     {
@@ -49,8 +53,6 @@ public class OptionsMenu : MonoBehaviour
     void Start()
     {
         fullscreenTog.isOn = Screen.fullScreen;
-        performanceTog.isOn = false;
-        TogglePerformace(performanceTog.isOn);
 
         if (QualitySettings.vSyncCount == 0)
         {
@@ -84,12 +86,6 @@ public class OptionsMenu : MonoBehaviour
         }
 
         float vol = 0f;
-        masterSlider.value = sO.masterVol;
-        
-        musicSlider.value = sO.musicVol;
-        
-        sfxSlider.value = sO.sfxVol;
-        
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         mouseSlider.value = gM.playerData.mouseSensitivityOptions;
 
@@ -153,24 +149,27 @@ public class OptionsMenu : MonoBehaviour
     {
         StartCoroutine(CO_PlayAudioWWisely());
         mastLabel.text = Mathf.RoundToInt(masterSlider.value) .ToString();
-        sO.masterVol = masterSlider.value;
-        AkSoundEngine.SetRTPCValue("MasterVolume", sO.masterVol);
+        gM.saveOptionsData.masterVol = masterSlider.value;
+        AkSoundEngine.SetRTPCValue("MasterVolume", gM.saveOptionsData.masterVol);
+        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
 
     }
     public void SetMusicVol()
     {
         StartCoroutine(CO_PlayAudioWWisely());
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
-        sO.musicVol = musicSlider.value;
-        AkSoundEngine.SetRTPCValue("MusicVolume", sO.musicVol);
+        gM.saveOptionsData.musicVol = musicSlider.value;
+        AkSoundEngine.SetRTPCValue("MusicVolume", gM.saveOptionsData.musicVol);
+        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
 
     }
     public void SetSFXVol()
     {
         StartCoroutine(CO_PlayAudioWWisely());
         sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
-        sO.sfxVol = sfxSlider.value;
-        AkSoundEngine.SetRTPCValue("SFXVolume", sO.sfxVol);
+        gM.saveOptionsData.sfxVol = sfxSlider.value;
+        AkSoundEngine.SetRTPCValue("SFXVolume", gM.saveOptionsData.sfxVol);
+        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
         
     }
     public void SetMouse()
@@ -192,6 +191,26 @@ public class OptionsMenu : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         playing = false;
         AkSoundEngine.PostEvent("Play_Slider", gameObject);
+    }
+
+    public void Save(int gameNumber)
+    {
+        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
+    }
+
+    public void Load(int gameNumber)
+    {
+        if (File.Exists(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
+        {
+            using (StreamReader streamReader = new StreamReader(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
+            {
+                var json = streamReader.ReadToEnd();
+                gM.saveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
+            }
+        }
+        masterSlider.value = gM.saveOptionsData.masterVol;
+        musicSlider.value = gM.saveOptionsData.musicVol;
+        sfxSlider.value = gM.saveOptionsData.sfxVol;
     }
 }
 

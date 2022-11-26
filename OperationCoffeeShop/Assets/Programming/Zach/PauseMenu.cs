@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
     public void OpenOptions()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
+        optionsScreen.SetActive(!optionsScreen.activeSelf);
     }
 
     public void CloseOptions()
@@ -66,6 +66,8 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        if (_playerInteraction.playerData.camMode)
+            _playerInteraction.carriedObj.SetActive(true);
         _gameMode.Save(0);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         StartCoroutine(WaitForSave());
@@ -101,6 +103,7 @@ public class PauseMenu : MonoBehaviour
         _gameMode.playerData.canMove = false;
         pD.canMove = false;
         pD.neckClamp = 0.0f;
+        optionsScreen.SetActive(false);
         _playerInteraction.CameraBlur();
     }
 
