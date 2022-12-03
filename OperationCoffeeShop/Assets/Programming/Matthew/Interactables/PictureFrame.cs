@@ -11,13 +11,20 @@ public class PictureFrame : Interactable
     [SerializeField] private GameObject picture;
     [SerializeField] private GameObject uiPref;
     private GameObject _ui;
-    private int _currentPic;
     public int currentPic;
     private static readonly int EmissionMap = Shader.PropertyToID("_EmissionMap");
 
     public override void Start()
     {
         base.Start();
+        try
+        {
+            ChangePicture(GameMode.LoadTextureFromDisk(currentPic));
+        }
+        catch (Exception e)
+        {
+            //
+        }
     }
 
     private void Update()
