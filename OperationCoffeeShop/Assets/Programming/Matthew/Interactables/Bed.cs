@@ -24,7 +24,7 @@ public class Bed : Interactable
     private Collider playerCollider { get; set; }
     private PlayerCameraController playerCc { get; set; }
     private HeadBobController playerHbc { get; set; }
-
+    private readonly float timeScaleFactor = 30;
 
     public void Update()
     {
@@ -90,6 +90,7 @@ public class Bed : Interactable
             NewDay?.Invoke(this, EventArgs.Empty);
             playerHbc.enabled = true;
             playerCc.enabled = true;
+            gameMode.gameModeData.timeRate = gameMode.gameModeData.timeRate/timeScaleFactor;
         }
 
         _coTimerRef = null;
@@ -102,7 +103,7 @@ public class Bed : Interactable
         gameMode.Save(0);
         _playerInteraction = interaction;
         _playerTrans = gameMode.player.transform;
-        gameMode.gameModeData.timeRate = 30 * gameMode.gameModeData.timeRate;
+        gameMode.gameModeData.timeRate = timeScaleFactor * gameMode.gameModeData.timeRate;
         playerCollider.enabled = false;
         interaction.playerData.canMove = false;
         if (gameMode.gameModeData.currentTime.Hour != 0)

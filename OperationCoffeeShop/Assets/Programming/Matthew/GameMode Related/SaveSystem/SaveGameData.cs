@@ -10,6 +10,7 @@ public class SaveGameData
    public Vector3 playerPosition;
    public int savedHour,savedDay,savedMonth,savedYear;
    public List<DeliveryPackage> deliveryPackages;
+   public bool completedTutorial;
    
    public SaveGameData()
    {

@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsScreen;
 
     public GameObject creditsScreen;
+    private GameMode _gameMode;
 
 
     [SerializeField] private PlayableDirector director;
@@ -36,7 +37,11 @@ public class MainMenu : MonoBehaviour
     public void LaunchGame()
     {
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        if(_gameMode.saveGameData.completedTutorial)
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
+        else
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -70,7 +75,8 @@ public class MainMenu : MonoBehaviour
     {
         AkSoundEngine.PostEvent("Play_TitleTheme", this.gameObject);
         _animator = GetComponent<Animator>();
-        GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData.isOpen = true;
+        _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _gameMode.gameModeData.isOpen = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         director.stopped += ReadNote;

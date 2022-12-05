@@ -8,8 +8,7 @@ public class OpenSign : Interactable
 {
     // Start is called before the first frame update
     private PlayerInteraction _playerInteraction;
-
-    public static event EventHandler OpenShop;
+    
     private Animator _animator;
     [SerializeField] private Transform openTrans;
     private static readonly int Open = Animator.StringToHash("Open");
@@ -28,7 +27,6 @@ public class OpenSign : Interactable
             AkSoundEngine.PostEvent("Play_buttonpress", this.gameObject);
             if (gameMode.gameModeData.isOpen)
             {
-                OpenShop?.Invoke(this, EventArgs.Empty);
                 _animator.SetBool(Open,true);
                 gameMode.player.GetComponent<CharacterController>().enabled = false;
                 gameMode.player.transform.position = openTrans.position;
