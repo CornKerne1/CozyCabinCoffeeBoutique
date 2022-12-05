@@ -105,7 +105,7 @@ public class PauseMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(.04f);
         Application.Quit();
-        EditorApplication.ExitPlaymode();
+        //EditorApplication.ExitPlaymode();
     }
 
     private void OnEnable()

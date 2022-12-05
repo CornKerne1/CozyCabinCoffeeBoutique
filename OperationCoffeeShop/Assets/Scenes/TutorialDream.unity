@@ -2493,6 +2493,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!4 &203533279971556312
 Transform:
   m_ObjectHideFlags: 0
@@ -2732,6 +2735,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!33 &354531450822462568
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3114,6 +3120,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   pianoChannel: {fileID: 5047478299777401921, guid: 24a46138423f8434b8afefa424b29406, type: 3}
   currentChannel: 0
   pianoChannels: []
@@ -3898,6 +3907,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   loadingNextScene: 0
 --- !u!64 &890736104092674020
 MeshCollider:
@@ -8822,6 +8834,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!4 &2740143590308842272
 Transform:
   m_ObjectHideFlags: 0
@@ -9701,6 +9716,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!33 &2978471629060307982
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11480,14 +11498,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultTimeRate: 0
   player: {fileID: 1817465924}
+  camera: {fileID: 0}
   playerData: {fileID: 11400000, guid: f4cb311d33a94614483c28c4183bc2af, type: 2}
   playerPref: {fileID: 1817465918}
-  scriptableOptions: {fileID: 11400000, guid: 79858d2f3f5d5cd41a096c893775f3a9, type: 2}
   gate: {fileID: 922450983}
   gameModeData: {fileID: 11400000, guid: b7133bacdeacbc24c8c1b28d6afd6138, type: 2}
   sunLight: {fileID: 1822805714}
   gameOver: {fileID: 1423995552129583617, guid: 2fdac58c70cca8e4d860ba469d7ce150, type: 3}
   objectives: {fileID: 7178056224376831413}
+  saveGameData:
+    respawnables: []
+    playerMoney: 0
+    playerPosition: {x: 0, y: 0, z: 0}
+    savedHour: 0
+    savedDay: 0
+    savedMonth: 0
+    savedYear: 0
+    deliveryPackages: []
+    completedTutorial: 0
+  saveOptionsData:
+    masterVol: 0
+    musicVol: 0
+    sfxVol: 0
+    performanceMode: 0
 --- !u!23 &3734178546633728140
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11779,7 +11812,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7728184923472881630}
   - component: {fileID: 3732180103899525830}
-  - component: {fileID: 5092706461277716792}
   m_Layer: 0
   m_Name: GameMode
   m_TagString: GameMode
@@ -13999,6 +14031,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!1001 &4014140754774123030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20229,19 +20264,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5092706461277716792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880264944939569177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0303376948eee4b87ff698efc660ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyInBank: 0
 --- !u!4 &5100654172356508201
 Transform:
   m_ObjectHideFlags: 0
@@ -20356,6 +20378,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!33 &5130392679372245149
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20527,6 +20552,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!114 &5195372015515327028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20548,6 +20576,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!114 &5199189209288810749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20569,6 +20600,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   mD: {fileID: 11400000, guid: f2d3ebd94cc75444da972136842bfa62, type: 2}
 --- !u!23 &5200863803948631690
 MeshRenderer:
@@ -21089,6 +21123,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   halfJar: {fileID: 2721911865961754875}
   fullJar: {fileID: 561718906931051401}
 --- !u!4 &5490790995518142893
@@ -21181,6 +21218,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!4 &5558610925169739057
 Transform:
   m_ObjectHideFlags: 0
@@ -22171,6 +22211,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   playerDoor: 0
   door: {fileID: 0}
   openTrans: {fileID: 0}
@@ -25525,10 +25568,14 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   spawnTrans: {fileID: 1498992813800271413}
   objType: {fileID: 11400000, guid: cccf0c40de2667145b204cf5b7bda58d, type: 2}
   text: {fileID: 4014140754774123031}
   message: Sugar Cubes Left
+  deliveryMode: 0
   quantity: 100
   bottomless: 0
 --- !u!23 &7021779434937873142
@@ -25847,6 +25894,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!1 &7146005115265364317
 GameObject:
   m_ObjectHideFlags: 0
@@ -29456,6 +29506,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!23 &8538364514399654656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30088,6 +30141,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   pI: {fileID: 0}
   canClimb: 0
 --- !u!4 &8768815516664137436
@@ -31193,6 +31249,9 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!4 &9159200384067534482
 Transform:
   m_ObjectHideFlags: 0
