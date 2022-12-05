@@ -25,8 +25,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public Slider masterSlider, musicSlider, sfxSlider, mouseSlider;
 
     public UniversalRenderPipelineAsset urpA;
-
-    private void OnEnable() => Load(0);
+    
     private void OnDisable() => Save(0);
 
     public void TogglePerformace(bool lowQuality)
@@ -52,8 +51,9 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     }
     void Start()
     {
+        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        Load(0);
         fullscreenTog.isOn = Screen.fullScreen;
-
         if (QualitySettings.vSyncCount == 0)
         {
             vsyncTog.isOn = false;
@@ -86,7 +86,6 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         }
 
         float vol = 0f;
-        gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         mouseSlider.value = gM.playerData.mouseSensitivityOptions;
 
         mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
@@ -207,10 +206,10 @@ public class OptionsMenu : MonoBehaviour, ISaveState
                 var json = streamReader.ReadToEnd();
                 gM.saveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
+            masterSlider.value = gM.saveOptionsData.masterVol;
+            musicSlider.value = gM.saveOptionsData.musicVol;
+            sfxSlider.value = gM.saveOptionsData.sfxVol;
         }
-        masterSlider.value = gM.saveOptionsData.masterVol;
-        musicSlider.value = gM.saveOptionsData.musicVol;
-        sfxSlider.value = gM.saveOptionsData.sfxVol;
     }
 }
 

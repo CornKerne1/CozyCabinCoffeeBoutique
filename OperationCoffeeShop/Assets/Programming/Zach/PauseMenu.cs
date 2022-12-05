@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PauseMenu : MonoBehaviour
@@ -16,7 +17,9 @@ public class PauseMenu : MonoBehaviour
     private bool _couldMovePreviously = true;
     public PlayerInput playerInput;
 
-    public GameObject optionsScreen;
+    [SerializeField]private GameObject infoScreen,optionsScreen,infoButtonObj, optionsButtonObj;
+    private Image _infoButton, _optionsButton;
+    [SerializeField] private Color activateColor, deactivateColor;
 
     private Animator _animator;
 
@@ -47,9 +50,34 @@ public class PauseMenu : MonoBehaviour
             _animator.SetTrigger("Reverse");
             gameObject.SetActive(false);
             playerInput.ToggleHud();
+            _gameMode.playerData.canMove = false;
         }
     }
 
+    public void ChangeTab(string tabName)
+    {
+        switch (tabName)
+        {
+            case "info":
+                optionsScreen.SetActive(false);
+                infoScreen.SetActive(true);
+                _optionsButton.color = deactivateColor;
+                _infoButton.color = activateColor;
+                break;
+            case "options":
+                infoScreen.SetActive(false);
+                optionsScreen.SetActive(true);
+                _infoButton.color = deactivateColor;
+                _optionsButton.color = activateColor;
+                break;
+            case "close":
+                StartGame();
+                break;
+            case "quit":
+                QuitGame();
+                break;
+        }
+    }
 
     public void OpenOptions()
     {
@@ -100,11 +128,12 @@ public class PauseMenu : MonoBehaviour
         _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        _gameMode.playerData.canMove = false;
         pD.canMove = false;
         pD.neckClamp = 0.0f;
-        optionsScreen.SetActive(false);
         _playerInteraction.CameraBlur();
+        _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();
+        _optionsButton = optionsButtonObj.GetComponent<UnityEngine.UI.Image>();
+        ChangeTab("info");
     }
 
 
