@@ -15,6 +15,8 @@ public abstract class Interactable : MonoBehaviour,ISaveState
 
     //Breakable
     [SerializeField] private GameObject breakablePrefab;
+    [SerializeField] private Color smashColor;
+    [SerializeField] private Color smashEmissionColor;
     private GameObject _breakableRef;
     [FormerlySerializedAs("_pI")] public PlayerInteraction playerInteraction;
     private Rigidbody _rB;
@@ -164,7 +166,9 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         yield return new WaitForSeconds(.02f);
         AkSoundEngine.PostEvent(breakableSoundEngineEnvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
-        var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position,transform.rotation);
+        var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
+        particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;
+        particle.GetComponent<ParticleSystemRenderer>().material.SetColor("_EmissionColor", smashEmissionColor);
         foreach (var obj in _breakableRef.GetChildren(transform))
         {
             obj.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f);

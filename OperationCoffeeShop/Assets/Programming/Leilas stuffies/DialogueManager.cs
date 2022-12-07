@@ -102,6 +102,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJson)
     {
+
         Debug.Log("ink json" + inkJson);
         Debug.Log("ink json.text" + inkJson.text);
 
