@@ -70,14 +70,14 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: 0
+    - time: 0.016666668
       value: {fileID: 1049562466, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
-    - time: 0.41666666
+    - time: 0.43333334
       value: {fileID: 1878177112, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
-    - time: 0.8333333
+    - time: 0.85
       value: {fileID: 1049562466, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
     attribute: m_Sprite
-    path: 
+    path: BUTTON
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_SampleRate: 60
@@ -88,7 +88,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 3405671355
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -103,7 +103,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 0.8666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -168,13 +168,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 104606530, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
+      value: {fileID: 1049562466, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
     - time: 0.083333336
       value: {fileID: -1541243443, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
     - time: 0.33333334
       value: {fileID: -1541243443, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
+    - time: 0.35
+      value: {fileID: 1049562466, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
     attribute: m_Sprite
-    path: 
+    path: BUTTON
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_SampleRate: 60
@@ -185,22 +187,23 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 3405671355
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 104606530, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
+    - {fileID: 1049562466, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
     - {fileID: -1541243443, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
     - {fileID: -1541243443, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
+    - {fileID: 1049562466, guid: 54f931bf8d166e84e82f9f46a33d4692, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.36666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -234,7 +237,7 @@ AnimatorStateMachine:
     m_Position: {x: 280, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -311261032023568033}
-    m_Position: {x: 270, y: 150, z: 0}
+    m_Position: {x: 280, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 4254857789879747101}
@@ -396,7 +399,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.0000000012200956
+  m_ExitTime: 0.0000000026201654
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
