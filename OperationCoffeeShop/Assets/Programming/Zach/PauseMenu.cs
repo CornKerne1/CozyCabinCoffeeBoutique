@@ -17,8 +17,8 @@ public class PauseMenu : MonoBehaviour
     private bool _couldMovePreviously = true;
     public PlayerInput playerInput;
 
-    [SerializeField]private GameObject infoScreen,optionsScreen,infoButtonObj, optionsButtonObj;
-    private Image _infoButton, _optionsButton;
+    [SerializeField]private GameObject infoScreen,optionsScreen,controlScreen,infoButtonObj, optionsButtonObj,controlsButtonObj;
+    private Image _infoButton, _optionsButton,_controlsButton;
     [SerializeField] private Color activateColor, deactivateColor;
 
     private Animator _animator;
@@ -60,15 +60,27 @@ public class PauseMenu : MonoBehaviour
         {
             case "info":
                 optionsScreen.SetActive(false);
+                controlScreen.SetActive(false);
                 infoScreen.SetActive(true);
                 _optionsButton.color = deactivateColor;
+                _controlsButton.color =deactivateColor;
                 _infoButton.color = activateColor;
                 break;
             case "options":
                 infoScreen.SetActive(false);
+                controlScreen.SetActive(false);
                 optionsScreen.SetActive(true);
                 _infoButton.color = deactivateColor;
+                _controlsButton.color =deactivateColor;
                 _optionsButton.color = activateColor;
+                break;
+            case "controls":
+                infoScreen.SetActive(false);
+                optionsScreen.SetActive(false);
+                controlScreen.SetActive(true);
+                _infoButton.color = deactivateColor;
+                _optionsButton.color =deactivateColor;
+                _controlsButton.color = activateColor;
                 break;
             case "close":
                 StartGame();
@@ -133,6 +145,7 @@ public class PauseMenu : MonoBehaviour
         _playerInteraction.CameraBlur();
         _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();
         _optionsButton = optionsButtonObj.GetComponent<UnityEngine.UI.Image>();
+        _controlsButton = controlsButtonObj.GetComponent<UnityEngine.UI.Image>();
         ChangeTab("info");
     }
 
