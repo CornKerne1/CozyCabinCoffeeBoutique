@@ -29,7 +29,6 @@ public class ComputerShop : MonoBehaviour
     private void Start()
     {
         _orders = new Queue<DeliveryManager.ObjType>();
-
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         coffeeBankTM = _gameMode.CoffeeBankTM;
         CoffeeBankTM.SuccessfulWithdrawal += EnsureWithdrawal; //
@@ -40,8 +39,8 @@ public class ComputerShop : MonoBehaviour
     public void CloseShop()
     {
         _orders = new Queue<DeliveryManager.ObjType>();
-        _gameMode.playerData.canMove = true;
-        _gameMode.playerData.canMove = true;
+        _gameMode.playerInput.ToggleMovement();
+        _gameMode.playerData.inUI = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         this.gameObject.SetActive(false);

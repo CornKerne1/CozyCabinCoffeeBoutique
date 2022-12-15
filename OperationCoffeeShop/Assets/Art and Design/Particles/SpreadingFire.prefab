@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8757373449527678888}
   - component: {fileID: 8757373449527678894}
   - component: {fileID: 8757373449527678895}
+  - component: {fileID: 6136164439994950690}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: SpreadingFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4812,3 +4813,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6136164439994950690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757373449527678889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc566305d20ad640815b2bcca1cf39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 201
+  firePrefab: {fileID: 8757373449527678889}

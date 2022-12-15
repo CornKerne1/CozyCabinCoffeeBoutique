@@ -34,9 +34,7 @@ public class PauseMenu : MonoBehaviour
             _animator.SetTrigger("Reverse");
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Locked;
-            _gameMode.playerData.canMove = true;
-            pD.canMove = true;
-            pD.neckClamp = 77.3f;
+            playerInput.ToggleMovement();
             pD.inUI = false;
             gameObject.SetActive(false);
             _playerInteraction.CameraBlur();
@@ -50,7 +48,7 @@ public class PauseMenu : MonoBehaviour
             _animator.SetTrigger("Reverse");
             gameObject.SetActive(false);
             playerInput.ToggleHud();
-            _gameMode.playerData.canMove = false;
+            playerInput.ToggleMovement();
         }
     }
 
@@ -101,6 +99,8 @@ public class PauseMenu : MonoBehaviour
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         pD.inUI = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
         gameObject.SetActive(false);
     }
 
@@ -140,8 +140,7 @@ public class PauseMenu : MonoBehaviour
         _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        pD.canMove = false;
-        pD.neckClamp = 0.0f;
+        playerInput.ToggleMovement();
         _playerInteraction.CameraBlur();
         _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();
         _optionsButton = optionsButtonObj.GetComponent<UnityEngine.UI.Image>();

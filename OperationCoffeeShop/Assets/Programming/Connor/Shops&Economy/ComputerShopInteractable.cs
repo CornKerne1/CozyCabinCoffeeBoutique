@@ -16,7 +16,8 @@ public class ComputerShopInteractable : Interactable
         if (_shopRef)
         {
             _shopRef.SetActive(true);
-            gameMode.playerData.canMove = false;
+            gameMode.playerData.inUI = true;
+            gameMode.playerInput.ToggleMovement();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
@@ -24,7 +25,8 @@ public class ComputerShopInteractable : Interactable
         {
             _shopRef = Instantiate(shopUI);
             _shopRef.SetActive(true);
-            gameMode.playerData.canMove = false;
+            gameMode.playerData.inUI = true;
+            gameMode.playerInput.ToggleMovement();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }

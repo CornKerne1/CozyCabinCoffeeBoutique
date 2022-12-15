@@ -16,6 +16,7 @@ public class GameMode : MonoBehaviour,ISaveState
     [SerializeField] public Transform player;
     [SerializeField] public Camera camera;
     [FormerlySerializedAs("pD")] [SerializeField] public PlayerData playerData;
+    [SerializeField] public PlayerInput playerInput;
     [SerializeField] public GameObject playerPref;
 
     [SerializeField] private Gate gate;
@@ -59,7 +60,9 @@ public class GameMode : MonoBehaviour,ISaveState
     }
     protected void Start()
     {
-        playerData = player.GetComponent<PlayerInteraction>().playerData;
+        var playerInteraction = player.GetComponent<PlayerInteraction>();
+        playerInput = playerInteraction.playerInput;
+        playerData = playerInteraction.playerData;
         playerData.moveSpeed = playerData.closeSpeed;
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();

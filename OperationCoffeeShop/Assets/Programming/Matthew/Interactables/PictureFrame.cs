@@ -54,7 +54,7 @@ public class PictureFrame : Interactable
         if (!playerInteraction) playerInteraction = interaction;
         if (interaction.carriedObj != this.gameObject) return;
         if (_ui) return;
-        gameMode.playerData.canMove = false;
+        playerInteraction.playerInput.ToggleMovement();
         gameMode.playerData.inUI = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -69,7 +69,7 @@ public class PictureFrame : Interactable
     {
         if (!_ui) return;
         playerInteraction.playerInput.ToggleHud();
-        gameMode.playerData.canMove = true;
+        playerInteraction.playerInput.ToggleMovement();
         gameMode.playerData.inUI = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
