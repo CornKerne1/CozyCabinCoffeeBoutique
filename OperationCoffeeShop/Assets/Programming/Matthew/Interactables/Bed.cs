@@ -83,7 +83,7 @@ public class Bed : Interactable
         else
         {
             _running = false;
-            _playerInteraction.playerData.canMove = true;
+            playerInteraction.playerInput.ToggleMovement();
             playerCollider.enabled = true;
             _inBed = false;
             _playerInteraction = null;
@@ -105,7 +105,7 @@ public class Bed : Interactable
         _playerTrans = gameMode.player.transform;
         gameMode.gameModeData.timeRate = timeScaleFactor * gameMode.gameModeData.timeRate;
         playerCollider.enabled = false;
-        interaction.playerData.canMove = false;
+        interaction.playerInput.ToggleMovement();
         if (gameMode.gameModeData.currentTime.Hour != 0)
             gameMode.gameModeData.sleepDay = gameMode.gameModeData.currentTime.Day + 1;
         else

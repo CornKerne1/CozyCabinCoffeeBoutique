@@ -39,7 +39,7 @@ public class ComputerShop : MonoBehaviour
     public void CloseShop()
     {
         _orders = new Queue<DeliveryManager.ObjType>();
-        _gameMode.playerData.canMove = true;
+        _gameMode.playerInput.ToggleMovement();
         _gameMode.playerData.inUI = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

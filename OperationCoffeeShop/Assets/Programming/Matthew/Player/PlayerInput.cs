@@ -216,6 +216,12 @@ public class PlayerInput : MonoBehaviour
             
     }
 
+    public void ToggleMovement()
+    {
+        pD.canMove = !pD.canMove;
+        pD.neckClamp = pD.neckClamp == 0 ? 77.3f : 0f;
+    }
+
     private static void Pause(InputAction.CallbackContext obj)
     {
         PauseEvent?.Invoke(null, EventArgs.Empty);
