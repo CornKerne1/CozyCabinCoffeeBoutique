@@ -56,27 +56,26 @@ public class PlayerInput : MonoBehaviour
         pauseM.SetActive(false);
         var pM = pauseM.GetComponent<PauseMenu>();
         pM.playerInput = this;
-        pM.CloseOptions();
         CamModeEvent += ToggleHud;
         PauseEvent += _Pause;
     }
 
     private void _Pause(object sender, EventArgs e)
     {
-        if (!pauseM) return;
-        if (!pD.inUI)
+        Debug.Log(pD.inUI);
+        if (pD.inUI)
+        {
+            if (!pauseM.activeSelf) return;
+            pauseM.GetComponent<PauseMenu>().StartGame();
+            pD.inUI = false;
+            ToggleHud();
+        }
+        else
         {
             pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
             ToggleHud(); 
-        }
-        else
-        {
-            if (!pauseM) return;
-            pauseM.GetComponent<PauseMenu>().StartGame();
-            pD.inUI = false;
-            ToggleHud();
         }
     }
 
@@ -210,7 +209,11 @@ public class PlayerInput : MonoBehaviour
 
     public void ToggleHud()
     {
-        hudRef.SetActive(!hudRef.activeSelf);
+        if(pD.inUI&& hudRef.activeSelf)
+            hudRef.SetActive(false);
+        else
+            hudRef.SetActive(true);
+            
     }
 
     private static void Pause(InputAction.CallbackContext obj)

@@ -101,6 +101,8 @@ public class PauseMenu : MonoBehaviour
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         pD.inUI = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
         gameObject.SetActive(false);
     }
 
