@@ -145,6 +145,7 @@ public class PauseMenu : MonoBehaviour
         _playerInteraction.CameraBlur();
         _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();
         _optionsButton = optionsButtonObj.GetComponent<UnityEngine.UI.Image>();
+        _controlsButton = controlsButtonObj.GetComponent<UnityEngine.UI.Image>();
         ChangeTab("info");
     }
 

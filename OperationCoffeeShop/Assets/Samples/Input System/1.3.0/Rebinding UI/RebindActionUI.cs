@@ -254,65 +254,56 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
         {
-            m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
-
+            m_RebindOperation?.Cancel();
             void CleanUp()
             {
                 m_RebindOperation?.Dispose();
                 m_RebindOperation = null;
             }
+            action.Disable();
 
-            // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
-                .OnCancel(
-                    operation =>
-                    {
-                        m_RebindStopEvent?.Invoke(this, operation);
-                        m_RebindOverlay?.SetActive(false);
-                        UpdateBindingDisplay();
-                        CleanUp();
-                    })
+                .WithControlsExcluding("<Pointer>/position")
+                .WithCancelingThrough("<Keyboard>/escape")
+                .OnCancel(operation =>
+                {
+                    action.Enable();
+                    m_RebindStopEvent.Invoke(this, operation);
+                    m_RebindOverlay?.SetActive(false);
+                    UpdateBindingDisplay();
+                    CleanUp();
+                })
                 .OnComplete(
                     operation =>
                     {
+                        action.Enable();
                         m_RebindOverlay?.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
                         UpdateBindingDisplay();
                         CleanUp();
-
-                        // If there's more composite parts we should bind, initiate a rebind
-                        // for the next part.
                         if (allCompositeParts)
                         {
                             var nextBindingIndex = bindingIndex + 1;
-                            if (nextBindingIndex < action.bindings.Count && action.bindings[nextBindingIndex].isPartOfComposite)
+                            if (nextBindingIndex < action.bindings.Count &&
+                                action.bindings[nextBindingIndex].isPartOfComposite)
                                 PerformInteractiveRebind(action, nextBindingIndex, true);
                         }
                     });
-
-            // If it's a part binding, show the name of the part in the UI.
             var partName = default(string);
             if (action.bindings[bindingIndex].isPartOfComposite)
-                partName = $"Binding '{action.bindings[bindingIndex].name}'. ";
-
-            // Bring up rebind overlay, if we have one.
+                partName = $"Binding '{action.bindings[bindingIndex].name}'.";
             m_RebindOverlay?.SetActive(true);
             if (m_RebindText != null)
             {
                 var text = !string.IsNullOrEmpty(m_RebindOperation.expectedControlType)
-                    ? $"{partName}Waiting for {m_RebindOperation.expectedControlType} input..."
+                    ? $"{partName}Waiting for{m_RebindOperation.expectedControlType}"
                     : $"{partName}Waiting for input...";
                 m_RebindText.text = text;
             }
 
-            // If we have no rebind overlay and no callback but we have a binding text label,
-            // temporarily set the binding text label to "<Waiting>".
             if (m_RebindOverlay == null && m_RebindText == null && m_RebindStartEvent == null && m_BindingText != null)
                 m_BindingText.text = "<Waiting...>";
-
-            // Give listeners a chance to act on the rebind starting.
-            m_RebindStartEvent?.Invoke(this, m_RebindOperation);
-
+            m_RebindStartEvent?.Invoke(this,m_RebindOperation);
             m_RebindOperation.Start();
         }
 
