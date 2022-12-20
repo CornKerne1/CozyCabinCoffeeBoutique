@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 242937772}
   - component: {fileID: 242937773}
   - component: {fileID: 3780111846579803856}
-  - component: {fileID: 6475916992572175955}
   m_Layer: 0
   m_Name: Sink_Final
   m_TagString: Untagged
@@ -145,20 +144,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &6475916992572175955
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3079427704088542457}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3133908203475179039, guid: 65a384bae59fc5c42bcebe70874affee, type: 3}
 --- !u!1 &4369962017553068508
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +156,7 @@ GameObject:
   - component: {fileID: 7548811582316645525}
   - component: {fileID: 2695684195924214700}
   - component: {fileID: 2698133774596787216}
-  - component: {fileID: 1540989628}
+  - component: {fileID: 6729522567008642245}
   m_Layer: 0
   m_Name: SinkHandle_Hot
   m_TagString: Untagged
@@ -272,8 +257,8 @@ MonoBehaviour:
   objTypeShop: 0
   mD: {fileID: 11400000, guid: 318486c415fe64b42aad716d091b3019, type: 2}
   hotWater: 1
---- !u!64 &1540989628
-MeshCollider:
+--- !u!65 &6729522567008642245
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -282,10 +267,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6003833672373489233, guid: 65a384bae59fc5c42bcebe70874affee, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.014159999, y: 0.014159999, z: 0.009439999}
+  m_Center: {x: -0.0023691168, y: 0, z: 0}
 --- !u!1 &5197680641255094745
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +313,7 @@ GameObject:
   - component: {fileID: 3584035768850732771}
   - component: {fileID: 6755981596187012365}
   - component: {fileID: 9136690110856329753}
-  - component: {fileID: 646954530}
+  - component: {fileID: 5669858107590542301}
   m_Layer: 0
   m_Name: SinkHandle_Cold
   m_TagString: Untagged
@@ -430,8 +414,8 @@ MonoBehaviour:
   objTypeShop: 0
   mD: {fileID: 11400000, guid: 318486c415fe64b42aad716d091b3019, type: 2}
   hotWater: 0
---- !u!64 &646954530
-MeshCollider:
+--- !u!65 &5669858107590542301
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -440,7 +424,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5530174032967957278, guid: 65a384bae59fc5c42bcebe70874affee, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.014159999, y: 0.014159999, z: 0.009439999}
+  m_Center: {x: 0.0023669256, y: 0, z: 0}
