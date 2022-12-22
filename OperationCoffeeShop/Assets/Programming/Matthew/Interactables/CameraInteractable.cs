@@ -16,7 +16,6 @@ public class CameraInteractable : Interactable
     {
         base.Start();
         _meshRenderer = GetComponent<MeshRenderer>();
-        GameMode.HideUIEvent += HideUI;
     }
     public override void OnInteract(PlayerInteraction interaction)
     {
@@ -49,7 +48,7 @@ public class CameraInteractable : Interactable
         StartCoroutine(CO_DestroyUI(apertureRef));
     }
 
-    public void HideUI(object sender, EventArgs e)
+    public void HideUI()//
     {
         if(playerInteraction)
             StartCoroutine(CO_HideUI());
