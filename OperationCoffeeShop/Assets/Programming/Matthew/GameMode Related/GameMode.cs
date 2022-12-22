@@ -29,6 +29,8 @@ public class GameMode : MonoBehaviour,ISaveState
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
     public static event EventHandler SaveGameEvent;
+    
+    public static event EventHandler HideUIEvent;
 
     public DeliveryManager DeliveryManager;
     public CoffeeBankTM CoffeeBankTM;
@@ -226,6 +228,7 @@ public class GameMode : MonoBehaviour,ISaveState
     
     private static void SaveScreenShot(int i)
     {
+        HideUIEvent?.Invoke(null, EventArgs.Empty);
         var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 256,256);
         byte[] textureBytes = sS.EncodeToPNG();
         File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);

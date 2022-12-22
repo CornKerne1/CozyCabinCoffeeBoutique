@@ -182,8 +182,10 @@ public class PlayerInteraction : MonoBehaviour
     private IEnumerator TakePicture()
     {
         _coRoutine = TakePicture();
-        yield return new WaitForEndOfFrame();
+        var camInteractable = carriedObj.GetComponent<CameraInteractable>();
         _gameMode.TakePicture();
+        yield return new WaitForEndOfFrame();
+        camInteractable.TakePictureUI();
         _coRoutine = null;
     }
 

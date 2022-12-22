@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class CameraInteractable : Interactable
 {
     private Camera _camera;
-    public GameObject cameraUi;
+    [SerializeField] private GameObject cameraUi;
+    [SerializeField] private GameObject apertureUi;
     private GameObject uiRef;
     private MeshRenderer _meshRenderer;
 
@@ -14,8 +16,8 @@ public class CameraInteractable : Interactable
     {
         base.Start();
         _meshRenderer = GetComponent<MeshRenderer>();
+        GameMode.HideUIEvent += HideUI;
     }
-
     public override void OnInteract(PlayerInteraction interaction)
     {
         base.playerInteraction = interaction;
@@ -34,11 +36,36 @@ public class CameraInteractable : Interactable
         else
             Destroy(uiRef);
     }
-
+    
     public override void OnDrop()
     {
         base.OnDrop();
         lookAtPlayer = false;
+    }
+
+    public void TakePictureUI()
+    {
+        var apertureRef = Instantiate(apertureUi);
+        StartCoroutine(CO_DestroyUI(apertureRef));
+    }
+
+    public void HideUI(object sender, EventArgs e)
+    {
+        if(playerInteraction)
+            StartCoroutine(CO_HideUI());
+    }
+
+    private IEnumerator CO_DestroyUI(GameObject apertureRef)
+    {
+        yield return new WaitForSeconds(.375f);
+        Destroy(apertureRef);
+        apertureRef = null;
+    }
+    private IEnumerator CO_HideUI()
+    {
+        uiRef.SetActive(false);
+        yield return new WaitForSeconds(.04f);
+        uiRef.SetActive(true);
     }
 
     public override void Save(int gameNumber)
