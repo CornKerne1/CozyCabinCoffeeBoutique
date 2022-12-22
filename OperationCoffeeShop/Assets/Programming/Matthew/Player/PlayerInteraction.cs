@@ -184,7 +184,7 @@ public class PlayerInteraction : MonoBehaviour
         _coRoutine = TakePicture();
         var camInteractable = carriedObj.GetComponent<CameraInteractable>();
         camInteractable.HideUI();
-        yield return new WaitForSeconds(.02f);
+        yield return new WaitForEndOfFrame();
         _gameMode.TakePicture();
         yield return new WaitForSeconds(.08f);
         camInteractable.TakePictureUI();
