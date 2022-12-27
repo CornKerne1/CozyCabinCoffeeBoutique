@@ -251,10 +251,15 @@ MonoBehaviour:
   isBreakable: 0
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   customerAI: {fileID: 7461629815669221821}
   canvas: {fileID: 6982124169780741249}
   canInteract: 1
@@ -5095,8 +5100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347daa264f1fd214cb58fef2d830b5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 0, y: 0, z: 0}
-  destinations: []
+  destination: {x: -4.4221554, y: -9.152187, z: -3.3841734}
+  destinations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   agent: {fileID: 5404817027161305983}
   customerData: {fileID: 0}
   stay: 0
@@ -5105,6 +5118,7 @@ MonoBehaviour:
   hasOrdered: 0
   hasOrder: 0
   lookAtBool: 0
+  path: {fileID: 0}
 --- !u!1001 &4278375065882613884
 PrefabInstance:
   m_ObjectHideFlags: 0
