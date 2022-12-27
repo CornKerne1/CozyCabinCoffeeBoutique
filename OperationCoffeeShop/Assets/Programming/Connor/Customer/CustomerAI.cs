@@ -12,7 +12,7 @@ public class CustomerAI : MonoBehaviour
 
     [SerializeField] public List<GameObject> destinations = new List<GameObject>();
 
-    private readonly Queue<Vector3> _destinationQueue = new Queue<Vector3>();
+    private Queue<Vector3> _destinationQueue;
 
     public NavMeshAgent agent;
     [HideInInspector] public CustomerData customerData;
@@ -26,16 +26,16 @@ public class CustomerAI : MonoBehaviour
     [SerializeField] public bool hasOrdered = false;
     [SerializeField] public bool hasOrder = false;
     [SerializeField] public bool lookAtBool = false;
-    
+
     [SerializeField] public GameObject path;
-    
+
     // Start is called before the first frame update
     private void Start()
     {
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
-        if (path)
+        if (path != null)
         {
             PathConditioning(path);
         }
@@ -45,13 +45,15 @@ public class CustomerAI : MonoBehaviour
 
     public void PathConditioning(GameObject givenPath)
     {
-        path = givenPath;
-        foreach (var dest in path.GetComponentsInChildren<Transform>())
+        destinations = new List<GameObject>();
+
+        foreach (var dest in givenPath.GetComponentsInChildren<Transform>())
         {
             destinations.Add(dest.gameObject);
         }
 
         destinations.Remove(destinations[0]);
+        _destinationQueue = new Queue<Vector3>();
         foreach (var go in destinations)
         {
             _destinationQueue.Enqueue(go.transform.position);
@@ -73,11 +75,11 @@ public class CustomerAI : MonoBehaviour
         hasOrder = false;
         hasOrdered = false;
     }
+
     private IEnumerator CO_Wait()
     {
         yield return new WaitForSeconds(.4f);
         customerData = gameObject.GetComponent<Customer>().customerData;
-
     }
 
     private void Update()
@@ -105,8 +107,7 @@ public class CustomerAI : MonoBehaviour
                 var direction = lookat.position - transform.position;
                 direction.y = 0.0f;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction),
-                    Time.time *.06f);
-
+                    Time.time * .06f);
             }
         }
     }
