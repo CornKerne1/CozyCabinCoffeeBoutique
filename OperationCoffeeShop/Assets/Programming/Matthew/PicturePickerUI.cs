@@ -19,7 +19,7 @@ public class PicturePickerUI : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "ScreenShot" + (physicalRef.currentPic - 1) + ".png"))
         {
             physicalRef.currentPic = physicalRef.currentPic - 1;
-            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(physicalRef.currentPic));
+            physicalRef.ChangePicture(gameMode.SaveSystem.LoadTextureFromDisk(physicalRef.currentPic));
         }
 
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
@@ -30,7 +30,7 @@ public class PicturePickerUI : MonoBehaviour
         if(File.Exists(Application.persistentDataPath + "ScreenShot" + (physicalRef.currentPic+1) + ".png"))
         {
             physicalRef.currentPic = physicalRef.currentPic + 1;
-            physicalRef.ChangePicture(GameMode.LoadTextureFromDisk(physicalRef.currentPic));
+            physicalRef.ChangePicture(gameMode.SaveSystem.LoadTextureFromDisk(physicalRef.currentPic));
         }
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
     }

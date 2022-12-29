@@ -14,7 +14,7 @@ public class TutorialBed : Interactable
         
         if (gameMode.objectives.objectives.Count - 1 != gameMode.objectives.currentObjective) return;
         if(loadingNextScene) return;
-        gameMode.saveGameData.completedTutorial = true;
+        gameMode.SaveSystem.SaveGameData.completedTutorial = true;
         gameMode.Save(0);
         loadingNextScene = true;
         AkSoundEngine.PostEvent("STOP_DREAMSCAPE", gameObject);
