@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 5003705944197652558}
   - component: {fileID: 5003705944197652553}
   - component: {fileID: 5003705944197652559}
-  - component: {fileID: 800609705781135061}
   m_Layer: 0
-  m_Name: Feather Duster 1
+  m_Name: Feather Duster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +31,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -2.9323802, y: -8.582, z: -11.424972}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 57739213466396424}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -55,6 +56,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -128,16 +130,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
---- !u!135 &800609705781135061
-SphereCollider:
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
+--- !u!1001 &2382856890533165327
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5310260568206477800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.10171939
-  m_Center: {x: 6.444392e-16, y: 0.20465156, z: 0}
+  m_Modification:
+    m_TransformParent: {fileID: 4826175957360857938}
+    m_Modifications:
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098145683463116455, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313742069131498318, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+      propertyPath: m_Name
+      value: TrashRemover
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+--- !u!4 &57739213466396424 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2440029837920067079, guid: 8e5d379d087d8b243abf429dbc8dcefe, type: 3}
+  m_PrefabInstance: {fileID: 2382856890533165327}
+  m_PrefabAsset: {fileID: 0}
