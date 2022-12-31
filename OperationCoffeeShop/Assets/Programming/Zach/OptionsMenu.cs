@@ -148,27 +148,27 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     {
         StartCoroutine(CO_PlayAudioWWisely());
         mastLabel.text = Mathf.RoundToInt(masterSlider.value) .ToString();
-        gM.saveOptionsData.masterVol = masterSlider.value;
-        AkSoundEngine.SetRTPCValue("MasterVolume", gM.saveOptionsData.masterVol);
-        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
+        gM.SaveSystem.SaveOptionsData.masterVol = masterSlider.value;
+        AkSoundEngine.SetRTPCValue("MasterVolume", gM.SaveSystem.SaveOptionsData.masterVol);
+        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
 
     }
     public void SetMusicVol()
     {
         StartCoroutine(CO_PlayAudioWWisely());
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
-        gM.saveOptionsData.musicVol = musicSlider.value;
-        AkSoundEngine.SetRTPCValue("MusicVolume", gM.saveOptionsData.musicVol);
-        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
+        gM.SaveSystem.SaveOptionsData.musicVol = musicSlider.value;
+        AkSoundEngine.SetRTPCValue("MusicVolume", gM.SaveSystem.SaveOptionsData.musicVol);
+        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
 
     }
     public void SetSFXVol()
     {
         StartCoroutine(CO_PlayAudioWWisely());
         sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
-        gM.saveOptionsData.sfxVol = sfxSlider.value;
-        AkSoundEngine.SetRTPCValue("SFXVolume", gM.saveOptionsData.sfxVol);
-        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
+        gM.SaveSystem.SaveOptionsData.sfxVol = sfxSlider.value;
+        AkSoundEngine.SetRTPCValue("SFXVolume", gM.SaveSystem.SaveOptionsData.sfxVol);
+        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
         
     }
     public void SetMouse()
@@ -194,7 +194,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
 
     public void Save(int gameNumber)
     {
-        gM.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.saveOptionsData));
+        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
     }
 
     public void Load(int gameNumber)
@@ -204,11 +204,11 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             using (StreamReader streamReader = new StreamReader(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
             {
                 var json = streamReader.ReadToEnd();
-                gM.saveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
+                gM.SaveSystem.SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
-            masterSlider.value = gM.saveOptionsData.masterVol;
-            musicSlider.value = gM.saveOptionsData.musicVol;
-            sfxSlider.value = gM.saveOptionsData.sfxVol;
+            masterSlider.value = gM.SaveSystem.SaveOptionsData.masterVol;
+            musicSlider.value = gM.SaveSystem.SaveOptionsData.musicVol;
+            sfxSlider.value = gM.SaveSystem.SaveOptionsData.sfxVol;
         }
     }
 }

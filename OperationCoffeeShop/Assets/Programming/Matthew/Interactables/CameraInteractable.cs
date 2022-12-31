@@ -72,6 +72,6 @@ public class CameraInteractable : Interactable
         var position = new Vector3(.65f, -5.42f, -6f);
         var rotation = new Quaternion(0, -76.9f, 0, 0);
         if(delivered)
-            gameMode.saveGameData.respawnables.Add(new RespawbableData(objTypeShop,position,rotation,0));
+            gameMode.SaveSystem.SaveGameData.respawnables.Add(new RespawbableData(objTypeShop,position,rotation,0));
     }
 }

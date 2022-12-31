@@ -59,7 +59,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         InitializeOutline();
         CheckTutorial();
         OnFocusTextPool();
-        GameMode.SaveGameEvent += OnSaveEvent;
+        SaveSystem.SaveGameEvent += OnSaveEvent;
     }
     private void OnFocusTextPool()
     {

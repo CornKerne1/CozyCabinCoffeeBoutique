@@ -289,6 +289,6 @@ public class IngredientContainer : Interactable
     public override void Save(int gameNumber)
     {
         if(delivered)
-            gameMode.saveGameData.respawnables.Add(new RespawbableData(base.objTypeShop,transform.position,transform.rotation,0));
+            gameMode.SaveSystem.SaveGameData.respawnables.Add(new RespawbableData(base.objTypeShop,transform.position,transform.rotation,0));
     }
 }

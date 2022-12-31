@@ -19,7 +19,7 @@ public class PictureFrame : Interactable
         base.Start();
         try
         {
-            ChangePicture(GameMode.LoadTextureFromDisk(currentPic));
+            ChangePicture(gameMode.SaveSystem.LoadTextureFromDisk(currentPic));
         }
         catch (Exception e)
         {
@@ -80,12 +80,12 @@ public class PictureFrame : Interactable
     {
         if (File.Exists(Application.persistentDataPath + "ScreenShot" + (currentPic - 1) + ".png"))
         {
-            ChangePicture(GameMode.LoadTextureFromDisk(currentPic));
+            ChangePicture(gameMode.SaveSystem.LoadTextureFromDisk(currentPic));
         }
     }
     public override void Save(int gameNumber)
     {
         if(delivered)
-            gameMode.saveGameData.respawnables.Add(new RespawbableData(objTypeShop,transform.position,transform.rotation,currentPic));
+            gameMode.SaveSystem.SaveGameData.respawnables.Add(new RespawbableData(objTypeShop,transform.position,transform.rotation,currentPic));
     }
 }
