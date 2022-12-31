@@ -14,7 +14,7 @@ public class CustomerAI : MonoBehaviour
     [SerializeField] public List<GameObject> destinations = new List<GameObject>();
 
     [FormerlySerializedAs("_destinationQueue")] [SerializeField]
-    private Queue<Vector3> destinationQueue = new Queue<Vector3>();
+    private Queue<Vector3> destinationQueue;
 
     public NavMeshAgent agent;
     [HideInInspector] public CustomerData customerData;
@@ -37,9 +37,8 @@ public class CustomerAI : MonoBehaviour
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
-        if (path != null && destinationQueue.Count == 0)
+        if (path != null)
         {
-            destinationQueue = new Queue<Vector3>();
             PathConditioning(path);
         }
 
@@ -48,6 +47,11 @@ public class CustomerAI : MonoBehaviour
 
     public void PathConditioning(GameObject givenPath)
     {
+        if (destinationQueue != null) return;
+
+
+        destinationQueue = new Queue<Vector3>();
+
         path = givenPath;
         destinations = new List<GameObject>();
 
@@ -57,7 +61,6 @@ public class CustomerAI : MonoBehaviour
         }
 
         destinations.Remove(destinations[0]);
-        destinationQueue = new Queue<Vector3>();
         foreach (var go in destinations)
         {
             destinationQueue.Enqueue(go.transform.position);
@@ -88,32 +91,31 @@ public class CustomerAI : MonoBehaviour
 
     private void Update()
     {
+        if (!path) return;
         if (!stay) //when not in line
         {
             lookAtBool = false;
             agent.destination = destination;
             var distanceToNode = gameObject.transform.position - destination;
-            if (distanceToNode.magnitude < minDistance)
-            {
-                Debug.Log("we are moving on folks");
-                destination = destinationQueue.Dequeue();
-                setDestination(destination);
-            }
-            else if (agent.hasPath == false && hasOrder && hasOrdered)
+            if (distanceToNode.magnitude >= minDistance) return;
+            if (destinationQueue.Count == 0 && agent.hasPath == false && hasOrder && hasOrdered)
             {
                 this.gameObject.SetActive(false);
+                return;
             }
+
+            destination = destinationQueue.Dequeue();
+            setDestination(destination);
         }
         else if (lookAtBool == false) // when in line
         {
-            if (agent.velocity.magnitude < 2f)
-            {
-                Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
-                var direction = lookat.position - transform.position;
-                direction.y = 0.0f;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction),
-                    Time.time * .06f);
-            }
+            if (!(agent.velocity.magnitude < 2f)) return;
+            var lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
+            var transform1 = transform;
+            var direction = lookat.position - transform1.position;
+            direction.y = 0.0f;
+            transform.rotation = Quaternion.RotateTowards(transform1.rotation, Quaternion.LookRotation(direction),
+                Time.time * .06f);
         }
     }
 
