@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using UnityEngine.Serialization;
 
 public class CustomerAI : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class CustomerAI : MonoBehaviour
 
     [SerializeField] public List<GameObject> destinations = new List<GameObject>();
 
-    private Queue<Vector3> _destinationQueue;
+    [FormerlySerializedAs("_destinationQueue")] [SerializeField]
+    private Queue<Vector3> destinationQueue = new Queue<Vector3>();
 
     public NavMeshAgent agent;
     [HideInInspector] public CustomerData customerData;
@@ -35,8 +37,9 @@ public class CustomerAI : MonoBehaviour
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
-        if (path != null)
+        if (path != null && destinationQueue.Count == 0)
         {
+            destinationQueue = new Queue<Vector3>();
             PathConditioning(path);
         }
 
@@ -45,6 +48,7 @@ public class CustomerAI : MonoBehaviour
 
     public void PathConditioning(GameObject givenPath)
     {
+        path = givenPath;
         destinations = new List<GameObject>();
 
         foreach (var dest in givenPath.GetComponentsInChildren<Transform>())
@@ -53,10 +57,10 @@ public class CustomerAI : MonoBehaviour
         }
 
         destinations.Remove(destinations[0]);
-        _destinationQueue = new Queue<Vector3>();
+        destinationQueue = new Queue<Vector3>();
         foreach (var go in destinations)
         {
-            _destinationQueue.Enqueue(go.transform.position);
+            destinationQueue.Enqueue(go.transform.position);
         }
 
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -64,9 +68,9 @@ public class CustomerAI : MonoBehaviour
 
         if (destination == Vector3.zero)
         {
-            if (_destinationQueue.Peek() != null)
+            if (destinationQueue.Peek() != null)
             {
-                destination = _destinationQueue.Dequeue();
+                destination = destinationQueue.Dequeue();
             }
         }
 
@@ -88,10 +92,11 @@ public class CustomerAI : MonoBehaviour
         {
             lookAtBool = false;
             agent.destination = destination;
-            Vector3 distanceToNode = gameObject.transform.position - destination;
-            if (distanceToNode.magnitude < minDistance && _destinationQueue.Count != 0)
+            var distanceToNode = gameObject.transform.position - destination;
+            if (distanceToNode.magnitude < minDistance)
             {
-                destination = _destinationQueue.Dequeue();
+                Debug.Log("we are moving on folks");
+                destination = destinationQueue.Dequeue();
                 setDestination(destination);
             }
             else if (agent.hasPath == false && hasOrder && hasOrdered)
@@ -130,8 +135,8 @@ public class CustomerAI : MonoBehaviour
             customerLines[customerLines.Count - 1].LeaveWithoutPaying(drink);
         hasOrder = true;
         hasOrdered = true;
-        var finalDestination = _destinationQueue.ToArray()[(_destinationQueue.ToArray().Length - 1)];
-        _destinationQueue.Clear();
+        var finalDestination = destinationQueue.ToArray()[(destinationQueue.ToArray().Length - 1)];
+        destinationQueue.Clear();
         gameObject.GetComponent<CustomerInteractable>().dialogueManager.ExitDialogueMode();
         //gameObject.SetActive(false);// use at last resort
         setDestination(finalDestination);
@@ -146,12 +151,12 @@ public class CustomerAI : MonoBehaviour
 
     public void queueDestination(Vector3 v)
     {
-        _destinationQueue.Enqueue(v);
+        destinationQueue.Enqueue(v);
     }
 
     public void clearQueue()
     {
-        _destinationQueue.Clear();
+        destinationQueue.Clear();
     }
 
     public void setStay(bool stay)
