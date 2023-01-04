@@ -37,22 +37,23 @@ public class CustomerAI : MonoBehaviour
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
 
-        if (path != null)
-        {
-            PathConditioning(path);
-        }
 
         GameMode.ShopClosed += ShopClosed;
     }
 
     public void PathConditioning(GameObject givenPath)
     {
-        if (destinationQueue != null) return;
+        if (destinationQueue != null)
+        {
+            Debug.LogWarning("Destination queue is not null when path conditioning.");
+            return;
+        }
 
 
         destinationQueue = new Queue<Vector3>();
-
+        Debug.LogWarning("set Path");
         path = givenPath;
+        Debug.Log("path is " + givenPath);
         destinations = new List<GameObject>();
 
         foreach (var dest in givenPath.GetComponentsInChildren<Transform>())
@@ -123,6 +124,10 @@ public class CustomerAI : MonoBehaviour
     {
         yield return new WaitForSeconds(.45f);
         customerData.customerAI = this;
+        if (path != null && destinationQueue == null)
+        {
+            PathConditioning(path);
+        }
     }
 
     private IEnumerator Die(float death)
@@ -153,12 +158,14 @@ public class CustomerAI : MonoBehaviour
 
     public void queueDestination(Vector3 v)
     {
+        destinationQueue ??= new Queue<Vector3>();
+
         destinationQueue.Enqueue(v);
     }
 
-    public void clearQueue()
+    public void ClearAndNullQueue()
     {
-        destinationQueue.Clear();
+        destinationQueue = null;
     }
 
     public void setStay(bool stay)

@@ -30,7 +30,10 @@ public class SpawnRegularCustomer : MonoBehaviour
         var transform1 = transform;
         Instantiate(customer, transform1.position, transform1.rotation);
         customer.GetComponent<CustomerInteractable>().regularCustomerAtlas = regularCustomerAtlas;
-        customer.GetComponent<CustomerAI>().PathConditioning(customerPath);
+        var customerAI = customer.GetComponent<CustomerAI>();
+        customerAI.ClearAndNullQueue();
+        customerAI.destinations.Clear();
+        customerAI.PathConditioning(customerPath);
     }
 
     private void UpdateDic(object sender, EventArgs e)

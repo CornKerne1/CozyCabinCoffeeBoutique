@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347daa264f1fd214cb58fef2d830b5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 0, y: 0, z: 0}
+  destination: {x: -4.4221554, y: -9.152187, z: -3.3841734}
   destinations: []
   agent: {fileID: 5404817027161305983}
   customerData: {fileID: 0}
@@ -158,6 +158,7 @@ MonoBehaviour:
   hasOrdered: 0
   hasOrder: 0
   lookAtBool: 0
+  path: {fileID: 0}
 --- !u!114 &9203058362976567349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +176,15 @@ MonoBehaviour:
   isBreakable: 0
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   customerAI: {fileID: 1033753536987892517}
   canvas: {fileID: 3784172486626434293}
   canInteract: 1
@@ -5073,6 +5082,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8382161432092520759}
     m_Modifications:
+    - target: {fileID: 5223289426211966138, guid: fe5ea5dfc156c884398656f296dee2de, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9046276033635421323, guid: fe5ea5dfc156c884398656f296dee2de, type: 3}
       propertyPath: m_RootOrder
       value: 1
