@@ -27,10 +27,13 @@ public class SpawnRegularCustomer : MonoBehaviour
     private IEnumerator Spawn(GameObject customer)
     {
         yield return new WaitForSeconds(Random.Range(1, 10));
-        var transform1 = transform;
+        var transform1 = transform;       
+        var customerAI = customer.GetComponent<CustomerAI>();
+        customerAI.path = customerPath;
         Instantiate(customer, transform1.position, transform1.rotation);
         customer.GetComponent<CustomerInteractable>().regularCustomerAtlas = regularCustomerAtlas;
-        customer.GetComponent<CustomerAI>().PathConditioning(customerPath);
+
+        yield return new WaitForSeconds(2);
     }
 
     private void UpdateDic(object sender, EventArgs e)

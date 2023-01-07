@@ -73,9 +73,8 @@ public class SpawnRandomCustomer : MonoBehaviour
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
         var transform1 = transform;
+        customer.GetComponent<CustomerAI>().path = customerPath;
         Instantiate(customer, transform1.position, transform1.rotation);
-
-        customer.GetComponent<CustomerAI>().PathConditioning(customerPath);
     }
 
     private void ResetMaxCustomers(object sender, EventArgs e)

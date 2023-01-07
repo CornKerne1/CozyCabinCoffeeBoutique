@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using UnityEngine.Serialization;
 
 public class CustomerAI : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CustomerAI : MonoBehaviour
 
     [SerializeField] public List<GameObject> destinations = new List<GameObject>();
 
-    private Queue<Vector3> _destinationQueue;
+    private Queue<Vector3> _destinationQueue = new Queue<Vector3>();
 
     public NavMeshAgent agent;
     [HideInInspector] public CustomerData customerData;
@@ -34,26 +35,20 @@ public class CustomerAI : MonoBehaviour
     {
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
-
-        if (path != null)
-        {
-            PathConditioning(path);
-        }
-
         GameMode.ShopClosed += ShopClosed;
+        PathConditioning();
     }
 
-    public void PathConditioning(GameObject givenPath)
+    public void PathConditioning()
     {
         destinations = new List<GameObject>();
 
-        foreach (var dest in givenPath.GetComponentsInChildren<Transform>())
+        foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
             destinations.Add(dest.gameObject);
         }
 
         destinations.Remove(destinations[0]);
-        _destinationQueue = new Queue<Vector3>();
         foreach (var go in destinations)
         {
             _destinationQueue.Enqueue(go.transform.position);
@@ -84,31 +79,31 @@ public class CustomerAI : MonoBehaviour
 
     private void Update()
     {
+        if (_destinationQueue.Count == 0) return;
         if (!stay) //when not in line
         {
             lookAtBool = false;
             agent.destination = destination;
-            Vector3 distanceToNode = gameObject.transform.position - destination;
-            if (distanceToNode.magnitude < minDistance && _destinationQueue.Count != 0)
-            {
-                destination = _destinationQueue.Dequeue();
-                setDestination(destination);
-            }
-            else if (agent.hasPath == false && hasOrder && hasOrdered)
+            var distanceToNode = gameObject.transform.position - destination;
+            if (distanceToNode.magnitude >= minDistance) return;
+            if (_destinationQueue.Count == 0 && agent.hasPath == false && hasOrder && hasOrdered)
             {
                 this.gameObject.SetActive(false);
+                return;
             }
+
+            destination = _destinationQueue.Dequeue();
+            setDestination(destination);
         }
         else if (lookAtBool == false) // when in line
         {
-            if (agent.velocity.magnitude < 2f)
-            {
-                Transform lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
-                var direction = lookat.position - transform.position;
-                direction.y = 0.0f;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction),
-                    Time.time * .06f);
-            }
+            if (!(agent.velocity.magnitude < 2f)) return;
+            var lookat = this.customerLines[this.customerLines.Count - 1].gameObject.transform;
+            var transform1 = transform;
+            var direction = lookat.position - transform1.position;
+            direction.y = 0.0f;
+            transform.rotation = Quaternion.RotateTowards(transform1.rotation, Quaternion.LookRotation(direction),
+                Time.time * .06f);
         }
     }
 
@@ -146,12 +141,14 @@ public class CustomerAI : MonoBehaviour
 
     public void queueDestination(Vector3 v)
     {
+        _destinationQueue ??= new Queue<Vector3>();
+
         _destinationQueue.Enqueue(v);
     }
 
-    public void clearQueue()
+    public void ClearAndNullQueue()
     {
-        _destinationQueue.Clear();
+        _destinationQueue = null;
     }
 
     public void setStay(bool stay)
