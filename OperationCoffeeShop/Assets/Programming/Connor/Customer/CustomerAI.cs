@@ -51,9 +51,9 @@ public class CustomerAI : MonoBehaviour
 
 
         destinationQueue = new Queue<Vector3>();
-        Debug.LogWarning("set Path");
         path = givenPath;
-        Debug.Log("path is " + givenPath);
+        Debug.LogWarning("set Path");
+        Debug.LogWarning("path is " + givenPath);
         destinations = new List<GameObject>();
 
         foreach (var dest in givenPath.GetComponentsInChildren<Transform>())
@@ -92,7 +92,7 @@ public class CustomerAI : MonoBehaviour
 
     private void Update()
     {
-        if (!path) return;
+        //if (!path) return;
         if (!stay) //when not in line
         {
             lookAtBool = false;
