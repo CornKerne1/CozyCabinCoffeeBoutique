@@ -17,25 +17,6 @@ public class CarCameraScript : MonoBehaviour
 
 	void LateUpdate()
 	{
-		float wantedAngle = rotationVector.y;
-		float wantedHeight = car.position.y + height;
-		float myAngle = transform.eulerAngles.y;
-		float myHeight = transform.position.y;
-
-		myAngle = Mathf.LerpAngle(myAngle, wantedAngle, rotationDamping * Time.deltaTime);
-		myHeight = Mathf.Lerp(myHeight, wantedHeight, heightDamping * Time.deltaTime);
-
-		Quaternion currentRotation = Quaternion.Euler(0, myAngle, 0);
-		transform.position = car.position;
-		transform.position -= currentRotation * Vector3.forward * distance;
-		Vector3 temp = transform.position; //temporary variable so Unity doesn't complain
-		temp.y = myHeight;
-		transform.position = temp;
-		transform.LookAt(car);
-	}
-
-	void FixedUpdate()
-	{
 		Vector3 localVelocity = car.InverseTransformDirection(car.GetComponent<Rigidbody>().velocity);
 		if (localVelocity.z < -0.1f)
 		{
@@ -51,5 +32,24 @@ public class CarCameraScript : MonoBehaviour
 		}
 		float acc = car.GetComponent<Rigidbody>().velocity.magnitude;
 		GetComponent<Camera>().fieldOfView = defaultFOV + acc * zoomRatio * Time.deltaTime;  //he removed * Time.deltaTime but it works better if you leave it like this.
+	}
+
+	void FixedUpdate()
+	{
+		float wantedAngle = rotationVector.y;
+		float wantedHeight = car.position.y + height;
+		float myAngle = transform.eulerAngles.y;
+		float myHeight = transform.position.y;
+
+		myAngle = Mathf.LerpAngle(myAngle, wantedAngle, rotationDamping * Time.deltaTime);
+		myHeight = Mathf.Lerp(myHeight, wantedHeight, heightDamping * Time.deltaTime);
+
+		Quaternion currentRotation = Quaternion.Euler(0, myAngle, 0);
+		transform.position = car.position;
+		transform.position -= currentRotation * Vector3.forward * distance;
+		Vector3 temp = transform.position; //temporary variable so Unity doesn't complain
+		temp.y = myHeight;
+		transform.position = temp;
+		transform.LookAt(car);
 	}
 }
