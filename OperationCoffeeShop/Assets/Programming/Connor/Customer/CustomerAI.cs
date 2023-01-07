@@ -13,8 +13,7 @@ public class CustomerAI : MonoBehaviour
 
     [SerializeField] public List<GameObject> destinations = new List<GameObject>();
 
-    [FormerlySerializedAs("_destinationQueue")] [SerializeField]
-    private Queue<Vector3> destinationQueue;
+    private Queue<Vector3> _destinationQueue = new Queue<Vector3>();
 
     public NavMeshAgent agent;
     [HideInInspector] public CustomerData customerData;
@@ -36,27 +35,15 @@ public class CustomerAI : MonoBehaviour
     {
         StartCoroutine(CO_Wait());
         StartCoroutine(CO_AddSelfToData());
-
-
         GameMode.ShopClosed += ShopClosed;
+        PathConditioning();
     }
 
-    public void PathConditioning(GameObject givenPath)
+    public void PathConditioning()
     {
-        if (destinationQueue != null)
-        {
-            Debug.LogWarning("Destination queue is not null when path conditioning.");
-            return;
-        }
-
-
-        destinationQueue = new Queue<Vector3>();
-        path = givenPath;
-        Debug.LogWarning("set Path");
-        Debug.LogWarning("path is " + givenPath);
         destinations = new List<GameObject>();
 
-        foreach (var dest in givenPath.GetComponentsInChildren<Transform>())
+        foreach (var dest in path.GetComponentsInChildren<Transform>())
         {
             destinations.Add(dest.gameObject);
         }
@@ -64,7 +51,7 @@ public class CustomerAI : MonoBehaviour
         destinations.Remove(destinations[0]);
         foreach (var go in destinations)
         {
-            destinationQueue.Enqueue(go.transform.position);
+            _destinationQueue.Enqueue(go.transform.position);
         }
 
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -72,9 +59,9 @@ public class CustomerAI : MonoBehaviour
 
         if (destination == Vector3.zero)
         {
-            if (destinationQueue.Peek() != null)
+            if (_destinationQueue.Peek() != null)
             {
-                destination = destinationQueue.Dequeue();
+                destination = _destinationQueue.Dequeue();
             }
         }
 
@@ -92,20 +79,20 @@ public class CustomerAI : MonoBehaviour
 
     private void Update()
     {
-        //if (!path) return;
+        if (_destinationQueue.Count == 0) return;
         if (!stay) //when not in line
         {
             lookAtBool = false;
             agent.destination = destination;
             var distanceToNode = gameObject.transform.position - destination;
             if (distanceToNode.magnitude >= minDistance) return;
-            if (destinationQueue.Count == 0 && agent.hasPath == false && hasOrder && hasOrdered)
+            if (_destinationQueue.Count == 0 && agent.hasPath == false && hasOrder && hasOrdered)
             {
                 this.gameObject.SetActive(false);
                 return;
             }
 
-            destination = destinationQueue.Dequeue();
+            destination = _destinationQueue.Dequeue();
             setDestination(destination);
         }
         else if (lookAtBool == false) // when in line
@@ -124,10 +111,6 @@ public class CustomerAI : MonoBehaviour
     {
         yield return new WaitForSeconds(.45f);
         customerData.customerAI = this;
-        if (path != null && destinationQueue == null)
-        {
-            PathConditioning(path);
-        }
     }
 
     private IEnumerator Die(float death)
@@ -142,8 +125,8 @@ public class CustomerAI : MonoBehaviour
             customerLines[customerLines.Count - 1].LeaveWithoutPaying(drink);
         hasOrder = true;
         hasOrdered = true;
-        var finalDestination = destinationQueue.ToArray()[(destinationQueue.ToArray().Length - 1)];
-        destinationQueue.Clear();
+        var finalDestination = _destinationQueue.ToArray()[(_destinationQueue.ToArray().Length - 1)];
+        _destinationQueue.Clear();
         gameObject.GetComponent<CustomerInteractable>().dialogueManager.ExitDialogueMode();
         //gameObject.SetActive(false);// use at last resort
         setDestination(finalDestination);
@@ -158,14 +141,14 @@ public class CustomerAI : MonoBehaviour
 
     public void queueDestination(Vector3 v)
     {
-        destinationQueue ??= new Queue<Vector3>();
+        _destinationQueue ??= new Queue<Vector3>();
 
-        destinationQueue.Enqueue(v);
+        _destinationQueue.Enqueue(v);
     }
 
     public void ClearAndNullQueue()
     {
-        destinationQueue = null;
+        _destinationQueue = null;
     }
 
     public void setStay(bool stay)
