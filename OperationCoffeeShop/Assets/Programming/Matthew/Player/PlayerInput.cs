@@ -62,7 +62,7 @@ public class PlayerInput : MonoBehaviour
 
     private void _Pause(object sender, EventArgs e)
     {
-        Debug.Log(pD.inUI);
+        //Debug.Log(pD.inUI);
         if (pD.inUI)
         {
             if (!pauseM.activeSelf) return;

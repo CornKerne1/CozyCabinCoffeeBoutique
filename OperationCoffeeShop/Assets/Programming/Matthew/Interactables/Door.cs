@@ -38,29 +38,27 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (_running)
+        if (!_running) return;
+        if (!_open)
         {
-            if (!_open)
-            {
-                door.transform.rotation =
-                    Quaternion.Lerp(door.transform.rotation, openTrans.rotation, 2.5f * Time.deltaTime);
-                if (door.transform.rotation == openTrans.rotation)
-                {
-                    _open = true;
-                    _running = false;
-                    StartCoroutine(TryClose());
-                }
-            }
-            else
-            {
-                door.transform.rotation =
-                    Quaternion.Lerp(door.transform.rotation, _startTrans.rotation, 2.5f * Time.deltaTime);
-                if (door.transform.rotation == _startTrans.rotation)
-                {
-                    _open = false;
-                    _running = false;
-                }
-            }
+            door.transform.rotation =
+                Quaternion.Lerp(door.transform.rotation, openTrans.rotation, 2.5f * Time.deltaTime);
+
+            if (door.transform.rotation != openTrans.rotation) return;
+
+            _open = true;
+            _running = false;
+            StartCoroutine(TryClose());
+        }
+        else
+        {
+            door.transform.rotation =
+                Quaternion.Lerp(door.transform.rotation, _startTrans.rotation, 2.5f * Time.deltaTime);
+
+            if (door.transform.rotation != _startTrans.rotation) return;
+
+            _open = false;
+            _running = false;
         }
     }
 
@@ -79,6 +77,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("trigger open door");
         if (playerDoor)
         {
             if (_running && _open)
@@ -90,8 +89,11 @@ public class Door : MonoBehaviour
                 _running = true;
             }
         }
-        else if (other.CompareTag("Customer"))
+
+        if (other.CompareTag("Customer"))
         {
+            Debug.Log("trigger open door for customer");
+
             if (_running && _open)
             {
                 _open = false;
