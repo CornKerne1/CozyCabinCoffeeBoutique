@@ -13,7 +13,8 @@ public class CarController : MonoBehaviour
     public enum DriveType
     {
         FrontWheel,
-        RearWheel
+        RearWheel,
+        AllWheel
     }
 
    [Serializable]
@@ -71,6 +72,28 @@ public class CarController : MonoBehaviour
                     UpdateTireMesh(wheel.wheelCollider,wheel.wheelModel.transform);
                     break;
                 case DriveType.RearWheel:
+                    if(wheel.axel == Axel.Rear)
+                    {
+                        steerAngle = -playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        if (wheel.wheelCollider.isGrounded)
+                            wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        else
+                            wheel.wheelCollider.motorTorque = wheel.wheelCollider.motorTorque / 1.01f;
+                    }
+                    UpdateTireMesh(wheel.wheelCollider,wheel.wheelModel.transform);
+                    break;
+                case DriveType.AllWheel:
+                    if(wheel.axel == Axel.Front)
+                    {
+                        steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        if (wheel.wheelCollider.isGrounded)
+                            wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        else
+                            wheel.wheelCollider.motorTorque = wheel.wheelCollider.motorTorque / 1.1f;
+                    }
                     if(wheel.axel == Axel.Rear)
                     {
                         steerAngle = -playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
