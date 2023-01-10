@@ -10,66 +10,114 @@ public class CarController : MonoBehaviour
         Front,
         Rear
     }
+    public enum DriveType
+    {
+        FrontWheel,
+        RearWheel,
+        AllWheel
+    }
 
    [Serializable]
     public struct Wheel
     {
         public GameObject wheelModel;
-        public WheelCollider WheelCollider;
+        public WheelCollider wheelCollider;
         public Axel axel;
     }
-
-    public float maxAcceleration = 30.0f;
-    public float brakeAcceleration = 50.0f;
-
-    public float turnSensitivity = 1.0f;
-    public float maxSteerAngle = 30.0f;
-
-    public Vector3 centerOfMass;
-
-    public List<Wheel> wheels;
-
-    public PlayerInput playerInput;
     
-    private Rigidbody carRb;
+    [SerializeField] private DriveType carType;
+    
+    [SerializeField] private float motorForce = 50.0f;
+
+    [SerializeField] private float turnSensitivity = 1.0f;
+    [SerializeField]private float maxSteerAngle = 30.0f;
+
+    [SerializeField]private Vector3 centerOfMass;
+
+    [SerializeField]private List<Wheel> wheels;
+
+    [SerializeField]private PlayerInput playerInput;
+    
+    private Rigidbody _carRb;
+
 
     void Start()
     {
-        carRb = GetComponent<Rigidbody>();
-        carRb.centerOfMass = centerOfMass;
+        _carRb = GetComponent<Rigidbody>();
+        _carRb.centerOfMass = centerOfMass;
     }
     void FixedUpdate()
     {
-        Move();
+        SteerAndAccelerate();
     }
 
-    void LateUpdate()
-    {
-      
-        Steer();
-    }
 
-    void Move()
+    void SteerAndAccelerate()
     {
         foreach(var wheel in wheels)
         {
-            if (wheel.WheelCollider.isGrounded)
-                wheel.WheelCollider.motorTorque = playerInput.GetVerticalMovement() * 3500 * maxAcceleration * Time.deltaTime;
-            else
-                wheel.WheelCollider.motorTorque = 0;
-        }
-    }
-
-    void Steer()
-    {
-        foreach(var wheel in wheels)
-        {
-            if(wheel.axel == Axel.Front)
+            var steerAngle = 0f;
+            switch (carType)
             {
-                var steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
-                wheel.WheelCollider.steerAngle = Mathf.Lerp(wheel.WheelCollider.steerAngle, steerAngle, 0.6f);
+                case DriveType.FrontWheel:
+                    if(wheel.axel == Axel.Front)
+                    {
+                        steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        if (wheel.wheelCollider.isGrounded)
+                            wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        else
+                            wheel.wheelCollider.motorTorque = wheel.wheelCollider.motorTorque / 1.1f;
+                    }
+                    UpdateTireMesh(wheel.wheelCollider,wheel.wheelModel.transform);
+                    break;
+                case DriveType.RearWheel:
+                    if(wheel.axel == Axel.Rear)
+                    {
+                        steerAngle = -playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        if (wheel.wheelCollider.isGrounded)
+                            wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        else
+                            wheel.wheelCollider.motorTorque = wheel.wheelCollider.motorTorque / 1.01f;
+                    }
+                    UpdateTireMesh(wheel.wheelCollider,wheel.wheelModel.transform);
+                    break;
+                case DriveType.AllWheel:
+                    if(wheel.axel == Axel.Front)
+                    {
+                        steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        if (wheel.wheelCollider.isGrounded)
+                            wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        else
+                            wheel.wheelCollider.motorTorque = wheel.wheelCollider.motorTorque / 1.1f;
+                    }
+                    if(wheel.axel == Axel.Rear)
+                    {
+                        steerAngle = -playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        if (wheel.wheelCollider.isGrounded)
+                            wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
+                        else
+                            wheel.wheelCollider.motorTorque = wheel.wheelCollider.motorTorque / 1.01f;
+                    }
+                    UpdateTireMesh(wheel.wheelCollider,wheel.wheelModel.transform);
+                    break;
             }
         }
     }
+    private void UpdateTireMesh(WheelCollider collider, Transform tireTransform)
+    {
+        Vector3 _pos = tireTransform.position;
+        Quaternion _quat = tireTransform.rotation;
+        collider.GetWorldPose(out _pos,out _quat);
+
+        tireTransform.position = _pos;
+        tireTransform.rotation = _quat;
+    }
+    
 }
 

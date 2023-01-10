@@ -15,9 +15,11 @@ public class GameModeData : ScriptableObject
     public void OnEnable()
     {
         isOpen = false;
+        timeRate = defaultTimeRate;
     }
 
     [Header("Day Night Cycle")] public float timeRate;
+    public float defaultTimeRate = 75f;
     public DateTime currentTime;
     public int sleepDay;
     public DateTime startTime;

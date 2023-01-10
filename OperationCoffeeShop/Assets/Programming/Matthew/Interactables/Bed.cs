@@ -83,14 +83,14 @@ public class Bed : Interactable
         else
         {
             _running = false;
-            playerInteraction.playerInput.ToggleMovement();
+            gameMode.playerInput.ToggleMovement();
             playerCollider.enabled = true;
             _inBed = false;
             _playerInteraction = null;
             NewDay?.Invoke(this, EventArgs.Empty);
             playerHbc.enabled = true;
             playerCc.enabled = true;
-            gameMode.gameModeData.timeRate = gameMode.gameModeData.timeRate/timeScaleFactor;
+            gameMode.gameModeData.timeRate = gameMode.gameModeData.defaultTimeRate;
         }
 
         _coTimerRef = null;
