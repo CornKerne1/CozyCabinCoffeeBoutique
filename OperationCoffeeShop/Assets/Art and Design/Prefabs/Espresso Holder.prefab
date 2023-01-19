@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7884233040169866238
 Transform:
@@ -105,6 +105,8 @@ MonoBehaviour:
   isBreakable: 0
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
@@ -162,7 +164,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4110954417525925925
 Transform:
@@ -188,7 +190,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2597242072528317537, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7109011562341233569, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_text
@@ -220,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7109011562341233575, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7109011563112581968, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_Pivot.x
@@ -324,7 +326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7109011563112581972, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
