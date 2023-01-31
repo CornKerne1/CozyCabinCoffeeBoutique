@@ -26,6 +26,8 @@ public class PlayerInteraction : MonoBehaviour
     private ClampedFloatParameter _startAperture;
     private GameMode _gameMode;
 
+    public Vector3 carriedObjPosition;
+
     private IEnumerator _coRoutine;
 
     private bool _blur;
@@ -108,8 +110,9 @@ public class PlayerInteraction : MonoBehaviour
         if (!playerData.busyHands || !carriedObj) return;
         _currentInteractable.OnFocus();
         var camTrans = _cam.transform;
-        carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position,
+        carriedObjPosition =Vector3.Lerp(carriedObj.transform.position,
             camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * playerData.smooth);
+        carriedObj.transform.position = carriedObjPosition;
     }
 
     private void HandleRotation()
