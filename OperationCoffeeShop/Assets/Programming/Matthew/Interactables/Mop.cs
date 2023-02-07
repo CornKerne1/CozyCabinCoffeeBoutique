@@ -5,20 +5,17 @@ using UnityEngine;
 
 public class Mop : Interactable
 {
-    // Start is called before the first frame update
-    private bool _cleaning = false;
-    [SerializeField] private float sweepSpeed = 2f;
-    [SerializeField] private float distance = .2f;
-    public Transform _playerTransform;
+   bool cleaning = false;
+   [SerializeField] private Animator animator;
+   [SerializeField] private MeshRenderer animatedMesh;
+   private Collider _collider;
+   private MeshRenderer _mesh;
 
-    private Vector3 startLocalPosition;
-
-    private PlayerInteraction _interaction;
-    
-    public override void Start()
+   public override void Start()
     {
         base.Start();
-        _playerTransform = gameMode.player;
+        _collider=GetComponent<Collider>();
+        _mesh = GetComponent<MeshRenderer>();
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -26,39 +23,40 @@ public class Mop : Interactable
         base.playerInteraction = interaction;
         interaction.Carry(gameObject);
     }
+    
 
     public override void OnDrop()
     {
         base.OnDrop();
-        _cleaning = false;
+        if (cleaning)
+            StopCleaning();
     }
-
     public override void OnAltInteract(PlayerInteraction interaction)
     {
-        _interaction = interaction;
-        if (!_cleaning)
-        {
-            _cleaning = true;
-            startLocalPosition = transform.localPosition - _interaction.carriedObjPosition;
-            StartCoroutine(ToggleMop());
-        }
+        if (cleaning)
+            StopCleaning();
         else
-        {
-            _cleaning = false;
-            transform.rotation = Quaternion.identity;
-        }
+            StartCleaning();
     }
-    
-
-    private IEnumerator ToggleMop()
+    private void StartCleaning()
     {
-        while (_cleaning)
-        {
-            float newX = Mathf.Sin(Time.time * sweepSpeed) * distance + startLocalPosition.x;
-            transform.position = _interaction.carriedObjPosition + new Vector3(newX, startLocalPosition.y, startLocalPosition.z);
-
-            yield return null;
-        }
+        animatedMesh.transform.position = transform.position;
+        animatedMesh.transform.rotation = transform.rotation;
+        _mesh.enabled = false;
+        _collider.enabled = false;
+        animatedMesh.enabled = true;
+        animator.SetBool("clean",true);
+        cleaning = true;
+    }
+    private void StopCleaning()
+    {
+        animator.SetBool("clean",false);
+        animatedMesh.enabled = false;
+        _mesh.enabled = true;
+        _collider.enabled = true;
+        animatedMesh.transform.position = transform.position;
+        animatedMesh.transform.rotation = transform.rotation;
+        cleaning = false;
     }
 
 }
