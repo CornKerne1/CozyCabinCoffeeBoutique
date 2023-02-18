@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8989295183982864041}
   - component: {fileID: 3407196271358547016}
   - component: {fileID: 4118905890592706768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3962073208888053928}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 147dc1899e267224b84a667014974cfc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -214,11 +214,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
-  breakablePrefab: {fileID: 0}
-  smashColor: {r: 0, g: 0, b: 0, a: 0}
-  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  isBreakable: 1
+  breakableSoundEngineEnvent: PLAY_RADIODROP
+  breakablePrefab: {fileID: 7705082535032730712, guid: 2b5dad5c10707304e9b158a457c19c9a, type: 3}
+  smashColor: {r: 1, g: 0.92652625, b: 0.5886792, a: 0.34117648}
+  smashEmissionColor: {r: 1, g: 0.9546593, b: 0.75849056, a: 0.12941177}
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 5176333034749105456}
   - component: {fileID: 4196639374591933767}
   - component: {fileID: 4196639374591933766}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
