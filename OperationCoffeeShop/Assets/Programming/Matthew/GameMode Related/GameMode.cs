@@ -135,7 +135,7 @@ public class GameMode : MonoBehaviour,ISaveState
         var truck =Instantiate(gameModeData._deliveryPrefabs.truckPrefab,Vector3.zero, Quaternion.identity);
         yield return new WaitForSeconds(8f);
         SpawnDeliveryBox();
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(20f);
         Destroy(truck);
     }
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)

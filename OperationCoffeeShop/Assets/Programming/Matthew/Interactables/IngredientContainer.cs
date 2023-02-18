@@ -66,7 +66,7 @@ public class IngredientContainer : Interactable
         if (!rotating) return;
         if (!_pouringAction)
         {
-            transform.Rotate(2, 0, 0);
+            transform.Rotate(1.85f, 0, 0);
             _pouring = true;
             pouringRotation = true;
             if (_coRef1 != null) return;
@@ -77,7 +77,7 @@ public class IngredientContainer : Interactable
         {
             AkSoundEngine.PostEvent("stop_looppour", gameObject);
             _pouring = false;
-            transform.Rotate(-2, 0, 0);
+            transform.Rotate(-1.85f, 0, 0);
             pouringRotation = false;
             if (_coRef1 != null) return;
             _coRef1 = Timer(1f);
