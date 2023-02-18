@@ -9,9 +9,9 @@ public class ComputerShop : MonoBehaviour
     private GameMode _gameMode;
     public CoffeeBankTM coffeeBankTM;
 
-    public TextMeshProUGUI balance;
+    public UnityEngine.UI.Text balance;
     public string balanceString;
-    public TextMeshProUGUI bankUpdate;
+    public UnityEngine.UI.Text bankUpdate;
     public string bankSuccessString;
     public string bankFailureString;
     public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10,cameraPrice = 100,pictureFramePrice=15;
@@ -32,7 +32,8 @@ public class ComputerShop : MonoBehaviour
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         coffeeBankTM = _gameMode.CoffeeBankTM;
         CoffeeBankTM.SuccessfulWithdrawal += EnsureWithdrawal; //
-        balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+        balance.text = balanceString;
+        balance.text =  ""+ _gameMode.gameModeData.moneyInBank;
         bankUpdate.text = "";
     }
 
