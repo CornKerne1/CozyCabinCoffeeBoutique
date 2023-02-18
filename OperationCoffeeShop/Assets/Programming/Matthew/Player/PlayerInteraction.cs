@@ -174,6 +174,14 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void Throw()
+    {
+        var throwable = _currentInteractable;
+        var tRB = throwable.GetComponent<Rigidbody>();
+        DropCurrentObj();
+        tRB.AddForce(_gameMode.camera.transform.forward*350);
+    }
+
     private void TryTakePicture()
     {
         if (_coRoutine==null)

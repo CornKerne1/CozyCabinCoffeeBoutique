@@ -37,7 +37,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     void OnSaveEvent(object sender, EventArgs e) => Save(0);
     public virtual void Awake()
     {
-        gameObject.layer = 3;
+        gameObject.layer =3 ;
         _rB = GetComponent<Rigidbody>();
     }
 
