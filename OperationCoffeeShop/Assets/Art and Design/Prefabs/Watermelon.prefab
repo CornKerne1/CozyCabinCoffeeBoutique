@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4617134909290297984}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3.2282233, y: -8.797, z: -4.228635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &9004754512530042783
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
-  breakablePrefab: {fileID: 0}
-  smashColor: {r: 0, g: 0, b: 0, a: 0}
-  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  isBreakable: 1
+  breakableSoundEngineEnvent: 
+  breakablePrefab: {fileID: 6149830290778850975, guid: dc4c15eb1ff925f40a41297cb52d8de3, type: 3}
+  smashColor: {r: 0.8018868, g: 0.3283197, b: 0.3283197, a: 1}
+  smashEmissionColor: {r: 0.8113208, g: 0.37045214, b: 0.37045214, a: 1}
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
