@@ -11,7 +11,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     public GameMode gameMode;
     public Vector3 rotateOffset;
     [SerializeField] private bool isBreakable;
-    public string breakableSoundEngineEnvent = "PLAY_CERAMICBOWLBREAKING";
+    public string breakableSoundEngineEvent = "PLAY_CERAMICBOWLBREAKING";
 
     //Breakable
     [SerializeField] private GameObject breakablePrefab;
@@ -164,7 +164,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         if (!isBreakable) yield break;
         _rB.isKinematic = true;
         yield return new WaitForSeconds(.02f);
-        AkSoundEngine.PostEvent(breakableSoundEngineEnvent, gameObject);
+        AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
         var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
         particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;
