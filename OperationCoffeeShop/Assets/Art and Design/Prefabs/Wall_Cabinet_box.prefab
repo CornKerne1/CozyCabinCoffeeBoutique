@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6846461873351180542}
   - component: {fileID: 7542508316079247195}
   - component: {fileID: 5713000914349308817}
-  - component: {fileID: 328158048}
+  - component: {fileID: 3864796816831660025}
   m_Layer: 0
   m_Name: Wall_Cabinet_box
   m_TagString: Untagged
@@ -117,8 +117,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &328158048
-MeshCollider:
+--- !u!65 &3864796816831660025
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,10 +127,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 105896d3042d7334290820a7be79899a, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.0928161, y: 2.886195, z: 1.9999999}
+  m_Center: {x: -0.45359182, y: 0, z: 0}
 --- !u!1 &6073196869615738149
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +231,7 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
