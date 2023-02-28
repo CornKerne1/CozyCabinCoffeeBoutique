@@ -9,15 +9,18 @@ public class DayCounter : MonoBehaviour
     public GameMode gameMode;
     public Image dayDisplay;
 
-    public Sprite tutorial;
-    public Sprite day1;
-    public Sprite day2;
-    public Sprite day3;
+    //public Sprite tutorial;
+    //public Sprite day1;
+   // public Sprite day2;
+   // public Sprite day3;
 
 
     private Animator _animator;
     private static readonly int Hide = Animator.StringToHash("Hide");
     private GameObject _currentDc;
+
+    [SerializeField]
+    private Text _dayNo;
 
     private bool _uiOn;
 
@@ -49,14 +52,14 @@ public class DayCounter : MonoBehaviour
 
     private void DisplayDay(int day)
     {
-        dayDisplay.sprite = day switch
-        {
-            0 => tutorial,
-            1 => day1,
-            2 => day2,
-            3 => day3,
-            _ => dayDisplay.sprite
-        };
+        _dayNo.text = day.ToString();
+        //  {
+        // 0 => tutorial,
+        // 1 => day1,
+        //2 => day2,
+        // 3 => day3,
+        //_ => dayDisplay.sprite
+        // };
         dayDisplay.enabled = true;
     }
 
