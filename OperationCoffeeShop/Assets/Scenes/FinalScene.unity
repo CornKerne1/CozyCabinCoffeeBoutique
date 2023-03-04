@@ -25589,6 +25589,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8291712520449507861, guid: 494bd2210677ecf41b25153e2073e351, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b2a571aa309b95a4896e7be1acb91550, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 494bd2210677ecf41b25153e2073e351, type: 3}
 --- !u!1001 &1141491278131700607
@@ -26739,9 +26743,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2204909570687547233, guid: 5182ec2d80006884fac47fb186433fa6, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204909570687547233, guid: 5182ec2d80006884fac47fb186433fa6, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 6895133600886579818, guid: 5182ec2d80006884fac47fb186433fa6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895133600886579818, guid: 5182ec2d80006884fac47fb186433fa6, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7278836477661911592, guid: 5182ec2d80006884fac47fb186433fa6, type: 3}
       propertyPath: m_RootOrder
@@ -26800,10 +26816,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7543885598359300683, guid: 45cccbc5d9171d04fa6237d06a4f36eb, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8336654991960542110, guid: 45cccbc5d9171d04fa6237d06a4f36eb, type: 3}
       propertyPath: m_Name
       value: LotionBottle
@@ -26923,7 +26935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3557876515604829895, guid: 1bcf74d7792726546922c238f074ae29, type: 3}
       propertyPath: m_ScaleInLightmap
-      value: 0.125
+      value: 0.075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bcf74d7792726546922c238f074ae29, type: 3}
@@ -27940,54 +27952,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1831733941687656021, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865370888272732217, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902770414061994579, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1934731156985917730, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802745928572531741, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116539250179098405, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4262134326927184617, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107490891184250778, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462726124260002564, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017366108480775639, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 6098210105874335997, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7248473767525829005, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2554218443922684494, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 039d04727ccaa9a45b9235b548d3d3b3, type: 2}
+    - target: {fileID: 6970236120281418225, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: f91b2005e2442c340a0e57a522e5376f, type: 2}
     - target: {fileID: 8138123337833869982, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
       propertyPath: m_RootOrder
       value: 200
@@ -28031,14 +28003,6 @@ PrefabInstance:
     - target: {fileID: 8138123337833869982, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363613949225113087, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8693024858987409550, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8915927293350062116, guid: 728f966afadff3d40ad2c6020320acd4, type: 3}
       propertyPath: m_Name
@@ -30019,17 +29983,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2091150938924610567, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2790457977869034265, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
       propertyPath: m_Name
       value: Straw Holder
-      objectReference: {fileID: 0}
-    - target: {fileID: 3083175260562162214, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3310816512116898211, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
       propertyPath: m_RootOrder
@@ -30074,38 +30030,6 @@ PrefabInstance:
     - target: {fileID: 3310816512116898211, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4021227970250494660, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5355601708664810661, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5691660573637330747, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6365474836850903770, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6666959736248748275, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 7485418483067389919, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7864480442481913215, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8286535720250743575, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3efa114aa86419349acdf74ebac19860, type: 3}
