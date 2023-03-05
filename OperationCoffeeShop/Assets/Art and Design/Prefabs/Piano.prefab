@@ -4452,9 +4452,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7945530437826299827}
   - component: {fileID: 6471456882470401070}
-  - component: {fileID: 5348192981441592778}
-  - component: {fileID: 1026443684}
   - component: {fileID: 4214005437904367153}
+  - component: {fileID: 8999749138460323805}
+  - component: {fileID: 5051095352152974294}
   m_Layer: 0
   m_Name: Piano
   m_TagString: Untagged
@@ -4493,7 +4493,7 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
@@ -4508,32 +4508,6 @@ MonoBehaviour:
   currentChannel: 0
   pianoChannels: []
   numberOfChannels: 2
---- !u!65 &5348192981441592778
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282287039133818121}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.32, z: 0.57}
-  m_Center: {x: 0.010000005, y: -0.049999997, z: -0.285}
---- !u!65 &1026443684
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282287039133818121}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.32, z: 0.57}
-  m_Center: {x: 0.010000005, y: -0.049999997, z: -0.285}
 --- !u!95 &4214005437904367153
 Animator:
   serializedVersion: 4
@@ -4554,6 +4528,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &8999749138460323805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282287039133818121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.86412114, y: 0.2027963, z: 0.5770541}
+  m_Center: {x: 0.008939352, y: -0.110746875, z: -0.28466982}
+--- !u!65 &5051095352152974294
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282287039133818121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.873125, y: 0.31941178, z: 0.11280891}
+  m_Center: {x: 0.0074811587, y: -0.043362763, z: -0.33584905}
 --- !u!1 &7335585017195189091
 GameObject:
   m_ObjectHideFlags: 0
