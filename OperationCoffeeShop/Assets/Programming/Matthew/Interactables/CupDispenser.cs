@@ -11,7 +11,6 @@ public class CupDispenser : Dispenser
     public override void Start()
     {
         base.Start();
-        ComputerShop.DepositItems += AddItems;
         _pool = new ObjectPool<IngredientContainer>(
             () => Instantiate(objType.gameObject.GetComponentInChildren<IngredientContainer>()),
             ingredientContainer =>

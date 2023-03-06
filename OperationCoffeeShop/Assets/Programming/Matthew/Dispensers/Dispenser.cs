@@ -10,7 +10,7 @@ public class Dispenser : Interactable
     [SerializeField] public ObjectHolder objType;
     [SerializeField] protected TextMeshProUGUI text;
     [SerializeField] protected string message = " beans remaining";
-    private ObjectPool<PhysicalIngredient> _pool;
+    public ObjectPool<PhysicalIngredient> Pool;
     public bool deliveryMode;
     private Transform _obj;
     public int quantity = 10;
@@ -19,7 +19,6 @@ public class Dispenser : Interactable
     public override void Start()
     {
         base.Start();
-        ComputerShop.DepositItems += AddItems;
         CreatePool();
         StickyNoteSetup();
         if (!deliveryMode)
@@ -50,7 +49,7 @@ public class Dispenser : Interactable
 
     private void CreatePool()
     {
-        _pool = new ObjectPool<PhysicalIngredient>(
+        Pool = new ObjectPool<PhysicalIngredient>(
             () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
             physicalIngredient =>
             {
@@ -62,7 +61,7 @@ public class Dispenser : Interactable
 
     public void ReleasePoolObject(PhysicalIngredient physicalIngredient)
     {
-        _pool.Release(physicalIngredient);
+        Pool.Release(physicalIngredient);
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -81,12 +80,12 @@ public class Dispenser : Interactable
         }
     }
 
-    private void TakeFromDispenser()
+    public virtual void TakeFromDispenser()
     {
         if (playerInteraction.playerData.busyHands) return;
         quantity--;
         UpdateQuantity();
-        var ingredient = _pool.Get().transform;
+        var ingredient = Pool.Get().transform;
         var transform1 = ingredient.transform;
         transform1.position = spawnTrans.position;
         transform1.rotation = spawnTrans.rotation;

@@ -20,7 +20,6 @@ public class ComputerShop : MonoBehaviour
 
 
     public static event EventHandler SpendMoney;
-    public static event EventHandler DepositItems;
 
 
     private Queue<DeliveryManager.ObjType> _orders;
