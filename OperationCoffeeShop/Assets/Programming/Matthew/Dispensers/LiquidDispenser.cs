@@ -7,6 +7,7 @@ using TMPro;
 public class LiquidDispenser : Dispenser
 {
     private Animator _animator;
+    [SerializeField] private Transform contentVisualizer;
     public override void Start()
     {
         base.Start();
@@ -30,6 +31,7 @@ public class LiquidDispenser : Dispenser
 
     private void UpdateVisuals()
     {
-        
+        contentVisualizer.localPosition = new Vector3(0,0,((quantity * .00016f)-.016f)-0.00016f);
+        contentVisualizer.localScale = new Vector3(1, 1, (quantity / 100f));
     }
 }
