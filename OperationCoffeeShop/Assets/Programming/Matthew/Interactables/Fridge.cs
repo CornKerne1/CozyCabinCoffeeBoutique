@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Fridge : MonoBehaviour
 {
-    private void Start()
-    {
-        ComputerShop.DepositItems += AddIngredient;
-    }
 
     public void AddIngredient(object sender, EventArgs e)
     {
