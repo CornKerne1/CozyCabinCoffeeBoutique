@@ -33,7 +33,7 @@ public class LiquidDispenser : Dispenser
                 return;
             }
             contentVisualizer.localPosition = Vector3.Lerp(contentVisualizer.localPosition, _newPos, Time.deltaTime);
-            contentVisualizer.localScale = Vector3.Lerp(contentVisualizer.localScale, _newScale, Time.deltaTime);
+            contentVisualizer.localScale = Vector3.Lerp(contentVisualizer.localScale, _newScale, Time.deltaTime*3);
         }
     }
 
