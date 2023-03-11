@@ -50,6 +50,12 @@ public class PlayerInput : MonoBehaviour
         crouch = _fPp.Crouch;
     }
 
+    private void Update()
+    {
+        Debug.Log(_verticalMovement);
+        Debug.Log(_horizontalMovement);
+    }
+
     private void Start()
     {
         hudRef = Instantiate(hud);
@@ -86,10 +92,6 @@ public class PlayerInput : MonoBehaviour
         disabled = false;
 
         _fPp.Enable();
-        _fPp.MoveForwardBackwards.started += ctx => _verticalMovement = ctx.ReadValue<float>();
-        _fPp.MoveForwardBackwards.canceled += ctx => _verticalMovement = ctx.ReadValue<float>();
-        _fPp.MoveLeftRight.started += ctx => _horizontalMovement = ctx.ReadValue<float>();
-        _fPp.MoveLeftRight.canceled += ctx => _horizontalMovement = ctx.ReadValue<float>();
 
         _fPp.MouseX.performed += ctx => _mouseInput.x = ctx.ReadValue<float>();
         _fPp.MouseX.Enable();
@@ -136,8 +138,7 @@ public class PlayerInput : MonoBehaviour
     public void OnDisable()
     {
         disabled = true;
-        _fPp.MoveForwardBackwards.Disable();
-        _fPp.MoveLeftRight.Disable();
+        _fPp.Move.Disable();
         _fPp.MouseX.Disable();
         _fPp.MouseY.Disable();
         sprint.Disable();
@@ -155,12 +156,12 @@ public class PlayerInput : MonoBehaviour
 
     public float GetHorizontalMovement()
     {
-        return _horizontalMovement;
+        return _fPp.Move.ReadValue<Vector2>().x;
     }
 
     public float GetVerticalMovement()
     {
-        return -_verticalMovement;
+        return _fPp.Move.ReadValue<Vector2>().y;
     }
 
     public float GetCurrentObjDistance()
