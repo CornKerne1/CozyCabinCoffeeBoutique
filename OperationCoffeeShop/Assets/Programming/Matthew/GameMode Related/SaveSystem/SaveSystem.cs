@@ -49,7 +49,7 @@ public class SaveSystem
     
     public void SaveScreenShot(int i)
     {
-        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 256,256);
+        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), (int)_gameModeData.screenShotResizeResolution.x,(int)_gameModeData.screenShotResizeResolution.y);
         byte[] textureBytes = sS.EncodeToPNG();
         File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
     }
