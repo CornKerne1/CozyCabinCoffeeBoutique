@@ -62,6 +62,12 @@ public class Radio : Interactable
             localPosition.z);
     }
 
+    public override void OnInteract(PlayerInteraction interaction)
+    {
+        base.OnInteract(interaction);
+        lookAtPlayer = true;
+        LookAtPlayer();
+    }
 
     public override void OnAltInteract(PlayerInteraction interaction)
     {
@@ -80,5 +86,11 @@ public class Radio : Interactable
     {
         if (!_isBroken && playerInteraction)
             base.ShowOnScreenText();
+    }
+
+    public override void OnDrop()
+    {
+        base.OnDrop();
+        lookAtPlayer = false;
     }
 }

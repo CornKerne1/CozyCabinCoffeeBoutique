@@ -28,7 +28,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     protected TextMeshProUGUI varOnScreenPromt;
     [SerializeField] protected Canvas onScreenPrompt;
     public string onScreenPromptText;
-    public bool lookAtPlayer;
+    protected bool lookAtPlayer;
     private float speed;
     public bool delivered;
     private bool _respawnable;
