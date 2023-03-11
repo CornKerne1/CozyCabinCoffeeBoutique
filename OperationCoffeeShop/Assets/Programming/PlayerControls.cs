@@ -441,6 +441,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""37a455be-7a85-41d2-921e-b9d4c868b517"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Alt_Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""efebcd80-fa03-4f3f-9957-2ed063eac19f"",
                     ""path"": ""<Keyboard>/f1"",
                     ""interactions"": """",
