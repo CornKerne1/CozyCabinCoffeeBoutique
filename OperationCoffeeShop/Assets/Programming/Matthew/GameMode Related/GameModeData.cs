@@ -40,6 +40,7 @@ public class GameModeData : ScriptableObject
     public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
+    public Vector2 screenShotResizeResolution;
 
     public string time;
 

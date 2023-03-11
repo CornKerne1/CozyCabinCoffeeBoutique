@@ -49,13 +49,6 @@ public class PlayerInput : MonoBehaviour
         jump = _fPp.Jump;
         crouch = _fPp.Crouch;
     }
-
-    private void Update()
-    {
-        Debug.Log(_verticalMovement);
-        Debug.Log(_horizontalMovement);
-    }
-
     private void Start()
     {
         hudRef = Instantiate(hud);
