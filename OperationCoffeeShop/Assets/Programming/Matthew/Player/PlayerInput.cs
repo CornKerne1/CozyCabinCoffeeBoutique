@@ -22,12 +22,12 @@ public class PlayerInput : MonoBehaviour
 
     private PlayerControls _pC;
     private PlayerControls.FPPlayerActions _fPp;
-    [SerializeField] private InputAction interact;
-    [SerializeField] private InputAction altInteract;
-    [SerializeField] private InputAction pause;
-    [SerializeField] private InputAction sprint;
-    [SerializeField] private InputAction jump;
-    [SerializeField] private InputAction crouch;
+    private InputAction interact;
+    private InputAction altInteract;
+    private InputAction pause;
+    private InputAction sprint;
+    private InputAction jump;
+    private InputAction crouch;
 
     private Vector2 _mouseInput;
     private Vector2 _currentRotate;
@@ -48,6 +48,7 @@ public class PlayerInput : MonoBehaviour
         sprint = _fPp.Sprint;
         jump = _fPp.Jump;
         crouch = _fPp.Crouch;
+        Cursor.visible = false;
     }
     private void Start()
     {
@@ -232,5 +233,10 @@ public class PlayerInput : MonoBehaviour
     private static void Crouch(InputAction.CallbackContext obj)
     {
         CrouchEvent?.Invoke(null, EventArgs.Empty);
+    }
+
+    public InputAction GetMoveAction()
+    {
+        return _fPp.Move;
     }
 }

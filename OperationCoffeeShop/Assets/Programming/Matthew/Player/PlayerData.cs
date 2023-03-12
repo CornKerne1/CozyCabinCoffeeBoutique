@@ -63,7 +63,26 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float carryDistance;
     [Range(0, 10)]
     [SerializeField] public float smooth;
-    [SerializeField] public bool inUI = false;
+
+    [SerializeField]
+    public bool inUI
+    {
+        get { return _inUi; }
+        set
+        {
+            _inUi = value;
+            if (_inUi)
+            {
+                //Virtual Cursor
+            }
+            else
+            {
+                //Virtual Cursor NotActive
+            }
+        }
+    }
+
+    private bool _inUi = false;
     public bool sleeping;
 
     [Header("Menus")]
