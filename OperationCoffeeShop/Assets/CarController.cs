@@ -63,7 +63,7 @@ public class CarController : MonoBehaviour
                     if(wheel.axel == Axel.Front)
                     {
                         steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
-                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 1f);
                         if (wheel.wheelCollider.isGrounded)
                             wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
                         else
@@ -75,7 +75,7 @@ public class CarController : MonoBehaviour
                     if(wheel.axel == Axel.Rear)
                     {
                         steerAngle = -playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
-                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 1f);
                         wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
                         if (wheel.wheelCollider.isGrounded)
                             wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
@@ -88,7 +88,7 @@ public class CarController : MonoBehaviour
                     if(wheel.axel == Axel.Front)
                     {
                         steerAngle = playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
-                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 1f);
                         if (wheel.wheelCollider.isGrounded)
                             wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
                         else
@@ -97,7 +97,7 @@ public class CarController : MonoBehaviour
                     if(wheel.axel == Axel.Rear)
                     {
                         steerAngle = -playerInput.GetHorizontalMovement() * turnSensitivity * maxSteerAngle;
-                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 0.6f);
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 1f);
                         wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;
                         if (wheel.wheelCollider.isGrounded)
                             wheel.wheelCollider.motorTorque = playerInput.GetVerticalMovement() * motorForce;

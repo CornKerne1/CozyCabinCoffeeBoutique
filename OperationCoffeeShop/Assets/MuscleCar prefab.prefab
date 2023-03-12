@@ -1758,6 +1758,7 @@ GameObject:
   - component: {fileID: 8972633860181709071}
   - component: {fileID: 103841855}
   - component: {fileID: 1068120208817499996}
+  - component: {fileID: 2719147072660693921}
   m_Layer: 0
   m_Name: Jackfruit_Roadster
   m_TagString: Untagged
@@ -1871,6 +1872,20 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -2947182088333306934, guid: 4466416ed275d864abc50f0034122238, type: 3}
 --- !u!64 &1068120208817499996
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701604982526833845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2947182088333306934, guid: 4466416ed275d864abc50f0034122238, type: 3}
+--- !u!64 &2719147072660693921
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2015,19 +2030,19 @@ WheelCollider:
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.0001
+  m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 1
-    m_ExtremumValue: 3
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 5
-    m_Stiffness: 2
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.1
-    m_ExtremumValue: 2.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 0.05
-    m_Stiffness: 2
+    m_ExtremumSlip: 1
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &4584620230936596013
 GameObject:
@@ -2077,19 +2092,19 @@ WheelCollider:
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.0001
+  m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 1
-    m_ExtremumValue: 3
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 5
-    m_Stiffness: 2
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.1
-    m_ExtremumValue: 2.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 0.05
-    m_Stiffness: 1.75
+    m_ExtremumSlip: 1
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &4584620230949306992
 GameObject:
@@ -2139,19 +2154,19 @@ WheelCollider:
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.0001
+  m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 1
-    m_ExtremumValue: 3
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 5
-    m_Stiffness: 2
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.1
-    m_ExtremumValue: 2.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 0.05
-    m_Stiffness: 1.75
+    m_ExtremumSlip: 1
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &4584620231476118060
 GameObject:
@@ -2201,19 +2216,19 @@ WheelCollider:
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.0001
+  m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 1
-    m_ExtremumValue: 3
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 5
-    m_Stiffness: 2
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.1
-    m_ExtremumValue: 2.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 0.05
-    m_Stiffness: 2
+    m_ExtremumSlip: 1
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &4584620231655073315
 GameObject:
@@ -2281,9 +2296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carType: 0
-  motorForce: 1000
-  turnSensitivity: 0.4
-  maxSteerAngle: 30
+  motorForce: 2000
+  turnSensitivity: 0.5
+  maxSteerAngle: 45
   centerOfMass: {x: 0, y: -0.5, z: -0.125}
   wheels:
   - wheelModel: {fileID: 6210261977043331873}
