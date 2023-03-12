@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public GameObject hud;
     [SerializeField] public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
+    [SerializeField]private GameObject _virtualCursor;
     public static event EventHandler SprintEvent;
     public static event EventHandler JumpEvent;
     public static event EventHandler CrouchEvent;
@@ -58,6 +60,17 @@ public class PlayerInput : MonoBehaviour
         pM.playerInput = this;
         CamModeEvent += ToggleHud;
         PauseEvent += _Pause;
+    }
+
+    private void Update()
+    {
+        if (pD.inUI)
+        {
+            if(!_virtualCursor.activeSelf)
+                _virtualCursor.SetActive(true);
+        }
+        else if (_virtualCursor.activeSelf)
+            _virtualCursor.SetActive(false);
     }
 
     private void _Pause(object sender, EventArgs e)

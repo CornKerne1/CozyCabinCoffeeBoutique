@@ -34,7 +34,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float cameraFov=60f;
     [SerializeField] public bool camMode;
     private Camera _camera;
-    
+
     [Header("Crouch Variables")]
     [SerializeField] public float crouchHeight = .5f;
     [SerializeField] public float standHeight = 1f;
@@ -65,24 +65,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] public float smooth;
 
     [SerializeField]
-    public bool inUI
-    {
-        get { return _inUi; }
-        set
-        {
-            _inUi = value;
-            if (_inUi)
-            {
-                //Virtual Cursor
-            }
-            else
-            {
-                //Virtual Cursor NotActive
-            }
-        }
-    }
-
-    private bool _inUi = false;
+    public bool inUI = false;
     public bool sleeping;
 
     [Header("Menus")]

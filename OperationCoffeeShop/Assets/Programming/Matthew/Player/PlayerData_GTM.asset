@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData_GTM
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  sprintSpeed: 0
+  jumpHeight: 0
   inertiaVar: 3
   mouseSensitivityX: 20
   mouseSensitivityY: 80
@@ -21,9 +23,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   closeSpeed: 2
-  openSpeed: 3
-  canMove: 0
+  canMove: 1
+  canJump: 1
+  canSprint: 1
+  canCrouch: 1
+  isSprinting: 0
   cameraFov: 60
+  camMode: 0
+  crouchHeight: 0.5
+  standHeight: 1
+  crouchingCenter: {x: 0, y: 0.7, z: 0}
+  standingCenter: {x: 0, y: 0.5, z: 0}
   amplitude: 0.1
   frequency: 11
   currentMovement: {x: -22.09, y: -4, z: -183.4}
@@ -36,5 +46,6 @@ MonoBehaviour:
   busyHands: 0
   carryDistance: 0.7
   smooth: 10
-  inUI: 1
+  inUI: 0
+  sleeping: 0
   mouseSensitivityOptions: 0.5
