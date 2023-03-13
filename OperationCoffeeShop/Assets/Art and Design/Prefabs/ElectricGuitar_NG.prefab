@@ -179,9 +179,9 @@ GameObject:
   m_Component:
   - component: {fileID: 482689995677716728}
   - component: {fileID: 3538985342399831901}
+  - component: {fileID: 87928508110937225}
   - component: {fileID: 87928508110937236}
   - component: {fileID: 87928508110937237}
-  - component: {fileID: 87928508110937225}
   - component: {fileID: 5034417861791511345}
   m_Layer: 0
   m_Name: ElectricGuitar_NG
@@ -214,6 +214,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006848442731924034}
   m_Mesh: {fileID: -6254622400316516545, guid: 78ec37c12c7bb404aa4ab8e8ee85af11, type: 3}
+--- !u!114 &87928508110937225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006848442731924034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameMode: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!54 &87928508110937236
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -244,32 +270,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6254622400316516545, guid: 78ec37c12c7bb404aa4ab8e8ee85af11, type: 3}
---- !u!114 &87928508110937225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006848442731924034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef25789ce5944746aac100128484ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameMode: {fileID: 0}
-  rotateOffset: {x: 0, y: 0, z: 0}
-  isBreakable: 0
-  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
-  breakablePrefab: {fileID: 0}
-  smashColor: {r: 0, g: 0, b: 0, a: 0}
-  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-  playerInteraction: {fileID: 0}
-  hasOnScreenText: 0
-  onScreenPrompt: {fileID: 0}
-  onScreenPromptText: 
-  lookAtPlayer: 0
-  delivered: 0
-  objTypeShop: 0
 --- !u!136 &5034417861791511345
 CapsuleCollider:
   m_ObjectHideFlags: 0
