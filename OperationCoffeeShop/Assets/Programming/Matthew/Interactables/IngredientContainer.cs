@@ -21,6 +21,7 @@ public class IngredientContainer : Interactable
     public bool rotating;
     public bool pouringRotation;
     public Dispenser dispenser;
+    public bool BigScale;
 
     public IngredientData iD;
 
@@ -121,10 +122,13 @@ public class IngredientContainer : Interactable
                     (localPosition.y - .00048f),
                     localPosition.z);
                 contentsVisualizer.transform.localPosition = localPosition;
-                var localScale = contentsVisualizer.transform.localScale;
-                localScale = new Vector3(localScale.x + .01f,
-                    (localScale.y + .01f), localScale.z); //
-                contentsVisualizer.transform.localScale = localScale;
+                if (BigScale)
+                {
+                    var localScale = contentsVisualizer.transform.localScale;
+                    localScale = new Vector3(localScale.x + .01f,
+                        (localScale.y + .01f), localScale.z); //
+                    contentsVisualizer.transform.localScale = localScale;
+                }
             }
 
             switch (iN.ingredient)
