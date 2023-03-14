@@ -35,38 +35,62 @@ public class PlayerCameraController : MonoBehaviour
         if (!_playerInput.pD.canMove) return;
         HandleFreeCamMovement();
         CalculateDirection();
-        PerformMovement();
     }
 
     private void HandleFreeCamMovement()
     {
-
+        var mouseSensitivity = _playerInput.pD.mouseSensitivityOptions;
+        var mouseSensitivityY = _playerInput.pD.mouseSensitivityY;
+        if (_playerInput.inputType.Contains("Mouse"))
+        {
+            mouseSensitivity = _playerInput.pD.mouseSensitivityOptions;
+            mouseSensitivityY = _playerInput.pD.mouseSensitivityY/400;
+        }
+        else if (_playerInput.inputType.Contains("Stick"))
+        {
+            mouseSensitivity = _playerInput.pD.mouseSensitivityOptions * 8.5f;
+            mouseSensitivityY =_playerInput.pD.mouseSensitivityY/600;
+        }
         _xRotation -= _playerInput.GetMouseY() *
-                      (_playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityY / 400);
+                      (mouseSensitivity * mouseSensitivityY);
         _xRotation = Mathf.Clamp(_xRotation, -_playerInput.pD.neckClamp, _playerInput.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = _xRotation;
         _cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
         transform.root.Rotate(Vector3.up,
-            _playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
+            mouseSensitivity * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
             Time.deltaTime);
     }
 
 
     private void CalculateDirection()
     {
+        var mouseSensitivity = _playerInput.pD.mouseSensitivityOptions;
+        var mouseSensitivityY = _playerInput.pD.mouseSensitivityY;
+        if (_playerInput.inputType.Contains("Mouse"))
+        {
+            mouseSensitivity = _playerInput.pD.mouseSensitivityOptions;
+            mouseSensitivityY = _playerInput.pD.mouseSensitivityY/400;
+        }
+        else if (_playerInput.inputType.Contains("Stick"))
+        {
+            mouseSensitivity = _playerInput.pD.mouseSensitivityOptions * 8.5f;
+            mouseSensitivityY =_playerInput.pD.mouseSensitivityY/600;
+        }
+
         _xRotation -= _playerInput.GetMouseY() *
-                      (_playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityY / 400);
+                      (mouseSensitivity * mouseSensitivityY);
         _xRotation = Mathf.Clamp(_xRotation, -_playerInput.pD.neckClamp, _playerInput.pD.neckClamp);
         Vector3 camRotation = transform.eulerAngles;
         camRotation.x = _xRotation;
         _cam.eulerAngles = new Vector3(camRotation.x, camRotation.y, camRotation.z);
+       PerformMovement(mouseSensitivity);
     }
 
-    private void PerformMovement()
+    private void PerformMovement(float mouseSensitivity)
     {
         transform.root.Rotate(Vector3.up,
-            _playerInput.pD.mouseSensitivityOptions * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
+            mouseSensitivity * _playerInput.pD.mouseSensitivityX * _playerInput.GetMouseX() *
             Time.deltaTime);
     }
 }
