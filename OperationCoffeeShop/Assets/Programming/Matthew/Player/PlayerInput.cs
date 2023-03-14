@@ -150,8 +150,6 @@ public class PlayerInput : MonoBehaviour
         _fPp.Rotate.performed += Rotate;
         _fPp.Rotate.canceled += RotateCanceled;
         _fPp.Rotate.Enable();
-
-        _fPp.MoveObj.performed += ctx => _currentObjDistance = ctx.ReadValue<Vector2>();
         _fPp.MoveObj.performed += MoveObj;
         _fPp.MoveObj.Enable();
         
@@ -166,8 +164,9 @@ public class PlayerInput : MonoBehaviour
     }
     
 
-    private void MoveObj(InputAction.CallbackContext obj)
+    private void MoveObj(InputAction.CallbackContext ctx)
     {
+        _currentObjDistance = ctx.ReadValue<Vector2>();
         MoveObjEvent?.Invoke(this, EventArgs.Empty);
     }
 
