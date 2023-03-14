@@ -37,6 +37,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""4ae8a51c-bd65-49c6-83a2-25b8f90db72d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""910954c9-7cae-4429-8fa1-4e43b66bced5"",
@@ -59,24 +68,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""3ea3144a-5a2a-4a72-a50f-d5969353c8ec"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MouseX"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""7b8d37ea-d917-4fb7-ab1d-191a1cb38b98"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MouseY"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""a74dc915-415c-4668-85e7-ac5479d6ed8b"",
-                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -164,28 +155,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""63b62d1e-a16f-441a-b6b5-217902e903ad"",
-                    ""path"": ""<Mouse>/delta/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""MouseX"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6c95b5f5-51f2-4a95-a8c3-d67183218154"",
-                    ""path"": ""<Gamepad>/rightStick/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MouseX"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""9f295a2f-2b46-4450-8aa8-091c0d1cc783"",
@@ -326,28 +295,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""62628c1a-7b9f-413a-a64b-624e0ac4e85f"",
-                    ""path"": ""<Mouse>/delta/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""MouseY"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""00344b3b-48e1-47d6-bcc0-fb6443ea46cb"",
-                    ""path"": ""<Gamepad>/rightStick/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MouseY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -555,8 +502,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad;Keyboard"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6a94c85-0faa-4b07-bbb1-3af36a095a73"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""137a873b-2f7d-4d32-9f2f-7ff140635740"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -591,11 +560,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // FPPlayer
         m_FPPlayer = asset.FindActionMap("FPPlayer", throwIfNotFound: true);
         m_FPPlayer_Move = m_FPPlayer.FindAction("Move", throwIfNotFound: true);
+        m_FPPlayer_Mouse = m_FPPlayer.FindAction("Mouse", throwIfNotFound: true);
         m_FPPlayer_Jump = m_FPPlayer.FindAction("Jump", throwIfNotFound: true);
         m_FPPlayer_Sprint = m_FPPlayer.FindAction("Sprint", throwIfNotFound: true);
         m_FPPlayer_Crouch = m_FPPlayer.FindAction("Crouch", throwIfNotFound: true);
-        m_FPPlayer_MouseX = m_FPPlayer.FindAction("MouseX", throwIfNotFound: true);
-        m_FPPlayer_MouseY = m_FPPlayer.FindAction("MouseY", throwIfNotFound: true);
         m_FPPlayer_AimDownSights = m_FPPlayer.FindAction("Aim Down Sights", throwIfNotFound: true);
         m_FPPlayer_PauseGame = m_FPPlayer.FindAction("PauseGame", throwIfNotFound: true);
         m_FPPlayer_InteractWtih = m_FPPlayer.FindAction("InteractWtih ", throwIfNotFound: true);
@@ -665,11 +633,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_FPPlayer;
     private IFPPlayerActions m_FPPlayerActionsCallbackInterface;
     private readonly InputAction m_FPPlayer_Move;
+    private readonly InputAction m_FPPlayer_Mouse;
     private readonly InputAction m_FPPlayer_Jump;
     private readonly InputAction m_FPPlayer_Sprint;
     private readonly InputAction m_FPPlayer_Crouch;
-    private readonly InputAction m_FPPlayer_MouseX;
-    private readonly InputAction m_FPPlayer_MouseY;
     private readonly InputAction m_FPPlayer_AimDownSights;
     private readonly InputAction m_FPPlayer_PauseGame;
     private readonly InputAction m_FPPlayer_InteractWtih;
@@ -684,11 +651,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public FPPlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_FPPlayer_Move;
+        public InputAction @Mouse => m_Wrapper.m_FPPlayer_Mouse;
         public InputAction @Jump => m_Wrapper.m_FPPlayer_Jump;
         public InputAction @Sprint => m_Wrapper.m_FPPlayer_Sprint;
         public InputAction @Crouch => m_Wrapper.m_FPPlayer_Crouch;
-        public InputAction @MouseX => m_Wrapper.m_FPPlayer_MouseX;
-        public InputAction @MouseY => m_Wrapper.m_FPPlayer_MouseY;
         public InputAction @AimDownSights => m_Wrapper.m_FPPlayer_AimDownSights;
         public InputAction @PauseGame => m_Wrapper.m_FPPlayer_PauseGame;
         public InputAction @InteractWtih => m_Wrapper.m_FPPlayer_InteractWtih;
@@ -710,6 +676,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMove;
+                @Mouse.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouse;
                 @Jump.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnJump;
@@ -719,12 +688,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnCrouch;
-                @MouseX.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouseX;
-                @MouseX.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouseX;
-                @MouseX.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouseX;
-                @MouseY.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouseY;
-                @MouseY.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouseY;
-                @MouseY.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnMouseY;
                 @AimDownSights.started -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnAimDownSights;
                 @AimDownSights.performed -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnAimDownSights;
                 @AimDownSights.canceled -= m_Wrapper.m_FPPlayerActionsCallbackInterface.OnAimDownSights;
@@ -759,6 +722,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -768,12 +734,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
-                @MouseX.started += instance.OnMouseX;
-                @MouseX.performed += instance.OnMouseX;
-                @MouseX.canceled += instance.OnMouseX;
-                @MouseY.started += instance.OnMouseY;
-                @MouseY.performed += instance.OnMouseY;
-                @MouseY.canceled += instance.OnMouseY;
                 @AimDownSights.started += instance.OnAimDownSights;
                 @AimDownSights.performed += instance.OnAimDownSights;
                 @AimDownSights.canceled += instance.OnAimDownSights;
@@ -826,11 +786,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IFPPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
-        void OnMouseX(InputAction.CallbackContext context);
-        void OnMouseY(InputAction.CallbackContext context);
         void OnAimDownSights(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnInteractWtih(InputAction.CallbackContext context);

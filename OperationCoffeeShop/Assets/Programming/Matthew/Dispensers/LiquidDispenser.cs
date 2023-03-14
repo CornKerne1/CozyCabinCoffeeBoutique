@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Drawing.Drawing2D;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 using TMPro;
@@ -14,6 +15,7 @@ public class LiquidDispenser : Dispenser
     private Vector3 _newPos;
     private Vector3 _newScale;
     private bool _updating;
+    private bool _wait;
     
     public override void Start()
     {
@@ -21,6 +23,21 @@ public class LiquidDispenser : Dispenser
         _animator = GetComponent<Animator>();
     }
 
+    public override void OnInteract(PlayerInteraction interaction)
+    {
+        if (!_wait)
+        {
+            WaitForAnimation();
+            base.OnInteract(interaction);
+        }
+    }
+
+    private async void WaitForAnimation()
+    {
+        _wait = true;
+        await Task.Delay(250);
+        _wait = false;
+    }
     private void Update()
     {
         if (_updating)

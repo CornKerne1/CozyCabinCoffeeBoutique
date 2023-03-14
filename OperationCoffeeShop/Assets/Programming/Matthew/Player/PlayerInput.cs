@@ -2,6 +2,8 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public GameObject hud;
     [SerializeField] public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
-    [SerializeField]private GameObject _virtualCursor;
+    [SerializeField]private GamepadCursor virtualCursor;
     public static event EventHandler SprintEvent;
     public static event EventHandler JumpEvent;
     public static event EventHandler CrouchEvent;
@@ -33,10 +35,11 @@ public class PlayerInput : MonoBehaviour
 
     private Vector2 _mouseInput;
     private Vector2 _currentRotate;
-
-    private float _horizontalMovement;
-    private float _verticalMovement;
+    private Vector2 _movement;
+    
     private Vector2 _currentObjDistance;
+    
+    public String inputType;
 
     public bool disabled;
 
@@ -54,23 +57,37 @@ public class PlayerInput : MonoBehaviour
     }
     private void Start()
     {
+        InitializeHudAndCursor();
+        InitializeMenu();
+        CamModeEvent += ToggleHud;
+        PauseEvent += _Pause;
+    }
+
+    private void InitializeHudAndCursor()
+    {
         hudRef = Instantiate(hud);
+        virtualCursor = hudRef.GetComponentInChildren<GamepadCursor>();
+        virtualCursor.playerInput = this;
+        virtualCursor.transform.parent = null;
+    }
+
+    private void InitializeMenu()
+    {
+        virtualCursor.gameObject.SetActive(false);
         pauseM.SetActive(false);
         var pM = pauseM.GetComponent<PauseMenu>();
         pM.playerInput = this;
-        CamModeEvent += ToggleHud;
-        PauseEvent += _Pause;
     }
 
     private void Update()
     {
         if (pD.inUI)
         {
-            if(!_virtualCursor.activeSelf)
-                _virtualCursor.SetActive(true);
+            if(!virtualCursor.gameObject.activeSelf)
+                virtualCursor.gameObject.SetActive(true);
         }
-        else if (_virtualCursor.activeSelf)
-            _virtualCursor.SetActive(false);
+        else if (virtualCursor.gameObject.activeSelf)
+            virtualCursor.gameObject.SetActive(false);
     }
 
     private void _Pause(object sender, EventArgs e)
@@ -94,17 +111,22 @@ public class PlayerInput : MonoBehaviour
 
     public void OnEnable()
     {
+        
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
 
         _fPp.Enable();
+        
+        _fPp.Mouse.started += OnMousePerformed;
+        _fPp.Mouse.performed += OnMousePerformed;
+        _fPp.Mouse.canceled += OnMousePerformed;
+        _fPp.Mouse.Enable();
 
-        _fPp.MouseX.performed += ctx => _mouseInput.x = ctx.ReadValue<float>();
-        _fPp.MouseX.Enable();
-
-        _fPp.MouseY.performed += ctx => _mouseInput.y = ctx.ReadValue<float>();
-        _fPp.MouseY.Enable();
+        _fPp.Move.started +=ctx=>_movement=ctx.ReadValue<Vector2>();
+        _fPp.Move.performed +=ctx=>_movement=ctx.ReadValue<Vector2>();
+        _fPp.Move.canceled +=ctx=>_movement=ctx.ReadValue<Vector2>();
+        _fPp.Move.Enable();
 
         sprint.performed += Sprint;
         sprint.Enable();
@@ -137,6 +159,13 @@ public class PlayerInput : MonoBehaviour
         _fPp.FreeCam.Enable();
     }
 
+    private void OnMousePerformed(InputAction.CallbackContext ctx)
+    {
+        _mouseInput = ctx.ReadValue<Vector2>();
+        inputType = ctx.control.ToString();
+    }
+    
+
     private void MoveObj(InputAction.CallbackContext obj)
     {
         MoveObjEvent?.Invoke(this, EventArgs.Empty);
@@ -146,8 +175,7 @@ public class PlayerInput : MonoBehaviour
     {
         disabled = true;
         _fPp.Move.Disable();
-        _fPp.MouseX.Disable();
-        _fPp.MouseY.Disable();
+        _fPp.Mouse.Disable();
         sprint.Disable();
         jump.Disable();
         crouch.Disable();
@@ -163,12 +191,12 @@ public class PlayerInput : MonoBehaviour
 
     public float GetHorizontalMovement()
     {
-        return _fPp.Move.ReadValue<Vector2>().x;
+        return _movement.x;
     }
 
     public float GetVerticalMovement()
     {
-        return _fPp.Move.ReadValue<Vector2>().y;
+        return _movement.y;
     }
 
     public float GetCurrentObjDistance()
@@ -251,5 +279,10 @@ public class PlayerInput : MonoBehaviour
     public InputAction GetMoveAction()
     {
         return _fPp.Move;
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        return this;
     }
 }

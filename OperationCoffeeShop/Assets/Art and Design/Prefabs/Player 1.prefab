@@ -449,60 +449,8 @@ MonoBehaviour:
   hud: {fileID: 2146522850313100945, guid: 6a8cb7da0d5daab42a3c69aa805e9ff5, type: 3}
   hudRef: {fileID: 0}
   pauseM: {fileID: 0}
-  interact:
-    m_Name: Interact
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: fd9f8615-f07f-42df-8111-1d7adef34605
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  altInteract:
-    m_Name: Alt Interact
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b3b1cced-4490-4588-9fad-5a9b788e20e3
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  pause:
-    m_Name: Pause
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8d1f2c35-d119-4ba1-a8b4-23136c597ca0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  sprint:
-    m_Name: Sprint
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a6de0227-73f5-45c4-9b78-3569500e706d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jump:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6042667f-c023-49de-bf52-888cd8537536
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  crouch:
-    m_Name: Crouch
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 54f822c5-8575-4adf-a22e-296e4697c0cf
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  virtualCursor: {fileID: 0}
+  inputType: 
   disabled: 0
 --- !u!114 &3143608906517689546
 MonoBehaviour:
@@ -559,3 +507,4 @@ MonoBehaviour:
   carriedObj: {fileID: 0}
   profile: {fileID: 11400000, guid: b3e8b6154810f1c45b7d66eac43c7b23, type: 2}
   dof: {fileID: 0}
+  carriedObjPosition: {x: 0, y: 0, z: 0}
