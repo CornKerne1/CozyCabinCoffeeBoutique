@@ -8127,25 +8127,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d755965d11ef645945bc601c072ee3, type: 3}
---- !u!1 &789360309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 437454372516062909, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
-  m_PrefabInstance: {fileID: 1547732870}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &789360315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789360309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6670f8cb273470144900f94f97c5e020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foliageTag: Foliage
-  maxBatchSize: 50000
 --- !u!1001 &790128835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15542,6 +15523,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 789360315, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
+      propertyPath: maxBatchSize
+      value: 1023
+      objectReference: {fileID: 0}
     - target: {fileID: 1618134114, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
       propertyPath: gate
       value: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1716895940}
   - component: {fileID: 1716895941}
   - component: {fileID: 1159091042}
+  - component: {fileID: 789360315}
   m_Layer: 0
   m_Name: GameMode
   m_TagString: GameMode
@@ -51,8 +52,8 @@ MonoBehaviour:
   player: {fileID: 0}
   camera: {fileID: 0}
   playerData: {fileID: 0}
+  playerInput: {fileID: 0}
   playerPref: {fileID: 0}
-  scriptableOptions: {fileID: 11400000, guid: 79858d2f3f5d5cd41a096c893775f3a9, type: 2}
   gate: {fileID: 0}
   gameModeData: {fileID: 11400000, guid: 7251c4f45cd0ee54a915b23a82cea22a, type: 2}
   sunLight: {fileID: 0}
@@ -177,3 +178,17 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+--- !u!114 &789360315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437454372516062909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670f8cb273470144900f94f97c5e020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foliageTag: Foliage
+  maxBatchSize: 1023

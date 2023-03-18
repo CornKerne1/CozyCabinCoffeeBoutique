@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoliageBatcher : MonoBehaviour
+public class DynamicBatcher : MonoBehaviour
 {
     public string foliageTag = "Foliage";
-    public int maxBatchSize = 100;
+    public int maxBatchSize = 10000;
 
     void Start()
     {
@@ -52,12 +52,16 @@ public class FoliageBatcher : MonoBehaviour
             {
                 int batchSize = Mathf.Min(maxBatchSize, foliageList.Count - i);
                 Matrix4x4[] matrices = new Matrix4x4[batchSize];
-                Vector4[] colors = new Vector4[batchSize];
+                Vector4[] colors = new Vector4[foliageList.Count];
                 for (int j = 0; j < batchSize; j++)
                 {
-                    GameObject foliageObj = foliageList[i + j];
-                    matrices[j] = foliageObj.transform.localToWorldMatrix;
-                    colors[j] = foliageObj.GetComponent<Renderer>().sharedMaterial.color;
+                    int index = i + j;
+                    if (index < foliageList.Count)
+                    {
+                        GameObject foliageObj = foliageList[index];
+                        matrices[j] = foliageObj.transform.localToWorldMatrix;
+                        colors[j] = foliageObj.GetComponent<Renderer>().sharedMaterial.color;
+                    }
                 }
 
                 MaterialPropertyBlock props = new MaterialPropertyBlock();
