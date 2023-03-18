@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoliageBatcher : MonoBehaviour
+public class DynamicBatcher : MonoBehaviour
 {
     public string foliageTag = "Foliage";
-    public int maxBatchSize = 100;
+    public int maxBatchSize = 10000;
 
     void Start()
     {
