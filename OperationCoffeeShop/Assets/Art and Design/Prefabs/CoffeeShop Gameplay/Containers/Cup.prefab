@@ -57,9 +57,17 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 180, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   pourTransform: {fileID: 3623988286698349490}
   contentsVisualizer: {fileID: 4999453384722504749}
   inHand: 0
@@ -71,10 +79,9 @@ MonoBehaviour:
   rotating: 0
   pouringRotation: 0
   dispenser: {fileID: 0}
+  BigScale: 1
   iD: {fileID: 11400000, guid: 56f2929078d5c4c48888b9619f2e1256, type: 2}
   outputIngredients: []
-  contentVisualizerStartPosition: {x: 0, y: 0, z: 0}
-  contentVisualizerStartScale: {x: 0, y: 0, z: 0}
 --- !u!54 &2840938280980887256
 Rigidbody:
   m_ObjectHideFlags: 0
