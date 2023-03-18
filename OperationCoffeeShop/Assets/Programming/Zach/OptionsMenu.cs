@@ -12,12 +12,10 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     
     public GameMode gM;
 
-    public Toggle fullscreenTog, vsyncTog, performanceTog;
-
     public List<ResItem> resolutions = new List<ResItem>();
     private int selectedResolution;
 
-    public TMP_Text resolutionLabel;
+    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel;
     private bool playing;
     
 
@@ -25,42 +23,51 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public Slider masterSlider, musicSlider, sfxSlider, mouseSlider;
 
     public UniversalRenderPipelineAsset urpA;
-    
+    private bool _lowQualityMode;
+
     private void OnDisable() => Save(0);
 
-    public void TogglePerformace(bool lowQuality)
+    public void TogglePerformance(bool lowQualitySetting)
     {
-        if (lowQuality)
-        {
-            urpA.msaaSampleCount = 0;
-            urpA.supportsCameraDepthTexture = false;
-            urpA.supportsCameraOpaqueTexture = false;
-            urpA.shadowCascadeCount = 1;
-            urpA.supportsHDR = false;
-            urpA.shadowDistance = 45;
-        }
+        if (lowQualitySetting)
+            LowQualityMode();
         else
-        {
-            urpA.msaaSampleCount = 8;
-            urpA.supportsCameraDepthTexture = true;
-            urpA.supportsCameraOpaqueTexture = true;
-            urpA.shadowCascadeCount = 3;
-            urpA.supportsHDR = true;
-            urpA.shadowDistance = 180;
-        }
+            HighQualityMode();
+    }
+    public void TogglePerformance()
+    {
+        if (!_lowQualityMode)
+            LowQualityMode();
+        else
+            HighQualityMode();
+    }
+    private void HighQualityMode()
+    {
+        _lowQualityMode = false;
+        urpA.msaaSampleCount = 8;
+        urpA.supportsCameraDepthTexture = true;
+        urpA.supportsCameraOpaqueTexture = true;
+        urpA.shadowCascadeCount = 3;
+        urpA.supportsHDR = true;
+        urpA.shadowDistance = 180;
+        performanceLabel.text = "OFF";
+    }
+
+    private void LowQualityMode()
+    {
+        _lowQualityMode = true;
+        urpA.msaaSampleCount = 0;
+        urpA.supportsCameraDepthTexture = false;
+        urpA.supportsCameraOpaqueTexture = false;
+        urpA.shadowCascadeCount = 1;
+        urpA.supportsHDR = false;
+        urpA.shadowDistance = 45;
+        performanceLabel.text = "ON";
     }
     void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         Load(0);
-        fullscreenTog.isOn = Screen.fullScreen;
-        if (QualitySettings.vSyncCount == 0)
-        {
-            vsyncTog.isOn = false;
-        } else
-        {
-            vsyncTog.isOn = true;
-        }
         bool foundRes = false;
         for(int i = 0; i < resolutions.Count; i++)
         {
@@ -86,17 +93,10 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         }
 
         float vol = 0f;
-        mouseSlider.value = gM.playerData.mouseSensitivityOptions;
-
         mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
         musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
         sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        TogglePerformance(_lowQualityMode);
     }
 
     public void ResLeft()
@@ -124,23 +124,6 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void UpdateResLabel()
     {
         resolutionLabel.text = resolutions[selectedResolution].horizontal.ToString() + " x " + resolutions[selectedResolution].vertical.ToString();
-    }
-
-    public void ApplyGraphics()
-    {
-        Screen.fullScreen = fullscreenTog.isOn;
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        if (vsyncTog.isOn)
-        {
-            QualitySettings.vSyncCount = 1;
-        }
-        else
-        {
-            QualitySettings.vSyncCount = 0;
-        }
-
-        Screen.SetResolution(resolutions[selectedResolution].horizontal, resolutions[selectedResolution].vertical, fullscreenTog.isOn);
-        TogglePerformace(performanceTog.isOn);
     }
 
     //functions below control sound slider values and how they interact with ui
@@ -206,6 +189,9 @@ public class OptionsMenu : MonoBehaviour, ISaveState
                 var json = streamReader.ReadToEnd();
                 gM.SaveSystem.SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
+
+            _lowQualityMode = gM.SaveSystem.SaveOptionsData.performanceMode;
+            mouseSlider.value = gM.playerData.mouseSensitivityOptions;
             masterSlider.value = gM.SaveSystem.SaveOptionsData.masterVol;
             musicSlider.value = gM.SaveSystem.SaveOptionsData.musicVol;
             sfxSlider.value = gM.SaveSystem.SaveOptionsData.sfxVol;

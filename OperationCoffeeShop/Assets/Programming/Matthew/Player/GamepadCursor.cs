@@ -18,7 +18,7 @@ public class GamepadCursor : MonoBehaviour
     private float _cursorHalfHeight;
     private float _screenWidth;
     private float _screenHeight;
-    private GameObject _currentButton;
+    private Selectable _currentSelectable;
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class GamepadCursor : MonoBehaviour
         if (!playerInput) return;
 
         // Store the previous button for pointer exit
-        GameObject previousButton = _currentButton;
+        Selectable previousSelectable = _currentSelectable;
 
         // Raycast to find the button under the cursor
         PointerEventData eventData = new PointerEventData(EventSystem.current);
@@ -60,29 +60,29 @@ public class GamepadCursor : MonoBehaviour
         EventSystem.current.RaycastAll(eventData, results);
 
         // Find the button with the highest priority
-        _currentButton = null;
+        _currentSelectable = null;
         int highestSortingOrder = int.MinValue;
         foreach (RaycastResult result in results)
         {
-            UnityEngine.UI.Button button = result.gameObject.GetComponent<UnityEngine.UI.Button>();
+            Selectable button = result.gameObject.GetComponent<Selectable>();
             if (button != null && result.sortingOrder > highestSortingOrder)
             {
                 highestSortingOrder = result.sortingOrder;
-                _currentButton = result.gameObject;
+                _currentSelectable = button;
             }
         }
 
         // Call pointer enter and pointer exit handlers
-        if (previousButton != _currentButton)
+        if (previousSelectable != _currentSelectable)
         {
-            if (previousButton != null)
+            if (previousSelectable != null)
             {
-                ExecuteEvents.Execute(previousButton, eventData, ExecuteEvents.pointerExitHandler);
+                ExecuteEvents.Execute(previousSelectable.gameObject, eventData, ExecuteEvents.pointerExitHandler);
             }
 
-            if (_currentButton != null)
+            if (_currentSelectable != null)
             {
-                ExecuteEvents.Execute(_currentButton, eventData, ExecuteEvents.pointerEnterHandler);
+                ExecuteEvents.Execute(_currentSelectable.gameObject, eventData, ExecuteEvents.pointerEnterHandler);
             }
         }
 
@@ -113,14 +113,16 @@ public class GamepadCursor : MonoBehaviour
 
     private void OnClickAction(object sender, EventArgs e)
     {
-        if (_currentButton != null)
+        if (_currentSelectable != null)
         {
             // Create a pointer event data with the current position of the virtual cursor
             PointerEventData eventData = new PointerEventData(EventSystem.current);
             eventData.position = _virtualCursorRectTransform.position;
 
-            // Execute a click event on the current button
-            ExecuteEvents.Execute(_currentButton, eventData, ExecuteEvents.pointerClickHandler);
+            if (_currentSelectable is UnityEngine.UI.Button button)
+            {
+                ExecuteEvents.Execute(button.gameObject, eventData, ExecuteEvents.pointerClickHandler);
+            }
 
             // Hide the system cursor and lock it to the center of the screen
             Cursor.visible = false;

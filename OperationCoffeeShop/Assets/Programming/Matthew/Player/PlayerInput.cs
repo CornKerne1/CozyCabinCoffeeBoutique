@@ -53,7 +53,6 @@ public class PlayerInput : MonoBehaviour
         sprint = _fPp.Sprint;
         jump = _fPp.Jump;
         crouch = _fPp.Crouch;
-        Cursor.visible = false;
     }
     private void Start()
     {
@@ -67,6 +66,9 @@ public class PlayerInput : MonoBehaviour
     {
         hudRef = Instantiate(hud);
         virtualCursor = hudRef.GetComponentInChildren<GamepadCursor>();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         virtualCursor.playerInput = this;
         virtualCursor.transform.parent = null;
     }
@@ -111,9 +113,6 @@ public class PlayerInput : MonoBehaviour
 
     public void OnEnable()
     {
-        
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
 
         _fPp.Enable();
