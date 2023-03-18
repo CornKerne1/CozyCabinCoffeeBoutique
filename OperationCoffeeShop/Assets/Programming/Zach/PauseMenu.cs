@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
             _gameMode.gameModeData.timeRate = _previousTimeRate;
             AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
             _animator.SetTrigger("Reverse");
-            Cursor.visible = true;
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             playerInput.ToggleMovement();
             pD.inUI = false;
