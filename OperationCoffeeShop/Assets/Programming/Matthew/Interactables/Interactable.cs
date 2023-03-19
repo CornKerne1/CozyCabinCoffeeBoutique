@@ -191,7 +191,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
                 Destroy(rC.gameObject);
             }
         }
-        while (timeElapsed < 1f)
+        while (timeElapsed < 5f)
         {
             timeElapsed += Time.deltaTime;
             yield return null;
