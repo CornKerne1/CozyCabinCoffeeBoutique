@@ -139,6 +139,7 @@ public class CustomerInteractable : Interactable
     public void DisplayOrderBubble()
     {
         _orderCanvas.enabled = true;
+        _orderCanvas.sortingLayerName = "WaterFall";
     }
 
     public void RemoveOrderBubble()
