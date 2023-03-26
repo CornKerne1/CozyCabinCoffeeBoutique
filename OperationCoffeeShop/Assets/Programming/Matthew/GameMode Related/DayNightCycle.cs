@@ -95,7 +95,7 @@ public class DayNightCycle
             var percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
             sunLightRotation = Mathf.Lerp(180, 360, (float)percentage);
         }
-
+        if(!_gameMode) return;
         _gameMode.sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
     }
 

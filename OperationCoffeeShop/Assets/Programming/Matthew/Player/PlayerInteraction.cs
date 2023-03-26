@@ -77,6 +77,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void RaycastCheck()
     {
+        if(!_cam) return;
         if (playerData.busyHands)
         {
             if (!_currentInteractable && carriedObj)
