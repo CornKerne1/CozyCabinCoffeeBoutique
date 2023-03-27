@@ -77,8 +77,14 @@ public class PlayerInput : MonoBehaviour
     {
         virtualCursor.gameObject.SetActive(false);
         pauseM.SetActive(false);
-        var pM = pauseM.GetComponent<PauseMenu>();
-        pM.playerInput = this;
+        try
+        {
+            var pM = pauseM.GetComponent<PauseMenu>();
+            pM.playerInput = this;
+        }
+        catch (Exception e)
+        {
+        }
     }
 
     private void Update()

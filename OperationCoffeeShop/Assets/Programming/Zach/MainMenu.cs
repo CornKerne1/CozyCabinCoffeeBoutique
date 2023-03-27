@@ -6,13 +6,14 @@ using UnityEngine.Serialization;
 
 public class MainMenu : MonoBehaviour
 {
-    public string scene;
+    [SerializeField]private string scene;
+    [SerializeField]private Canvas introLetterCanvas;
 
-    public Canvas introLetterCanvas;
+    [SerializeField]private GameObject optionsScreen;
 
-    public GameObject optionsScreen;
-
-    public GameObject creditsScreen;
+    [SerializeField]private GameObject creditsScreen;
+    [SerializeField]private GameObject cursorPref;
+    private GamepadCursor _virtualCursor;
     private GameMode _gameMode;
 
 
@@ -31,7 +32,6 @@ public class MainMenu : MonoBehaviour
         introLetterCanvas.enabled = false;
         _animator.SetTrigger(Start1);
         director.Play();
-        Cursor.visible = false;
     }
 
     public void LaunchGame()
@@ -70,12 +70,21 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Quitting");
     }
-
+    private void InitializeHudAndCursor()
+    {
+        _virtualCursor = Instantiate(cursorPref).GetComponentInChildren<GamepadCursor>();
+        _virtualCursor.playerInput = _gameMode.playerInput;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        _virtualCursor.transform.parent = null;
+    }
     private void Start()
     {
         AkSoundEngine.PostEvent("Play_TitleTheme", this.gameObject);
         _animator = GetComponent<Animator>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        InitializeHudAndCursor();
         _gameMode.gameModeData.isOpen = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
