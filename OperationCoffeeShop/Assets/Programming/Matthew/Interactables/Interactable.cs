@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics.Eventing.Reader;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -59,6 +60,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         InitializeOutline();
         CheckTutorial();
         OnFocusTextPool();
+        gameMode.dynamicBatcher.AddForBatching(gameObject);
         SaveSystem.SaveGameEvent += OnSaveEvent;
     }
     private void OnFocusTextPool()
@@ -159,13 +161,14 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         StartCoroutine(LookAt(playerInteraction));
     }
 
-    private IEnumerator CO_FreezeForClipping()
+    private async Task FreezeForClippingAsync()
     {
-        if (!isBreakable) yield break;
+        if (!isBreakable) return;
         _rB.isKinematic = true;
-        yield return new WaitForSeconds(.02f);
+        await Task.Delay(10);
         AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
+        await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
         var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
         particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;
         particle.GetComponent<ParticleSystemRenderer>().material.SetColor("_EmissionColor", smashEmissionColor);
@@ -182,7 +185,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
             c.enabled = false;
         foreach (var rE in renderers)
             rE.enabled = false;
-        yield return new WaitForSeconds(.02f);
+        await Task.Delay(20);
         if (TryGetComponent<Radio>(out var r))
         {
             foreach (var rC in r.radioChannels)
@@ -194,9 +197,9 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         while (timeElapsed < 5f)
         {
             timeElapsed += Time.deltaTime;
-            yield return null;
+            await Task.Yield();
         }
-        Destroy(particle);
+        DestroyImmediate(particle);
         Destroy(gameObject);
     }
 
@@ -209,7 +212,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         }
     }
     
-    private void OnCollisionEnter(Collision collision)
+    private async void OnCollisionEnter(Collision collision)
     {
         if (_isBroken) return;
         if (collision.gameObject.TryGetComponent<LiquidIngredients>(out _)) return;
@@ -219,9 +222,9 @@ public abstract class Interactable : MonoBehaviour,ISaveState
                 gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
             if (!(speed >= gameMode.gameModeData.breakSpeed)) return;
             {
-                _isBroken = true;
-                StartCoroutine(CO_FreezeForClipping());
-                StartCoroutine(collision.gameObject.GetComponent<Interactable>().CO_FreezeForClipping());
+                if(isBreakable)_isBroken = true; 
+                FreezeForClippingAsync();
+                collision.gameObject.GetComponent<Interactable>().FreezeForClippingAsync();
             }
         }
         catch

@@ -16,9 +16,9 @@ public class KillZone : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            _gM.player.GetComponent<CharacterController>().enabled = false;
-            _gM.player.transform.position = resetTrans.position;
-            _gM.player.GetComponent<CharacterController>().enabled = true;
+            _gM.player.GetComponent<PlayerMovement>().TeleportPlayer(resetTrans,false);
+            
+            
         }
     }
     private void OnCollisionEnter(Collision collision)

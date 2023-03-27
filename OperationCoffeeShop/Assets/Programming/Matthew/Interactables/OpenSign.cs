@@ -28,9 +28,7 @@ public class OpenSign : Interactable
             if (gameMode.gameModeData.isOpen)
             {
                 _animator.SetBool(Open,true);
-                gameMode.player.GetComponent<CharacterController>().enabled = false;
-                gameMode.player.transform.position = openTrans.position;
-                gameMode.player.GetComponent<CharacterController>().enabled = true;
+                gameMode.player.GetComponent<PlayerMovement>().TeleportPlayer(openTrans,false);
             }
             
         }

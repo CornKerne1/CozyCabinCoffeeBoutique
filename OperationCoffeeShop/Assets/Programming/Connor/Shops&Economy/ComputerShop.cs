@@ -89,25 +89,25 @@ public class ComputerShop : MonoBehaviour
             switch (ingredient)
             {
                 case DeliveryManager.ObjType.Coffee:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, coffeeQuantity));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, coffeeQuantity));
                     break;
 
                 case DeliveryManager.ObjType.Milk:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
 
                 case DeliveryManager.ObjType.Espresso:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, espressoQuantity));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, espressoQuantity));
                     break;
 
                 case DeliveryManager.ObjType.Sugar:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
                     break;
                 case DeliveryManager.ObjType.Camera:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
                 case DeliveryManager.ObjType.PictureFrame:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
             }
         }

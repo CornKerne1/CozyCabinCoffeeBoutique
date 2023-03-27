@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator _coRunning;
     private CharacterController _characterController;
 
-    private void Start()
+    private void Awake()
     {
         _camera = Camera.main;
         _characterController = GetComponent<CharacterController>();
@@ -54,6 +54,13 @@ public class PlayerMovement : MonoBehaviour
         _sprintModifier = 1;
     }
 
+    public void TeleportPlayer(Transform destination, bool rotate)
+    {
+        _characterController.enabled = false;
+        transform.position = destination.position;
+        if (rotate) transform.rotation = destination.rotation;
+        _characterController.enabled = true;
+    }
     private IEnumerator CO_EditorFix()
     {
         var playerInteractable = GetComponent<PlayerInteraction>();

@@ -29,8 +29,9 @@ public class GameMode : MonoBehaviour,ISaveState
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
 
-    public DeliveryManager DeliveryManager;
+    public DeliveryManager deliveryManager;
     public CoffeeBankTM CoffeeBankTM;
+    public DynamicBatcher dynamicBatcher;
 
     public SaveSystem SaveSystem;
 
@@ -53,7 +54,6 @@ public class GameMode : MonoBehaviour,ISaveState
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
         CoffeeBankTM = new CoffeeBankTM(CoffeeBankTM, this, gameModeData);
         SaveSystem = new SaveSystem(SaveSystem, this, gameModeData);
-        
         Initialize();
         //Instantiate(sunLight);
         IfTutorial();
@@ -86,6 +86,7 @@ public class GameMode : MonoBehaviour,ISaveState
         //if save file exists load DateTime from file else set to startTime
         DayNightCycle.Initialize();
         SaveSystem.Initialize();
+        dynamicBatcher = GetComponent<DynamicBatcher>();
     }
 
     private void IfTutorial()

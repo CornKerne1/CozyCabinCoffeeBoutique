@@ -13,7 +13,7 @@ public class DeliveryBox : Interactable
     public override void Start()
     {
         base.Start();
-        delivery = gameMode.DeliveryManager.GetDelivery();
+        delivery = gameMode.deliveryManager.GetDelivery();
     }
 
     public override void OnInteract(PlayerInteraction interaction)
