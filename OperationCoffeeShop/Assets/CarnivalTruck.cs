@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,21 +11,24 @@ public class CarnivalTruck : MonoBehaviour
 {
     [SerializeField] private Transform playerStart;
     [SerializeField] private GameObject targetPref;
+    [SerializeField]private GameObject textObj;
+    [SerializeField]private Animator animator;
     [SerializeField] private int maxRounds = 3, targetMultiplier = 3;
     [SerializeField] private float startingSpacing=.5f;
     [SerializeField] private Vector2 xRange = new Vector2(-5f, 5f),yRange = new Vector2(-5f, 5f),zRange = new Vector2(-5f, 5f);
     private float _currentSpacing;
     private GameMode _gameMode;
     private int _currentRound=1;
-    [SerializeField]private List<GameTarget> _gameTargets=new List<GameTarget>();
+    private List<GameObject> _gameTargets=new List<GameObject>();
     private List<Vector3> _targetPositions=new List<Vector3>();
     private TaskCompletionSource<bool> _waitForWinCompletionSource;
+    private static readonly int Start1 = Animator.StringToHash("Start");
 
     // Start is called before the first frame update
     async void Start()
     {
-        InitializeRound();
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        InitializeRound();
         _gameMode.player.GetComponent<PlayerMovement>().TeleportPlayer(playerStart,false);
         _gameMode.player.LookAt(transform);
     }
@@ -57,9 +61,17 @@ public class CarnivalTruck : MonoBehaviour
         
             var obj = Instantiate(targetPref, transform, false);
             obj.transform.localPosition = destination;
-            _gameTargets.Add(obj.GetComponent<GameTarget>());
+            _gameTargets.Add(obj.transform.GetChild(0).gameObject);
             _targetPositions.Remove(destination);
         }
+
+        await HandleRoundUI();
+    }
+
+    private async Task HandleRoundUI()
+    {
+        textObj.GetComponent<TextMeshProUGUI>().text = _currentRound.ToString();
+        animator.SetTrigger(Start1);
     }
     
     private async Task CalculateGridPositions()
@@ -78,13 +90,7 @@ public class CarnivalTruck : MonoBehaviour
         while (_gameTargets.Count > 0)
         {
             for (int i = _gameTargets.Count - 1; i >= 0; i--)
-            {
-                var obj = _gameTargets[i];
-                if (obj.IsBroken())
-                {
-                    _gameTargets.RemoveAt(i);
-                }
-            }
+                if(_gameTargets[i]==null) _gameTargets.RemoveAt(i);
             await Task.Yield();
         }
         // Use TaskCompletionSource to signal completion

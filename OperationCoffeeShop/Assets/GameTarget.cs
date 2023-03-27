@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class GameTarget : Interactable
 {
-    public bool IsBroken()
-    {
-        return _isBroken;
-    }
     public override void OnInteract(PlayerInteraction interaction)
     {
     }
