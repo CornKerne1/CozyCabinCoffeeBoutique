@@ -11,9 +11,9 @@ public class CarnivalTruck : MonoBehaviour
 {
     [SerializeField] private Transform playerStart;
     [SerializeField] private GameObject targetPref;
-    [SerializeField]private GameObject textObj;
-    [SerializeField]private Animator animator;
-    [SerializeField] private int maxRounds = 3, targetMultiplier = 3;
+    [SerializeField]private GameObject roundTextObj,cashTextObj;
+    [SerializeField]private Animator roundAnimator,cashAnimator;
+    [SerializeField] private int maxRounds = 3, targetMultiplier = 3,cashAwardMultiplier=10;
     [SerializeField] private float startingSpacing=.5f;
     [SerializeField] private Vector2 xRange = new Vector2(-5f, 5f),yRange = new Vector2(-5f, 5f),zRange = new Vector2(-5f, 5f);
     private float _currentSpacing;
@@ -23,14 +23,38 @@ public class CarnivalTruck : MonoBehaviour
     private List<Vector3> _targetPositions=new List<Vector3>();
     private TaskCompletionSource<bool> _waitForWinCompletionSource;
     private static readonly int Start1 = Animator.StringToHash("Start");
+    private Vector3 _originPlayerPosition=Vector3.zero;
+    private bool _roundLost=false;
+    private float _roundStartTime;
+    
+    public static event EventHandler DepositMoney;
 
     // Start is called before the first frame update
     async void Start()
     {
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        await Task.Delay(500);
         InitializeRound();
-        _gameMode.player.GetComponent<PlayerMovement>().TeleportPlayer(playerStart,false);
-        _gameMode.player.LookAt(transform);
+    }
+
+    private async Task HandlePlayerMovement(bool freezePlayer)
+    {
+        var playerMovement = _gameMode.player.GetComponent<PlayerMovement>();
+        if (freezePlayer)
+        {
+            var playerInput = _gameMode.playerInput;
+            if (_originPlayerPosition == Vector3.zero) _originPlayerPosition = _gameMode.player.position;
+
+                _gameMode.playerData.canJump = false;
+            playerInput.ToggleMovement();
+            playerMovement.TeleportPlayer(playerStart.position);
+            _gameMode.player.LookAt(transform);
+        }
+        else
+        {
+            playerMovement.TeleportPlayer(_originPlayerPosition);
+            _gameMode.playerData.canJump = true;
+        }
     }
 
     async Task InitializeRound()
@@ -40,7 +64,7 @@ public class CarnivalTruck : MonoBehaviour
         await CalculateGridPositions();
         await SpawnTargets();
         await WaitForWin();
-        ResetGame();
+        await ResetGame();
     }
 
     private async Task SpawnTargets()
@@ -48,8 +72,6 @@ public class CarnivalTruck : MonoBehaviour
         for (int i = 0; i < _currentRound * targetMultiplier; i++)
         {
             var destination = _targetPositions[Random.Range(0, _targetPositions.Count)];
-
-            // Remove any positions that share the same two axis values as the destination
             double EPSILON = .01f;
             _targetPositions.RemoveAll(pos => (Mathf.Abs(pos.x - destination.x) < EPSILON && 
                                                Mathf.Abs(pos.y - destination.y) < EPSILON) ||
@@ -64,16 +86,18 @@ public class CarnivalTruck : MonoBehaviour
             _gameTargets.Add(obj.transform.GetChild(0).gameObject);
             _targetPositions.Remove(destination);
         }
-
+        HandlePlayerMovement(true);
         await HandleRoundUI();
     }
 
     private async Task HandleRoundUI()
     {
-        textObj.GetComponent<TextMeshProUGUI>().text = _currentRound.ToString();
-        animator.SetTrigger(Start1);
+        roundTextObj.GetComponent<TextMeshProUGUI>().text = _currentRound.ToString();
+        roundAnimator.SetTrigger(Start1);
+        _gameMode.playerInput.ToggleMovement();
+        _roundStartTime = Time.time;
     }
-    
+
     private async Task CalculateGridPositions()
     {
         _currentSpacing = startingSpacing / _currentRound;
@@ -92,8 +116,20 @@ public class CarnivalTruck : MonoBehaviour
             for (int i = _gameTargets.Count - 1; i >= 0; i--)
                 if(_gameTargets[i]==null) _gameTargets.RemoveAt(i);
             await Task.Yield();
+            if (Time.time - _roundStartTime > 5000 * _currentRound)
+            {
+                _roundLost = true;
+                break;
+            }
         }
-        // Use TaskCompletionSource to signal completion
+
+        if (!_roundLost)
+        {
+            DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
+            cashTextObj.GetComponent<TextMeshProUGUI>().text = "$"+cashAwardMultiplier.ToString();
+            cashAnimator.SetTrigger(Start1);
+        }
+
         _waitForWinCompletionSource.SetResult(true);
     }
     private async Task ResetGame()
@@ -101,7 +137,8 @@ public class CarnivalTruck : MonoBehaviour
         _currentRound++;
         if (_currentRound > maxRounds)
         {
-            // end game
+            await HandlePlayerMovement(false);
+            Destroy(gameObject);
         }
         _gameTargets.Clear();
         _targetPositions.Clear();

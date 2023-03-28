@@ -9,6 +9,7 @@ public class CoffeeBankTM
         _gameMode = gameMode;
         _gameModeData = gameModeData;
         CustomerLine.DepositMoney += DepositMoneyInBank;
+        CarnivalTruck.DepositMoney += DepositMoneyInBank;
         ComputerShop.SpendMoney += WithdrawMoneyInBank;
     }
     public static event EventHandler SuccessfulWithdrawal;
@@ -18,29 +19,41 @@ public class CoffeeBankTM
 
     private void DepositMoneyInBank(object sender, EventArgs e)
     {
-        try
+        if (sender is int || sender is float)
         {
-            _gameModeData.moneyInBank += (float)sender;
+            float depositAmount = Convert.ToSingle(sender);
+            _gameModeData.moneyInBank += depositAmount;
         }
-        catch
+        else
         {
-            // ignored
+            Debug.LogError("Cannot deposit money. Invalid data type: " + sender.GetType());
         }
+    }
+    public void DepositMoneyInBank(float depositAmount)
+    {
+        _gameModeData.moneyInBank += depositAmount;
     }
 
     private void WithdrawMoneyInBank(object sender, EventArgs e)
     {
-        //Debug.Log("making a withdraw for " + (float)sender + " from an account with " + moneyInBank);
-        if ( _gameModeData.moneyInBank - (float)sender >= 0)
+        if (sender is int || sender is float)
         {
-            _gameModeData.moneyInBank -= (float)sender;
-            SuccessfulWithdrawal?.Invoke(true, EventArgs.Empty);
+            float withdrawalAmount = (float)Convert.ToDouble(sender);
 
-            Debug.Log("withdrawing money, money in bank now =" +  _gameModeData.moneyInBank);
+            if (_gameModeData.moneyInBank - withdrawalAmount >= 0)
+            {
+                _gameModeData.moneyInBank -= withdrawalAmount;
+                SuccessfulWithdrawal?.Invoke(true, EventArgs.Empty);
+                Debug.Log("withdrawing money, money in bank now =" +  _gameModeData.moneyInBank);
+            }
+            else
+            {
+                SuccessfulWithdrawal?.Invoke(false, EventArgs.Empty);
+            }
         }
         else
         {
-            SuccessfulWithdrawal?.Invoke(false, EventArgs.Empty);
+            Debug.LogError("Cannot withdraw money. Invalid data type: " + sender.GetType());
         }
     }
 }

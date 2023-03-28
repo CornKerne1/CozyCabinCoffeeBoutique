@@ -54,11 +54,10 @@ public class PlayerMovement : MonoBehaviour
         _sprintModifier = 1;
     }
 
-    public void TeleportPlayer(Transform destination, bool rotate)
+    public void TeleportPlayer(Vector3 destination)
     {
         _characterController.enabled = false;
-        transform.position = destination.position;
-        if (rotate) transform.rotation = destination.rotation;
+        transform.position = destination;
         _characterController.enabled = true;
     }
     private IEnumerator CO_EditorFix()

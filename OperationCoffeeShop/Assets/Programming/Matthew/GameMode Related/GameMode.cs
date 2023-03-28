@@ -58,7 +58,7 @@ public class GameMode : MonoBehaviour,ISaveState
         //Instantiate(sunLight);
         IfTutorial();
     }
-    protected void Start()
+    protected async void Start()
     {
         var playerInteraction = player.GetComponent<PlayerInteraction>();
         playerInput = playerInteraction.playerInput;

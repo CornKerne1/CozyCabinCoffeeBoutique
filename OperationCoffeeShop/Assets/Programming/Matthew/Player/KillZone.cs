@@ -16,7 +16,7 @@ public class KillZone : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            _gM.player.GetComponent<PlayerMovement>().TeleportPlayer(resetTrans,false);
+            _gM.player.GetComponent<PlayerMovement>().TeleportPlayer(resetTrans.position);
             
             
         }
