@@ -11,16 +11,16 @@ public abstract class Interactable : MonoBehaviour,ISaveState
 {
     public GameMode gameMode;
     public Vector3 rotateOffset;
-    [SerializeField] private bool isBreakable;
+    [SerializeField] protected bool isBreakable;
     public string breakableSoundEngineEvent = "PLAY_CERAMICBOWLBREAKING";
 
     //Breakable
-    [SerializeField] private GameObject breakablePrefab;
-    [SerializeField] private Color smashColor;
-    [SerializeField] private Color smashEmissionColor;
-    private GameObject _breakableRef;
+    [SerializeField] protected GameObject breakablePrefab;
+    [SerializeField] protected Color smashColor;
+    [SerializeField] protected Color smashEmissionColor;
+    protected GameObject _breakableRef;
     [FormerlySerializedAs("_pI")] public PlayerInteraction playerInteraction;
-    private Rigidbody _rB;
+    protected Rigidbody _rB;
     protected bool _isWaiting, _isBroken;
     public bool hasOnScreenText;
     private Outline _outline;
@@ -161,7 +161,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         StartCoroutine(LookAt(playerInteraction));
     }
 
-    private async Task FreezeForClippingAsync()
+    protected virtual async Task FreezeForClippingAsync()
     {
         if (!isBreakable) return;
         _rB.isKinematic = true;

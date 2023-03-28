@@ -19,15 +19,8 @@ public class CoffeeBankTM
 
     private void DepositMoneyInBank(object sender, EventArgs e)
     {
-        if (sender is int || sender is float)
-        {
-            float depositAmount = Convert.ToSingle(sender);
-            _gameModeData.moneyInBank += depositAmount;
-        }
-        else
-        {
-            Debug.LogError("Cannot deposit money. Invalid data type: " + sender.GetType());
-        }
+        float depositAmount = Convert.ToSingle(sender);
+        _gameModeData.moneyInBank += depositAmount;
     }
     public void DepositMoneyInBank(float depositAmount)
     {

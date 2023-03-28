@@ -19,7 +19,7 @@ public class CarnivalTruck : MonoBehaviour
     private float _currentSpacing;
     private GameMode _gameMode;
     private int _currentRound=1;
-    private List<GameObject> _gameTargets=new List<GameObject>();
+    private List<GameTarget> _gameTargets=new List<GameTarget>();
     private List<Vector3> _targetPositions=new List<Vector3>();
     private TaskCompletionSource<bool> _waitForWinCompletionSource;
     private static readonly int Start1 = Animator.StringToHash("Start");
@@ -59,6 +59,7 @@ public class CarnivalTruck : MonoBehaviour
 
     async Task InitializeRound()
     {
+        _roundLost=false;
         _waitForWinCompletionSource = new TaskCompletionSource<bool>();
         if (_currentRound > maxRounds) return;
         await CalculateGridPositions();
@@ -83,12 +84,28 @@ public class CarnivalTruck : MonoBehaviour
         
             var obj = Instantiate(targetPref, transform, false);
             obj.transform.localPosition = destination;
-            _gameTargets.Add(obj.transform.GetChild(0).gameObject);
+            obj.transform.rotation =
+                new Quaternion(0, 0, 0, 0);
+            _gameTargets.Add(obj.GetComponentInChildren<GameTarget>());
             _targetPositions.Remove(destination);
+            RotateTarget(obj,false);
         }
         HandlePlayerMovement(true);
         await HandleRoundUI();
     }
+    public async Task RotateTarget(GameObject target, bool reverse)
+    {
+        float degree;
+        degree = reverse ? 0f : -90f;
+        Quaternion targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
+        while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.01f)
+        {
+            target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
+            await Task.Yield();
+        }
+        target.transform.rotation = targetRotation;
+    }
+
 
     private async Task HandleRoundUI()
     {
@@ -113,24 +130,39 @@ public class CarnivalTruck : MonoBehaviour
     {
         while (_gameTargets.Count > 0)
         {
-            for (int i = _gameTargets.Count - 1; i >= 0; i--)
-                if(_gameTargets[i]==null) _gameTargets.RemoveAt(i);
-            await Task.Yield();
-            if (Time.time - _roundStartTime > 5000 * _currentRound)
+            bool targetBroken = false;
+            foreach(var obj in _gameTargets)
             {
+                if (obj.IsBroken())
+                {
+                    await RotateTarget(obj.transform.parent.gameObject, true);
+                    Destroy(obj.transform.parent.gameObject);
+                    targetBroken = true;
+                }
+            }
+            if (targetBroken)
+            {
+                // If a target was broken, wait for the next frame before checking again
+                await Task.Yield();
+            }
+            else if (Time.time - _roundStartTime > 5000 * _currentRound)
+            {
+                // If no target was broken for a certain amount of time, exit the loop and end the round
                 _roundLost = true;
                 break;
             }
+            else
+            {
+                // Wait for a short amount of time before checking again
+                await Task.Delay(100);
+            }
         }
-
         if (!_roundLost)
         {
             DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
-            cashTextObj.GetComponent<TextMeshProUGUI>().text = "$"+cashAwardMultiplier.ToString();
-            cashAnimator.SetTrigger(Start1);
+            _currentRound++;
+            await InitializeRound();
         }
-
-        _waitForWinCompletionSource.SetResult(true);
     }
     private async Task ResetGame()
     {
