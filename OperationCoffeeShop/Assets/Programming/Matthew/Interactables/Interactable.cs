@@ -163,7 +163,8 @@ public abstract class Interactable : MonoBehaviour,ISaveState
 
     protected virtual async Task FreezeForClippingAsync()
     {
-        if (!isBreakable) return;
+        if (!isBreakable||_isBroken) return;
+        _isBroken = true;
         _rB.isKinematic = true;
         await Task.Delay(10);
         AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
@@ -222,7 +223,6 @@ public abstract class Interactable : MonoBehaviour,ISaveState
                 gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
             if (!(speed >= gameMode.gameModeData.breakSpeed)) return;
             {
-                if(isBreakable)_isBroken = true; 
                 FreezeForClippingAsync();
                 collision.gameObject.GetComponent<Interactable>().FreezeForClippingAsync();
             }
