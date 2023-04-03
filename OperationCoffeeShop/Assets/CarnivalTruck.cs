@@ -18,15 +18,14 @@ public class CarnivalTruck : MonoBehaviour
     [SerializeField] private Vector2 xRange = new Vector2(-5f, 5f),yRange = new Vector2(-5f, 5f),zRange = new Vector2(-5f, 5f);
     private float _currentSpacing;
     private GameMode _gameMode;
-    private int _currentRound=1;
+    private int _currentRound=1,_currentBrokenTargets=0;
     private List<GameTarget> _gameTargets=new List<GameTarget>();
     private List<Vector3> _targetPositions=new List<Vector3>();
-    private TaskCompletionSource<bool> _waitForWinCompletionSource;
     private static readonly int Start1 = Animator.StringToHash("Start");
     private Vector3 _originPlayerPosition=Vector3.zero;
     private bool _roundLost=false;
     private float _roundStartTime;
-    
+
     public static event EventHandler DepositMoney;
 
     // Start is called before the first frame update
@@ -34,7 +33,16 @@ public class CarnivalTruck : MonoBehaviour
     {
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         await Task.Delay(500);
+        GameTarget.TargetBroken += IncrementBrokenTargets;
         InitializeRound();
+    }
+    
+    async void IncrementBrokenTargets(object sender, EventArgs e)
+    {
+        GameObject obj = sender as GameObject;
+        _currentBrokenTargets++;
+        await RotateTarget(obj.transform.parent.gameObject, true);
+        Destroy(obj.transform.parent.gameObject);
     }
 
     private async Task HandlePlayerMovement(bool freezePlayer)
@@ -60,7 +68,6 @@ public class CarnivalTruck : MonoBehaviour
     async Task InitializeRound()
     {
         _roundLost=false;
-        _waitForWinCompletionSource = new TaskCompletionSource<bool>();
         if (_currentRound > maxRounds) return;
         await CalculateGridPositions();
         await SpawnTargets();
@@ -128,42 +135,30 @@ public class CarnivalTruck : MonoBehaviour
     }
     private async Task WaitForWin()
     {
-        while (_gameTargets.Count > 0)
+        StartLossTimer();
+        while (_currentBrokenTargets<targetMultiplier*_currentRound)
         {
-            bool targetBroken = false;
-            foreach(var obj in _gameTargets)
-            {
-                if (obj.IsBroken())
-                {
-                    await RotateTarget(obj.transform.parent.gameObject, true);
-                    Destroy(obj.transform.parent.gameObject);
-                    targetBroken = true;
-                }
-            }
-            if (targetBroken)
-            {
-                // If a target was broken, wait for the next frame before checking again
-                await Task.Yield();
-            }
-            else if (Time.time - _roundStartTime > 5000 * _currentRound)
-            {
-                // If no target was broken for a certain amount of time, exit the loop and end the round
-                _roundLost = true;
-                break;
-            }
-            else
-            {
-                // Wait for a short amount of time before checking again
-                await Task.Delay(100);
-            }
+            if (_currentBrokenTargets == targetMultiplier * _currentRound) break;
+            await Task.Yield();
         }
         if (!_roundLost)
         {
             DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
+            cashTextObj.GetComponent<TextMeshProUGUI>().text ="$"+cashAwardMultiplier.ToString();
+            cashAnimator.SetTrigger(Start1);
             _currentRound++;
-            await InitializeRound();
         }
     }
+
+    private async void StartLossTimer()
+    {
+        while (Time.time - _roundStartTime > 5000 * _currentRound)
+        {
+            _roundLost = true;
+            break;
+        }
+    }
+
     private async Task ResetGame()
     {
         _currentRound++;
@@ -175,9 +170,6 @@ public class CarnivalTruck : MonoBehaviour
         _gameTargets.Clear();
         _targetPositions.Clear();
         // Create a new TaskCompletionSource
-        _waitForWinCompletionSource = new TaskCompletionSource<bool>();
         await InitializeRound();
-        // Wait for WaitForWin to complete before continuing
-        await _waitForWinCompletionSource.Task;
     }
 }

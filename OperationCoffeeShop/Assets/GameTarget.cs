@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GameTarget : Interactable
 {
+    public static event EventHandler TargetBroken;
     public override void OnInteract(PlayerInteraction interaction)
     {
     }
@@ -14,12 +15,6 @@ public class GameTarget : Interactable
     {
         
     }
-
-    public bool IsBroken()
-    {
-        return _isBroken;
-    }
-
     protected override async Task FreezeForClippingAsync()
     {
         if (!isBreakable) return;
@@ -28,7 +23,7 @@ public class GameTarget : Interactable
         AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
         await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
-        _isBroken = true;
+        TargetBroken?.Invoke(this.gameObject, EventArgs.Empty);
         var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
         particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;
         particle.GetComponent<ParticleSystemRenderer>().material.SetColor("_EmissionColor", smashEmissionColor);
