@@ -9,8 +9,6 @@ public class PhysicalIngredient : Interactable
     [SerializeField] public Ingredients thisIngredient;
 
     [SerializeField] private bool inHand;
-    
-    public Dispenser dispenser;
     public Machine machine;
 
     public override void Start()

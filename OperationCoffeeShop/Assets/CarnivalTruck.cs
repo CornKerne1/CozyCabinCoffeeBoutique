@@ -42,7 +42,7 @@ public class CarnivalTruck : MonoBehaviour
         GameObject obj = sender as GameObject;
         _currentBrokenTargets++;
         await RotateTarget(obj.transform.parent.gameObject, true);
-        Destroy(obj.transform.parent.gameObject);
+        DestroyImmediate(obj.transform.parent.gameObject);
     }
 
     private async Task HandlePlayerMovement(bool freezePlayer)
@@ -56,7 +56,7 @@ public class CarnivalTruck : MonoBehaviour
                 _gameMode.playerData.canJump = false;
             playerInput.ToggleMovement();
             playerMovement.TeleportPlayer(playerStart.position);
-            _gameMode.player.LookAt(transform);
+            _gameMode.camera.transform.LookAt(transform);
         }
         else
         {
@@ -67,7 +67,9 @@ public class CarnivalTruck : MonoBehaviour
 
     async Task InitializeRound()
     {
+        Debug.Log(_currentRound);
         _roundLost=false;
+        _currentBrokenTargets = 0;
         if (_currentRound > maxRounds) return;
         await CalculateGridPositions();
         await SpawnTargets();
@@ -136,6 +138,7 @@ public class CarnivalTruck : MonoBehaviour
     private async Task WaitForWin()
     {
         StartLossTimer();
+        
         while (_currentBrokenTargets<targetMultiplier*_currentRound)
         {
             if (_currentBrokenTargets == targetMultiplier * _currentRound) break;
@@ -143,18 +146,22 @@ public class CarnivalTruck : MonoBehaviour
         }
         if (!_roundLost)
         {
-            DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
-            cashTextObj.GetComponent<TextMeshProUGUI>().text ="$"+cashAwardMultiplier.ToString();
-            cashAnimator.SetTrigger(Start1);
-            _currentRound++;
+           await UIReward();
         }
+    }
+
+    private async Task UIReward()
+    {
+        DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
+        cashTextObj.GetComponent<TextMeshProUGUI>().text = "$" + cashAwardMultiplier.ToString();
+        cashAnimator.SetTrigger(Start1);
     }
 
     private async void StartLossTimer()
     {
         while (Time.time - _roundStartTime < 5000 * _currentRound)
         {
-            Task.Yield();
+            await Task.Yield();
         }
         _roundLost = true;
     }

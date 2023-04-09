@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &786323508646776031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5275614536036614464}
+  m_Layer: 3
+  m_Name: SpawnTrans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5275614536036614464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786323508646776031}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.12967524, y: 0.02098465, z: -0.11335611}
+  m_LocalScale: {x: 3.3333344, y: 3.3333344, z: 3.3333344}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8970033191227470001}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &8588405193205606923
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +43,8 @@ GameObject:
   - component: {fileID: 5464043086438776596}
   - component: {fileID: 7795970052293675998}
   - component: {fileID: 493050186449741724}
+  - component: {fileID: 1231188198792962566}
+  - component: {fileID: 3723176878629621984}
   m_Layer: 0
   m_Name: Apple Basket
   m_TagString: Untagged
@@ -26,7 +59,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8588405193205606923}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1.867}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
@@ -39,6 +72,7 @@ Transform:
   - {fileID: 4962695170327016519}
   - {fileID: 7875370411216362429}
   - {fileID: 4714007451447177458}
+  - {fileID: 5275614536036614464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,9 +137,58 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6712945864084790178, guid: 878575771afc6704ab02a3b8345aa273, type: 3}
+--- !u!114 &1231188198792962566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588405193205606923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d565a4082b20f24c8a75141080dbf90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameMode: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  delivered: 0
+  dispenser: {fileID: 0}
+  objTypeShop: 0
+  spawnTrans: {fileID: 5275614536036614464}
+  objType: {fileID: 11400000, guid: 16bd8570dab63d0428dfed2da3f4277b, type: 2}
+  text: {fileID: 0}
+  message: '  Coffee Beans Left'
+  deliveryMode: 0
+  quantity: 10
+  bottomless: 1
+--- !u!54 &3723176878629621984
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588405193205606923}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &565405841684447725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,7 +256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &102690196102451788 stripped
 Transform:
@@ -247,7 +333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &1041146823421406934 stripped
 Transform:
@@ -321,7 +410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &4962695170327016519 stripped
 Transform:
@@ -395,7 +487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &4714007451447177458 stripped
 Transform:
@@ -469,7 +564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &6132570364611962106 stripped
 Transform:
@@ -543,7 +641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &6723748388827053239 stripped
 Transform:
@@ -617,7 +718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &7092401871368622726 stripped
 Transform:
@@ -691,7 +795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4348869155791416866, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8418398538529176368, guid: 123f6ed56f04c414d942336420927df1, type: 3}
+    - {fileID: 8019999643177066555, guid: 123f6ed56f04c414d942336420927df1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123f6ed56f04c414d942336420927df1, type: 3}
 --- !u!4 &7875370411216362429 stripped
 Transform:

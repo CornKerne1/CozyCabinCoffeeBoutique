@@ -33,6 +33,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     private float speed;
     public bool delivered;
     private bool _respawnable;
+    public Dispenser dispenser;
     public DeliveryManager.ObjType objTypeShop;
     void OnEnable() => Load(0);
     void OnSaveEvent(object sender, EventArgs e) => Save(0);
