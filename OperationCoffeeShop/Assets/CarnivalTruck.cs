@@ -152,11 +152,11 @@ public class CarnivalTruck : MonoBehaviour
 
     private async void StartLossTimer()
     {
-        while (Time.time - _roundStartTime > 5000 * _currentRound)
+        while (Time.time - _roundStartTime < 5000 * _currentRound)
         {
-            _roundLost = true;
-            break;
+            Task.Yield();
         }
+        _roundLost = true;
     }
 
     private async Task ResetGame()
