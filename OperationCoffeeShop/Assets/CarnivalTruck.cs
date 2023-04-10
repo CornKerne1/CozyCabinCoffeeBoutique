@@ -107,7 +107,7 @@ public class CarnivalTruck : MonoBehaviour
         float degree;
         degree = reverse ? 0f : -90f;
         Quaternion targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
-        while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.01f)
+        while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f)
         {
             target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
             await Task.Yield();

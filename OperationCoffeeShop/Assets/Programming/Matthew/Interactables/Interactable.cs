@@ -55,13 +55,13 @@ public abstract class Interactable : MonoBehaviour,ISaveState
             speed = 0;
         }
     }
-    public virtual void Start()
+    public virtual async void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         InitializeOutline();
         CheckTutorial();
         OnFocusTextPool();
-        gameMode.dynamicBatcher.AddForBatching(gameObject);
+        await gameMode.dynamicBatcher.AddForBatching(gameObject);
         SaveSystem.SaveGameEvent += OnSaveEvent;
     }
     private void OnFocusTextPool()

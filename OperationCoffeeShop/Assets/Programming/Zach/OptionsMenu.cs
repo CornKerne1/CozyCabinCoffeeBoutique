@@ -13,14 +13,11 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public GameMode gM;
 
     public List<ResItem> resolutions = new List<ResItem>();
-    private int selectedResolution;
+    private int _selectedResolution;
 
-    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel;
-    private bool playing;
-    
-
-    public TMP_Text mastLabel, musicLabel, sfxLabel;
-    public Slider masterSlider, musicSlider, sfxSlider, mouseSlider;
+    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel,vsyncLabel,mastLabel, musicLabel, sfxLabel,mouseLabel;
+    private bool _playing;
+    private float _masterVol, _musicVol, _sfxVol,_mouseVal;
 
     public UniversalRenderPipelineAsset urpA;
     private bool _lowQualityMode;
@@ -40,6 +37,28 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             LowQualityMode();
         else
             HighQualityMode();
+    }
+    public void ToggleFullscreen()
+    {
+        int currentScreenMode = (int)Screen.fullScreenMode;
+        Screen.fullScreenMode = currentScreenMode+1 >3?(FullScreenMode)0:(FullScreenMode)(currentScreenMode+1);
+        fullscreenLabel.text = Screen.fullScreenMode.ToString();
+    }
+
+    public void ToggleVSync()
+    {
+        if (Application.targetFrameRate == -1)
+        {
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 1;
+            vsyncLabel.text = "ON";
+        }
+        else
+        {
+            Application.targetFrameRate = -1;
+            QualitySettings.vSyncCount = 0;
+            vsyncLabel.text = "OFF";
+        }
     }
     private void HighQualityMode()
     {
@@ -75,7 +94,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             {
                 foundRes = true;
 
-                selectedResolution = 1;
+                _selectedResolution = 1;
 
                 UpdateResLabel(); 
             }
@@ -88,24 +107,25 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             newRes.vertical = Screen.height;
 
             resolutions.Add(newRes);
-            selectedResolution = resolutions.Count - 1;
+            _selectedResolution = resolutions.Count - 1;
             UpdateResLabel();
         }
 
         float vol = 0f;
-        mastLabel.text = Mathf.RoundToInt(masterSlider.value).ToString();
-        musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
-        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
+        mouseLabel.text = ((int)(_mouseVal * 10)).ToString();
+        mastLabel.text = Mathf.RoundToInt(_masterVol).ToString();
+        musicLabel.text = Mathf.RoundToInt(_musicVol).ToString();
+        sfxLabel.text = Mathf.RoundToInt(_sfxVol).ToString();
         TogglePerformance(_lowQualityMode);
     }
 
     public void ResLeft()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        selectedResolution--;
-        if(selectedResolution < 0)
+        _selectedResolution--;
+        if(_selectedResolution < 0)
         {
-            selectedResolution = 0;
+            _selectedResolution = 0;
         }
         UpdateResLabel();
     }
@@ -113,51 +133,64 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void ResRight()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        selectedResolution++;
-        if (selectedResolution > resolutions.Count - 1)
+        _selectedResolution++;
+        if (_selectedResolution > resolutions.Count - 1)
         {
-            selectedResolution = resolutions.Count - 1;
+            _selectedResolution = resolutions.Count - 1;
         }
         UpdateResLabel();
     }
 
     public void UpdateResLabel()
     {
-        resolutionLabel.text = resolutions[selectedResolution].horizontal.ToString() + " x " + resolutions[selectedResolution].vertical.ToString();
+        resolutionLabel.text = resolutions[_selectedResolution].horizontal.ToString() + " x " + resolutions[_selectedResolution].vertical.ToString();
     }
 
     //functions below control sound slider values and how they interact with ui
-    public void SetMasterVol()
+    public void MasterVol(string dir)
     {
+        _masterVol = dir == "left" ? _masterVol - 5 : _masterVol + 5;
+        if (_masterVol < 0) _masterVol = 0;
+        if (_masterVol > 100) _masterVol = 100;
         StartCoroutine(CO_PlayAudioWWisely());
-        mastLabel.text = Mathf.RoundToInt(masterSlider.value) .ToString();
-        gM.SaveSystem.SaveOptionsData.masterVol = masterSlider.value;
+        mastLabel.text = Mathf.RoundToInt(_masterVol) .ToString();
+        gM.SaveSystem.SaveOptionsData.masterVol = _masterVol;
         AkSoundEngine.SetRTPCValue("MasterVolume", gM.SaveSystem.SaveOptionsData.masterVol);
         gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
 
     }
-    public void SetMusicVol()
+    public void MusicVol(string dir)
     {
+        _musicVol = dir == "left" ? _musicVol - 5 : _musicVol + 5;
+        if (_musicVol < 0) _musicVol = 0;
+        if (_musicVol > 100) _musicVol = 100;
         StartCoroutine(CO_PlayAudioWWisely());
-        musicLabel.text = Mathf.RoundToInt(musicSlider.value).ToString();
-        gM.SaveSystem.SaveOptionsData.musicVol = musicSlider.value;
+        musicLabel.text = Mathf.RoundToInt(_musicVol).ToString();
+        gM.SaveSystem.SaveOptionsData.musicVol = _musicVol;
         AkSoundEngine.SetRTPCValue("MusicVolume", gM.SaveSystem.SaveOptionsData.musicVol);
         gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
 
     }
-    public void SetSFXVol()
+    public void SFXVol(string dir)
     {
+        _sfxVol = dir == "left" ? _sfxVol - 5 : _sfxVol + 5;
+        if (_sfxVol < 0) _sfxVol = 0;
+        if (_sfxVol > 100) _sfxVol = 100;
         StartCoroutine(CO_PlayAudioWWisely());
-        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value).ToString();
-        gM.SaveSystem.SaveOptionsData.sfxVol = sfxSlider.value;
+        sfxLabel.text = Mathf.RoundToInt(_sfxVol).ToString();
+        gM.SaveSystem.SaveOptionsData.sfxVol = _sfxVol;
         AkSoundEngine.SetRTPCValue("SFXVolume", gM.SaveSystem.SaveOptionsData.sfxVol);
         gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
         
     }
-    public void SetMouse()
+    public void SetMouse(string dir)
     {
+        _mouseVal = dir == "left" ? _mouseVal - .03f : _mouseVal + .03f;
+        if (_mouseVal < 0f) _mouseVal = 0f;
+        if (_mouseVal > 1f) _mouseVal = 1f;
         StartCoroutine(CO_PlayAudioWWisely());
-        gM.playerData.mouseSensitivityOptions = mouseSlider.value;
+        gM.playerData.mouseSensitivityOptions = _mouseVal;
+        mouseLabel.text = ((int)(_mouseVal * 100)).ToString();
     }
     public void CloseOptions()
     {
@@ -167,11 +200,11 @@ public class OptionsMenu : MonoBehaviour, ISaveState
 
     private IEnumerator CO_PlayAudioWWisely()
     {
-        if (playing)
+        if (_playing)
             yield break;
-        playing = true;
+        _playing = true;
         yield return new WaitForSeconds(.1f);
-        playing = false;
+        _playing = false;
         AkSoundEngine.PostEvent("Play_Slider", gameObject);
     }
 
@@ -191,10 +224,10 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             }
 
             _lowQualityMode = gM.SaveSystem.SaveOptionsData.performanceMode;
-            mouseSlider.value = gM.playerData.mouseSensitivityOptions;
-            masterSlider.value = gM.SaveSystem.SaveOptionsData.masterVol;
-            musicSlider.value = gM.SaveSystem.SaveOptionsData.musicVol;
-            sfxSlider.value = gM.SaveSystem.SaveOptionsData.sfxVol;
+            _mouseVal = gM.playerData.mouseSensitivityOptions;
+            _masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
+            _musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
+            _sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
         }
     }
 }
