@@ -155,6 +155,7 @@ public class CarnivalTruck : MonoBehaviour
         DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
         cashTextObj.GetComponent<TextMeshProUGUI>().text = "$" + cashAwardMultiplier.ToString();
         cashAnimator.SetTrigger(Start1);
+        await Task.Delay(250);
     }
 
     private async void StartLossTimer()
