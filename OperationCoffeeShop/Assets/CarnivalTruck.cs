@@ -38,7 +38,6 @@ public class CarnivalTruck : MonoBehaviour
     {
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         await Task.Delay(500);
-        GameTarget.TargetBroken += IncrementBrokenTargets;
         SetGameType();
         InitializeRound();
     }
@@ -48,6 +47,15 @@ public class CarnivalTruck : MonoBehaviour
         var gameTypes = Enum.GetNames(typeof(GameType));
         int targetMultiplier = Random.Range(0, gameTypes.Length);
         _currentGameType = (GameType)targetMultiplier;
+        switch (_currentGameType)
+        {
+            case GameType.TargetThrow:
+                GameTarget.TargetBroken += IncrementBrokenTargets;
+                break;
+            case GameType.RingToss:
+                RingTarget.RingToss+=IncrementBrokenTargets;
+                break;
+        }
     }
 
     async void IncrementBrokenTargets(object sender, EventArgs e)
