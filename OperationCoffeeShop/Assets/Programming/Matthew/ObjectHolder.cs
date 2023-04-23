@@ -23,5 +23,7 @@ public enum DispenserType
     Espresso,
     Sugar,
     Tea,
-    Liquid
+    Liquid,
+    Throwables,
+    RingToss
 }

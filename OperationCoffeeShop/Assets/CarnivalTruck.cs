@@ -9,9 +9,14 @@ using Random = UnityEngine.Random;
 
 public class CarnivalTruck : MonoBehaviour
 {
+    private enum GameType
+    {
+        TargetThrow,
+        RingToss
+    };
+    private GameType _currentGameType;
     [SerializeField] private Transform playerStart;
-    [SerializeField] private GameObject targetPref;
-    [SerializeField]private GameObject roundTextObj,cashTextObj;
+    [SerializeField]private GameObject targetPref,ringTossPref,roundTextObj,cashTextObj;
     [SerializeField]private Animator roundAnimator,cashAnimator;
     [SerializeField] private int maxRounds = 3, targetMultiplier = 3,cashAwardMultiplier=10;
     [SerializeField] private float startingSpacing=.5f;
@@ -34,14 +39,22 @@ public class CarnivalTruck : MonoBehaviour
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         await Task.Delay(500);
         GameTarget.TargetBroken += IncrementBrokenTargets;
+        SetGameType();
         InitializeRound();
     }
-    
+
+    private async void SetGameType()
+    {
+        var gameTypes = Enum.GetNames(typeof(GameType));
+        int targetMultiplier = Random.Range(0, gameTypes.Length);
+        _currentGameType = (GameType)targetMultiplier;
+    }
+
     async void IncrementBrokenTargets(object sender, EventArgs e)
     {
         GameObject obj = sender as GameObject;
         _currentBrokenTargets++;
-        await RotateTarget(obj.transform.parent.gameObject, true);
+        await PresentTarget(obj.transform.parent.gameObject, true);
         DestroyImmediate(obj.transform.parent.gameObject);
     }
 
@@ -70,6 +83,7 @@ public class CarnivalTruck : MonoBehaviour
         Debug.Log(_currentRound);
         _roundLost=false;
         _currentBrokenTargets = 0;
+        await Task.Delay(100);
         if (_currentRound > maxRounds) return;
         await CalculateGridPositions();
         await SpawnTargets();
@@ -89,30 +103,56 @@ public class CarnivalTruck : MonoBehaviour
                                                Mathf.Abs(pos.z - destination.z) < EPSILON) ||
                                               (Mathf.Abs(pos.y - destination.y) < EPSILON &&
                                                Mathf.Abs(pos.z - destination.z) < EPSILON));
-
-        
-            var obj = Instantiate(targetPref, transform, false);
-            obj.transform.localPosition = destination;
-            obj.transform.rotation =
-                new Quaternion(0, 0, 0, 0);
+            GameObject obj = null;
+            switch (_currentGameType)
+            {
+                case GameType.TargetThrow: 
+                    obj = Instantiate(targetPref, transform, false);
+                    obj.transform.localPosition = destination;
+                    obj.transform.rotation =
+                        new Quaternion(0, 0, 0, 0);
+                    break;
+                case GameType.RingToss: 
+                    obj = Instantiate(ringTossPref, transform, false);
+                    obj.transform.localPosition = destination;
+                    obj.transform.rotation =
+                        new Quaternion(0, 0, 0, 0);
+                    break;
+            }
             _gameTargets.Add(obj.GetComponentInChildren<GameTarget>());
             _targetPositions.Remove(destination);
-            RotateTarget(obj,false);
+            PresentTarget(obj,false);
         }
         HandlePlayerMovement(true);
         await HandleRoundUI();
     }
-    public async Task RotateTarget(GameObject target, bool reverse)
+    public async Task PresentTarget(GameObject target, bool reverse)
     {
         float degree;
-        degree = reverse ? 0f : -90f;
-        Quaternion targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
-        while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f)
+        Quaternion targetRotation;
+        switch (_currentGameType)
         {
-            target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
-            await Task.Yield();
+            case GameType.TargetThrow:
+                degree = reverse ? 0f : -90f;
+                targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
+                while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f)
+                {
+                    target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
+                    await Task.Yield();
+                }
+                target.transform.rotation = targetRotation;
+                break;
+            case GameType.RingToss:
+                degree = reverse ? 0f : -90f;
+                targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
+                while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f)
+                {
+                    target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
+                    await Task.Yield();
+                }
+                target.transform.rotation = targetRotation;
+                break;
         }
-        target.transform.rotation = targetRotation;
     }
 
 
@@ -172,6 +212,7 @@ public class CarnivalTruck : MonoBehaviour
         _currentRound++;
         if (_currentRound > maxRounds)
         {
+            await Task.Delay(1000);
             await HandlePlayerMovement(false);
             Destroy(gameObject);
         }
