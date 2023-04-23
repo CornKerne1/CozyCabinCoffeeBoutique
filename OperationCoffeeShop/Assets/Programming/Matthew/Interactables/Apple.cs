@@ -22,7 +22,7 @@ public class Apple : Interactable
 
     private async void WaitToKill()
     {
-        await Task.Delay(10);
+        await Task.Delay(5000);
         await KillObj();
     }
 
