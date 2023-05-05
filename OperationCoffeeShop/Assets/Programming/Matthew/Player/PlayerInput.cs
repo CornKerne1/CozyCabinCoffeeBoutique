@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -43,7 +44,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool disabled;
 
-    private void Awake()
+    private async void Awake()
     {
         _pC = new PlayerControls();
         _fPp = _pC.FPPlayer;
@@ -54,15 +55,15 @@ public class PlayerInput : MonoBehaviour
         jump = _fPp.Jump;
         crouch = _fPp.Crouch;
     }
-    private void Start()
+    private async void Start()
     {
-        InitializeHudAndCursor();
-        InitializeMenu();
+        await InitializeHudAndCursor();
+        await InitializeMenu();
         CamModeEvent += ToggleHud;
         PauseEvent += _Pause;
     }
 
-    private void InitializeHudAndCursor()
+    private Task InitializeHudAndCursor()
     {
         hudRef = Instantiate(hud);
         virtualCursor = hudRef.GetComponentInChildren<GamepadCursor>();
@@ -71,9 +72,10 @@ public class PlayerInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         virtualCursor.playerInput = this;
         virtualCursor.transform.parent = null;
+        return Task.CompletedTask;
     }
 
-    private void InitializeMenu()
+    private Task InitializeMenu()
     {
         virtualCursor.gameObject.SetActive(false);
         pauseM.SetActive(false);
@@ -85,9 +87,10 @@ public class PlayerInput : MonoBehaviour
         catch (Exception e)
         {
         }
+        return Task.CompletedTask;
     }
 
-    private void Update()
+    private async void Update()
     {
         if (pD.inUI)
         {
@@ -98,7 +101,7 @@ public class PlayerInput : MonoBehaviour
             virtualCursor.gameObject.SetActive(false);
     }
 
-    private void _Pause(object sender, EventArgs e)
+    private async void _Pause(object sender, EventArgs e)
     {
         //Debug.Log(pD.inUI);
         if (pD.inUI)
@@ -117,7 +120,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void OnEnable()
+    public async void OnEnable()
     {
         disabled = false;
 
@@ -162,20 +165,20 @@ public class PlayerInput : MonoBehaviour
         _fPp.FreeCam.Enable();
     }
 
-    private void OnMousePerformed(InputAction.CallbackContext ctx)
+    private async void OnMousePerformed(InputAction.CallbackContext ctx)
     {
         _mouseInput = ctx.ReadValue<Vector2>();
         inputType = ctx.control.ToString();
     }
     
 
-    private void MoveObj(InputAction.CallbackContext ctx)
+    private async void MoveObj(InputAction.CallbackContext ctx)
     {
         _currentObjDistance = ctx.ReadValue<Vector2>();
         MoveObjEvent?.Invoke(this, EventArgs.Empty);
     }
 
-    public void OnDisable()
+    public async void OnDisable()
     {
         disabled = true;
         _fPp.Move.Disable();
