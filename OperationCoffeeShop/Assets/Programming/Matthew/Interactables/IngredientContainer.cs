@@ -15,6 +15,7 @@ public class IngredientContainer : Interactable
     private float _capacity;
     [SerializeField] private float maxCapacity = 2.0f;
     public bool hasContentsVisualizer = true;
+    private Material _visualizerMaterial;
     public float topOfCup;
     private bool _pouring;
     private bool _pouringAction;
@@ -29,6 +30,7 @@ public class IngredientContainer : Interactable
 
     public List<GameObject> outputIngredients = new List<GameObject>();
     private List<IngredientNode> _garbageList = new List<IngredientNode>();
+    private static readonly int ColorDark = Shader.PropertyToID("_ColorDark"),ColorLight = Shader.PropertyToID("_ColorLight");
 
     private void FixedUpdate()
     {
@@ -54,6 +56,8 @@ public class IngredientContainer : Interactable
 
         contentsVisualizer.transform.localScale =
             new Vector3(5, 5, 5);
+        _visualizerMaterial.SetColor(ColorDark,Color.clear);
+        _visualizerMaterial.SetColor(ColorLight,Color.clear);
     }
 
     public bool IsPouring()
@@ -91,6 +95,12 @@ public class IngredientContainer : Interactable
         {
             Destroy(contentsVisualizer);
         }
+        else
+        {
+            _visualizerMaterial = contentsVisualizer.GetComponent<MeshRenderer>().material;
+            _visualizerMaterial.SetColor(ColorDark, Color.clear);
+            _visualizerMaterial.SetColor(ColorLight, Color.clear);
+        }
 
         base.Awake();
         dD = (DrinkData)ScriptableObject.CreateInstance("DrinkData");
@@ -106,6 +116,10 @@ public class IngredientContainer : Interactable
 
     public virtual void AddToContainer(IngredientNode iN)
     {
+        AddToContainer(iN, Color.clear);
+    }
+    public virtual void AddToContainer(IngredientNode iN, Color color)
+    {
         if (_capacity > maxCapacity)
         {
             IngredientOverflow(iN);
@@ -116,6 +130,17 @@ public class IngredientContainer : Interactable
             _capacity = _capacity + iN.target;
             if (hasContentsVisualizer)
             {
+                if (_visualizerMaterial.GetColor(ColorDark) == Color.clear)
+                {
+                    _visualizerMaterial.SetColor(ColorDark, color);
+                    _visualizerMaterial.SetColor(ColorLight, color);
+                }
+                else
+                {
+                    var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorDark), color, .1f);
+                    _visualizerMaterial.SetColor(ColorDark,newColor);
+                    _visualizerMaterial.SetColor(ColorLight,newColor);
+                }
                 var localPosition = contentsVisualizer.transform.localPosition;
                 localPosition = new Vector3(localPosition.x,
                     (localPosition.y - .00048f),
