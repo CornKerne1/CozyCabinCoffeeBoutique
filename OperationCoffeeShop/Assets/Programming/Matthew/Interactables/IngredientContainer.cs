@@ -9,11 +9,14 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
+    [SerializeField] private Vector3 visualizerStartPosition= new Vector3(0, 0.0343f, 0);
+    [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
+    [SerializeField] public float visualizerPositionIncrement = .00048f;
     public bool inHand;
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
     private float _capacity;
-    [SerializeField] private float maxCapacity = 2.0f;
+    [SerializeField] private float maxCapacity = 1.0f;
     public bool hasContentsVisualizer = true;
     private Material _visualizerMaterial;
     public float topOfCup;
@@ -21,7 +24,7 @@ public class IngredientContainer : Interactable
     private bool _pouringAction;
     public bool rotating;
     public bool pouringRotation;
-    public bool BigScale;
+    [FormerlySerializedAs("BigScale")][SerializeField]private bool scaleVisualizer;
 
     public IngredientData iD;
 
@@ -52,10 +55,10 @@ public class IngredientContainer : Interactable
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
-            new Vector3(0, 0.0343f, 0);
+            visualizerStartPosition;
 
         contentsVisualizer.transform.localScale =
-            new Vector3(5, 5, 5);
+            visualizerStartScale;
         _visualizerMaterial.SetColor(ColorDark,Color.clear);
         _visualizerMaterial.SetColor(ColorLight,Color.clear);
     }
@@ -143,10 +146,10 @@ public class IngredientContainer : Interactable
                 }
                 var localPosition = contentsVisualizer.transform.localPosition;
                 localPosition = new Vector3(localPosition.x,
-                    (localPosition.y - .00048f),
+                    (localPosition.y - visualizerPositionIncrement),
                     localPosition.z);
                 contentsVisualizer.transform.localPosition = localPosition;
-                if (BigScale)
+                if (scaleVisualizer)
                 {
                     var localScale = contentsVisualizer.transform.localScale;
                     localScale = new Vector3(localScale.x + .01f,

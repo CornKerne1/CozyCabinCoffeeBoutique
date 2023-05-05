@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -33,11 +34,12 @@ public class CoffeeBrewer : Machine
             liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, true, 100, 100);
     }
 
-    protected override IEnumerator ActivateMachine(float time)
+    protected override async  Task ActivateMachine(float time)
     {
         AkSoundEngine.PostEvent("PLAY_Brewer", gameObject);
         isRunning = true;
-        yield return new WaitForSeconds(time);
+        int newTime = (int)(time / 1000f);
+        await Task.Delay(newTime);
         AkSoundEngine.PostEvent("STOP_Brewer", gameObject);
         OutputIngredients();
         transform.position = base.origin;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -25,11 +26,12 @@ public class EspressoMachine : Machine
             liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
-    protected override IEnumerator ActivateMachine(float time)
+    protected override async Task ActivateMachine(float time)
     {
         isRunning = true;
         base.PostSoundEvent("Play_GrindingEspresso");
-        yield return new WaitForSeconds(time);
+        int newTime = (int)(time / 1000f);
+        await Task.Delay(newTime);
         OutputIngredients();
         transform.position = base.origin;
     }

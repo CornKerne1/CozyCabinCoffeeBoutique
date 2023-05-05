@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
@@ -18,13 +19,13 @@ public abstract class Machine : MonoBehaviour
     private ObjectPool<GameObject> _pool;
     private int _i;
 
-    private void Awake()
+    private async void Awake()
     {
         origin = transform.position;
         machineData.outputIngredient.Clear();
     }
 
-    protected void Start()
+    protected async void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         CheckTutorial();
@@ -43,12 +44,12 @@ public abstract class Machine : MonoBehaviour
             gameObject => { gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
-    private void Update()
+    private async void Update()
     {
         Shake();
     }
 
-    protected virtual void CheckTutorial()
+    protected virtual async void CheckTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
         {
@@ -57,7 +58,7 @@ public abstract class Machine : MonoBehaviour
         }
     }
 
-    public void IngredientInteract(GameObject other)
+    public async void IngredientInteract(GameObject other)
     {
         if (currentCapacity < machineData.maxCapacity && !isRunning)
         {
@@ -65,7 +66,7 @@ public abstract class Machine : MonoBehaviour
         }
     }
 
-    protected virtual void ChooseIngredient(GameObject other)
+    protected virtual async void ChooseIngredient(GameObject other)
     {
         //switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         //{
@@ -79,25 +80,26 @@ public abstract class Machine : MonoBehaviour
         //}
     }
 
-    public virtual void StartMachine()
+    public virtual async void StartMachine()
     {
         if (!isRunning)
         {
-            StartCoroutine(ActivateMachine(machineData.productionTime));
+            await ActivateMachine(machineData.productionTime);
         }
     }
 
 
-    protected virtual IEnumerator ActivateMachine(float time)
+    protected virtual async Task ActivateMachine(float time)
     {
         isRunning = true;
-        yield return new WaitForSeconds(time);
+        int newTime = (int)(time / 1000f);
+        await Task.Delay(newTime);
         OutputIngredients();
         transform.position = origin;
         isRunning = false;
     }
 
-    protected virtual void OutputIngredients()
+    protected virtual async void OutputIngredients()
     {
         for (_i = 0; _i < currentCapacity;)
             if (currentCapacity != 0)
@@ -109,7 +111,7 @@ public abstract class Machine : MonoBehaviour
     }
 
 
-    protected virtual void Shake()
+    protected virtual async void Shake()
     {
         if (!isRunning) return;
         var shakePos = origin;
@@ -119,12 +121,12 @@ public abstract class Machine : MonoBehaviour
         transform.position = shakePos;
     }
 
-    public void PostSoundEvent(string s)
+    public async void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, this.gameObject);
     }
 
-    public void ReleasePoolObject(GameObject obj)
+    public async void ReleasePoolObject(GameObject obj)
     {
         _pool.Release(obj);
     }

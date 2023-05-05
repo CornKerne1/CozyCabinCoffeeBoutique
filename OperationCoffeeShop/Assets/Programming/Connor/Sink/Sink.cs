@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
@@ -44,7 +45,7 @@ public class Sink : Machine
             ingredient => { ingredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
-    protected override IEnumerator ActivateMachine(float _)
+    protected override async Task ActivateMachine(float _)
     {
         AkSoundEngine.PostEvent("PLAY_FAUCET", gameObject);
         isRunning = true;
@@ -58,8 +59,7 @@ public class Sink : Machine
             {
                 _coldWaterPool.Get();
             }
-
-            yield return new WaitForSeconds(.05f);
+            await Task.Delay(50);
         }
 
         AkSoundEngine.PostEvent("STOP_FAUCET", gameObject);
