@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Apple : Interactable
+public class ThrowingGameObject : Interactable
 {
     // Start is called before the first frame update
 

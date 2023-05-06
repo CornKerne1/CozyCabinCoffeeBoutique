@@ -122,9 +122,7 @@ public class CarnivalTruck : MonoBehaviour
                     break;
                 case GameType.RingToss: 
                     obj = Instantiate(ringTossPref, transform, false);
-                    obj.transform.localPosition = destination;
-                    obj.transform.rotation =
-                        new Quaternion(0, 0, 0, 0);
+                    obj.transform.localPosition = new Vector3(destination.x,destination.y-.6f,destination.z);
                     break;
             }
             _gameTargets.Add(obj.GetComponentInChildren<GameTarget>());
@@ -143,22 +141,29 @@ public class CarnivalTruck : MonoBehaviour
             case GameType.TargetThrow:
                 degree = reverse ? 0f : -90f;
                 targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
-                while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f)
+                const int maxIterations = 1000; // Maximum number of iterations
+                int iterations = 0; //
+                while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f&& iterations < maxIterations)
                 {
-                    target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
+                    target.transform.rotation = Quaternion.Lerp(target.transform.rotation, targetRotation, 3 * Time.deltaTime);
                     await Task.Yield();
+                    iterations++;
                 }
                 target.transform.rotation = targetRotation;
                 break;
             case GameType.RingToss:
-                degree = reverse ? 0f : -90f;
-                targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
-                while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f)
+                degree = reverse ?target.transform.position.y -1 : target.transform.position.y+.7f;
+                iterations = 0;
+                while (Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
                 {
-                    target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetRotation, 2 * Time.deltaTime);
+                    target.transform.position = new Vector3(target.transform.position.x,
+                        Mathf.Lerp(target.transform.position.y, degree, Time.deltaTime * 3),
+                        target.transform.position.z);
                     await Task.Yield();
+                    iterations++;
                 }
-                target.transform.rotation = targetRotation;
+                target.transform.position =
+                    new Vector3(target.transform.position.x, degree, target.transform.position.z);
                 break;
         }
     }

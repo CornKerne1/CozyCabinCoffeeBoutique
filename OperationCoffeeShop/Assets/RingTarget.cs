@@ -12,12 +12,12 @@ public class RingTarget : MonoBehaviour
     private bool _timerRunning;
     
 
-    private async void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         _framesColliding++;
         if(!_timerRunning)
             StartCooldown();
-        if (!_targetDown && _framesColliding>100)
+        if (!_targetDown && _framesColliding>50)
         {
             _targetDown = true;
             RingToss?.Invoke(this.gameObject, EventArgs.Empty);
