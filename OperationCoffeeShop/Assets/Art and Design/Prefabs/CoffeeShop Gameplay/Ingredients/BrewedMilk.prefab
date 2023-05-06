@@ -127,16 +127,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5227003749097557388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a56cf7fadd623043a1719963e0fed27, type: 3}
+  m_Script: {fileID: 11500000, guid: 752d5fb1618eb9e43923b2a6baf6cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iN:
+  ingredientNode:
     ingredient: 0
     target: 0.01
-  maxScale: 0.2
+  colorInDrink: {r: 1, g: 1, b: 1, a: 0}
   matOwner: {fileID: 5227003749097557388}
-  speed: 0.001
-  maxTimer: 1.5
+  maxAnimationScale: 0.2
+  animationSpeed: 0.001
+  maxAnimationTimer: 1.5
+  changeColor: 0
 --- !u!54 &766767930868364327
 Rigidbody:
   m_ObjectHideFlags: 0

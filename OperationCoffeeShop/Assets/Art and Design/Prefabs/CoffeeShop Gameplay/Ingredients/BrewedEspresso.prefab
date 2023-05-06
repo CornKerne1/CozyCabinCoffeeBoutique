@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.25, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8889326768271314780}
   m_Father: {fileID: 0}
@@ -62,6 +63,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.02, z: 0.02}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8736813970023886068}
   m_RootOrder: 0
@@ -85,6 +87,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -124,16 +127,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5227003749097557388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a56cf7fadd623043a1719963e0fed27, type: 3}
+  m_Script: {fileID: 11500000, guid: 752d5fb1618eb9e43923b2a6baf6cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: 0.2
-  matOwner: {fileID: 5227003749097557388}
-  speed: 0.001
-  maxTimer: 1.5
-  iN:
+  ingredientNode:
     ingredient: 5
     target: 0.01
+  colorInDrink: {r: 0.16862746, g: 0.050980397, b: 0, a: 1}
+  matOwner: {fileID: 5227003749097557388}
+  maxAnimationScale: 0.2
+  animationSpeed: 0.001
+  maxAnimationTimer: 1.5
 --- !u!54 &766767930868364327
 Rigidbody:
   m_ObjectHideFlags: 0

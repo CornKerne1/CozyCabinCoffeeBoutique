@@ -9,15 +9,17 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LiquidDark
   m_Shader: {fileID: -6465566751694194690, guid: 96bd9e48bc705a741811d230939c20fd, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: Opaque
-  disabledShaderPasses: []
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -83,6 +85,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Alpha: 1
+    - Lifetime: 1
     - Vector1_38eaab19f105478f9e7980536ae7fe0a: 0.5
     - Vector1_509ce15df0f245ffba027f51d8eaef81: 1
     - Vector1_7b64b5fa0ce74d65bc0798979a26b7d1: 0.9
@@ -97,7 +101,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -111,19 +115,21 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Surface: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _WorkflowMode: 1
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - Color_21205b3cded8432a9a04f51a68f85db0: {r: 0.16981131, g: 0.051977377, b: 0, a: 0}
+    - Color_21205b3cded8432a9a04f51a68f85db0: {r: 0.4245283, g: 0.112197876, b: 0.046057325, a: 1}
     - Color_afd8444875734823906b14d1a9fc21f4: {r: 0, g: 0, b: 0, a: 0}
     - Color_dd8efe39cdee429ebc4d18e8a91a2976: {r: 0.2924528, g: 0.07053136, b: 0, a: 0}
-    - Color_dd8efe39cdee429ebc4d18e8a91a2976_1: {r: 0.4245283, g: 0.3112484, b: 0.07008721, a: 0}
+    - Color_dd8efe39cdee429ebc4d18e8a91a2976_1: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 0.09433961, g: 0.041578084, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDark: {r: 0, g: 0, b: 0, a: 0}
+    - _ColorLight: {r: 1, g: 0.6844864, b: 0.3915094, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

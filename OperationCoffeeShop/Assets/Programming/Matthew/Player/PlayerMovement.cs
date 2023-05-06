@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -24,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _crouchingCenter = new Vector3(0,.7f,0);
     private Vector3 _standingCenter = new Vector3(0,.5f,0);
     private bool isCrouching;
-    private IEnumerator _coRunning;
+    private Task _taskRunning;
     private CharacterController _characterController;
 
-    private void Awake()
+    private async void Awake()
     {
         _camera = Camera.main;
         _characterController = GetComponent<CharacterController>();
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerInput.SprintEvent += Sprint;
         PlayerInput.JumpEvent += Jump;
         PlayerInput.CrouchEvent += Crouch;
-        StartCoroutine(CO_EditorFix());
+        await EditorFix();
     }
 
     private void Update()
@@ -60,11 +61,11 @@ public class PlayerMovement : MonoBehaviour
         transform.position = destination;
         _characterController.enabled = true;
     }
-    private IEnumerator CO_EditorFix()
+    private async Task EditorFix()
     {
         var playerInteractable = GetComponent<PlayerInteraction>();
         playerInteractable.enabled = false;
-        yield return new WaitForSeconds(.1f);
+        await Task.Delay(100);
         playerInteractable.enabled = true;
 
     }
@@ -105,11 +106,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private void Sprint(object sender, EventArgs e)
+    private async void Sprint(object sender, EventArgs e)
     {
         if(!_playerInput.pD.canMove) return;
         if(!_playerInput.pD.canSprint) return;
-        if(isCrouching)StartCoroutine(CO_CrouchStand());
+        if(isCrouching)await CrouchStandAsync();
         if (Math.Abs(_sprintModifier - 1) < .01f) //if sprint modifier == 1
         {
             _sprintModifier = _playerInput.pD.sprintSpeed;
@@ -121,31 +122,33 @@ public class PlayerMovement : MonoBehaviour
             _playerInput.pD.isSprinting = false;
         }
     }
-    private void Jump(object sender, EventArgs e)
+    private async void Jump(object sender, EventArgs e)
     {
        if(!_playerInput.pD.canMove) return;
        if(!_playerInput.pD.canJump) return;
        if(!controller.isGrounded) return;
-       if (isCrouching) StartCoroutine(CO_CrouchStand());
+       if (isCrouching) await CrouchStandAsync();
        var sM = _sprintModifier;
        _sprintModifier = 0;
        _velocity.y = _playerInput.pD.jumpHeight;
        _sprintModifier = sM;
     }
 
-    private void Crouch(object sender, EventArgs e)
+    private async void Crouch(object sender, EventArgs e)
     {
         if(!_playerInput.pD.canMove) return;
         if(!_playerInput.pD.canCrouch) return;
         if(!controller.isGrounded) return;
         if (isCrouching && Physics.Raycast(_camera.transform.position, Vector3.up, .5f)) return;
-        if(_coRunning==null)
-            StartCoroutine(CO_CrouchStand());
+        if (_taskRunning == null)
+        {
+            _taskRunning = CrouchStandAsync();
+            await _taskRunning;
+        }
     }
 
-    private IEnumerator CO_CrouchStand()
+    private async Task CrouchStandAsync()
     {
-        _coRunning = CO_CrouchStand();
         float timeElapsed = 0;
         var targetHeight = isCrouching ? _playerInput.pD.standHeight : _playerInput.pD.crouchHeight;
         float currentHeight = controller.height;
@@ -166,12 +169,12 @@ public class PlayerMovement : MonoBehaviour
             controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _crouchTime);
             controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _crouchTime);
             timeElapsed += Time.deltaTime;
-            yield return null;
+            await Task.Yield();
         }
         controller.height = targetHeight;
         controller.center = targetCenter;
         isCrouching = !isCrouching;
-        _coRunning = null;
+        _taskRunning = null;
     }
 
     private void ToggleCamMode(object sender, EventArgs e)
