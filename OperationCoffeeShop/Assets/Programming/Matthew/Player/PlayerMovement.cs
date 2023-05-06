@@ -140,13 +140,15 @@ public class PlayerMovement : MonoBehaviour
         if(!_playerInput.pD.canCrouch) return;
         if(!controller.isGrounded) return;
         if (isCrouching && Physics.Raycast(_camera.transform.position, Vector3.up, .5f)) return;
-        if(_taskRunning==null)
-            await CrouchStandAsync();
+        if (_taskRunning == null)
+        {
+            _taskRunning = CrouchStandAsync();
+            await _taskRunning;
+        }
     }
 
     private async Task CrouchStandAsync()
     {
-        _taskRunning = CrouchStandAsync();
         float timeElapsed = 0;
         var targetHeight = isCrouching ? _playerInput.pD.standHeight : _playerInput.pD.crouchHeight;
         float currentHeight = controller.height;
@@ -173,7 +175,6 @@ public class PlayerMovement : MonoBehaviour
         controller.center = targetCenter;
         isCrouching = !isCrouching;
         _taskRunning = null;
-        
     }
 
     private void ToggleCamMode(object sender, EventArgs e)
