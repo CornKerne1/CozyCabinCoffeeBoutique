@@ -27,7 +27,7 @@ public class IngredientContainer : Interactable
 
     public IngredientData iD;
 
-    private IEnumerator _coroutineRunning;
+    private Task _task1Running;
     private Task _task2Running;
 
     public List<GameObject> outputIngredients = new List<GameObject>();
@@ -43,13 +43,12 @@ public class IngredientContainer : Interactable
         Pour();
     }
 
-    private IEnumerator Timer(float time)
+    private async Task Timer(float time)
     {
-        _coroutineRunning = Timer(time);
-        yield return new WaitForSeconds(time);
+        await Task.Delay(TimeSpan.FromSeconds(time));
         rotating = false;
         _pouringAction = !_pouringAction;
-        _coroutineRunning = null;
+        _task1Running = null;
     }
 
     public void ResetCup()
@@ -70,7 +69,7 @@ public class IngredientContainer : Interactable
         return _pouringAction ? _pouringAction : _pouring;
     }
 
-    private void HandlePourRotation()
+    private async void HandlePourRotation()
     {
         if (!rotating) return;
         if (!_pouringAction)
@@ -78,9 +77,9 @@ public class IngredientContainer : Interactable
             transform.Rotate(3.7f, 0, 0);
             _pouring = true;
             pouringRotation = true;
-            if (_coroutineRunning != null) return;
-            _coroutineRunning = Timer(.5f);
-            StartCoroutine(Timer(.5f));
+            if (_task1Running != null) return;
+            _task1Running = Timer(.5f);
+            await _task1Running;
         }
         else
         {
@@ -88,9 +87,9 @@ public class IngredientContainer : Interactable
             _pouring = false;
             transform.Rotate(-3.7f, 0, 0);
             pouringRotation = false;
-            if (_coroutineRunning != null) return;
-            _coroutineRunning = Timer(.5f);
-            StartCoroutine(Timer(.5f));
+            if (_task1Running != null) return;
+            _task1Running = Timer(.5f);
+            await _task1Running;
         }
     }
 
@@ -218,7 +217,7 @@ public class IngredientContainer : Interactable
     {
         if (!_pouring || _task2Running != null) return;
         _task2Running = Liquefy();
-        await Liquefy();
+        await _task2Running;
     }
 
     private async Task Liquefy()
