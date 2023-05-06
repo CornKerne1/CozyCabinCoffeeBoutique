@@ -250,6 +250,7 @@ public class PlayerInteraction : MonoBehaviour
             RemoveCurrentInteractable();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
+            HandleIgnoreChildList(carriedObj,false);
             ingredientContainer.inHand = false;
             var rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x,
                 Quaternion.identity.y + ingredientContainer.rotateOffset.y,
@@ -275,6 +276,7 @@ public class PlayerInteraction : MonoBehaviour
                 _currentInteractable.OnLoseFocus();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
+            HandleIgnoreChildList(carriedObj,false);
             if (_currentInteractable)
             {
                 _currentInteractable.OnDrop();
@@ -298,10 +300,26 @@ public class PlayerInteraction : MonoBehaviour
         obj.TryGetComponent(out _currentInteractable);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
+        HandleIgnoreChildList(obj,true);
         carriedObj = obj;
         playerData.busyHands = true;
         _carryDistance = Mathf.Clamp(_carryDistance - 1, playerData.carryDistance - playerData.carryDistanceClamp,
             playerData.carryDistance + playerData.carryDistanceClamp);
+    }
+
+    private void HandleIgnoreChildList(GameObject obj,bool condition)
+    {
+        foreach (var childObj in _currentInteractable.carryIgnoreChildList)
+        {
+            try
+            {
+                childObj.GetComponent<Collider>().isTrigger = condition;
+                obj.GetComponent<Rigidbody>().isKinematic = condition;
+            }
+            catch
+            {
+            }
+        }
     }
 
     public void CameraBlur()
