@@ -10,29 +10,30 @@ public class LiquidIngredients : MonoBehaviour
     [SerializeField]private float maxAnimationScale=0.2f;
     [SerializeField]private float animationSpeed=.001f;
     [SerializeField]private float maxAnimationTimer=1.5f;
+    [SerializeField]private bool changeColor =true;
     private Material _mat;
-    private bool _changeColor;
     private bool _animate = true;
     private float _timer;
+    private static readonly int Lifetime = Shader.PropertyToID("Lifetime");
+    private static readonly int Alpha = Shader.PropertyToID("Alpha");
 
     private void Start()
     {
         _timer = maxAnimationTimer;
-        _changeColor = true;
         var myMat = GetComponent<MeshRenderer>().materials;
         var newMat = GetComponent<MeshRenderer>().materials[0];
         myMat[0] = new Material(newMat);
         GetComponent<MeshRenderer>().materials = myMat;
         _mat = matOwner.GetComponent<Renderer>().material;
-        _mat.SetFloat("Lifetime", 0.0f); //
+        _mat.SetFloat(Lifetime, 0.0f); //
     }
 
     private async void Update()
     {
         if (!_animate) return;
-        _mat.SetFloat("Alpha",
-            _mat.GetFloat("Alpha") - .0035f);
-        if (_mat.GetFloat("Alpha") <= 0)
+        _mat.SetFloat(Alpha,
+            _mat.GetFloat(Alpha) - .0035f);
+        if (_mat.GetFloat(Alpha) <= 0)
         {
             Destroy(gameObject);
         }
@@ -45,16 +46,16 @@ public class LiquidIngredients : MonoBehaviour
 
     private async void ChangeColor()
     {
-        if (_changeColor)
+        if (changeColor)
         {
-            if (_mat.GetFloat("Lifetime") >= 1)
+            if (_mat.GetFloat(Lifetime) >= 1)
             {
-                _changeColor = false;
+                changeColor = false;
             }
             else
             {
-                _mat.SetFloat("Lifetime",
-                    _mat.GetFloat("Lifetime") + (animationSpeed * 5f));
+                _mat.SetFloat(Lifetime,
+                    _mat.GetFloat(Lifetime) + (animationSpeed * 5f));
             }
         }
     }

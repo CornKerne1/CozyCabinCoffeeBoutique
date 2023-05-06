@@ -19,7 +19,7 @@ public class Sink : Machine
     {
         base.Start();
         _hotWaterPool = new ObjectPool<LiquidIngredients>(
-            () => Instantiate(iD.hotWater.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
+            () => Instantiate(iD.water.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
                 outputTransform.rotation),
             ingredient =>
             {
@@ -31,7 +31,7 @@ public class Sink : Machine
             },
             ingredient => { ingredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         _coldWaterPool = new ObjectPool<LiquidIngredients>(
-            () => Instantiate(iD.coldWater.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
+            () => Instantiate(iD.water.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
                 outputTransform.rotation),
             ingredient =>
             {
@@ -51,6 +51,7 @@ public class Sink : Machine
         isRunning = true;
         while (isRunning)
         {
+            if(!Application.isPlaying) return;
             if (isHotWater)
             {
                 _hotWaterPool.Get();

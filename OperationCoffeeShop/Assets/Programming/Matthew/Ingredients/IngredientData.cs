@@ -19,6 +19,5 @@ public class IngredientData : ScriptableObject
     [SerializeField] public GameObject glCoffee;
     [SerializeField] public GameObject gmCoffee;
     [SerializeField] public GameObject gdCoffee;
-    [SerializeField] public GameObject hotWater;
-    [SerializeField] public GameObject coldWater;
+    [SerializeField] public GameObject water;
 }

@@ -27,12 +27,12 @@ public class PlayerInput : MonoBehaviour
 
     private PlayerControls _pC;
     private PlayerControls.FPPlayerActions _fPp;
-    private InputAction interact;
-    private InputAction altInteract;
-    private InputAction pause;
-    private InputAction sprint;
-    private InputAction jump;
-    private InputAction crouch;
+    private InputAction _interact;
+    private InputAction _altInteract;
+    private InputAction _pause;
+    private InputAction _sprint;
+    private InputAction _jump;
+    private InputAction _crouch;
 
     private Vector2 _mouseInput;
     private Vector2 _currentRotate;
@@ -48,12 +48,12 @@ public class PlayerInput : MonoBehaviour
     {
         _pC = new PlayerControls();
         _fPp = _pC.FPPlayer;
-        interact = _fPp.Interact;
-        altInteract = _fPp.Alt_Interact;
-        pause = _fPp.PauseGame;
-        sprint = _fPp.Sprint;
-        jump = _fPp.Jump;
-        crouch = _fPp.Crouch;
+        _interact = _fPp.Interact;
+        _altInteract = _fPp.Alt_Interact;
+        _pause = _fPp.PauseGame;
+        _sprint = _fPp.Sprint;
+        _jump = _fPp.Jump;
+        _crouch = _fPp.Crouch;
     }
     private async void Start()
     {
@@ -90,7 +90,7 @@ public class PlayerInput : MonoBehaviour
         return Task.CompletedTask;
     }
 
-    private async void Update()
+    private void Update()
     {
         if (pD.inUI)
         {
@@ -101,7 +101,7 @@ public class PlayerInput : MonoBehaviour
             virtualCursor.gameObject.SetActive(false);
     }
 
-    private async void _Pause(object sender, EventArgs e)
+    private void _Pause(object sender, EventArgs e)
     {
         //Debug.Log(pD.inUI);
         if (pD.inUI)
@@ -136,23 +136,23 @@ public class PlayerInput : MonoBehaviour
         _fPp.Move.canceled +=ctx=>_movement=ctx.ReadValue<Vector2>();
         _fPp.Move.Enable();
 
-        sprint.performed += Sprint;
-        sprint.Enable();
+        _sprint.performed += Sprint;
+        _sprint.Enable();
         
-        jump.performed += Jump;
-        jump.Enable();
+        _jump.performed += Jump;
+        _jump.Enable();
         
-        crouch.performed += Crouch;
-        crouch.Enable();
+        _crouch.performed += Crouch;
+        _crouch.Enable();
         
-        interact.performed += Interact;
-        interact.Enable();
+        _interact.performed += Interact;
+        _interact.Enable();
 
-        altInteract.performed += Alt_Interact;
-        altInteract.Enable();
+        _altInteract.performed += Alt_Interact;
+        _altInteract.Enable();
 
-        pause.canceled += Pause;
-        pause.Enable();
+        _pause.canceled += Pause;
+        _pause.Enable();
 
         _fPp.Rotate.performed += ctx => _currentRotate = ctx.ReadValue<Vector2>();
         _fPp.Rotate.performed += Rotate;
@@ -183,11 +183,11 @@ public class PlayerInput : MonoBehaviour
         disabled = true;
         _fPp.Move.Disable();
         _fPp.Mouse.Disable();
-        sprint.Disable();
-        jump.Disable();
-        crouch.Disable();
-        interact.Disable();
-        altInteract.Disable();
+        _sprint.Disable();
+        _jump.Disable();
+        _crouch.Disable();
+        _interact.Disable();
+        _altInteract.Disable();
         _fPp.Rotate.Disable();
         _fPp.FreeCam.Disable();
     }

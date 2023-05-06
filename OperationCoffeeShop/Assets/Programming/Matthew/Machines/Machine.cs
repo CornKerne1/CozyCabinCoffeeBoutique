@@ -19,13 +19,13 @@ public abstract class Machine : MonoBehaviour
     private ObjectPool<GameObject> _pool;
     private int _i;
 
-    private async void Awake()
+    private void Awake()
     {
         origin = transform.position;
         machineData.outputIngredient.Clear();
     }
 
-    protected async void Start()
+    protected void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         CheckTutorial();
@@ -44,12 +44,12 @@ public abstract class Machine : MonoBehaviour
             gameObject => { gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
-    private async void Update()
+    private void Update()
     {
         Shake();
     }
 
-    protected virtual async void CheckTutorial()
+    protected virtual void CheckTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
         {
@@ -58,7 +58,7 @@ public abstract class Machine : MonoBehaviour
         }
     }
 
-    public async void IngredientInteract(GameObject other)
+    public void IngredientInteract(GameObject other)
     {
         if (currentCapacity < machineData.maxCapacity && !isRunning)
         {
@@ -66,7 +66,7 @@ public abstract class Machine : MonoBehaviour
         }
     }
 
-    protected virtual async void ChooseIngredient(GameObject other)
+    protected virtual void ChooseIngredient(GameObject other)
     {
         //switch (other.GetComponent<PhysicalIngredient>().thisIngredient)
         //{
@@ -92,14 +92,13 @@ public abstract class Machine : MonoBehaviour
     protected virtual async Task ActivateMachine(float time)
     {
         isRunning = true;
-        int newTime = (int)(time / 1000f);
-        await Task.Delay(newTime);
+        await Task.Delay(TimeSpan.FromSeconds(time));
         OutputIngredients();
         transform.position = origin;
         isRunning = false;
     }
 
-    protected virtual async void OutputIngredients()
+    protected virtual void OutputIngredients()
     {
         for (_i = 0; _i < currentCapacity;)
             if (currentCapacity != 0)
@@ -111,7 +110,7 @@ public abstract class Machine : MonoBehaviour
     }
 
 
-    protected virtual async void Shake()
+    protected virtual void Shake()
     {
         if (!isRunning) return;
         var shakePos = origin;
@@ -121,12 +120,12 @@ public abstract class Machine : MonoBehaviour
         transform.position = shakePos;
     }
 
-    public async void PostSoundEvent(string s)
+    public void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, this.gameObject);
     }
 
-    public async void ReleasePoolObject(GameObject obj)
+    public void ReleasePoolObject(GameObject obj)
     {
         _pool.Release(obj);
     }

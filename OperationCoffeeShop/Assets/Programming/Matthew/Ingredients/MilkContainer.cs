@@ -19,10 +19,10 @@ public class MilkContainer : MonoBehaviour
     private async Task AddIngredients()
     {
         _count = _count + 1;
-        await Task.Delay(40);
-        var iN = new IngredientNode(Ingredients.Milk, .1f);
+        await Task.Delay(15);
+        var iN = new IngredientNode(Ingredients.Milk, .01f);
         GetComponent<IngredientContainer>().AddToContainer(iN);
-        if (_count < 500)
+        if (_count < 400)
         {
             await (AddIngredients());
         }

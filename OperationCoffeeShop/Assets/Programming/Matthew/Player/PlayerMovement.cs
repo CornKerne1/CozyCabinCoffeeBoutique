@@ -146,44 +146,34 @@ public class PlayerMovement : MonoBehaviour
 
     private async Task CrouchStandAsync()
     {
-        if (!_playerInput.pD.canMove) return;
-        if (!_playerInput.pD.canCrouch) return;
-        if (!controller.isGrounded) return;
-        if (isCrouching && Physics.Raycast(_camera.transform.position, Vector3.up, .5f)) return;
-
-        if (_taskRunning == null)
+        _taskRunning = CrouchStandAsync();
+        float timeElapsed = 0;
+        var targetHeight = isCrouching ? _playerInput.pD.standHeight : _playerInput.pD.crouchHeight;
+        float currentHeight = controller.height;
+        Vector3 targetCenter = isCrouching ? _standingCenter : _crouchingCenter;
+        Vector3 currentCenter = controller.center;
+        if (isCrouching)
         {
-            _taskRunning = CrouchStandAsync();
-
-            float timeElapsed = 0;
-            var targetHeight = isCrouching ? _playerInput.pD.standHeight : _playerInput.pD.crouchHeight;
-            float currentHeight = controller.height;
-            Vector3 targetCenter = isCrouching ? _standingCenter : _crouchingCenter;
-            Vector3 currentCenter = controller.center;
-
-            if (isCrouching)
-            {
-                _velocity.y = _playerInput.pD.jumpHeight / 1.25f;
-                _sprintModifier = 1;
-            }
-            else
-            {
-                _sprintModifier = .5f;
-            }
-
-            while (timeElapsed < _crouchTime)
-            {
-                controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _crouchTime);
-                controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _crouchTime);
-                timeElapsed += Time.deltaTime;
-                await Task.Yield();
-            }
-
-            controller.height = targetHeight;
-            controller.center = targetCenter;
-            isCrouching = !isCrouching;
-            _taskRunning = null;
+            _velocity.y = _playerInput.pD.jumpHeight / 1.25f;
+            _sprintModifier = 1;
         }
+        else
+        {
+            _sprintModifier = .5f;
+        }
+
+        while (timeElapsed < _crouchTime)
+        {
+            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _crouchTime);
+            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _crouchTime);
+            timeElapsed += Time.deltaTime;
+            await Task.Yield();
+        }
+        controller.height = targetHeight;
+        controller.center = targetCenter;
+        isCrouching = !isCrouching;
+        _taskRunning = null;
+        
     }
 
     private void ToggleCamMode(object sender, EventArgs e)
