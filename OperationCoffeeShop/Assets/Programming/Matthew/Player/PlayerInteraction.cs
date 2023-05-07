@@ -309,7 +309,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleIgnoreChildList(GameObject obj,bool condition)
     {
-        foreach (var childObj in _currentInteractable.carryIgnoreChildList)
+        obj.TryGetComponent<Interactable>(out var interactable);
+        if (!interactable||interactable.carryIgnoreChildList.Count <= 0) return;
+        foreach (var childObj in interactable.carryIgnoreChildList)
         {
             try
             {
