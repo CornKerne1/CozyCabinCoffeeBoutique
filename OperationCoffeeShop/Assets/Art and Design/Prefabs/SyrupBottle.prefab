@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5909055347268137989}
   - component: {fileID: 4084850765051610414}
   - component: {fileID: 4901029187079046680}
+  - component: {fileID: 4692322778780462307}
   m_Layer: 0
   m_Name: Contents
   m_TagString: Untagged
@@ -83,6 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!210 &4692322778780462307
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677768139341416848}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
 --- !u!1 &2134584433047779733
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +109,7 @@ GameObject:
   - component: {fileID: 4309981846358226938}
   - component: {fileID: 6862105970333478613}
   - component: {fileID: 1175681082}
+  - component: {fileID: 1685699016212277094}
   m_Layer: 0
   m_Name: SyrupBottle
   m_TagString: Untagged
@@ -190,12 +203,13 @@ MonoBehaviour:
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
-  lookAtPlayer: 0
-  delivered: 1
+  delivered: 0
+  dispenser: {fileID: 0}
   objTypeShop: 0
   spawnTrans: {fileID: 7731946821852297583}
   objType: {fileID: 11400000, guid: 1defd666564471241840977a0ead608e, type: 2}
@@ -241,6 +255,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &1685699016212277094
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134584433047779733}
+  m_Enabled: 1
+  m_SortingLayerID: 2063639469
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &4008923297763996475
 GameObject:
   m_ObjectHideFlags: 0
