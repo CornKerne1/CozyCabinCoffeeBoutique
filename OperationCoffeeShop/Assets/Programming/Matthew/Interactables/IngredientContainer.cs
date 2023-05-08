@@ -255,6 +255,7 @@ public class IngredientContainer : Interactable
         }
         else
         {
+            ResetCup();
             AkSoundEngine.PostEvent("stop_looppour", gameObject);
         }
 
