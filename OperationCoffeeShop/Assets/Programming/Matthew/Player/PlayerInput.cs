@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
     public String inputType;
 
     public bool disabled;
+    private bool _movingObj,_rotatingObj;
 
     private async void Awake()
     {
@@ -158,7 +159,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.Rotate.performed += Rotate;
         _fPp.Rotate.canceled += RotateCanceled;
         _fPp.Rotate.Enable();
-        _fPp.MoveObj.performed += MoveObj;
+        _fPp.MoveObj.performed+= MoveObj;
         _fPp.MoveObj.Enable();
         
         //_fPp.FreeCam.performed += FreeCam;
@@ -174,10 +175,29 @@ public class PlayerInput : MonoBehaviour
 
     private async void MoveObj(InputAction.CallbackContext ctx)
     {
+        if (_movingObj)
+        {
+            _movingObj = false;
+            return;
+        }
         _currentObjDistance = ctx.ReadValue<Vector2>();
         MoveObjEvent?.Invoke(this, EventArgs.Empty);
+        inputType = ctx.control.ToString();
+        if (inputType.Contains("dpad"))
+        {
+            _movingObj = true;
+            await HandleDpadMovement();
+        }
     }
-
+    private async Task HandleDpadMovement()
+    {
+        while (_movingObj)
+        {
+            await Task.Delay(100);
+            if (!_movingObj) return;
+            MoveObjEvent?.Invoke(this, EventArgs.Empty);
+        }
+    }
     public async void OnDisable()
     {
         disabled = true;
@@ -235,7 +255,7 @@ public class PlayerInput : MonoBehaviour
     {
         AltInteractEvent?.Invoke(this, EventArgs.Empty);
     }
-    private void Rotate(InputAction.CallbackContext obj)
+    private async void Rotate(InputAction.CallbackContext obj)
     {
         RotateEvent?.Invoke(this, EventArgs.Empty);
     }
