@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 5227003749097557388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8736813970023886068}
@@ -168,6 +168,7 @@ MonoBehaviour:
   maxAnimationScale: 0.2
   animationSpeed: 0.001
   maxAnimationTimer: 1.5
+  changeColor: 1
 --- !u!114 &7599560236588409829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +188,7 @@ MonoBehaviour:
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}

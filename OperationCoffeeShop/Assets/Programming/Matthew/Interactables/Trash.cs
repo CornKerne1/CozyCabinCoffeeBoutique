@@ -1,19 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
-    void Start()
+    private Task _taskRunning;
+    private bool _frozen;
+    async void Start()
     {
-        StartCoroutine(StopPhysics());
+        _taskRunning = StopPhysics();
+        await StopPhysics();
     }
 
-    private IEnumerator StopPhysics()
+    private async Task StopPhysics()
     {
         var childRigidBodies = transform.GetComponentsInChildren<Rigidbody>();
         var notMoving = false;
-        yield return new WaitForSeconds(1f);
+        await Task.Delay(1000);
         while (!notMoving)
         {
             foreach (var rB in childRigidBodies)
@@ -25,13 +30,23 @@ public class Trash : MonoBehaviour
                 }
             }
             notMoving = true;
-            yield return null;
+            await Task.Yield();
         }
+        _taskRunning = null;
+    }
+
+    private void OnDestroy()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

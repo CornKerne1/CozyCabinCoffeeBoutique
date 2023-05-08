@@ -75,6 +75,12 @@ public class PlayerInteraction : MonoBehaviour
         _carryDistance = playerData.carryDistance;
     }
 
+    public void ToggleDof()
+    {
+        var value = Math.Abs( - 1000f) < .001f ? 5f : 1000f;
+        _dofDistanceParameter.value = value;
+    }
+
     private void RaycastCheck()
     {
         if(!_cam) return;
@@ -85,7 +91,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000, dofLayer)) return; //
+            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000, dofLayer)) return;
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
             if (hit.distance <= playerData.interactDistance)
             {

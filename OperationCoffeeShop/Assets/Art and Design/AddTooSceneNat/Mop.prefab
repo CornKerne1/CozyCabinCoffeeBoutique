@@ -161,7 +161,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.08, y: 0.08, z: 0.35}
+  m_Size: {x: 0.1, y: 0.1, z: 0.35}
   m_Center: {x: 0, y: -0.38, z: 0}
 --- !u!1 &7791117325771825360
 GameObject:
@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 7791117325771825360}
   m_LocalRotation: {x: 0, y: 0, z: 0.08809461, w: 0.9961121}
   m_LocalPosition: {x: -4.417, y: -9.199, z: -11.044}
-  m_LocalScale: {x: 1.6105914, y: 1.6105914, z: 1.6105914}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5929088140501566547}
@@ -294,16 +294,17 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
-  lookAtPlayer: 0
   delivered: 0
+  dispenser: {fileID: 0}
   objTypeShop: 0
   animator: {fileID: 8248637588889296251}
   animatedMesh: {fileID: 8546293600579578723}
