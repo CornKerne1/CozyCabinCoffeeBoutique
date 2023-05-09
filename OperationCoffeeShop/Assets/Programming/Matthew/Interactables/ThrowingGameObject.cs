@@ -20,9 +20,14 @@ public class ThrowingGameObject : Interactable
         WaitToKill();
     }
 
-    private async void WaitToKill()
+    private async Task WaitToKill()
     {
         await Task.Delay(5000);
+        if (playerInteraction)
+        {
+            await WaitToKill();
+            return;
+        }
         await KillObj();
     }
 
