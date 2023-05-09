@@ -37,7 +37,7 @@ public class Trash : MonoBehaviour
 
     private void OnDestroy()
     {
-        throw new NotImplementedException();
+      
     }
 
     private void OnDisable()
