@@ -10,7 +10,7 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
-    [SerializeField] private Vector3 visualizerStartPosition= new Vector3(0, 0.0343f, 0);
+    private Vector3 _visualizerStartPosition;
     [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
     [SerializeField] public float visualizerPositionIncrement = .00048f;
     public bool inHand;
@@ -56,7 +56,7 @@ public class IngredientContainer : Interactable
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
-            visualizerStartPosition;
+            _visualizerStartPosition;
 
         contentsVisualizer.transform.localScale =
             visualizerStartScale;
@@ -105,6 +105,7 @@ public class IngredientContainer : Interactable
             _visualizerMaterial = contentsVisualizer.GetComponent<MeshRenderer>().material;
             _visualizerMaterial.SetColor(ColorDark, Color.clear);
             _visualizerMaterial.SetColor(ColorLight, Color.clear);
+            _visualizerStartPosition = contentsVisualizer.transform.localPosition;
         }
 
         base.Awake();
