@@ -126,7 +126,7 @@ public class IngredientContainer : Interactable
     }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-        Debug.Log(_capacity);
+        
         if (_capacity >= maxCapacity)
         {
             IngredientOverflow(iN);

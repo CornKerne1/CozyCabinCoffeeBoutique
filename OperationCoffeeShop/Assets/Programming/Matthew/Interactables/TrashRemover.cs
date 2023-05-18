@@ -24,7 +24,7 @@ public class TrashRemover : MonoBehaviour
         while (currentTime<=killTime)
         {
             if(rb)
-                rb.AddForce(new Vector3(Random.Range(-1f*rb.mass,1f*rb.mass),Random.Range(-.5f*rb.mass,.5f*rb.mass),Random.Range(-1f*rb.mass,1f*rb.mass)));
+                rb.AddForce(new Vector3(Random.Range(-2f*rb.mass,2f*rb.mass),Random.Range(-.5f*rb.mass,.5f*rb.mass),Random.Range(-2f*rb.mass,2f*rb.mass)));
             currentTime += Time.deltaTime;
             await Task.Yield();
         }
