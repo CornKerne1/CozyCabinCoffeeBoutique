@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -29,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI button1Text;
     [SerializeField] private TextMeshProUGUI displayName;
+    [SerializeField] private GameObject carnivalTruck;
 
     private static DialogueManager _instance;
     private Story _currentStory;
@@ -121,6 +123,12 @@ public class DialogueManager : MonoBehaviour
         {
             switch (s.ToLower().Trim())
             {
+                case "logic:carnivaltruck":
+                    var cT=Instantiate(carnivalTruck);
+                    cT.transform.position = new Vector3(-17, -9.86675167f, -4.67279959f);
+                    cT.transform.rotation = new Quaternion(0, -0.707106829f, 0, 0.707106829f);
+
+                    break;
                 case "portrait:happy":
                     if (portraitHappy != null)
                     {
@@ -150,7 +158,6 @@ public class DialogueManager : MonoBehaviour
                     {
                         portrait.sprite = portraitNeutral;
                     }
-
                     break;
             }
         }

@@ -10,7 +10,7 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
-    [SerializeField] private Vector3 visualizerStartPosition= new Vector3(0, 0.0343f, 0);
+    private Vector3 _visualizerStartPosition;
     [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
     [SerializeField] public float visualizerPositionIncrement = .00048f;
     public bool inHand;
@@ -56,7 +56,7 @@ public class IngredientContainer : Interactable
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
-            visualizerStartPosition;
+            _visualizerStartPosition;
 
         contentsVisualizer.transform.localScale =
             visualizerStartScale;
@@ -87,6 +87,7 @@ public class IngredientContainer : Interactable
             _pouring = false;
             transform.Rotate(-3.7f, 0, 0);
             pouringRotation = false;
+            _garbageList = new List<IngredientNode>();
             if (_task1Running != null) return;
             _task1Running = Timer(.5f);
             await _task1Running;
@@ -104,6 +105,7 @@ public class IngredientContainer : Interactable
             _visualizerMaterial = contentsVisualizer.GetComponent<MeshRenderer>().material;
             _visualizerMaterial.SetColor(ColorDark, Color.clear);
             _visualizerMaterial.SetColor(ColorLight, Color.clear);
+            _visualizerStartPosition = contentsVisualizer.transform.localPosition;
         }
 
         base.Awake();
@@ -124,7 +126,8 @@ public class IngredientContainer : Interactable
     }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-        if (_capacity > maxCapacity)
+        
+        if (_capacity >= maxCapacity)
         {
             IngredientOverflow(iN);
         }
@@ -192,25 +195,18 @@ public class IngredientContainer : Interactable
         }
     }
 
-    protected virtual void RemoveIngredient()
+    protected virtual async void RemoveIngredient()
     {
-        foreach (var i in dD.ingredients)
+        if (dD.ingredients.Count <= 0) {_capacity = _capacity - 1;return;}
+        var iN = dD.ingredients[dD.ingredients.Count - 1];
+        iN.target = iN.target - 0.01f;
+        _capacity = _capacity - 1;
+        if (iN.target <= 0)
         {
-            i.target = i.target - 0.01f;
-            _capacity = _capacity - 1;
-
-            if (i.target <= 0)
-            {
-                _garbageList.Add(i);
-            }
+            _garbageList.Add(iN);
         }
 
-        foreach (var i in _garbageList)
-        {
-            dD.ingredients.Remove(i);
-        }
-
-        _garbageList = new List<IngredientNode>();
+        dD.ingredients.Remove(iN);
     }
 
     private async void Pour()
@@ -260,6 +256,7 @@ public class IngredientContainer : Interactable
         }
         else
         {
+            ResetCup();
             AkSoundEngine.PostEvent("stop_looppour", gameObject);
         }
 

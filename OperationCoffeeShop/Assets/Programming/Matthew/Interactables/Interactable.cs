@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Threading.Tasks;
 using TMPro;
@@ -18,6 +19,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     [SerializeField] protected GameObject breakablePrefab;
     [SerializeField] protected Color smashColor;
     [SerializeField] protected Color smashEmissionColor;
+    [SerializeField] public List<GameObject> carryIgnoreChildList= new List<GameObject>();
     protected GameObject _breakableRef;
     [FormerlySerializedAs("_pI")] public PlayerInteraction playerInteraction;
     protected Rigidbody _rB;

@@ -1,20 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class TrashRemover : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private async void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Trash"))
         {
-            StartCoroutine(WaitToDestroy(other.gameObject));
+            await WaitToDestroy(other.gameObject);
         }
     }
 
-    private IEnumerator WaitToDestroy(GameObject other)
+    private async Task WaitToDestroy(GameObject other)
     {
         float killTime = 1;
         float currentTime = 0;
@@ -23,11 +24,11 @@ public class TrashRemover : MonoBehaviour
         while (currentTime<=killTime)
         {
             if(rb)
-                rb.AddForce(new Vector3(Random.Range(-1f*rb.mass,1f*rb.mass),Random.Range(-.5f*rb.mass,.5f*rb.mass),Random.Range(-1f*rb.mass,1f*rb.mass)));
+                rb.AddForce(new Vector3(Random.Range(-2f*rb.mass,2f*rb.mass),Random.Range(-.5f*rb.mass,.5f*rb.mass),Random.Range(-2f*rb.mass,2f*rb.mass)));
             currentTime += Time.deltaTime;
-            yield return null;
+            await Task.Yield();
         }
-        yield return new WaitForSeconds(.02f);        
+        await Task.Delay(20);
         Destroy(other);
     }
 }

@@ -28,6 +28,7 @@ public class CameraInteractable : Interactable
     {
         _meshRenderer.enabled = ! _meshRenderer.enabled;
         interaction.playerInput.FreeCam();
+        interaction.ToggleDof();
         if (interaction.playerData.camMode)
         {
             uiRef = Instantiate(cameraUi);
