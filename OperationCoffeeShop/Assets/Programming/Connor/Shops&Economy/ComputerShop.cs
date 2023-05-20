@@ -9,9 +9,9 @@ public class ComputerShop : MonoBehaviour
     private GameMode _gameMode;
     public CoffeeBankTM coffeeBankTM;
 
-    public UnityEngine.UI.Text balance;
+    private TextMeshProUGUI _balance,_bankUpdate;
+    public GameObject balance,bankUpdate;
     public string balanceString;
-    public UnityEngine.UI.Text bankUpdate;
     public string bankSuccessString;
     public string bankFailureString;
     public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10,cameraPrice = 100,pictureFramePrice=15;
@@ -20,6 +20,7 @@ public class ComputerShop : MonoBehaviour
 
 
     public static event EventHandler SpendMoney;
+    public static event EventHandler DepositItems;
 
 
     private Queue<DeliveryManager.ObjType> _orders;
@@ -31,9 +32,10 @@ public class ComputerShop : MonoBehaviour
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         coffeeBankTM = _gameMode.CoffeeBankTM;
         CoffeeBankTM.SuccessfulWithdrawal += EnsureWithdrawal; //
-        balance.text = balanceString;
-        balance.text =  ""+ _gameMode.gameModeData.moneyInBank;
-        bankUpdate.text = "";
+        _balance=balance.GetComponent<TextMeshProUGUI>();
+        _bankUpdate=bankUpdate.GetComponent<TextMeshProUGUI>();
+        _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+        _bankUpdate.text = "";
     }
 
     public void CloseShop()
@@ -81,10 +83,10 @@ public class ComputerShop : MonoBehaviour
         if (_orders.Count <= 0) return;
         if ((bool)sender)
         {
-            balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
-            bankUpdate.color = Color.green;
+            _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+            _bankUpdate.color = Color.green;
             var ingredient = _orders.Dequeue();
-            bankUpdate.text = bankSuccessString + ingredient.ToString();
+            _bankUpdate.text = bankSuccessString + ingredient.ToString();
 
             switch (ingredient)
             {
@@ -113,8 +115,8 @@ public class ComputerShop : MonoBehaviour
         }
         else
         {
-            bankUpdate.color = Color.red;
-            bankUpdate.text = bankFailureString + _orders.Dequeue();
+            _bankUpdate.color = Color.red;
+            _bankUpdate.text = bankFailureString + _orders.Dequeue();
         }
     }
 
