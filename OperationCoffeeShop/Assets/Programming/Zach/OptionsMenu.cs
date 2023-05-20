@@ -228,6 +228,12 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             _masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
             _musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
             _sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
+            if (_masterVol == 0)
+            {
+                _masterVol = 50;
+                _musicVol = 50;
+                _sfxVol = 50;
+            }
         }
     }
 }
