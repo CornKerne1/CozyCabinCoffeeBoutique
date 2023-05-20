@@ -21,18 +21,4 @@ public class TipJar : Interactable
         
     }
     
-
-    private void Update()
-    {
-        if (gameMode.gameModeData.reputation > 5)
-        {
-            fullJar.SetActive(true);
-            halfJar.SetActive(false);
-        }
-        else
-        {
-            halfJar.SetActive(true);
-            fullJar.SetActive(false);
-        }
-    }
 }

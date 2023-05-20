@@ -9,7 +9,7 @@ public abstract class Machine : MonoBehaviour
 {
     public int currentCapacity;
     [FormerlySerializedAs("mD")] public MachineData machineData;
-    public IngredientData iD;
+    public IngredientAtlas iD;
     public bool isRunning;
     public Vector3 origin;
     [FormerlySerializedAs("GameMode")] public GameMode gameMode;

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IngredientData", menuName = "Ingredient/Generic")]
-public class IngredientData : ScriptableObject
+[CreateAssetMenu(fileName = "IngredientAtlas", menuName = "Ingredient/Generic")]
+public class IngredientAtlas : ScriptableObject
 {
     [SerializeField] public GameObject milk;
     [SerializeField] public GameObject sMilk;
