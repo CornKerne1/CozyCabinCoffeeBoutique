@@ -10,7 +10,7 @@ public class Dispenser : Interactable
     [SerializeField] public ObjectHolder objType;
     [SerializeField] protected TextMeshProUGUI text;
     [SerializeField] protected string message = " beans remaining";
-    private ObjectPool<PhysicalIngredient> _pool;
+    public ObjectPool<Interactable> Pool;
     public bool deliveryMode;
     private Transform _obj;
     public int quantity = 10;
@@ -19,7 +19,6 @@ public class Dispenser : Interactable
     public override void Start()
     {
         base.Start();
-        ComputerShop.DepositItems += AddItems;
         CreatePool();
         StickyNoteSetup();
         if (!deliveryMode)
@@ -50,19 +49,19 @@ public class Dispenser : Interactable
 
     private void CreatePool()
     {
-        _pool = new ObjectPool<PhysicalIngredient>(
-            () => Instantiate(objType.gameObject.GetComponentInChildren<PhysicalIngredient>()),
-            physicalIngredient =>
+        Pool = new ObjectPool<Interactable>(
+            () => Instantiate(objType.gameObject.GetComponentInChildren<Interactable>()),
+            interactable =>
             {
-                physicalIngredient.gameObject.SetActive(true);
-                physicalIngredient.dispenser = this;
+                interactable.gameObject.SetActive(true);
+                interactable.dispenser = this;
             },
-            physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, physicalIngredient => { physicalIngredient.gameObject.SetActive(false); }, true, 100, 100);
+            interactable => { interactable.gameObject.SetActive(false); }, interactable => { interactable.gameObject.SetActive(false); }, true, 100, 100);
     }
 
-    public void ReleasePoolObject(PhysicalIngredient physicalIngredient)
+    public void ReleasePoolObject(Interactable interactable)
     {
-        _pool.Release(physicalIngredient);
+        Pool.Release(interactable);
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -81,19 +80,19 @@ public class Dispenser : Interactable
         }
     }
 
-    private void TakeFromDispenser()
+    public virtual void TakeFromDispenser()
     {
         if (playerInteraction.playerData.busyHands) return;
         quantity--;
         UpdateQuantity();
-        var ingredient = _pool.Get().transform;
+        var ingredient = Pool.Get().transform;
         var transform1 = ingredient.transform;
         transform1.position = spawnTrans.position;
         transform1.rotation = spawnTrans.rotation;
-        if (ingredient.gameObject.TryGetComponent<PhysicalIngredient>(out var physicalIngredient))
+        if (ingredient.gameObject.TryGetComponent<Interactable>(out var interactable))
         {
-            physicalIngredient.playerInteraction = playerInteraction;
-            physicalIngredient.dispenser = this;
+            interactable.playerInteraction = playerInteraction;
+            interactable.dispenser = this;
         }
         else if (ingredient.gameObject.TryGetComponent<IngredientContainer>(out var ingredientContainer))
         {

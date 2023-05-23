@@ -9,9 +9,9 @@ public class ComputerShop : MonoBehaviour
     private GameMode _gameMode;
     public CoffeeBankTM coffeeBankTM;
 
-    public TextMeshProUGUI balance;
+    private TextMeshProUGUI _balance,_bankUpdate;
+    public GameObject balance,bankUpdate;
     public string balanceString;
-    public TextMeshProUGUI bankUpdate;
     public string bankSuccessString;
     public string bankFailureString;
     public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10,cameraPrice = 100,pictureFramePrice=15;
@@ -32,8 +32,10 @@ public class ComputerShop : MonoBehaviour
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         coffeeBankTM = _gameMode.CoffeeBankTM;
         CoffeeBankTM.SuccessfulWithdrawal += EnsureWithdrawal; //
-        balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
-        bankUpdate.text = "";
+        _balance=balance.GetComponent<TextMeshProUGUI>();
+        _bankUpdate=bankUpdate.GetComponent<TextMeshProUGUI>();
+        _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+        _bankUpdate.text = "";
     }
 
     public void CloseShop()
@@ -81,40 +83,40 @@ public class ComputerShop : MonoBehaviour
         if (_orders.Count <= 0) return;
         if ((bool)sender)
         {
-            balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
-            bankUpdate.color = Color.green;
+            _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+            _bankUpdate.color = Color.green;
             var ingredient = _orders.Dequeue();
-            bankUpdate.text = bankSuccessString + ingredient.ToString();
+            _bankUpdate.text = bankSuccessString + ingredient.ToString();
 
             switch (ingredient)
             {
                 case DeliveryManager.ObjType.Coffee:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, coffeeQuantity));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, coffeeQuantity));
                     break;
 
                 case DeliveryManager.ObjType.Milk:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
 
                 case DeliveryManager.ObjType.Espresso:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, espressoQuantity));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, espressoQuantity));
                     break;
 
                 case DeliveryManager.ObjType.Sugar:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
                     break;
                 case DeliveryManager.ObjType.Camera:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
                 case DeliveryManager.ObjType.PictureFrame:
-                    _gameMode.DeliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
             }
         }
         else
         {
-            bankUpdate.color = Color.red;
-            bankUpdate.text = bankFailureString + _orders.Dequeue();
+            _bankUpdate.color = Color.red;
+            _bankUpdate.text = bankFailureString + _orders.Dequeue();
         }
     }
 

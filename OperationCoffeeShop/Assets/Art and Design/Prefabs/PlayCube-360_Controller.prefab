@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 915590325771011325}
   m_LocalRotation: {x: 0.5455935, y: 0.44980857, z: -0.44980857, w: 0.5455935}
   m_LocalPosition: {x: 0.485, y: -4.7053, z: -10.374}
-  m_LocalScale: {x: 11.865022, y: 11.865022, z: 11.865022}
+  m_LocalScale: {x: 11.865022, y: 11.865023, z: 11.865023}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,12 +115,17 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!54 &1511616897
 Rigidbody:
   m_ObjectHideFlags: 0

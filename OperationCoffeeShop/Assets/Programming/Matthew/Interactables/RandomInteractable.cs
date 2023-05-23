@@ -15,6 +15,7 @@ public class RandomInteractable : Interactable
 
     public override void OnAltInteract(PlayerInteraction interaction)
     {
+        interaction.Throw();
     }
 
 }

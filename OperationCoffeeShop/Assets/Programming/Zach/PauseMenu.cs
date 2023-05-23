@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class PauseMenu : MonoBehaviour
             _gameMode.gameModeData.timeRate = _previousTimeRate;
             AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
             _animator.SetTrigger("Reverse");
-            Cursor.visible = true;
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             playerInput.ToggleMovement();
             pD.inUI = false;
@@ -99,8 +100,6 @@ public class PauseMenu : MonoBehaviour
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         pD.inUI = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.None;
         gameObject.SetActive(false);
     }
 
@@ -138,8 +137,8 @@ public class PauseMenu : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
         playerInput.ToggleMovement();
         _playerInteraction.CameraBlur();
         _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0028c7f9d5cc8d84cbad85bb208b3cef, type: 3}
   m_Name: GameModeData ForTesting
   m_EditorClassIdentifier: 
-  timeRate: 0
+  timeRate: 75
+  defaultTimeRate: 75
   sleepDay: 3
   closingHour: 18
   wakeUpHour: 6
@@ -23,6 +24,7 @@ MonoBehaviour:
   day: 1
   currentOpenTime: 110
   isOpen: 0
+  screenShotResizeResolution: {x: 256, y: 256}
   time: 
   treeMats:
   - {fileID: 2100000, guid: 930c0be95b338704fba2f1e24b14b8d1, type: 2}
@@ -32,5 +34,6 @@ MonoBehaviour:
   deliveryQueued: 0
   _deliveryPrefabs: {fileID: 11400000, guid: 88ead0a8a7c803d4ea1b1ded205851c6, type: 2}
   deliveryBoxPref: {fileID: 1942895018878575360, guid: 773fd94ee27763743b95184aec8b6912, type: 3}
+  carnivalTruckPref: {fileID: 4789542311763586516, guid: 3993ffb0daa524f43a5aa506a83cbde1, type: 3}
   deliveryPosition: {x: -7.587, y: -5, z: 1.61}
-  moneyInBank: 80000000
+  moneyInBank: 55

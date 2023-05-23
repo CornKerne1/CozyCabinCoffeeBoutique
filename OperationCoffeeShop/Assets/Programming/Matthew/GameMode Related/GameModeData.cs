@@ -15,9 +15,11 @@ public class GameModeData : ScriptableObject
     public void OnEnable()
     {
         isOpen = false;
+        timeRate = defaultTimeRate;
     }
 
     [Header("Day Night Cycle")] public float timeRate;
+    public float defaultTimeRate = 75f;
     public DateTime currentTime;
     public int sleepDay;
     public DateTime startTime;
@@ -38,6 +40,7 @@ public class GameModeData : ScriptableObject
     public int day = 1;
     public float currentOpenTime;
     public bool isOpen;
+    public Vector2 screenShotResizeResolution;
 
     public string time;
 
@@ -45,7 +48,7 @@ public class GameModeData : ScriptableObject
     public GameObject breakParticle;
     public bool deliveryQueued;
     public DeliveryPrefabs _deliveryPrefabs;
-    public GameObject deliveryBoxPref;
+    public GameObject deliveryBoxPref,carnivalTruckPref;
     public Vector3 deliveryPosition;
     public float moneyInBank = 30;
 }

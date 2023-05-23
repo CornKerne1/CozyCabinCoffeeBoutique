@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2769393630645946346}
   - component: {fileID: 581199805682323142}
   - component: {fileID: 2112435313}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5545211, y: 1, z: 3.4372253}
-  m_Center: {x: 0.09570289, y: 0, z: 0.59195995}
+  m_Size: {x: 1.5545211, y: 0.13082701, z: 3.4372253}
+  m_Center: {x: 0.09570287, y: -0.4345865, z: 0.59195983}
 --- !u!114 &2112435313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.25
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3428476800576117670
 Transform:
@@ -50,7 +50,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8931484763928944765
 Transform:
@@ -136,11 +136,15 @@ MonoBehaviour:
   isBreakable: 0
   breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
   lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
   spawnTrans: {fileID: 3428476800576117670}
   objType: {fileID: 11400000, guid: 054c001c8d91c02489981ec4dc14c43a, type: 2}
   text: {fileID: 1783219141}
@@ -186,7 +190,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2597242072528317537, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7109011562341233569, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_text
@@ -214,7 +218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7109011562341233575, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7109011563112581968, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_Pivot.x
@@ -306,7 +310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7109011563112581972, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32bbdd098a825264b8a94a0ab4979c53, type: 3}

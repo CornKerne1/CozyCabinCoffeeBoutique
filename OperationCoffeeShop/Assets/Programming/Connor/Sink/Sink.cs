@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
@@ -18,7 +19,7 @@ public class Sink : Machine
     {
         base.Start();
         _hotWaterPool = new ObjectPool<LiquidIngredients>(
-            () => Instantiate(iD.hotWater.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
+            () => Instantiate(iD.water.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
                 outputTransform.rotation),
             ingredient =>
             {
@@ -30,7 +31,7 @@ public class Sink : Machine
             },
             ingredient => { ingredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         _coldWaterPool = new ObjectPool<LiquidIngredients>(
-            () => Instantiate(iD.coldWater.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
+            () => Instantiate(iD.water.GetComponentInChildren<LiquidIngredients>(), outputTransform.position,
                 outputTransform.rotation),
             ingredient =>
             {
@@ -44,12 +45,13 @@ public class Sink : Machine
             ingredient => { ingredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
-    protected override IEnumerator ActivateMachine(float _)
+    protected override async Task ActivateMachine(float _)
     {
         AkSoundEngine.PostEvent("PLAY_FAUCET", gameObject);
         isRunning = true;
         while (isRunning)
         {
+            if(!Application.isPlaying) return;
             if (isHotWater)
             {
                 _hotWaterPool.Get();
@@ -58,8 +60,7 @@ public class Sink : Machine
             {
                 _coldWaterPool.Get();
             }
-
-            yield return new WaitForSeconds(.05f);
+            await Task.Delay(50);
         }
 
         AkSoundEngine.PostEvent("STOP_FAUCET", gameObject);

@@ -12,7 +12,7 @@ public class SplashScreen : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         SceneManager.LoadScene(1);
     }
 }

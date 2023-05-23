@@ -1,29 +1,30 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class MilkContainer : MonoBehaviour
 {
     private int _count;
-    private void Start()
+    private async void Start()
     {
-        StartCoroutine(Init());
+        await Init();
     }
 
-    private IEnumerator Init()
+    private async Task Init()
     {
-        yield return new WaitForSeconds(0.04f);
-        StartCoroutine(AddIngredients());
+        await Task.Delay(40);
+        await AddIngredients();
     }
     
-    private IEnumerator AddIngredients()
+    private async Task AddIngredients()
     {
         _count = _count + 1;
-        yield return new WaitForSeconds(0.04f);
-        var iN = new IngredientNode(Ingredients.Milk, .1f);
+        await Task.Delay(15);
+        var iN = new IngredientNode(Ingredients.Milk, .01f);
         GetComponent<IngredientContainer>().AddToContainer(iN);
-        if (_count < 500)
+        if (_count < 400)
         {
-            StartCoroutine(AddIngredients());
+            await (AddIngredients());
         }
     }
 }

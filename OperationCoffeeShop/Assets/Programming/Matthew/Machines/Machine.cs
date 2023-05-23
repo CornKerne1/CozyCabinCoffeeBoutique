@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
@@ -8,7 +9,7 @@ public abstract class Machine : MonoBehaviour
 {
     public int currentCapacity;
     [FormerlySerializedAs("mD")] public MachineData machineData;
-    public IngredientData iD;
+    public IngredientAtlas iD;
     public bool isRunning;
     public Vector3 origin;
     [FormerlySerializedAs("GameMode")] public GameMode gameMode;
@@ -79,19 +80,19 @@ public abstract class Machine : MonoBehaviour
         //}
     }
 
-    public virtual void StartMachine()
+    public virtual async void StartMachine()
     {
         if (!isRunning)
         {
-            StartCoroutine(ActivateMachine(machineData.productionTime));
+            await ActivateMachine(machineData.productionTime);
         }
     }
 
 
-    protected virtual IEnumerator ActivateMachine(float time)
+    protected virtual async Task ActivateMachine(float time)
     {
         isRunning = true;
-        yield return new WaitForSeconds(time);
+        await Task.Delay(TimeSpan.FromSeconds(time));
         OutputIngredients();
         transform.position = origin;
         isRunning = false;

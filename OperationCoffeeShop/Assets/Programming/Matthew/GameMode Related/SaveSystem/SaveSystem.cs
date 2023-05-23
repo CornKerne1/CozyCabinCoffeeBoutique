@@ -49,7 +49,7 @@ public class SaveSystem
     
     public void SaveScreenShot(int i)
     {
-        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), 256,256);
+        var sS = ScaleTexture(ScreenCapture.CaptureScreenshotAsTexture(), (int)_gameModeData.screenShotResizeResolution.x,(int)_gameModeData.screenShotResizeResolution.y);
         byte[] textureBytes = sS.EncodeToPNG();
         File.WriteAllBytes(Application.persistentDataPath + "ScreenShot" + i + ".png", textureBytes);
     }
@@ -80,7 +80,7 @@ public class SaveSystem
     {
         SaveGameEvent?.Invoke(null, EventArgs.Empty);
         SaveGameData.deliveryPackages = new List<DeliveryPackage>();
-        foreach (var d in _gameMode.DeliveryManager.GetQueue())
+        foreach (var d in _gameMode.deliveryManager.GetQueue())
         {
             foreach (var dP in d.GetDeliveryPackages())
             {
@@ -120,17 +120,17 @@ public class SaveSystem
                 SaveGameData.savedHour, 0, 0);
                 _gameModeData.currentTime = saveDate;
                 _gameModeData.moneyInBank = SaveGameData.playerMoney;
-                _gameMode.DeliveryManager = new DeliveryManager(_gameMode.DeliveryManager, _gameMode, _gameModeData);
+                _gameMode.deliveryManager = new DeliveryManager(_gameMode.deliveryManager, _gameMode, _gameModeData);
                 foreach (var dP in SaveGameData.deliveryPackages)
                 {
-                    _gameMode.DeliveryManager.AddToDelivery(dP);
+                    _gameMode.deliveryManager.AddToDelivery(dP);
                 }
                 _gameMode.SpawnSavedObjects();
         }
         else
         {
                 _gameModeData.currentTime = new DateTime(2027, 1, 1, 6, 0,0);
-                _gameMode.DeliveryManager = new DeliveryManager(_gameMode.DeliveryManager, _gameMode, _gameModeData);
+                _gameMode.deliveryManager = new DeliveryManager(_gameMode.deliveryManager, _gameMode, _gameModeData);
                 SaveGameData = new SaveGameData
                 {
                     playerMoney = _gameModeData.moneyInBank,

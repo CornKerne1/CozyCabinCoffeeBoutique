@@ -1,33 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GrinderInteraction : MachineInteraction
 {
     
     public Animator animator;
-    [SerializeField,Header("Tutorial Only")]    
-    public GameObject objectiveOutputObject;
 
-    public override void OnInteract(PlayerInteraction interaction)
+    public override async void OnInteract(PlayerInteraction interaction)
     {
-
         animator.SetTrigger("Press");
-        StartCoroutine(Grind());
+       await Grind();
         IfTutorial();
-        
     }
 
     private void IfTutorial()
     {
         if (gameMode.gameModeData.inTutorial)
         {
-            gameMode.Tutorial.NextObjective(objectiveOutputObject);
+            gameMode.Tutorial.NextObjective(gameObject);
         }
     }
-    IEnumerator Grind()
+    private async Task Grind()
     {
-        yield return new WaitForSeconds(.4f);
+        await Task.Delay(400);
         switch (mD.machineType)
         {
             case MachineData.Type.Default:

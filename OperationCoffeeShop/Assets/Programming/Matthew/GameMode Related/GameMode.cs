@@ -29,8 +29,9 @@ public class GameMode : MonoBehaviour,ISaveState
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
 
-    public DeliveryManager DeliveryManager;
+    public DeliveryManager deliveryManager;
     public CoffeeBankTM CoffeeBankTM;
+    public DynamicBatcher dynamicBatcher;
 
     public SaveSystem SaveSystem;
 
@@ -53,12 +54,11 @@ public class GameMode : MonoBehaviour,ISaveState
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
         CoffeeBankTM = new CoffeeBankTM(CoffeeBankTM, this, gameModeData);
         SaveSystem = new SaveSystem(SaveSystem, this, gameModeData);
-        
         Initialize();
         //Instantiate(sunLight);
         IfTutorial();
     }
-    protected void Start()
+    protected async void Start()
     {
         var playerInteraction = player.GetComponent<PlayerInteraction>();
         playerInput = playerInteraction.playerInput;
@@ -86,6 +86,7 @@ public class GameMode : MonoBehaviour,ISaveState
         //if save file exists load DateTime from file else set to startTime
         DayNightCycle.Initialize();
         SaveSystem.Initialize();
+        dynamicBatcher = GetComponent<DynamicBatcher>();
     }
 
     private void IfTutorial()
@@ -135,7 +136,7 @@ public class GameMode : MonoBehaviour,ISaveState
         var truck =Instantiate(gameModeData._deliveryPrefabs.truckPrefab,Vector3.zero, Quaternion.identity);
         yield return new WaitForSeconds(8f);
         SpawnDeliveryBox();
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(20f);
         Destroy(truck);
     }
     public static bool IsEventPlayingOnGameObject(string eventName, GameObject go)
@@ -166,6 +167,14 @@ public class GameMode : MonoBehaviour,ISaveState
     public void SpawnDeliveryBox()
     {
         Instantiate(gameModeData.deliveryBoxPref,gameModeData.deliveryPosition,quaternion.identity);
+    }
+    public async Task SpawnCarnivalTruck()
+    {
+        while (playerData.inUI)
+        {
+            await Task.Yield();
+        }
+        Instantiate(gameModeData.carnivalTruckPref,new Vector3(-17, -9.86675167f, -4.67279959f),new Quaternion(0, -0.707106829f, 0, 0.707106829f));
     }
 
     public void TakePicture()

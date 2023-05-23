@@ -46,9 +46,11 @@ public class Objectives : MonoBehaviour
 
         Debug.Log("" + ((GameObject)sender).name);
         if (sender != objectiveStruct.triggerGameObject || currentObjective + 1 >= objectives.Count) return;
+        Debug.Log(objectives[currentObjective].objectiveText);
         AkSoundEngine.PostEvent("PLAY_TASKCOMPLETE", gameObject);
         if (objectives[++currentObjective].useOutline)
         {
+            textMesh.text = objectives[currentObjective].objectiveText;
             _outline = objectives[currentObjective].outlineGameObject.GetComponent<Outline>();
             _outline.enabled = true;
             _prevOutlineColor = _outline.OutlineColor;

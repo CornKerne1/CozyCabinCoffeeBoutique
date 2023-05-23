@@ -13,40 +13,11 @@ MonoBehaviour:
   m_Name: Main Camera Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: CM vcam (0)
-    m_To: CM vcam (1)
+  - m_From: CM vcam1
+    m_To: CM vcam1
     m_Blend:
       m_Style: 2
-      m_Time: 0
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: CM vcam (1)
-    m_To: CM vcam (2)
-    m_Blend:
-      m_Style: 2
-      m_Time: 269.08
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve:
@@ -71,57 +42,28 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-  - m_From: CM vcam (2)
-    m_To: CM vcam (3)
+  - m_From: CM vcam1
+    m_To: CM vcam2
     m_Blend:
-      m_Style: 2
-      m_Time: 81.17
+      m_Style: 1
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: Infinity
-          outSlope: Infinity
-          tangentMode: 0
+          value: 1
+          inSlope: -0.9592942
+          outSlope: -0.9592942
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: CM vcam (3)
-    m_To: CM vcam (4)
-    m_Blend:
-      m_Style: 2
-      m_Time: 13.65
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 14.90566
-          outSlope: 14.90566
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.0125
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
+          value: 0.00472641
+          inSlope: -0.9592942
+          outSlope: -0.9592942
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334

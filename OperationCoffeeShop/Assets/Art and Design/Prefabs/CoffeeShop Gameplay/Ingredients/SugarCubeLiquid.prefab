@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 675102333567399030}
   - component: {fileID: 6780981541529018234}
   - component: {fileID: 6132614532965198454}
-  - component: {fileID: 2652925905737007817}
   - component: {fileID: 5364778126060047226}
+  - component: {fileID: 8047050448780905454}
   m_Layer: 4
   m_Name: Cube
   m_TagString: Untagged
@@ -30,7 +30,8 @@ Transform:
   m_GameObject: {fileID: 1672378099481727965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2774236294130807461}
   m_RootOrder: 0
@@ -42,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672378099481727965}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: 046b3ef5e09130b44b1889b557559436, type: 3}
 --- !u!23 &6780981541529018234
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -100,19 +102,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!65 &2652925905737007817
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672378099481727965}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5364778126060047226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,10 +114,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8232778b6f7b648ba4c1821a51117b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMode: {fileID: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  delivered: 0
+  dispenser: {fileID: 0}
+  objTypeShop: 0
+  thisIngredient: 0
+  inHand: 0
+  machine: {fileID: 0}
   iN:
     ingredient: 3
     target: 2
-  sugarCube: {fileID: 6492814658333753549, guid: aa4bc21ddc2078c41a6cb43427afb952, type: 3}
+--- !u!65 &8047050448780905454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672378099481727965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041858263, y: 0.041858263, z: 0.041858263}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5846061564870485500
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +174,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.056984, y: -9.041306, z: -7.283391}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2657771027533582605}
   m_Father: {fileID: 0}

@@ -24,7 +24,7 @@ public class WalkInKitchenTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("enter the kitchen");
-        if (other.gameObject == _gameMode.player.gameObject && _gameMode.gameModeData.inTutorial)
+        if (_gameMode.gameModeData.inTutorial)
         {
             _gameMode.Tutorial.NextObjective(gameObject);
         }

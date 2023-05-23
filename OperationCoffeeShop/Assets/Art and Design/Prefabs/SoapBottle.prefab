@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6559748623720769318}
   - component: {fileID: 7829282599589963907}
   - component: {fileID: 5423394167934164041}
-  - component: {fileID: 212845556}
+  - component: {fileID: 7895223545917094888}
   m_Layer: 0
   m_Name: SoapBottle
   m_TagString: Untagged
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.70628804, y: -0.03401809, z: 0.03401809, w: 0.70628804}
   m_LocalPosition: {x: -2.837916, y: -8.3196, z: -10.795375}
   m_LocalScale: {x: 0.050993223, y: 0.050993223, z: 0.050993223}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -82,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &212845556
-MeshCollider:
+--- !u!65 &7895223545917094888
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +94,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6250529734608728989, guid: a3853f27ba003d140a6b6d60339caffe, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.0000002, y: 0.8363309, z: 3.4142294}
+  m_Center: {x: -0.00000001354343, y: 0.09442926, z: 0.622082}

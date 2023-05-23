@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -9,40 +10,45 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
+    private Vector3 _visualizerStartPosition;
+    [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
+    [SerializeField] public float visualizerPositionIncrement = .00048f;
     public bool inHand;
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
-    private float _capacity;
-    [SerializeField] private float maxCapacity = 2.0f;
+    private int _capacity;
+    [SerializeField] private float maxCapacity = 100f;
     public bool hasContentsVisualizer = true;
+    private Material _visualizerMaterial;
     public float topOfCup;
-    private bool _pouring;
-    private bool _pouringAction;
-    public bool rotating;
-    public bool pouringRotation;
-    public Dispenser dispenser;
+    private bool _pouring,_pouringAction;
+    public bool rotating,pouringRotation;
+    [FormerlySerializedAs("BigScale")][SerializeField]private bool scaleVisualizer;
 
-    public IngredientData iD;
+    public IngredientAtlas iD;
 
-    private IEnumerator _coRef1;
-    private IEnumerator _coRef2;
+    private Task _task1Running;
+    private Task _task2Running;
 
     public List<GameObject> outputIngredients = new List<GameObject>();
     private List<IngredientNode> _garbageList = new List<IngredientNode>();
+    private static readonly int ColorDark = Shader.PropertyToID("_ColorDark"),ColorLight = Shader.PropertyToID("_ColorLight");
+    private static readonly int Alpha = Shader.PropertyToID("Alpha");
+    private float visualizerScaleIncrement = .02f;
 
-    private void FixedUpdate()
+    private async void FixedUpdate()
     {
         HandlePourRotation();
+        if (rotating) return;
         Pour();
     }
 
-    private IEnumerator Timer(float time)
+    private async Task Timer(float time)
     {
-        _coRef1 = Timer(time);
-        yield return new WaitForSeconds(time);
+        await Task.Delay(TimeSpan.FromSeconds(time));
         rotating = false;
         _pouringAction = !_pouringAction;
-        _coRef1 = null;
+        _task1Running = null;
     }
 
     public void ResetCup()
@@ -50,10 +56,12 @@ public class IngredientContainer : Interactable
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
-            new Vector3(0, 0.0343f, 0);
+            _visualizerStartPosition;
 
         contentsVisualizer.transform.localScale =
-            new Vector3(5, 5, 5);
+            visualizerStartScale;
+        _visualizerMaterial.SetColor(ColorDark,Color.clear);
+        _visualizerMaterial.SetColor(ColorLight,Color.clear);
     }
 
     public bool IsPouring()
@@ -61,27 +69,28 @@ public class IngredientContainer : Interactable
         return _pouringAction ? _pouringAction : _pouring;
     }
 
-    private void HandlePourRotation()
+    private async void HandlePourRotation()
     {
         if (!rotating) return;
         if (!_pouringAction)
         {
-            transform.Rotate(2, 0, 0);
+            transform.Rotate(3.7f, 0, 0);
             _pouring = true;
             pouringRotation = true;
-            if (_coRef1 != null) return;
-            _coRef1 = Timer(1f);
-            StartCoroutine(Timer(1f));
+            if (_task1Running != null) return;
+            _task1Running = Timer(.5f);
+            await _task1Running;
         }
         else
         {
             AkSoundEngine.PostEvent("stop_looppour", gameObject);
             _pouring = false;
-            transform.Rotate(-2, 0, 0);
+            transform.Rotate(-3.7f, 0, 0);
             pouringRotation = false;
-            if (_coRef1 != null) return;
-            _coRef1 = Timer(1f);
-            StartCoroutine(Timer(1f));
+            _garbageList = new List<IngredientNode>();
+            if (_task1Running != null) return;
+            _task1Running = Timer(.5f);
+            await _task1Running;
         }
     }
 
@@ -90,6 +99,13 @@ public class IngredientContainer : Interactable
         if (!hasContentsVisualizer)
         {
             Destroy(contentsVisualizer);
+        }
+        else
+        {
+            _visualizerMaterial = contentsVisualizer.GetComponent<MeshRenderer>().material;
+            _visualizerMaterial.SetColor(ColorDark, Color.clear);
+            _visualizerMaterial.SetColor(ColorLight, Color.clear);
+            _visualizerStartPosition = contentsVisualizer.transform.localPosition;
         }
 
         base.Awake();
@@ -106,25 +122,45 @@ public class IngredientContainer : Interactable
 
     public virtual void AddToContainer(IngredientNode iN)
     {
-        if (_capacity > maxCapacity)
+        AddToContainer(iN, Color.clear);
+    }
+    public virtual void AddToContainer(IngredientNode iN, Color color)
+    {
+        
+        if (_capacity >= maxCapacity)
         {
             IngredientOverflow(iN);
         }
         else
         {
             dD.AddIngredient(iN);
-            _capacity = _capacity + iN.target;
+            _capacity = _capacity + 1;
             if (hasContentsVisualizer)
             {
+                if (_visualizerMaterial.GetColor(ColorDark) == Color.clear)
+                {
+                    _visualizerMaterial.SetColor(ColorDark, color);
+                    _visualizerMaterial.SetColor(ColorLight, color);
+                    _visualizerMaterial.SetFloat(Alpha,1);
+                }
+                else
+                {
+                    var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorDark), color, .01f);
+                    _visualizerMaterial.SetColor(ColorDark,newColor);
+                    _visualizerMaterial.SetColor(ColorLight,newColor);
+                }
                 var localPosition = contentsVisualizer.transform.localPosition;
                 localPosition = new Vector3(localPosition.x,
-                    (localPosition.y - .00048f),
+                    (localPosition.y - visualizerPositionIncrement),
                     localPosition.z);
                 contentsVisualizer.transform.localPosition = localPosition;
-                var localScale = contentsVisualizer.transform.localScale;
-                localScale = new Vector3(localScale.x + .01f,
-                    (localScale.y + .01f), localScale.z); //
-                contentsVisualizer.transform.localScale = localScale;
+                if (scaleVisualizer)
+                {
+                    var localScale = contentsVisualizer.transform.localScale;
+                    localScale = new Vector3(localScale.x + visualizerScaleIncrement,
+                        (localScale.y + visualizerScaleIncrement), localScale.z); //
+                    contentsVisualizer.transform.localScale = localScale;
+                }
             }
 
             switch (iN.ingredient)
@@ -141,6 +177,9 @@ public class IngredientContainer : Interactable
                 case Ingredients.Sugar:
                     outputIngredients.Add(iD.Sugar);
                     break;
+                case Ingredients.Water:
+                    outputIngredients.Add(iD.water);
+                    break;
                 case Ingredients.SteamedMilk:
                 case Ingredients.FoamedMilk:
                 case Ingredients.WhippedCream:
@@ -156,39 +195,31 @@ public class IngredientContainer : Interactable
         }
     }
 
-    protected virtual void RemoveIngredient()
+    protected virtual async void RemoveIngredient()
     {
-        foreach (var i in dD.ingredients)
+        if (dD.ingredients.Count <= 0) {_capacity = _capacity - 1;return;}
+        var iN = dD.ingredients[dD.ingredients.Count - 1];
+        iN.target = iN.target - 0.01f;
+        _capacity = _capacity - 1;
+        if (iN.target <= 0)
         {
-            var c = i.target - 0.1f;
-            i.target = c;
-            _capacity = _capacity - 0.1f;
-
-            if (i.target <= 0)
-            {
-                _garbageList.Add(i);
-            }
+            _garbageList.Add(iN);
         }
 
-        foreach (var i in _garbageList)
-        {
-            dD.ingredients.Remove(i);
-        }
-
-        _garbageList = new List<IngredientNode>();
+        dD.ingredients.Remove(iN);
     }
 
-    private void Pour()
+    private async void Pour()
     {
-        if (!_pouring || _coRef2 != null) return;
-        _coRef2 = Liquefy();
-        StartCoroutine(Liquefy());
+        if (!_pouring || _task2Running != null) return;
+        _task2Running = Liquefy();
+        await _task2Running;
     }
 
-    private IEnumerator Liquefy()
+    private async Task Liquefy()
     {
         RemoveIngredient();
-        yield return new WaitForSeconds(.1f);
+        await Task.Delay(75);
         if (outputIngredients.Count > 0)
         {
             if (!GameMode.IsEventPlayingOnGameObject("play_looppour", gameObject))
@@ -199,35 +230,47 @@ public class IngredientContainer : Interactable
             var r = Random.Range(0, outputIngredients.Count);
             Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
             outputIngredients.Remove(outputIngredients[outputIngredients.Count - 1]);
-            if (hasContentsVisualizer)
+            if (hasContentsVisualizer &&_capacity>0)
             {
                 var localPosition = contentsVisualizer.transform.localPosition;
                 localPosition = new Vector3(localPosition.x,
-                    (localPosition.y + .00048f),
+                    (localPosition.y + visualizerPositionIncrement),
                     localPosition.z);
                 contentsVisualizer.transform.localPosition = localPosition;
-                var localScale = contentsVisualizer.transform.localScale;
-                localScale = new Vector3(localScale.x - .01f,
-                    (localScale.y - .01f), localScale.z); //
-                contentsVisualizer.transform.localScale = localScale;
+                if (scaleVisualizer)
+                {
+                    var localScale = contentsVisualizer.transform.localScale;
+                    localScale = new Vector3(localScale.x - visualizerScaleIncrement,
+                        (localScale.y - visualizerScaleIncrement), localScale.z); //
+                    contentsVisualizer.transform.localScale = localScale;
+                }
+            }
+            else if(hasContentsVisualizer)
+            {
+                _visualizerMaterial.SetColor(ColorDark, Color.clear);
+                _visualizerMaterial.SetColor(ColorLight, Color.clear);
+                _visualizerMaterial.SetFloat(Alpha, 0);
+                _capacity = 0;
+
             }
         }
         else
         {
+            ResetCup();
             AkSoundEngine.PostEvent("stop_looppour", gameObject);
         }
 
-        _coRef2 = null;
+        _task2Running = null;
     }
 
-    public void StopPouring()
+    public async void StopPouring()
     {
-        StartCoroutine(WaitForPour());
+        await WaitForPour();
     }
 
-    IEnumerator WaitForPour()
-    {
-        yield return new WaitForSeconds(1f);
+    private async Task WaitForPour()
+    { 
+        await Task.Delay(1000);
         if (IsPouring())
         {
             rotating = true;
@@ -249,6 +292,9 @@ public class IngredientContainer : Interactable
                 break;
             case Ingredients.Milk:
                 Instantiate(iD.milk, pourTransform.position, pourTransform.rotation);
+                break;
+            case Ingredients.Water:
+                outputIngredients.Add(iD.water);
                 break;
             case Ingredients.SteamedMilk:
             case Ingredients.FoamedMilk:

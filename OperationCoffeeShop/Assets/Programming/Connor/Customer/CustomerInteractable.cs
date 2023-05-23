@@ -9,6 +9,7 @@ public class CustomerInteractable : Interactable
     [Header("Visual Cue")] private TextAsset _introConversation;
     private TextAsset _exitConversationPositive;
     private TextAsset _exitConversationNegative;
+    [SerializeField]private bool temporaryCarnivalGameSolution;
 
     [FormerlySerializedAs("CAI")] public CustomerAI customerAI;
 
@@ -24,6 +25,7 @@ public class CustomerInteractable : Interactable
     private CustomerData _customerData;
 
     private CustomerLine _line;
+    
 
 
     [FormerlySerializedAs("_canInteract")] public bool canInteract = true;
@@ -106,10 +108,9 @@ public class CustomerInteractable : Interactable
     }
 
 
-    public override void OnInteract(PlayerInteraction interaction)
+    public override async void OnInteract(PlayerInteraction interaction)
     {
         this._playerInteraction = interaction;
-
         if (dialogueManager.dialogueIsPlaying || customerAI.stay != true || customerAI.hasOrdered ||
             !canInteract) return;
         interaction.playerData.inUI = true;
@@ -129,6 +130,8 @@ public class CustomerInteractable : Interactable
         gameMode.playerData.canMove = false;
         _customerData.customerAnimations.Talk();
         Speak();
+        if (temporaryCarnivalGameSolution)
+            await gameMode.SpawnCarnivalTruck();
     }
 
     public void Speak()
@@ -139,6 +142,7 @@ public class CustomerInteractable : Interactable
     public void DisplayOrderBubble()
     {
         _orderCanvas.enabled = true;
+        _orderCanvas.sortingLayerName = "WaterFall";
     }
 
     public void RemoveOrderBubble()

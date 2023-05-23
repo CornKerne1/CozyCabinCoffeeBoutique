@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -25,11 +26,11 @@ public class EspressoMachine : Machine
             liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
 
-    protected override IEnumerator ActivateMachine(float time)
+    protected override async Task ActivateMachine(float time)
     {
         isRunning = true;
         base.PostSoundEvent("Play_GrindingEspresso");
-        yield return new WaitForSeconds(time);
+        await Task.Delay(TimeSpan.FromSeconds(time));
         OutputIngredients();
         transform.position = base.origin;
     }
@@ -59,32 +60,32 @@ public class EspressoMachine : Machine
             case Ingredients.BrewedCoffee:
             case Ingredients.CoffeeFilter:
             case Ingredients.TeaBag:
-            default:
-                throw new ArgumentOutOfRangeException();
+            break;
         }
     }
 
-    protected override void OutputIngredients()
+    protected override async void OutputIngredients()
     {
-        StartCoroutine(Liquify());
+        await Liquify();
     }
 
-    private IEnumerator Liquify()
+    private async Task Liquify()
     {
         if (currentCapacity != 0)
         {
             _current = machineData.outputIngredient.Count - 1;
             for (int k = 0; k < 20; k++)
             {
+                if(!Application.isPlaying) return;
                 _pool.Get();
-                yield return new WaitForSeconds(.08f);
+                await Task.Delay(TimeSpan.FromSeconds(.08f));
             }
 
             currentCapacity--;
             machineData.outputIngredient.RemoveAt(_current);
         }
 
-        yield return new WaitForSeconds(.08f);
+        await Task.Delay(TimeSpan.FromSeconds(.08f));
         base.isRunning = false;
     }
 }

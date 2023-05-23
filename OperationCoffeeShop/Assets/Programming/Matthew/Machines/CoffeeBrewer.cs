@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -33,11 +34,11 @@ public class CoffeeBrewer : Machine
             liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, liquidIngredient => { liquidIngredient.gameObject.SetActive(false); }, true, 100, 100);
     }
 
-    protected override IEnumerator ActivateMachine(float time)
+    protected override async Task ActivateMachine(float time)
     {
         AkSoundEngine.PostEvent("PLAY_Brewer", gameObject);
         isRunning = true;
-        yield return new WaitForSeconds(time);
+        await Task.Delay(TimeSpan.FromSeconds(time));
         AkSoundEngine.PostEvent("STOP_Brewer", gameObject);
         OutputIngredients();
         transform.position = base.origin;
@@ -68,8 +69,7 @@ public class CoffeeBrewer : Machine
             case Ingredients.EspressoBeans:
             case Ingredients.CoffeeFilter:
             case Ingredients.TeaBag:
-            default:
-                throw new ArgumentOutOfRangeException();
+                break;
         }
     }
 
@@ -82,12 +82,12 @@ public class CoffeeBrewer : Machine
     }
 
 
-    protected override void OutputIngredients()
+    protected override async void OutputIngredients()
     {
-        StartCoroutine(CO_Liquefy());
+       await CO_Liquefy();
     }
 
-    private IEnumerator CO_Liquefy()
+    private async Task CO_Liquefy()
     {
         AkSoundEngine.PostEvent("PLAY_LOOPPOUR", gameObject);
         for (_iterations = 0; _iterations < currentCapacity;)
@@ -95,15 +95,15 @@ public class CoffeeBrewer : Machine
             {
                 for (var k = 0; k < 100 * (_iterations + 1); k++)
                 {
+                    if(!Application.isPlaying) return;
                     _pool.Get();
-                    yield return new WaitForSeconds(.04f);
+                    await Task.Delay(35);
                 }
 
                 currentCapacity--;
                 machineData.outputIngredient.RemoveAt(_iterations);
             }
-
-        yield return new WaitForSeconds(.04f);
+        await Task.Delay(35);
         base.isRunning = false;
         AkSoundEngine.PostEvent("STOP_LOOPPOUR", gameObject);
     }

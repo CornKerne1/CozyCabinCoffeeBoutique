@@ -48,11 +48,6 @@ public abstract class Customer : MonoBehaviour
 
     protected DrinkData GetFavoriteDrink()
     {
-        if (customerData.favoriteDrinkData != null)
-            Debug.Log("Null Favorite drink ");
-        if (customerData != null)
-            Debug.Log("Null  CustomerData ");
-
         return customerData.favoriteDrinkData;
     }
 
