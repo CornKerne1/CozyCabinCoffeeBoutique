@@ -168,6 +168,14 @@ public class GameMode : MonoBehaviour,ISaveState
     {
         Instantiate(gameModeData.deliveryBoxPref,gameModeData.deliveryPosition,quaternion.identity);
     }
+    public async Task SpawnCarnivalTruck()
+    {
+        while (playerData.inUI)
+        {
+            await Task.Yield();
+        }
+        Instantiate(gameModeData.carnivalTruckPref,new Vector3(-17, -9.86675167f, -4.67279959f),new Quaternion(0, -0.707106829f, 0, 0.707106829f));
+    }
 
     public void TakePicture()
     {

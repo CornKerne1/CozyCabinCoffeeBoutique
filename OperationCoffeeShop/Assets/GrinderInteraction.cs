@@ -7,8 +7,6 @@ public class GrinderInteraction : MachineInteraction
 {
     
     public Animator animator;
-    [SerializeField,Header("Tutorial Only")]    
-    public GameObject objectiveOutputObject;
 
     public override async void OnInteract(PlayerInteraction interaction)
     {
@@ -21,7 +19,7 @@ public class GrinderInteraction : MachineInteraction
     {
         if (gameMode.gameModeData.inTutorial)
         {
-            gameMode.Tutorial.NextObjective(objectiveOutputObject);
+            gameMode.Tutorial.NextObjective(gameObject);
         }
     }
     private async Task Grind()

@@ -48,7 +48,7 @@ public class GameModeData : ScriptableObject
     public GameObject breakParticle;
     public bool deliveryQueued;
     public DeliveryPrefabs _deliveryPrefabs;
-    public GameObject deliveryBoxPref;
+    public GameObject deliveryBoxPref,carnivalTruckPref;
     public Vector3 deliveryPosition;
     public float moneyInBank = 30;
 }

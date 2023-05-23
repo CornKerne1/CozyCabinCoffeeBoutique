@@ -41,7 +41,8 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void ToggleFullscreen()
     {
         int currentScreenMode = (int)Screen.fullScreenMode;
-        Screen.fullScreenMode = currentScreenMode+1 >3?(FullScreenMode)0:(FullScreenMode)(currentScreenMode+1);
+        Screen.fullScreenMode = currentScreenMode == 3 ? (FullScreenMode)0 : (FullScreenMode)currentScreenMode+1;
+        Screen.fullScreenMode = currentScreenMode == 2 ? (FullScreenMode)3 : (FullScreenMode)currentScreenMode;
         fullscreenLabel.text = Screen.fullScreenMode.ToString();
     }
 
@@ -228,6 +229,12 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             _masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
             _musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
             _sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
+            if (_masterVol == 0)
+            {
+                _masterVol = 50;
+                _musicVol = 50;
+                _sfxVol = 50;
+            }
         }
     }
 }

@@ -63,6 +63,11 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         InitializeOutline();
         CheckTutorial();
         OnFocusTextPool();
+        if (!gameMode.dynamicBatcher)
+        {
+            while (!gameMode.dynamicBatcher)
+                await Task.Yield();
+        }
         await gameMode.dynamicBatcher.AddForBatching(gameObject);
         SaveSystem.SaveGameEvent += OnSaveEvent;
     }

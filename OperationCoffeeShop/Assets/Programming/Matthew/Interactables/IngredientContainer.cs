@@ -25,7 +25,7 @@ public class IngredientContainer : Interactable
     public bool rotating,pouringRotation;
     [FormerlySerializedAs("BigScale")][SerializeField]private bool scaleVisualizer;
 
-    public IngredientData iD;
+    public IngredientAtlas iD;
 
     private Task _task1Running;
     private Task _task2Running;
