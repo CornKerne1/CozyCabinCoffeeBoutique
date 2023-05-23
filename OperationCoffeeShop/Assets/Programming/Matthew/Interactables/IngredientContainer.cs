@@ -10,6 +10,7 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
+    [SerializeField] public GameObject steam;
     private Vector3 _visualizerStartPosition;
     [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
     [SerializeField] public float visualizerPositionIncrement = .00048f;
@@ -126,7 +127,16 @@ public class IngredientContainer : Interactable
     }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-        
+        //code for handeling steam vizability
+        if (base.objTypeShop == DeliveryManager.ObjType.Coffee)
+        {
+            if (_capacity >= maxCapacity / 3)
+            {
+                steam.SetActive(true);
+            }
+        }
+        // end of zach steam code
+
         if (_capacity >= maxCapacity)
         {
             IngredientOverflow(iN);
@@ -197,6 +207,16 @@ public class IngredientContainer : Interactable
 
     protected virtual async void RemoveIngredient()
     {
+        //code for handeling steam vizability
+        if (base.objTypeShop == DeliveryManager.ObjType.Coffee)
+        {
+            if (_capacity < maxCapacity / 3)
+            {
+                steam.SetActive(false);
+            }
+        }
+        // end of zach steam code
+
         if (dD.ingredients.Count <= 0) {_capacity = _capacity - 1;return;}
         var iN = dD.ingredients[dD.ingredients.Count - 1];
         iN.target = iN.target - 0.01f;
