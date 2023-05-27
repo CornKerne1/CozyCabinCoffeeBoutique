@@ -2,7 +2,7 @@
     "name": "Ak.Wwise.Api.WAAPI",
     "references": [
         "AK.Wwise.Unity.API.WwiseTypes",
-        "AK.Wwise.Unity.API","UnityEditor.UI","UnityEngine.UI"
+        "AK.Wwise.Unity.API"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -10,7 +10,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [ "!UNITY_SERVER" ],
     "versionDefines": [],
     "noEngineReferences": false
 }

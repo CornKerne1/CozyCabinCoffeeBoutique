@@ -87,7 +87,9 @@ public class PlayerInput : MonoBehaviour
         }
         catch (Exception e)
         {
+            // ignored
         }
+
         return Task.CompletedTask;
     }
 

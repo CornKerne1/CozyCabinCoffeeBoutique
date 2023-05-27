@@ -8,6 +8,7 @@ public class TutorialBed : Interactable
     private GameObject _currentDc;
 
     [SerializeField] private bool loadingNextScene;
+    [SerializeField] private GameObject wwiseBank;
 
     public override void OnInteract(PlayerInteraction interaction)
     {
@@ -27,6 +28,7 @@ public class TutorialBed : Interactable
     {
         yield return new WaitForSeconds(.1f);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        Destroy(wwiseBank);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

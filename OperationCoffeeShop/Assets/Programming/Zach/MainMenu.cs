@@ -12,9 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]private GameObject optionsScreen;
 
     [SerializeField]private GameObject creditsScreen;
-    [SerializeField]private GameObject cursorPref;
-    private GamepadCursor _virtualCursor;
     private GameMode _gameMode;
+    [SerializeField]private GameObject wwiseBank;
 
 
     [SerializeField] private PlayableDirector director;
@@ -42,6 +41,7 @@ public class MainMenu : MonoBehaviour
         else
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         
+        Destroy(wwiseBank);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -72,12 +72,9 @@ public class MainMenu : MonoBehaviour
     }
     private void InitializeHudAndCursor()
     {
-        _virtualCursor = Instantiate(cursorPref).GetComponentInChildren<GamepadCursor>();
-        _virtualCursor.playerInput = _gameMode.playerInput;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        _virtualCursor.transform.parent = null;
     }
     private void Start()
     {
@@ -85,7 +82,6 @@ public class MainMenu : MonoBehaviour
         _animator = GetComponent<Animator>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         InitializeHudAndCursor();
-        _gameMode.gameModeData.isOpen = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         director.stopped += ReadNote;

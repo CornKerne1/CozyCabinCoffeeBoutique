@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     private bool _couldMovePreviously = true;
     public PlayerInput playerInput;
 
-    [SerializeField]private GameObject infoScreen,optionsScreen,controlScreen,infoButtonObj, optionsButtonObj,controlsButtonObj;
+    [SerializeField]private GameObject infoScreen,optionsScreen,controlScreen,infoButtonObj, optionsButtonObj,controlsButtonObj,wwiseBank;
     private Image _infoButton, _optionsButton,_controlsButton;
     [SerializeField] private Color activateColor, deactivateColor;
 
@@ -109,6 +109,7 @@ public class PauseMenu : MonoBehaviour
             _playerInteraction.carriedObj.SetActive(true);
         _gameMode.Save(0);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        Destroy(wwiseBank);
         StartCoroutine(WaitForSave());
     }
 
