@@ -54,6 +54,7 @@ public class IngredientContainer : Interactable
 
     public void ResetCup()
     {
+        steam.SetActive(false);
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
@@ -127,15 +128,7 @@ public class IngredientContainer : Interactable
     }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-        //code for handeling steam vizability
-        if (base.objTypeShop == DeliveryManager.ObjType.Coffee)
-        {
-            if (_capacity >= maxCapacity / 3)
-            {
-                steam.SetActive(true);
-            }
-        }
-        // end of zach steam code
+       
 
         if (_capacity >= maxCapacity)
         {
@@ -177,9 +170,11 @@ public class IngredientContainer : Interactable
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
+                    steam.SetActive(true);
                     break;
                 case Ingredients.Espresso:
                     outputIngredients.Add(iD.espresso);
+                    steam.SetActive(true);
                     break;
                 case Ingredients.Milk:
                     outputIngredients.Add(iD.milk);
@@ -201,22 +196,13 @@ public class IngredientContainer : Interactable
                 case Ingredients.TeaBag:
                 default:
                     throw new ArgumentOutOfRangeException();
+
             }
         }
     }
 
     protected virtual async void RemoveIngredient()
     {
-        //code for handeling steam vizability
-        if (base.objTypeShop == DeliveryManager.ObjType.Coffee)
-        {
-            if (_capacity < maxCapacity / 3)
-            {
-                steam.SetActive(false);
-            }
-        }
-        // end of zach steam code
-
         if (dD.ingredients.Count <= 0) {_capacity = _capacity - 1;return;}
         var iN = dD.ingredients[dD.ingredients.Count - 1];
         iN.target = iN.target - 0.01f;
