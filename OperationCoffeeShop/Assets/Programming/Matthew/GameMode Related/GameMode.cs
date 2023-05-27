@@ -48,7 +48,7 @@ public class GameMode : MonoBehaviour,ISaveState
     [Header("Tutorial Stuffs")] public Tutorial Tutorial;
     [FormerlySerializedAs("Objectives")] public Objectives objectives;
 
-    private void Awake()
+    private async Task Awake()
     {
         //Creates new DayNightCycle component.
         DayNightCycle = new DayNightCycle(DayNightCycle, this, gameModeData);
@@ -56,7 +56,7 @@ public class GameMode : MonoBehaviour,ISaveState
         SaveSystem = new SaveSystem(SaveSystem, this, gameModeData);
         Initialize();
         //Instantiate(sunLight);
-        IfTutorial();
+        await IfTutorial();
     }
     protected async void Start()
     {
@@ -89,14 +89,16 @@ public class GameMode : MonoBehaviour,ISaveState
         dynamicBatcher = GetComponent<DynamicBatcher>();
     }
 
-    private void IfTutorial()
+    private async Task IfTutorial()
     {
         if (!gameModeData.inTutorial) return;
-        AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
         Tutorial = new Tutorial(Tutorial, this, gameModeData)
         {
             Objectives = objectives
-        };
+        }; 
+        await Task.Delay(100);
+        AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
+        
     }
 
     public void DeactivateAndDestroy(GameObject obj)

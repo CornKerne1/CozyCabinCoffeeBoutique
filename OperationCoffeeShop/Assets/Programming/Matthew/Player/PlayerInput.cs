@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -45,7 +46,7 @@ public class PlayerInput : MonoBehaviour
     public bool disabled;
     private bool _movingObj,_rotatingObj;
 
-    private async void Awake()
+    private void Awake()
     {
         _pC = new PlayerControls();
         _fPp = _pC.FPPlayer;
@@ -56,7 +57,14 @@ public class PlayerInput : MonoBehaviour
         _jump = _fPp.Jump;
         _crouch = _fPp.Crouch;
     }
-    private async void Start()
+
+    private void Start()
+    {
+        
+        StartAsync();
+        InitializeMenu();
+    }
+    private async void StartAsync()
     {
         await InitializeHudAndCursor();
         await InitializeMenu();
@@ -80,15 +88,21 @@ public class PlayerInput : MonoBehaviour
     {
         virtualCursor.gameObject.SetActive(false);
         pauseM.SetActive(false);
+        var pM = pauseM.GetComponent<PauseMenu>();
         try
         {
-            var pM = pauseM.GetComponent<PauseMenu>();
             pM.playerInput = this;
         }
         catch (Exception e)
         {
+            Debug.LogWarning("failure to assign Player to PauseMenu ");
         }
         return Task.CompletedTask;
+    }
+
+    IEnumerator AssignPlayerInput()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     private void Update()
@@ -114,14 +128,22 @@ public class PlayerInput : MonoBehaviour
         }
         else
         {
-            pauseM.SetActive(true);
-            pauseM.GetComponent<PauseMenu>().pD = pD;
+            if (pauseM != null)
+            {
+                pauseM.SetActive(true);
+                pauseM.GetComponent<PauseMenu>().pD = pD;
+            }
+            else
+            {
+                Debug.LogWarning("WHY would pauseM be null?");
+            }
+
             pD.inUI = true;
             ToggleHud(); 
         }
     }
 
-    public async void OnEnable()
+    public void OnEnable()
     {
         disabled = false;
 
@@ -166,7 +188,7 @@ public class PlayerInput : MonoBehaviour
         _fPp.FreeCam.Enable();
     }
 
-    private async void OnMousePerformed(InputAction.CallbackContext ctx)
+    private void OnMousePerformed(InputAction.CallbackContext ctx)
     {
         _mouseInput = ctx.ReadValue<Vector2>();
         inputType = ctx.control.ToString();
@@ -198,7 +220,7 @@ public class PlayerInput : MonoBehaviour
             MoveObjEvent?.Invoke(this, EventArgs.Empty);
         }
     }
-    public async void OnDisable()
+    public void OnDisable()
     {
         disabled = true;
         _fPp.Move.Disable();
@@ -311,5 +333,22 @@ public class PlayerInput : MonoBehaviour
     public PlayerInput GetPlayerInput()
     {
         return this;
+    }
+
+    private void OnDestroy()
+    {
+        CamModeEvent -= ToggleHud;
+        PauseEvent -= _Pause;
+         disabled = true;
+        _fPp.Move.Disable();
+        _fPp.Mouse.Disable();
+        _sprint.Disable();
+        _jump.Disable();
+        _crouch.Disable();
+        _interact.Disable();
+        _altInteract.Disable();
+        _fPp.Rotate.Disable();
+        _fPp.FreeCam.Disable();
+         
     }
 }
