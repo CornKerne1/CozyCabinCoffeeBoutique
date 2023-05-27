@@ -1729,17 +1729,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 705493828937068886, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
-      propertyPath: playerInput
-      value: 
-      objectReference: {fileID: 1722564803}
     - target: {fileID: 1423995552129583617, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
       propertyPath: m_Name
       value: Pause Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 1423995552129583617, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1423995552129583629, guid: f2994bd7bea49a54fbb09760a8f2e1bf, type: 3}
       propertyPath: m_Pivot.x
@@ -17053,6 +17045,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 789360315, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
+      propertyPath: maxBatchSize
+      value: 1023
+      objectReference: {fileID: 0}
     - target: {fileID: 1618134114, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
       propertyPath: gate
       value: 
@@ -17065,10 +17061,6 @@ PrefabInstance:
       propertyPath: sunLight
       value: 
       objectReference: {fileID: 1322513377}
-    - target: {fileID: 1618134114, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
-      propertyPath: gameModeData
-      value: 
-      objectReference: {fileID: 11400000, guid: 5933d9b52b8e9954bace5f7f7a6fd8cc, type: 2}
     - target: {fileID: 437454372516062909, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
       propertyPath: m_Name
       value: GameMode
@@ -17117,7 +17109,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1716895940, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
+    - {fileID: 1716895941, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 56e80362bbdb3a74d8f34b738f62c083, type: 3}
 --- !u!1001 &1549478289
 PrefabInstance:
@@ -18834,17 +18828,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d2960e4989929943ba5c79076978ec5, type: 3}
---- !u!114 &1722564803 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 540870954, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
-  m_PrefabInstance: {fileID: 1912087424}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19dde96b2e537de49aefa677e18d0164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1734451145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5785451015041803945, guid: dc48fb5b1152d2e48b245793c842ab26, type: 3}

@@ -169,4 +169,5 @@ public class PauseMenu : MonoBehaviour
          pD.neckClamp = 0.0f;
          _playerInteraction.CameraBlur();
      }*/
+   
 }
