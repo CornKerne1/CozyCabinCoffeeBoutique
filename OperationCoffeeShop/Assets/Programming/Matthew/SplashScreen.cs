@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SplashScreen : MonoBehaviour
 {
+    [SerializeField]private GameObject WwiseBank;
+
     private void Start()
     {
         StartCoroutine(Timer());
@@ -14,6 +16,7 @@ public class SplashScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(6);
         SceneManager.LoadScene(1);
+        Destroy(WwiseBank);
     }
 }
 

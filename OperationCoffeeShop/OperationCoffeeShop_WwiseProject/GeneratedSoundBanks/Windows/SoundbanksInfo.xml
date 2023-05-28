@@ -1,686 +1,776 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="145">
 	<RootPaths>
-		<ProjectRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\DukeOfHounds\Documents\GitHub\OperationCoffeeShop\OperationCoffeeShop\OperationCoffeeShop_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
-	<StreamedFiles/>
-	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2926097407">
-			<ObjectPath>Init</ObjectPath>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{7334E589-2197-FAC1-493A-0E1DDE623D88}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+			<GameParameters>
+				<GameParameter Id="988953028" Name="SFXVolume"/>
+				<GameParameter Id="2346531308" Name="MusicVolume"/>
+				<GameParameter Id="2918011349" Name="MasterVolume"/>
+			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="691006007" Name="Loop">
+					<States>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="576475159">
-			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{A414BA2B-528E-B27D-30F0-49F7857FE34B}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
-			<IncludedEvents>
-				<Event Id="2630402114" Name="Pause_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Pause_GrandTheft_Machiato" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4139861594" Name="Pause_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Pause_SynthWaveSong" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4061997089" Name="Play_AfterHours" ObjectPath="\Events\Default Work Unit\Play_AfterHours" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="752191520" Language="SFX">
-							<ShortName>After_Hours.wav</ShortName>
-							<Path>SFX\After_Hours_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3692656996" Name="Play_BeeFrameSlide" ObjectPath="\Events\Default Work Unit\Play_BeeFrameSlide" DurationType="OneShot" DurationMin="0.882834" DurationMax="0.882834">
-					<IncludedMemoryFiles>
-						<File Id="547639350" Language="SFX">
-							<ShortName>BeeFrameSlide.wav</ShortName>
-							<Path>SFX\BeeFrameSlide_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2063165417" Name="Play_Bees" ObjectPath="\Events\Default Work Unit\Play_Bees" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="565781944" Language="SFX">
-							<ShortName>Bees.wav</ShortName>
-							<Path>SFX\Bees_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="733698582" Name="Play_BeesSleeping" ObjectPath="\Events\Default Work Unit\Play_BeesSleeping" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="710138040" Language="SFX">
-							<ShortName>BeesSleeping.wav</ShortName>
-							<Path>SFX\BeesSleeping_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3330708836" Name="Play_BeesSleeping_01" ObjectPath="\Events\Default Work Unit\Play_BeesSleeping_01" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="710138040" Language="SFX">
-							<ShortName>BeesSleeping.wav</ShortName>
-							<Path>SFX\BeesSleeping_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2993288148" Name="Play_BossaNova" ObjectPath="\Events\Default Work Unit\Play_BossaNova" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="538996245" Language="SFX">
-							<ShortName>BossaNovaAttempt.wav</ShortName>
-							<Path>SFX\BossaNovaAttempt_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="855079117" Name="Play_BreakingLoose" ObjectPath="\Events\Default Work Unit\Play_BreakingLoose" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="903791736" Language="SFX">
-							<ShortName>Breaking_Loose_LoFi.wav</ShortName>
-							<Path>SFX\Breaking_Loose_LoFi_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="20894835" Name="Play_Brewer" ObjectPath="\Events\Default Work Unit\Play_Brewer" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="319928094" Language="SFX">
-							<ShortName>Brewer.wav</ShortName>
-							<Path>SFX\Brewer_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1532331005" Name="Play_BubblePop" ObjectPath="\Events\Default Work Unit\Play_BubblePop" DurationType="OneShot" DurationMin="0.108707" DurationMax="0.108707">
-					<IncludedMemoryFiles>
-						<File Id="31117576" Language="SFX">
-							<ShortName>BubblePop.wav</ShortName>
-							<Path>SFX\BubblePop_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2652178615" Name="Play_buttonpress" ObjectPath="\Events\Default Work Unit\Play_buttonpress" MaxAttenuation="15." DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
-					<IncludedMemoryFiles>
-						<File Id="873684257" Language="SFX">
-							<ShortName>buttonpress.wav</ShortName>
-							<Path>SFX\buttonpress_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="684088502" Name="Play_CabinetClose" ObjectPath="\Events\Default Work Unit\Play_CabinetClose" DurationType="OneShot" DurationMin="0.434785" DurationMax="0.434785">
-					<IncludedMemoryFiles>
-						<File Id="1047615776" Language="SFX">
-							<ShortName>CabinetClose.wav</ShortName>
-							<Path>SFX\CabinetClose_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1255478370" Name="Play_CabinetOpen" ObjectPath="\Events\Default Work Unit\Play_CabinetOpen" DurationType="OneShot" DurationMin="0.3261" DurationMax="0.3261">
-					<IncludedMemoryFiles>
-						<File Id="203743960" Language="SFX">
-							<ShortName>CabinetOpen.wav</ShortName>
-							<Path>SFX\CabinetOpen_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2073519945" Name="Play_CeramicBowlBreaking" ObjectPath="\Events\Default Work Unit\Play_CeramicBowlBreaking" DurationType="OneShot" DurationMin="0.871355" DurationMax="0.871355">
-					<IncludedMemoryFiles>
-						<File Id="944973680" Language="SFX">
-							<ShortName>CeramicBowlBreaking-1.wav</ShortName>
-							<Path>SFX\CeramicBowlBreaking-1_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2681854759" Name="Play_Dogs" ObjectPath="\Events\Default Work Unit\Play_Dogs" DurationType="OneShot" DurationMin="1.75" DurationMax="1.75">
-					<IncludedMemoryFiles>
-						<File Id="510049455" Language="SFX">
-							<ShortName>1Dogs.wav</ShortName>
-							<Path>SFX\1Dogs_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3948318594" Name="Play_DragonFlies" ObjectPath="\Events\Default Work Unit\Play_DragonFlies" MaxAttenuation="15." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="407082388" Language="SFX">
-							<ShortName>DragonFlies.wav</ShortName>
-							<Path>SFX\DragonFlies_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1813095574" Name="Play_DreamScape_" ObjectPath="\Events\Default Work Unit\Play_DreamScape_" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="1066248193" Language="SFX">
-							<ShortName>DreamScape.wav</ShortName>
-							<Path>SFX\DreamScape_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1724926153" Name="Play_EndDayJingle_Bad_" ObjectPath="\Events\Default Work Unit\Play_EndDayJingle_Bad_" DurationType="OneShot" DurationMin="4.687506" DurationMax="4.687506">
-					<IncludedMemoryFiles>
-						<File Id="593250550" Language="SFX">
-							<ShortName>EndDayJingle(Bad).wav</ShortName>
-							<Path>SFX\EndDayJingle(Bad)_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3857680973" Name="Play_EndDayJingle_Good_" ObjectPath="\Events\Default Work Unit\Play_EndDayJingle_Good_" DurationType="OneShot" DurationMin="4.687506" DurationMax="4.687506">
-					<IncludedMemoryFiles>
-						<File Id="75577650" Language="SFX">
-							<ShortName>EndDayJingle(Good).wav</ShortName>
-							<Path>SFX\EndDayJingle(Good)_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3622673270" Name="Play_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\Play_ExquisiteTaste" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="551003881" Language="SFX">
-							<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
-							<Path>SFX\exquisite_tasteACPlaylist_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4036628837" Name="Play_FallingAsleep" ObjectPath="\Events\Default Work Unit\Play_FallingAsleep" DurationType="OneShot" DurationMin="3.70932" DurationMax="3.70932">
-					<IncludedMemoryFiles>
-						<File Id="194100186" Language="SFX">
-							<ShortName>FallingAsleep.wav</ShortName>
-							<Path>SFX\FallingAsleep_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1367656534" Name="Play_Faucet" ObjectPath="\Events\Default Work Unit\Play_Faucet" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="388542937" Language="SFX">
-							<ShortName>Faucet.wav</ShortName>
-							<Path>SFX\Faucet_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4161070465" Name="Play_FireFlies" ObjectPath="\Events\Default Work Unit\Play_FireFlies" MaxAttenuation="15." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="475361175" Language="SFX">
-							<ShortName>FireFlies.wav</ShortName>
-							<Path>SFX\FireFlies_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1178155941" Name="Play_Footsteps_Tile_" ObjectPath="\Events\Default Work Unit\Play_Footsteps_Tile_" DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="721548189" Name="Play_FridgeClosed" ObjectPath="\Events\Default Work Unit\Play_FridgeClosed" DurationType="OneShot" DurationMin="0.413447" DurationMax="0.413447">
-					<IncludedMemoryFiles>
-						<File Id="281651751" Language="SFX">
-							<ShortName>FridgeClosed.wav</ShortName>
-							<Path>SFX\FridgeClosed_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="531999063" Name="Play_FridgeDoorSqueak" ObjectPath="\Events\Default Work Unit\Play_FridgeDoorSqueak" DurationType="OneShot" DurationMin="0.734785" DurationMax="0.734785">
-					<IncludedMemoryFiles>
-						<File Id="4925453" Language="SFX">
-							<ShortName>FridgeDoorSqueak.wav</ShortName>
-							<Path>SFX\FridgeDoorSqueak_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2104121909" Name="Play_FridgeOpen" ObjectPath="\Events\Default Work Unit\Play_FridgeOpen" DurationType="OneShot" DurationMin="0.537483" DurationMax="0.537483">
-					<IncludedMemoryFiles>
-						<File Id="873507374" Language="SFX">
-							<ShortName>FridgeOpen.wav</ShortName>
-							<Path>SFX\FridgeOpen_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3455056121" Name="Play_GenericVoice" ObjectPath="\Events\Default Work Unit\Play_GenericVoice" DurationType="OneShot" DurationMin="1.633916" DurationMax="2.448107">
-					<IncludedMemoryFiles>
-						<File Id="155462499" Language="SFX">
-							<ShortName>GenericVoice.wav</ShortName>
-							<Path>SFX\GenericVoice_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3945794402" Name="Play_GlassCup" ObjectPath="\Events\Default Work Unit\Play_GlassCup" DurationType="OneShot" DurationMin="0.841425" DurationMax="0.841425">
-					<IncludedMemoryFiles>
-						<File Id="770791138" Language="SFX">
-							<ShortName>GlassCup.wav</ShortName>
-							<Path>SFX\GlassCup_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="128711729" Name="Play_GlassCupShatter" ObjectPath="\Events\Default Work Unit\Play_GlassCupShatter" DurationType="OneShot" DurationMin="0.626429" DurationMax="0.663678">
-					<IncludedMemoryFiles>
-						<File Id="542234410" Language="SFX">
-							<ShortName>GlassCupShatter.wav</ShortName>
-							<Path>SFX\GlassCupShatter_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2172856220" Name="Play_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Play_GrandTheft_Machiato" MaxAttenuation="4." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="602676466" Language="SFX">
-							<ShortName>GTMTheme_Intro.wav</ShortName>
-							<Path>SFX\GTMTheme_Intro_D79FB2B7.wem</Path>
-						</File>
-						<File Id="787409315" Language="SFX">
-							<ShortName>GTMTheme_Looping_section.wav</ShortName>
-							<Path>SFX\GTMTheme_Looping_section_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2302029328" Name="Play_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Play_GrindingCoffee" MaxAttenuation="15." DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
-					<IncludedMemoryFiles>
-						<File Id="285469530" Language="SFX">
-							<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
-							<Path>SFX\Grinding_Coffee_Beans1_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="579639504" Name="Play_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Play_GrindingEspresso" MaxAttenuation="15." DurationType="OneShot" DurationMin="4.519184" DurationMax="4.519184">
-					<IncludedMemoryFiles>
-						<File Id="759491673" Language="SFX">
-							<ShortName>Grinding_Espresso.wav</ShortName>
-							<Path>SFX\Grinding_Espresso_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="203113690" Name="Play_Gulp" ObjectPath="\Events\Default Work Unit\Play_Gulp" DurationType="OneShot" DurationMin="0.284684" DurationMax="0.402603">
-					<IncludedMemoryFiles>
-						<File Id="936223522" Language="SFX">
-							<ShortName>Gulp.wav</ShortName>
-							<Path>SFX\Gulp_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="774814993" Name="Play_Helicopter" ObjectPath="\Events\Default Work Unit\Play_Helicopter" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="96484927" Language="SFX">
-							<ShortName>Helicopter.wav</ShortName>
-							<Path>SFX\Helicopter_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1147514445" Name="Play_InteractSound" ObjectPath="\Events\Default Work Unit\Play_InteractSound" DurationType="OneShot" DurationMin="0.108707" DurationMax="0.108707">
-					<IncludedMemoryFiles>
-						<File Id="405386485" Language="SFX">
-							<ShortName>Smack.wav</ShortName>
-							<Path>SFX\Smack_10C4C929.wem</Path>
-						</File>
-						<File Id="1042882764" Language="SFX">
-							<ShortName>InteractSound.wav</ShortName>
-							<Path>SFX\InteractSound_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="985514065" Name="Play_Karen" ObjectPath="\Events\Default Work Unit\Play_Karen" DurationType="OneShot" DurationMin="2." DurationMax="2.">
-					<IncludedMemoryFiles>
-						<File Id="157192986" Language="SFX">
-							<ShortName>1Karen.wav</ShortName>
-							<Path>SFX\1Karen_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2176068757" Name="Play_KarenYelling" ObjectPath="\Events\Default Work Unit\Play_KarenYelling" DurationType="OneShot" DurationMin="2.75" DurationMax="2.75">
-					<IncludedMemoryFiles>
-						<File Id="905915782" Language="SFX">
-							<ShortName>1KarenYelling.wav</ShortName>
-							<Path>SFX\1KarenYelling_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="416139438" Name="Play_LoopPour" ObjectPath="\Events\Default Work Unit\Play_LoopPour" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="1061196224" Language="SFX">
-							<ShortName>pour.wav</ShortName>
-							<Path>SFX\pour_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2859911570" Name="Play_MachineBuzzing" ObjectPath="\Events\Default Work Unit\Play_MachineBuzzing" DurationType="OneShot" DurationMin="3.478277" DurationMax="3.478277">
-					<IncludedMemoryFiles>
-						<File Id="282050569" Language="SFX">
-							<ShortName>MachineBuzzing.wav</ShortName>
-							<Path>SFX\MachineBuzzing_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1409598283" Name="Play_Mason_Jar_Close" ObjectPath="\Events\Default Work Unit\Play_Mason_Jar_Close" DurationType="OneShot" DurationMin="0.593764" DurationMax="0.593764">
-					<IncludedMemoryFiles>
-						<File Id="763396996" Language="SFX">
-							<ShortName>Mason Jar Close.wav</ShortName>
-							<Path>SFX\Mason Jar Close_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3659292941" Name="Play_Mason_Jar_Open" ObjectPath="\Events\Default Work Unit\Play_Mason_Jar_Open" DurationType="OneShot" DurationMin="0.312517" DurationMax="0.312517">
-					<IncludedMemoryFiles>
-						<File Id="457168489" Language="SFX">
-							<ShortName>Mason Jar Open.wav</ShortName>
-							<Path>SFX\Mason Jar Open_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2576276897" Name="Play_MenuClick" ObjectPath="\Events\Default Work Unit\Play_MenuClick" DurationType="OneShot" DurationMin="0.434785" DurationMax="0.434785">
-					<IncludedMemoryFiles>
-						<File Id="1052987244" Language="SFX">
-							<ShortName>MenuClick.wav</ShortName>
-							<Path>SFX\MenuClick_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1802956237" Name="Play_MouseClick" ObjectPath="\Events\Default Work Unit\Play_MouseClick" DurationType="OneShot" DurationMin="0.407619" DurationMax="0.407619">
-					<IncludedMemoryFiles>
-						<File Id="658751346" Language="SFX">
-							<ShortName>MouseClick.wav</ShortName>
-							<Path>SFX\MouseClick_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3754899171" Name="Play_NeuroticBone" ObjectPath="\Events\Default Work Unit\Play_NeuroticBone" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="230495110" Language="SFX">
-							<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
-							<Path>SFX\Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2102535970" Name="Play_Nostalgia" ObjectPath="\Events\Default Work Unit\Play_Nostalgia" MaxAttenuation="12." DurationType="OneShot" DurationMin="115." DurationMax="115.">
-					<IncludedMemoryFiles>
-						<File Id="702921066" Language="SFX">
-							<ShortName>Nostalgia.wav</ShortName>
-							<Path>SFX\Nostalgia_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1479974693" Name="Play_Piano" ObjectPath="\Events\Default Work Unit\Play_Piano" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="386335204" Language="SFX">
-							<ShortName>ChillWurlyPiano.wav</ShortName>
-							<Path>SFX\ChillWurlyPiano_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3371475622" Name="Play_PlayCubeStartup" ObjectPath="\Events\Default Work Unit\Play_PlayCubeStartup" DurationType="OneShot" DurationMin="9.504966" DurationMax="9.504966">
-					<IncludedMemoryFiles>
-						<File Id="457717867" Language="SFX">
-							<ShortName>PlayCubeStartup.wav</ShortName>
-							<Path>SFX\PlayCubeStartup_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1719581924" Name="Play_Pour" ObjectPath="\Events\Default Work Unit\Play_Pour" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="1061196224" Language="SFX">
-							<ShortName>pour.wav</ShortName>
-							<Path>SFX\pour_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3412867708" Name="Play_RadioDrop" ObjectPath="\Events\Default Work Unit\Play_RadioDrop" DurationType="OneShot" DurationMin="1.247702" DurationMax="1.247702">
-					<IncludedMemoryFiles>
-						<File Id="755106047" Language="SFX">
-							<ShortName>RadioDrop.wav</ShortName>
-							<Path>SFX\RadioDrop_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3700200612" Name="Play_RedPandaTheme" ObjectPath="\Events\Default Work Unit\Play_RedPandaTheme" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="2409473" Language="SFX">
-							<ShortName>RedPandaTheme.wav</ShortName>
-							<Path>SFX\RedPandaTheme_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3453202434" Name="Play_RoastBlend" ObjectPath="\Events\Default Work Unit\Play_RoastBlend" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="776190147" Language="SFX">
-							<ShortName>Roast Blend.wav</ShortName>
-							<Path>SFX\Roast Blend_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2754920038" Name="Play_SatisfiedCustomer" ObjectPath="\Events\Default Work Unit\Play_SatisfiedCustomer" DurationType="OneShot" DurationMin="1.875011" DurationMax="1.875011">
-					<IncludedMemoryFiles>
-						<File Id="647119287" Language="SFX">
-							<ShortName>SatisfiedCustomer.wav</ShortName>
-							<Path>SFX\SatisfiedCustomer_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1571211755" Name="Play_SFX_BellChime" ObjectPath="\Events\Default Work Unit\Play_SFX_BellChime" DurationType="OneShot" DurationMin="2.229116" DurationMax="2.229116">
-					<IncludedMemoryFiles>
-						<File Id="505142991" Language="SFX">
-							<ShortName>SFX_BellChime.wav</ShortName>
-							<Path>SFX\SFX_BellChime_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1306435193" Name="Play_Slider" ObjectPath="\Events\Default Work Unit\Play_Slider" DurationType="OneShot" DurationMin="0.496145" DurationMax="0.496145">
-					<IncludedMemoryFiles>
-						<File Id="30486242" Language="SFX">
-							<ShortName>Slider1Shake.wav</ShortName>
-							<Path>SFX\Slider1Shake_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="207402092" Name="Play_Slurp1_2" ObjectPath="\Events\Default Work Unit\Play_Slurp1_2" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="408789105" Language="SFX">
-							<ShortName>Slurp1.2.wav</ShortName>
-							<Path>SFX\Slurp1.2_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3405882561" Name="Play_SmokerNoise" ObjectPath="\Events\Default Work Unit\Play_SmokerNoise" DurationType="OneShot" DurationMin="1.375011" DurationMax="1.375011">
-					<IncludedMemoryFiles>
-						<File Id="433883949" Language="SFX">
-							<ShortName>SmokerNoise.wav</ShortName>
-							<Path>SFX\SmokerNoise_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2451981543" Name="Play_SmokerPump" ObjectPath="\Events\Default Work Unit\Play_SmokerPump" DurationType="OneShot" DurationMin="0.437506" DurationMax="0.437506">
-					<IncludedMemoryFiles>
-						<File Id="54605514" Language="SFX">
-							<ShortName>SmokerPump.wav</ShortName>
-							<Path>SFX\SmokerPump_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="43930435" Name="Play_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\Play_SomedayWakeUp" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="626169617" Language="SFX">
-							<ShortName>Someday_Youd_Better_Wake_Up_LoFi_playlist.wav</ShortName>
-							<Path>SFX\Someday_Youd_Better_Wake_Up_LoFi_playlist_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4221615279" Name="Play_SpashedSea" ObjectPath="\Events\Default Work Unit\Play_SpashedSea" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="366206813" Language="SFX">
-							<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
-							<Path>SFX\Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3361877211" Name="Play_Surprise" ObjectPath="\Events\Default Work Unit\Play_Surprise" DurationType="OneShot" DurationMin="0.310884" DurationMax="0.310884">
-					<IncludedMemoryFiles>
-						<File Id="643386282" Language="SFX">
-							<ShortName>Surprise.wav</ShortName>
-							<Path>SFX\Surprise_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1092545136" Name="Play_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Play_SynthWaveSong" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="273705753" Language="SFX">
-							<ShortName>GTMSynthLoop.wav</ShortName>
-							<Path>SFX\GTMSynthLoop_D79FB2B7.wem</Path>
-						</File>
-						<File Id="908209051" Language="SFX">
-							<ShortName>GTMSynthIntro.wav</ShortName>
-							<Path>SFX\GTMSynthIntro_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3915894401" Name="Play_TakingShape" ObjectPath="\Events\Default Work Unit\Play_TakingShape" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="636649444" Language="SFX">
-							<ShortName>Taking_Shape.wav</ShortName>
-							<Path>SFX\Taking_Shape_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1122006298" Name="Play_TapOnGlass" ObjectPath="\Events\Default Work Unit\Play_TapOnGlass" DurationType="OneShot" DurationMin="0.5" DurationMax="0.5">
-					<IncludedMemoryFiles>
-						<File Id="14505751" Language="SFX">
-							<ShortName>TapOnGlass.wav</ShortName>
-							<Path>SFX\TapOnGlass_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="338641160" Name="Play_TaskComplete" ObjectPath="\Events\Default Work Unit\Play_TaskComplete" DurationType="OneShot" DurationMin="0.708662" DurationMax="0.708662">
-					<IncludedMemoryFiles>
-						<File Id="455270351" Language="SFX">
-							<ShortName>TaskComplete.wav</ShortName>
-							<Path>SFX\TaskComplete_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="315754304" Name="Play_TellingStories" ObjectPath="\Events\Default Work Unit\Play_TellingStories" MaxAttenuation="12." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="760450632" Language="SFX">
-							<ShortName>Telling_Stories_AC_Playlist.wav</ShortName>
-							<Path>SFX\Telling_Stories_AC_Playlist_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3107494279" Name="Play_TitleTheme" ObjectPath="\Events\Default Work Unit\Play_TitleTheme" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="138462402" Language="SFX">
-							<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
-							<Path>SFX\Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1489182122" Name="Play_TrashCan" ObjectPath="\Events\Default Work Unit\Play_TrashCan" DurationType="OneShot" DurationMin="0.363481" DurationMax="0.544607">
-					<IncludedMemoryFiles>
-						<File Id="161250347" Language="SFX">
-							<ShortName>TrashCan.wav</ShortName>
-							<Path>SFX\TrashCan_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="847946271" Name="Play_Traveler" ObjectPath="\Events\Default Work Unit\Play_Traveler" DurationType="OneShot" DurationMin="2.187506" DurationMax="2.187506">
-					<IncludedMemoryFiles>
-						<File Id="974081508" Language="SFX">
-							<ShortName>1Traveler.wav</ShortName>
-							<Path>SFX\1Traveler_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4018064888" Name="Play_TruckDrift" ObjectPath="\Events\Default Work Unit\Play_TruckDrift" DurationType="OneShot" DurationMin="3.478277" DurationMax="3.478277">
-					<IncludedMemoryFiles>
-						<File Id="9348846" Language="SFX">
-							<ShortName>Drift.wav</ShortName>
-							<Path>SFX\Drift_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1128869005" Name="Play_TruckEngine" ObjectPath="\Events\Default Work Unit\Play_TruckEngine" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="682548690" Language="SFX">
-							<ShortName>TruckEngine.wav</ShortName>
-							<Path>SFX\TruckEngine_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3078875068" Name="Play_TruckHorn" ObjectPath="\Events\Default Work Unit\Play_TruckHorn" DurationType="OneShot" DurationMin="1.141315" DurationMax="1.141315">
-					<IncludedMemoryFiles>
-						<File Id="205128343" Language="SFX">
-							<ShortName>TruckHorn.wav</ShortName>
-							<Path>SFX\TruckHorn_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1950478834" Name="Play_TvStatic" ObjectPath="\Events\Default Work Unit\Play_TvStatic" MaxAttenuation="4." DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="454672396" Language="SFX">
-							<ShortName>TvStatic.wav</ShortName>
-							<Path>SFX\TvStatic_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4105520773" Name="Play_UnsatisfiedCustomer" ObjectPath="\Events\Default Work Unit\Play_UnsatisfiedCustomer" DurationType="OneShot" DurationMin="1.875011" DurationMax="1.875011">
-					<IncludedMemoryFiles>
-						<File Id="152778883" Language="SFX">
-							<ShortName>UnsatisfiedCustomer.wav</ShortName>
-							<Path>SFX\UnsatisfiedCustomer_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1615511115" Name="Play_Waking" ObjectPath="\Events\Default Work Unit\Play_Waking" DurationType="OneShot" DurationMin="3.5" DurationMax="3.5">
-					<IncludedMemoryFiles>
-						<File Id="273690636" Language="SFX">
-							<ShortName>Waking.wav</ShortName>
-							<Path>SFX\Waking_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2092044786" Name="Play_WaterFall1_2" ObjectPath="\Events\Default Work Unit\Play_WaterFall1_2" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="865454399" Language="SFX">
-							<ShortName>WaterFall1.2.wav</ShortName>
-							<Path>SFX\WaterFall1.2_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2693257580" Name="Play_Whistle" ObjectPath="\Events\Default Work Unit\Play_Whistle" DurationType="OneShot" DurationMin="1." DurationMax="1.">
-					<IncludedMemoryFiles>
-						<File Id="544960085" Language="SFX">
-							<ShortName>Whistle.wav</ShortName>
-							<Path>SFX\Whistle_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2540658777" Name="Stop_Brewer" ObjectPath="\Events\Default Work Unit\Stop_Brewer" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2232275612" Name="Stop_DragonFlies" ObjectPath="\Events\Default Work Unit\Stop_DragonFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4252214477" Name="Stop_DreamScape" ObjectPath="\Events\Default Work Unit\Stop_DreamScape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3639146620" Name="Stop_Faucet" ObjectPath="\Events\Default Work Unit\Stop_Faucet" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4099702875" Name="Stop_FireFlies" ObjectPath="\Events\Default Work Unit\Stop_FireFlies" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2019721402" Name="Stop_GrandTheft_Machiato" ObjectPath="\Events\Default Work Unit\Stop_GrandTheft_Machiato" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1506977314" Name="Stop_GrindingCoffee" ObjectPath="\Events\Default Work Unit\Stop_GrindingCoffee" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="623871430" Name="Stop_GrindingEspresso" ObjectPath="\Events\Default Work Unit\Stop_GrindingEspresso" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3999941067" Name="Stop_Helicopter" ObjectPath="\Events\Default Work Unit\Stop_Helicopter" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4059860068" Name="Stop_LoopPour" ObjectPath="\Events\Default Work Unit\Stop_LoopPour" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3762348028" Name="Stop_MachineBuzzing" ObjectPath="\Events\Default Work Unit\Stop_MachineBuzzing" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2667958284" Name="Stop_Nostalgia" ObjectPath="\Events\Default Work Unit\Stop_Nostalgia" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1839160882" Name="Stop_SynthWaveSong" ObjectPath="\Events\Default Work Unit\Stop_SynthWaveSong" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1450757357" Name="Stop_TitleTheme" ObjectPath="\Events\Default Work Unit\Stop_TitleTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4243093612" Name="Stop_TvStatic" ObjectPath="\Events\Default Work Unit\Stop_TvStatic" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="248980959" Name="VolumeOne_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeOne_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2721825950" Name="VolumeOne_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeOne_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeOne_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="521874696" Name="VolumeOne_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeOne_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1886182129" Name="VolumeOne_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeOne_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="844119779" Name="VolumeOne_Piano" ObjectPath="\Events\Default Work Unit\VolumeOne_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="662843338" Name="VolumeOne_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeOne_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3973291544" Name="VolumeOne_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeOne_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2181399409" Name="VolumeOne_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeOne_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2689093237" Name="VolumeOne_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeOne_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2511561735" Name="VolumeOne_TakingShape" ObjectPath="\Events\Default Work Unit\VolumeOne_TakingShape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3384730498" Name="VolumeOne_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeOne_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1970210963" Name="VolumeZero_AfterHours" ObjectPath="\Events\Default Work Unit\VolumeZero_AfterHours" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1625469250" Name="VolumeZero_BossaNova" ObjectPath="\Events\Default Work Unit\VolumeZero_BossaNova" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="319625207" Name="VolumeZero_BreakingLoose" ObjectPath="\Events\Default Work Unit\VolumeZero_BreakingLoose" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="247285116" Name="VolumeZero_ExquisiteTaste" ObjectPath="\Events\Default Work Unit\VolumeZero_ExquisiteTaste" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3535909101" Name="VolumeZero_NeuroticBone" ObjectPath="\Events\Default Work Unit\VolumeZero_NeuroticBone" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2896401063" Name="VolumeZero_Piano" ObjectPath="\Events\Default Work Unit\VolumeZero_Piano" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="946022718" Name="VolumeZero_RedPandaTheme" ObjectPath="\Events\Default Work Unit\VolumeZero_RedPandaTheme" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2913870116" Name="VolumeZero_RoastBlend" ObjectPath="\Events\Default Work Unit\VolumeZero_RoastBlend" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3467887341" Name="VolumeZero_SomedayWakeUp" ObjectPath="\Events\Default Work Unit\VolumeZero_SomedayWakeUp" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4282258553" Name="VolumeZero_SpashedSea" ObjectPath="\Events\Default Work Unit\VolumeZero_SpashedSea" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3252269563" Name="VolumeZero_TakingShape" ObjectPath="\Events\Default Work Unit\VolumeZero_TakingShape" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3876908550" Name="VolumeZero_TellingStories" ObjectPath="\Events\Default Work Unit\VolumeZero_TellingStories" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-			</IncludedEvents>
+			<Media>
+				<File Id="2409473" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>RedPandaTheme.wav</ShortName>
+					<CachePath>SFX/RedPandaTheme_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="4925453" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FridgeDoorSqueak.wav</ShortName>
+					<CachePath>SFX/FridgeDoorSqueak_10C4C929.wem</CachePath>
+				</File>
+				<File Id="9348846" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drift.wav</ShortName>
+					<CachePath>SFX/Drift_10C4C929.wem</CachePath>
+				</File>
+				<File Id="14505751" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TapOnGlass.wav</ShortName>
+					<CachePath>SFX/TapOnGlass_10C4C929.wem</CachePath>
+				</File>
+				<File Id="30486242" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Slider1Shake.wav</ShortName>
+					<CachePath>SFX/Slider1Shake_10C4C929.wem</CachePath>
+				</File>
+				<File Id="31117576" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BubblePop.wav</ShortName>
+					<CachePath>SFX/BubblePop_10C4C929.wem</CachePath>
+				</File>
+				<File Id="54605514" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SmokerPump.wav</ShortName>
+					<CachePath>SFX/SmokerPump_10C4C929.wem</CachePath>
+				</File>
+				<File Id="75577650" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>EndDayJingle(Good).wav</ShortName>
+					<CachePath>SFX/EndDayJingle(Good)_10C4C929.wem</CachePath>
+				</File>
+				<File Id="96484927" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Helicopter.wav</ShortName>
+					<CachePath>SFX/Helicopter_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="138462402" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
+					<CachePath>SFX/Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="152778883" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>UnsatisfiedCustomer.wav</ShortName>
+					<CachePath>SFX/UnsatisfiedCustomer_10C4C929.wem</CachePath>
+				</File>
+				<File Id="155462499" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GenericVoice.wav</ShortName>
+					<CachePath>SFX/GenericVoice_10C4C929.wem</CachePath>
+				</File>
+				<File Id="157192986" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>1Karen.wav</ShortName>
+					<CachePath>SFX/1Karen_10C4C929.wem</CachePath>
+				</File>
+				<File Id="161250347" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TrashCan.wav</ShortName>
+					<CachePath>SFX/TrashCan_10C4C929.wem</CachePath>
+				</File>
+				<File Id="194100186" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FallingAsleep.wav</ShortName>
+					<CachePath>SFX/FallingAsleep_10C4C929.wem</CachePath>
+				</File>
+				<File Id="203743960" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>CabinetOpen.wav</ShortName>
+					<CachePath>SFX/CabinetOpen_10C4C929.wem</CachePath>
+				</File>
+				<File Id="205128343" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TruckHorn.wav</ShortName>
+					<CachePath>SFX/TruckHorn_10C4C929.wem</CachePath>
+				</File>
+				<File Id="230495110" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Neurotic_to_the_Bone_LoFi_Playlist.wav</ShortName>
+					<CachePath>SFX/Neurotic_to_the_Bone_LoFi_Playlist_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="273690636" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Waking.wav</ShortName>
+					<CachePath>SFX/Waking_10C4C929.wem</CachePath>
+				</File>
+				<File Id="273705753" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GTMSynthLoop.wav</ShortName>
+					<CachePath>SFX/GTMSynthLoop_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="281651751" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FridgeClosed.wav</ShortName>
+					<CachePath>SFX/FridgeClosed_10C4C929.wem</CachePath>
+				</File>
+				<File Id="282050569" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MachineBuzzing.wav</ShortName>
+					<CachePath>SFX/MachineBuzzing_10C4C929.wem</CachePath>
+				</File>
+				<File Id="285469530" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Grinding_Coffee_Beans1.wav</ShortName>
+					<CachePath>SFX/Grinding_Coffee_Beans1_10C4C929.wem</CachePath>
+				</File>
+				<File Id="319928094" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Brewer.wav</ShortName>
+					<CachePath>SFX/Brewer_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="366206813" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Spashed_in_the_Sea_AC_Playlist.wav</ShortName>
+					<CachePath>SFX/Spashed_in_the_Sea_AC_Playlist_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="386335204" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ChillWurlyPiano.wav</ShortName>
+					<CachePath>SFX/ChillWurlyPiano_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="388542937" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Faucet.wav</ShortName>
+					<CachePath>SFX/Faucet_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="405386485" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Smack.wav</ShortName>
+					<CachePath>SFX/Smack_10C4C929.wem</CachePath>
+				</File>
+				<File Id="407082388" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DragonFlies.wav</ShortName>
+					<CachePath>SFX/DragonFlies_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="408789105" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Slurp1.2.wav</ShortName>
+					<CachePath>SFX/Slurp1.2_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="433883949" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SmokerNoise.wav</ShortName>
+					<CachePath>SFX/SmokerNoise_10C4C929.wem</CachePath>
+				</File>
+				<File Id="454672396" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TvStatic.wav</ShortName>
+					<CachePath>SFX/TvStatic_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="455270351" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TaskComplete.wav</ShortName>
+					<CachePath>SFX/TaskComplete_10C4C929.wem</CachePath>
+				</File>
+				<File Id="457168489" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Mason Jar Open.wav</ShortName>
+					<CachePath>SFX/Mason Jar Open_10C4C929.wem</CachePath>
+				</File>
+				<File Id="457717867" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PlayCubeStartup.wav</ShortName>
+					<CachePath>SFX/PlayCubeStartup_10C4C929.wem</CachePath>
+				</File>
+				<File Id="475361175" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FireFlies.wav</ShortName>
+					<CachePath>SFX/FireFlies_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="505142991" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_BellChime.wav</ShortName>
+					<CachePath>SFX/SFX_BellChime_10C4C929.wem</CachePath>
+				</File>
+				<File Id="510049455" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>1Dogs.wav</ShortName>
+					<CachePath>SFX/1Dogs_10C4C929.wem</CachePath>
+				</File>
+				<File Id="538996245" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BossaNovaAttempt.wav</ShortName>
+					<CachePath>SFX/BossaNovaAttempt_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="542234410" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GlassCupShatter.wav</ShortName>
+					<CachePath>SFX/GlassCupShatter_10C4C929.wem</CachePath>
+				</File>
+				<File Id="544960085" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Whistle.wav</ShortName>
+					<CachePath>SFX/Whistle_10C4C929.wem</CachePath>
+				</File>
+				<File Id="547639350" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BeeFrameSlide.wav</ShortName>
+					<CachePath>SFX/BeeFrameSlide_10C4C929.wem</CachePath>
+				</File>
+				<File Id="551003881" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>exquisite_tasteACPlaylist.wav</ShortName>
+					<CachePath>SFX/exquisite_tasteACPlaylist_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="565781944" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bees.wav</ShortName>
+					<CachePath>SFX/Bees_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="593250550" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>EndDayJingle(Bad).wav</ShortName>
+					<CachePath>SFX/EndDayJingle(Bad)_10C4C929.wem</CachePath>
+				</File>
+				<File Id="602676466" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GTMTheme_Intro.wav</ShortName>
+					<CachePath>SFX/GTMTheme_Intro_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="626169617" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Someday_Youd_Better_Wake_Up_LoFi_playlist.wav</ShortName>
+					<CachePath>SFX/Someday_Youd_Better_Wake_Up_LoFi_playlist_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="636649444" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Taking_Shape.wav</ShortName>
+					<CachePath>SFX/Taking_Shape_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="643386282" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Surprise.wav</ShortName>
+					<CachePath>SFX/Surprise_10C4C929.wem</CachePath>
+				</File>
+				<File Id="647119287" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SatisfiedCustomer.wav</ShortName>
+					<CachePath>SFX/SatisfiedCustomer_10C4C929.wem</CachePath>
+				</File>
+				<File Id="658751346" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MouseClick.wav</ShortName>
+					<CachePath>SFX/MouseClick_10C4C929.wem</CachePath>
+				</File>
+				<File Id="682548690" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TruckEngine.wav</ShortName>
+					<CachePath>SFX/TruckEngine_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="702921066" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Nostalgia.wav</ShortName>
+					<CachePath>SFX/Nostalgia_10C4C929.wem</CachePath>
+				</File>
+				<File Id="710138040" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BeesSleeping.wav</ShortName>
+					<CachePath>SFX/BeesSleeping_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="752191520" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>After_Hours.wav</ShortName>
+					<CachePath>SFX/After_Hours_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="755106047" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>RadioDrop.wav</ShortName>
+					<CachePath>SFX/RadioDrop_10C4C929.wem</CachePath>
+				</File>
+				<File Id="759491673" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Grinding_Espresso.wav</ShortName>
+					<CachePath>SFX/Grinding_Espresso_10C4C929.wem</CachePath>
+				</File>
+				<File Id="760450632" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Telling_Stories_AC_Playlist.wav</ShortName>
+					<CachePath>SFX/Telling_Stories_AC_Playlist_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="763396996" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Mason Jar Close.wav</ShortName>
+					<CachePath>SFX/Mason Jar Close_10C4C929.wem</CachePath>
+				</File>
+				<File Id="770791138" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GlassCup.wav</ShortName>
+					<CachePath>SFX/GlassCup_10C4C929.wem</CachePath>
+				</File>
+				<File Id="776190147" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Roast Blend.wav</ShortName>
+					<CachePath>SFX/Roast Blend_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="787409315" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GTMTheme_Looping_section.wav</ShortName>
+					<CachePath>SFX/GTMTheme_Looping_section_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="865454399" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>WaterFall1.2.wav</ShortName>
+					<CachePath>SFX/WaterFall1.2_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="873507374" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FridgeOpen.wav</ShortName>
+					<CachePath>SFX/FridgeOpen_10C4C929.wem</CachePath>
+				</File>
+				<File Id="873684257" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>buttonpress.wav</ShortName>
+					<CachePath>SFX/buttonpress_10C4C929.wem</CachePath>
+				</File>
+				<File Id="903791736" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Breaking_Loose_LoFi.wav</ShortName>
+					<CachePath>SFX/Breaking_Loose_LoFi_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="905915782" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>1KarenYelling.wav</ShortName>
+					<CachePath>SFX/1KarenYelling_10C4C929.wem</CachePath>
+				</File>
+				<File Id="908209051" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GTMSynthIntro.wav</ShortName>
+					<CachePath>SFX/GTMSynthIntro_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="936223522" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gulp.wav</ShortName>
+					<CachePath>SFX/Gulp_10C4C929.wem</CachePath>
+				</File>
+				<File Id="944973680" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>CeramicBowlBreaking-1.wav</ShortName>
+					<CachePath>SFX/CeramicBowlBreaking-1_10C4C929.wem</CachePath>
+				</File>
+				<File Id="974081508" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>1Traveler.wav</ShortName>
+					<CachePath>SFX/1Traveler_10C4C929.wem</CachePath>
+				</File>
+				<File Id="1042882764" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>InteractSound.wav</ShortName>
+					<CachePath>SFX/InteractSound_10C4C929.wem</CachePath>
+				</File>
+				<File Id="1047615776" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>CabinetClose.wav</ShortName>
+					<CachePath>SFX/CabinetClose_10C4C929.wem</CachePath>
+				</File>
+				<File Id="1052987244" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MenuClick.wav</ShortName>
+					<CachePath>SFX/MenuClick_10C4C929.wem</CachePath>
+				</File>
+				<File Id="1061196224" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>pour.wav</ShortName>
+					<CachePath>SFX/pour_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="1066248193" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DreamScape.wav</ShortName>
+					<CachePath>SFX/DreamScape_D79FB2B7.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2630402114" Name="Pause_GrandTheft_Machiato" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4139861594" Name="Pause_SynthWaveSong" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4061997089" Name="Play_AfterHours" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="752191520"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3692656996" Name="Play_BeeFrameSlide" DurationType="OneShot" DurationMin="0.8828345" DurationMax="0.8828345">
+					<MediaRefs>
+						<MediaRef Id="547639350"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2063165417" Name="Play_Bees" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="565781944"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="733698582" Name="Play_BeesSleeping" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="710138040"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3330708836" Name="Play_BeesSleeping_01" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="710138040"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2993288148" Name="Play_BossaNova" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="538996245"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="855079117" Name="Play_BreakingLoose" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="903791736"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="20894835" Name="Play_Brewer" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="319928094"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1532331005" Name="Play_BubblePop" DurationType="OneShot" DurationMin="0.10870748" DurationMax="0.10870748">
+					<MediaRefs>
+						<MediaRef Id="31117576"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2652178615" Name="Play_buttonpress" MaxAttenuation="15" DurationType="OneShot" DurationMin="0.875" DurationMax="0.875">
+					<MediaRefs>
+						<MediaRef Id="873684257"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="684088502" Name="Play_CabinetClose" DurationType="OneShot" DurationMin="0.4347846" DurationMax="0.4347846">
+					<MediaRefs>
+						<MediaRef Id="1047615776"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1255478370" Name="Play_CabinetOpen" DurationType="OneShot" DurationMin="0.32609978" DurationMax="0.32609978">
+					<MediaRefs>
+						<MediaRef Id="203743960"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2073519945" Name="Play_CeramicBowlBreaking" DurationType="OneShot" DurationMin="0.87135535" DurationMax="0.87135535">
+					<MediaRefs>
+						<MediaRef Id="944973680"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2681854759" Name="Play_Dogs" DurationType="OneShot" DurationMin="1.75" DurationMax="1.75">
+					<MediaRefs>
+						<MediaRef Id="510049455"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3948318594" Name="Play_DragonFlies" MaxAttenuation="15" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="407082388"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1813095574" Name="Play_DreamScape_" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="1066248193"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1724926153" Name="Play_EndDayJingle_Bad_" DurationType="OneShot" DurationMin="4.6875057" DurationMax="4.6875057">
+					<MediaRefs>
+						<MediaRef Id="593250550"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3857680973" Name="Play_EndDayJingle_Good_" DurationType="OneShot" DurationMin="4.6875057" DurationMax="4.6875057">
+					<MediaRefs>
+						<MediaRef Id="75577650"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3622673270" Name="Play_ExquisiteTaste" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="551003881"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4036628837" Name="Play_FallingAsleep" DurationType="OneShot" DurationMin="3.7093198" DurationMax="3.7093198">
+					<MediaRefs>
+						<MediaRef Id="194100186"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1367656534" Name="Play_Faucet" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="388542937"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4161070465" Name="Play_FireFlies" MaxAttenuation="15" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="475361175"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1178155941" Name="Play_Footsteps_Tile_" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="721548189" Name="Play_FridgeClosed" DurationType="OneShot" DurationMin="0.41344672" DurationMax="0.41344672">
+					<MediaRefs>
+						<MediaRef Id="281651751"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="531999063" Name="Play_FridgeDoorSqueak" DurationType="OneShot" DurationMin="0.7347846" DurationMax="0.7347846">
+					<MediaRefs>
+						<MediaRef Id="4925453"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2104121909" Name="Play_FridgeOpen" DurationType="OneShot" DurationMin="0.537483" DurationMax="0.537483">
+					<MediaRefs>
+						<MediaRef Id="873507374"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3455056121" Name="Play_GenericVoice" DurationType="OneShot" DurationMin="1.6339155" DurationMax="2.4481072">
+					<MediaRefs>
+						<MediaRef Id="155462499"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3945794402" Name="Play_GlassCup" DurationType="OneShot" DurationMin="0.84142464" DurationMax="0.84142464">
+					<MediaRefs>
+						<MediaRef Id="770791138"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="128711729" Name="Play_GlassCupShatter" DurationType="OneShot" DurationMin="0.6264288" DurationMax="0.6636782">
+					<MediaRefs>
+						<MediaRef Id="542234410"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2172856220" Name="Play_GrandTheft_Machiato" MaxAttenuation="4" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="602676466"/>
+						<MediaRef Id="787409315"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2302029328" Name="Play_GrindingCoffee" MaxAttenuation="15" DurationType="OneShot" DurationMin="3.75" DurationMax="3.75">
+					<MediaRefs>
+						<MediaRef Id="285469530"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="579639504" Name="Play_GrindingEspresso" MaxAttenuation="15" DurationType="OneShot" DurationMin="4.5191836" DurationMax="4.5191836">
+					<MediaRefs>
+						<MediaRef Id="759491673"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="203113690" Name="Play_Gulp" DurationType="OneShot" DurationMin="0.28468356" DurationMax="0.40260336">
+					<MediaRefs>
+						<MediaRef Id="936223522"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="774814993" Name="Play_Helicopter" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="96484927"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1147514445" Name="Play_InteractSound" DurationType="OneShot" DurationMin="0.10870748" DurationMax="0.10870748">
+					<MediaRefs>
+						<MediaRef Id="405386485"/>
+						<MediaRef Id="1042882764"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="985514065" Name="Play_Karen" DurationType="OneShot" DurationMin="2" DurationMax="2">
+					<MediaRefs>
+						<MediaRef Id="157192986"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2176068757" Name="Play_KarenYelling" DurationType="OneShot" DurationMin="2.75" DurationMax="2.75">
+					<MediaRefs>
+						<MediaRef Id="905915782"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="416139438" Name="Play_LoopPour" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="1061196224"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2859911570" Name="Play_MachineBuzzing" DurationType="OneShot" DurationMin="3.4782767" DurationMax="3.4782767">
+					<MediaRefs>
+						<MediaRef Id="282050569"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1409598283" Name="Play_Mason_Jar_Close" DurationType="OneShot" DurationMin="0.5937642" DurationMax="0.5937642">
+					<MediaRefs>
+						<MediaRef Id="763396996"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3659292941" Name="Play_Mason_Jar_Open" DurationType="OneShot" DurationMin="0.31251702" DurationMax="0.31251702">
+					<MediaRefs>
+						<MediaRef Id="457168489"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2576276897" Name="Play_MenuClick" DurationType="OneShot" DurationMin="0.4347846" DurationMax="0.4347846">
+					<MediaRefs>
+						<MediaRef Id="1052987244"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1802956237" Name="Play_MouseClick" DurationType="OneShot" DurationMin="0.40761906" DurationMax="0.40761906">
+					<MediaRefs>
+						<MediaRef Id="658751346"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3754899171" Name="Play_NeuroticBone" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="230495110"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2102535970" Name="Play_Nostalgia" MaxAttenuation="12" DurationType="OneShot" DurationMin="115" DurationMax="115">
+					<MediaRefs>
+						<MediaRef Id="702921066"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1479974693" Name="Play_Piano" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="386335204"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3371475622" Name="Play_PlayCubeStartup" DurationType="OneShot" DurationMin="9.504966" DurationMax="9.504966">
+					<MediaRefs>
+						<MediaRef Id="457717867"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1719581924" Name="Play_Pour" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="1061196224"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3412867708" Name="Play_RadioDrop" DurationType="OneShot" DurationMin="1.2477015" DurationMax="1.2477015">
+					<MediaRefs>
+						<MediaRef Id="755106047"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3700200612" Name="Play_RedPandaTheme" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="2409473"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3453202434" Name="Play_RoastBlend" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="776190147"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2754920038" Name="Play_SatisfiedCustomer" DurationType="OneShot" DurationMin="1.8750113" DurationMax="1.8750113">
+					<MediaRefs>
+						<MediaRef Id="647119287"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1571211755" Name="Play_SFX_BellChime" DurationType="OneShot" DurationMin="2.2291157" DurationMax="2.2291157">
+					<MediaRefs>
+						<MediaRef Id="505142991"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1306435193" Name="Play_Slider" DurationType="OneShot" DurationMin="0.49614513" DurationMax="0.49614513">
+					<MediaRefs>
+						<MediaRef Id="30486242"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="207402092" Name="Play_Slurp1_2" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="408789105"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3405882561" Name="Play_SmokerNoise" DurationType="OneShot" DurationMin="1.3750113" DurationMax="1.3750113">
+					<MediaRefs>
+						<MediaRef Id="433883949"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2451981543" Name="Play_SmokerPump" DurationType="OneShot" DurationMin="0.43750566" DurationMax="0.43750566">
+					<MediaRefs>
+						<MediaRef Id="54605514"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="43930435" Name="Play_SomedayWakeUp" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="626169617"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4221615279" Name="Play_SpashedSea" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="366206813"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3361877211" Name="Play_Surprise" DurationType="OneShot" DurationMin="0.31088436" DurationMax="0.31088436">
+					<MediaRefs>
+						<MediaRef Id="643386282"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1092545136" Name="Play_SynthWaveSong" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="273705753"/>
+						<MediaRef Id="908209051"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3915894401" Name="Play_TakingShape" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="636649444"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1122006298" Name="Play_TapOnGlass" DurationType="OneShot" DurationMin="0.5" DurationMax="0.5">
+					<MediaRefs>
+						<MediaRef Id="14505751"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="338641160" Name="Play_TaskComplete" DurationType="OneShot" DurationMin="0.70866215" DurationMax="0.70866215">
+					<MediaRefs>
+						<MediaRef Id="455270351"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="315754304" Name="Play_TellingStories" MaxAttenuation="12" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="760450632"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3107494279" Name="Play_TitleTheme" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="138462402"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1489182122" Name="Play_TrashCan" DurationType="OneShot" DurationMin="0.36348137" DurationMax="0.5446067">
+					<MediaRefs>
+						<MediaRef Id="161250347"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="847946271" Name="Play_Traveler" DurationType="OneShot" DurationMin="2.1875057" DurationMax="2.1875057">
+					<MediaRefs>
+						<MediaRef Id="974081508"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4018064888" Name="Play_TruckDrift" DurationType="OneShot" DurationMin="3.4782767" DurationMax="3.4782767">
+					<MediaRefs>
+						<MediaRef Id="9348846"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1128869005" Name="Play_TruckEngine" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="682548690"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3078875068" Name="Play_TruckHorn" DurationType="OneShot" DurationMin="1.1413152" DurationMax="1.1413152">
+					<MediaRefs>
+						<MediaRef Id="205128343"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1950478834" Name="Play_TvStatic" MaxAttenuation="4" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="454672396"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4105520773" Name="Play_UnsatisfiedCustomer" DurationType="OneShot" DurationMin="1.8750113" DurationMax="1.8750113">
+					<MediaRefs>
+						<MediaRef Id="152778883"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1615511115" Name="Play_Waking" DurationType="OneShot" DurationMin="3.5" DurationMax="3.5">
+					<MediaRefs>
+						<MediaRef Id="273690636"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2092044786" Name="Play_WaterFall1_2" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="865454399"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2693257580" Name="Play_Whistle" DurationType="OneShot" DurationMin="1" DurationMax="1">
+					<MediaRefs>
+						<MediaRef Id="544960085"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2540658777" Name="Stop_Brewer" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2232275612" Name="Stop_DragonFlies" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4252214477" Name="Stop_DreamScape" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3639146620" Name="Stop_Faucet" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4099702875" Name="Stop_FireFlies" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2019721402" Name="Stop_GrandTheft_Machiato" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1506977314" Name="Stop_GrindingCoffee" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="623871430" Name="Stop_GrindingEspresso" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3999941067" Name="Stop_Helicopter" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4059860068" Name="Stop_LoopPour" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3762348028" Name="Stop_MachineBuzzing" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2667958284" Name="Stop_Nostalgia" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1839160882" Name="Stop_SynthWaveSong" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1450757357" Name="Stop_TitleTheme" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4243093612" Name="Stop_TvStatic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="248980959" Name="VolumeOne_AfterHours" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2721825950" Name="VolumeOne_BossaNova" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4016599115" Name="VolumeOne_BreakingLoose" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="521874696" Name="VolumeOne_ExquisiteTaste" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1886182129" Name="VolumeOne_NeuroticBone" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="844119779" Name="VolumeOne_Piano" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="662843338" Name="VolumeOne_RedPandaTheme" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3973291544" Name="VolumeOne_RoastBlend" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2181399409" Name="VolumeOne_SomedayWakeUp" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2689093237" Name="VolumeOne_SpashedSea" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2511561735" Name="VolumeOne_TakingShape" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3384730498" Name="VolumeOne_TellingStories" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1970210963" Name="VolumeZero_AfterHours" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1625469250" Name="VolumeZero_BossaNova" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="319625207" Name="VolumeZero_BreakingLoose" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="247285116" Name="VolumeZero_ExquisiteTaste" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3535909101" Name="VolumeZero_NeuroticBone" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2896401063" Name="VolumeZero_Piano" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="946022718" Name="VolumeZero_RedPandaTheme" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2913870116" Name="VolumeZero_RoastBlend" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3467887341" Name="VolumeZero_SomedayWakeUp" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="4282258553" Name="VolumeZero_SpashedSea" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3252269563" Name="VolumeZero_TakingShape" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3876908550" Name="VolumeZero_TellingStories" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
 			<GameParameters>
-				<GameParameter Id="988953028" Name="SFXVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFXVolume"/>
-				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MusicVolume"/>
-				<GameParameter Id="2918011349" Name="MasterVolume" ObjectPath="\Game Parameters\Default Work Unit\Volume\MasterVolume"/>
+				<GameParameter Id="988953028" Name="SFXVolume"/>
+				<GameParameter Id="2346531308" Name="MusicVolume"/>
+				<GameParameter Id="2918011349" Name="MasterVolume"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
+	<FileHash>{DCCEBDF5-774C-221F-355B-9A914172B4C4}</FileHash>
 </SoundBanksInfo>

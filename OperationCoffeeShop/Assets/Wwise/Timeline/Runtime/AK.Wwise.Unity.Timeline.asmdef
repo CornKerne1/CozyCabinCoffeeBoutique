@@ -4,7 +4,7 @@
         "AK.Wwise.Unity.API",
         "AK.Wwise.Unity.MonoBehavior",
         "Unity.Timeline",
-        "AK.Wwise.Unity.API.WwiseTypes","UnityEditor.UI","UnityEngine.UI"
+        "AK.Wwise.Unity.API.WwiseTypes"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -12,7 +12,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [ "!UNITY_SERVER" ],
     "versionDefines": [
         {
             "name": "com.unity.timeline",
