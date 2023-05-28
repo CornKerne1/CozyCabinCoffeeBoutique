@@ -81,6 +81,7 @@ public class MainMenu : MonoBehaviour
         AkSoundEngine.PostEvent("Play_TitleTheme", this.gameObject);
         _animator = GetComponent<Animator>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        _gameMode.playerData.inUI = true;
         InitializeHudAndCursor();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
