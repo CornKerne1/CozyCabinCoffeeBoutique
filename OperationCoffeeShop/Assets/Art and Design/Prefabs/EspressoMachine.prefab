@@ -268,7 +268,7 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
@@ -276,8 +276,8 @@ MonoBehaviour:
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
   onScreenPromptText: 
-  lookAtPlayer: 0
   delivered: 0
+  dispenser: {fileID: 0}
   objTypeShop: 0
   mD: {fileID: 11400000, guid: 59afcc0862c13ba40a42f046ff667569, type: 2}
 --- !u!65 &3682925322637449397
@@ -291,8 +291,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9040365, y: 0.6135535, z: 0.05235195}
-  m_Center: {x: -0.04798174, y: -0.19322324, z: 0.26370192}
+  m_Size: {x: 0.852309, y: 0.6135535, z: 0.0623637}
+  m_Center: {x: -0.03212962, y: -0.19322324, z: 0.26870775}
 --- !u!65 &8777131485002065113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -304,8 +304,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8348503, y: 0.352839, z: 0.35477257}
-  m_Center: {x: -0.032440186, y: -0.24041486, z: 0.05091381}
+  m_Size: {x: 0.8481994, y: 0.39500958, z: 0.5363912}
+  m_Center: {x: -0.025765635, y: -0.3004036, z: -0.030559719}
 --- !u!135 &3682925322637449387
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -330,8 +330,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8322066, y: 0.25524753, z: 0.27632332}
-  m_Center: {x: -0.022103256, y: -0.012505813, z: -0.16034925}
+  m_Size: {x: 0.8472239, y: 0.25524753, z: 0.27632332}
+  m_Center: {x: -0.026274648, y: -0.012505813, z: -0.16034925}
 --- !u!1 &4047173336947782983
 GameObject:
   m_ObjectHideFlags: 0
