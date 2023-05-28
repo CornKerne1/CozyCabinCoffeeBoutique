@@ -163,10 +163,10 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         playerInteraction = null;
     }
 
-    protected virtual void LookAtPlayer()
+    protected async void LookAtPlayer()
     {
         if (!playerInteraction) return;
-        StartCoroutine(LookAt(playerInteraction));
+        await LookAt(playerInteraction);
     }
 
     protected virtual async Task FreezeForClippingAsync()
@@ -212,12 +212,12 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         Destroy(gameObject);
     }
 
-    private IEnumerator LookAt(PlayerInteraction interaction)
+    private async Task LookAt(PlayerInteraction interaction)
     {
         while (lookAtPlayer)
         {
             if (gameMode.camera) transform.LookAt(gameMode.camera.transform);
-            yield return null;
+            await Task.Yield();
         }
     }
     

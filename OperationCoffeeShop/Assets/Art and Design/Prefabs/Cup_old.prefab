@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425258452988539923}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.08265, z: -0.03124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3182186349655731016}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2838029781006807538
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   objTypeShop: 0
   pourTransform: {fileID: 1425258452988539922}
   contentsVisualizer: {fileID: 7630870854135701406}
-  visualizerStartPosition: {x: 0, y: 0.0422, z: 0.0311}
+  steam: {fileID: 0}
   visualizerStartScale: {x: 1, y: 1, z: 1}
   visualizerPositionIncrement: 0.00108
   inHand: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   scaleVisualizer: 0
   iD: {fileID: 11400000, guid: 56f2929078d5c4c48888b9619f2e1256, type: 2}
   outputIngredients: []
+  garbageList: []
 --- !u!54 &495533909400445304
 Rigidbody:
   m_ObjectHideFlags: 0
