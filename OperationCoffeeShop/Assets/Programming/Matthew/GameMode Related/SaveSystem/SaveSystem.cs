@@ -34,10 +34,15 @@ public class SaveSystem
                 var json = streamReader.ReadToEnd();
                 SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
-
             AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
             AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.musicVol);
             AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.masterVol);
+            if (SaveOptionsData.masterVol == 0)
+            {
+                AkSoundEngine.SetRTPCValue("MasterVolume", .4f);
+                AkSoundEngine.SetRTPCValue("MusicVolume", .4f);
+                AkSoundEngine.SetRTPCValue("SFXVolume", .4f);
+            }
         }
         else
         {

@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
@@ -35,6 +36,7 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchGame()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         _gameMode.playerData.inUI = false;
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
@@ -48,28 +50,44 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void OpenCredits()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void CloseCredits()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         creditsScreen.SetActive(false);
     }
 
     public void CloseOptions()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         optionsScreen.SetActive(false);
     }
 
     public void QuitGame()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         Application.Quit();
         Debug.Log("Quitting");
+    }
+
+    public void DeleteSaveFile()
+    {
+        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        var persistentDataPath = Application.persistentDataPath + $"SaveGame{0}.json";
+        if (File.Exists(persistentDataPath))
+        {
+            File.Delete(persistentDataPath);
+            _gameMode.Load(0);
+        }
     }
     private void InitializeHudAndCursor()
     {

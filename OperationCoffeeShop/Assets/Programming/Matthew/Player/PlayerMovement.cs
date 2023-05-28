@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     private PlayerInput _playerInput;
-    [SerializeField] public CharacterController controller;
+    [SerializeField] public CharacterController characterController;
 
     private Vector3 _velocity;
     private const float Gravity = -13f;
@@ -26,14 +26,21 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _standingCenter = new Vector3(0,.5f,0);
     private bool isCrouching;
     private Task _taskRunning;
-    private CharacterController _characterController;
+
+    private void OnDestroy()
+    {
+        PlayerInput.CamModeEvent -= ToggleCamMode;
+        PlayerInput.SprintEvent -= Sprint;
+        PlayerInput.JumpEvent -= Jump;
+        PlayerInput.CrouchEvent -= Crouch;
+        Destroy(characterController);
+    }
 
     private async void Awake()
     {
         _camera = Camera.main;
-        _characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
         _playerInput = this.gameObject.GetComponent<PlayerInput>();
-        controller = this.gameObject.GetComponent<CharacterController>();
         _playerInput.pD.currentMovement = transform.position;
         _playerInput.pD.isClimbing = false;
         PlayerInput.CamModeEvent += ToggleCamMode;
@@ -57,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void TeleportPlayer(Vector3 destination)
     {
-        _characterController.enabled = false;
+        characterController.enabled = false;
         transform.position = destination;
-        _characterController.enabled = true;
+        characterController.enabled = true;
     }
     private async Task EditorFix()
     {
@@ -79,17 +86,17 @@ public class PlayerMovement : MonoBehaviour
         else if ( _playerInput.pD.camMode)
         {
             if (!_camera) return;
-            controller.Move(_camera.transform.forward * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetVerticalMovement()*2.5f));
-            controller.Move(_camera.transform.right * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetHorizontalMovement()*2.5f));
+            characterController.Move(_camera.transform.forward * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetVerticalMovement()*2.5f));
+            characterController.Move(_camera.transform.right * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetHorizontalMovement()*2.5f));
         }
         else
         {
             Vector3 rawMovement = new Vector3(_playerInput.GetHorizontalMovement() * .75f, 0.0f, _playerInput.GetVerticalMovement()*_sprintModifier);
             _currentMovement = Vector3.MoveTowards(_currentMovement, rawMovement, _playerInput.pD.inertiaVar * Time.deltaTime);
             Vector3 finalMovement = transform.TransformVector(_currentMovement);
-            controller.Move( _playerInput.pD.moveSpeed * Time.deltaTime* finalMovement );
+            characterController.Move( _playerInput.pD.moveSpeed * Time.deltaTime* finalMovement );
             _velocity.y += Gravity * Time.deltaTime;
-            controller.Move(_velocity * Time.deltaTime);
+            characterController.Move(_velocity * Time.deltaTime);
         }
     }
     
@@ -99,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3.up.z * _playerInput.GetVerticalMovement());
         _currentMovement = Vector3.MoveTowards(_currentMovement, lM, _playerInput.pD.inertiaVar * Time.deltaTime);
         Vector3 finalMovement = transform.TransformVector(_currentMovement);
-        controller.Move( _playerInput.pD.moveSpeed * Time.deltaTime * finalMovement);
+        characterController.Move( _playerInput.pD.moveSpeed * Time.deltaTime * finalMovement);
         if (isGrounded && _playerInput.GetVerticalMovement() < 0)
         {
             _playerInput.pD.isClimbing = false;
@@ -126,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     {
        if(!_playerInput.pD.canMove) return;
        if(!_playerInput.pD.canJump) return;
-       if(!controller.isGrounded) return;
+       if(!characterController.isGrounded) return;
        if (isCrouching) await CrouchStandAsync();
        var sM = _sprintModifier;
        _sprintModifier = 0;
@@ -138,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!_playerInput.pD.canMove) return;
         if(!_playerInput.pD.canCrouch) return;
-        if(!controller.isGrounded) return;
+        if(!characterController.isGrounded) return;
         if (isCrouching && Physics.Raycast(_camera.transform.position, Vector3.up, .5f)) return;
         if (_taskRunning == null)
         {
@@ -151,9 +158,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float timeElapsed = 0;
         var targetHeight = isCrouching ? _playerInput.pD.standHeight : _playerInput.pD.crouchHeight;
-        float currentHeight = controller.height;
+        float currentHeight = characterController.height;
         Vector3 targetCenter = isCrouching ? _standingCenter : _crouchingCenter;
-        Vector3 currentCenter = controller.center;
+        Vector3 currentCenter = characterController.center;
         if (isCrouching)
         {
             _velocity.y = _playerInput.pD.jumpHeight / 1.25f;
@@ -166,13 +173,13 @@ public class PlayerMovement : MonoBehaviour
 
         while (timeElapsed < _crouchTime)
         {
-            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _crouchTime);
-            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _crouchTime);
+            characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _crouchTime);
+            characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _crouchTime);
             timeElapsed += Time.deltaTime;
             await Task.Yield();
         }
-        controller.height = targetHeight;
-        controller.center = targetCenter;
+        characterController.height = targetHeight;
+        characterController.center = targetCenter;
         isCrouching = !isCrouching;
         _taskRunning = null;
     }
@@ -186,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
             var colliders= transform.root.GetComponentsInChildren<Collider>();
            foreach (var c in colliders)
            {
-               if (c.GetInstanceID() ==_characterController.GetInstanceID())
+               if (c.GetInstanceID() ==characterController.GetInstanceID())
                {
                    gameObject.layer = 8;
                    return;
@@ -197,13 +204,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _characterController.enabled = false;
+            characterController.enabled = false;
             transform.position = _camModeReset;
-            _characterController.enabled = true;
+            characterController.enabled = true;
             var colliders= transform.root.GetComponentsInChildren<Collider>();
             foreach (var c in colliders)
             {
-                if (c.GetInstanceID() ==_characterController.GetInstanceID())
+                if (c.GetInstanceID() ==characterController.GetInstanceID())
                 {
                     gameObject.layer = 2;
                     return;
