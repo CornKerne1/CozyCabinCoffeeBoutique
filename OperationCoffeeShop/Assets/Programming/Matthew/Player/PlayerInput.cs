@@ -328,5 +328,7 @@ public class PlayerInput : MonoBehaviour
         _altInteract.Disable();
         _fPp.Rotate.Disable();
         _fPp.FreeCam.Disable();
+        Destroy(GetComponent<PlayerMovement>());
+        
     }
 }
