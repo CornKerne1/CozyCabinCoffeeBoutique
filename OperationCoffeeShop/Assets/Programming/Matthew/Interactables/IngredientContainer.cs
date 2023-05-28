@@ -10,6 +10,7 @@ public class IngredientContainer : Interactable
 {
     [SerializeField] public Transform pourTransform;
     [SerializeField] public GameObject contentsVisualizer;
+    [SerializeField] public GameObject steam;
     private Vector3 _visualizerStartPosition;
     [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
     [SerializeField] public float visualizerPositionIncrement = .00048f;
@@ -53,6 +54,7 @@ public class IngredientContainer : Interactable
 
     public void ResetCup()
     {
+        steam.SetActive(false);
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
@@ -126,7 +128,8 @@ public class IngredientContainer : Interactable
     }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-        
+       
+
         if (_capacity >= maxCapacity)
         {
             IngredientOverflow(iN);
@@ -167,9 +170,11 @@ public class IngredientContainer : Interactable
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
+                    steam.SetActive(true);
                     break;
                 case Ingredients.Espresso:
                     outputIngredients.Add(iD.espresso);
+                    steam.SetActive(true);
                     break;
                 case Ingredients.Milk:
                     outputIngredients.Add(iD.milk);
@@ -191,6 +196,7 @@ public class IngredientContainer : Interactable
                 case Ingredients.TeaBag:
                 default:
                     throw new ArgumentOutOfRangeException();
+
             }
         }
     }
