@@ -32,7 +32,7 @@ public class IngredientContainer : Interactable
     private Task _task2Running;
 
     public List<GameObject> outputIngredients = new List<GameObject>();
-    private List<IngredientNode> _garbageList = new List<IngredientNode>();
+    [SerializeField] private List<IngredientNode> garbageList = new List<IngredientNode>();
     private static readonly int ColorDark = Shader.PropertyToID("_ColorDark"),ColorLight = Shader.PropertyToID("_ColorLight");
     private static readonly int Alpha = Shader.PropertyToID("Alpha");
     private float visualizerScaleIncrement = .02f;
@@ -54,7 +54,7 @@ public class IngredientContainer : Interactable
 
     public void ResetCup()
     {
-        steam.SetActive(false);
+        if (steam)steam.SetActive(false);
         _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
@@ -76,7 +76,7 @@ public class IngredientContainer : Interactable
         if (!rotating) return;
         if (!_pouringAction)
         {
-            transform.Rotate(3.7f, 0, 0);
+            transform.Rotate(6.75f, 0, 0);
             _pouring = true;
             pouringRotation = true;
             if (_task1Running != null) return;
@@ -87,9 +87,9 @@ public class IngredientContainer : Interactable
         {
             AkSoundEngine.PostEvent("stop_looppour", gameObject);
             _pouring = false;
-            transform.Rotate(-3.7f, 0, 0);
+            transform.Rotate(-6.75f, 0, 0);
             pouringRotation = false;
-            _garbageList = new List<IngredientNode>();
+            garbageList = new List<IngredientNode>();
             if (_task1Running != null) return;
             _task1Running = Timer(.5f);
             await _task1Running;
@@ -170,10 +170,12 @@ public class IngredientContainer : Interactable
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
+                    if (!steam) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Espresso:
                     outputIngredients.Add(iD.espresso);
+                    if (!steam) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Milk:
@@ -209,7 +211,7 @@ public class IngredientContainer : Interactable
         _capacity = _capacity - 1;
         if (iN.target <= 0)
         {
-            _garbageList.Add(iN);
+            garbageList.Add(iN);
         }
 
         dD.ingredients.Remove(iN);
