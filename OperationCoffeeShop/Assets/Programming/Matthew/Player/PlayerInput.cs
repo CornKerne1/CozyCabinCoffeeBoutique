@@ -314,4 +314,19 @@ public class PlayerInput : MonoBehaviour
     {
         return this;
     }
+    private void OnDestroy()
+    {
+        CamModeEvent -= ToggleHud;
+        PauseEvent -= _Pause;
+        disabled = true;
+        _fPp.Move.Disable();
+        _fPp.Mouse.Disable();
+        _sprint.Disable();
+        _jump.Disable();
+        _crouch.Disable();
+        _interact.Disable();
+        _altInteract.Disable();
+        _fPp.Rotate.Disable();
+        _fPp.FreeCam.Disable();
+    }
 }
