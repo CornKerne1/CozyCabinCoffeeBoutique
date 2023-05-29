@@ -32,6 +32,11 @@ public class Objectives : MonoBehaviour
         }
     }
 
+    public bool CheckObjective(int objective)
+    {
+        return currentObjective == objective;
+    }
+
     public void NextObjective(GameObject sender)
     {
         var objectiveStruct = objectives[currentObjective];

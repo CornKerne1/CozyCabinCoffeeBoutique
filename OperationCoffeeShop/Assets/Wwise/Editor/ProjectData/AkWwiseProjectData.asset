@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 88fc2fb2395cfb4a8770a0be5ea58358
     GuidInternal: 
-    m_lastTime: -8585162968025886295
+    m_lastTime: -8585162828977108783
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 8dfa1223c7b8be4797dd30e5c25fae74
     GuidInternal: 
-    m_lastTime: -8585162968105408005
+    m_lastTime: -8585162828980917161
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 2c25838c71943b43b2aef5aa7bf5e5ac
     GuidInternal: 
-    m_lastTime: -8585162968025902036
+    m_lastTime: -8585162828977123796
     List:
     - name: Main
       guid: cf9b4fb222a8f245b39f19c6f5cc49c3
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 472f67ffee43f247ac6e540f705b2067
     GuidInternal: 
-    m_lastTime: -8585162968230912388
+    m_lastTime: -8585162828996649545
     List:
     - name: Pause_GrandTheft_Machiato
       guid: 55ad540c9aa02d479a3cbb1185d42a03
@@ -229,6 +229,23 @@ MonoBehaviour:
         ObjectType: 3
         guid: 05904c8a8e867a40bf3c6d302e01a6aa
       Path: Events\Default Work Unit\Play_BossaNova
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_BowlBreak
+      guid: 9023e9ffc98cf741beab363a5b0e84dc
+      id: 4024074483
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_BowlBreak
+        ObjectType: 3
+        guid: 9023e9ffc98cf741beab363a5b0e84dc
+      Path: Events\Default Work Unit\Play_BowlBreak
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -368,6 +385,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Play_DootDoot
+      guid: 9ebea7eebbee134395a8b5c891a52788
+      id: 245527646
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_DootDoot
+        ObjectType: 3
+        guid: 9ebea7eebbee134395a8b5c891a52788
+      Path: Events\Default Work Unit\Play_DootDoot
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_DragonFlies
       guid: c2ff530eababeb4784bdcd3e290df143
       id: 3948318594
@@ -467,6 +501,23 @@ MonoBehaviour:
         ObjectType: 3
         guid: 660d5ec0da416044840ccbe22175a32b
       Path: Events\Default Work Unit\Play_FallingAsleep
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_FanBreak
+      guid: 70648f3ea8be5842b9705a3ba993734f
+      id: 3866447790
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_FanBreak
+        ObjectType: 3
+        guid: 70648f3ea8be5842b9705a3ba993734f
+      Path: Events\Default Work Unit\Play_FanBreak
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -929,6 +980,40 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Play_PolaroidBreak
+      guid: c9eb93f72e834e48bd35b7b3e6144af7
+      id: 358663215
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_PolaroidBreak
+        ObjectType: 3
+        guid: c9eb93f72e834e48bd35b7b3e6144af7
+      Path: Events\Default Work Unit\Play_PolaroidBreak
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_PolyBlossom
+      guid: b7f5736542e90e4a8dfab22f1fe8c6e9
+      id: 2453944231
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_PolyBlossom
+        ObjectType: 3
+        guid: b7f5736542e90e4a8dfab22f1fe8c6e9
+      Path: Events\Default Work Unit\Play_PolyBlossom
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_Pour
       guid: aa0d736e0c39c54bb1babd068519e051
       id: 1719581924
@@ -1028,6 +1113,142 @@ MonoBehaviour:
         ObjectType: 3
         guid: 1cf52b69d1629544a625689bd477a876
       Path: Events\Default Work Unit\Play_SFX_BellChime
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_Next
+      guid: 51d63d0b4b0e2a4c9a7c10a6f1167648
+      id: 2651753365
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_Next
+        ObjectType: 3
+        guid: 51d63d0b4b0e2a4c9a7c10a6f1167648
+      Path: Events\Default Work Unit\Play_SFX_Next
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_SectionComplete
+      guid: 80e5ce0f828e394ba68e1bd871edc888
+      id: 4226858110
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_SectionComplete
+        ObjectType: 3
+        guid: 80e5ce0f828e394ba68e1bd871edc888
+      Path: Events\Default Work Unit\Play_SFX_SectionComplete
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_Start
+      guid: a9ee892e1a2f6240984e9ad7593f21f5
+      id: 69076046
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_Start
+        ObjectType: 3
+        guid: a9ee892e1a2f6240984e9ad7593f21f5
+      Path: Events\Default Work Unit\Play_SFX_Start
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_TaskComplete
+      guid: 2d5b70462862c74ca1a129bac41882ea
+      id: 4248670596
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_TaskComplete
+        ObjectType: 3
+        guid: 2d5b70462862c74ca1a129bac41882ea
+      Path: Events\Default Work Unit\Play_SFX_TaskComplete
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_Text
+      guid: 274f5c02bf75fb4d9e312322bf3d3663
+      id: 1190013027
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_Text
+        ObjectType: 3
+        guid: 274f5c02bf75fb4d9e312322bf3d3663
+      Path: Events\Default Work Unit\Play_SFX_Text
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_TextBoxCycle
+      guid: 3d1c3ce005bc754b97c086a916cff0b9
+      id: 1073987496
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_TextBoxCycle
+        ObjectType: 3
+        guid: 3d1c3ce005bc754b97c086a916cff0b9
+      Path: Events\Default Work Unit\Play_SFX_TextBoxCycle
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_ToggleOff
+      guid: fd76645994418c45bc4d175a73e9cd62
+      id: 1778247069
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_ToggleOff
+        ObjectType: 3
+        guid: fd76645994418c45bc4d175a73e9cd62
+      Path: Events\Default Work Unit\Play_SFX_ToggleOff
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_SFX_ToggleOn
+      guid: bc2f1dbd55a91c4e9d7ad86bde446b2e
+      id: 3116690161
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 472f67ffee43f247ac6e540f705b2067
+      - ElementName: Play_SFX_ToggleOn
+        ObjectType: 3
+        guid: bc2f1dbd55a91c4e9d7ad86bde446b2e
+      Path: Events\Default Work Unit\Play_SFX_ToggleOn
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -2097,7 +2318,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 7edf050f68127841896972a0eb6b2cbc
     GuidInternal: 
-    m_lastTime: -8585162968230907383
+    m_lastTime: -8585162828996644542
     List:
     - name: MasterVolume
       guid: 6adb56c555d60d49a84962dee3ea048f
@@ -2176,7 +2397,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 03b29a074c901b4080052b0df1891c30
     GuidInternal: 
-    m_lastTime: -8585162968025896323
+    m_lastTime: -8585162828977118795
     List:
     - name: Loop
       guid: d558b34fdcfa5c46869f9fc2da654a48
@@ -2224,7 +2445,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 7acc27cb55fffe4083b787bac19c3787
     GuidInternal: 
-    m_lastTime: -8585162968025896323
+    m_lastTime: -8585162828977113787
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -2238,7 +2459,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: 46c4de4054d6de499ebbff1b184e5bbd
     GuidInternal: 
-    m_lastTime: -8585162968025896323
+    m_lastTime: -8585162828977113787
     List: []
   ExpandedFileSystemItemIds: 
   ExpandedWaapiItemIds: 

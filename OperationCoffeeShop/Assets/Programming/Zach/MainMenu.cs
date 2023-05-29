@@ -36,9 +36,9 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchGame()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        _gameMode.playerData.inUI = false;
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
+        _gameMode.playerData.inUI = false;
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
         else
@@ -50,38 +50,38 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void OpenCredits()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void CloseCredits()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         creditsScreen.SetActive(false);
     }
 
     public void CloseOptions()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         optionsScreen.SetActive(false);
     }
 
     public void QuitGame()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         Application.Quit();
         Debug.Log("Quitting");
     }
 
     public void DeleteSaveFile()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
         var persistentDataPath = Application.persistentDataPath + $"SaveGame{0}.json";
         if (File.Exists(persistentDataPath))
         {
