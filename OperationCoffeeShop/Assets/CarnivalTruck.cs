@@ -101,7 +101,8 @@ public class CarnivalTruck : MonoBehaviour
 
     private async Task SpawnTargets()
     {
-        for (int i = 0; i < _currentRound * targetMultiplier; i++)
+        var tempMultiplier = _currentGameType == GameType.TargetThrow ? 1 : targetMultiplier;
+        for (int i = 0; i < _currentRound * tempMultiplier; i++)
         {
             var destination = _targetPositions[Random.Range(0, _targetPositions.Count)];
             double EPSILON = .01f;
