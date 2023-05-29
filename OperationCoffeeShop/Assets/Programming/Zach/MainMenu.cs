@@ -37,8 +37,8 @@ public class MainMenu : MonoBehaviour
     public void LaunchGame()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        _gameMode.playerData.inUI = false;
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
+        _gameMode.playerData.inUI = false;
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
         else

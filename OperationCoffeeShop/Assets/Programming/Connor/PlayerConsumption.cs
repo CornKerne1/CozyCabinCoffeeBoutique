@@ -8,7 +8,7 @@ public class PlayerConsumption : MonoBehaviour
     [SerializeField, Header("Tutorial Stuff")]
     private Objectives objectives;
 
-    private bool _completedObjective;
+    [SerializeField]private bool _completedObjective;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerConsumption : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<LiquidIngredients>(out var liquid)) return;
-        liquid.gameObject.SetActive(false);
+        Destroy(liquid);
         if (!GameMode.IsEventPlayingOnGameObject("Play_Gulp", gameObject))
             AkSoundEngine.PostEvent("Play_Gulp", gameObject);
         //Debug.Log("Drinking the coffee");
@@ -37,7 +37,7 @@ public class PlayerConsumption : MonoBehaviour
 
     private void IfTutorial()
     {
-        if (!gameMode.gameModeData.inTutorial || _completedObjective) return;
+        if (!gameMode.gameModeData.inTutorial ||!objectives.CheckObjective(13)|| _completedObjective) return;
         _completedObjective = true;
         objectives.NextObjective(gameObject);
     }

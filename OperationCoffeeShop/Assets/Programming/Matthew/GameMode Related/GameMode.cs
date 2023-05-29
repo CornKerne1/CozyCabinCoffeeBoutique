@@ -96,7 +96,7 @@ public class GameMode : MonoBehaviour,ISaveState
         {
             Objectives = objectives
         }; 
-        await Task.Delay(100);
+        await Task.Delay(400);
         AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
         
     }
