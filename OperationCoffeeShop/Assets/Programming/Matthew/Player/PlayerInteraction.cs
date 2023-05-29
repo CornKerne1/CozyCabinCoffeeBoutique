@@ -332,6 +332,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void CameraBlur()
     {
+        if(_dofAperture==null) return;
         if (_blur)
         {
             _dofAperture.value = 1.0f;

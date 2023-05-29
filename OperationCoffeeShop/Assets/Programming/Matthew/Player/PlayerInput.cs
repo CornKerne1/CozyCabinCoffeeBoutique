@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -79,17 +80,12 @@ public class PlayerInput : MonoBehaviour
     private Task InitializeMenu()
     {
         virtualCursor.gameObject.SetActive(false);
-        pauseM.SetActive(false);
-        try
+        if (SceneManager.GetActiveScene().buildIndex != 1)
         {
             var pM = pauseM.GetComponent<PauseMenu>();
             pM.playerInput = this;
         }
-        catch (Exception e)
-        {
-            // ignored
-        }
-
+        pauseM.SetActive(false);
         return Task.CompletedTask;
     }
 
