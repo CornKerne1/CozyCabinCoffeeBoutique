@@ -80,11 +80,6 @@ public class PlayerInput : MonoBehaviour
     private Task InitializeMenu()
     {
         virtualCursor.gameObject.SetActive(false);
-        if (SceneManager.GetActiveScene().buildIndex != 1)
-        {
-            var pM = pauseM.GetComponent<PauseMenu>();
-            pM.playerInput = this;
-        }
         pauseM.SetActive(false);
         return Task.CompletedTask;
     }
@@ -102,13 +97,14 @@ public class PlayerInput : MonoBehaviour
 
     private void _Pause(object sender, EventArgs e)
     {
-        //Debug.Log(pD.inUI);
         if (pD.inUI)
         {
             if (!pauseM.activeSelf) return;
             pauseM.GetComponent<PauseMenu>().StartGame();
             pD.inUI = false;
             ToggleHud();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
@@ -324,6 +320,7 @@ public class PlayerInput : MonoBehaviour
         _altInteract.Disable();
         _fPp.Rotate.Disable();
         _fPp.FreeCam.Disable();
+        _fPp.PauseGame.Disable();
         Destroy(GetComponent<PlayerMovement>());
         
     }

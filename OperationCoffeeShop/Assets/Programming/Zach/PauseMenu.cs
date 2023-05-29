@@ -1,11 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -17,7 +11,6 @@ public class PauseMenu : MonoBehaviour
     public PlayerData pD;
     private float _previousTimeRate;
     private bool _couldMovePreviously = true;
-    public PlayerInput playerInput;
 
     [SerializeField]private GameObject infoScreen,optionsScreen,controlScreen,infoButtonObj, optionsButtonObj,controlsButtonObj,wwiseBank;
     private Image _infoButton, _optionsButton,_controlsButton;
@@ -29,18 +22,16 @@ public class PauseMenu : MonoBehaviour
     {
         if (_couldMovePreviously)
         {
-            Debug.Log("using StartGame() _couldMovePreviously is true");
-
             _gameMode.gameModeData.timeRate = _previousTimeRate;
             AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
             _animator.SetTrigger("Reverse");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            playerInput.ToggleMovement();
+            _gameMode.playerInput.ToggleMovement();
             pD.inUI = false;
             gameObject.SetActive(false);
             _playerInteraction.CameraBlur();
-            playerInput.ToggleHud();
+            _gameMode.playerInput.ToggleHud();
         }
         else
         {
@@ -49,8 +40,8 @@ public class PauseMenu : MonoBehaviour
             AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
             _animator.SetTrigger("Reverse");
             gameObject.SetActive(false);
-            playerInput.ToggleHud();
-            playerInput.ToggleMovement();
+            _gameMode.playerInput.ToggleHud();
+            _gameMode.playerInput.ToggleMovement();
         }
     }
 
@@ -123,25 +114,18 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("using OnEnable");
-
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _previousTimeRate = _gameMode.gameModeData.timeRate;
         _gameMode.gameModeData.timeRate = 0;
-        Debug.Log("_game mode time rate " + _gameMode.gameModeData.timeRate);
-        Debug.Log("previous time rate " + _previousTimeRate);
-
         if (!pD.canMove)
         {
-            Debug.Log("using OnEnable _couldMove Previously is false");
             _couldMovePreviously = false;
         }
-
         _animator = GetComponent<Animator>();
         _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
         //Cursor.visible = true;
         //Cursor.lockState = CursorLockMode.None;
-        playerInput.ToggleMovement();
+        _gameMode.playerInput.ToggleMovement();
         _playerInteraction.CameraBlur();
         _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();
         _optionsButton = optionsButtonObj.GetComponent<UnityEngine.UI.Image>();
