@@ -19,7 +19,7 @@ public class SplashScreen : MonoBehaviour
         AkSoundEngine.PostEvent("Play_PolyBlossom", gameObject);
         await Task.Delay(6500);
         SceneManager.LoadScene(1);
-        Destroy(WwiseBank);
+        //Destroy(WwiseBank);
     }
 }
 
