@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
+using System.Threading.Tasks;
 
 
 public class MainMenu : MonoBehaviour
@@ -34,11 +35,12 @@ public class MainMenu : MonoBehaviour
         director.Play();
     }
 
-    public void LaunchGame()
+    public async void LaunchGame()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
         _gameMode.playerData.inUI = false;
+        await Task.Delay(500);
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
         else
@@ -50,38 +52,38 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void OpenCredits()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void CloseCredits()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         creditsScreen.SetActive(false);
     }
 
     public void CloseOptions()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         optionsScreen.SetActive(false);
     }
 
     public void QuitGame()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Application.Quit();
         Debug.Log("Quitting");
     }
 
     public void DeleteSaveFile()
     {
-        AkSoundEngine.PostEvent("Play_MenuClick", this.gameObject);
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         var persistentDataPath = Application.persistentDataPath + $"SaveGame{0}.json";
         if (File.Exists(persistentDataPath))
         {

@@ -544,61 +544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be4d03629b363444d954020cad79a78c, type: 3}
---- !u!1 &89832321
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 89832323}
-  - component: {fileID: 89832322}
-  m_Layer: 0
-  m_Name: PotLillies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!114 &89832322
-MonoBehaviour:
-  m_ObjectHideFlags: 10
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89832321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986e817300de88499b25c6dd04ca872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &89832323
-Transform:
-  m_ObjectHideFlags: 8
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89832321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 857248824}
-  - {fileID: 1011303375}
-  - {fileID: 1571801123}
-  - {fileID: 653879045}
-  - {fileID: 1710922126}
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &91157250 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5785451015041803945, guid: dc48fb5b1152d2e48b245793c842ab26, type: 3}
-  m_PrefabInstance: {fileID: 1766984642}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &91609411
+--- !u!1001 &80836408
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -655,10 +601,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6143ad0d95b7294d91852b0f045dc94, type: 3}
---- !u!1 &91609412 stripped
+--- !u!1 &80836409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2333306276261452518, guid: b6143ad0d95b7294d91852b0f045dc94, type: 3}
-  m_PrefabInstance: {fileID: 91609411}
+  m_PrefabInstance: {fileID: 80836408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &89832321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89832323}
+  - component: {fileID: 89832322}
+  m_Layer: 0
+  m_Name: PotLillies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &89832322
+MonoBehaviour:
+  m_ObjectHideFlags: 10
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89832321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986e817300de88499b25c6dd04ca872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &89832323
+Transform:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89832321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 857248824}
+  - {fileID: 1011303375}
+  - {fileID: 1571801123}
+  - {fileID: 653879045}
+  - {fileID: 1710922126}
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &91157250 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5785451015041803945, guid: dc48fb5b1152d2e48b245793c842ab26, type: 3}
+  m_PrefabInstance: {fileID: 1766984642}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &98729449 stripped
 Transform:
@@ -3517,7 +3517,7 @@ PrefabInstance:
     - target: {fileID: 7181051740806545459, guid: c537023bf706e0348afde4351f335ded, type: 3}
       propertyPath: wwiseBank
       value: 
-      objectReference: {fileID: 91609412}
+      objectReference: {fileID: 80836409}
     - target: {fileID: 8945788055905883064, guid: c537023bf706e0348afde4351f335ded, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{7334E589-2197-FAC1-493A-0E1DDE623D88}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{BBFE8149-20DD-AC9F-36D2-B3C94F4873FA}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -34,7 +34,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B3081DD1-CB86-42DD-4EDA-226F8ADE8318}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CCAEF1EA-9019-53C2-1DC4-DAB882B1EC3D}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -395,6 +395,11 @@
 					<CachePath>SFX/DreamScape_D79FB2B7.wem</CachePath>
 				</File>
 			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="2171127646" Name="Hall_Conversation" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
+			</Plugins>
 			<Events>
 				<Event Id="2630402114" Name="Pause_GrandTheft_Machiato" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="4139861594" Name="Pause_SynthWaveSong" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
@@ -655,6 +660,11 @@
 					<MediaRefs>
 						<MediaRef Id="180025002"/>
 					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2171127646"/>
+						</ShareSets>
+					</PluginRefs>
 				</Event>
 				<Event Id="1719581924" Name="Play_Pour" DurationType="Infinite">
 					<MediaRefs>
@@ -889,5 +899,5 @@
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{BB390092-3153-601B-27F5-9E33EF4D6726}</FileHash>
+	<FileHash>{70D179EB-2EBE-918C-FE17-EEB72391CD12}</FileHash>
 </SoundBanksInfo>
