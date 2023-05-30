@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoorInteractable : Interactable
 {
-    [SerializeField] private bool playerDoor;
+    [SerializeField] private bool playerDoor,frontDoor;
     [SerializeField] private GameObject door;
     [SerializeField] private Transform openTrans;
     private Vector3 _startposition;
@@ -17,10 +17,13 @@ public class DoorInteractable : Interactable
     private bool _interrupt = true;
 
     private bool _occupied;
+    private Door _door;
 
     public override void Start()
     {
         base.Start();
+        if (frontDoor)
+           _door= transform.parent.GetComponent<Door>();
         var transform1 = transform;
         _startposition = transform1.position;
         _startrotation = transform1.rotation;
@@ -29,6 +32,11 @@ public class DoorInteractable : Interactable
     public override void OnInteract(PlayerInteraction interaction)
     {
         if (gameMode.gameModeData.isOpen) return;
+        if (frontDoor)
+        {
+            _door.PlayerOpen();
+            return;
+        }
         PlayerOpen();
     }
 
