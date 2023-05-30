@@ -78,17 +78,16 @@ public class DynamicBatcher : MonoBehaviour
             MeshFilter meshFilter = foliageList[0].GetComponent<MeshFilter>();
             if (meshFilter == null)
             {
-                Debug.LogWarning("Foliage object does not have a MeshFilter component.");
+                Debug.LogWarning(foliageList[0].gameObject.name+"Foliage object does not have a MeshFilter component.");
                 continue;
             }
 
             Mesh mesh = meshFilter.sharedMesh;
             if (mesh == null)
             {
-                Debug.LogWarning("Foliage object does not have a mesh.");
+                Debug.LogWarning(foliageList[0].gameObject.name+"Foliage object does not have a mesh.");
                 continue;
             }
-
             Material material = entry.Key;
 
             for (int i = 0; i < foliageList.Count; i += maxBatchSize)

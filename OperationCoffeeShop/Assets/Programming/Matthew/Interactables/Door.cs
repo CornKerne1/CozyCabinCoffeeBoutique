@@ -69,7 +69,8 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponent<CustomerInteractable>()) return;
+        
+        if (!other.CompareTag("Customer")) return;
         Debug.Log("trigger open door for customer");
 
         if (_running && _open)
