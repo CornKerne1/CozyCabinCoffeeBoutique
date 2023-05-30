@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     public Animator introLetterAnimator;
 
     private static readonly int Start1 = Animator.StringToHash("Start");
+    private bool _loading;
 
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
@@ -37,6 +38,8 @@ public class MainMenu : MonoBehaviour
 
     public async void LaunchGame()
     {
+        if (_loading) return;
+        _loading = true;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
         _gameMode.playerData.inUI = false;
