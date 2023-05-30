@@ -16,7 +16,6 @@ public class IngredientContainer : Interactable
     public bool inHand;
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
-    private int _capacity;
     [SerializeField] private float maxCapacity = 100f;
     public bool hasContentsVisualizer = true;
     private Material _visualizerMaterial;
@@ -54,7 +53,6 @@ public class IngredientContainer : Interactable
     public void ResetCup()
     {
         if (steam)steam.SetActive(false);
-        _capacity =0;
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
             _visualizerStartPosition;
@@ -123,11 +121,22 @@ public class IngredientContainer : Interactable
     {
         AddToContainer(iN, Color.clear);
     }
+
+    private float GetCapacity()
+    {
+        int capacity = 0;
+        foreach (var i in dD.ingredients)
+        {
+            capacity = capacity + (int)i.target;
+        }
+        return capacity;
+    }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-        if (_capacity >= maxCapacity)
+        if (GetCapacity() >= maxCapacity)
         {
             IngredientOverflow(iN);
+            return;
         }
 
         if (_waterColor && iN.ingredient != Ingredients.Water)
@@ -139,7 +148,6 @@ public class IngredientContainer : Interactable
         {
             var _color = color;
             dD.AddIngredient(iN);
-            _capacity = _capacity + 1;
             switch (iN.ingredient)
             {
                 case Ingredients.BrewedCoffee:
@@ -160,7 +168,7 @@ public class IngredientContainer : Interactable
                     break;
                 case Ingredients.Water:
                     outputIngredients.Add(iD.water);
-                    if (_capacity > 1)
+                    if (GetCapacity() > 1)
                         color = Color.clear;
                     else
                         _waterColor = true;
@@ -180,7 +188,7 @@ public class IngredientContainer : Interactable
             }
             if (hasContentsVisualizer)
             {
-                float fillPercentage = (float)_capacity / maxCapacity;
+                float fillPercentage = (float)GetCapacity() / maxCapacity;
                 if (_visualizerMaterial.GetColor(ColorLightBubbles) == Color.clear)
                 {
                     _visualizerMaterial.SetColor(ColorLightBubbles, _color);
@@ -206,16 +214,14 @@ public class IngredientContainer : Interactable
 
     protected virtual async void RemoveIngredient()
     {
-        if (dD.ingredients.Count <= 0) {_capacity = _capacity - 1;return;}
-        var iN = dD.ingredients[dD.ingredients.Count - 1];
-        iN.target = iN.target - 0.01f;
-        _capacity = _capacity - 1;
+        if (dD.ingredients.Count <= 0) {return;}
+        var iN = dD.ingredients[^1];
+        iN.target = iN.target - 1;
         if (iN.target <= 0)
         {
             garbageList.Add(iN);
+            dD.ingredients.Remove(iN);
         }
-
-        dD.ingredients.Remove(iN);
     }
 
     private async void Pour()
@@ -239,9 +245,9 @@ public class IngredientContainer : Interactable
             var r = Random.Range(0, outputIngredients.Count);
             Instantiate(outputIngredients[r], pourTransform.position, pourTransform.rotation);
             outputIngredients.Remove(outputIngredients[outputIngredients.Count - 1]);
-            if (hasContentsVisualizer &&_capacity>0)
+            if (hasContentsVisualizer &&GetCapacity()>0)
             {
-                float fillPercentage = (float)_capacity / maxCapacity;
+                float fillPercentage = (float)GetCapacity() / maxCapacity;
                 float newYPosition = Mathf.Lerp(bottomOfCup, topOfCup, fillPercentage);
                 var localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, newYPosition, contentsVisualizer.transform.localPosition.z);
                 contentsVisualizer.transform.localPosition = localPosition;
@@ -256,8 +262,7 @@ public class IngredientContainer : Interactable
             {
                 _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
                 _visualizerMaterial.SetFloat(Alpha, 0);
-                _capacity = 0;
-
+                ResetCup();
             }
         }
         else
