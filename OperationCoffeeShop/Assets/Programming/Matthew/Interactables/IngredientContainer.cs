@@ -12,8 +12,7 @@ public class IngredientContainer : Interactable
     [SerializeField] public GameObject contentsVisualizer;
     [SerializeField] public GameObject steam;
     private Vector3 _visualizerStartPosition;
-    [SerializeField] private Vector3 visualizerStartScale= new Vector3(5, 5, 5);
-    [SerializeField] public float visualizerPositionIncrement = .00048f;
+    [SerializeField] private float visualizerStartScale,visualizerFullScale;
     public bool inHand;
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
@@ -21,10 +20,10 @@ public class IngredientContainer : Interactable
     [SerializeField] private float maxCapacity = 100f;
     public bool hasContentsVisualizer = true;
     private Material _visualizerMaterial;
-    public float topOfCup;
+    [SerializeField] private float bottomOfCup,topOfCup;
     private bool _pouring,_pouringAction;
     public bool rotating,pouringRotation;
-    [FormerlySerializedAs("BigScale")][SerializeField]private bool scaleVisualizer;
+    [SerializeField]private bool scaleVisualizer;
 
     public IngredientAtlas iD;
 
@@ -33,9 +32,9 @@ public class IngredientContainer : Interactable
 
     public List<GameObject> outputIngredients = new List<GameObject>();
     [SerializeField] private List<IngredientNode> garbageList = new List<IngredientNode>();
-    private static readonly int ColorDark = Shader.PropertyToID("_ColorDark"),ColorLight = Shader.PropertyToID("_ColorLight");
+    private static readonly int ColorLight = Shader.PropertyToID("_ColorLight"),ColorLightBubbles = Shader.PropertyToID("_ColorLightBubbles");
     private static readonly int Alpha = Shader.PropertyToID("Alpha");
-    private float visualizerScaleIncrement = .02f;
+    private bool _waterColor;
 
     private async void FixedUpdate()
     {
@@ -61,9 +60,8 @@ public class IngredientContainer : Interactable
             _visualizerStartPosition;
 
         contentsVisualizer.transform.localScale =
-            visualizerStartScale;
-        _visualizerMaterial.SetColor(ColorDark,Color.clear);
-        _visualizerMaterial.SetColor(ColorLight,Color.clear);
+            new Vector3(visualizerStartScale,visualizerStartScale,visualizerStartScale);
+        _visualizerMaterial.SetColor(ColorLightBubbles,Color.clear);
     }
 
     public bool IsPouring()
@@ -105,8 +103,7 @@ public class IngredientContainer : Interactable
         else
         {
             _visualizerMaterial = contentsVisualizer.GetComponent<MeshRenderer>().material;
-            _visualizerMaterial.SetColor(ColorDark, Color.clear);
-            _visualizerMaterial.SetColor(ColorLight, Color.clear);
+            _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
             _visualizerStartPosition = contentsVisualizer.transform.localPosition;
         }
 
@@ -128,44 +125,21 @@ public class IngredientContainer : Interactable
     }
     public virtual void AddToContainer(IngredientNode iN, Color color)
     {
-       
-
         if (_capacity >= maxCapacity)
         {
             IngredientOverflow(iN);
         }
+
+        if (_waterColor && iN.ingredient != Ingredients.Water)
+        {
+            _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
+            _waterColor = false;
+        }
         else
         {
+            var _color = color;
             dD.AddIngredient(iN);
             _capacity = _capacity + 1;
-            if (hasContentsVisualizer)
-            {
-                if (_visualizerMaterial.GetColor(ColorDark) == Color.clear)
-                {
-                    _visualizerMaterial.SetColor(ColorDark, color);
-                    _visualizerMaterial.SetColor(ColorLight, color);
-                    _visualizerMaterial.SetFloat(Alpha,1);
-                }
-                else
-                {
-                    var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorDark), color, .01f);
-                    _visualizerMaterial.SetColor(ColorDark,newColor);
-                    _visualizerMaterial.SetColor(ColorLight,newColor);
-                }
-                var localPosition = contentsVisualizer.transform.localPosition;
-                localPosition = new Vector3(localPosition.x,
-                    (localPosition.y - visualizerPositionIncrement),
-                    localPosition.z);
-                contentsVisualizer.transform.localPosition = localPosition;
-                if (scaleVisualizer)
-                {
-                    var localScale = contentsVisualizer.transform.localScale;
-                    localScale = new Vector3(localScale.x + visualizerScaleIncrement,
-                        (localScale.y + visualizerScaleIncrement), localScale.z); //
-                    contentsVisualizer.transform.localScale = localScale;
-                }
-            }
-
             switch (iN.ingredient)
             {
                 case Ingredients.BrewedCoffee:
@@ -186,6 +160,10 @@ public class IngredientContainer : Interactable
                     break;
                 case Ingredients.Water:
                     outputIngredients.Add(iD.water);
+                    if (_capacity > 1)
+                        color = Color.clear;
+                    else
+                        _waterColor = true;
                     break;
                 case Ingredients.SteamedMilk:
                 case Ingredients.FoamedMilk:
@@ -197,8 +175,31 @@ public class IngredientContainer : Interactable
                 case Ingredients.CoffeeFilter:
                 case Ingredients.TeaBag:
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    break;
 
+            }
+            if (hasContentsVisualizer)
+            {
+                float fillPercentage = (float)_capacity / maxCapacity;
+                if (_visualizerMaterial.GetColor(ColorLightBubbles) == Color.clear)
+                {
+                    _visualizerMaterial.SetColor(ColorLightBubbles, _color);
+                    _visualizerMaterial.SetFloat(Alpha,1);
+                }
+                else
+                {
+                    var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .01f);
+                    _visualizerMaterial.SetColor(ColorLightBubbles,newColor);
+                }
+                float newYPosition = Mathf.Lerp(bottomOfCup, topOfCup, fillPercentage);
+                var localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, newYPosition, contentsVisualizer.transform.localPosition.z);
+                contentsVisualizer.transform.localPosition = localPosition;
+                if (scaleVisualizer)
+                {
+                    float newScale = Mathf.Lerp(visualizerStartScale, visualizerFullScale, fillPercentage);
+                    Vector3 localScale = new Vector3(newScale, newScale, newScale);
+                    contentsVisualizer.transform.localScale = localScale;
+                }
             }
         }
     }
@@ -240,23 +241,20 @@ public class IngredientContainer : Interactable
             outputIngredients.Remove(outputIngredients[outputIngredients.Count - 1]);
             if (hasContentsVisualizer &&_capacity>0)
             {
-                var localPosition = contentsVisualizer.transform.localPosition;
-                localPosition = new Vector3(localPosition.x,
-                    (localPosition.y + visualizerPositionIncrement),
-                    localPosition.z);
+                float fillPercentage = (float)_capacity / maxCapacity;
+                float newYPosition = Mathf.Lerp(bottomOfCup, topOfCup, fillPercentage);
+                var localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, newYPosition, contentsVisualizer.transform.localPosition.z);
                 contentsVisualizer.transform.localPosition = localPosition;
                 if (scaleVisualizer)
                 {
-                    var localScale = contentsVisualizer.transform.localScale;
-                    localScale = new Vector3(localScale.x - visualizerScaleIncrement,
-                        (localScale.y - visualizerScaleIncrement), localScale.z); //
+                    float newScale = Mathf.Lerp(visualizerStartScale, visualizerFullScale, fillPercentage);
+                    Vector3 localScale = new Vector3(newScale, newScale, newScale);
                     contentsVisualizer.transform.localScale = localScale;
                 }
             }
             else if(hasContentsVisualizer)
             {
-                _visualizerMaterial.SetColor(ColorDark, Color.clear);
-                _visualizerMaterial.SetColor(ColorLight, Color.clear);
+                _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
                 _visualizerMaterial.SetFloat(Alpha, 0);
                 _capacity = 0;
 
@@ -302,7 +300,7 @@ public class IngredientContainer : Interactable
                 Instantiate(iD.milk, pourTransform.position, pourTransform.rotation);
                 break;
             case Ingredients.Water:
-                outputIngredients.Add(iD.water);
+                Instantiate(iD.water, pourTransform.position, pourTransform.rotation);
                 break;
             case Ingredients.SteamedMilk:
             case Ingredients.FoamedMilk:

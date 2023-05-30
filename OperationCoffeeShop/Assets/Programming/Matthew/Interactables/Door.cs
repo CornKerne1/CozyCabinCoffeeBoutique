@@ -5,17 +5,10 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private GameObject door;
     private Transform _startTrans;
-
     [SerializeField] private Transform openTrans;
-
-    [SerializeField] private bool playerDoor;
-
     private bool _open;
-
     private bool _running;
-
     private bool _occupied;
-
     private void Start()
     {
         _startTrans = transform;
@@ -23,16 +16,14 @@ public class Door : MonoBehaviour
 
     public void PlayerOpen()
     {
-        if (playerDoor)
+        if (_running && _open)
         {
-            if (_running && _open)
-            {
-                _open = false;
-            }
-            else if (!_open)
-            {
-                _running = true;
-            }
+            _open = false;
+        }
+        else if (!_open)
+        {
+            AkSoundEngine.PostEvent("PLAY_SFX_BELLCHIME", gameObject);
+            _running = true;
         }
     }
 
@@ -43,6 +34,7 @@ public class Door : MonoBehaviour
         {
             door.transform.rotation =
                 Quaternion.Lerp(door.transform.rotation, openTrans.rotation, 2.5f * Time.deltaTime);
+            Debug.Log("DoorMoving");
 
             if (door.transform.rotation != openTrans.rotation) return;
 
@@ -77,19 +69,6 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger open door");
-        if (playerDoor)
-        {
-            if (_running && _open)
-            {
-                _open = false;
-            }
-            else if (!_open)
-            {
-                _running = true;
-            }
-        }
-
         if (other.CompareTag("Customer"))
         {
             Debug.Log("trigger open door for customer");
