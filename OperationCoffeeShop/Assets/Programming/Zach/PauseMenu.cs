@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -112,7 +113,7 @@ public class PauseMenu : MonoBehaviour
         //EditorApplication.ExitPlaymode();
     }
 
-    private void OnEnable()
+    private async void OnEnable()
     {
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _previousTimeRate = _gameMode.gameModeData.timeRate;
@@ -125,11 +126,13 @@ public class PauseMenu : MonoBehaviour
         _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
         //Cursor.visible = true;
         //Cursor.lockState = CursorLockMode.None;
-        _gameMode.playerInput.ToggleMovement();
-        _playerInteraction.CameraBlur();
         _infoButton = infoButtonObj.GetComponent<UnityEngine.UI.Image>();
         _optionsButton = optionsButtonObj.GetComponent<UnityEngine.UI.Image>();
         _controlsButton = controlsButtonObj.GetComponent<UnityEngine.UI.Image>();
+        if(_gameMode.playerInput)
+            _gameMode.playerInput.ToggleMovement();
+        if(_playerInteraction)
+            _playerInteraction.CameraBlur();
         ChangeTab("info");
     }
 
