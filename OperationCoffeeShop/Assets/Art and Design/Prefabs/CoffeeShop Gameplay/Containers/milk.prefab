@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 4210957179606635857}
   - component: {fileID: 106225316}
   - component: {fileID: 106225317}
-  - component: {fileID: 389920648}
   - component: {fileID: 8883205018090853507}
   - component: {fileID: 9113893510985886532}
   m_Layer: 3
@@ -149,7 +148,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.015502256, y: 0.017744271, z: 0.010761485}
   m_Center: {x: 0, y: -0.0020377864, z: 0.000041288487}
---- !u!114 &389920648
+--- !u!114 &8883205018090853507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2409618553146324100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26b609d3b755b84ba3d187d7e268da0, type: 3}
+  m_Script: {fileID: 11500000, guid: 02824e20b65a53445bd354a4ba361d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameMode: {fileID: 0}
@@ -179,13 +178,14 @@ MonoBehaviour:
   pourTransform: {fileID: 1844950689}
   contentsVisualizer: {fileID: 0}
   steam: {fileID: 0}
-  visualizerStartScale: {x: 5, y: 5, z: 5}
-  visualizerPositionIncrement: 0.00048
+  visualizerStartScale: 0
+  visualizerFullScale: 0
   inHand: 0
   pI: {fileID: 0}
   dD: {fileID: 0}
-  maxCapacity: 400
+  maxCapacity: 100
   hasContentsVisualizer: 0
+  bottomOfCup: 0
   topOfCup: 0
   rotating: 0
   pouringRotation: 0
@@ -193,18 +193,6 @@ MonoBehaviour:
   iD: {fileID: 11400000, guid: 56f2929078d5c4c48888b9619f2e1256, type: 2}
   outputIngredients: []
   garbageList: []
---- !u!114 &8883205018090853507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2409618553146324100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02824e20b65a53445bd354a4ba361d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &9113893510985886532
 BoxCollider:
   m_ObjectHideFlags: 0

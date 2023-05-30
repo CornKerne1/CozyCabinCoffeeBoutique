@@ -83,15 +83,10 @@ public class LiquidIngredients : MonoBehaviour
 
     protected virtual async void TryAddOrDelete(GameObject obj)
     {
-        try
+        var iC = obj.GetComponent<IngredientContainer>();
+        if (iC)
         {
-            obj.GetComponent<IngredientContainer>()
-                .AddToContainer(
-                    ingredientNode,colorInDrink); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
-            Destroy(gameObject);
-        }
-        catch
-        {
+            iC.AddToContainer(ingredientNode, colorInDrink);
             Destroy(gameObject);
         }
     }

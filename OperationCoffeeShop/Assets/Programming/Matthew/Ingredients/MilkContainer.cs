@@ -2,36 +2,20 @@ using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class MilkContainer : MonoBehaviour
+public class MilkContainer : IngredientContainer
 {
-    private int _count;
-    private async void Start()
+    public override async void Start()
     {
-        await Init();
+        base.Start();
+        AddIngredients();
     }
-
-    private async Task Init()
+    private void AddIngredients()
     {
-        await Task.Delay(40);
-        await AddIngredients();
-    }
-    
-    private async Task AddIngredients()
-    {
-        try
+        var iN = new IngredientNode(Ingredients.Milk, 800);
+        AddToContainer(iN,Color.white);
+        for (int i = 0; i < 799; i++)
         {
-            _count = _count + 1;
-            await Task.Delay(5);
-            var iN = new IngredientNode(Ingredients.Milk, .01f);
-            GetComponent<IngredientContainer>().AddToContainer(iN);
-            if (_count < 400)
-            {
-                await (AddIngredients());
-            }
-        }
-        catch
-        {
-            Debug.LogWarning("Milk Container not filled completely before exit");
+            outputIngredients.Add(iD.milk);
         }
     }
 }
