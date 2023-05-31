@@ -150,27 +150,34 @@ public class IngredientContainer : Interactable
         else
         {
             var _color = color;
+            var _alpha = 0f;
             dD.AddIngredient(iN);
             switch (iN.ingredient)
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
+                    _alpha = .05f;
                     if (!steam||steam.activeSelf) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Espresso:
                     outputIngredients.Add(iD.espresso);
+                    _alpha = .2f;
                     if (!steam||steam.activeSelf) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Milk:
+                    _alpha = .15f;
                     outputIngredients.Add(iD.milk);
                     break;
                 case Ingredients.Sugar:
+                    _alpha = .05f;
                     outputIngredients.Add(iD.Sugar);
                     break;
                 case Ingredients.Water:
                     outputIngredients.Add(iD.water);
+                    if (_visualizerMaterial.GetFloat(Alpha) < .2f)
+                        _alpha = .01f;
                     if (GetCapacity() > .01f)
                         _color = Color.clear;
                     else
@@ -198,13 +205,13 @@ public class IngredientContainer : Interactable
                 if (_visualizerMaterial.GetColor(ColorLightBubbles) == Color.clear)
                 {
                     _visualizerMaterial.SetColor(ColorLightBubbles, _color);
-                    _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+.01f);
+                    _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+_alpha);
                 }
                 else
                 {
                     var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .01f);
                     _visualizerMaterial.SetColor(ColorLightBubbles,newColor);
-                    _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+.01f);
+                    _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+_alpha);
                 }
                 if (_visualizerMaterial.GetFloat(Alpha) > 1)
                 {
@@ -226,15 +233,8 @@ public class IngredientContainer : Interactable
     protected virtual async void RemoveIngredient()
     {
         if (dD.ingredients.Count <= 0) return;
-        if (contentsVisualizer)
-        {
-            _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)-.01f);
-            if (_visualizerMaterial.GetFloat(Alpha) < 0)
-            {
-                _visualizerMaterial.SetFloat(Alpha, 0);
-            }
-        }
         var iN = dD.ingredients[^1];
+        const float alpha = 0.005f;
         switch (iN.ingredient)
         {
             case Ingredients.BrewedCoffee:
@@ -265,6 +265,14 @@ public class IngredientContainer : Interactable
             case Ingredients.Mocha:
             default:
                 break;
+        }
+        if (contentsVisualizer)
+        {
+            _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)-alpha);
+            if (_visualizerMaterial.GetFloat(Alpha) < 0)
+            {
+                _visualizerMaterial.SetFloat(Alpha, 0);
+            }
         }
         if (!(iN.target <= 0)) return;
         garbageList.Add(iN);
