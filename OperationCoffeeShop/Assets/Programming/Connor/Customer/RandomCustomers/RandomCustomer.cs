@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 
 public class RandomCustomer : Customer
@@ -109,5 +112,10 @@ public class RandomCustomer : Customer
     public override DrinkData GetDrinkOrder()
     {
         return customerData.orderedDrinkData;
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }
