@@ -3438,24 +3438,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ee8cf0b314ab540ab5fa209ac088e1, type: 3}
---- !u!1 &268227125 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 216972545424330209, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-  m_PrefabInstance: {fileID: 896078243}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &268227126
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268227125}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 2, z: 10}
-  m_Center: {x: 4, y: 2, z: -8.5}
 --- !u!1001 &275525784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10838,30 +10820,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Size.x
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Size.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Center.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Center.z
-      value: 8.5
-      objectReference: {fileID: 0}
     - target: {fileID: 216972545424330209, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
       propertyPath: m_Name
       value: KillZone Pond
@@ -22260,37 +22218,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Size.x
-      value: 6.9871798
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Size.y
-      value: 5.148944
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Size.z
-      value: 2.714096
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Center.x
-      value: 1.6281943
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Center.y
-      value: 2.3895278
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330208, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Center.z
-      value: -0.85704803
-      objectReference: {fileID: 0}
     - target: {fileID: 216972545424330209, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
       propertyPath: m_Name
       value: KillZone Bridge
-      objectReference: {fileID: 0}
-    - target: {fileID: 216972545424330209, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 216972545424330214, guid: cc4d00374d756624a9d2d40a91699172, type: 3}
       propertyPath: m_RootOrder
@@ -30017,6 +29947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot_A
       objectReference: {fileID: 0}
+    - target: {fileID: 6467778393400972567, guid: 08e4b8504dfc75344aab376a2738e7cd, type: 3}
+      propertyPath: m_TagString
+      value: Foliage
+      objectReference: {fileID: 0}
     - target: {fileID: 8825498358318587861, guid: 08e4b8504dfc75344aab376a2738e7cd, type: 3}
       propertyPath: m_TagString
       value: Foliage
@@ -30743,39 +30677,39 @@ PrefabInstance:
       objectReference: {fileID: 303823762}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: deepColor.b
-      value: 0.33281404
+      value: 0.3328076
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: deepColor.g
-      value: 0.34874904
+      value: 0.34874257
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shoreColor.b
-      value: 0.30163518
+      value: 0.30162874
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shallowColor.b
-      value: 0.1790778
+      value: 0.1790717
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shallowColor.g
-      value: 0.2450124
+      value: 0.24500597
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: shallowColor.r
-      value: 0.18204162
+      value: 0.1820355
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: surfaceFoamColor2.b
-      value: 0.27325937
+      value: 0.27325293
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: surfaceFoamColor2.g
-      value: 0.27325937
+      value: 0.27325293
       objectReference: {fileID: 0}
     - target: {fileID: 5970854027680381471, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: surfaceFoamColor2.r
-      value: 0.27325937
+      value: 0.27325293
       objectReference: {fileID: 0}
     - target: {fileID: 7268058265676416585, guid: 586133a1ee7f99b49b9013c8b35d4020, type: 3}
       propertyPath: m_LocalPosition.x
