@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4829272400582640739}
   - component: {fileID: 8613457205847449806}
   - component: {fileID: 8613457205847449807}
-  - component: {fileID: 8613457205847449801}
+  - component: {fileID: 6549846362334179003}
   m_Layer: 0
   m_Name: Dollar
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8613457205847449800}
   m_LocalRotation: {x: -0, y: 0.80714315, z: -0, w: -0.5903559}
   m_LocalPosition: {x: -0.946, y: -9.0396, z: -3.397}
-  m_LocalScale: {x: 0.10000004, y: 0.1, z: 0.10000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8613457205847449800}
-  m_Mesh: {fileID: -2432090755550338912, guid: daea791e2cafdd0499fb7684f6a0c18f, type: 3}
+  m_Mesh: {fileID: -7989805100381033844, guid: b9813e50ac60c8345b0295ddfbcac4e8, type: 3}
 --- !u!23 &4829272400582640739
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a755924ead9ccd34c92e8af5f61cba6b, type: 2}
+  - {fileID: -2310514774154243031, guid: b9813e50ac60c8345b0295ddfbcac4e8, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,10 +117,20 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
-  _pI: {fileID: 0}
---- !u!65 &8613457205847449801
-BoxCollider:
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  delivered: 0
+  dispenser: {fileID: 0}
+  objTypeShop: 0
+--- !u!64 &6549846362334179003
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,6 +139,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6000006, y: 0.1, z: 0.8000003}
-  m_Center: {x: 0, y: 0.05, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7989805100381033844, guid: b9813e50ac60c8345b0295ddfbcac4e8, type: 3}

@@ -83,7 +83,7 @@ public abstract class Customer : MonoBehaviour
         return quality > desiredQuality;
     }
 
-    private void OnSurprise(object sender, EventArgs eventArgs)
+    public void OnSurprise(object sender, EventArgs eventArgs)
     {
         var distance = Vector3.Distance(((GameObject)sender).transform.position, gameObject.transform.position);
         Debug.Log("play surprise with distance: " + distance);
@@ -111,5 +111,11 @@ public abstract class Customer : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         _surprisePool.Release(system);
+    }
+
+    private void OnDestroy()
+    {
+        GameMode.SurpriseCustomers -= OnSurprise;
+
     }
 }
