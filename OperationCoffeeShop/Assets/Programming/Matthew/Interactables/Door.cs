@@ -69,19 +69,18 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Customer"))
-        {
-            Debug.Log("trigger open door for customer");
+        
+        if (!other.CompareTag("Customer")) return;
+        Debug.Log("trigger open door for customer");
 
-            if (_running && _open)
-            {
-                _open = false;
-            }
-            else if (!_open)
-            {
-                AkSoundEngine.PostEvent("PLAY_SFX_BELLCHIME", gameObject);
-                _running = true;
-            }
+        if (_running && _open)
+        {
+            _open = false;
+        }
+        else if (!_open)
+        {
+            AkSoundEngine.PostEvent("PLAY_SFX_BELLCHIME", gameObject);
+            _running = true;
         }
     }
 

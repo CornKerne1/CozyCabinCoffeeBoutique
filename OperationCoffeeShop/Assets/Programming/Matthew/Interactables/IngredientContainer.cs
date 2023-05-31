@@ -56,7 +56,6 @@ public class IngredientContainer : Interactable
         outputIngredients = new List<GameObject>();
         contentsVisualizer.transform.localPosition =
             _visualizerStartPosition;
-
         contentsVisualizer.transform.localScale =
             new Vector3(visualizerStartScale,visualizerStartScale,visualizerStartScale);
         _visualizerMaterial.SetColor(ColorLightBubbles,Color.clear);

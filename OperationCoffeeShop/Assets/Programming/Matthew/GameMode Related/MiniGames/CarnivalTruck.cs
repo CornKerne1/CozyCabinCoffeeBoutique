@@ -9,18 +9,13 @@ using Random = UnityEngine.Random;
 
 public class CarnivalTruck : MonoBehaviour
 {
-    private enum GameType
-    {
-        TargetThrow,
-        RingToss
-    };
-    private GameType _currentGameType;
     [SerializeField] private Transform playerStart;
-    [SerializeField]private GameObject targetPref,ringTossPref,roundTextObj,cashTextObj;
+    [SerializeField]private GameObject roundTextObj,cashTextObj;
     [SerializeField]private Animator roundAnimator,cashAnimator;
-    [SerializeField] private int maxRounds = 3, targetMultiplier = 3,cashAwardMultiplier=10;
     [SerializeField] private float startingSpacing=.5f;
     [SerializeField] private Vector2 xRange = new Vector2(-5f, 5f),yRange = new Vector2(-5f, 5f),zRange = new Vector2(-5f, 5f);
+    [SerializeField]private List<CarnivalGameData> carnivalGameData=new List<CarnivalGameData>();
+    private int _currentGameType;
     private float _currentSpacing;
     private GameMode _gameMode;
     private int _currentRound=1,_currentBrokenTargets=0;
@@ -44,15 +39,13 @@ public class CarnivalTruck : MonoBehaviour
 
     private async void SetGameType()
     {
-        var gameTypes = Enum.GetNames(typeof(GameType));
-        int targetMultiplier = Random.Range(0, gameTypes.Length);
-        _currentGameType = (GameType)targetMultiplier;
-        switch (_currentGameType)
+        _currentGameType = Random.Range(0, carnivalGameData.Count);
+        switch (carnivalGameData[_currentGameType].gameType)
         {
-            case GameType.TargetThrow:
+            case CarnivalGameData.GameType.TargetThrow:
                 GameTarget.TargetBroken += IncrementBrokenTargets;
                 break;
-            case GameType.RingToss:
+            case CarnivalGameData.GameType.RingToss:
                 RingTarget.RingToss+=IncrementBrokenTargets;
                 break;
         }
@@ -92,7 +85,7 @@ public class CarnivalTruck : MonoBehaviour
         _roundLost=false;
         _currentBrokenTargets = 0;
         await Task.Delay(100);
-        if (_currentRound > maxRounds) return;
+        if (_currentRound > carnivalGameData[_currentGameType].maxRounds) return;
         await CalculateGridPositions();
         await SpawnTargets();
         await WaitForWin();
@@ -101,8 +94,7 @@ public class CarnivalTruck : MonoBehaviour
 
     private async Task SpawnTargets()
     {
-        var tempMultiplier = _currentGameType == GameType.TargetThrow ? 1 : targetMultiplier;
-        for (int i = 0; i < _currentRound * tempMultiplier; i++)
+        for (int i = 0; i < _currentRound * carnivalGameData[_currentGameType].targetMultiplier; i++)
         {
             var destination = _targetPositions[Random.Range(0, _targetPositions.Count)];
             double EPSILON = .01f;
@@ -113,16 +105,16 @@ public class CarnivalTruck : MonoBehaviour
                                               (Mathf.Abs(pos.y - destination.y) < EPSILON &&
                                                Mathf.Abs(pos.z - destination.z) < EPSILON));
             GameObject obj = null;
-            switch (_currentGameType)
+            switch (carnivalGameData[_currentGameType].gameType)
             {
-                case GameType.TargetThrow: 
-                    obj = Instantiate(targetPref, transform, false);
+                case CarnivalGameData.GameType.TargetThrow: 
+                    obj = Instantiate(carnivalGameData[_currentGameType].gameTargetPref, transform, false);
                     obj.transform.localPosition = destination;
                     obj.transform.rotation =
                         new Quaternion(0, 0, 0, 0);
                     break;
-                case GameType.RingToss: 
-                    obj = Instantiate(ringTossPref, transform, false);
+                case CarnivalGameData.GameType.RingToss: 
+                    obj = Instantiate(carnivalGameData[_currentGameType].gameTargetPref, transform, false);
                     obj.transform.localPosition = new Vector3(destination.x,destination.y-.6f,destination.z);
                     break;
             }
@@ -137,9 +129,9 @@ public class CarnivalTruck : MonoBehaviour
     {
         float degree;
         Quaternion targetRotation;
-        switch (_currentGameType)
+        switch (carnivalGameData[_currentGameType].gameType)
         {
-            case GameType.TargetThrow:
+            case CarnivalGameData.GameType.TargetThrow:
                 degree = reverse ? 0f : -90f;
                 targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
                 const int maxIterations = 1000; // Maximum number of iterations
@@ -152,7 +144,7 @@ public class CarnivalTruck : MonoBehaviour
                 }
                 target.transform.rotation = targetRotation;
                 break;
-            case GameType.RingToss:
+            case CarnivalGameData.GameType.RingToss:
                 degree = reverse ?target.transform.position.y -1 : target.transform.position.y+.7f;
                 iterations = 0;
                 while (Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
@@ -193,9 +185,9 @@ public class CarnivalTruck : MonoBehaviour
     {
         StartLossTimer();
         
-        while (_currentBrokenTargets<targetMultiplier*_currentRound)
+        while (_currentBrokenTargets<carnivalGameData[_currentGameType].targetMultiplier*_currentRound)
         {
-            if (_currentBrokenTargets == targetMultiplier * _currentRound) break;
+            if (_currentBrokenTargets == carnivalGameData[_currentGameType].targetMultiplier * _currentRound) break;
             await Task.Yield();
         }
         if (!_roundLost)
@@ -206,8 +198,8 @@ public class CarnivalTruck : MonoBehaviour
 
     private async Task UIReward()
     {
-        DepositMoney?.Invoke(cashAwardMultiplier, EventArgs.Empty);
-        cashTextObj.GetComponent<TextMeshProUGUI>().text = "$" + cashAwardMultiplier.ToString();
+        DepositMoney?.Invoke(carnivalGameData[_currentGameType].cashAwardMultiplier, EventArgs.Empty);
+        cashTextObj.GetComponent<TextMeshProUGUI>().text = "$" + carnivalGameData[_currentGameType].cashAwardMultiplier.ToString();
         cashAnimator.SetTrigger(Start1);
         await Task.Delay(250);
     }
@@ -224,7 +216,7 @@ public class CarnivalTruck : MonoBehaviour
     private async Task ResetGame()
     {
         _currentRound++;
-        if (_currentRound > maxRounds)
+        if (_currentRound > carnivalGameData[_currentGameType].maxRounds)
         {
             await Task.Delay(1000);
             await HandlePlayerMovement(false);

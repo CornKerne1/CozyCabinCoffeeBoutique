@@ -18,7 +18,7 @@ public class CupDispenser : Dispenser
                 ingredientContainer.ResetCup();
                 ingredientContainer.gameObject.SetActive(true);
             },
-            ingredientContainer => { ingredientContainer.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+            ingredientContainer => { ingredientContainer.dD.ingredients.Clear();ingredientContainer.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         if (bottomless) return;
         try
         {
