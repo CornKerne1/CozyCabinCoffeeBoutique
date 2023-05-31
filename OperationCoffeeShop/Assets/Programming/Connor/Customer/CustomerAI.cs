@@ -79,21 +79,27 @@ public class CustomerAI : MonoBehaviour
 
     private void Update()
     {
-        if (_destinationQueue.Count == 0) return;
+       
+        //if (_destinationQueue.Count == 0) return;  // not sure what its initial purpose was for but this prevents customers from despawning
         if (!stay) //when not in line
         {
             lookAtBool = false;
             agent.destination = destination;
             var distanceToNode = gameObject.transform.position - destination;
             if (distanceToNode.magnitude >= minDistance) return;
-            if (_destinationQueue.Count == 0 && agent.hasPath == false && hasOrder && hasOrdered)
+            if (_destinationQueue.Count == 0 && agent.velocity.magnitude < .1 && hasOrder && hasOrdered)
             {
-                this.gameObject.SetActive(false);
+                //Destroy(gameObject); // for some reason breaks breakables 
+                gameObject.SetActive(false); // for some reason doesn't break breakables. 
+                GameMode.SurpriseCustomers -= customerData.customer.OnSurprise;
                 return;
             }
-
-            destination = _destinationQueue.Dequeue();
-            setDestination(destination);
+            if (_destinationQueue.Count != 0)
+            {
+                destination = _destinationQueue.Dequeue();
+                setDestination(destination);
+            }
+           
         }
         else if (lookAtBool == false) // when in line
         {
@@ -135,6 +141,8 @@ public class CustomerAI : MonoBehaviour
         //gameObject.SetActive(false);// use at last resort
         setDestination(finalDestination);
         stay = false;
+        GameMode.SurpriseCustomers -= customerData.customer.OnSurprise;
+
     }
 
     public void setDestination(Vector3 destination)
@@ -172,5 +180,11 @@ public class CustomerAI : MonoBehaviour
         //CONNOR please write a method that makes the customers leave when the shop closes; Any drink not delivered will be scored as a zero! 
         if (this.isActiveAndEnabled)
             StartCoroutine(Die(10));
+    }
+
+    private void OnDestroy()
+    {
+        GameMode.ShopClosed -= ShopClosed;
+
     }
 }
