@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -103,11 +104,20 @@ public class DynamicBatcher : MonoBehaviour
                         GameObject foliageObj = foliageList[index];
                         matrices[j] = foliageObj.transform.localToWorldMatrix;
                         colors[j] = foliageObj.GetComponent<Renderer>().sharedMaterial.color;
+                        
                     }
                 }
 
                 MaterialPropertyBlock props = new MaterialPropertyBlock();
-                props.SetVectorArray("_Colors", colors);
+
+                try
+                {
+                    props.SetVectorArray("_Colors", colors);
+                }
+                catch
+                {
+                    //
+                }
                 Graphics.DrawMeshInstanced(mesh, 0, material, matrices, batchSize, props);
             }
         }

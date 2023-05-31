@@ -8,7 +8,6 @@ public class SugarCube : PhysicalIngredient
 {
     [SerializeField] private IngredientNode iN;
     private PhysicalIngredient _physicalIngredient;
-    private bool _hasCollided;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,15 +20,12 @@ public class SugarCube : PhysicalIngredient
         playerInteraction.Carry(gameObject);
     }
 
-    private void TryAddOrDelete(GameObject obj)
+    private async void TryAddOrDelete(GameObject obj)
     {
-        if (_hasCollided) return;
-        var ingredientContainer = obj.GetComponent<IngredientContainer>();
-        if (!ingredientContainer) return;
+        var iC = obj.GetComponent<IngredientContainer>();
+        if (!iC) return;
+        await iC.AddToContainer(iN, Color.white);
         playerInteraction.DropCurrentObj();
-        ingredientContainer.AddToContainer(
-            iN, Color.white); //WRITE CODE THAT CHECKS IF THIS INGREDIENT IS ALREADY ON LIST. IF SO ONLY USE THE AMOUNT AND DONT ADD THE ARRAY ELEMENT;
-        _hasCollided = true;
         if(dispenser)
             dispenser.ReleasePoolObject(this);
         else

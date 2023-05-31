@@ -60,7 +60,7 @@ public class Sink : Machine
             {
                 _coldWaterPool.Get();
             }
-            await Task.Delay(50);
+            await Task.Delay(75);
         }
 
         AkSoundEngine.PostEvent("STOP_FAUCET", gameObject);

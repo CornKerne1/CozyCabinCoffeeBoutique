@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LiquidIngredients : MonoBehaviour
@@ -86,7 +87,7 @@ public class LiquidIngredients : MonoBehaviour
         var iC = obj.GetComponent<IngredientContainer>();
         if (iC)
         {
-            iC.AddToContainer(ingredientNode, colorInDrink);
+            await iC.AddToContainer(ingredientNode, colorInDrink);
             Destroy(gameObject);
         }
     }

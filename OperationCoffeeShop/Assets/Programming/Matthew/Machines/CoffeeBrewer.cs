@@ -97,13 +97,13 @@ public class CoffeeBrewer : Machine
                 {
                     if(!Application.isPlaying) return;
                     _pool.Get();
-                    await Task.Delay(35);
+                    await Task.Delay(55);
                 }
 
                 currentCapacity--;
                 machineData.outputIngredient.RemoveAt(_iterations);
             }
-        await Task.Delay(35);
+        await Task.Delay(55);
         base.isRunning = false;
         AkSoundEngine.PostEvent("STOP_LOOPPOUR", gameObject);
     }

@@ -9,10 +9,10 @@ public class MilkContainer : IngredientContainer
         base.Start();
         AddIngredients();
     }
-    private void AddIngredients()
+    private async void AddIngredients()
     {
         var iN = new IngredientNode(Ingredients.Milk, 800);
-        AddToContainer(iN,Color.white);
+        await AddToContainer(iN,Color.white);
         for (int i = 0; i < 799; i++)
         {
             outputIngredients.Add(iD.milk);

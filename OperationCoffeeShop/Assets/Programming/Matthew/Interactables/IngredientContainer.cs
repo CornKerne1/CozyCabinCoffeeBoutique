@@ -31,7 +31,7 @@ public class IngredientContainer : Interactable
 
     public List<GameObject> outputIngredients = new List<GameObject>();
     [SerializeField] private List<IngredientNode> garbageList = new List<IngredientNode>();
-    private static readonly int ColorLight = Shader.PropertyToID("_ColorLight"),ColorLightBubbles = Shader.PropertyToID("_ColorLightBubbles");
+    private static readonly int ColorLight = Shader.PropertyToID("_Color"),ColorLightBubbles = Shader.PropertyToID("_ColorLightBubbles");
     private static readonly int Alpha = Shader.PropertyToID("Alpha");
     private bool _waterColor;
 
@@ -116,9 +116,9 @@ public class IngredientContainer : Interactable
         dD.name = "Cup";
     }
 
-    public virtual void AddToContainer(IngredientNode iN)
+    public virtual async void AddToContainer(IngredientNode iN)
     {
-        AddToContainer(iN, Color.clear);
+        await AddToContainer(iN, Color.clear);
     }
 
     private float GetCapacity()
@@ -130,11 +130,11 @@ public class IngredientContainer : Interactable
         }
         return capacity;
     }
-    public virtual void AddToContainer(IngredientNode iN, Color color)
+    public virtual async Task AddToContainer(IngredientNode iN, Color color)
     {
         if (GetCapacity() >= maxCapacity)
         {
-            IngredientOverflow(iN);
+            await IngredientOverflow(iN);
             return;
         }
 
@@ -151,12 +151,12 @@ public class IngredientContainer : Interactable
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
-                    if (!steam) break;
+                    if (!steam||steam.activeSelf) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Espresso:
                     outputIngredients.Add(iD.espresso);
-                    if (!steam) break;
+                    if (!steam||steam.activeSelf) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Milk:
@@ -287,8 +287,9 @@ public class IngredientContainer : Interactable
         }
     }
 
-    private void IngredientOverflow(IngredientNode ingredient)
+    private async Task IngredientOverflow(IngredientNode ingredient)
     {
+        await Task.Delay(4);
         switch (ingredient.ingredient)
         {
             case Ingredients.BrewedCoffee:
