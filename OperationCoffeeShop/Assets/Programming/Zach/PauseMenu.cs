@@ -116,6 +116,7 @@ public class PauseMenu : MonoBehaviour
     private async void OnEnable()
     {
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
+        wwiseBank = GameObject.FindGameObjectWithTag("WwiseBank");
         _previousTimeRate = _gameMode.gameModeData.timeRate;
         _gameMode.gameModeData.timeRate = 0;
         if (!pD.canMove)

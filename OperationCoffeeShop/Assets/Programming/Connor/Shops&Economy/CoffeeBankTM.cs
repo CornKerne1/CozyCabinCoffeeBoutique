@@ -49,4 +49,11 @@ public class CoffeeBankTM
             Debug.LogError("Cannot withdraw money. Invalid data type: " + sender.GetType());
         }
     }
+
+    public void OnDestroy()
+    {
+        CustomerLine.DepositMoney -= DepositMoneyInBank;
+        CarnivalTruck.DepositMoney -= DepositMoneyInBank;
+        ComputerShop.SpendMoney -= WithdrawMoneyInBank;
+    }
 }

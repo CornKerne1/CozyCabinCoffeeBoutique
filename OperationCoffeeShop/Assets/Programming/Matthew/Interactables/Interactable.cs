@@ -248,4 +248,9 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     public virtual void Load(int gameNumber)
     {
     }
+
+    private void OnDestroy()
+    {
+        SaveSystem.SaveGameEvent += OnSaveEvent;
+    }
 }

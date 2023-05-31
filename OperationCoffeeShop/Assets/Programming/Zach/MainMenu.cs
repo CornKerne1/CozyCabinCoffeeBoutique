@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
+        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         introLetterCanvas.enabled = false;
         _animator.SetTrigger(Start1);
         director.Play();
@@ -39,18 +40,15 @@ public class MainMenu : MonoBehaviour
     public async void LaunchGame()
     {
         if (_loading) return;
-        _loading = true;
-        AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
-        _gameMode.playerData.inUI = false;
-        await Task.Delay(500);
-        if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
-        else
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        
+        await Task.Delay(200);
         Destroy(wwiseBank);
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        _loading = true;
+        _gameMode.playerData.inUI = false;
+        if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void OpenOptions()
