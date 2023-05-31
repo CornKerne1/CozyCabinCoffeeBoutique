@@ -138,6 +138,7 @@ public class CarnivalTruck : MonoBehaviour
                 int iterations = 0; //
                 while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f&& iterations < maxIterations)
                 {
+                    if (!gameObject) return;
                     target.transform.rotation = Quaternion.Lerp(target.transform.rotation, targetRotation, 3 * Time.deltaTime);
                     await Task.Yield();
                     iterations++;
@@ -149,6 +150,7 @@ public class CarnivalTruck : MonoBehaviour
                 iterations = 0;
                 while (Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
                 {
+                    if (!gameObject) return;
                     target.transform.position = new Vector3(target.transform.position.x,
                         Mathf.Lerp(target.transform.position.y, degree, Time.deltaTime * 3),
                         target.transform.position.z);
