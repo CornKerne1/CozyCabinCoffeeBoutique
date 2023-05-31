@@ -79,19 +79,19 @@ public class CustomerAI : MonoBehaviour
 
     private void Update()
     {
-        if (_destinationQueue.Count == 0) return;
+       
+        //if (_destinationQueue.Count == 0) return;  // not sure what its initial purpose was for but this prevents customers from despawning
         if (!stay) //when not in line
         {
             lookAtBool = false;
             agent.destination = destination;
             var distanceToNode = gameObject.transform.position - destination;
             if (distanceToNode.magnitude >= minDistance) return;
-            if (_destinationQueue.Count == 0 && agent.hasPath == false && hasOrder && hasOrdered)
+            if (_destinationQueue.Count == 0 && agent.velocity.magnitude < .1 && hasOrder && hasOrdered)
             {
-                this.gameObject.SetActive(false);
+                Destroy(gameObject);
                 return;
             }
-
             destination = _destinationQueue.Dequeue();
             setDestination(destination);
         }
