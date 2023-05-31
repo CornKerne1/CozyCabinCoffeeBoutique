@@ -10,7 +10,7 @@ public class CarnivalGameData : ScriptableObject
         RingToss
     };
     public GameType gameType;
-    public GameObject gameTargetPref;
+    public GameObject gameTargetPref,dispenserPref;
     public int maxRounds = 3, targetMultiplier = 3,cashAwardMultiplier=10;
     public float startingSpacing;
 }

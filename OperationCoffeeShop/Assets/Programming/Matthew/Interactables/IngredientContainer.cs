@@ -133,6 +133,9 @@ public class IngredientContainer : Interactable
         {
             capacity = capacity + i.target;
         }
+
+        if (capacity <= 0)
+            dD.ingredients.Clear();
         return capacity;
     }
     public virtual async Task AddToContainer(IngredientNode iN, Color color)

@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class CarnivalTruck : MonoBehaviour
 {
-    [SerializeField] private Transform playerStart;
+    [SerializeField] private Transform playerStart,dispenserTransform;
     [SerializeField]private GameObject roundTextObj,cashTextObj;
     [SerializeField]private Animator roundAnimator,cashAnimator;
     [SerializeField] private float startingSpacing=.5f;
@@ -25,6 +25,7 @@ public class CarnivalTruck : MonoBehaviour
     private Vector3 _originPlayerPosition=Vector3.zero;
     private bool _roundLost=false;
     private float _roundStartTime;
+    private bool _destroyed;
 
     public static event EventHandler DepositMoney;
 
@@ -34,6 +35,7 @@ public class CarnivalTruck : MonoBehaviour
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         await Task.Delay(500);
         SetGameType();
+        AkSoundEngine.PostEvent("Stop_TryYourLuck",gameObject);
         InitializeRound();
     }
 
@@ -49,6 +51,8 @@ public class CarnivalTruck : MonoBehaviour
                 RingTarget.RingToss+=IncrementBrokenTargets;
                 break;
         }
+        var obj=Instantiate(carnivalGameData[_currentGameType].dispenserPref);
+        obj.transform.position = dispenserTransform.position;
     }
 
     async void IncrementBrokenTargets(object sender, EventArgs e)
@@ -75,7 +79,8 @@ public class CarnivalTruck : MonoBehaviour
         else
         {
             playerMovement.TeleportPlayer(_originPlayerPosition);
-            _gameMode.playerData.canJump = true;
+            if(!_gameMode.gameModeData.isOpen)
+                _gameMode.playerData.canJump = true;
         }
     }
 
@@ -136,27 +141,28 @@ public class CarnivalTruck : MonoBehaviour
                 targetRotation = Quaternion.Euler(degree, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
                 const int maxIterations = 1000; // Maximum number of iterations
                 int iterations = 0; //
-                while (Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f&& iterations < maxIterations)
+                
+                while (!_destroyed&&Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f&& iterations < maxIterations)
                 {
-                    if (!gameObject) return;
                     target.transform.rotation = Quaternion.Lerp(target.transform.rotation, targetRotation, 3 * Time.deltaTime);
                     await Task.Yield();
                     iterations++;
                 }
+                if (_destroyed) return;
                 target.transform.rotation = targetRotation;
                 break;
             case CarnivalGameData.GameType.RingToss:
                 degree = reverse ?target.transform.position.y -1 : target.transform.position.y+.7f;
                 iterations = 0;
-                while (Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
+                while (!_destroyed&&Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
                 {
-                    if (!gameObject) return;
                     target.transform.position = new Vector3(target.transform.position.x,
                         Mathf.Lerp(target.transform.position.y, degree, Time.deltaTime * 3),
                         target.transform.position.z);
                     await Task.Yield();
                     iterations++;
                 }
+                if (_destroyed) return;
                 target.transform.position =
                     new Vector3(target.transform.position.x, degree, target.transform.position.z);
                 break;
@@ -228,5 +234,20 @@ public class CarnivalTruck : MonoBehaviour
         _targetPositions.Clear();
         // Create a new TaskCompletionSource
         await InitializeRound();
+    }
+
+    private void OnDestroy()
+    {
+        AkSoundEngine.PostEvent("Stop_TryYourLuck",gameObject);
+        switch (carnivalGameData[_currentGameType].gameType)
+        {
+            case CarnivalGameData.GameType.TargetThrow:
+                GameTarget.TargetBroken -= IncrementBrokenTargets;
+                break;
+            case CarnivalGameData.GameType.RingToss:
+                RingTarget.RingToss-=IncrementBrokenTargets;
+                break;
+        }
+        _destroyed = true;
     }
 }
