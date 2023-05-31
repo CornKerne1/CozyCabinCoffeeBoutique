@@ -34,7 +34,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{AFE1CA25-E205-E237-13CE-05DCC656B9F6}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4DCA7418-A31B-699A-4F04-0DB25630EA96}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -385,6 +385,10 @@
 				<File Id="1047615776" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>CabinetClose.wav</ShortName>
 					<CachePath>SFX/CabinetClose_10C4C929.wem</CachePath>
+				</File>
+				<File Id="1051058874" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Pitcher.wav</ShortName>
+					<CachePath>SFX/Pitcher_D79FB2B7.wem</CachePath>
 				</File>
 				<File Id="1052987244" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>MenuClick.wav</ShortName>
@@ -831,6 +835,11 @@
 						<MediaRef Id="205128343"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1351082671" Name="Play_TryYourLuck" DurationType="OneShot" DurationMin="84.04615" DurationMax="84.04615">
+					<MediaRefs>
+						<MediaRef Id="1051058874"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1950478834" Name="Play_TvStatic" MaxAttenuation="4" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="454672396"/>
@@ -875,6 +884,7 @@
 				<Event Id="2667958284" Name="Stop_Nostalgia" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="1839160882" Name="Stop_SynthWaveSong" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="1450757357" Name="Stop_TitleTheme" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="535146509" Name="Stop_TryYourLuck" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="4243093612" Name="Stop_TvStatic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
@@ -908,5 +918,5 @@
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{00ADF199-B5FB-D768-EF0E-8BDB9FBF0894}</FileHash>
+	<FileHash>{DD8D57C1-333A-F17A-92A4-4058E346BAC3}</FileHash>
 </SoundBanksInfo>

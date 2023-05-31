@@ -18,18 +18,21 @@ public class Gate : MonoBehaviour
     {
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         GameMode.ShopClosed += Closed;
+        gate.SetActive(false);
     }
 
     private void Closed(object sender, EventArgs e)
     {
         open = false;
         activate = true;
+        gate.SetActive(false);
     }
 
     public void OpenGate()
     {
         open = true;
         activate = true;
+        gate.SetActive(true);
     }
 
     // Update is called once per frame
