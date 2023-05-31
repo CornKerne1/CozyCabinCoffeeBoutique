@@ -69,7 +69,7 @@ public class RandomCustomer : Customer
         }
 
         customerData = (CustomerData)ScriptableObject.CreateInstance("CustomerData");
-        customerData.soundEngineEnvent = "PLAY_GENERICVOICE";
+        customerData.soundEngineEnvent = "Play_SFX_Text";
         customerData.name = _customerName;
         customerData.favoriteDrinkData = favoriteDrink;
         customerData.DesiredFlavors(flavorNodes);

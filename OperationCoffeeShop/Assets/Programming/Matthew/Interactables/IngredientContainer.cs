@@ -16,7 +16,7 @@ public class IngredientContainer : Interactable
     public bool inHand;
     public PlayerInteraction pI;
     [SerializeField] public DrinkData dD;
-    [SerializeField] private float maxCapacity = 100f;
+    [SerializeField] private float maxCapacity = 1f;
     public bool hasContentsVisualizer = true;
     private Material _visualizerMaterial;
     [SerializeField] private float bottomOfCup,topOfCup;
@@ -54,10 +54,13 @@ public class IngredientContainer : Interactable
     {
         if (steam)steam.SetActive(false);
         outputIngredients = new List<GameObject>();
-        contentsVisualizer.transform.localPosition =
-            _visualizerStartPosition;
-        contentsVisualizer.transform.localScale =
-            new Vector3(visualizerStartScale,visualizerStartScale,visualizerStartScale);
+        if (contentsVisualizer)
+        {
+            contentsVisualizer.transform.localPosition =
+                _visualizerStartPosition;
+            contentsVisualizer.transform.localScale =
+                new Vector3(visualizerStartScale, visualizerStartScale, visualizerStartScale);
+        }
         _visualizerMaterial.SetColor(ColorLightBubbles,Color.clear);
     }
 
@@ -114,6 +117,8 @@ public class IngredientContainer : Interactable
         gameObject.tag = "PickUp";
         dD.ingredients = new List<IngredientNode>();
         dD.name = "Cup";
+        if (contentsVisualizer)
+            _visualizerMaterial.SetFloat(Alpha, 0);
     }
 
     public virtual async void AddToContainer(IngredientNode iN)
@@ -123,10 +128,10 @@ public class IngredientContainer : Interactable
 
     private float GetCapacity()
     {
-        int capacity = 0;
+        float capacity = 0;
         foreach (var i in dD.ingredients)
         {
-            capacity = capacity + (int)i.target;
+            capacity = capacity + i.target;
         }
         return capacity;
     }
@@ -137,7 +142,6 @@ public class IngredientContainer : Interactable
             await IngredientOverflow(iN);
             return;
         }
-
         if (_waterColor && iN.ingredient != Ingredients.Water)
         {
             _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
@@ -167,10 +171,13 @@ public class IngredientContainer : Interactable
                     break;
                 case Ingredients.Water:
                     outputIngredients.Add(iD.water);
-                    if (GetCapacity() > 1)
-                        color = Color.clear;
+                    if (GetCapacity() > .01f)
+                        _color = Color.clear;
                     else
+                    {
                         _waterColor = true;
+                    }
+
                     break;
                 case Ingredients.SteamedMilk:
                 case Ingredients.FoamedMilk:
@@ -191,12 +198,17 @@ public class IngredientContainer : Interactable
                 if (_visualizerMaterial.GetColor(ColorLightBubbles) == Color.clear)
                 {
                     _visualizerMaterial.SetColor(ColorLightBubbles, _color);
-                    _visualizerMaterial.SetFloat(Alpha,1);
+                    _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+.01f);
                 }
                 else
                 {
                     var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .01f);
                     _visualizerMaterial.SetColor(ColorLightBubbles,newColor);
+                    _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+.01f);
+                }
+                if (_visualizerMaterial.GetFloat(Alpha) > 1)
+                {
+                    _visualizerMaterial.SetFloat(Alpha,1);
                 }
                 float newYPosition = Mathf.Lerp(bottomOfCup, topOfCup, fillPercentage);
                 var localPosition = new Vector3(contentsVisualizer.transform.localPosition.x, newYPosition, contentsVisualizer.transform.localPosition.z);
@@ -213,14 +225,50 @@ public class IngredientContainer : Interactable
 
     protected virtual async void RemoveIngredient()
     {
-        if (dD.ingredients.Count <= 0) {return;}
-        var iN = dD.ingredients[^1];
-        iN.target = iN.target - 1;
-        if (iN.target <= 0)
+        if (dD.ingredients.Count <= 0) return;
+        if (contentsVisualizer)
         {
-            garbageList.Add(iN);
-            dD.ingredients.Remove(iN);
+            _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)-.01f);
+            if (_visualizerMaterial.GetFloat(Alpha) < 0)
+            {
+                _visualizerMaterial.SetFloat(Alpha, 0);
+            }
         }
+        var iN = dD.ingredients[^1];
+        switch (iN.ingredient)
+        {
+            case Ingredients.BrewedCoffee:
+                iN.target = iN.target - .01f;
+                break;
+            case Ingredients.Espresso:
+                iN.target = iN.target - .01f;
+                break;
+            case Ingredients.Milk:
+                iN.target = iN.target - .01f;
+                break;
+            case Ingredients.Sugar:
+                iN.target = iN.target - .05f;
+                break;
+            case Ingredients.Water:
+                iN.target = iN.target - .01f;
+                break;
+            case Ingredients.SteamedMilk:
+            case Ingredients.FoamedMilk:
+            case Ingredients.WhippedCream:
+            case Ingredients.UngroundCoffee:
+            case Ingredients.GroundCoffee:
+            case Ingredients.Salt:
+            case Ingredients.EspressoBeans:
+            case Ingredients.CoffeeFilter:
+            case Ingredients.TeaBag:
+            case Ingredients.Vanilla:
+            case Ingredients.Mocha:
+            default:
+                break;
+        }
+        if (!(iN.target <= 0)) return;
+        garbageList.Add(iN);
+        dD.ingredients.Remove(iN);
     }
 
     private async void Pour()
