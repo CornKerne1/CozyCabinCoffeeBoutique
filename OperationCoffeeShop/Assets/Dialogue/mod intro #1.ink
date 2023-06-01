@@ -2,11 +2,11 @@
 
 
 === main ===
-I need this as soon as possible! I have somewhere to be. 
-* [Somone should've planned better...]
-* [You caught me in a rush...]
-- Pardon?
-* [It'll be out as soon as possible.]
+Hey! Can I get something to go? The sooner the better. 
+* [Next]
+
+- ...sorry, didn't mean to say it like that, just running late...hah...
+* [Next]
 -> DONE
 
 

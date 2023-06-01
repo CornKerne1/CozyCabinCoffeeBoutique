@@ -2,10 +2,9 @@
 
 === main ===
 
-This is a bit overpriced for the amount given, don’t you think?
+Oh...this is my drink? Not quite what I was expecting, but uh, thanks anyways.
 * [Everything is freshly cut and prepped each morning, so that will effect the price.]
 
-- Still sounds a bit high, but whatever. 
 -> DONE
 
 -> END

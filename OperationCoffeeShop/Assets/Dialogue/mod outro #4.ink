@@ -2,9 +2,9 @@
 
 
 === main ===
-Thank you…
+Thank you!
 * [No problem!]
-- You could strive to work a little faster, though. 
+- I'm so glad someone decided to do something with this place, it's been empty for as long as I can remember.
 * [Ok, buh-bye now!]
 -> DONE
 
