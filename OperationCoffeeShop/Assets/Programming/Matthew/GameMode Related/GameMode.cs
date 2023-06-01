@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ink.Runtime;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 [Serializable]
 public class GameMode : MonoBehaviour,ISaveState
@@ -28,7 +29,7 @@ public class GameMode : MonoBehaviour,ISaveState
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
-
+    
     public DeliveryManager deliveryManager;
     public CoffeeBankTM CoffeeBankTM;
     public DynamicBatcher dynamicBatcher;

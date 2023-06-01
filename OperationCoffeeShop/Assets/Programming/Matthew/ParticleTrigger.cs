@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class ParticleTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject particle;
-    private ParticleSystem particleSystem;
+    [SerializeField] private List<GameObject> particles=new List<GameObject>();
     private void OnTriggerEnter(Collider other)
     {
-        particle.GetComponent<ParticleSystem>();
-        particleSystem.Play();
+        foreach (var obj in particles)
+        {
+            var pS =obj.GetComponent<ParticleSystem>();
+            pS.Play();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(!particleSystem)
-            particle.GetComponent<ParticleSystem>();
-        else
-            particleSystem.Stop();
+        foreach (var obj in particles)
+        {
+            var pS =obj.GetComponent<ParticleSystem>();
+            pS.Stop();
+        }
     }
 }
