@@ -2,7 +2,7 @@
 
 
 === main ===
-Have a nice day!
+Awesome! Have a nice day!
 * [Likewise!]
 -> DONE
 
