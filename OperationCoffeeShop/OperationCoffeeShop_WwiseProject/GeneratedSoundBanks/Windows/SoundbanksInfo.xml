@@ -34,7 +34,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CCAEF1EA-9019-53C2-1DC4-DAB882B1EC3D}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{AFE1CA25-E205-E237-13CE-05DCC656B9F6}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -89,6 +89,10 @@
 				<File Id="138462402" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
 					<CachePath>SFX/Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="153855313" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Watermelon.wav</ShortName>
+					<CachePath>SFX/Watermelon_10C4C929.wem</CachePath>
 				</File>
 				<File Id="155462499" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>GenericVoice.wav</ShortName>
@@ -518,7 +522,7 @@
 						<MediaRef Id="226955609"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1367656534" Name="Play_Faucet" DurationType="Infinite">
+				<Event Id="1367656534" Name="Play_Faucet" MaxAttenuation="4" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="388542937"/>
 					</MediaRefs>
@@ -847,6 +851,11 @@
 						<MediaRef Id="865454399"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2950696120" Name="Play_Watermelon" DurationType="OneShot" DurationMin="1.027483" DurationMax="1.027483">
+					<MediaRefs>
+						<MediaRef Id="153855313"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2693257580" Name="Play_Whistle" DurationType="OneShot" DurationMin="1" DurationMax="1">
 					<MediaRefs>
 						<MediaRef Id="544960085"/>
@@ -899,5 +908,5 @@
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{70D179EB-2EBE-918C-FE17-EEB72391CD12}</FileHash>
+	<FileHash>{7253ADBD-6F56-E8DB-3FE6-9384251D4A72}</FileHash>
 </SoundBanksInfo>

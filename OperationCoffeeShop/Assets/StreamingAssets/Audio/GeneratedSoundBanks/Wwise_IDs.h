@@ -103,6 +103,7 @@ namespace AK
         static const AkUniqueID PLAY_UNSATISFIEDCUSTOMER = 4105520773U;
         static const AkUniqueID PLAY_WAKING = 1615511115U;
         static const AkUniqueID PLAY_WATERFALL1_2 = 2092044786U;
+        static const AkUniqueID PLAY_WATERMELON = 2950696120U;
         static const AkUniqueID PLAY_WHISTLE = 2693257580U;
         static const AkUniqueID STOP_BREWER = 2540658777U;
         static const AkUniqueID STOP_DRAGONFLIES = 2232275612U;
