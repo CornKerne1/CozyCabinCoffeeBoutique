@@ -24,7 +24,7 @@ public class Bed : Interactable
     private Collider playerCollider { get; set; }
     private PlayerCameraController playerCc { get; set; }
     private HeadBobController playerHbc { get; set; }
-    private readonly float timeScaleFactor = 90;
+    private readonly float timeScaleFactor = 40;
 
     public void Update()
     {
