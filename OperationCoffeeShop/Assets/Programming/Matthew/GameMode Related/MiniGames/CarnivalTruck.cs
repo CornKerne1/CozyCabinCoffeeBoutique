@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class CarnivalTruck : MonoBehaviour
@@ -15,7 +16,7 @@ public class CarnivalTruck : MonoBehaviour
     [SerializeField] private float startingSpacing=.5f;
     [SerializeField] private Vector2 xRange = new Vector2(-5f, 5f),yRange = new Vector2(-5f, 5f),zRange = new Vector2(-5f, 5f);
     [SerializeField]private List<CarnivalGameData> carnivalGameData=new List<CarnivalGameData>();
-    private int _currentGameType;
+    [SerializeField]private int _currentGameType;
     private float _currentSpacing;
     private GameMode _gameMode;
     private int _currentRound=1,_currentBrokenTargets=0;
@@ -26,6 +27,7 @@ public class CarnivalTruck : MonoBehaviour
     private bool _roundLost=false;
     private float _roundStartTime;
     private bool _destroyed;
+    private GameObject _currentDispenser;
 
     public static event EventHandler DepositMoney;
 
@@ -35,13 +37,14 @@ public class CarnivalTruck : MonoBehaviour
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         await Task.Delay(500);
         SetGameType();
-        AkSoundEngine.PostEvent("Stop_TryYourLuck",gameObject);
+        AkSoundEngine.PostEvent("Play_TryYourLuck",_gameMode.gameObject);
         InitializeRound();
     }
 
     private async void SetGameType()
     {
-        _currentGameType = Random.Range(0, carnivalGameData.Count);
+        int i = Random.Range(0, 2);
+        _currentGameType = i;
         switch (carnivalGameData[_currentGameType].gameType)
         {
             case CarnivalGameData.GameType.TargetThrow:
@@ -51,8 +54,8 @@ public class CarnivalTruck : MonoBehaviour
                 RingTarget.RingToss+=IncrementBrokenTargets;
                 break;
         }
-        var obj=Instantiate(carnivalGameData[_currentGameType].dispenserPref);
-        obj.transform.position = dispenserTransform.position;
+        _currentDispenser=Instantiate(carnivalGameData[_currentGameType].dispenserPref);
+        _currentDispenser.transform.position = dispenserTransform.position;
     }
 
     async void IncrementBrokenTargets(object sender, EventArgs e)
@@ -238,7 +241,8 @@ public class CarnivalTruck : MonoBehaviour
 
     private void OnDestroy()
     {
-        AkSoundEngine.PostEvent("Stop_TryYourLuck",gameObject);
+        AkSoundEngine.PostEvent("Stop_TryYourLuck",_gameMode.gameObject);
+        Destroy(_currentDispenser);
         switch (carnivalGameData[_currentGameType].gameType)
         {
             case CarnivalGameData.GameType.TargetThrow:
