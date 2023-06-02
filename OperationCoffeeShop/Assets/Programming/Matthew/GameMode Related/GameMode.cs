@@ -248,4 +248,9 @@ public class GameMode : MonoBehaviour,ISaveState
         }
         SaveSystem.SaveGameData.respawnables = new List<RespawbableData>();
     }
+
+    private void OnDestroy()
+    {
+        DayNightCycle.HourChanged -= CheckForDelivery;
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveSystem
 {
@@ -112,7 +113,7 @@ public class SaveSystem
 
     public void HandleLoading(int gameNumber)
     {
-        
+        bool condition = SceneManager.GetSceneByBuildIndex(3) == SceneManager.GetActiveScene();
         if (File.Exists(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
         {
             using (StreamReader streamReader = new StreamReader(Application.persistentDataPath +$"SaveGame{gameNumber}.json"))
@@ -120,7 +121,8 @@ public class SaveSystem
                 var json = streamReader.ReadToEnd();
                 SaveGameData = JsonUtility.FromJson<SaveGameData>(json);
             }
-
+            
+            if (!condition) return;
             var saveDate = new DateTime(SaveGameData.savedYear, SaveGameData.savedMonth, SaveGameData.savedDay, 
                 SaveGameData.savedHour, 0, 0);
                 _gameModeData.currentTime = saveDate;
