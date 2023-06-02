@@ -26,11 +26,12 @@ public class MainMenu : MonoBehaviour
     public Animator introLetterAnimator;
 
     private static readonly int Start1 = Animator.StringToHash("Start");
-    private bool _loading;
+    private bool _loading,_gameStarted;
 
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
+        _gameStarted=true;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         introLetterCanvas.enabled = false;
         _animator.SetTrigger(Start1);
@@ -46,19 +47,23 @@ public class MainMenu : MonoBehaviour
         _gameMode.playerData.inUI = false;
          Destroy(wwiseBank);
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
         else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.UnloadSceneAsync(0);
+        SceneManager.UnloadSceneAsync(1);
     }
 
     public void OpenOptions()
     {
+        if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void OpenCredits()
     {
+        if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
@@ -77,6 +82,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Application.Quit();
         Debug.Log("Quitting");
