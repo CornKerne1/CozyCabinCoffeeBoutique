@@ -136,6 +136,7 @@ public class SaveSystem
         }
         else
         {
+                _gameModeData.moneyInBank = 100;
                 _gameModeData.currentTime = new DateTime(2027, 1, 1, 6, 0,0);
                 _gameMode.deliveryManager = new DeliveryManager(_gameMode.deliveryManager, _gameMode, _gameModeData);
                 SaveGameData = new SaveGameData
