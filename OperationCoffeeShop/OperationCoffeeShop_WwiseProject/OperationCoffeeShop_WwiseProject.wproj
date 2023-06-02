@@ -3,6 +3,7 @@
 	<ProjectInfo>
 		<Project Name="OperationCoffeeShop_WwiseProject" ID="{54D18A1B-F583-4BBA-9A9C-E15BFB425C55}">
 			<Platforms>
+				<Platform Name="Linux" ReferencePlatform="Linux" ID="{B749013C-2380-45D8-8A3F-5F6467EAB418}"/>
 				<Platform Name="Mac" ReferencePlatform="Mac" ID="{0F3E11C2-3B4F-48D3-8291-57D6BB080E79}"/>
 				<Platform Name="Windows" ReferencePlatform="Windows" ID="{57CFAF64-84B1-4346-8F7E-E77CA32FFA6D}"/>
 			</Platforms>
@@ -16,15 +17,25 @@
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
 					<ValueList>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
+						<Value Platform="Linux">GeneratedSoundBanks\Linux\</Value>
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
 					</ValueList>
 				</Property>
+				<Property Name="GlobalVoiceInstancesLimit" Type="int16">
+					<ValueList>
+						<Value Platform="Windows">256</Value>
+						<Value Platform="Linux">256</Value>
+						<Value Platform="Mac">256</Value>
+					</ValueList>
+				</Property>
+				<Property Name="LicenseKey" Type="string" Value="PHByb2plY3QgaWQ9IjEyNzg0IiBtYXNrPSJYWEpTOTk4NyIgZW5jPSIwIj48bGlj ZW5zZSBpZD0iMSIgbmFtZT0iV3dpc2UiIHR5cGU9IjIiIHBsYXRmb3Jtcz0iNCwx MCIgZXhwaXJlcz0iMjAyNC0wNS0wMSIgIC8+PGxpY2Vuc2UgaWQ9IjIxIiBuYW1l PSJNYWludGVuYW5jZSIgdHlwZT0iMiIgcGxhdGZvcm1zPSI0LDEwIiBleHBpcmVz PSIyMDI0LTA1LTAxIiAgLz48bGljZW5zZSBpZD0iNzAiIG5hbWU9IkluZGllIExp Y2Vuc2UiIHR5cGU9IjIiIHBsYXRmb3Jtcz0iNCwxMCIgZXhwaXJlcz0iMjAyNC0w NS0wMSIgIC8+PC9wcm9qZWN0Pg==|wOVgUelcXlEGPqMkiMPIkMijoEwMbAiCAEm 9VrthCwEDS9FR8JHmywtJS5OJlBzIutiiGM/D94SxS3Rb+iDyPlS8ATlbt8Z6OL+ WyegQQb6osYc6ACykcGteh9spVUllG2BikdAtoSHWE+0D+RTnjNzn9rZFIAeX53t V9vvq4DLWKfFJRgruyrlyf1xCsVMqTGE2HAItiyMs+Uo5AD16181jKR6n7i6o3yJ moqXrn+VB63YG+ELhmqIFEbSDssE62bHkNSvreqm9WtaDa9KHL6XC7RNZqIpITFy 4CN88U/oE0yMojSDRJAOcrQEoAghcKMTOlU7pi+DNRBy1Xxfhmw== "/>
 				<Property Name="RemoveUnusedGeneratedFiles" Type="bool" Value="False"/>
 				<Property Name="SoundBankGenerateEstimatedDuration" Type="bool" Value="True"/>
 				<Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True"/>
@@ -33,31 +44,43 @@
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
+						<Value Platform="Linux">GeneratedSoundBanks\Linux\</Value>
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">
 					<ValueList>
 						<Value Platform="Windows">Copy Streamed Files</Value>
+						<Value Platform="Linux">Copy Streamed Files</Value>
 						<Value Platform="Mac">Copy Streamed Files</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdLines" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
+					</ValueList>
+				</Property>
+				<Property Name="VolumeThreshold" Type="Real64">
+					<ValueList>
+						<Value Platform="Windows">-80</Value>
+						<Value Platform="Linux">-80</Value>
+						<Value Platform="Mac">-80</Value>
 					</ValueList>
 				</Property>
 				<Property Name="WwiseVersionWhenCreated" Type="string" Value="Branch=wwise_v2021.1|Build=7796|VersionName=v2021.1.7|Config=Release"/>
