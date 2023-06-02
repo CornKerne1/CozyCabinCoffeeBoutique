@@ -50,6 +50,6 @@ public class GameModeData : ScriptableObject
     public DeliveryPrefabs _deliveryPrefabs;
     public GameObject deliveryBoxPref,carnivalTruckPref;
     public Vector3 deliveryPosition;
-    public float moneyInBank = 30;
+    public float moneyInBank;
 }
 

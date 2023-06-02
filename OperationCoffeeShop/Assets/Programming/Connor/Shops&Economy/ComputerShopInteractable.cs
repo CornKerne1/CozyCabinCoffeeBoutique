@@ -13,15 +13,6 @@ public class ComputerShopInteractable : Interactable
 
     public override void OnInteract(PlayerInteraction interaction)
     {
-        if (_shopRef)
-        {
-            _shopRef.SetActive(true);
-            gameMode.playerData.inUI = true;
-            gameMode.playerInput.ToggleMovement();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
         {
             _shopRef = Instantiate(shopUI);
             _shopRef.SetActive(true);
