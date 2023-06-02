@@ -4360,7 +4360,7 @@ MonoBehaviour:
   dispenser: {fileID: 0}
   objTypeShop: 0
   loadingNextScene: 0
-  wwiseBank: {fileID: 0}
+  wwiseBank: {fileID: 9035014162838782229}
 --- !u!64 &890736104092674020
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30639,6 +30639,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f92c46dc235b714e9b20caf5f6faff5, type: 3}
+--- !u!1 &9035014162838782229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2989060653582639017, guid: 8f92c46dc235b714e9b20caf5f6faff5, type: 3}
+  m_PrefabInstance: {fileID: 9035014162838782228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9035014162838782230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035014162838782229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d51e1294340efb4cb870d843152026a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 34c8a7f154d6837439cee7b19485ea69, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!114 &9035014162838782231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035014162838782229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aaacef6be298ac48af1f46e2a044e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e4438cfb72ee2f14197fd04951b0c86b, type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &9036424530014840900
 GameObject:
   m_ObjectHideFlags: 0

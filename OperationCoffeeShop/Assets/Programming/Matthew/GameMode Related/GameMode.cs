@@ -68,6 +68,8 @@ public class GameMode : MonoBehaviour,ISaveState
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();
         DayNightCycle.HourChanged += CheckForDelivery;
+        if(gameModeData.inTutorial)
+            AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
     }
 
     private void Update()
@@ -96,10 +98,7 @@ public class GameMode : MonoBehaviour,ISaveState
         Tutorial = new Tutorial(Tutorial, this, gameModeData)
         {
             Objectives = objectives
-        }; 
-        await Task.Delay(400);
-        AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
-        
+        };
     }
 
     public void DeactivateAndDestroy(GameObject obj)

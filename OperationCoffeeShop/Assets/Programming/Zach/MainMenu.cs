@@ -42,9 +42,9 @@ public class MainMenu : MonoBehaviour
         if (_loading) return;
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
         await Task.Delay(200);
-        Destroy(wwiseBank);
         _loading = true;
         _gameMode.playerData.inUI = false;
+         Destroy(wwiseBank);
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         else
