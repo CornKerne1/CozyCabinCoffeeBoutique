@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -70,6 +71,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Menus")]
     public float mouseSensitivityOptions;
+    public string playerName;
     
     private void OnEnable()
     {
@@ -84,5 +86,7 @@ public class PlayerData : ScriptableObject
         canCrouch = true;
         if (mouseSensitivityOptions == 0)
             mouseSensitivityOptions = .5f;
+        if (!SteamManager.Initialized) return;
+        playerName = SteamFriends.GetPersonaName();
     }
 }

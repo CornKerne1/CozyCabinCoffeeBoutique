@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -155,8 +156,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         mastLabel.text = Mathf.RoundToInt(_masterVol) .ToString();
         gM.SaveSystem.SaveOptionsData.masterVol = _masterVol;
         AkSoundEngine.SetRTPCValue("MasterVolume", gM.SaveSystem.SaveOptionsData.masterVol);
-        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
-
+        Save(0);
     }
     public void MusicVol(string dir)
     {
@@ -167,8 +167,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         musicLabel.text = Mathf.RoundToInt(_musicVol).ToString();
         gM.SaveSystem.SaveOptionsData.musicVol = _musicVol;
         AkSoundEngine.SetRTPCValue("MusicVolume", gM.SaveSystem.SaveOptionsData.musicVol);
-        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
-
+        Save(0);
     }
     public void SFXVol(string dir)
     {
@@ -179,8 +178,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         sfxLabel.text = Mathf.RoundToInt(_sfxVol).ToString();
         gM.SaveSystem.SaveOptionsData.sfxVol = _sfxVol;
         AkSoundEngine.SetRTPCValue("SFXVolume", gM.SaveSystem.SaveOptionsData.sfxVol);
-        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
-        
+        Save(0);
     }
     public void SetMouse(string dir)
     {
@@ -209,30 +207,31 @@ public class OptionsMenu : MonoBehaviour, ISaveState
 
     public void Save(int gameNumber)
     {
-        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData));
+        var json=JsonUtility.ToJson(gM.SaveSystem.SaveOptionsData);
+        gM.SaveSystem.SaveGameToDisk(0,"SaveOptions",json);
     }
 
     public void Load(int gameNumber)
     {
-        if (File.Exists(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
+        if (File.Exists(Application.persistentDataPath +$"SaveOptions{gameNumber}.sav"))
         {
-            using (StreamReader streamReader = new StreamReader(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.persistentDataPath + $"SaveOptions{gameNumber}.sav",FileMode.Open);
+            gM.SaveSystem.SaveOptionsData=bf.Deserialize(stream) as SaveOptionsData;
+            stream.Close();
+            if (gM.SaveSystem.SaveOptionsData != null)
             {
-                var json = streamReader.ReadToEnd();
-                gM.SaveSystem.SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
+                _lowQualityMode = gM.SaveSystem.SaveOptionsData.performanceMode;
+                _mouseVal = gM.playerData.mouseSensitivityOptions;
+                _masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
+                _musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
+                _sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
             }
 
-            _lowQualityMode = gM.SaveSystem.SaveOptionsData.performanceMode;
-            _mouseVal = gM.playerData.mouseSensitivityOptions;
-            _masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
-            _musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
-            _sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
-            if (_masterVol == 0)
-            {
-                _masterVol = 50;
-                _musicVol = 50;
-                _sfxVol = 50;
-            }
+            if (_masterVol != 0) return;
+            _masterVol = 50;
+            _musicVol = 50;
+            _sfxVol = 50;
         }
     }
 }

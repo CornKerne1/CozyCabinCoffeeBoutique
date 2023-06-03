@@ -4,18 +4,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using System.Threading.Tasks;
+using TMPro;
 
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]private string scene;
     [SerializeField]private Canvas introLetterCanvas;
-
-    [SerializeField]private GameObject optionsScreen;
-
-    [SerializeField]private GameObject creditsScreen;
+    [SerializeField] private TextMeshProUGUI namePlateTMP;
+    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,wwiseBank;
     private GameMode _gameMode;
-    [SerializeField]private GameObject wwiseBank;
 
 
     [SerializeField] private PlayableDirector director;
@@ -50,7 +48,6 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
         else
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.UnloadSceneAsync(0);
         SceneManager.UnloadSceneAsync(1);
     }
 
@@ -110,6 +107,8 @@ public class MainMenu : MonoBehaviour
         _animator = GetComponent<Animator>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _gameMode.playerData.inUI = true;
+        namePlateTMP = playerNamePlate.GetComponent<TextMeshProUGUI>();
+        namePlateTMP.text = _gameMode.playerData.playerName ?? null;
         InitializeHudAndCursor();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
