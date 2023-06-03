@@ -73,6 +73,8 @@ public class CustomerLine : MonoBehaviour
         customerAI.customerData.receivedDrinkData = drinkData;
         customerInteractable.DeliverDrink(customerAI.customerData.customer.isGoodDrink());
         var container = drink.GetComponent<IngredientContainer>();
+        DepositMoney?.Invoke(customerAI.customerData.orderedDrinkData.price, EventArgs.Empty);
+        customerAI.customerData.customer.OnReceivedDrink();
         try
         {
             ((CupDispenser)container.dispenser).ReleasePoolObject(container);
@@ -82,8 +84,7 @@ public class CustomerLine : MonoBehaviour
             container.gameObject.SetActive(false);
         }
 
-        DepositMoney?.Invoke(customerAI.customerData.orderedDrinkData.price, EventArgs.Empty);
-        customerAI.customerData.customer.OnReceivedDrink();
+       
     }
 
     public void LeaveWithoutPaying(DrinkData drinkData)
