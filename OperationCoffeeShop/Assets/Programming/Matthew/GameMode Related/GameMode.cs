@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Ink.Runtime;
+using Steamworks;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -70,6 +71,10 @@ public class GameMode : MonoBehaviour,ISaveState
         DayNightCycle.HourChanged += CheckForDelivery;
         if(gameModeData.inTutorial)
             AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
+        if(SteamManager.Initialized)
+            playerData.playerName = SteamFriends.GetPersonaName();
+        else
+            Debug.LogError("SteamManager Initialization Failure");
     }
 
     private void Update()
