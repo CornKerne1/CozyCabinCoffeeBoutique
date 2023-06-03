@@ -32,6 +32,7 @@ public class PlayerConsumption : MonoBehaviour
         if (!GameMode.IsEventPlayingOnGameObject("Play_Gulp", gameObject))
             AkSoundEngine.PostEvent("Play_Gulp", gameObject);
         //Debug.Log("Drinking the coffee");
+        Destroy(other.gameObject);
         IfTutorial();
     }
 

@@ -1,9 +1,9 @@
 -> main
 
 === main ===
-This shop is a joke and YOU should be ashamed of yourself for providing such terrible service!
+Excuse me, but this is the drink I ordered?
 * [What can I do to make it better? PLEASE TELL ME!]
 
-This is just what I get for wanting to venture out of Mallory. 
+I waited and paid all that, for this? (Pffft...incredible, some people...)
 
 ->END

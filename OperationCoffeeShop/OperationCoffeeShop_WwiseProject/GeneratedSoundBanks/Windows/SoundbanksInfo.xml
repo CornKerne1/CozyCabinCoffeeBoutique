@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{BBFE8149-20DD-AC9F-36D2-B3C94F4873FA}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{516046D2-37E6-7C2F-F69C-3546F557E0D1}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -34,7 +34,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CCAEF1EA-9019-53C2-1DC4-DAB882B1EC3D}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{D1B8552A-1D11-F04B-40B7-C04D28852322}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -89,6 +89,10 @@
 				<File Id="138462402" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Cozy_Cabin_Coffee_Title_Screen.wav</ShortName>
 					<CachePath>SFX/Cozy_Cabin_Coffee_Title_Screen_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="153855313" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Watermelon.wav</ShortName>
+					<CachePath>SFX/Watermelon_10C4C929.wem</CachePath>
 				</File>
 				<File Id="155462499" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>GenericVoice.wav</ShortName>
@@ -382,6 +386,10 @@
 					<ShortName>CabinetClose.wav</ShortName>
 					<CachePath>SFX/CabinetClose_10C4C929.wem</CachePath>
 				</File>
+				<File Id="1051058874" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Pitcher.wav</ShortName>
+					<CachePath>SFX/Pitcher_D79FB2B7.wem</CachePath>
+				</File>
 				<File Id="1052987244" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>MenuClick.wav</ShortName>
 					<CachePath>SFX/MenuClick_10C4C929.wem</CachePath>
@@ -518,7 +526,7 @@
 						<MediaRef Id="226955609"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1367656534" Name="Play_Faucet" DurationType="Infinite">
+				<Event Id="1367656534" Name="Play_Faucet" MaxAttenuation="4" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="388542937"/>
 					</MediaRefs>
@@ -827,6 +835,11 @@
 						<MediaRef Id="205128343"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1351082671" Name="Play_TryYourLuck" DurationType="OneShot" DurationMin="84.04615" DurationMax="84.04615">
+					<MediaRefs>
+						<MediaRef Id="1051058874"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1950478834" Name="Play_TvStatic" MaxAttenuation="4" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="454672396"/>
@@ -845,6 +858,11 @@
 				<Event Id="2092044786" Name="Play_WaterFall1_2" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="865454399"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2950696120" Name="Play_Watermelon" DurationType="OneShot" DurationMin="1.027483" DurationMax="1.027483">
+					<MediaRefs>
+						<MediaRef Id="153855313"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2693257580" Name="Play_Whistle" DurationType="OneShot" DurationMin="1" DurationMax="1">
@@ -866,6 +884,7 @@
 				<Event Id="2667958284" Name="Stop_Nostalgia" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="1839160882" Name="Stop_SynthWaveSong" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="1450757357" Name="Stop_TitleTheme" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="535146509" Name="Stop_TryYourLuck" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="4243093612" Name="Stop_TvStatic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="248980959" Name="VolumeOne_AfterHours" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2721825950" Name="VolumeOne_BossaNova" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
@@ -899,5 +918,5 @@
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{70D179EB-2EBE-918C-FE17-EEB72391CD12}</FileHash>
+	<FileHash>{56081EC6-8385-F953-5E11-8B077DEBDA76}</FileHash>
 </SoundBanksInfo>

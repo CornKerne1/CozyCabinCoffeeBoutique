@@ -1122,6 +1122,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8566215498528726538, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566215498528726538, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566215498528726538, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79ab7d70b106544890f357eab2da3e7, type: 3}
 --- !u!1001 &759499923
@@ -1597,7 +1609,6 @@ GameObject:
   - component: {fileID: 1101657742}
   - component: {fileID: 1101657746}
   - component: {fileID: 1101657745}
-  - component: {fileID: 1101657743}
   - component: {fileID: 1101657747}
   - component: {fileID: 1101657744}
   - component: {fileID: 1101657748}
@@ -1623,18 +1634,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1101657743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101657741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8cf1c1e420a4cb4483a5ae4b04e389d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1101657744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,8 +1889,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8622416, y: 0.91054285, z: 0.950743}
-  m_Center: {x: -0.017979933, y: -0.022024313, z: 0.26990747}
+  m_Size: {x: 2.8420534, y: 0.061437864, z: 19.75033}
+  m_Center: {x: -0.41392288, y: -0.45624718, z: 9.669732}
 --- !u!23 &1467130953
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4360,7 +4359,7 @@ MonoBehaviour:
   dispenser: {fileID: 0}
   objTypeShop: 0
   loadingNextScene: 0
-  wwiseBank: {fileID: 0}
+  wwiseBank: {fileID: 9035014162838782229}
 --- !u!64 &890736104092674020
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30639,6 +30638,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f92c46dc235b714e9b20caf5f6faff5, type: 3}
+--- !u!1 &9035014162838782229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2989060653582639017, guid: 8f92c46dc235b714e9b20caf5f6faff5, type: 3}
+  m_PrefabInstance: {fileID: 9035014162838782228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9035014162838782230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035014162838782229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d51e1294340efb4cb870d843152026a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 34c8a7f154d6837439cee7b19485ea69, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!114 &9035014162838782231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035014162838782229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aaacef6be298ac48af1f46e2a044e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e4438cfb72ee2f14197fd04951b0c86b, type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &9036424530014840900
 GameObject:
   m_ObjectHideFlags: 0

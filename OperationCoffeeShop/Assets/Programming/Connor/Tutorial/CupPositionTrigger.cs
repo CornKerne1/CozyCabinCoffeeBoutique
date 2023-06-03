@@ -21,6 +21,7 @@ public class CupPositionTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("placed cup");
+        if (_gameMode.objectives.currentObjective != 11) return;
         if (!_gameMode.gameModeData.inTutorial || _gameMode.playerData.busyHands ||
             !other.gameObject.TryGetComponent<IngredientContainer>(out _)) return;
         _gameMode.Tutorial.NextObjective(gameObject);
@@ -30,6 +31,7 @@ public class CupPositionTrigger : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Debug.Log("placed cup");
+        if (_gameMode.objectives.currentObjective != 11) return;
         if (!_gameMode.gameModeData.inTutorial || _gameMode.playerData.busyHands ||
             !other.gameObject.TryGetComponent<IngredientContainer>(out _)) return;
         _gameMode.Tutorial.NextObjective(gameObject);

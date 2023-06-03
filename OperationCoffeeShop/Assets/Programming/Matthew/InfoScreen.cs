@@ -1,36 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class InfoScreen : MonoBehaviour
 {
     private GameMode _gameMode;
-    [SerializeField] private GameObject timeObj, dateObj, moneyObj, shopStatusObj;
-    private TextMeshProUGUI time, date, money, shopStatus;
-    private IEnumerator coRoutine;
+    [SerializeField] private GameObject timeObj, dateObj, moneyObj, shopStatusObj,playerNamePlateObj;
+    private TextMeshProUGUI time, date, money, shopStatus, namePlate;
+    private Task _task;
     // Start is called before the first frame update
-    void Start()
+    private async void Start()
     {
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         time = timeObj.GetComponent<TextMeshProUGUI>();
         date = dateObj.GetComponent<TextMeshProUGUI>();
         money = moneyObj.GetComponent<TextMeshProUGUI>();
         shopStatus = shopStatusObj.GetComponent<TextMeshProUGUI>();
-    }
-    void Update()
-    {
-        if (coRoutine == null)
-            StartCoroutine(CO_FakeUpdate());
+        namePlate = playerNamePlateObj.GetComponent<TextMeshProUGUI>();
+        if (_task == null)
+        {
+            _task = FakeUpdate();
+            await _task;
+        }
     }
 
-    IEnumerator CO_FakeUpdate()
+    private async Task FakeUpdate()
     {
-        coRoutine = CO_FakeUpdate();
-        yield return new WaitForSeconds(0.5f);
         UpdateVariables();
-        coRoutine = null;
+        await Task.Delay(500);
+        _task = null;
+        _task = FakeUpdate();
+        await _task;
     }
 
     private void UpdateVariables()
@@ -39,6 +42,7 @@ public class InfoScreen : MonoBehaviour
         time.text =cT.ToString("HH:mm");
         date.text = cT.Month + "/" + cT.Day + "/" + cT.Year;
         money.text = "$" + _gameMode.gameModeData.moneyInBank;
+        namePlate.text = _gameMode.playerData.playerName;
         if (_gameMode.gameModeData.isOpen)
         {
             shopStatus.text = "OPEN";

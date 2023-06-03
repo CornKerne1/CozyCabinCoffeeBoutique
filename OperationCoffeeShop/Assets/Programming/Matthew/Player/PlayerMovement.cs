@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _standingCenter = new Vector3(0,.5f,0);
     private bool isCrouching;
     private Task _taskRunning;
+    private float _floatMovement;
 
     private void OnDestroy()
     {
@@ -46,8 +47,15 @@ public class PlayerMovement : MonoBehaviour
         PlayerInput.CamModeEvent += ToggleCamMode;
         PlayerInput.SprintEvent += Sprint;
         PlayerInput.JumpEvent += Jump;
+        PlayerInput.JumpCanceledEvent += PressCanceled;
         PlayerInput.CrouchEvent += Crouch;
+        PlayerInput.SprintCanceledEvent += PressCanceled;
         await EditorFix();
+    }
+
+    private void PressCanceled(object sender, EventArgs e)
+    {
+        _floatMovement = 0;
     }
 
     private void Update()
@@ -88,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             if (!_camera) return;
             characterController.Move(_camera.transform.forward * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetVerticalMovement()*2.5f));
             characterController.Move(_camera.transform.right * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _playerInput.GetHorizontalMovement()*2.5f));
+            characterController.Move(_camera.transform.up * (1.5f*_playerInput.pD.moveSpeed * Time.deltaTime * _floatMovement*2.5f));
         }
         else
         {
@@ -116,6 +125,11 @@ public class PlayerMovement : MonoBehaviour
     private async void Sprint(object sender, EventArgs e)
     {
         if(!_playerInput.pD.canMove) return;
+        if (_playerInput.pD.camMode)
+        {
+            _floatMovement = -1f;
+            return;
+        }
         if(!_playerInput.pD.canSprint) return;
         if(isCrouching)await CrouchStandAsync();
         if (Math.Abs(_sprintModifier - 1) < .01f) //if sprint modifier == 1
@@ -132,6 +146,11 @@ public class PlayerMovement : MonoBehaviour
     private async void Jump(object sender, EventArgs e)
     {
        if(!_playerInput.pD.canMove) return;
+       if (_playerInput.pD.camMode)
+       {
+           _floatMovement = 1f;
+           return;
+       }
        if(!_playerInput.pD.canJump) return;
        if(!characterController.isGrounded) return;
        if (isCrouching) await CrouchStandAsync();

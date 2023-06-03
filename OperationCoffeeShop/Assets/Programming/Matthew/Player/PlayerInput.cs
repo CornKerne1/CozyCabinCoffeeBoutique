@@ -15,7 +15,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private GameObject pauseM;
     [SerializeField]private GamepadCursor virtualCursor;
     public static event EventHandler SprintEvent;
+    public static event EventHandler SprintCanceledEvent;
     public static event EventHandler JumpEvent;
+    public static event EventHandler JumpCanceledEvent;
     public static event EventHandler CrouchEvent;
     public static event EventHandler InteractEvent;
     public static event EventHandler AltInteractEvent;
@@ -132,9 +134,11 @@ public class PlayerInput : MonoBehaviour
         _fPp.Move.Enable();
 
         _sprint.performed += Sprint;
+        _sprint.canceled += SprintCanceled;
         _sprint.Enable();
         
         _jump.performed += Jump;
+        _jump.canceled += JumpCanceled;
         _jump.Enable();
         
         _crouch.performed += Crouch;
@@ -159,7 +163,6 @@ public class PlayerInput : MonoBehaviour
         //_fPp.FreeCam.performed += FreeCam;
         _fPp.FreeCam.Enable();
     }
-
     private async void OnMousePerformed(InputAction.CallbackContext ctx)
     {
         _mouseInput = ctx.ReadValue<Vector2>();
@@ -292,11 +295,18 @@ public class PlayerInput : MonoBehaviour
     {
         JumpEvent?.Invoke(null, EventArgs.Empty);
     }
+    private static void JumpCanceled(InputAction.CallbackContext obj)
+    {
+        JumpCanceledEvent?.Invoke(null, EventArgs.Empty);
+    }
     private static void Crouch(InputAction.CallbackContext obj)
     {
         CrouchEvent?.Invoke(null, EventArgs.Empty);
     }
-
+    private void SprintCanceled(InputAction.CallbackContext obj)
+    {
+        SprintCanceledEvent?.Invoke(null, EventArgs.Empty);
+    }
     public InputAction GetMoveAction()
     {
         return _fPp.Move;

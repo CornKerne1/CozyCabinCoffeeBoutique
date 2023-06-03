@@ -99,10 +99,12 @@ namespace AK
         static const AkUniqueID PLAY_TRUCKDRIFT = 4018064888U;
         static const AkUniqueID PLAY_TRUCKENGINE = 1128869005U;
         static const AkUniqueID PLAY_TRUCKHORN = 3078875068U;
+        static const AkUniqueID PLAY_TRYYOURLUCK = 1351082671U;
         static const AkUniqueID PLAY_TVSTATIC = 1950478834U;
         static const AkUniqueID PLAY_UNSATISFIEDCUSTOMER = 4105520773U;
         static const AkUniqueID PLAY_WAKING = 1615511115U;
         static const AkUniqueID PLAY_WATERFALL1_2 = 2092044786U;
+        static const AkUniqueID PLAY_WATERMELON = 2950696120U;
         static const AkUniqueID PLAY_WHISTLE = 2693257580U;
         static const AkUniqueID STOP_BREWER = 2540658777U;
         static const AkUniqueID STOP_DRAGONFLIES = 2232275612U;
@@ -118,6 +120,7 @@ namespace AK
         static const AkUniqueID STOP_NOSTALGIA = 2667958284U;
         static const AkUniqueID STOP_SYNTHWAVESONG = 1839160882U;
         static const AkUniqueID STOP_TITLETHEME = 1450757357U;
+        static const AkUniqueID STOP_TRYYOURLUCK = 535146509U;
         static const AkUniqueID STOP_TVSTATIC = 4243093612U;
         static const AkUniqueID VOLUMEONE_AFTERHOURS = 248980959U;
         static const AkUniqueID VOLUMEONE_BOSSANOVA = 2721825950U;

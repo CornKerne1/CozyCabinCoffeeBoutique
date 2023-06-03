@@ -45,7 +45,7 @@ public class ComputerShop : MonoBehaviour
         _gameMode.playerData.inUI = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        this.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     public void BuyIngredient(string i)
@@ -76,6 +76,12 @@ public class ComputerShop : MonoBehaviour
                 SpendMoney?.Invoke(pictureFramePrice, EventArgs.Empty);
                 break;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+        print(_gameMode.gameModeData.moneyInBank);
     }
 
     private void EnsureWithdrawal(object sender, EventArgs e)

@@ -4,18 +4,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using System.Threading.Tasks;
+using TMPro;
 
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]private string scene;
     [SerializeField]private Canvas introLetterCanvas;
-
-    [SerializeField]private GameObject optionsScreen;
-
-    [SerializeField]private GameObject creditsScreen;
+    [SerializeField] private TextMeshProUGUI namePlateTMP;
+    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,wwiseBank;
     private GameMode _gameMode;
-    [SerializeField]private GameObject wwiseBank;
 
 
     [SerializeField] private PlayableDirector director;
@@ -26,11 +24,12 @@ public class MainMenu : MonoBehaviour
     public Animator introLetterAnimator;
 
     private static readonly int Start1 = Animator.StringToHash("Start");
-    private bool _loading;
+    private bool _loading,_gameStarted;
 
     //Bellow is all of the functions for managing what buttons do in the main menu.
     public void StartGame()
     {
+        _gameStarted=true;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         introLetterCanvas.enabled = false;
         _animator.SetTrigger(Start1);
@@ -42,23 +41,26 @@ public class MainMenu : MonoBehaviour
         if (_loading) return;
         AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
         await Task.Delay(200);
-        Destroy(wwiseBank);
         _loading = true;
         _gameMode.playerData.inUI = false;
+         Destroy(wwiseBank);
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
         else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.UnloadSceneAsync(1);
     }
 
     public void OpenOptions()
     {
+        if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void OpenCredits()
     {
+        if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
     }
@@ -77,6 +79,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         Application.Quit();
         Debug.Log("Quitting");
@@ -104,6 +107,8 @@ public class MainMenu : MonoBehaviour
         _animator = GetComponent<Animator>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         _gameMode.playerData.inUI = true;
+        namePlateTMP = playerNamePlate.GetComponent<TextMeshProUGUI>();
+        namePlateTMP.text = _gameMode.playerData.playerName ?? null;
         InitializeHudAndCursor();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

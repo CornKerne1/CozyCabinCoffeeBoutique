@@ -43,13 +43,14 @@ public class GameModeData : ScriptableObject
     public Vector2 screenShotResizeResolution;
 
     public string time;
-
+    
     [SerializeField] public List<Material> treeMats = new List<Material>();
     public GameObject breakParticle;
-    public bool deliveryQueued;
+    
+    public bool demoVersion,deliveryQueued;
     public DeliveryPrefabs _deliveryPrefabs;
     public GameObject deliveryBoxPref,carnivalTruckPref;
     public Vector3 deliveryPosition;
-    public float moneyInBank = 30;
+    public float moneyInBank;
 }
 

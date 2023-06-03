@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: AkWwiseInitializationSettings
   m_EditorClassIdentifier: 
   PlatformSettingsNameList:
+  - Linux
   - Mac
   - Windows
   PlatformSettingsList:
+  - {fileID: 11400000, guid: 7a08d6307f947754db3f05adeb05805c, type: 2}
   - {fileID: 11400000, guid: 65c2875f000744a478e9c5368362826c, type: 2}
   - {fileID: 11400000, guid: 9e14efbb412e6fc4abd2655051862824, type: 2}
   InvalidReferencePlatforms: []
@@ -42,13 +44,14 @@ MonoBehaviour:
       m_MovementThreshold: 1
       m_NumberOfPrimaryRays: 100
       m_MaxReflectionOrder: 1
+      m_MaxDiffractionOrder: 4
+      m_DiffractionOnReflectionsOrder: 2
       m_MaxPathLength: 10000
       m_CPULimitPercentage: 0
       m_EnableDiffractionOnReflections: 1
       m_EnableGeometricDiffractionAndTransmission: 1
       m_CalcEmitterVirtualPosition: 1
-      m_UseObstruction: 1
-      m_UseOcclusion: 1
+      m_LoadBalancingSpread: 1
   AdvancedSettings:
     m_IOMemorySize: 2097152
     m_TargetAutoStreamBufferLengthMs: 380

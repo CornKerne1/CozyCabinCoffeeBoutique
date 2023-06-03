@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ink.Runtime;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 [Serializable]
 public class GameMode : MonoBehaviour,ISaveState
@@ -28,7 +29,7 @@ public class GameMode : MonoBehaviour,ISaveState
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
     public static event EventHandler SurpriseCustomers;
-
+    
     public DeliveryManager deliveryManager;
     public CoffeeBankTM CoffeeBankTM;
     public DynamicBatcher dynamicBatcher;
@@ -67,6 +68,8 @@ public class GameMode : MonoBehaviour,ISaveState
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();
         DayNightCycle.HourChanged += CheckForDelivery;
+        if(gameModeData.inTutorial)
+            AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
     }
 
     private void Update()
@@ -95,10 +98,7 @@ public class GameMode : MonoBehaviour,ISaveState
         Tutorial = new Tutorial(Tutorial, this, gameModeData)
         {
             Objectives = objectives
-        }; 
-        await Task.Delay(400);
-        AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
-        
+        };
     }
 
     public void DeactivateAndDestroy(GameObject obj)
@@ -247,5 +247,10 @@ public class GameMode : MonoBehaviour,ISaveState
             }
         }
         SaveSystem.SaveGameData.respawnables = new List<RespawbableData>();
+    }
+
+    private void OnDestroy()
+    {
+        DayNightCycle.HourChanged -= CheckForDelivery;
     }
 }
