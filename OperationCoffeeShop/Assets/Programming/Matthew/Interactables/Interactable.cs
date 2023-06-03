@@ -175,7 +175,10 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         _isBroken = true;
         _rB.isKinematic = true;
         await Task.Delay(10);
-        AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
+        if (breakableSoundEngineEvent.Length !=0)
+        {
+            AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
+        }
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
         await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
         var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
