@@ -83,8 +83,11 @@ public class Dispenser : Interactable
     public virtual void TakeFromDispenser()
     {
         if (playerInteraction.playerData.busyHands) return;
-        quantity--;
-        UpdateQuantity();
+        if (!bottomless)
+        {
+            quantity--;
+            UpdateQuantity();
+        }
         var ingredient = Pool.Get().transform;
         var transform1 = ingredient.transform;
         transform1.position = spawnTrans.position;
@@ -102,7 +105,7 @@ public class Dispenser : Interactable
 
         playerInteraction.Carry(ingredient.gameObject);
         IfTutorial();
-        if (quantity == 0)
+        if (quantity == 0 && !bottomless)
             Destroy(gameObject);
     }
 

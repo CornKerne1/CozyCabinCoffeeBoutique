@@ -29,6 +29,8 @@ public class GameMode : MonoBehaviour,ISaveState
     //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
+
+    public static event EventHandler ShopOpen;
     public static event EventHandler SurpriseCustomers;
     
     public DeliveryManager deliveryManager;
@@ -118,6 +120,7 @@ public class GameMode : MonoBehaviour,ISaveState
         if (gameModeData.currentTime.Hour is >= 18 or <= 5) return;
         gameModeData.isOpen = true;
         playerData.canJump = false;
+        ShopOpen?.Invoke(this, EventArgs.Empty);
         gate.OpenGate();
     }
 

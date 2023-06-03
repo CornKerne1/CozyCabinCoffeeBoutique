@@ -7,7 +7,7 @@ public class CustomerLine : MonoBehaviour
 {
     public Vector3 lineStartPosition;
 
-    private readonly Queue<CustomerAI> _queue = new Queue<CustomerAI>();
+    private  Queue<CustomerAI> _queue = new Queue<CustomerAI>();
 
     public static event EventHandler DepositMoney;
 
@@ -16,6 +16,12 @@ public class CustomerLine : MonoBehaviour
     private void Start()
     {
         lineStartPosition = transform.position;
+        GameMode.ShopOpen += ResetLine;
+    }
+
+    private void ResetLine(object sender, EventArgs e)
+    {
+        _queue = new Queue<CustomerAI>();
     }
 
     public void GetInLine(GameObject customer)
