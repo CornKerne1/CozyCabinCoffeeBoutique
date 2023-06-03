@@ -100,6 +100,7 @@ public class GameMode : MonoBehaviour,ISaveState
     private async Task IfTutorial()
     {
         if (!gameModeData.inTutorial) return;
+        playerData.canJump = false;
         Tutorial = new Tutorial(Tutorial, this, gameModeData)
         {
             Objectives = objectives
