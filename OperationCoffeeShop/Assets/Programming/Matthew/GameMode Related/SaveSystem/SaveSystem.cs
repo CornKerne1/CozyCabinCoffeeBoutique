@@ -86,11 +86,15 @@ public class SaveSystem
     {
         SaveGameEvent?.Invoke(null, EventArgs.Empty);
         SaveGameData.deliveryPackages = new List<DeliveryPackage>();
-        foreach (var d in _gameMode.deliveryManager.GetQueue())
+        bool condition = SceneManager.GetSceneByBuildIndex(3) == SceneManager.GetActiveScene();
+        if (condition)
         {
-            foreach (var dP in d.GetDeliveryPackages())
+            foreach (var d in _gameMode.deliveryManager.GetQueue())
             {
-                SaveGameData.deliveryPackages.Add(dP);
+                foreach (var dP in d.GetDeliveryPackages())
+                {
+                    SaveGameData.deliveryPackages.Add(dP);
+                }
             }
         }
         SaveGameData.playerMoney = _gameModeData.moneyInBank;
