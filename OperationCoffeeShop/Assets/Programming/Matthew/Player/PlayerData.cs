@@ -86,7 +86,10 @@ public class PlayerData : ScriptableObject
         canCrouch = true;
         if (mouseSensitivityOptions == 0)
             mouseSensitivityOptions = .5f;
-        if (!SteamManager.Initialized) return;
-        playerName = SteamFriends.GetPersonaName();
+    }
+
+    private void OnDisable()
+    {
+        playerName = null;
     }
 }
