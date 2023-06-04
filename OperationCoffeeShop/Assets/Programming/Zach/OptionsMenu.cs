@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,12 +17,10 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public List<ResItem> resolutions = new List<ResItem>();
     private int _selectedResolution;
 
-    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel,vsyncLabel,mastLabel, musicLabel, sfxLabel,mouseLabel;
+    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel,vsyncLabel,mastLabel, musicLabel, sfxLabel,mouseLabel,renderLabel,fovLabel;
     private bool _playing;
-    private float _masterVol, _musicVol, _sfxVol,_mouseVal;
 
     public UniversalRenderPipelineAsset urpA;
-    private bool _lowQualityMode;
 
     private void OnDisable() => Save(0);
 
@@ -34,7 +33,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     }
     public void TogglePerformance()
     {
-        if (!_lowQualityMode)
+        if (!gM.SaveSystem.SaveOptionsData.performanceMode)
             LowQualityMode();
         else
             HighQualityMode();
@@ -62,7 +61,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     }
     private void HighQualityMode()
     {
-        _lowQualityMode = false;
+        gM.SaveSystem.SaveOptionsData.performanceMode = false;
         urpA.msaaSampleCount = 8;
         urpA.supportsCameraDepthTexture = true;
         urpA.supportsCameraOpaqueTexture = true;
@@ -74,7 +73,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
 
     private void LowQualityMode()
     {
-        _lowQualityMode = true;
+        gM.SaveSystem.SaveOptionsData.performanceMode = true;
         urpA.msaaSampleCount = 0;
         urpA.supportsCameraDepthTexture = false;
         urpA.supportsCameraOpaqueTexture = false;
@@ -83,7 +82,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         urpA.shadowDistance = 45;
         performanceLabel.text = "ON";
     }
-    void Start()
+    async void Start()
     {
         gM = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         Load(0);
@@ -111,12 +110,14 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             UpdateResLabel();
         }
 
-        float vol = 0f;
-        mouseLabel.text = ((int)(_mouseVal * 10)).ToString();
-        mastLabel.text = Mathf.RoundToInt(_masterVol).ToString();
-        musicLabel.text = Mathf.RoundToInt(_musicVol).ToString();
-        sfxLabel.text = Mathf.RoundToInt(_sfxVol).ToString();
-        TogglePerformance(_lowQualityMode);
+        await Task.Delay(50);
+        mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 10)).ToString();
+        mastLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.masterVol).ToString();
+        musicLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.musicVol).ToString();
+        sfxLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.sfxVol).ToString();
+        renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString();
+        fovLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.fov).ToString();
+        TogglePerformance( gM.SaveSystem.SaveOptionsData.performanceMode);
     }
 
     public void ResLeft()
@@ -140,54 +141,72 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         }
         UpdateResLabel();
     }
-
     public void UpdateResLabel()
     {
         resolutionLabel.text = resolutions[_selectedResolution].horizontal.ToString() + " x " + resolutions[_selectedResolution].vertical.ToString();
+    }
+    public void RenderScale(string dir)
+    {
+        gM.SaveSystem.SaveOptionsData.renderScale = dir == "left" ? Mathf.Clamp(gM.SaveSystem.SaveOptionsData.renderScale-.05f,0f,2f) :  Mathf.Clamp(gM.SaveSystem.SaveOptionsData.renderScale+.05f,0f,2f);
+        StartCoroutine(CO_PlayAudioWWisely());
+        renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString();
+        gM.SaveSystem.SaveOptionsData.renderScale = gM.SaveSystem.SaveOptionsData.renderScale;
+        urpA.renderScale = gM.SaveSystem.SaveOptionsData.renderScale;
+        Save(0);
+    }
+    public void CameraFov(string dir)
+    {
+        
+        gM.SaveSystem.SaveOptionsData.fov = dir == "left" ? Mathf.Clamp(gM.SaveSystem.SaveOptionsData.fov-1,60f,100f) :  Mathf.Clamp(gM.SaveSystem.SaveOptionsData.fov+1f,60f,100f);
+        StartCoroutine(CO_PlayAudioWWisely());
+        fovLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.fov).ToString();
+        gM.SaveSystem.SaveOptionsData.fov = gM.SaveSystem.SaveOptionsData.fov;
+        gM.UpdatePlayerCameraFov();
+        Save(0);
     }
 
     //functions below control sound slider values and how they interact with ui
     public void MasterVol(string dir)
     {
-        _masterVol = dir == "left" ? _masterVol - 5 : _masterVol + 5;
-        if (_masterVol < 0) _masterVol = 0;
-        if (_masterVol > 100) _masterVol = 100;
+        gM.SaveSystem.SaveOptionsData.masterVol = dir == "left" ? gM.SaveSystem.SaveOptionsData.masterVol - 5 : gM.SaveSystem.SaveOptionsData.masterVol + 5;
+        if (gM.SaveSystem.SaveOptionsData.masterVol < 0) gM.SaveSystem.SaveOptionsData.masterVol = 0;
+        if (gM.SaveSystem.SaveOptionsData.masterVol > 100) gM.SaveSystem.SaveOptionsData.masterVol = 100;
         StartCoroutine(CO_PlayAudioWWisely());
-        mastLabel.text = Mathf.RoundToInt(_masterVol) .ToString();
-        gM.SaveSystem.SaveOptionsData.masterVol = _masterVol;
+        mastLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.masterVol) .ToString();
+        gM.SaveSystem.SaveOptionsData.masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
         AkSoundEngine.SetRTPCValue("MasterVolume", gM.SaveSystem.SaveOptionsData.masterVol);
         Save(0);
     }
     public void MusicVol(string dir)
     {
-        _musicVol = dir == "left" ? _musicVol - 5 : _musicVol + 5;
-        if (_musicVol < 0) _musicVol = 0;
-        if (_musicVol > 100) _musicVol = 100;
+        gM.SaveSystem.SaveOptionsData.musicVol = dir == "left" ? gM.SaveSystem.SaveOptionsData.musicVol - 5 : gM.SaveSystem.SaveOptionsData.musicVol + 5;
+        if (gM.SaveSystem.SaveOptionsData.musicVol < 0) gM.SaveSystem.SaveOptionsData.musicVol = 0;
+        if (gM.SaveSystem.SaveOptionsData.musicVol > 100) gM.SaveSystem.SaveOptionsData.musicVol = 100;
         StartCoroutine(CO_PlayAudioWWisely());
-        musicLabel.text = Mathf.RoundToInt(_musicVol).ToString();
-        gM.SaveSystem.SaveOptionsData.musicVol = _musicVol;
+        musicLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.musicVol).ToString();
+        gM.SaveSystem.SaveOptionsData.musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
         AkSoundEngine.SetRTPCValue("MusicVolume", gM.SaveSystem.SaveOptionsData.musicVol);
         Save(0);
     }
     public void SFXVol(string dir)
     {
-        _sfxVol = dir == "left" ? _sfxVol - 5 : _sfxVol + 5;
-        if (_sfxVol < 0) _sfxVol = 0;
-        if (_sfxVol > 100) _sfxVol = 100;
+        gM.SaveSystem.SaveOptionsData.sfxVol = dir == "left" ? gM.SaveSystem.SaveOptionsData.sfxVol - 5 : gM.SaveSystem.SaveOptionsData.sfxVol + 5;
+        if (gM.SaveSystem.SaveOptionsData.sfxVol < 0) gM.SaveSystem.SaveOptionsData.sfxVol = 0;
+        if (gM.SaveSystem.SaveOptionsData.sfxVol > 100) gM.SaveSystem.SaveOptionsData.sfxVol = 100;
         StartCoroutine(CO_PlayAudioWWisely());
-        sfxLabel.text = Mathf.RoundToInt(_sfxVol).ToString();
-        gM.SaveSystem.SaveOptionsData.sfxVol = _sfxVol;
+        sfxLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.sfxVol).ToString();
+        gM.SaveSystem.SaveOptionsData.sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
         AkSoundEngine.SetRTPCValue("SFXVolume", gM.SaveSystem.SaveOptionsData.sfxVol);
         Save(0);
     }
     public void SetMouse(string dir)
     {
-        _mouseVal = dir == "left" ? _mouseVal - .03f : _mouseVal + .03f;
-        if (_mouseVal < 0f) _mouseVal = 0f;
-        if (_mouseVal > 1f) _mouseVal = 1f;
+        gM.playerData.mouseSensitivityOptions = dir == "left" ? gM.playerData.mouseSensitivityOptions - .03f : gM.playerData.mouseSensitivityOptions + .03f;
+        if (gM.playerData.mouseSensitivityOptions < 0f) gM.playerData.mouseSensitivityOptions = 0f;
+        if (gM.playerData.mouseSensitivityOptions > 1f) gM.playerData.mouseSensitivityOptions = 1f;
         StartCoroutine(CO_PlayAudioWWisely());
-        gM.playerData.mouseSensitivityOptions = _mouseVal;
-        mouseLabel.text = ((int)(_mouseVal * 100)).ToString();
+        gM.playerData.mouseSensitivityOptions = gM.playerData.mouseSensitivityOptions;
+        mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 100)).ToString();
     }
     public void CloseOptions()
     {
@@ -213,25 +232,13 @@ public class OptionsMenu : MonoBehaviour, ISaveState
 
     public void Load(int gameNumber)
     {
-        if (File.Exists(Application.persistentDataPath +$"SaveOptions{gameNumber}.sav"))
+        if (File.Exists(Application.persistentDataPath +$"SaveOptions{gameNumber}.json"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream stream = new FileStream(Application.persistentDataPath + $"SaveOptions{gameNumber}.sav",FileMode.Open);
-            gM.SaveSystem.SaveOptionsData=bf.Deserialize(stream) as SaveOptionsData;
-            stream.Close();
-            if (gM.SaveSystem.SaveOptionsData != null)
+            using (StreamReader streamReader = new StreamReader(Application.persistentDataPath + $"SaveOptions{gameNumber}.json"))
             {
-                _lowQualityMode = gM.SaveSystem.SaveOptionsData.performanceMode;
-                _mouseVal = gM.playerData.mouseSensitivityOptions;
-                _masterVol = gM.SaveSystem.SaveOptionsData.masterVol;
-                _musicVol = gM.SaveSystem.SaveOptionsData.musicVol;
-                _sfxVol = gM.SaveSystem.SaveOptionsData.sfxVol;
+                var json = streamReader.ReadToEnd();
+                gM.SaveSystem.SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
-
-            if (_masterVol != 0) return;
-            _masterVol = 50;
-            _musicVol = 50;
-            _sfxVol = 50;
         }
     }
 }

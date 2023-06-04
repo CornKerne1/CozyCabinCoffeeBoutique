@@ -37,19 +37,23 @@ public class SaveSystem
             }
             AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
             AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.musicVol);
+            AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.sfxVol);
+            if (SaveOptionsData.masterVol >= .02f) return;
+            SaveOptionsData.masterVol = .4f;
+            SaveOptionsData.musicVol = .4f;
+            SaveOptionsData.sfxVol = .4f;
+            AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
+            AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.masterVol);
             AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.masterVol);
-            if (SaveOptionsData.masterVol == 0)
-            {
-                AkSoundEngine.SetRTPCValue("MasterVolume", .4f);
-                AkSoundEngine.SetRTPCValue("MusicVolume", .4f);
-                AkSoundEngine.SetRTPCValue("SFXVolume", .4f);
-            }
         }
         else
         {
-            AkSoundEngine.SetRTPCValue("MasterVolume", .4f);
-            AkSoundEngine.SetRTPCValue("MusicVolume", .4f);
-            AkSoundEngine.SetRTPCValue("SFXVolume", .4f);
+            SaveOptionsData.masterVol = .4f;
+            SaveOptionsData.musicVol = .4f;
+            SaveOptionsData.sfxVol = .4f;
+            AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
+            AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.masterVol);
+            AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.masterVol);
         }
     }
     

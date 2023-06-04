@@ -24,6 +24,11 @@ public class SpawnRegularCustomer : MonoBehaviour
         gMD = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>().gameModeData;
     }
 
+    private void OnDestroy()
+    {
+        DayNightCycle.HourChanged -= UpdateDic;
+    }
+
     private IEnumerator Spawn(GameObject customer)
     {
         yield return new WaitForSeconds(Random.Range(1, 10));

@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ink.Runtime;
 using Steamworks;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 [Serializable]
@@ -71,6 +73,7 @@ public class GameMode : MonoBehaviour,ISaveState
         gameModeData.timeRate = defaultTimeRate;
         camera = player.GetComponentInChildren<Camera>();
         DayNightCycle.HourChanged += CheckForDelivery;
+        UpdatePlayerCameraFov();
         if(gameModeData.inTutorial)
             AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
         if(SteamManager.Initialized)
@@ -83,6 +86,12 @@ public class GameMode : MonoBehaviour,ISaveState
     {
         //Handles the timer when the store is open.
         DayNightCycle.HandleDnc();
+    }
+
+    public void UpdatePlayerCameraFov()
+    {
+        if (!camera) return;
+        camera.fieldOfView = SaveSystem.SaveOptionsData.fov;
     }
 
     public void UpdateReputation(int reputation)
@@ -261,5 +270,7 @@ public class GameMode : MonoBehaviour,ISaveState
     private void OnDestroy()
     {
         DayNightCycle.HourChanged -= CheckForDelivery;
+        DayNightCycle.HourChanged -= DayNightCycle.DayTimeCheck;
+        DayNightCycle.HourChanged -= DayNightCycle.NightTimeCheck;
     }
 }

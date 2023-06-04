@@ -1,5 +1,8 @@
 using System;
+using System.Threading.Tasks;
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DayNightCycle
 {
@@ -16,6 +19,7 @@ public class DayNightCycle
     private TimeSpan _sunsetTime;
     private float _startTimeRate;
     private int _currentHour;
+    private float _lightIntensity;
 
     public DayNightCycle(DayNightCycle dayNightCycle, GameMode gameMode, GameModeData gameModeData)
     {
@@ -30,6 +34,8 @@ public class DayNightCycle
         _sunriseTime = TimeSpan.FromHours(SunriseHour);
         _sunsetTime = TimeSpan.FromHours(SunsetHour);
         _startTimeRate = _gameModeData.timeRate;
+        HourChanged += DayTimeCheck;
+        HourChanged += NightTimeCheck;
     }
 
     public void HandleDnc()
@@ -77,6 +83,7 @@ public class DayNightCycle
     public void RotateSun()
     {
         float sunLightRotation;
+        float moonLightRotation;
 
         if (_gameModeData.currentTime.TimeOfDay > _sunriseTime && _gameModeData.currentTime.TimeOfDay < _sunsetTime)
         {
@@ -86,6 +93,7 @@ public class DayNightCycle
             var percentage = timeSinceSunrise.TotalMinutes / sunriseToSunsetDuration.TotalMinutes;
 
             sunLightRotation = Mathf.Lerp(0, 180, (float)percentage);
+            moonLightRotation = Mathf.Lerp(180, 360, -(float)percentage);
         }
         else
         {
@@ -94,6 +102,7 @@ public class DayNightCycle
 
             var percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
             sunLightRotation = Mathf.Lerp(180, 360, (float)percentage);
+            moonLightRotation = Mathf.Lerp(180, 360, -(float)percentage);
         }
         if(!_gameMode) return;
         _gameMode.sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
@@ -108,5 +117,35 @@ public class DayNightCycle
         }
 
         return difference;
+    }
+    public async void NightTimeCheck(object sender, EventArgs e)
+    {
+        if (_gameModeData.currentTime.Hour != 20) return;
+        var sunLightRef = _gameMode.sunLight.GetComponent<Light>();
+        _lightIntensity = _gameMode.sunLight.GetComponent<Light>().intensity;
+        float currentTime=0;
+        while (currentTime < 2)
+        {
+            currentTime += Time.deltaTime;
+            sunLightRef.intensity = Mathf.Lerp(sunLightRef.intensity, 0, currentTime);
+            await Task.Yield();
+        }
+        sunLightRef.intensity = 0;
+        RenderSettings.sun = sunLightRef;
+        
+    }
+
+    public async void DayTimeCheck(object sender, EventArgs e)
+    {
+        if (_gameModeData.currentTime.Hour != 5) return;
+        var sunLightRef = _gameMode.sunLight.GetComponent<Light>();
+        float currentTime=0;
+        while (currentTime < 2)
+        {
+            currentTime += Time.deltaTime;
+            sunLightRef.intensity = Mathf.Lerp(sunLightRef.intensity, _lightIntensity, currentTime);//
+            await Task.Yield();
+        }
+        sunLightRef.intensity = _lightIntensity;
     }
 }
