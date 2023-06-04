@@ -62,6 +62,7 @@ public class IngredientContainer : Interactable
                 new Vector3(visualizerStartScale, visualizerStartScale, visualizerStartScale);
         }
         _visualizerMaterial.SetColor(ColorLightBubbles,Color.clear);
+        _visualizerMaterial.SetFloat(Alpha,0);
     }
 
     public bool IsPouring()
@@ -205,14 +206,17 @@ public class IngredientContainer : Interactable
             if (hasContentsVisualizer)
             {
                 float fillPercentage = (float)GetCapacity() / maxCapacity;
+                var newColor = Color.clear;
                 if (_visualizerMaterial.GetColor(ColorLightBubbles) == Color.clear)
                 {
-                    _visualizerMaterial.SetColor(ColorLightBubbles, _color);
+                    _visualizerMaterial.SetColor(ColorLightBubbles, Color.white);
+                    newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .5f);
+                    _visualizerMaterial.SetColor(ColorLightBubbles, newColor);
                     _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+_alpha);
                 }
                 else
                 {
-                    var newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .01f);
+                    newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .01f);
                     _visualizerMaterial.SetColor(ColorLightBubbles,newColor);
                     _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+_alpha);
                 }
