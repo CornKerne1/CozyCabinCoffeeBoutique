@@ -158,6 +158,7 @@ MonoBehaviour:
   hasOrdered: 0
   hasOrder: 0
   lookAtBool: 0
+  path: {fileID: 0}
 --- !u!114 &9203058362976567349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,13 +174,23 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  delivered: 0
+  dispenser: {fileID: 0}
+  objTypeShop: 0
+  temporaryCarnivalGameSolution: 0
   customerAI: {fileID: 1033753536987892517}
   canvas: {fileID: 6167939972010913447}
   canInteract: 1
-  dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 3008080769157578209, guid: d5e14428dc67c984e89352c448688aa2, type: 3}
   regularCustomerAtlas: {fileID: 11400000, guid: 538bf7d1777b2e845b3d10637778c263, type: 2}
 --- !u!54 &927562656731061223
 Rigidbody:
