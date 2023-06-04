@@ -24,7 +24,6 @@ public class SaveSystem
     }
     public void Initialize()
     {
-        if (SaveOptionsData != null) return;
         SaveOptionsData = new SaveOptionsData();
         var gameNumber = 0;
         if (File.Exists(Application.persistentDataPath + $"SaveOptions{gameNumber}.json"))
@@ -35,26 +34,28 @@ public class SaveSystem
                 var json = streamReader.ReadToEnd();
                 SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
-            AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
-            AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.musicVol);
-            AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.sfxVol);
-            if (SaveOptionsData.masterVol >= .02f) return;
-            SaveOptionsData.masterVol = .4f;
-            SaveOptionsData.musicVol = .4f;
-            SaveOptionsData.sfxVol = .4f;
-            AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
-            AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.masterVol);
-            AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.masterVol);
+            if (SaveOptionsData.masterVol >= 1) return;
+            SaveOptionsData.masterVol = 40;
+            SaveOptionsData.musicVol = 40;
+            SaveOptionsData.sfxVol = 40;
+            InitializeRTCPValues();
         }
         else
         {
-            SaveOptionsData.masterVol = .4f;
-            SaveOptionsData.musicVol = .4f;
-            SaveOptionsData.sfxVol = .4f;
-            AkSoundEngine.SetRTPCValue("MasterVolume", SaveOptionsData.masterVol);
-            AkSoundEngine.SetRTPCValue("MusicVolume", SaveOptionsData.masterVol);
-            AkSoundEngine.SetRTPCValue("SFXVolume", SaveOptionsData.masterVol);
+            SaveOptionsData.masterVol = 40;
+            SaveOptionsData.musicVol = 40;
+            SaveOptionsData.sfxVol = 40;
+            SaveOptionsData.fov = 70;
+            SaveOptionsData.renderScale = 1;
+            _gameMode.playerData.mouseSensitivityOptions = .4f;
+            InitializeRTCPValues();
         }
+    }
+    private void InitializeRTCPValues()
+    {
+        AkSoundEngine.SetRTPCValue("MasterVolume",SaveOptionsData.masterVol);
+        AkSoundEngine.SetRTPCValue("MusicVolume",SaveOptionsData.musicVol);
+        AkSoundEngine.SetRTPCValue("SFXVolume",SaveOptionsData.sfxVol);
     }
     
     public void SaveScreenShot(int i)

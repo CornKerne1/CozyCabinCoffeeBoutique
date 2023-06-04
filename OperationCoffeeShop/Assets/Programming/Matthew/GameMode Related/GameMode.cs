@@ -28,7 +28,7 @@ public class GameMode : MonoBehaviour,ISaveState
     //This is the Scriptable Object that contains the data for this class.
     [FormerlySerializedAs("GameModeData")] [FormerlySerializedAs("gMD")] public GameModeData gameModeData;
 
-    //This is a component that does not inherit from monobehavior. This class calls logic within that component. 
+    //This is a component that does not inherit from monobehavior. This class calls logic within that component. //
     public DayNightCycle DayNightCycle;
     public static event EventHandler ShopClosed;
 
