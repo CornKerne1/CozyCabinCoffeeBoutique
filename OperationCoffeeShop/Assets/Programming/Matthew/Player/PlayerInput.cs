@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
-    [SerializeField] public GameObject hudRef;
+    public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
     [SerializeField]private GamepadCursor virtualCursor;
     public static event EventHandler SprintEvent;

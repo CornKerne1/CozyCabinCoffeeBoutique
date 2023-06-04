@@ -126,8 +126,9 @@ public class DayNightCycle
         float currentTime=0;
         while (currentTime < 2)
         {
-            currentTime += Time.deltaTime;
-            sunLightRef.intensity = Mathf.Lerp(sunLightRef.intensity, 0, currentTime);
+            var time = Time.deltaTime;
+            currentTime += time;
+            sunLightRef.intensity = Mathf.Lerp(sunLightRef.intensity, 0, time);
             await Task.Yield();
         }
         sunLightRef.intensity = 0;
@@ -142,8 +143,9 @@ public class DayNightCycle
         float currentTime=0;
         while (currentTime < 2)
         {
-            currentTime += Time.deltaTime;
-            sunLightRef.intensity = Mathf.Lerp(sunLightRef.intensity, _lightIntensity, currentTime);//
+            var time = Time.deltaTime;
+            currentTime += time;
+            sunLightRef.intensity = Mathf.Lerp(sunLightRef.intensity, _lightIntensity, time);
             await Task.Yield();
         }
         sunLightRef.intensity = _lightIntensity;

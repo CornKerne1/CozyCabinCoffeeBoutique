@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
+        if(!_playerInput.pD.canMove) return;
         if (_playerInput.pD.isClimbing)
         {
             HandleLadderMovement();
