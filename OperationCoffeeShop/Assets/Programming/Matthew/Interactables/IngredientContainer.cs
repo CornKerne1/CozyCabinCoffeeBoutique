@@ -62,6 +62,7 @@ public class IngredientContainer : Interactable
                 new Vector3(visualizerStartScale, visualizerStartScale, visualizerStartScale);
         }
         _visualizerMaterial.SetColor(ColorLightBubbles,Color.clear);
+        _visualizerMaterial.SetColor(ColorLight,Color.clear);
         _visualizerMaterial.SetFloat(Alpha,0);
     }
 
@@ -105,6 +106,7 @@ public class IngredientContainer : Interactable
         {
             _visualizerMaterial = contentsVisualizer.GetComponent<MeshRenderer>().material;
             _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
+            _visualizerMaterial.SetColor(ColorLight, Color.clear);
             _visualizerStartPosition = contentsVisualizer.transform.localPosition;
         }
 
@@ -132,9 +134,8 @@ public class IngredientContainer : Interactable
         float capacity = 0;
         foreach (var i in dD.ingredients)
         {
-            capacity = capacity + i.target;
+            capacity +=i.target;
         }
-
         if (capacity <= 0)
             dD.ingredients.Clear();
         return capacity;
@@ -149,6 +150,7 @@ public class IngredientContainer : Interactable
         if (_waterColor && iN.ingredient != Ingredients.Water)
         {
             _visualizerMaterial.SetColor(ColorLightBubbles, Color.clear);
+            _visualizerMaterial.SetColor(ColorLight, Color.clear);
             _waterColor = false;
         }
         else
@@ -160,18 +162,18 @@ public class IngredientContainer : Interactable
             {
                 case Ingredients.BrewedCoffee:
                     outputIngredients.Add(iD.brewedCoffee);
-                    _alpha = .05f;
+                    _alpha = .2f;
                     if (!steam||steam.activeSelf) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Espresso:
                     outputIngredients.Add(iD.espresso);
-                    _alpha = .2f;
+                    _alpha = .4f;
                     if (!steam||steam.activeSelf) break;
                     steam.SetActive(true);
                     break;
                 case Ingredients.Milk:
-                    _alpha = .15f;
+                    _alpha = .1f;
                     outputIngredients.Add(iD.milk);
                     break;
                 case Ingredients.Sugar:
@@ -181,7 +183,7 @@ public class IngredientContainer : Interactable
                 case Ingredients.Water:
                     outputIngredients.Add(iD.water);
                     if (_visualizerMaterial.GetFloat(Alpha) < .2f)
-                        _alpha = .01f;
+                        _alpha = .03f;
                     if (GetCapacity() > .01f)
                         _color = Color.clear;
                     else
@@ -206,18 +208,29 @@ public class IngredientContainer : Interactable
             if (hasContentsVisualizer)
             {
                 float fillPercentage = (float)GetCapacity() / maxCapacity;
-                var newColor = Color.clear;
-                if (_visualizerMaterial.GetColor(ColorLightBubbles) == Color.clear)
+                var newColor=Color.clear;
+                Color lightColor=Color.clear;
+                float colorVar=0;
+                if (_visualizerMaterial.GetColor(ColorLight) == Color.clear)
                 {
-                    _visualizerMaterial.SetColor(ColorLightBubbles, Color.white);
-                    newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .5f);
-                    _visualizerMaterial.SetColor(ColorLightBubbles, newColor);
+                    newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLight), _color, .5f);
+                    _visualizerMaterial.SetColor(ColorLight, newColor);
+                    lightColor = newColor * 1.3f;
+                    _visualizerMaterial.SetColor(ColorLightBubbles,lightColor);
                     _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+_alpha);
                 }
                 else
                 {
-                    newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLightBubbles), _color, .01f);
-                    _visualizerMaterial.SetColor(ColorLightBubbles,newColor);
+                    
+                    foreach (var ingredientNode in dD.ingredients)
+                    {
+                        if (ingredientNode.ingredient == iN.ingredient)
+                            colorVar =(ingredientNode.target/maxCapacity)*(_alpha/3f);
+                    }
+                    newColor = Color.Lerp(_visualizerMaterial.GetColor(ColorLight), _color, colorVar);
+                    _visualizerMaterial.SetColor(ColorLight,newColor);
+                    lightColor = newColor * 1.3f;
+                    _visualizerMaterial.SetColor(ColorLightBubbles,lightColor);
                     _visualizerMaterial.SetFloat(Alpha,_visualizerMaterial.GetFloat(Alpha)+_alpha);
                 }
                 if (_visualizerMaterial.GetFloat(Alpha) > 1)
