@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -102,15 +103,21 @@ public class PauseMenu : MonoBehaviour
             _playerInteraction.carriedObj.SetActive(true);
         _gameMode.Save(0);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
-        Destroy(wwiseBank);
+        if(!wwiseBank)
+            wwiseBank=_gameMode.gameObject;
         StartCoroutine(WaitForSave());
+        if (SceneManager.GetSceneByBuildIndex(1).isLoaded)
+        {
+            SceneManager.UnloadSceneAsync(1);
+        }
     }
 
     private IEnumerator WaitForSave()
     {
         yield return new WaitForSeconds(.04f);
-        Application.Quit();
-        //EditorApplication.ExitPlaymode();
+        _gameMode.Save(0);
+        Destroy(wwiseBank);
+        SceneManager.LoadScene(1);
     }
 
     private async void OnEnable()
@@ -137,27 +144,4 @@ public class PauseMenu : MonoBehaviour
         ChangeTab("info");
     }
 
-
-    /* private void Start()
-     {
-         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-         _previousTimeRate = _gameMode.gameModeData.timeRate;
-         _gameMode.gameModeData.timeRate = 0;
- 
-         if (! pD.canMove)
-         {
-             Debug.Log("using start _couldMove Previously is false");
-             _couldMovePreviously = false;
-         }
- 
-         _animator = GetComponent<Animator>();
-         _playerInteraction = _gameMode.player.gameObject.GetComponent<PlayerInteraction>();
-         Cursor.visible = true;
-         Cursor.lockState = CursorLockMode.None;
-         _gameMode.playerData.canMove = false;
-         pD.canMove = false;
-         pD.neckClamp = 0.0f;
-         _playerInteraction.CameraBlur();
-     }*/
-   
 }

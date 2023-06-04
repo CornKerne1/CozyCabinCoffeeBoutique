@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Steamworks;
 using TMPro;
 using UnityEngine;
 
@@ -53,5 +54,10 @@ public class InfoScreen : MonoBehaviour
             shopStatus.text = "CLOSED";
             shopStatus.color = Color.red;
         }
+    }
+    public void NameplateTriggered()
+    {
+        CSteamID steamId = SteamUser.GetSteamID();
+        SteamFriends.ActivateGameOverlayToUser("steamid", steamId);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using System.Threading.Tasks;
+using Steamworks;
 using TMPro;
 
 
@@ -12,7 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]private string scene;
     [SerializeField]private Canvas introLetterCanvas;
     [SerializeField] private TextMeshProUGUI namePlateTMP;
-    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,wwiseBank;
+    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,kickStarterPopup,wwiseBank;
     private GameMode _gameMode;
 
 
@@ -85,6 +86,22 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quitting");
     }
 
+    public void NameplateTriggered()
+    {
+        CSteamID steamId = SteamUser.GetSteamID();
+        SteamFriends.ActivateGameOverlayToUser("steamid", steamId);
+    }
+
+    public void PresentKickStarter()
+    {
+        Application.OpenURL("https://www.kickstarter.com/projects/polyblossom/cozy-cabin-coffee-boutique");
+    }
+
+    public void KillKickstarterPopup()
+    {
+        Destroy(kickStarterPopup);
+    }
+
     public void DeleteSaveFile()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
@@ -113,6 +130,8 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         director.stopped += ReadNote;
+        if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
+            kickStarterPopup.SetActive(true);
     }
 
     private void ReadNote(PlayableDirector aDirector)

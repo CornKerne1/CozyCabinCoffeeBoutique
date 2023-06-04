@@ -34,4 +34,9 @@ public class Fireflies : MonoBehaviour
 
         }
     }
+
+    private void OnDestroy()
+    {
+        DayNightCycle.TimeChanged -= SummonFireFlies;
+    }
 }
