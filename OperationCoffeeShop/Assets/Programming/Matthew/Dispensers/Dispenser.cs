@@ -102,7 +102,7 @@ public class Dispenser : Interactable
             ingredientContainer.pI = playerInteraction;
             ingredientContainer.inHand = true;
         }
-
+        ingredient.gameObject.transform.rotation = Quaternion.identity;
         playerInteraction.Carry(ingredient.gameObject);
         IfTutorial();
         if (quantity == 0 && !bottomless)

@@ -46,9 +46,6 @@ public class GameMode : MonoBehaviour,ISaveState
 
     [SerializeField] public GameObject sunLight;
 
-    [FormerlySerializedAs("GameOver")] [SerializeField]
-    private GameObject gameOver;
-
     static uint[] playingIds = new uint[50];
 
     [Header("Tutorial Stuffs")] public Tutorial Tutorial;
@@ -138,10 +135,6 @@ public class GameMode : MonoBehaviour,ISaveState
         gameModeData.isOpen = false;
         playerData.canJump = true;
         ShopClosed?.Invoke(this, EventArgs.Empty);
-        if (gameModeData.currentTime.Day > 2)
-        {
-            Instantiate(gameOver);
-        }
     }
     private void CheckForDelivery(object sender, EventArgs e)
     {
