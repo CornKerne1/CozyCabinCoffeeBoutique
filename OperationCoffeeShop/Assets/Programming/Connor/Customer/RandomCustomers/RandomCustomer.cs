@@ -34,7 +34,7 @@ public class RandomCustomer : Customer
 
     private void SpawnRandomCustomer()
     {
-        var customer = Instantiate(customerSet.customers[Random.Range(0, customerSet.customers.Count)]);
+        var customer = Instantiate(customerSet.customers[(int)Random.Range(0f, customerSet.customers.Count)]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
         customer.transform.parent = gameObject.transform; // do not refactor
