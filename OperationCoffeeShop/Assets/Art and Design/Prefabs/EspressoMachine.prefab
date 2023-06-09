@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 8777131485002065113}
   - component: {fileID: 3682925322637449387}
   - component: {fileID: 1363882251614154677}
+  - component: {fileID: 5593516617282732749}
   m_Layer: 3
   m_Name: EspressoMachine
   m_TagString: Untagged
@@ -230,6 +231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6855192479371621557}
+  - {fileID: 4788310720005441770}
   - {fileID: 3702418599609380861}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -253,6 +255,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0, z: 0}
   gameMode: {fileID: 0}
   outputTransform: {fileID: 6855192479371621557}
+  cupTransform: {fileID: 4788310720005441770}
 --- !u!114 &8777131485470598570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +275,7 @@ MonoBehaviour:
   breakablePrefab: {fileID: 0}
   smashColor: {r: 0, g: 0, b: 0, a: 0}
   smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
   hasOnScreenText: 0
   onScreenPrompt: {fileID: 0}
@@ -332,6 +336,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8472239, y: 0.25524753, z: 0.27632332}
   m_Center: {x: -0.026274648, y: -0.012505813, z: -0.16034925}
+--- !u!136 &5593516617282732749
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511743963125461092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.008
+  m_Height: 0.2
+  m_Direction: 2
+  m_Center: {x: 0.22, y: 0.037, z: 0.14}
 --- !u!1 &4047173336947782983
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +387,7 @@ Transform:
   - {fileID: 6477861829949211571}
   - {fileID: 3590430556507889326}
   m_Father: {fileID: 4321177642398608094}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &346347867206262872
 MeshFilter:
@@ -473,6 +491,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08500001, y: 0.030045956, z: 0.061148062}
   m_Center: {x: -0.0135, y: 0.014977265, z: -0.014925898}
+--- !u!1 &5161429544889586414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4788310720005441770}
+  m_Layer: 3
+  m_Name: CupTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4788310720005441770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161429544889586414}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.222, y: 0.0351, z: 0.1656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4321177642398608094}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &7253034579957541684
 GameObject:
   m_ObjectHideFlags: 0

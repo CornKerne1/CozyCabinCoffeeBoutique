@@ -15,9 +15,12 @@ public abstract class Machine : MonoBehaviour
     [FormerlySerializedAs("GameMode")] public GameMode gameMode;
 
     public Transform outputTransform;
-
+    [SerializeField] protected Transform cupTransform;
     private ObjectPool<GameObject> _pool;
     private int _i;
+    private bool _takeCup;
+    private IngredientContainer _cup;
+    
 
     private void Awake()
     {
@@ -43,10 +46,34 @@ public abstract class Machine : MonoBehaviour
             },
             gameObject => { gameObject.SetActive(false); }, Destroy, true, 100, 100);
     }
-
     private void Update()
     {
         Shake();
+    }
+    protected virtual async void OnTriggerEnter(Collider other)
+    {
+        if (!other.TryGetComponent<IngredientContainer>(out var iC)) return;
+        if (_takeCup)
+        {
+            await Task.Delay(1000);
+            _takeCup = false;
+            return;
+        }
+        _takeCup = true;
+        _cup = iC;
+        if(iC.playerInteraction)
+            iC.playerInteraction.DropCurrentObj();
+        else
+            gameMode.player.GetComponent<PlayerInteraction>().DropCurrentObj();
+        float elapsedTime = 0f;
+        iC.transform.position = cupTransform.position;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!other.TryGetComponent<IngredientContainer>(out var iC)) return;
+        if(iC==_cup)
+            _takeCup = true;
     }
 
     protected virtual void CheckTutorial()
