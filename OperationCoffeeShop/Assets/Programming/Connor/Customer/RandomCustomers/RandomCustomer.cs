@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -8,17 +9,14 @@ using Random = UnityEngine.Random;
 public class RandomCustomer : Customer
 {
     [SerializeField] private RandomNameSet nameSet;
-
     private string _customerName;
-
-
     public RandomCustomerSet customerSet;
 
 
-    public new void Awake()
+    public new async void Awake()
     {
 
-        SpawnRandomCustomer();
+        await SpawnRandomCustomer();
 
         _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
 
@@ -32,14 +30,35 @@ public class RandomCustomer : Customer
         base.Awake();
     }
 
-    private void SpawnRandomCustomer()
+    private async Task SpawnRandomCustomer()
     {
-        var customer = Instantiate(customerSet.customers[(int)Random.Range(0f, customerSet.customers.Count)]);
+        int index=await GetSpawningIndex();
+        var customer = Instantiate(customerSet.customers[ index]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
         customer.transform.parent = gameObject.transform; // do not refactor
         customer.transform.localPosition = position;
         customer.transform.localScale = scale;
+    }
+
+    private async Task<int> GetSpawningIndex()
+    {
+        int index = (int)Random.Range(0f, customerSet.customers.Count);
+        
+        if (customerSet.customerIndexInScene.Count == 0)
+        {
+            customerSet.customerIndexInScene.Add(index);
+        }
+        else
+        {
+            while(index==customerSet.customerIndexInScene[^1])
+            {
+                index = (int)Random.Range(0f, customerSet.customers.Count);
+                await Task.Yield();
+            }
+            customerSet.customerIndexInScene.Add(index);
+        }
+        return index;
     }
 
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -29,19 +30,18 @@ public class SpawnRegularCustomer : MonoBehaviour
         DayNightCycle.HourChanged -= UpdateDic;
     }
 
-    private IEnumerator Spawn(GameObject customer)
+    private async Task Spawn(GameObject customer)
     {
-        yield return new WaitForSeconds(Random.Range(1, 10));
+        await Task.Delay(Random.Range(1000, 10000));
         var transform1 = transform;       
         var customerAI = customer.GetComponent<CustomerAI>();
         customerAI.path = customerPath;
         Instantiate(customer, transform1.position, transform1.rotation);
         customer.GetComponent<CustomerInteractable>().regularCustomerAtlas = regularCustomerAtlas;
-
-        yield return new WaitForSeconds(2);
+        await Task.Delay(2000);
     }
 
-    private void UpdateDic(object sender, EventArgs e)
+    private async void UpdateDic(object sender, EventArgs e)
     {
         //Debug.Log("hour: " + gMD.currentTime.Hour);
         if (_currentDay != gMD.currentTime.Day)
@@ -84,7 +84,7 @@ public class SpawnRegularCustomer : MonoBehaviour
             _currentHour = gMD.currentTime.Hour;
             //Debug.Log("spawning regular customers");
             foreach (var customer in _Time_Customer[gMD.currentTime.Hour])
-                StartCoroutine(Spawn(customer));
+                await Spawn(customer);
         }
         else if (_Time_Customer.ContainsKey(gMD.currentTime.Hour))
         {

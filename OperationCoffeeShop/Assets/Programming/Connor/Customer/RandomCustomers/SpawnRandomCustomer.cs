@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SpawnRandomCustomer : MonoBehaviour
@@ -64,14 +65,14 @@ public class SpawnRandomCustomer : MonoBehaviour
         //Debug.Log("minutes since opening: " + _minutes +". Customers will spawn every: " + spawnInterval + " minutes. Customers remaining to spawn: "+ _maxCustomerCount);// uncommenting this will give the minutes since open, for bug testing only  
     }
 
-    private void SpawnCustomer()
+    private async void SpawnCustomer()
     {
-        StartCoroutine(CO_Spawn());
+        await Task_Spawn();
     }
 
-    private IEnumerator CO_Spawn()
+    private async Task Task_Spawn()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
+        await Task.Delay(UnityEngine.Random.Range(1000, 7000));
         var transform1 = transform;
         customer.GetComponent<CustomerAI>().path = customerPath;
         Instantiate(customer, transform1.position, transform1.rotation);
