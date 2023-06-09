@@ -20,7 +20,7 @@ public abstract class Machine : MonoBehaviour
     private int _i;
     private bool _takeCup;
     private IngredientContainer _cup;
-    
+
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public abstract class Machine : MonoBehaviour
     }
     protected virtual async void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent<IngredientContainer>(out var iC)) return;
+        if (!cupTransform||!other.TryGetComponent<IngredientContainer>(out var iC)) return;
         if (_takeCup)
         {
             await Task.Delay(1000);

@@ -16,7 +16,7 @@ public class RandomCustomer : Customer
     public new async void Awake()
     {
 
-        await SpawnRandomCustomer();
+        SpawnRandomCustomer();
 
         _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
 
@@ -30,9 +30,9 @@ public class RandomCustomer : Customer
         base.Awake();
     }
 
-    private async Task SpawnRandomCustomer()
+    private void SpawnRandomCustomer()
     {
-        int index=await GetSpawningIndex();
+        int index=GetSpawningIndex();
         var customer = Instantiate(customerSet.customers[ index]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
@@ -41,7 +41,7 @@ public class RandomCustomer : Customer
         customer.transform.localScale = scale;
     }
 
-    private async Task<int> GetSpawningIndex()
+    private int GetSpawningIndex()
     {
         int index = (int)Random.Range(0f, customerSet.customers.Count);
         
@@ -51,10 +51,11 @@ public class RandomCustomer : Customer
         }
         else
         {
-            while(index==customerSet.customerIndexInScene[^1])
+            if(index==customerSet.customerIndexInScene[^1])
             {
-                index = (int)Random.Range(0f, customerSet.customers.Count);
-                await Task.Yield();
+                index++;
+                if (index >= customerSet.customers.Count)
+                    index = index - 2;
             }
             customerSet.customerIndexInScene.Add(index);
         }
