@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class RandomCustomerSet : ScriptableObject
     public List<GameObject> customers = new List<GameObject>();
 
     [Header("Gameplay Management AKA DO NOT TOUCH")]
-    public List<int> customerIndexInScene;
+    public List<int> customerIndexInScene=new List<int>();
 
+    private void OnDestroy()
+    {
+        customerIndexInScene.Clear();
+    }
 }
