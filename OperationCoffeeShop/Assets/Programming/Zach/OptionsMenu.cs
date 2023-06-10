@@ -42,7 +42,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void ToggleFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
-        fullscreenLabel.text = Screen.fullScreen ? "Fullscreen" : "Windowed";
+        fullscreenLabel.text = !Screen.fullScreen ? "Fullscreen" : "Windowed";
     }
 
     public void ToggleVSync()
