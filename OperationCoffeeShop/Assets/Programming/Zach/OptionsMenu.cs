@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void ToggleFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
-        fullscreenLabel.text = Screen.fullScreen.ToString();
+        fullscreenLabel.text = Screen.fullScreen ? "Fullscreen" : "Windowed";
     }
 
     public void ToggleVSync()
@@ -111,11 +112,11 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         }
 
         await Task.Delay(50);
-        mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 10)).ToString();
+        mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 100)).ToString();
         mastLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.masterVol).ToString();
         musicLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.musicVol).ToString();
         sfxLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.sfxVol).ToString();
-        renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString();
+        renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString("0.00");
         fovLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.fov).ToString();
         TogglePerformance( gM.SaveSystem.SaveOptionsData.performanceMode);
     }
@@ -149,7 +150,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     {
         gM.SaveSystem.SaveOptionsData.renderScale = dir == "left" ? Mathf.Clamp(gM.SaveSystem.SaveOptionsData.renderScale-.05f,0f,2f) :  Mathf.Clamp(gM.SaveSystem.SaveOptionsData.renderScale+.05f,0f,2f);
         StartCoroutine(CO_PlayAudioWWisely());
-        renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString();
+        renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString("0.00");
         gM.SaveSystem.SaveOptionsData.renderScale = gM.SaveSystem.SaveOptionsData.renderScale;
         urpA.renderScale = gM.SaveSystem.SaveOptionsData.renderScale;
         Save(0);
@@ -201,9 +202,12 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     }
     public void SetMouse(string dir)
     {
-        gM.playerData.mouseSensitivityOptions = dir == "left" ? gM.playerData.mouseSensitivityOptions - .03f : gM.playerData.mouseSensitivityOptions + .03f;
-        if (gM.playerData.mouseSensitivityOptions < 0f) gM.playerData.mouseSensitivityOptions = 0f;
-        if (gM.playerData.mouseSensitivityOptions > 1f) gM.playerData.mouseSensitivityOptions = 1f;
+        float increment;
+        if (dir == "left")
+            increment = -.02f;
+        else
+            increment = .02f;
+        gM.playerData.mouseSensitivityOptions = Mathf.Clamp(gM.playerData.mouseSensitivityOptions+increment,0f,1f);
         StartCoroutine(CO_PlayAudioWWisely());
         gM.playerData.mouseSensitivityOptions = gM.playerData.mouseSensitivityOptions;
         mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 100)).ToString();

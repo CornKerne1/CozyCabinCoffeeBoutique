@@ -34,10 +34,16 @@ public class SaveSystem
                 var json = streamReader.ReadToEnd();
                 SaveOptionsData = JsonUtility.FromJson<SaveOptionsData>(json);
             }
-            if (SaveOptionsData.masterVol >= 1) return;
-            SaveOptionsData.masterVol = 40;
-            SaveOptionsData.musicVol = 40;
-            SaveOptionsData.sfxVol = 40;
+            if (SaveOptionsData.masterVol <= 1);
+            {
+                  SaveOptionsData.masterVol = 40;
+                  SaveOptionsData.musicVol = 40;
+                  SaveOptionsData.sfxVol = 40;
+            }
+            if(SaveOptionsData.fov <=1)
+            {
+                SaveOptionsData.fov = 70;
+            }
             InitializeRTCPValues();
         }
         else
