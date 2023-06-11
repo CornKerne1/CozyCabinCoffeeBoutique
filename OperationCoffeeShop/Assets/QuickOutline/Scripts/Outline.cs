@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [DisallowMultipleComponent]
 
@@ -78,6 +79,9 @@ public class Outline : MonoBehaviour {
   private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
 
+  public SortingGroup SortingGroup;
+  private String DefauleSortingLayerName;
+
   private bool needsUpdate;
 
   void Awake() {
@@ -97,9 +101,11 @@ public class Outline : MonoBehaviour {
 
     // Apply material properties immediately
     needsUpdate = true;
+    SortingGroup = gameObject.TryGetComponent<SortingGroup>(out var sortingGroup) ? sortingGroup : gameObject.AddComponent<SortingGroup>();
+    DefauleSortingLayerName = SortingGroup.sortingLayerName;
   }
 
-  void OnEnable() {
+  private void OnEnable() {
     foreach (var renderer in renderers) {
 
       // Append outline shaders
@@ -109,7 +115,12 @@ public class Outline : MonoBehaviour {
       materials.Add(outlineFillMaterial);
 
       renderer.materials = materials.ToArray();
+
+      
     }
+    SortingGroup.sortingLayerName = "WaterFall";
+    SortingGroup.sortingOrder = 10;
+
   }
 
   void OnValidate() {
@@ -129,7 +140,8 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void Update() {
+  void Update()
+  {
     if (needsUpdate) {
       needsUpdate = false;
 
@@ -148,6 +160,8 @@ public class Outline : MonoBehaviour {
 
       renderer.materials = materials.ToArray();
     }
+    SortingGroup.sortingLayerName = DefauleSortingLayerName;
+    SortingGroup.sortingOrder = 0;
   }
 
   void OnDestroy() {

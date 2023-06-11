@@ -170,10 +170,6 @@ public class CustomerInteractable : Interactable
     {
     }
 
-    public override void OnFocus()
-    {
-    }
-
     public void DeliverDrink(bool isGoodDrink)
     {
         /*gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
