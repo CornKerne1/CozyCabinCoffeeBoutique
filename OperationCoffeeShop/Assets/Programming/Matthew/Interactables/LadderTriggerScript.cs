@@ -7,7 +7,12 @@ using UnityEngine;
 public class LadderTriggerScript : MonoBehaviour
 {
     public GameObject owner;
-    
+    private Ladder _ladder;
+    private void Start()
+    {
+        _ladder =owner.GetComponent<Ladder>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.Equals(7))
@@ -18,14 +23,11 @@ public class LadderTriggerScript : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        Ladder ladder = owner.GetComponent<Ladder>();
-        if (other.gameObject.layer.Equals(7))
+        if (!other.CompareTag("Player")) return;
+        _ladder.canClimb = false;
+        if (_ladder.pI !=null &&_ladder.pI.playerData)
         {
-            ladder.canClimb = false;
-            if (ladder.pI !=null &&ladder.pI.playerData)
-            {
-                ladder.pI.playerData.isClimbing = false;
-            }
+            _ladder.pI.playerData.isClimbing = false;
         }
     }
 }

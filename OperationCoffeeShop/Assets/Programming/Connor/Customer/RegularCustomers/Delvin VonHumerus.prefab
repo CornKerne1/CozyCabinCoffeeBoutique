@@ -157,6 +157,7 @@ MonoBehaviour:
   hasOrdered: 0
   hasOrder: 0
   lookAtBool: 0
+  path: {fileID: 0}
 --- !u!114 &9203058362976567349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,9 +173,19 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 0
-  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
   breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  delivered: 0
+  dispenser: {fileID: 0}
+  objTypeShop: 0
+  temporaryCarnivalGameSolution: 0
   customerAI: {fileID: 1033753536987892517}
   canvas: {fileID: 4316614292114363163}
   canInteract: 1
@@ -208,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f186e194785b7488cff336ab2eef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerAnimator: {fileID: 0}
-  customerInteractable: {fileID: 0}
+  customerAnimator: {fileID: 3457827359822782938}
+  customerInteractable: {fileID: 9203058362976567349}
 --- !u!198 &1783690415919917191
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5057,6 +5068,11 @@ PrefabInstance:
 --- !u!4 &3361564991408877838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7363650070705192977, guid: 6457ca319760a3347978e14f42b54824, type: 3}
+  m_PrefabInstance: {fileID: 5230470500407931167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3457827359822782938 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -1771332349579734843, guid: 6457ca319760a3347978e14f42b54824, type: 3}
   m_PrefabInstance: {fileID: 5230470500407931167}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6943735135358996454

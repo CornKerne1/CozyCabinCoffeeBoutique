@@ -197,7 +197,6 @@ public class CustomerInteractable : Interactable
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gameMode.playerData.canMove = false;
-        gameMode.playerData.canMove = false;
         _customerData.customerAnimations.Talk();
         Speak();
     }
