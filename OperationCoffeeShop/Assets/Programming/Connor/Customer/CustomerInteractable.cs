@@ -176,9 +176,10 @@ public class CustomerInteractable : Interactable
 
     public void DeliverDrink(bool isGoodDrink)
     {
-        gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
+        /*gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
             (int)((customerAI.customerData.orderedDrinkData.price -
                    (int)customerAI.customerData.orderedDrinkData.price) * 10));
+        */
         if (regularCustomerAtlas != null)
         {
             dialogueManager.SetPortraitButtonAndName(customerAI.customerData);
