@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7899446826801284880}
   m_Layer: 2
   m_Name: Player Drinking
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 0}
   objectives: {fileID: 0}
+  _completedObjective: 0
 --- !u!1 &3256594200561549293
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392e6a10dd1e0b94eb7069f2e376cc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 4858794287443630838}
+  characterController: {fileID: 0}
   isGrounded: 1
   groundMask:
     serializedVersion: 2

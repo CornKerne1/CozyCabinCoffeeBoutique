@@ -101,6 +101,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (_playerInteraction.playerData.camMode)
             _playerInteraction.carriedObj.SetActive(true);
+        _gameMode.gameModeData.isOpen = false;
         _gameMode.Save(0);
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
         if(!wwiseBank)

@@ -318,6 +318,9 @@ public class PlayerInput : MonoBehaviour
     }
     private void OnDestroy()
     {
+        pD.canMove = true;
+        pD.neckClamp = 77.3f;
+        pD.canJump = true;
         CamModeEvent -= ToggleHud;
         PauseEvent -= _Pause;
         disabled = true;
