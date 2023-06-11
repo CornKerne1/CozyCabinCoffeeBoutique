@@ -75,8 +75,7 @@ public class GameMode : MonoBehaviour,ISaveState
             AkSoundEngine.PostEvent("PLAY_DREAMSCAPE_", gameObject);
         if(SteamManager.Initialized)
             playerData.playerName = SteamFriends.GetPersonaName();
-        else
-            Debug.LogError("SteamManager Initialization Failure");
+        
     }
 
     private void Update()
