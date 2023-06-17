@@ -206,13 +206,13 @@ public abstract class Interactable : MonoBehaviour,ISaveState
                 Destroy(rC.gameObject);
             }
         }
+        Destroy(gameObject);
         while (timeElapsed < 5f)
         {
             timeElapsed += Time.deltaTime;
             await Task.Yield();
         }
         DestroyImmediate(particle);
-        Destroy(gameObject);
     }
 
     private async Task LookAt(PlayerInteraction interaction)

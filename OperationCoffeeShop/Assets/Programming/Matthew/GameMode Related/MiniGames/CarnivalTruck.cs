@@ -20,7 +20,7 @@ public class CarnivalTruck : MonoBehaviour
     private float _currentSpacing;
     private GameMode _gameMode;
     private int _currentRound=1,_currentBrokenTargets=0;
-    private List<GameTarget> _gameTargets=new List<GameTarget>();
+    private List<GameObject> _gameTargets=new List<GameObject>();
     private List<Vector3> _targetPositions=new List<Vector3>();
     private static readonly int Start1 = Animator.StringToHash("Start");
     private Vector3 _originPlayerPosition=Vector3.zero;
@@ -126,7 +126,7 @@ public class CarnivalTruck : MonoBehaviour
                     obj.transform.localPosition = new Vector3(destination.x,destination.y-.6f,destination.z);
                     break;
             }
-            _gameTargets.Add(obj.GetComponentInChildren<GameTarget>());
+            _gameTargets.Add(obj);
             _targetPositions.Remove(destination);
             PresentTarget(obj,false);
         }
@@ -217,11 +217,17 @@ public class CarnivalTruck : MonoBehaviour
 
     private async void StartLossTimer()
     {
-        while (Time.time - _roundStartTime < 5000 * _currentRound)
+        while (Time.time - _roundStartTime < carnivalGameData[_currentGameType].roundTime * _currentRound)
         {
             await Task.Yield();
         }
+
+        foreach (GameObject gO in _gameTargets)
+        {
+            Destroy(gO);
+        }
         _roundLost = true;
+        await ResetGame();
     }
 
     private async Task ResetGame()
