@@ -2,7 +2,7 @@
 
 
 === main ===
-Uhhhh...
+- Uhhhh...
 * [A boutique with delicious coffee!]
 
 - Do you guys have like...coffee? 
