@@ -21,8 +21,8 @@ public class PhysicalIngredient : Interactable
 
     public override void OnInteract(PlayerInteraction interaction)
     {
-        IfTutorial();
         base.playerInteraction = interaction;
+        IfTutorial();
         base.playerInteraction.Carry(gameObject);
         inHand = true;
     }
