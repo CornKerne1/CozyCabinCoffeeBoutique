@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]private string scene;
     [SerializeField]private Canvas introLetterCanvas;
     [SerializeField] private TextMeshProUGUI namePlateTMP;
-    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,kickStarterPopup,wwiseBank, startButton,optionsButton,creditsButton,quitButton,saveButton;
+    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,kickStarterPopup,wwiseBank, startButton,optionsButton,creditsButton,quitButton,saveButton,steamButton;
     private GameMode _gameMode;
 
 
@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour
         creditsButton.SetActive(enable);
         quitButton.SetActive(enable);
         saveButton.SetActive(enable);
+        steamButton.SetActive(enable);
     }
 
     public async void LaunchGame()
