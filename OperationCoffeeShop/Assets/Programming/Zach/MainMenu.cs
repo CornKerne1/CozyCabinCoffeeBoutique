@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]private string scene;
     [SerializeField]private Canvas introLetterCanvas;
     [SerializeField] private TextMeshProUGUI namePlateTMP;
-    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,kickStarterPopup,wwiseBank;
+    [SerializeField]private GameObject optionsScreen,creditsScreen,playerNamePlate,kickStarterPopup,wwiseBank, startButton,optionsButton,creditsButton,quitButton,saveButton;
     private GameMode _gameMode;
 
 
@@ -37,6 +37,15 @@ public class MainMenu : MonoBehaviour
         director.Play();
     }
 
+    public void ToggleButtons(bool enable)
+    {
+        startButton.SetActive(enable);
+        optionsButton.SetActive(enable);
+        creditsButton.SetActive(enable);
+        quitButton.SetActive(enable);
+        saveButton.SetActive(enable);
+    }
+
     public async void LaunchGame()
     {
         if (_loading) return;
@@ -56,14 +65,18 @@ public class MainMenu : MonoBehaviour
     {
         if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
-        Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
+        var obj= Instantiate(optionsScreen, new Vector3(0, 0, 0), Quaternion.identity);
+        obj.transform.parent = transform;
+        ToggleButtons(false);
     }
 
     public void OpenCredits()
     {
         if (_gameStarted) return;
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
-        Instantiate(creditsScreen, new Vector3(0, 0, 0), Quaternion.identity);
+       var obj= Instantiate(creditsScreen,  new Vector3(0, 0, 0), Quaternion.identity);
+       obj.transform.parent = transform;
+       ToggleButtons(false);
     }
 
     public void CloseCredits()
