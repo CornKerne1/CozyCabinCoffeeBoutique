@@ -215,6 +215,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void CloseOptions()
     {
         AkSoundEngine.PostEvent("Play_MenuClick", gameObject);
+        transform.parent.transform.parent.GetComponent<MainMenu>().ToggleButtons(true);
         Destroy(optionsScreen);
     }
 
