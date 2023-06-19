@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -170,12 +171,17 @@ public class CustomerInteractable : Interactable
     {
     }
 
-    public void DeliverDrink(bool isGoodDrink)
+    public async void DeliverDrink(bool isGoodDrink)
     {
         /*gameObject.GetComponent<MoneyLauncher>().LaunchMoney((int)customerAI.customerData.orderedDrinkData.price,
             (int)((customerAI.customerData.orderedDrinkData.price -
                    (int)customerAI.customerData.orderedDrinkData.price) * 10));
         */
+        while (gameMode.playerData.inUI||gameMode.inMiniGame)
+        {
+            if (!gameMode) return;
+            await Task.Yield();
+        }
         if (regularCustomerAtlas != null)
         {
             dialogueManager.SetPortraitButtonAndName(customerAI.customerData);

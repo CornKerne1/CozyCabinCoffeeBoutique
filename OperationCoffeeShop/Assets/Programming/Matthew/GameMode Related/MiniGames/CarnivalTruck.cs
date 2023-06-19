@@ -36,6 +36,7 @@ public class CarnivalTruck : MonoBehaviour
     {
         _gameMode=  GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         await Task.Delay(500);
+        _gameMode.inMiniGame=true;
         SetGameType();
         AkSoundEngine.PostEvent("Play_TryYourLuck",_gameMode.gameObject);
         InitializeRound();
@@ -247,6 +248,7 @@ public class CarnivalTruck : MonoBehaviour
 
     private void OnDestroy()
     {
+        _gameMode.inMiniGame=false;
         AkSoundEngine.PostEvent("Stop_TryYourLuck",_gameMode.gameObject);
         Destroy(_currentDispenser);
         switch (carnivalGameData[_currentGameType].gameType)

@@ -40,6 +40,7 @@ public class GameMode : MonoBehaviour,ISaveState
     public DynamicBatcher dynamicBatcher;
 
     public SaveSystem SaveSystem;
+    public bool inMiniGame;
 
     private List<GameObject> _toBeDestroyed = new List<GameObject>();
 
