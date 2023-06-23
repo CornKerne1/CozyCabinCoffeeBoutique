@@ -2,13 +2,11 @@
 
 
 === main ===
-Oh, thank you! Thank you so much! This little latte just brightened my spirits enough to tackle more wand-selling today! 
+- Oh, thank you!! This is, uh really, really good!!
 * [I was wondering what was inside the briefcase.]
 
--I prefer to keep them stashed away and less...ostentatious. I’m Hella, by the way. Nice to have your understanding! 
+- S-sorry about the trouble, earlier...oh, anyway...thank you!! Have a good one!!
 * [Nice to meet you, Hella. Come back here anytime.]
-
--I definitely will! 
 -> DONE
 
 -> END

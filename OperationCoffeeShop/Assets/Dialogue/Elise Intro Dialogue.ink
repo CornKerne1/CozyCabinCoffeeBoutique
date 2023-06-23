@@ -2,10 +2,10 @@
 
 
 ==== main ===
-oh...er...hello there. #speaker:Hella #portait:neutral #layout:Left
+- ...oh am I next? H-hi! Ummm...uh...the...
 * [What can I get for you today?] 
 
--I never know what I’m in the mood for, but…uh…I want something creamy and bitter today.  
+-  ...er, s-sorry, I'm forgetting...could I have...OH! I remember now!
 * [Coming right up!]
 -> DONE
 -> END

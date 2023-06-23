@@ -2,7 +2,7 @@
 
 
 === main ===
-Hey, there friend!
+- Hey, there friend!
 * [Yeah. What's up?]
 * [I don't think I've seen you before...]
 
