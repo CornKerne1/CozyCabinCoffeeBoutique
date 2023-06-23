@@ -17,6 +17,12 @@ public class OpenSign : Interactable
     {
         base.Start();
         _animator = GetComponent<Animator>();
+        GameMode.ShopClosed += Close;
+    }
+
+    private void Close(object sender, EventArgs e)
+    {
+        _animator.SetBool(Open,false);
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -32,8 +38,5 @@ public class OpenSign : Interactable
             }
             
         }
-    }
-    public override void OnAltInteract(PlayerInteraction interaction)
-    {
     }
 }

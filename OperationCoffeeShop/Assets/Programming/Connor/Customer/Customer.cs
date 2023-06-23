@@ -19,7 +19,8 @@ public abstract class Customer : MonoBehaviour
     [FormerlySerializedAs("DesiredQuality")]
     public float desiredQuality = .5f;
 
-    [FormerlySerializedAs("ps")] [SerializeField]
+    [SerializeField]
+    private GameObject customerParticle;
     protected new ParticleSystem particleSystem;
 
     private ParticleSystemRenderer _particleSystemRenderer;
@@ -55,8 +56,9 @@ public abstract class Customer : MonoBehaviour
 
     public void OnReceivedDrink()
     {
+        var obj=Instantiate(customerParticle, transform.position, transform.rotation);
+        particleSystem = obj.GetComponent<ParticleSystem>(); 
         _particleSystemRenderer = particleSystem.GetComponent<ParticleSystemRenderer>();
-
         var quality =
             DrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
