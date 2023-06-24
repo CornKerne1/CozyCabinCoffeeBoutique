@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
@@ -54,7 +55,7 @@ public abstract class Customer : MonoBehaviour
 
     public abstract DrinkData GetDrinkOrder();
 
-    public void OnReceivedDrink()
+    public async void OnReceivedDrink()
     {
         var obj=Instantiate(customerParticle, transform.position, transform.rotation);
         particleSystem = obj.GetComponent<ParticleSystem>(); 
@@ -76,6 +77,13 @@ public abstract class Customer : MonoBehaviour
             gameObject);
         particleSystem.Play();
         Debug.Log("Drink Quality = " + quality);
+        float currentTime=0;
+        while (currentTime < 5)
+        {
+            currentTime += Time.deltaTime;
+            await Task.Yield();
+        }
+        Destroy(obj);
     }
 
     public bool isGoodDrink()
