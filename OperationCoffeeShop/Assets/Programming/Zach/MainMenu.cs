@@ -28,9 +28,20 @@ public class MainMenu : MonoBehaviour
     private bool _loading,_gameStarted;
 
     //Bellow is all of the functions for managing what buttons do in the main menu.
-    public void StartGame()
+    public async void StartGame()
     {
+        if (_loading) return;
         _gameStarted=true;
+        if (_gameMode.SaveSystem.SaveGameData.completedTutorial)
+        {
+            AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
+            await Task.Delay(200);
+            _loading = true;
+            _gameMode.playerData.inUI = false;
+            Destroy(wwiseBank);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.UnloadSceneAsync(1);
+        }
         AkSoundEngine.PostEvent("Play_MenuClick", _gameMode.gameObject);
         introLetterCanvas.enabled = false;
         _animator.SetTrigger(Start1);

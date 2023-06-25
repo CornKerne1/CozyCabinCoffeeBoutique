@@ -138,7 +138,7 @@ public class GameMode : MonoBehaviour,ISaveState
     }
     private void CheckForDelivery(object sender, EventArgs e)
     {
-        if (gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
+        if (SceneManager.GetSceneByBuildIndex(3) == SceneManager.GetActiveScene()&&gameModeData.currentTime.Hour == 6 && gameModeData.deliveryQueued)
         {
             StartCoroutine(CO_StartDelivery());
         }
