@@ -54,10 +54,13 @@ public class TrashRemover : MonoBehaviour
         currentTime = 0;
         await Task.Delay(20);
         Destroy(other);
-        if (_killParticleTask == null)
+        if (particle)
         {
-            _killParticleTask = KillParticle();
-            await _killParticleTask;
+            if (_killParticleTask == null)
+            {
+                _killParticleTask = KillParticle();
+                await _killParticleTask;
+            }
         }
     }
 

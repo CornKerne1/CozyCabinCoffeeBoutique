@@ -94,7 +94,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             {
                 foundRes = true;
 
-                _selectedResolution = 1;
+                _selectedResolution = i;
 
                 UpdateResLabel(); 
             }
@@ -145,6 +145,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public void UpdateResLabel()
     {
         resolutionLabel.text = resolutions[_selectedResolution].horizontal.ToString() + " x " + resolutions[_selectedResolution].vertical.ToString();
+        Screen.SetResolution(resolutions[_selectedResolution].horizontal,resolutions[_selectedResolution].vertical,Screen.fullScreenMode);
     }
     public void RenderScale(string dir)
     {

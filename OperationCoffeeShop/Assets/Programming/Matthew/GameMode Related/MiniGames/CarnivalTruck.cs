@@ -64,7 +64,8 @@ public class CarnivalTruck : MonoBehaviour
         GameObject obj = sender as GameObject;
         _currentBrokenTargets++;
         await PresentTarget(obj.transform.parent.gameObject, true);
-        DestroyImmediate(obj.transform.parent.gameObject);
+        if(obj)
+            DestroyImmediate(obj.transform.parent.gameObject);
     }
 
     private async Task HandlePlayerMovement(bool freezePlayer)
@@ -142,6 +143,7 @@ public class CarnivalTruck : MonoBehaviour
     {
         float degree;
         Quaternion targetRotation;
+        if (target == null) return;
         switch (carnivalGameData[_currentGameType].gameType)
         {
             case CarnivalGameData.GameType.TargetThrow:
@@ -150,19 +152,19 @@ public class CarnivalTruck : MonoBehaviour
                 const int maxIterations = 1000; // Maximum number of iterations
                 int iterations = 0; //
                 
-                while (!_destroyed&&Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f&& iterations < maxIterations)
+                while (target&&Quaternion.Angle(target.transform.rotation, targetRotation) > 0.005f&& iterations < maxIterations)
                 {
                     target.transform.rotation = Quaternion.Lerp(target.transform.rotation, targetRotation, 3 * Time.deltaTime);
                     await Task.Yield();
                     iterations++;
                 }
-                if (_destroyed) return;
+                if (!target) return;
                 target.transform.rotation = targetRotation;
                 break;
             case CarnivalGameData.GameType.RingToss:
                 degree = reverse ?target.transform.position.y -1 : target.transform.position.y+.7f;
                 iterations = 0;
-                while (!_destroyed&&Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
+                while (target&&Math.Abs(transform.position.y - degree) > .0001f&& iterations < maxIterations)
                 {
                     target.transform.position = new Vector3(target.transform.position.x,
                         Mathf.Lerp(target.transform.position.y, degree, Time.deltaTime * 3),
@@ -170,7 +172,7 @@ public class CarnivalTruck : MonoBehaviour
                     await Task.Yield();
                     iterations++;
                 }
-                if (_destroyed) return;
+                if (!target) return;
                 target.transform.position =
                     new Vector3(target.transform.position.x, degree, target.transform.position.z);
                 break;
@@ -268,6 +270,5 @@ public class CarnivalTruck : MonoBehaviour
                 RingTarget.RingToss-=IncrementBrokenTargets;
                 break;
         }
-        _destroyed = true;
     }
 }

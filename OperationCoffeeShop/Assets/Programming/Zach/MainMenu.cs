@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -143,20 +144,24 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void Start()
+    private async void Start()
     {
         AkSoundEngine.PostEvent("Play_TitleTheme", this.gameObject);
         _animator = GetComponent<Animator>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        _gameMode.playerData.inUI = true;
         namePlateTMP = playerNamePlate.GetComponent<TextMeshProUGUI>();
-        namePlateTMP.text = _gameMode.playerData.playerName ?? null;
         InitializeHudAndCursor();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         director.stopped += ReadNote;
         if(_gameMode.SaveSystem.SaveGameData.completedTutorial)
             kickStarterPopup.SetActive(true);
+        while (!_gameMode.playerData)
+        {
+            await Task.Yield();
+        }
+        _gameMode.playerData.inUI = true;
+        namePlateTMP.text = _gameMode.playerData.playerName ?? null;
     }
 
     private void ReadNote(PlayableDirector aDirector)
@@ -164,5 +169,10 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         introLetterCanvas.enabled = true;
         introLetterAnimator.enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        director.stopped -= ReadNote;
     }
 }
