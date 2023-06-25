@@ -9,20 +9,19 @@ public class OpenSign : Interactable
     // Start is called before the first frame update
     private PlayerInteraction _playerInteraction;
     
-    private Animator _animator;
+    [SerializeField]private Animator animator;
     [SerializeField] private Transform openTrans;
     private static readonly int Open = Animator.StringToHash("Open");
 
     public override void Start()
     {
         base.Start();
-        _animator = GetComponent<Animator>();
         GameMode.ShopClosed += Close;
     }
 
     private void Close(object sender, EventArgs e)
     {
-        _animator.SetBool(Open,false);
+        animator.SetBool(Open,false);
     }
 
     public override void OnInteract(PlayerInteraction interaction)
@@ -33,10 +32,15 @@ public class OpenSign : Interactable
             AkSoundEngine.PostEvent("Play_buttonpress", this.gameObject);
             if (gameMode.gameModeData.isOpen)
             {
-                _animator.SetBool(Open,true);
+                animator.SetBool(Open,true);
                 gameMode.player.GetComponent<PlayerMovement>().TeleportPlayer(openTrans.position);
             }
             
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameMode.ShopClosed -= Close;
     }
 }

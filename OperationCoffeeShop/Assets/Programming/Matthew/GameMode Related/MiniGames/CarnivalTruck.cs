@@ -69,6 +69,10 @@ public class CarnivalTruck : MonoBehaviour
 
     private async Task HandlePlayerMovement(bool freezePlayer)
     {
+        while (_gameMode.playerData.inUI)
+        {
+            await Task.Yield();
+        }
         var playerMovement = _gameMode.player.GetComponent<PlayerMovement>();
         if (freezePlayer)
         {
@@ -131,7 +135,7 @@ public class CarnivalTruck : MonoBehaviour
             _targetPositions.Remove(destination);
             PresentTarget(obj,false);
         }
-        HandlePlayerMovement(true);
+        await HandlePlayerMovement(true);
         await HandleRoundUI();
     }
     public async Task PresentTarget(GameObject target, bool reverse)
@@ -239,6 +243,10 @@ public class CarnivalTruck : MonoBehaviour
             await Task.Delay(1000);
             await HandlePlayerMovement(false);
             Destroy(gameObject);
+        }
+        foreach (GameObject gO in _gameTargets)
+        {
+            Destroy(gO);
         }
         _gameTargets.Clear();
         _targetPositions.Clear();

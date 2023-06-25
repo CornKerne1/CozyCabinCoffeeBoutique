@@ -42,4 +42,9 @@ public class Gate : MonoBehaviour
         }
         if(!open)gate.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        GameMode.ShopClosed -= Closed;
+    }
 }
