@@ -127,6 +127,16 @@ public class MainMenu : MonoBehaviour
     {
         Destroy(kickStarterPopup);
     }
+    
+    public async void PlayerFeedbackTriggered()
+    {
+        if (_loading) return;
+        AkSoundEngine.PostEvent("Stop_TitleTheme", this.gameObject);
+        await Task.Delay(200);
+        _loading = true;
+        Destroy(wwiseBank);
+        SceneManager.LoadSceneAsync(4);
+    }
 
     public void DeleteSaveFile()
     {
