@@ -44,6 +44,14 @@ public class SaveSystem
             {
                 SaveOptionsData.fov = 70;
             }
+
+            if (SaveOptionsData.mouseSensitivity < .001f)
+                SaveOptionsData.mouseSensitivity = .4f;
+            if (SaveOptionsData.mouseSensitivityY < 2)
+                SaveOptionsData.mouseSensitivityY = 50;
+            _gameMode.playerData.mouseSensitivityOptions = SaveOptionsData.mouseSensitivity; 
+            _gameMode.playerData.mouseSensitivityY = SaveOptionsData.mouseSensitivityY; 
+                
             InitializeRTCPValues();
         }
         else
@@ -53,7 +61,10 @@ public class SaveSystem
             SaveOptionsData.sfxVol = 40;
             SaveOptionsData.fov = 70;
             SaveOptionsData.renderScale = 1;
-            _gameMode.playerData.mouseSensitivityOptions = .4f;
+            SaveOptionsData.mouseSensitivity = .4f;
+            _gameMode.playerData.mouseSensitivityOptions = SaveOptionsData.mouseSensitivity;
+            SaveOptionsData.mouseSensitivityY = 50;
+            _gameMode.playerData.mouseSensitivityY = SaveOptionsData.mouseSensitivityY;
             InitializeRTCPValues();
         }
     }

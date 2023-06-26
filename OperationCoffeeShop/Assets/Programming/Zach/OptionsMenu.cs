@@ -18,7 +18,7 @@ public class OptionsMenu : MonoBehaviour, ISaveState
     public List<ResItem> resolutions = new List<ResItem>();
     private int _selectedResolution;
 
-    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel,vsyncLabel,mastLabel, musicLabel, sfxLabel,mouseLabel,renderLabel,fovLabel;
+    public TMP_Text resolutionLabel,performanceLabel,fullscreenLabel,vsyncLabel,mastLabel, musicLabel, sfxLabel,mouseLabel,mouseYLabel,renderLabel,fovLabel;
     private bool _playing;
 
     public UniversalRenderPipelineAsset urpA;
@@ -118,6 +118,8 @@ public class OptionsMenu : MonoBehaviour, ISaveState
         sfxLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.sfxVol).ToString();
         renderLabel.text = gM.SaveSystem.SaveOptionsData.renderScale.ToString("0.00");
         fovLabel.text = Mathf.RoundToInt(gM.SaveSystem.SaveOptionsData.fov).ToString();
+        mouseLabel.text = mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 100)).ToString();
+        mouseYLabel.text = ((int)(gM.playerData.mouseSensitivityY)).ToString();
         TogglePerformance( gM.SaveSystem.SaveOptionsData.performanceMode);
     }
 
@@ -208,10 +210,22 @@ public class OptionsMenu : MonoBehaviour, ISaveState
             increment = -.02f;
         else
             increment = .02f;
-        gM.playerData.mouseSensitivityOptions = Mathf.Clamp(gM.playerData.mouseSensitivityOptions+increment,0f,1f);
+        gM.playerData.mouseSensitivityOptions = Mathf.Clamp(gM.playerData.mouseSensitivityOptions+increment,0.001f,1f);
         StartCoroutine(CO_PlayAudioWWisely());
-        gM.playerData.mouseSensitivityOptions = gM.playerData.mouseSensitivityOptions;
+        gM.SaveSystem.SaveOptionsData.mouseSensitivity = gM.playerData.mouseSensitivityOptions;
         mouseLabel.text = ((int)(gM.playerData.mouseSensitivityOptions * 100)).ToString();
+    }
+    public void SetMouseY(string dir)
+    {
+        float increment;
+        if (dir == "left")
+            increment = -2;
+        else
+            increment = 2;
+        gM.playerData.mouseSensitivityY = Mathf.Clamp(gM.playerData.mouseSensitivityY+increment,2,100);
+        StartCoroutine(CO_PlayAudioWWisely());
+        gM.SaveSystem.SaveOptionsData.mouseSensitivityY = gM.playerData.mouseSensitivityY;
+        mouseYLabel.text = ((int)(gM.playerData.mouseSensitivityY)).ToString();
     }
     public void CloseOptions()
     {

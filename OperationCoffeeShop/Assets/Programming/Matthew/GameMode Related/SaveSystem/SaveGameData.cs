@@ -36,6 +36,6 @@ public class RespawbableData
 [Serializable]
 public class SaveOptionsData
 {
-   public float masterVol,musicVol,sfxVol,renderScale,fov;
+   public float masterVol,musicVol,sfxVol,renderScale,fov,mouseSensitivity,mouseSensitivityY;
    public bool performanceMode;
 }
