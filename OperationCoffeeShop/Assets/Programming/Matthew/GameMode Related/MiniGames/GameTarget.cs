@@ -22,7 +22,14 @@ public class GameTarget : Interactable
         await Task.Delay(10);
         AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
-        await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
+        try
+        {
+            await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
+        }
+        catch (Exception e)
+        {
+            //
+        }
         TargetBroken?.Invoke(this.gameObject, EventArgs.Empty);
         var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
         particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;

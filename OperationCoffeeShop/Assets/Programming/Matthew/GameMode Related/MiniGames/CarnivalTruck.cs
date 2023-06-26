@@ -75,6 +75,7 @@ public class CarnivalTruck : MonoBehaviour
             await Task.Yield();
         }
         var playerMovement = _gameMode.player.GetComponent<PlayerMovement>();
+        if (gameObject == null) return;
         if (freezePlayer)
         {
             var playerInput = _gameMode.playerInput;

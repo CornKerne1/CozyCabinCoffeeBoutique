@@ -11,28 +11,26 @@ public class DynamicBatcher : MonoBehaviour
     private readonly List<GameObject> _foliageObjects = new List<GameObject>(),_addedObjects=new List<GameObject>();
     private readonly Dictionary<Material, List<GameObject>> _foliageByMaterial = new Dictionary<Material, List<GameObject>>();
     private bool hasGrown = false;
-
-    private void Awake()
-    {
-        // Find all objects with the foliage tag
-        _foliageObjects.AddRange(GameObject.FindGameObjectsWithTag(foliageTag));
-    }
+    
 
     private async void Start()
     {
-        BatchGameObjects(_foliageObjects);
-        
+        _foliageObjects.AddRange(GameObject.FindGameObjectsWithTag(foliageTag));
+        await BatchGameObjects(_foliageObjects);//
     }
 
     public async Task AddForBatching(GameObject batchedObj)
     {
         _addedObjects.Add(batchedObj);
+        
         foreach (var trans in batchedObj.transform.GetChildren(false))
         {
             _addedObjects.Add(trans.gameObject);
         }
-        if (!await BusyListGrowthAsync(3, _addedObjects))
-            BatchGameObjects(_addedObjects);
+
+        bool condition = await BusyListGrowthAsync(3, _addedObjects);
+        if (!condition)
+           await BatchGameObjects(_addedObjects);
 
     }
     private async Task<bool> BusyListGrowthAsync(int framesToWait, List<GameObject> myList)
