@@ -93,4 +93,14 @@ public class Radio : Interactable
         base.OnDrop();
         lookAtPlayer = false;
     }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        foreach (var rC in radioChannels)
+        {
+            rC.StopChannel();
+            Destroy(rC.gameObject);
+        }
+    }
 }

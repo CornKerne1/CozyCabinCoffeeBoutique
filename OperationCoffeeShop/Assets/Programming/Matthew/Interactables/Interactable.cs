@@ -180,7 +180,14 @@ public abstract class Interactable : MonoBehaviour,ISaveState
             AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
         }
         _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
-        await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
+        try
+        {
+            await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
+        }
+        catch (Exception e)
+        {
+            //
+        }
         var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
         particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;
         particle.GetComponent<ParticleSystemRenderer>().material.SetColor("_EmissionColor", smashEmissionColor);
@@ -198,14 +205,6 @@ public abstract class Interactable : MonoBehaviour,ISaveState
         foreach (var rE in renderers)
             rE.enabled = false;
         await Task.Delay(20);
-        if (TryGetComponent<Radio>(out var r))
-        {
-            foreach (var rC in r.radioChannels)
-            {
-                rC.StopChannel();
-                Destroy(rC.gameObject);
-            }
-        }
         Destroy(gameObject);
         while (timeElapsed < 5f)
         {
@@ -252,7 +251,7 @@ public abstract class Interactable : MonoBehaviour,ISaveState
     {
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         SaveSystem.SaveGameEvent += OnSaveEvent;
     }
