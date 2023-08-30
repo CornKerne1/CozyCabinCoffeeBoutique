@@ -9,83 +9,79 @@ public class ComputerShop : MonoBehaviour
     private GameMode _gameMode;
     public CoffeeBankTM coffeeBankTM;
 
-    public TextMeshProUGUI balance;
+    private TextMeshProUGUI _balance,_bankUpdate;
+    public GameObject balance,bankUpdate;
     public string balanceString;
-    public TextMeshProUGUI bankUpdate;
     public string bankSuccessString;
     public string bankFailureString;
-
-
-    public float coffeePrice = 12;
-
-    [FormerlySerializedAs("coffeeQuanitiy")]
-    public int coffeeQuantity = 15;
-
-    public ObjectHolder coffeeType;
-    public float espressoPrice = 15;
-    public int espressoQuantity = 15;
-    public ObjectHolder espressoType;
-    public float milkPrice = 7;
-    public int milkQuantity = 10;
-    public float sugarPrice = 10;
-    public int sugarQuantity = 25;
-    public ObjectHolder sugarType;
+    public float coffeePrice = 12, espressoPrice = 15,milkPrice = 7,sugarPrice = 10,cameraPrice = 100,pictureFramePrice=15;
+    public int coffeeQuantity = 15,espressoQuantity = 15,sugarQuantity = 25;
+    public ObjectHolder coffeeType,espressoType,sugarType;
 
 
     public static event EventHandler SpendMoney;
     public static event EventHandler DepositItems;
 
 
-    private Queue<string> _orders;
+    private Queue<DeliveryManager.ObjType> _orders;
 
     // Start is called before the first frame update
     private void Start()
     {
-        _orders = new Queue<string>();
-
+        _orders = new Queue<DeliveryManager.ObjType>();
         _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
-        coffeeBankTM = _gameMode.gameObject.GetComponent<CoffeeBankTM>();
+        coffeeBankTM = _gameMode.CoffeeBankTM;
         CoffeeBankTM.SuccessfulWithdrawal += EnsureWithdrawal; //
-        balance.text = balanceString + coffeeBankTM.moneyInBank;
-        bankUpdate.text = "";
+        _balance=balance.GetComponent<TextMeshProUGUI>();
+        _bankUpdate=bankUpdate.GetComponent<TextMeshProUGUI>();
+        _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+        _bankUpdate.text = "";
     }
 
     public void CloseShop()
     {
-        _orders = new Queue<string>();
-        _gameMode.pD.canMove = true;
-        _gameMode.pD.canMove = true;
+        _orders = new Queue<DeliveryManager.ObjType>();
+        _gameMode.playerInput.ToggleMovement();
+        _gameMode.playerData.inUI = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        this.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
-    public void BuyIngredient(string ingredient)
+    public void BuyIngredient(string i)
     {
+        DeliveryManager.ObjType.TryParse<DeliveryManager.ObjType>(i,out var ingredient);
+        _orders.Enqueue(ingredient);
         switch (ingredient)
         {
-            case "Coffee":
-                _orders.Enqueue("Coffee");
+            case DeliveryManager.ObjType.Coffee:
                 SpendMoney?.Invoke(coffeePrice, EventArgs.Empty);
                 break;
 
-            case "Milk":
-                _orders.Enqueue("Milk");
+            case DeliveryManager.ObjType.Milk:
                 SpendMoney?.Invoke(milkPrice, EventArgs.Empty);
                 break;
 
-            case "Espresso":
-                _orders.Enqueue("Espresso");
+            case DeliveryManager.ObjType.Espresso:
                 SpendMoney?.Invoke(espressoPrice, EventArgs.Empty);
                 break;
 
-            case "Sugar":
-                _orders.Enqueue("Sugar");
-                Debug.Log("buy ingredient sugar " + _orders.Count);
-
+            case DeliveryManager.ObjType.Sugar:
                 SpendMoney?.Invoke(sugarPrice, EventArgs.Empty);
                 break;
+            case DeliveryManager.ObjType.Camera:
+                SpendMoney?.Invoke(cameraPrice, EventArgs.Empty);
+                break;
+            case DeliveryManager.ObjType.PictureFrame:
+                SpendMoney?.Invoke(pictureFramePrice, EventArgs.Empty);
+                break;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+        print(_gameMode.gameModeData.moneyInBank);
     }
 
     private void EnsureWithdrawal(object sender, EventArgs e)
@@ -93,38 +89,40 @@ public class ComputerShop : MonoBehaviour
         if (_orders.Count <= 0) return;
         if ((bool)sender)
         {
-            balance.text = balanceString + coffeeBankTM.moneyInBank;
-            bankUpdate.color = Color.green;
+            _balance.text = balanceString + _gameMode.gameModeData.moneyInBank;
+            _bankUpdate.color = Color.green;
             var ingredient = _orders.Dequeue();
-            bankUpdate.text = bankSuccessString + ingredient;
+            _bankUpdate.text = bankSuccessString + ingredient.ToString();
 
             switch (ingredient)
             {
-                case "Coffee":
-                    Tuple<ObjectHolder, int> coffee = new Tuple<ObjectHolder, int>(coffeeType, coffeeQuantity);
-                    DepositItems?.Invoke(coffee, EventArgs.Empty);
+                case DeliveryManager.ObjType.Coffee:
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, coffeeQuantity));
                     break;
 
-                case "Milk":
-                    Tuple<Ingredients, int> milk = new Tuple<Ingredients, int>(Ingredients.Milk, milkQuantity);
-                    DepositItems?.Invoke(milk, EventArgs.Empty);
+                case DeliveryManager.ObjType.Milk:
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
 
-                case "Espresso":
-                    Tuple<ObjectHolder, int> espresso = new Tuple<ObjectHolder, int>(espressoType, espressoQuantity);
-                    DepositItems?.Invoke(espresso, EventArgs.Empty);
+                case DeliveryManager.ObjType.Espresso:
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, espressoQuantity));
                     break;
 
-                case "Sugar":
-                    Tuple<ObjectHolder, int> sugar = new Tuple<ObjectHolder, int>(sugarType, sugarQuantity);
-                    DepositItems?.Invoke(sugar, EventArgs.Empty);
+                case DeliveryManager.ObjType.Sugar:
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, sugarQuantity));
+                    break;
+                case DeliveryManager.ObjType.Camera:
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
+                    break;
+                case DeliveryManager.ObjType.PictureFrame:
+                    _gameMode.deliveryManager.AddToDelivery(new DeliveryPackage(ingredient, 0));
                     break;
             }
         }
         else
         {
-            bankUpdate.color = Color.red;
-            bankUpdate.text = bankFailureString + _orders.Dequeue();
+            _bankUpdate.color = Color.red;
+            _bankUpdate.text = bankFailureString + _orders.Dequeue();
         }
     }
 

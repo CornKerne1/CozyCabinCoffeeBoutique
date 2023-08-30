@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3647330371588398719}
   m_RootOrder: 1
@@ -103,6 +104,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3647330371588398719}
   m_RootOrder: 2
@@ -178,6 +180,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3647330371588398719}
   m_RootOrder: 3
@@ -256,6 +259,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1.764}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4034237166756372040}
   - {fileID: 6065402770315145938}
@@ -312,7 +316,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!222 &4006027593407321608
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -363,10 +367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b6fabcb3604f745a4212f0fd319f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sugar: {fileID: 21300000, guid: c82fc137c1361714ba8da58e51f9cc5c, type: 3}
-  BrewedCoffee: {fileID: 21300000, guid: b561dc1435574c243a08111240f59f07, type: 3}
-  Milk: {fileID: 21300000, guid: fd0f92d9254daa84abb962685b98fd68, type: 3}
-  Esspresso: {fileID: 21300000, guid: 37984fb4afad05b439a30ba8947f00ed, type: 3}
+  sugar: {fileID: 21300000, guid: c82fc137c1361714ba8da58e51f9cc5c, type: 3}
+  brewedCoffee: {fileID: 21300000, guid: b561dc1435574c243a08111240f59f07, type: 3}
+  milk: {fileID: 21300000, guid: fd0f92d9254daa84abb962685b98fd68, type: 3}
+  esspresso: {fileID: 21300000, guid: 37984fb4afad05b439a30ba8947f00ed, type: 3}
   pivot: {fileID: 0}
 --- !u!1 &7249996005519297406
 GameObject:
@@ -396,6 +400,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3647330371588398719}
   m_RootOrder: 0

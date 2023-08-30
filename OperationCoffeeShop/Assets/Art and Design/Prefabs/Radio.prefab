@@ -135,15 +135,25 @@ MonoBehaviour:
   gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
   isBreakable: 1
-  breakableSoundEngineEnvent: PLAY_RADIODROP
+  breakableSoundEngineEvent: Play_RadioDrop
   breakablePrefab: {fileID: 798202446625055978, guid: a599ed26e446f2e44a38efeaa3b3f274, type: 3}
+  smashColor: {r: 1, g: 0.7085979, b: 0.2396226, a: 0.27058825}
+  smashEmissionColor: {r: 1, g: 0.76367563, b: 0.44716978, a: 0.05490196}
+  carryIgnoreChildList: []
   playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  delivered: 0
+  dispenser: {fileID: 0}
+  objTypeShop: 0
   sT: {fileID: 6075466753525144413}
   eT: {fileID: 4889863407384078025}
   radioChannel: {fileID: 5047478299777401921, guid: 9b6905a254aa80349b5c7a0433fd7f96, type: 3}
   currentChannel: 0
   radioChannels: []
   radioDial: {fileID: 7456920106666707917}
+  numberOfChannels: 9
 --- !u!64 &3743816757022874656
 MeshCollider:
   m_ObjectHideFlags: 0

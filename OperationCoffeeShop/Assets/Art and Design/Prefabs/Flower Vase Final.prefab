@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 434202113492210915}
   - component: {fileID: 3578465118299773766}
   - component: {fileID: 1607138936980942732}
+  - component: {fileID: 77043728}
+  - component: {fileID: 8663170547443611362}
   m_Layer: 0
   m_Name: Flower Vase Final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &434202113492210915
 Transform:
@@ -25,9 +27,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958501636997451353}
-  m_LocalRotation: {x: -0, y: 0.40887955, z: -0, w: 0.91258836}
+  m_LocalRotation: {x: 0, y: 0.40888008, z: 0, w: 0.9125882}
   m_LocalPosition: {x: -4.0623064, y: -9.626, z: 0.17954628}
   m_LocalScale: {x: 19.033, y: 19.033, z: 19.033}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -39,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958501636997451353}
-  m_Mesh: {fileID: 2816119944088101400, guid: 331e934d459201f47aec7da2ee2f3692, type: 3}
+  m_Mesh: {fileID: 6544073289171491886, guid: 331e934d459201f47aec7da2ee2f3692, type: 3}
 --- !u!23 &1607138936980942732
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -60,13 +64,14 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2617b5087fd1e2c47ab7edc01c08b604, type: 2}
+  - {fileID: 2100000, guid: 7ac3bc5eb1c861645bc17ef9c2fc4626, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.1
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -81,3 +86,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &77043728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958501636997451353}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.012, y: 0.04, z: 0.015}
+  m_Center: {x: 4.4703477e-11, y: 0.02, z: 0.0014999998}
+--- !u!65 &8663170547443611362
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958501636997451353}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.012, y: 0.04, z: 0.015}
+  m_Center: {x: 4.4703477e-11, y: 0.02, z: 0.0014999998}

@@ -6,6 +6,7 @@ public class MachineInteraction : Interactable
 {
     protected Machine Machine;
     public MachineData mD;
+    private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
     public override void Start()
     {
@@ -13,7 +14,7 @@ public class MachineInteraction : Interactable
         Machine = transform.root.GetComponentInChildren<Machine>();
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
         switch (mD.machineType)
         {
@@ -38,6 +39,10 @@ public class MachineInteraction : Interactable
                 }
 
                 return;
+            case MachineData.Type.PlayCube:
+                GetComponentInParent<PlayCube>().OnInteract(interaction);
+                break;
+            case MachineData.Type.Sink:
             case MachineData.Type.Grinder:
             default:
                 throw new ArgumentOutOfRangeException();
@@ -46,6 +51,7 @@ public class MachineInteraction : Interactable
 
     private void IfTutorial()
     {
+        
         if (gameMode.gameModeData.inTutorial)
         {
             gameMode.Tutorial.NextObjective(gameObject);

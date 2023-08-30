@@ -2,11 +2,10 @@
 
 
 === main ===
-What's the difference between milk and coffee with milk?
-* [ Well...one comes straight from the cow...while the other requires coffee beans mixed with milk.] 
-* [Coffee with milk is like adult apple juice.]
+- A friend recommended this drink called a la...latte? Not sure how you say it.
+* [ Next.] 
 
-- Oh...is it worth trying?
+- Oh you have it? Is it worth trying?
 * [Only at the Cozy Cabin!]
 -> DONE
 

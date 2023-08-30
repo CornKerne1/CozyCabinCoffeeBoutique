@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3343925050217572054}
   - component: {fileID: 1857692551661791603}
   - component: {fileID: 4477473862772088249}
+  - component: {fileID: 1495050822844338506}
   m_Layer: 0
   m_Name: Large Plastic Trash Can
   m_TagString: Untagged
@@ -25,9 +26,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2676214262834134124}
-  m_LocalRotation: {x: 0.000000046755048, y: -0.8188827, z: -0.00000006670646, w: 0.57396096}
+  m_LocalRotation: {x: 0, y: -0.81888163, z: 0, w: 0.5739625}
   m_LocalPosition: {x: -2.133, y: -9.873, z: -20.309}
-  m_LocalScale: {x: 19.824474, y: 19.824474, z: 19.824474}
+  m_LocalScale: {x: 13, y: 13, z: 13}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -59,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0832406cbcfaa374ea6bb453c9984bc3, type: 2}
+  - {fileID: 2100000, guid: 3d12c21ef8ef2f74bb9586a3bb6f809c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1495050822844338506
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676214262834134124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8654223254392313143, guid: 6487cc8c8d1537f45b9f38456ad5c3d7, type: 3}

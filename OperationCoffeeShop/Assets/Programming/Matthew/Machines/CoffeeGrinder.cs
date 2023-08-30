@@ -44,6 +44,7 @@ public class CoffeeGrinder : Machine
     {
         if (gameMode.gameModeData.inTutorial)
         {
+            Debug.Log("NextTING");
             gameMode.Tutorial.NextObjective(gameObject);
         }
     }

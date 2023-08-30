@@ -1,135 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RadioChannel: MonoBehaviour
+public class RadioChannel : MonoBehaviour
 {
     public int channel;
     public string eventName;
     public Radio radio;
+
     public void StartChannel()
     {
-        switch (channel)
+        eventName = channel switch
         {
-            case 0:
-                eventName = "Play_AfterHours";
-                break;
-            case 1 :
-                eventName = "Play_BossaNova";
-                break;
-            case 2:
-                eventName = "Play_BreakingLoose";
-                break;
-            case 3 :
-                eventName = "Play_ExquisiteTaste";
-                break;
-            case 4:
-                eventName = "Play_NeuroticBone";
-                break;
-            case 5 :
-                eventName = "Play_RoastBlend";
-                break;
-            case 6:
-                eventName = "Play_SomedayWakeUp";
-                break;
-            case  7:
-                eventName = "Play_SpashedSea";
-                break;
-            case 8:
-                eventName = "Play_TakingShape";
-                break;
-            case 9 :
-                eventName = "Play_RedPandaTheme";
-                break;
-            case 10 :
-                eventName = "Play_TellingStories";
-                break;
-        }
+            0 => "Play_TellingStories",
+            1 => "Play_BossaNova",
+            2 => "Play_BreakingLoose",
+            3 => "Play_ExquisiteTaste",
+            4 => "Play_NeuroticBone",
+            5 => "Play_RoastBlend",
+            6 => "Play_SomedayWakeUp",
+            7 => "Play_SpashedSea",
+            8 => "Play_TakingShape",
+            9 => "Play_RedPandaTheme",
+            _ => eventName
+        };
         PostSoundEvent(eventName);
         StopChannel();
     }
+
     public void PlayChannel()
     {
-        switch (channel)
+        eventName = channel switch
         {
-            case 0:
-                eventName = "VolumeOne_AfterHours";//
-                break;
-            case 1 :
-                eventName = "VolumeOne_BossaNova";
-                break;
-            case 2:
-                eventName = "VolumeOne_BreakingLoose";
-                break;
-            case 3 :
-                eventName = "VolumeOne_ExquisiteTaste";
-                break;
-            case 4:
-                eventName = "VolumeOne_NeuroticBone";
-                break;
-            case 5 :
-                eventName = "VolumeOne_RoastBlend";
-                break;
-            case 6:
-                eventName = "VolumeOne_SomedayWakeUp";
-                break;
-            case  7:
-                eventName = "VolumeOne_SpashedSea";
-                break;
-            case 8:
-                eventName = "VolumeOne_TakingShape";
-                break;
-            case 9 :
-                eventName = "VolumeOne_RedPandaTheme";
-                break;
-            case 10 :
-                eventName = "VolumeOne_TellingStories";
-                break;
-        }
-        PostSoundEvent(eventName);
-    }
-    public void StopChannel()
-    {
-        switch (channel)
-        {
-            case 0:
-                eventName = "VolumeZero_AfterHours";
-                break;
-            case 1 :
-                eventName = "VolumeZero_BossaNova";
-                break;
-            case 2:
-                eventName = "VolumeZero_BreakingLoose";
-                break;
-            case 3 :
-                eventName = "VolumeZero_ExquisiteTaste";
-                break;
-            case 4:
-                eventName = "VolumeZero_NeuroticBone";
-                break;
-            case 5 :
-                eventName = "VolumeZero_RoastBlend";
-                break;
-            case 6:
-                eventName = "VolumeZero_SomedayWakeUp";
-                break;
-            case  7:
-                eventName = "VolumeZero_SpashedSea";
-                break;
-            case 8:
-                eventName = "VolumeZero_TakingShape";
-                break;
-            case 9 :
-                eventName = "VolumeZero_RedPandaTheme";
-                break;
-            case 10 :
-                eventName = "VolumeZero_TellingStories";
-                break;
-        }
+            0 => "VolumeOne_TellingStories",
+            1 => "VolumeOne_BossaNova",
+            2 => "VolumeOne_BreakingLoose",
+            3 => "VolumeOne_ExquisiteTaste",
+            4 => "VolumeOne_NeuroticBone",
+            5 => "VolumeOne_RoastBlend",
+            6 => "VolumeOne_SomedayWakeUp",
+            7 => "VolumeOne_SpashedSea",
+            8 => "VolumeOne_TakingShape",
+            9 => "VolumeOne_RedPandaTheme",
+            _ => eventName
+        };
         PostSoundEvent(eventName);
     }
 
-    public void PostSoundEvent(string s)
+    public void StopChannel()
+    {
+        eventName = channel switch
+        {
+            0 => "VolumeZero_TellingStories",
+            1 => "VolumeZero_BossaNova",
+            2 => "VolumeZero_BreakingLoose",
+            3 => "VolumeZero_ExquisiteTaste",
+            4 => "VolumeZero_NeuroticBone",
+            5 => "VolumeZero_RoastBlend",
+            6 => "VolumeZero_SomedayWakeUp",
+            7 => "VolumeZero_SpashedSea",
+            8 => "VolumeZero_TakingShape",
+            9 => "VolumeZero_RedPandaTheme",
+
+            _ => eventName
+        };
+        PostSoundEvent(eventName);
+    }
+
+    private void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, this.gameObject);
     }

@@ -17,6 +17,8 @@ public class Radio : Interactable
 
     [SerializeField] private GameObject radioDial;
 
+    [SerializeField] private int numberOfChannels = 9;
+
     public void PostSoundEvent(string s)
     {
         AkSoundEngine.PostEvent(s, gameObject);
@@ -25,7 +27,7 @@ public class Radio : Interactable
     public override void Start()
     {
         base.Start();
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < numberOfChannels; i++)
         {
             Transform transform1;
             RadioChannel rC = Instantiate(radioChannel, (transform1 = transform).position, transform1.rotation)
@@ -33,7 +35,7 @@ public class Radio : Interactable
             rC.radio = this;
             rC.transform.SetParent(this.transform);
             radioChannels.Add(rC);
-            rC.channel = radioChannels.Count;
+            rC.channel = radioChannels.Count - 1;
         }
 
         foreach (var rC in radioChannels)
@@ -60,8 +62,14 @@ public class Radio : Interactable
             localPosition.z);
     }
 
+    public override void OnInteract(PlayerInteraction interaction)
+    {
+        base.OnInteract(interaction);
+        lookAtPlayer = true;
+        LookAtPlayer();
+    }
 
-    public override void OnAltInteract(PlayerInteraction pInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         currentChannel += 1;
         if (currentChannel > radioChannels.Count || currentChannel < 0)
@@ -72,5 +80,27 @@ public class Radio : Interactable
             else
                 rC.StopChannel();
         HandleDial();
+    }
+
+    public override void ShowOnScreenText()
+    {
+        if (!_isBroken && playerInteraction)
+            base.ShowOnScreenText();
+    }
+
+    public override void OnDrop()
+    {
+        base.OnDrop();
+        lookAtPlayer = false;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        foreach (var rC in radioChannels)
+        {
+            rC.StopChannel();
+            Destroy(rC.gameObject);
+        }
     }
 }

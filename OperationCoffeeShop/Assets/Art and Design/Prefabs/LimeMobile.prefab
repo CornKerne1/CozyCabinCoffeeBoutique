@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.96104014, z: 0, w: 0.27640897}
   m_LocalPosition: {x: 0.59271, y: -5.054, z: -4.0441}
   m_LocalScale: {x: 2.874057, y: 2.874057, z: 2.874057}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -125,6 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040e4032d60894245ba125b3587b257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
-  shopUI: {fileID: 8756745364233946378, guid: fee2311ba5c0a8c41b41499b12be5f6c, type: 3}
+  isBreakable: 0
+  breakableSoundEngineEnvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
+  shopUI: {fileID: 132006494938711376, guid: c82868fe7ef21d14b92c2efdb661a230, type: 3}

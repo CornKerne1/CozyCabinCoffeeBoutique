@@ -2,13 +2,13 @@
  
  
  === main ===
-THIS IS A MILK EMERGENCY! #speaker:Delvin VonHumerus portrait:neutral #layout:Left
+- THIS IS A MILK EMERGENCY! #speaker:Delvin VonHumerus portrait:neutral #layout:Left
 * [Oh, you want some milk?] 
 
 - Pardon, but for someone with two ears, you sure are hard of hearing. 
 * [That's a bit much, now.]
 
-- You got anything with calcium?
+- HELP! I NEED MILK! I'M DECALCIFYING!
 * [Coming right up!] 
 -> DONE
 -> END

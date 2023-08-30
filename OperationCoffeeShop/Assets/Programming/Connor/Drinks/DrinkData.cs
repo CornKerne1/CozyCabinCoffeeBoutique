@@ -15,19 +15,19 @@ public class DrinkData : ScriptableObject
         ingredients.Add(new IngredientNode(ingredient, target));
     }
 
-    public void AddIngredient(IngredientNode @in)
+    public void AddIngredient(IngredientNode iN)
     {
         if (ingredients == null) return;
         var foundIngredient = false;
-        foreach (var ingredient in ingredients.Where(ingredient => ingredient.ingredient == @in.ingredient))
+        foreach (var ingredient in ingredients.Where(ingredient => ingredient.ingredient == iN.ingredient))
         {
             foundIngredient = true;
-            ingredient.target += @in.target;
+            ingredient.target += iN.target;
         }
 
         if (!foundIngredient)
         {
-            ingredients.Add(@in);
+            ingredients.Add(iN);
         }
     }
 

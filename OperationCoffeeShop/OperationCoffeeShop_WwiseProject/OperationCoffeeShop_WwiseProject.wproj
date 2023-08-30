@@ -1,67 +1,103 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="Project" SchemaVersion="103" WwiseVersion="v2021.1.7" WwiseBuild="7796">
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="Project" SchemaVersion="110" WwiseVersion="v2022.1.4" WwiseBuild="8202">
 	<ProjectInfo>
 		<Project Name="OperationCoffeeShop_WwiseProject" ID="{54D18A1B-F583-4BBA-9A9C-E15BFB425C55}">
 			<Platforms>
-				<Platform Name="Mac" ReferencePlatform="Mac" ID="{0F3E11C2-3B4F-48D3-8291-57D6BB080E79}" />
-				<Platform Name="Windows" ReferencePlatform="Windows" ID="{57CFAF64-84B1-4346-8F7E-E77CA32FFA6D}" />
+				<Platform Name="Linux" ReferencePlatform="Linux" ID="{B749013C-2380-45D8-8A3F-5F6467EAB418}"/>
+				<Platform Name="Mac" ReferencePlatform="Mac" ID="{0F3E11C2-3B4F-48D3-8291-57D6BB080E79}"/>
+				<Platform Name="Windows" ReferencePlatform="Windows" ID="{57CFAF64-84B1-4346-8F7E-E77CA32FFA6D}"/>
 			</Platforms>
 			<LanguageList>
-				<Language Name="English(US)" ID="{094A5EAE-862B-4F11-AE46-12D52B9F2DBA}" />
-				<Language Name="External" ID="{137A2D1D-BEA9-490E-BA89-828CB41760F7}" />
-				<Language Name="Mixed" ID="{59C5B931-A3CF-4322-B2AA-77C7991A88C8}" />
-				<Language Name="SFX" ID="{B835D4E3-E885-4B6A-9C18-060723FA2C5C}" />
+				<Language Name="English(US)" ID="{094A5EAE-862B-4F11-AE46-12D52B9F2DBA}"/>
+				<Language Name="External" ID="{137A2D1D-BEA9-490E-BA89-828CB41760F7}"/>
+				<Language Name="Mixed" ID="{59C5B931-A3CF-4322-B2AA-77C7991A88C8}"/>
+				<Language Name="SFX" ID="{B835D4E3-E885-4B6A-9C18-060723FA2C5C}"/>
 			</LanguageList>
 			<PropertyList>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
 					<ValueList>
-						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
-						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
+						<Value Platform="Windows">GeneratedSoundBanks\Windows</Value>
+						<Value Platform="Linux">GeneratedSoundBanks\Linux</Value>
+						<Value Platform="Mac">GeneratedSoundBanks\Mac</Value>
 					</ValueList>
 				</Property>
-				<Property Name="SoundBankGenerateEstimatedDuration" Type="bool" Value="True" /><Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True" /><Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True" /><Property Name="SoundBankHeaderFilePath" Type="string" Value="../../OperationCoffeeShop/Assets/StreamingAssets/Audio/GeneratedSoundBanks" />
+				<Property Name="GlobalVoiceInstancesLimit" Type="int16">
+					<ValueList>
+						<Value Platform="Windows">256</Value>
+						<Value Platform="Linux">256</Value>
+						<Value Platform="Mac">256</Value>
+					</ValueList>
+				</Property>
+				<Property Name="LicenseKey" Type="string" Value="PHByb2plY3QgaWQ9IjEyNzg0IiBtYXNrPSJYWEpTOTk4NyIgZW5jPSIwIj48bGlj ZW5zZSBpZD0iMSIgbmFtZT0iV3dpc2UiIHR5cGU9IjIiIHBsYXRmb3Jtcz0iNCwx MCIgZXhwaXJlcz0iMjAyNC0wNS0wMSIgIC8+PGxpY2Vuc2UgaWQ9IjIxIiBuYW1l PSJNYWludGVuYW5jZSIgdHlwZT0iMiIgcGxhdGZvcm1zPSI0LDEwIiBleHBpcmVz PSIyMDI0LTA1LTAxIiAgLz48bGljZW5zZSBpZD0iNzAiIG5hbWU9IkluZGllIExp Y2Vuc2UiIHR5cGU9IjIiIHBsYXRmb3Jtcz0iNCwxMCIgZXhwaXJlcz0iMjAyNC0w NS0wMSIgIC8+PC9wcm9qZWN0Pg==|wOVgUelcXlEGPqMkiMPIkMijoEwMbAiCAEm 9VrthCwEDS9FR8JHmywtJS5OJlBzIutiiGM/D94SxS3Rb+iDyPlS8ATlbt8Z6OL+ WyegQQb6osYc6ACykcGteh9spVUllG2BikdAtoSHWE+0D+RTnjNzn9rZFIAeX53t V9vvq4DLWKfFJRgruyrlyf1xCsVMqTGE2HAItiyMs+Uo5AD16181jKR6n7i6o3yJ moqXrn+VB63YG+ELhmqIFEbSDssE62bHkNSvreqm9WtaDa9KHL6XC7RNZqIpITFy 4CN88U/oE0yMojSDRJAOcrQEoAghcKMTOlU7pi+DNRBy1Xxfhmw== "/>
+				<Property Name="RemoveUnusedGeneratedFiles" Type="bool" Value="False"/>
+				<Property Name="SoundBankGenerateEstimatedDuration" Type="bool" Value="True"/>
+				<Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True"/>
+				<Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True"/>
+				<Property Name="SoundBankHeaderFilePath" Type="string" Value="..\Assets\StreamingAssets\Audio\GeneratedSoundBanks"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
+						<Value Platform="Linux">GeneratedSoundBanks\Linux\</Value>
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">
 					<ValueList>
 						<Value Platform="Windows">Copy Streamed Files</Value>
+						<Value Platform="Linux">Copy Streamed Files</Value>
 						<Value Platform="Mac">Copy Streamed Files</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdLines" Type="string">
 					<ValueList>
-						<Value Platform="Windows">"$(CopyStreamedFilesExePath)" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
-						<Value Platform="Mac">"$(CopyStreamedFilesExePath)" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
+						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
+						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
+						<Value Platform="Linux"></Value>
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
-				<Property Name="WwiseVersionWhenCreated" Type="string" Value="Branch=wwise_v2021.1|Build=7796|VersionName=v2021.1.7|Config=Release" />
+				<Property Name="VolumeThreshold" Type="Real64">
+					<ValueList>
+						<Value Platform="Windows">-80</Value>
+						<Value Platform="Linux">-80</Value>
+						<Value Platform="Mac">-80</Value>
+					</ValueList>
+				</Property>
+				<Property Name="WwiseVersionWhenCreated" Type="string" Value="Branch=wwise_v2021.1|Build=7796|VersionName=v2021.1.7|Config=Release"/>
 			</PropertyList>
+			<MiscSettings>
+				<MiscSettingEntry Name="Cache"><![CDATA[.cache]]></MiscSettingEntry>
+				<MiscSettingEntry Name="Originals"><![CDATA[Originals]]></MiscSettingEntry>
+			</MiscSettings>
 			<SharedValues>
-				<SharedPropertyList ClassName="AudioSource" PluginType="0" CompanyID="1" PluginID="0">
+				<SharedPropertyList ClassName="AudioFileSource" PluginType="0" CompanyID="1" PluginID="0">
 					<PropertyList>
 						<Property Name="ChannelConfigOverride" Type="int64">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Color" Type="int16">
 							<ValueList>
 								<Value>0</Value>
 							</ValueList>
@@ -121,6 +157,11 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="OverrideConversion" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -148,7 +189,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="PCM" PluginType="1" CompanyID="0" PluginID="1" />
+				<SharedPropertyList ClassName="PCM" PluginType="1" CompanyID="0" PluginID="1"/>
 				<SharedPropertyList ClassName="Sound" PluginType="0" CompanyID="1" PluginID="1">
 					<PropertyList>
 						<Property Name="3DPosition" Type="int16">
@@ -311,7 +352,7 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						<Property Name="IsZeroLantency" Type="bool">
+						<Property Name="IsZeroLatency" Type="bool">
 							<ValueList>
 								<Value>False</Value>
 							</ValueList>
@@ -797,6 +838,16 @@
 								<Value>-40</Value>
 							</ValueList>
 						</Property>
+						<Property Name="AutoSoundBankAllEvents" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="AutoSoundBankEnabled" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Color" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -815,6 +866,11 @@
 						<Property Name="CommSerialPortBase" Type="Uint16">
 							<ValueList>
 								<Value>8</Value>
+							</ValueList>
+						</Property>
+						<Property Name="CopyLooseStreamedMedia" Type="bool">
+							<ValueList>
+								<Value>True</Value>
 							</ValueList>
 						</Property>
 						<Property Name="DefaultLanguage" Type="string">
@@ -845,6 +901,11 @@
 						<Property Name="ExternalSourcesOutputPath" Type="string">
 							<ValueList>
 								<Value></Value>
+							</ValueList>
+						</Property>
+						<Property Name="FilterBehavior" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="FrequencyWeighting" Type="int16">
@@ -892,6 +953,11 @@
 								<Value>100</Value>
 							</ValueList>
 						</Property>
+						<Property Name="MediaAutoBankSubFolders" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="MediaIDsInSingleFile" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -900,6 +966,11 @@
 						<Property Name="OverrideColor" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="RemoveUnusedGeneratedFiles" Type="bool">
+							<ValueList>
+								<Value>True</Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankAllowExceedingSB" Type="bool">
@@ -933,6 +1004,11 @@
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankGeneratePrintGUID" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SoundBankGeneratePrintPath" Type="bool">
 							<ValueList>
 								<Value>False</Value>
 							</ValueList>
@@ -982,6 +1058,11 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
+						<Property Name="SourceControlGeneratedFiles" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="UseActionNameForEvent" Type="bool">
 							<ValueList>
 								<Value>True</Value>
@@ -1005,6 +1086,11 @@
 						<Property Name="VolumeThreshold" Type="Real64">
 							<ValueList>
 								<Value>-80</Value>
+							</ValueList>
+						</Property>
+						<Property Name="WwiseConsoleLoadUserSettings" Type="bool">
+							<ValueList>
+								<Value>False</Value>
 							</ValueList>
 						</Property>
 						<Property Name="WwiseVersionWhenCreated" Type="string">
@@ -1169,6 +1255,11 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
 						<Property Name="OverrideColor" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -1298,6 +1389,11 @@
 							</ValueList>
 						</Property>
 						<Property Name="Delay" Type="Real64">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="EffectSlot" Type="int16">
 							<ValueList>
 								<Value>0</Value>
 							</ValueList>
@@ -2926,30 +3022,6 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="AAC" PluginType="1" CompanyID="0" PluginID="10">
-					<PropertyList>
-						<Property Name="EnableHighEfficiency" Type="bool">
-							<ValueList>
-								<Value>False</Value>
-							</ValueList>
-						</Property>
-						<Property Name="EncodingMode" Type="int32">
-							<ValueList>
-								<Value>0</Value>
-							</ValueList>
-						</Property>
-						<Property Name="EncodingOptions" Type="int32">
-							<ValueList>
-								<Value>3</Value>
-							</ValueList>
-						</Property>
-						<Property Name="Quality" Type="Real32">
-							<ValueList>
-								<Value>9</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-				</SharedPropertyList>
 				<SharedPropertyList ClassName="SwitchContainer" PluginType="0" CompanyID="1" PluginID="10">
 					<PropertyList>
 						<Property Name="3DPosition" Type="int16">
@@ -3409,7 +3481,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Path" PluginType="0" CompanyID="1" PluginID="11">
+				<SharedPropertyList ClassName="Path2D" PluginType="0" CompanyID="1" PluginID="11">
 					<PropertyList>
 						<Property Name="AppendOffset" Type="Uint32">
 							<ValueList>
@@ -3521,6 +3593,20 @@
 						<Property Name="Min" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="SourcePlugin" PluginType="0" CompanyID="1" PluginID="16">
+					<PropertyList>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -3909,7 +3995,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="ParamControl" PluginType="0" CompanyID="1" PluginID="22">
+				<SharedPropertyList ClassName="RTPC" PluginType="0" CompanyID="1" PluginID="22">
 					<PropertyList>
 						<Property Name="Color" Type="int16">
 							<ValueList>
@@ -3919,6 +4005,11 @@
 						<Property Name="OverrideColor" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PropertyName" Type="string">
+							<ValueList>
+								<Value></Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -4620,7 +4711,7 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						<Property Name="IsZeroLantency" Type="bool">
+						<Property Name="IsZeroLatency" Type="bool">
 							<ValueList>
 								<Value>False</Value>
 							</ValueList>
@@ -6860,7 +6951,22 @@
 				</SharedPropertyList>
 				<SharedPropertyList ClassName="UserProjectSettings" PluginType="0" CompanyID="1" PluginID="51">
 					<PropertyList>
+						<Property Name="AutoSoundBankAllEvents" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="AutoSoundBankEnabled" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="ConvertExternalSources" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="CopyLooseStreamedMedia" Type="bool">
 							<ValueList>
 								<Value>True</Value>
 							</ValueList>
@@ -6930,6 +7036,11 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="MediaAutoBankSubFolders" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="OverrideConversion" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -6943,6 +7054,11 @@
 						<Property Name="PreGenerateStepUserOverride" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="RemoveUnusedGeneratedFiles" Type="bool">
+							<ValueList>
+								<Value>True</Value>
 							</ValueList>
 						</Property>
 						<Property Name="SettingsUserOverride" Type="bool">
@@ -6981,6 +7097,11 @@
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankGeneratePrintGUID" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SoundBankGeneratePrintPath" Type="bool">
 							<ValueList>
 								<Value>False</Value>
 							</ValueList>
@@ -7031,6 +7152,11 @@
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankUpdateAudioFiles" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SourceControlGeneratedFiles" Type="bool">
 							<ValueList>
 								<Value>False</Value>
 							</ValueList>
@@ -7143,7 +7269,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="ExternalSource" PluginType="0" CompanyID="1" PluginID="57" />
+				<SharedPropertyList ClassName="ExternalSource" PluginType="0" CompanyID="1" PluginID="57"/>
 				<SharedPropertyList ClassName="MusicTrackSequence" PluginType="0" CompanyID="1" PluginID="58">
 					<PropertyList>
 						<Property Name="Color" Type="int16">
@@ -7728,7 +7854,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Platform" PluginType="0" CompanyID="1" PluginID="69" />
+				<SharedPropertyList ClassName="Platform" PluginType="0" CompanyID="1" PluginID="69"/>
 				<SharedPropertyList ClassName="AudioDevice" PluginType="0" CompanyID="1" PluginID="71">
 					<PropertyList>
 						<Property Name="BypassEffect" Type="bool">
@@ -7898,7 +8024,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="CustomState" PluginType="0" CompanyID="1" PluginID="79" />
+				<SharedPropertyList ClassName="CustomState" PluginType="0" CompanyID="1" PluginID="79"/>
 				<SharedPropertyList ClassName="Metadata" PluginType="0" CompanyID="1" PluginID="81">
 					<PropertyList>
 						<Property Name="Color" Type="int16">
@@ -7925,6 +8051,16 @@
 								<Value>4</Value>
 							</ValueList>
 						</Property>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="SineDuration" Type="Real32">
 							<ValueList>
 								<Value>1</Value>
@@ -7944,6 +8080,11 @@
 				</SharedPropertyList>
 				<SharedPropertyList ClassName="Wwise Silence" PluginType="2" CompanyID="0" PluginID="101">
 					<PropertyList>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Length" Type="Real32">
 							<ValueList>
 								<Value>1</Value>
@@ -7957,6 +8098,11 @@
 						<Property Name="LengthMin" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -7973,6 +8119,11 @@
 								<Value>4</Value>
 							</ValueList>
 						</Property>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="DecayTime" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
@@ -7986,6 +8137,11 @@
 						<Property Name="FixDur" Type="Real32">
 							<ValueList>
 								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
 							</ValueList>
 						</Property>
 						<Property Name="ReleaseTime" Type="Real32">
@@ -8772,7 +8928,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="SoundSeed Impact" PluginType="3" CompanyID="0" PluginID="116">
+				<SharedPropertyList ClassName="" PluginType="3" CompanyID="0" PluginID="116">
 					<PropertyList>
 						<Property Name="BWAmt" Type="Real32">
 							<ValueList>
@@ -9132,6 +9288,11 @@
 								<Value>1</Value>
 							</ValueList>
 						</Property>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Direction" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
@@ -9212,6 +9373,11 @@
 								<Value>5</Value>
 							</ValueList>
 						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="PlaybackRate" Type="Real32">
 							<ValueList>
 								<Value>1</Value>
@@ -9264,6 +9430,11 @@
 						<Property Name="ChannelMask" Type="int32">
 							<ValueList>
 								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="DistanceAttenuation" Type="bool">
@@ -9319,6 +9490,11 @@
 						<Property Name="NoiseColor" Type="int16">
 							<ValueList>
 								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
 							</ValueList>
 						</Property>
 						<Property Name="Oversampling" Type="int16">
@@ -9766,6 +9942,11 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="InfiniteHold" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Max" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
@@ -9818,6 +9999,31 @@
 						<Property Name="OverrideColor" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PitchShift" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PitchShiftRandom" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Quality" Type="Real32">
+							<ValueList>
+								<Value>100</Value>
+							</ValueList>
+						</Property>
+						<Property Name="QualityEnable" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="StereoProcessing" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="TimeStretch" Type="Real32">
@@ -10318,6 +10524,11 @@
 								<Value>1000</Value>
 							</ValueList>
 						</Property>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="FmAmount" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
@@ -10403,6 +10614,11 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 					</PropertyList>
 				</SharedPropertyList>
 				<SharedPropertyList ClassName="Wwise Reflect" PluginType="3" CompanyID="0" PluginID="171">
@@ -10422,7 +10638,12 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						<Property Name="CursorNameCategory" Type="int32">
+						<Property Name="CurveUsageMask" Type="Uint32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DiffractionWarping" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
 							</ValueList>
@@ -10432,14 +10653,14 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
+						<Property Name="DistanceWarping" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Dry" Type="Real32">
 							<ValueList>
 								<Value>-96</Value>
-							</ValueList>
-						</Property>
-						<Property Name="FadeOutNbFrames" Type="int32">
-							<ValueList>
-								<Value>3</Value>
 							</ValueList>
 						</Property>
 						<Property Name="Inclusion" Type="bool">
@@ -10473,6 +10694,11 @@
 							</ValueList>
 						</Property>
 						<Property Name="ParamFilterType" Type="int32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PhasingSuppression" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
 							</ValueList>
@@ -11296,6 +11522,45 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
+				<SharedPropertyList ClassName="Wwise 3D Audio Bed Mixer" PluginType="3" CompanyID="0" PluginID="190">
+					<PropertyList>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="MainMixConfiguration" Type="Uint32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PassthroughMixPolicy" Type="Uint16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SystemAudioObjectLimit" Type="Uint16">
+							<ValueList>
+								<Value>65535</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SystemAudioObjectsPolicy" Type="Uint16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
 				<SharedPropertyList ClassName="Wwise Audio Input" PluginType="2" CompanyID="0" PluginID="200">
 					<PropertyList>
 						<Property Name="AudioInputGain" Type="Real32">
@@ -11303,9 +11568,19 @@
 								<Value>-12</Value>
 							</ValueList>
 						</Property>
+						<Property Name="Color" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OverrideColor" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Wwise Motion Generator (Deprecated)" PluginType="2" CompanyID="0" PluginID="405">
+				<SharedPropertyList ClassName="" PluginType="2" CompanyID="0" PluginID="405">
 					<PropertyList>
 						<Property Name="AttackTime" Type="Real32">
 							<ValueList>
@@ -11354,7 +11629,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Wwise Motion Source" PluginType="2" CompanyID="0" PluginID="409">
+				<SharedPropertyList ClassName="" PluginType="2" CompanyID="0" PluginID="409">
 					<PropertyList>
 						<Property Name="Channel1" Type="int16">
 							<ValueList>
@@ -11453,7 +11728,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Wwise Motion" PluginType="7" CompanyID="0" PluginID="507">
+				<SharedPropertyList ClassName="" PluginType="7" CompanyID="0" PluginID="507">
 					<PropertyList>
 						<Property Name="BypassEffect" Type="bool">
 							<ValueList>
@@ -11760,7 +12035,7 @@
 						<PlatformCurve Platform="Linked" EnableCurve="true">
 							<Curve Name="" ID="{20156D8C-6D41-44E2-AA46-9828A36A7D24}">
 								<PropertyList>
-									<Property Name="Flags" Type="int32" Value="3" />
+									<Property Name="Flags" Type="int32" Value="3"/>
 								</PropertyList>
 								<PointList>
 									<Point>
@@ -11781,7 +12056,7 @@
 						<PlatformCurve Platform="Linked" EnableCurve="true">
 							<Curve Name="" ID="{04B920B4-8EE3-4C71-8789-FD94B3074AF6}">
 								<PropertyList>
-									<Property Name="Flags" Type="int32" Value="1" />
+									<Property Name="Flags" Type="int32" Value="1"/>
 								</PropertyList>
 								<PointList>
 									<Point>
@@ -11802,7 +12077,7 @@
 						<PlatformCurve Platform="Linked" EnableCurve="false">
 							<Curve Name="" ID="{5C872F68-D231-4353-8644-9D1F45A0AE27}">
 								<PropertyList>
-									<Property Name="Flags" Type="int32" Value="1" />
+									<Property Name="Flags" Type="int32" Value="1"/>
 								</PropertyList>
 								<PointList>
 									<Point>
@@ -11823,7 +12098,7 @@
 						<PlatformCurve Platform="Linked" EnableCurve="true">
 							<Curve Name="" ID="{890AE25C-37E3-4E01-A360-D5F8C717BEF5}">
 								<PropertyList>
-									<Property Name="Flags" Type="int32" Value="3" />
+									<Property Name="Flags" Type="int32" Value="3"/>
 								</PropertyList>
 								<PointList>
 									<Point>
@@ -11844,7 +12119,7 @@
 						<PlatformCurve Platform="Linked" EnableCurve="true">
 							<Curve Name="" ID="{573D1918-C2A5-4D90-8ADA-79E102EC4CDE}">
 								<PropertyList>
-									<Property Name="Flags" Type="int32" Value="1" />
+									<Property Name="Flags" Type="int32" Value="1"/>
 								</PropertyList>
 								<PointList>
 									<Point>
@@ -11865,7 +12140,7 @@
 						<PlatformCurve Platform="Linked" EnableCurve="false">
 							<Curve Name="" ID="{84AC68B4-BC43-468E-AE9F-663874D163B9}">
 								<PropertyList>
-									<Property Name="Flags" Type="int32" Value="1" />
+									<Property Name="Flags" Type="int32" Value="1"/>
 								</PropertyList>
 								<PointList>
 									<Point>
@@ -11884,73 +12159,73 @@
 					</ObsOccCurve>
 				</ObsOccCurves>
 			</EnvironmentalSettings>
-			<DefaultConversion Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" />
+			<DefaultConversion Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}"/>
 			<PhysicalFolderList>
 				<PhysicalFolder Path="Actor-Mixer Hierarchy">
-					<WorkUnit Name="Actor-Mixer Hierarchy" ID="{5EA7BBF8-64C0-4A50-8821-A07E8BE21D68}" PersistMode="Standalone" />
+					<WorkUnit Name="Actor-Mixer Hierarchy" ID="{5EA7BBF8-64C0-4A50-8821-A07E8BE21D68}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Attenuations">
-					<WorkUnit Name="Attenuations" ID="{017BDDA0-1BB1-4CE1-8077-79594EC4585C}" PersistMode="Standalone" />
+					<WorkUnit Name="Attenuations" ID="{017BDDA0-1BB1-4CE1-8077-79594EC4585C}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Audio Devices">
-					<WorkUnit Name="Audio Devices" ID="{27092F88-225A-1154-6725-C8A34F3D4482}" PersistMode="Standalone" />
+					<WorkUnit Name="Audio Devices" ID="{27092F88-225A-1154-6725-C8A34F3D4482}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Control Surface Sessions">
-					<WorkUnit Name="Control Surface Sessions" ID="{1751E4CD-8018-4E2C-9A8A-C77764D1D653}" PersistMode="Standalone" />
+					<WorkUnit Name="Control Surface Sessions" ID="{1751E4CD-8018-4E2C-9A8A-C77764D1D653}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Conversion Settings">
-					<WorkUnit Name="Conversion Settings" ID="{4AA12040-049C-400F-ABCD-6EED192EC1D7}" PersistMode="Standalone" />
+					<WorkUnit Name="Conversion Settings" ID="{4AA12040-049C-400F-ABCD-6EED192EC1D7}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Dynamic Dialogue">
-					<WorkUnit Name="Dynamic Dialogue" ID="{309AF5DE-031F-4CE0-9B9B-C0A536275343}" PersistMode="Standalone" />
+					<WorkUnit Name="Dynamic Dialogue" ID="{309AF5DE-031F-4CE0-9B9B-C0A536275343}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Effects">
-					<WorkUnit Name="Effects" ID="{41093F77-829F-4D88-8601-E8B25F3D4781}" PersistMode="Standalone" />
+					<WorkUnit Name="Effects" ID="{41093F77-829F-4D88-8601-E8B25F3D4781}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Events">
-					<WorkUnit Name="Events" ID="{A69BF0FC-D84A-487C-ABDD-56F71CB2A126}" PersistMode="Standalone" />
+					<WorkUnit Name="Events" ID="{A69BF0FC-D84A-487C-ABDD-56F71CB2A126}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Game Parameters">
-					<WorkUnit Name="Game Parameters" ID="{4025818E-097F-4A72-B692-B8A2E2663DCB}" PersistMode="Standalone" />
+					<WorkUnit Name="Game Parameters" ID="{4025818E-097F-4A72-B692-B8A2E2663DCB}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Interactive Music Hierarchy">
-					<WorkUnit Name="Interactive Music Hierarchy" ID="{49FED366-B530-42A8-993B-924873AAB707}" PersistMode="Standalone" />
+					<WorkUnit Name="Interactive Music Hierarchy" ID="{49FED366-B530-42A8-993B-924873AAB707}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Master-Mixer Hierarchy">
-					<WorkUnit Name="Master-Mixer Hierarchy" ID="{2388DAEA-9775-46C6-A2ED-C5222A397756}" PersistMode="Standalone" />
+					<WorkUnit Name="Master-Mixer Hierarchy" ID="{2388DAEA-9775-46C6-A2ED-C5222A397756}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Metadata">
-					<WorkUnit Name="Metadata" ID="{B6F4A62E-4F9B-45A6-B280-C80685E65296}" PersistMode="Standalone" />
+					<WorkUnit Name="Metadata" ID="{B6F4A62E-4F9B-45A6-B280-C80685E65296}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Mixing Sessions">
-					<WorkUnit Name="Mixing Sessions" ID="{6477AAF7-E365-4990-A392-E59B824B6418}" PersistMode="Standalone" />
+					<WorkUnit Name="Mixing Sessions" ID="{6477AAF7-E365-4990-A392-E59B824B6418}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Modulators">
-					<WorkUnit Name="Modulators" ID="{14C37342-3847-49FF-A05C-5007991BED50}" PersistMode="Standalone" />
+					<WorkUnit Name="Modulators" ID="{14C37342-3847-49FF-A05C-5007991BED50}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Presets">
-					<WorkUnit Name="Presets" ID="{34C55C34-79EE-4678-860F-4C7DBE71D6DF}" PersistMode="Standalone" />
+					<WorkUnit Name="Presets" ID="{34C55C34-79EE-4678-860F-4C7DBE71D6DF}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Queries">
-					<WorkUnit Name="Queries" ID="{23EC2DE3-3ED8-4B82-AC99-92E25F2E4C6B}" PersistMode="Standalone" />
+					<WorkUnit Name="Queries" ID="{23EC2DE3-3ED8-4B82-AC99-92E25F2E4C6B}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="SoundBanks">
-					<WorkUnit Name="SoundBanks" ID="{C98E673F-A24C-48A8-960F-10565FFE70A0}" PersistMode="Standalone" />
+					<WorkUnit Name="SoundBanks" ID="{C98E673F-A24C-48A8-960F-10565FFE70A0}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Soundcaster Sessions">
-					<WorkUnit Name="Soundcaster Sessions" ID="{4C96B38B-3DB4-40C7-91C9-665510E38993}" PersistMode="Standalone" />
+					<WorkUnit Name="Soundcaster Sessions" ID="{4C96B38B-3DB4-40C7-91C9-665510E38993}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="States">
-					<WorkUnit Name="States" ID="{59A9E7B9-61C9-461A-A96F-4997B541A59C}" PersistMode="Standalone" />
+					<WorkUnit Name="States" ID="{59A9E7B9-61C9-461A-A96F-4997B541A59C}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Switches">
-					<WorkUnit Name="Switches" ID="{CB6175F1-6080-4A23-92EF-0807E304D0C1}" PersistMode="Standalone" />
+					<WorkUnit Name="Switches" ID="{CB6175F1-6080-4A23-92EF-0807E304D0C1}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Triggers">
-					<WorkUnit Name="Triggers" ID="{6C7657FC-4758-4D41-BD4C-68B09F91DB29}" PersistMode="Standalone" />
+					<WorkUnit Name="Triggers" ID="{6C7657FC-4758-4D41-BD4C-68B09F91DB29}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Virtual Acoustics">
-					<WorkUnit Name="Virtual Acoustics" ID="{32CD8547-A946-4547-BBB1-69F44E796139}" PersistMode="Standalone" />
+					<WorkUnit Name="Virtual Acoustics" ID="{32CD8547-A946-4547-BBB1-69F44E796139}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 			</PhysicalFolderList>
 		</Project>

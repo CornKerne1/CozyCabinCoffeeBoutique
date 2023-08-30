@@ -5,7 +5,7 @@
         "Unity.Addressables",
         "Unity.ResourceManager",
         "AK.Wwise.Unity.API.WwiseTypes",
-        "AK.Wwise.Unity.Addressables","UnityEngine.UI"
+        "AK.Wwise.Unity.Addressables"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -13,7 +13,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [ "!UNITY_SERVER" ],
     "versionDefines": [
         {
             "name": "com.unity.addressables",

@@ -7,8 +7,8 @@ public class SlabInteractable : Interactable
 {
     public SlabData slabData;
     public Slot slot;
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        playerInteraction.Carry(gameObject);
+        interaction.Carry(gameObject);
     }
 }

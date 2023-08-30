@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Gate : MonoBehaviour
@@ -8,46 +9,42 @@ public class Gate : MonoBehaviour
     private GameMode gM;
     [SerializeField] private GameObject gate;
     [SerializeField] private Transform trans;
-    [SerializeField] private Transform startPos;
-    
-    private bool activate;
-    private bool running;
-    private bool open;
+    private Transform startPos;
     // Start is called before the first frame update
     void Start()
     {
+        var t = transform;
+        startPos = t;
         gM = GameObject.Find("GameMode").GetComponent<GameMode>();
         GameMode.ShopClosed += Closed;
+        gate.SetActive(false);
     }
 
-    private void Closed(object sender, EventArgs e)
+    private async void Closed(object sender, EventArgs e)
     {
-        open = false;
-        activate = true;
+        await MoveGate(false);
     }
 
-    public void OpenGate()
+    public async void OpenGate()
     {
-        open = true;
-        activate = true;
+        gate.SetActive(true);
+        await MoveGate(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private async Task MoveGate(bool open)
     {
-        if (activate)
+        float currentTime = 0;
+        while (currentTime<5f)
         {
-            if (open)
-            {
-                running = true;
-                gate.transform.position = Vector3.Lerp(gate.transform.position, trans.position, 1*Time.deltaTime);
-
-            }
-            else
-            {
-                running = true;
-                gate.transform.position = Vector3.Lerp(gate.transform.position, startPos.position, 1*Time.deltaTime);
-            }
+            currentTime += Time.deltaTime;
+            gate.transform.position = Vector3.Lerp(gate.transform.position, open ? trans.position : startPos.position, 1*Time.deltaTime);
+            await Task.Yield();
         }
+        if(!open)gate.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        GameMode.ShopClosed -= Closed;
     }
 }

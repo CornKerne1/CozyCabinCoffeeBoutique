@@ -11,11 +11,14 @@ public class CupDispenser : Dispenser
     public override void Start()
     {
         base.Start();
-        ComputerShop.DepositItems += AddItems;
         _pool = new ObjectPool<IngredientContainer>(
             () => Instantiate(objType.gameObject.GetComponentInChildren<IngredientContainer>()),
-            ingredientContainer => { ingredientContainer.gameObject.SetActive(true); },
-            ingredientContainer => { ingredientContainer.gameObject.SetActive(false); }, Destroy, true, 100, 100);
+            ingredientContainer =>
+            {
+                ingredientContainer.ResetCup();
+                ingredientContainer.gameObject.SetActive(true);
+            },
+            ingredientContainer => { ingredientContainer.dD.ingredients.Clear();ingredientContainer.gameObject.SetActive(false); }, Destroy, true, 100, 100);
         if (bottomless) return;
         try
         {
@@ -35,9 +38,9 @@ public class CupDispenser : Dispenser
         _pool.Release(ingredientContainer);
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        if (playerInteraction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
+        if (interaction.playerData.busyHands || (!bottomless && quantity <= 0)) return;
         quantity--;
         UpdateQuantity();
         var ingredientContainer = _pool.Get();
@@ -45,11 +48,11 @@ public class CupDispenser : Dispenser
         transform1.position = spawnTrans.position;
         transform1.rotation = spawnTrans.rotation;
 
-        ingredientContainer.pI = playerInteraction;
+        ingredientContainer.pI = interaction;
         ingredientContainer.inHand = true;
         ingredientContainer.dispenser = this;
 
-        playerInteraction.Carry(ingredientContainer.gameObject);
+        interaction.Carry(ingredientContainer.gameObject);
         IfTutorial();
     }
 }

@@ -1,29 +1,21 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class MilkContainer : MonoBehaviour
+public class MilkContainer : IngredientContainer
 {
-    private int _count;
-    private void Start()
+    public override async void Start()
     {
-        StartCoroutine(Init());
+        base.Start();
+        AddIngredients();
     }
-
-    private IEnumerator Init()
+    private async void AddIngredients()
     {
-        yield return new WaitForSeconds(0.04f);
-        StartCoroutine(AddIngredients());
-    }
-    
-    private IEnumerator AddIngredients()
-    {
-        _count = _count + 1;
-        yield return new WaitForSeconds(0.04f);
-        var iN = new IngredientNode(Ingredients.Milk, .1f);
-        GetComponent<IngredientContainer>().AddToContainer(iN);
-        if (_count < 500)
+        var iN = new IngredientNode(Ingredients.Milk, 800);
+        await AddToContainer(iN,Color.white);
+        for (int i = 0; i < 799; i++)
         {
-            StartCoroutine(AddIngredients());
+            outputIngredients.Add(iD.milk);
         }
     }
 }

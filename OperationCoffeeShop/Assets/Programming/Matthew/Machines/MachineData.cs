@@ -7,7 +7,7 @@ using UnityEngine;
 public class MachineData : ScriptableObject
 {
     
-    public enum Type { Default, Brewer, Grinder }
+    public enum Type { Default, Brewer, Grinder, PlayCube, Sink }
     [SerializeField] public Type machineType = Type.Default;
     [SerializeField] public int maxCapacity;
     [SerializeField] public List<GameObject> outputIngredient = new List<GameObject>();

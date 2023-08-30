@@ -13,27 +13,40 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  sprintSpeed: 1.75
+  jumpHeight: 4
   inertiaVar: 3
   mouseSensitivityX: 20
-  mouseSensitivityY: 80
-  mouseSensitivity: 1.1188248
-  neckClamp: 0
+  mouseSensitivityY: 54
+  neckClamp: 77.3
   groundMask:
     serializedVersion: 2
     m_Bits: 1
   closeSpeed: 2
-  openSpeed: 3
-  canMove: 0
+  canMove: 1
+  canJump: 1
+  canSprint: 1
+  canCrouch: 1
+  isSprinting: 0
+  cameraFov: 60
+  camMode: 0
+  crouchHeight: 0.5
+  standHeight: 1
+  crouchingCenter: {x: 0, y: 0.5, z: 0}
+  standingCenter: {x: 0, y: 0, z: 0}
   amplitude: 0.1
   frequency: 11
-  currentMovement: {x: -0.545, y: -5.551, z: -3.778}
+  currentMovement: {x: -0.262078, y: -5.478891, z: -3.635184}
   isClimbing: 0
   objMoveSpeed: 0
   interactDistance: 2
   carryDistanceClamp: 0.25
-  objRotationSpeed: 12.99
+  objRotationSpeed: 2.35
   canInteract: 1
   busyHands: 0
   carryDistance: 0.7
   smooth: 10
-  inUI: 1
+  inUI: 0
+  sleeping: 0
+  mouseSensitivityOptions: 0.2999999
+  playerName: polyblossompublishing

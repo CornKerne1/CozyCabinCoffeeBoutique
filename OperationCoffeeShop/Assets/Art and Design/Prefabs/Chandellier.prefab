@@ -63,9 +63,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 14.46
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -849255127246080926, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
       propertyPath: m_Name
-      value: Chandellier Variant
+      value: Chandellier
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
+--- !u!1 &2738085495807736340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a3f7c8e96e48b2742b1ce40a5d549cb9, type: 3}
+  m_PrefabInstance: {fileID: 2972036630867199813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &8376549341696168568
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738085495807736340}
+  m_Material: {fileID: 13400000, guid: 7c4c81f65c14cfc409dae22a4e598f53, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1694676
+  m_Center: {x: 1.8340672e-12, y: 0.00005354534, z: 0.0020444163}
+--- !u!65 &958584951
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738085495807736340}
+  m_Material: {fileID: 13400000, guid: 7c4c81f65c14cfc409dae22a4e598f53, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.4806662}
+  m_Center: {x: 0.0012124454, y: -0.003151206, z: -0.6198137}

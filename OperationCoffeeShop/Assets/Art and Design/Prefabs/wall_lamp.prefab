@@ -45,13 +45,13 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9949244, g: 1, b: 0.88235295, a: 1}
-  m_Intensity: 6
-  m_Range: 6
-  m_SpotAngle: 57.634876
-  m_InnerSpotAngle: 49.436962
+  m_Intensity: 15
+  m_Range: 2.5
+  m_SpotAngle: 88.40254
+  m_InnerSpotAngle: 80.20465
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -84,10 +84,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 5
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7852625668956203478}
   - component: {fileID: 6581442294714508915}
   - component: {fileID: 8984977765243572921}
+  - component: {fileID: 7726686446465924647}
   m_Layer: 0
   m_Name: wall_lamp
   m_TagString: Untagged
@@ -199,3 +200,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7726686446465924647
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472019186035716972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9720004, y: 4.1184, z: 1.5000004}
+  m_Center: {x: 0.236, y: 0, z: 0}

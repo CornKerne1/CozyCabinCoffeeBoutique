@@ -9,10 +9,10 @@ public class Ladder : Interactable
         canClimb = false;
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        this.pI = playerInteraction;
-        if (gameMode.gameModeData.isOpen) return;
+        this.pI = interaction;
+        if (gameMode.gameModeData.isOpen&& !gameMode.gameModeData.inTutorial) return;
         if (pI.playerData.isClimbing)
         {
             pI.playerData.isClimbing = false;

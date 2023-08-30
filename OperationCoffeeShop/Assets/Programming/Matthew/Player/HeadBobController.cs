@@ -11,17 +11,22 @@ public class HeadBobController : MonoBehaviour
     private Vector3 _startPos;
     private Vector3 _lastPosition;
     private CharacterController _controller;
+    private float _sprintModifier = 1;
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _startPos = cam.localPosition;
         _lastPosition = transform.root.position;
     }
+
     private void Update()
     {
         CheckMotion();
         ResetPosition();
         cam.LookAt(FocusTarget());
+        _sprintModifier = pD.isSprinting?pD.sprintSpeed:1;
+        _sprintModifier = pD.camMode? 0:_sprintModifier;
     }
 
     private void CheckMotion()
@@ -30,15 +35,18 @@ public class HeadBobController : MonoBehaviour
 
         PlayMotion(Motion());
     }
+
     private void ResetPosition()
     {
         if (cam.localPosition == _startPos) return;
         cam.localPosition = Vector3.Lerp(cam.localPosition, _startPos, 8 * Time.deltaTime);
-    } 
+    }
+
     private void PlayMotion(Vector3 motion)
     {
         cam.localPosition += motion * Time.deltaTime;
     }
+
     private Vector3 FocusTarget()
     {
         var currentPosition = transform.position;
@@ -46,6 +54,7 @@ public class HeadBobController : MonoBehaviour
         pos += holder.forward * 15.0f;
         return pos;
     }
+
     private float GetSpeed()
     {
         var currentRootTrans = transform.root.position;
@@ -53,11 +62,15 @@ public class HeadBobController : MonoBehaviour
         _lastPosition = currentRootTrans;
         return speed;
     }
+
     private Vector3 Motion()
     {
+        if(!pD.isSprinting)
+            _sprintModifier = 1;
         var pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * pD.frequency) * pD.amplitude;
-        pos.x += Mathf.Cos(Time.time * pD.frequency / 2) * pD.amplitude * 2;
+        pos.y += Mathf.Sin(Time.time * pD.frequency * _sprintModifier) * pD.amplitude * _sprintModifier;
+        pos.x += Mathf.Cos(Time.time * pD.frequency * _sprintModifier / 2) * pD.amplitude * 2 * _sprintModifier;
         return pos;
     }
+    
 }

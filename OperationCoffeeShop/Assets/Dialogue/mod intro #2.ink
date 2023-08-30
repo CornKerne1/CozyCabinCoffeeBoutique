@@ -2,13 +2,14 @@
 
 
 === main ===
-Hello, there!
+- Hello, there!
 * [Hi! How's it going?]
 
--It's going alright...got word from my family back in the City of Mallory that rent is at an all time high...they really are pushing us, aren't they?
-* [That's partly why I ventured out of Mallory; this place is much more affordable and cozy.]
+-Do you have a...
+* [Next]
 
--Agreed! This shop is very welcoming.
+-Actually you know what? Make it dealer's choice, I'm never happy with what I pick for myself anyways, haha.
+* [Next]
 
 -> DONE
 

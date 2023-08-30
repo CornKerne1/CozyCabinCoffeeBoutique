@@ -1,9 +1,20 @@
 #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.
-//////////////////////////////////////////////////////////////////////
-//
-// Copyright (c) 2014 Audiokinetic Inc. / All Rights Reserved
-//
-//////////////////////////////////////////////////////////////////////
+/*******************************************************************************
+The content of this file includes portions of the proprietary AUDIOKINETIC Wwise
+Technology released in source code form as part of the game integration package.
+The content of this file may not be used without valid licenses to the
+AUDIOKINETIC Wwise Technology.
+Note that the use of the game engine is subject to the Unity(R) Terms of
+Service at https://unity3d.com/legal/terms-of-service
+ 
+License Usage
+ 
+Licensees holding valid licenses to the AUDIOKINETIC Wwise Technology may use
+this file in accordance with the end user license agreement provided with the
+software or, alternatively, in accordance with the terms contained
+in a written agreement between you and Audiokinetic Inc.
+Copyright (c) 2023 Audiokinetic Inc.
+*******************************************************************************/
 
 public abstract class AkTriggerHandler : UnityEngine.MonoBehaviour
 {
@@ -11,6 +22,7 @@ public abstract class AkTriggerHandler : UnityEngine.MonoBehaviour
 	public const int START_TRIGGER_ID = 1281810935;
 	public const int DESTROY_TRIGGER_ID = unchecked((int)3936390293);
 	public const int ON_ENABLE_TRIGGER_ID = -320808462;
+	public const int ON_DISABLE_TRIGGER_ID = 716467161;
 
 	///Since our mask is a 32 bits integer, we can't have more than 32 triggers
 	public const int MAX_NB_TRIGGERS = 32;

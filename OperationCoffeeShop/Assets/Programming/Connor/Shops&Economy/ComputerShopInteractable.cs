@@ -11,20 +11,13 @@ public class ComputerShopInteractable : Interactable
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        if (_shopRef)
-        {
-            _shopRef.SetActive(true);
-            gameMode.pD.canMove = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
         {
             _shopRef = Instantiate(shopUI);
             _shopRef.SetActive(true);
-            gameMode.pD.canMove = false;
+            gameMode.playerData.inUI = true;
+            gameMode.playerInput.ToggleMovement();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }

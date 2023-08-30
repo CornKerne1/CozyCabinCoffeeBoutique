@@ -13,9 +13,8 @@ public class TrashVoid : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PickUp") && _playerInteraction.carriedObj != other.gameObject)
-        {
-            other.gameObject.SetActive(false);
-        }
+        if (!other.gameObject.CompareTag("PickUp") || _playerInteraction.carriedObj == other.gameObject) return;
+        other.gameObject.SetActive(false);
+        AkSoundEngine.PostEvent("PLAY_TRASHCAN", gameObject);
     }
 }

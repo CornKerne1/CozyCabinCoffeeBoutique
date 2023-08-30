@@ -1,19 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SplashScreen : MonoBehaviour
 {
-    private void Start()
+    [SerializeField]private GameObject WwiseBank;
+
+    private async void Start()
     {
-        StartCoroutine(Timer());
+        await Timer();
     }
 
-    private IEnumerator Timer()
+    private async Task Timer()
     {
-        yield return new WaitForSeconds(4);
+        await Task.Delay(500);
+        AkSoundEngine.PostEvent("Play_PolyBlossom", gameObject);
+        await Task.Delay(6500);
         SceneManager.LoadScene(1);
+        Destroy(WwiseBank);
     }
 }
 

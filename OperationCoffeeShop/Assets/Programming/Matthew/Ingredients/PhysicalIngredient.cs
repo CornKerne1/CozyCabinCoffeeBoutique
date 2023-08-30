@@ -9,21 +9,20 @@ public class PhysicalIngredient : Interactable
     [SerializeField] public Ingredients thisIngredient;
 
     [SerializeField] private bool inHand;
-    
-    public Dispenser dispenser;
     public Machine machine;
 
     public override void Start()
     {
         base.Start();
         gameObject.tag = "PickUp";
+        playerInteraction = gameMode.player.GetComponent<PlayerInteraction>();
     }
 
 
-    public override void OnInteract(PlayerInteraction pInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
+        base.playerInteraction = interaction;
         IfTutorial();
-        base.playerInteraction = pInteraction;
         base.playerInteraction.Carry(gameObject);
         inHand = true;
     }

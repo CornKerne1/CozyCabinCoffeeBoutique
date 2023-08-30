@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
@@ -19,7 +20,8 @@ public abstract class Customer : MonoBehaviour
     [FormerlySerializedAs("DesiredQuality")]
     public float desiredQuality = .5f;
 
-    [FormerlySerializedAs("ps")] [SerializeField]
+    [SerializeField]
+    private GameObject customerParticle;
     protected new ParticleSystem particleSystem;
 
     private ParticleSystemRenderer _particleSystemRenderer;
@@ -38,26 +40,26 @@ public abstract class Customer : MonoBehaviour
         GameMode.SurpriseCustomers += OnSurprise;
         _surprisePool = new ObjectPool<ParticleSystem>(
             () => Instantiate(surpriseParticleSystem, gameObject.transform, false),
-            system => { system.gameObject.SetActive(true); },
+            system =>
+            {
+                system.gameObject.SetActive(true);
+                system.Play();
+            },
             system => { system.gameObject.SetActive(false); }, Destroy, true, 10, 10);
     }
 
     protected DrinkData GetFavoriteDrink()
     {
-        if (customerData.favoriteDrinkData != null)
-            Debug.Log("Null Favorite drink ");
-        if (customerData != null)
-            Debug.Log("Null  CustomerData ");
-
         return customerData.favoriteDrinkData;
     }
 
     public abstract DrinkData GetDrinkOrder();
 
-    public void OnReceivedDrink()
+    public async void OnReceivedDrink()
     {
+        var obj=Instantiate(customerParticle, transform.position, transform.rotation);
+        particleSystem = obj.GetComponent<ParticleSystem>(); 
         _particleSystemRenderer = particleSystem.GetComponent<ParticleSystemRenderer>();
-
         var quality =
             DrinkData.Compare(customerData.receivedDrinkData, customerData.orderedDrinkData);
         CustomerRating?.Invoke(quality, EventArgs.Empty);
@@ -75,6 +77,13 @@ public abstract class Customer : MonoBehaviour
             gameObject);
         particleSystem.Play();
         Debug.Log("Drink Quality = " + quality);
+        float currentTime=0;
+        while (currentTime < 5)
+        {
+            currentTime += Time.deltaTime;
+            await Task.Yield();
+        }
+        Destroy(obj);
     }
 
     public bool isGoodDrink()
@@ -84,7 +93,7 @@ public abstract class Customer : MonoBehaviour
         return quality > desiredQuality;
     }
 
-    protected void OnSurprise(object sender, EventArgs eventArgs)
+    public void OnSurprise(object sender, EventArgs eventArgs)
     {
         var distance = Vector3.Distance(((GameObject)sender).transform.position, gameObject.transform.position);
         Debug.Log("play surprise with distance: " + distance);
@@ -112,5 +121,11 @@ public abstract class Customer : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         _surprisePool.Release(system);
+    }
+
+    private void OnDestroy()
+    {
+        GameMode.SurpriseCustomers -= OnSurprise;
+
     }
 }

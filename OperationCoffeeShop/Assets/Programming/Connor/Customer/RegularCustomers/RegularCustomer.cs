@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class RegularCustomer : Customer
 {
-    private CustomerAI ai;
+    private CustomerAI _customerAI;
 
     [SerializeField, Header("If true ignore next variable")]
     public bool randomTimeOfDay;
 
     public int spawnTime;
 
-    public void Awake()
+    public new void Awake()
     {
         customerData.customer = this;
-        ai = GetComponent<CustomerAI>();
+        _customerAI = GetComponent<CustomerAI>();
         StartCoroutine(CO_DrinkData());
         //CD.DesiredFlavors(CD.favoriteDrinkData.);
+        base.Awake();
     }
 
     IEnumerator CO_DrinkData()

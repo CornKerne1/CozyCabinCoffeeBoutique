@@ -4,25 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SugarCube : LiquidIngredients
+public class SugarCube : PhysicalIngredient
 {
-    [SerializeField] private GameObject sugarCube;
-    private IEnumerator _coRef;
-    
+    [SerializeField] private IngredientNode iN;
+    private PhysicalIngredient _physicalIngredient;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (_coRef != null) return;
-        _coRef = CO_MakePickUp();
-        StartCoroutine(CO_MakePickUp());
+        TryAddOrDelete(other.gameObject);
     }
 
-    private IEnumerator CO_MakePickUp()
+    public override void OnInteract(PlayerInteraction playerInteraction)
     {
-        yield return new WaitForSeconds(0.2f);
-        var currentTrans = transform;
-        Instantiate(sugarCube, currentTrans.position, currentTrans.rotation);
-        Destroy(transform.gameObject);
-        _coRef = null;
+        this.playerInteraction = playerInteraction;
+        playerInteraction.Carry(gameObject);
+    }
+
+    private async void TryAddOrDelete(GameObject obj)
+    {
+        var iC = obj.GetComponent<IngredientContainer>();
+        if (!iC) return;
+        await iC.AddToContainer(iN, Color.white);
+        playerInteraction.DropCurrentObj();
+        if(dispenser)
+            dispenser.ReleasePoolObject(this);
+        else
+            Destroy(gameObject);
     }
 }

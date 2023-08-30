@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,10 +11,10 @@ public class TreeRandomizer : MonoBehaviour
     private int count;
     
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
-        Initialize();
-        
+        await Initialize();
+        Destroy(this);
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class TreeRandomizer : MonoBehaviour
         
     }
 
-    void Initialize()
+    async Task Initialize()
     {
         var r = Random.Range(0.3f, 1.0f);
         var g = Random.Range(0.5f, 1.0f);

@@ -1,38 +1,53 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
-public abstract class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour,ISaveState
 {
     public GameMode gameMode;
     public Vector3 rotateOffset;
-    [SerializeField] private bool isBreakable;
-    public string breakableSoundEngineEnvent = "PLAY_CERAMICBOWLBREAKING";
+    [SerializeField] protected bool isBreakable;
+    public string breakableSoundEngineEvent = "PLAY_CERAMICBOWLBREAKING";
 
     //Breakable
-    [SerializeField] private GameObject breakablePrefab;
-    private GameObject _breakableRef;
+    [SerializeField] protected GameObject breakablePrefab;
+    [SerializeField] protected Color smashColor;
+    [SerializeField] protected Color smashEmissionColor;
+    [SerializeField] public List<GameObject> carryIgnoreChildList= new List<GameObject>();
+    protected GameObject _breakableRef;
     [FormerlySerializedAs("_pI")] public PlayerInteraction playerInteraction;
-    private Rigidbody _rB;
-    private bool _isWaiting, _isBroken;
-
+    protected Rigidbody _rB;
+    protected bool _isWaiting, _isBroken;
+    public bool hasOnScreenText;
     private Outline _outline;
     private Color _outlineColor;
-
+    protected ObjectPool<Canvas> _poolOfOnScreenPrompt;
+    protected TextMeshProUGUI varOnScreenPromt;
+    [SerializeField] protected Canvas onScreenPrompt;
+    public string onScreenPromptText;
+    protected bool lookAtPlayer;
     private float speed;
-
+    public bool delivered;
+    private bool _respawnable;
+    public Dispenser dispenser;
+    public DeliveryManager.ObjType objTypeShop;
+    void OnEnable() => Load(0);
+    void OnSaveEvent(object sender, EventArgs e) => Save(0);
     public virtual void Awake()
     {
-        gameObject.layer = 3;
+        gameObject.layer =3 ;
         _rB = GetComponent<Rigidbody>();
     }
 
     private void LateUpdate()
     {
-        if (!isBreakable)
-
-            return;
+        if (!_rB) return;
         if (_rB.velocity.magnitude * 10 > speed)
         {
             speed = _rB.velocity.magnitude * 10f;
@@ -42,12 +57,26 @@ public abstract class Interactable : MonoBehaviour
             speed = 0;
         }
     }
-
-    public virtual void Start()
+    public virtual async void Start()
     {
         gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
         InitializeOutline();
         CheckTutorial();
+        OnFocusTextPool();
+        if (!gameMode.dynamicBatcher)
+        {
+            while (!gameMode.dynamicBatcher)
+                await Task.Yield();
+        }
+        await gameMode.dynamicBatcher.AddForBatching(gameObject);
+        SaveSystem.SaveGameEvent += OnSaveEvent;
+    }
+    private void OnFocusTextPool()
+    {
+        _poolOfOnScreenPrompt = new ObjectPool<Canvas>(
+            () => Instantiate(onScreenPrompt, gameObject.transform),
+            prompt => { prompt.gameObject.SetActive(true); },
+            prompt => { prompt.gameObject.SetActive(false); }, Destroy, true, 10, 10);
     }
 
     private void InitializeOutline()
@@ -72,29 +101,35 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void CheckTutorial()
     {
-        if (gameMode.gameModeData.inTutorial)
-        {
-            Debug.Log("Interactable tutorial object: " + gameObject);
-            gameMode.Tutorial.AddedGameObject(gameObject);
-        }
+        if (!gameMode.gameModeData.inTutorial) return;
+        Debug.Log("Interactable tutorial object: " + gameObject);
+        gameMode.Tutorial.AddedGameObject(gameObject);
     }
 
-    public virtual void OnInteract(PlayerInteraction playerInteraction)
+    public virtual void OnInteract(PlayerInteraction interaction)
     {
-        if (!isBreakable) return;
-        this.playerInteraction = playerInteraction;
-        this.playerInteraction.Carry(gameObject);
+        playerInteraction = interaction;
+        playerInteraction.Carry(gameObject);
     }
 
     public virtual void OnFocus()
     {
+        if (hasOnScreenText) ShowOnScreenText();
         if (!_outline) return;
         _outline.enabled = true;
         _outline.OutlineColor = _outlineColor;
     }
 
+    public virtual void ShowOnScreenText()
+    {
+        if (varOnScreenPromt) return;
+        varOnScreenPromt = _poolOfOnScreenPrompt.Get().GetComponentInChildren<TextMeshProUGUI>();
+        varOnScreenPromt.text = onScreenPromptText;
+    }
+
     public virtual void OnLoseFocus()
     {
+        if (hasOnScreenText) HideOnScreenText();
         if (!_outline) return;
         var color = _outlineColor;
         color.a = 0;
@@ -103,66 +138,121 @@ public abstract class Interactable : MonoBehaviour
             StartCoroutine(CO_DisableOutline());
     }
 
+    protected virtual void HideOnScreenText()
+    {
+        if (!varOnScreenPromt) return;
+        _poolOfOnScreenPrompt.Release(varOnScreenPromt.GetComponentInParent<Canvas>());
+        varOnScreenPromt = null;
+    }
+
     private IEnumerator CO_DisableOutline()
     {
         yield return new WaitForSeconds(.01f);
+        var color = _outlineColor;
+        color.a = 0;
+        _outline.OutlineColor = color;
         _outline.enabled = false;
     }
 
-    public virtual void OnAltInteract(PlayerInteraction playerInteraction)
+    public virtual void OnAltInteract(PlayerInteraction interaction)
     {
     }
 
     public virtual void OnDrop()
     {
+        playerInteraction = null;
     }
 
-    private IEnumerator CO_FreezeForClipping()
+    protected async void LookAtPlayer()
     {
-        if (!isBreakable) yield break;
-        _rB.isKinematic = true;
-        yield return new WaitForSeconds(.02f);
-        var transform1 = transform;
-        AkSoundEngine.PostEvent(breakableSoundEngineEnvent, gameObject);
-        _breakableRef = Instantiate(breakablePrefab, transform1.position, transform1.rotation);
+        if (!playerInteraction) return;
+        await LookAt(playerInteraction);
+    }
 
+    protected virtual async Task FreezeForClippingAsync()
+    {
+        if (!isBreakable||_isBroken) return;
+        _isBroken = true;
+        _rB.isKinematic = true;
+        await Task.Delay(10);
+        if (breakableSoundEngineEvent.Length !=0)
+        {
+            AkSoundEngine.PostEvent(breakableSoundEngineEvent, gameObject);
+        }
+        _breakableRef = Instantiate(breakablePrefab, transform.position, transform.rotation);
+        try
+        {
+            await gameMode.dynamicBatcher.AddForBatching(_breakableRef);
+        }
+        catch (Exception e)
+        {
+            //
+        }
+        var particle = Instantiate(gameMode.gameModeData.breakParticle, transform.position, transform.rotation);
+        particle.GetComponent<ParticleSystemRenderer>().material.color = smashColor;
+        particle.GetComponent<ParticleSystemRenderer>().material.SetColor("_EmissionColor", smashEmissionColor);
         foreach (var obj in _breakableRef.GetChildren(transform))
         {
-            obj.GetComponent<Rigidbody>().AddForce(Vector3.up*10f);
-        }
-        gameMode.Surprise(gameObject);
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Renderer>().enabled = false;
-        yield return new WaitForSeconds(.02f);
-        if (TryGetComponent<Radio>(out var r))
-        {
-            foreach (var rC in r.radioChannels)
-                rC.StopChannel();
+            obj.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f);
         }
 
+        float timeElapsed = 0;
+        gameMode.Surprise(gameObject);
+        var colliders = GetComponentsInChildren<Collider>();
+        var renderers = GetComponentsInChildren<Renderer>();
+        foreach (var c in colliders)
+            c.enabled = false;
+        foreach (var rE in renderers)
+            rE.enabled = false;
+        await Task.Delay(20);
         Destroy(gameObject);
+        while (timeElapsed < 5f)
+        {
+            timeElapsed += Time.deltaTime;
+            await Task.Yield();
+        }
+        DestroyImmediate(particle);
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private async Task LookAt(PlayerInteraction interaction)
+    {
+        while (lookAtPlayer)
+        {
+            if (gameMode.camera) transform.LookAt(gameMode.camera.transform);
+            await Task.Yield();
+        }
+    }
+    
+    private async void OnCollisionEnter(Collision collision)
     {
         if (_isBroken) return;
-        if(collision.gameObject.TryGetComponent<LiquidIngredients>(out _)) return;
+        if (collision.gameObject.TryGetComponent<LiquidIngredients>(out _)) return;
         try
         {
             if (!gameMode)
                 gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
             if (!(speed >= gameMode.gameModeData.breakSpeed)) return;
             {
-                _isBroken = true;
-                StartCoroutine(CO_FreezeForClipping());
-                StartCoroutine(collision.gameObject.GetComponent<Interactable>().CO_FreezeForClipping());
+                FreezeForClippingAsync();
+                collision.gameObject.GetComponent<Interactable>().FreezeForClippingAsync();
             }
         }
         catch
         {
             // ignored
         }
+    }
 
+    public virtual void Save(int gameNumber)
+    {
+    }
+
+    public virtual void Load(int gameNumber)
+    {
+    }
+
+    protected virtual void OnDestroy()
+    {
+        SaveSystem.SaveGameEvent += OnSaveEvent;
     }
 }

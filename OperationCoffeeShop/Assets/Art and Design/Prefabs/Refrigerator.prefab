@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &449412838083077031
 Transform:
@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: 0.9940537, y: 0.75999916, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7278836477661911592}
   m_RootOrder: 1
@@ -44,12 +45,13 @@ GameObject:
   - component: {fileID: 7252557782459163479}
   - component: {fileID: 1629025821280501493}
   - component: {fileID: 1455543993}
+  - component: {fileID: 2012026972274755500}
   m_Layer: 0
   m_Name: Refrigerator_BottomDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7808484687134741546
 Transform:
@@ -61,6 +63,7 @@ Transform:
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0.9940537, y: 0.76, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7278836477661911592}
   m_RootOrder: 0
@@ -81,9 +84,10 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2976656744701970494}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -99,7 +103,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.25
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -140,11 +144,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e954847f1d83fc40b35d86ba6fa98b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!95 &1455543993
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,10 +173,27 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &2012026972274755500
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976656744701970494}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4624960877666606487
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +208,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7399088462618475688
 Transform:
@@ -187,6 +220,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.0012263, y: 0.76500094, z: -2.657001}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7278836477661911592}
   m_RootOrder: 3
@@ -209,7 +243,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7278836477661911592
 Transform:
@@ -221,6 +255,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -2.5949, y: -9.651, z: -8.3414}
   m_LocalScale: {x: 0.38825378, y: 0.38825378, z: 0.38825378}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7808484687134741546}
   - {fileID: 449412838083077031}
@@ -248,6 +283,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -263,7 +299,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.5
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -318,12 +354,13 @@ GameObject:
   - component: {fileID: 4276287436740989148}
   - component: {fileID: 6859374440405215023}
   - component: {fileID: 1086524336}
+  - component: {fileID: 4367168269165026898}
   m_Layer: 0
   m_Name: Refrigerator_TopDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &3957805279687815376
 Transform:
@@ -335,6 +372,7 @@ Transform:
   m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 1.0012263, y: 0.765, z: -2.657}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7278836477661911592}
   m_RootOrder: 2
@@ -355,9 +393,10 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9001434814423615835}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -366,7 +405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ceae30f9ef3fcb458d6b51626fa0869, type: 2}
+  - {fileID: 2100000, guid: bd4faada87e7d9b4aaec7f06cfd32bb5, type: 2}
   - {fileID: 2100000, guid: 567face2394c5d641a805870ce18adf6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -374,7 +413,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.25
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -401,8 +440,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e954847f1d83fc40b35d86ba6fa98b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
+  gameMode: {fileID: 0}
   rotateOffset: {x: 0, y: 0, z: 0}
+  isBreakable: 0
+  breakableSoundEngineEvent: PLAY_CERAMICBOWLBREAKING
+  breakablePrefab: {fileID: 0}
+  smashColor: {r: 0, g: 0, b: 0, a: 0}
+  smashEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  playerInteraction: {fileID: 0}
+  hasOnScreenText: 0
+  onScreenPrompt: {fileID: 0}
+  onScreenPromptText: 
+  lookAtPlayer: 0
+  delivered: 0
+  objTypeShop: 0
 --- !u!64 &6859374440405215023
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -419,7 +470,7 @@ MeshCollider:
   m_Mesh: {fileID: 7075988510807825446, guid: 03027c2c0029aa64ca267017b2cda59a, type: 3}
 --- !u!95 &1086524336
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -432,7 +483,24 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &4367168269165026898
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9001434814423615835}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

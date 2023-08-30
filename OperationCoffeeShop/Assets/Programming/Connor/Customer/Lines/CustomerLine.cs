@@ -7,7 +7,7 @@ public class CustomerLine : MonoBehaviour
 {
     public Vector3 lineStartPosition;
 
-    private readonly Queue<CustomerAI> _queue = new Queue<CustomerAI>();
+    private  Queue<CustomerAI> _queue = new Queue<CustomerAI>();
 
     public static event EventHandler DepositMoney;
 
@@ -16,6 +16,12 @@ public class CustomerLine : MonoBehaviour
     private void Start()
     {
         lineStartPosition = transform.position;
+        GameMode.ShopOpen += ResetLine;
+    }
+
+    private void ResetLine(object sender, EventArgs e)
+    {
+        _queue = new Queue<CustomerAI>();
     }
 
     public void GetInLine(GameObject customer)
@@ -73,6 +79,8 @@ public class CustomerLine : MonoBehaviour
         customerAI.customerData.receivedDrinkData = drinkData;
         customerInteractable.DeliverDrink(customerAI.customerData.customer.isGoodDrink());
         var container = drink.GetComponent<IngredientContainer>();
+        DepositMoney?.Invoke(customerAI.customerData.orderedDrinkData.price, EventArgs.Empty);
+        customerAI.customerData.customer.OnReceivedDrink();
         try
         {
             ((CupDispenser)container.dispenser).ReleasePoolObject(container);
@@ -82,8 +90,7 @@ public class CustomerLine : MonoBehaviour
             container.gameObject.SetActive(false);
         }
 
-        DepositMoney?.Invoke(customerAI.customerData.orderedDrinkData.price, EventArgs.Empty);
-        customerAI.customerData.customer.OnReceivedDrink();
+       
     }
 
     public void LeaveWithoutPaying(DrinkData drinkData)

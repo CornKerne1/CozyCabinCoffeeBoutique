@@ -5,7 +5,7 @@
         "AK.Wwise.Unity.Timeline",
         "Unity.Timeline",
         "AK.Wwise.Unity.API.Editor",
-        "AK.Wwise.Unity.API.WwiseTypes","UnityEditor.UI","UnityEngine.UI","UnityEngine.TestRunner","UnityEditor.TestRunner"
+        "AK.Wwise.Unity.API.WwiseTypes"
     ],
     "includePlatforms": [
         "Editor"
@@ -15,7 +15,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [ "!UNITY_SERVER" ],
     "versionDefines": [
         {
             "name": "com.unity.timeline",

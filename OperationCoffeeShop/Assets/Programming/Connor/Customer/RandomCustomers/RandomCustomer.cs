@@ -1,21 +1,21 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 
 public class RandomCustomer : Customer
 {
     [SerializeField] private RandomNameSet nameSet;
-
     private string _customerName;
-
-
     public RandomCustomerSet customerSet;
 
 
-    
-    
-    public void Awake()
+    public new async void Awake()
     {
+
         SpawnRandomCustomer();
 
         _customerName = nameSet.names[Random.Range(0, nameSet.names.Count)];
@@ -27,16 +27,39 @@ public class RandomCustomer : Customer
         var customerDrink = ScriptableObject.CreateInstance<DrinkData>();
 
         SetUpAndModifyDrinkData(customerDrink, favoriteDrink);
+        base.Awake();
     }
 
     private void SpawnRandomCustomer()
     {
-        var customer = Instantiate(customerSet.customers[Random.Range(0, customerSet.customers.Count)]);
+        int index=GetSpawningIndex();
+        var customer = Instantiate(customerSet.customers[ index]);
         var scale = customer.transform.localScale;
         var position = customer.transform.localPosition;
         customer.transform.parent = gameObject.transform; // do not refactor
         customer.transform.localPosition = position;
         customer.transform.localScale = scale;
+    }
+
+    private int GetSpawningIndex()
+    {
+        int index = (int)Random.Range(0f, customerSet.customers.Count);
+        
+        if (customerSet.customerIndexInScene.Count == 0)
+        {
+            customerSet.customerIndexInScene.Add(index);
+        }
+        else
+        {
+            if(index==customerSet.customerIndexInScene[^1])
+            {
+                index++;
+                if (index >= customerSet.customers.Count)
+                    index = index - 2;
+            }
+            customerSet.customerIndexInScene.Add(index);
+        }
+        return index;
     }
 
 
@@ -69,7 +92,7 @@ public class RandomCustomer : Customer
         }
 
         customerData = (CustomerData)ScriptableObject.CreateInstance("CustomerData");
-        customerData.soundEngineEnvent = "PLAY_GENERICVOICE";
+        customerData.soundEngineEnvent = "Play_SFX_Text";
         customerData.name = _customerName;
         customerData.favoriteDrinkData = favoriteDrink;
         customerData.DesiredFlavors(flavorNodes);
@@ -109,5 +132,10 @@ public class RandomCustomer : Customer
     public override DrinkData GetDrinkOrder()
     {
         return customerData.orderedDrinkData;
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }

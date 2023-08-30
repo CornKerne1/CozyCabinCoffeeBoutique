@@ -1,139 +1,226 @@
 using System;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] public PlayerData pD;
     [SerializeField] public GameObject hud;
-    [SerializeField] public GameObject hudRef;
+    public GameObject hudRef;
     [SerializeField] private GameObject pauseM;
+    [SerializeField]private GamepadCursor virtualCursor;
+    public static event EventHandler SprintEvent;
+    public static event EventHandler SprintCanceledEvent;
+    public static event EventHandler JumpEvent;
+    public static event EventHandler JumpCanceledEvent;
+    public static event EventHandler CrouchEvent;
     public static event EventHandler InteractEvent;
     public static event EventHandler AltInteractEvent;
     public static event EventHandler RotateEvent;
     public static event EventHandler RotateCanceledEvent;
     public static event EventHandler MoveObjEvent;
     
-    public static event EventHandler FreeCamEvent;
+    public static event EventHandler CamModeEvent;
+    public static event EventHandler PauseEvent;
 
     private PlayerControls _pC;
     private PlayerControls.FPPlayerActions _fPp;
-    [SerializeField] private InputAction interact;
-    [SerializeField] private InputAction altInteract;
-    [SerializeField] private InputAction pause;
+    private InputAction _interact;
+    private InputAction _altInteract;
+    private InputAction _pause;
+    private InputAction _sprint;
+    private InputAction _jump;
+    private InputAction _crouch;
 
     private Vector2 _mouseInput;
     private Vector2 _currentRotate;
-
-    private float _horizontalMovement;
-    private float _verticalMovement;
+    private Vector2 _movement;
+    
     private Vector2 _currentObjDistance;
+    
+    public String inputType;
 
     public bool disabled;
+    private bool _movingObj,_rotatingObj;
 
-    private void Awake()
+    private async void Awake()
     {
         _pC = new PlayerControls();
         _fPp = _pC.FPPlayer;
-        interact = _fPp.Interact;
-        altInteract = _fPp.Alt_Interact;
-        pause = _fPp.PauseGame;
+        _interact = _fPp.Interact;
+        _altInteract = _fPp.Alt_Interact;
+        _pause = _fPp.PauseGame;
+        _sprint = _fPp.Sprint;
+        _jump = _fPp.Jump;
+        _crouch = _fPp.Crouch;
+    }
+    private async void Start()
+    {
+        await InitializeHudAndCursor();
+        await InitializeMenu();
+        CamModeEvent += ToggleHud;
+        PauseEvent += _Pause;
     }
 
-    private void Start()
+    private Task InitializeHudAndCursor()
     {
-        hudRef=Instantiate(hud);
-        pauseM.SetActive(false);
-        pauseM.GetComponent<PauseMenu>().CloseOptions();
-        FreeCamEvent+=ToggleHud;
+        hudRef = Instantiate(hud);
+        virtualCursor = hudRef.GetComponentInChildren<GamepadCursor>();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        virtualCursor.playerInput = this;
+        virtualCursor.transform.parent = null;
+        return Task.CompletedTask;
     }
-    private void _Pause()
+
+    private Task InitializeMenu()
     {
-        if (!pauseM) return;
-        if (!pD.inUI)
+        virtualCursor.gameObject.SetActive(false);
+        pauseM.SetActive(false);
+        return Task.CompletedTask;
+    }
+
+    private void Update()
+    {
+        if (pD.inUI)
+        {
+            if(!virtualCursor.gameObject.activeSelf)
+                virtualCursor.gameObject.SetActive(true);
+        }
+        else if (virtualCursor.gameObject.activeSelf)
+            virtualCursor.gameObject.SetActive(false);
+    }
+
+    private void _Pause(object sender, EventArgs e)
+    {
+        if (pD.inUI)
+        {
+            if (!pauseM.activeSelf) return;
+            pauseM.GetComponent<PauseMenu>().StartGame();
+            pD.inUI = false;
+            ToggleHud();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
         {
             pauseM.SetActive(true);
             pauseM.GetComponent<PauseMenu>().pD = pD;
             pD.inUI = true;
-        }
-        else
-        {
-            if (!pauseM) return;
-            pauseM.GetComponent<PauseMenu>().StartGame();
-            pD.inUI = false;
+            ToggleHud(); 
         }
     }
 
-    public void OnEnable()
+    public async void OnEnable()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         disabled = false;
 
         _fPp.Enable();
-        _fPp.MoveForwardBackwards.started += ctx => _verticalMovement = ctx.ReadValue<float>();
-        _fPp.MoveForwardBackwards.canceled += ctx => _verticalMovement = ctx.ReadValue<float>();
-        _fPp.MoveLeftRight.started += ctx => _horizontalMovement = ctx.ReadValue<float>();
-        _fPp.MoveLeftRight.canceled += ctx => _horizontalMovement = ctx.ReadValue<float>();
+        
+        _fPp.Mouse.started += OnMousePerformed;
+        _fPp.Mouse.performed += OnMousePerformed;
+        _fPp.Mouse.canceled += OnMousePerformed;
+        _fPp.Mouse.Enable();
 
-        _fPp.MouseX.performed += ctx => _mouseInput.x = ctx.ReadValue<float>();
-        _fPp.MouseX.Enable();
+        _fPp.Move.started +=ctx=>_movement=ctx.ReadValue<Vector2>();
+        _fPp.Move.performed +=ctx=>_movement=ctx.ReadValue<Vector2>();
+        _fPp.Move.canceled +=ctx=>_movement=ctx.ReadValue<Vector2>();
+        _fPp.Move.Enable();
 
-        _fPp.MouseY.performed += ctx => _mouseInput.y = ctx.ReadValue<float>();
-        _fPp.MouseY.Enable();
+        _sprint.performed += Sprint;
+        _sprint.canceled += SprintCanceled;
+        _sprint.Enable();
+        
+        _jump.performed += Jump;
+        _jump.canceled += JumpCanceled;
+        _jump.Enable();
+        
+        _crouch.performed += Crouch;
+        _crouch.Enable();
+        
+        _interact.performed += Interact;
+        _interact.Enable();
 
-        interact.performed += Interact;
-        interact.Enable();
+        _altInteract.performed += Alt_Interact;
+        _altInteract.Enable();
 
-        altInteract.performed += Alt_Interact;
-        altInteract.Enable();
-
-        pause.canceled += Pause;
-        pause.Enable();
+        _pause.canceled += Pause;
+        _pause.Enable();
 
         _fPp.Rotate.performed += ctx => _currentRotate = ctx.ReadValue<Vector2>();
         _fPp.Rotate.performed += Rotate;
         _fPp.Rotate.canceled += RotateCanceled;
         _fPp.Rotate.Enable();
-
-        _fPp.MoveObj.performed += ctx => _currentObjDistance = ctx.ReadValue<Vector2>();
-        _fPp.MoveObj.performed += MoveObj;
+        _fPp.MoveObj.performed+= MoveObj;
         _fPp.MoveObj.Enable();
         
-        _fPp.FreeCam.performed += FreeCam;
+        //_fPp.FreeCam.performed += FreeCam;
         _fPp.FreeCam.Enable();
     }
-
-    private void MoveObj(InputAction.CallbackContext obj)
+    private async void OnMousePerformed(InputAction.CallbackContext ctx)
     {
-        MoveObjEvent?.Invoke(this, EventArgs.Empty);
+        _mouseInput = ctx.ReadValue<Vector2>();
+        inputType = ctx.control.ToString();
     }
+    
 
-    public void OnDisable()
+    private async void MoveObj(InputAction.CallbackContext ctx)
+    {
+        if (_movingObj)
+        {
+            _movingObj = false;
+            return;
+        }
+        _currentObjDistance = ctx.ReadValue<Vector2>();
+        MoveObjEvent?.Invoke(this, EventArgs.Empty);
+        inputType = ctx.control.ToString();
+        if (inputType.Contains("dpad"))
+        {
+            _movingObj = true;
+            await HandleDpadMovement();
+        }
+    }
+    private async Task HandleDpadMovement()
+    {
+        while (_movingObj)
+        {
+            await Task.Delay(100);
+            if (!_movingObj) return;
+            MoveObjEvent?.Invoke(this, EventArgs.Empty);
+        }
+    }
+    public async void OnDisable()
     {
         disabled = true;
-        _fPp.MoveForwardBackwards.Disable();
-        _fPp.MoveLeftRight.Disable();
-        _fPp.MouseX.Disable();
-        _fPp.MouseY.Disable();
-        interact.Disable();
-        altInteract.Disable();
+        _fPp.Move.Disable();
+        _fPp.Mouse.Disable();
+        _sprint.Disable();
+        _jump.Disable();
+        _crouch.Disable();
+        _interact.Disable();
+        _altInteract.Disable();
         _fPp.Rotate.Disable();
         _fPp.FreeCam.Disable();
     }
-    private void ToggleHud(object sender, EventArgs e)
+    public void ToggleHud(object sender, EventArgs e)
     {
         hudRef.SetActive(!hudRef.activeSelf);
     }
 
     public float GetHorizontalMovement()
     {
-        return _horizontalMovement;
+        return _movement.x;
     }
 
     public float GetVerticalMovement()
     {
-        return -_verticalMovement;
+        return _movement.y;
     }
 
     public float GetCurrentObjDistance()
@@ -165,13 +252,7 @@ public class PlayerInput : MonoBehaviour
     {
         AltInteractEvent?.Invoke(this, EventArgs.Empty);
     }
-
-    private void Pause(InputAction.CallbackContext obj)
-    {
-        _Pause();
-    }
-
-    private void Rotate(InputAction.CallbackContext obj)
+    private async void Rotate(InputAction.CallbackContext obj)
     {
         RotateEvent?.Invoke(this, EventArgs.Empty);
     }
@@ -181,9 +262,79 @@ public class PlayerInput : MonoBehaviour
         RotateCanceledEvent?.Invoke(this, EventArgs.Empty);
     }
 
-    private void FreeCam(InputAction.CallbackContext obj)
+    public void FreeCam()
     {
-        FreeCamEvent?.Invoke(null, EventArgs.Empty);
+        CamModeEvent?.Invoke(null, EventArgs.Empty);
     }
 
+    public void ToggleHud()
+    {
+        if(pD.inUI&& hudRef.activeSelf)
+            hudRef.SetActive(false);
+        else
+            hudRef.SetActive(true);
+            
+    }
+
+    public void ToggleMovement()
+    {
+        pD.canMove = !pD.canMove;
+        pD.neckClamp = pD.neckClamp == 0 ? 77.3f : 0f;
+    }
+
+    private static void Pause(InputAction.CallbackContext obj)
+    {
+        PauseEvent?.Invoke(null, EventArgs.Empty);
+    }
+
+    private static void Sprint(InputAction.CallbackContext obj)
+    {
+        SprintEvent?.Invoke(null, EventArgs.Empty);
+    }
+    private static void Jump(InputAction.CallbackContext obj)
+    {
+        JumpEvent?.Invoke(null, EventArgs.Empty);
+    }
+    private static void JumpCanceled(InputAction.CallbackContext obj)
+    {
+        JumpCanceledEvent?.Invoke(null, EventArgs.Empty);
+    }
+    private static void Crouch(InputAction.CallbackContext obj)
+    {
+        CrouchEvent?.Invoke(null, EventArgs.Empty);
+    }
+    private void SprintCanceled(InputAction.CallbackContext obj)
+    {
+        SprintCanceledEvent?.Invoke(null, EventArgs.Empty);
+    }
+    public InputAction GetMoveAction()
+    {
+        return _fPp.Move;
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        return this;
+    }
+    private void OnDestroy()
+    {
+        pD.canMove = true;
+        pD.neckClamp = 77.3f;
+        pD.canJump = true;
+        CamModeEvent -= ToggleHud;
+        PauseEvent -= _Pause;
+        disabled = true;
+        _fPp.Move.Disable();
+        _fPp.Mouse.Disable();
+        _sprint.Disable();
+        _jump.Disable();
+        _crouch.Disable();
+        _interact.Disable();
+        _altInteract.Disable();
+        _fPp.Rotate.Disable();
+        _fPp.FreeCam.Disable();
+        _fPp.PauseGame.Disable();
+        Destroy(GetComponent<PlayerMovement>());
+        
+    }
 }

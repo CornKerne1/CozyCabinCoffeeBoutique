@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3079979969909535404}
   - component: {fileID: 3079979969909535405}
   - component: {fileID: 3079979969909535406}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LineTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.048, y: -1.629, z: 1.537}
   m_LocalScale: {x: 3.33635, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3079979970520565092}
   m_RootOrder: 1
@@ -53,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -108,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b54c6187fdc5ec42bcea4723255b74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerTag: Customer
 --- !u!1 &3079979970520565094
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +138,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.100821875, z: 0, w: 0.99490446}
   m_LocalPosition: {x: 2.9, y: 0.52024704, z: -4.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3928617207567819808}
   - {fileID: 3079979969909535407}
@@ -154,8 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineStartPosition: {x: 0, y: 0, z: 0}
-  next: 0
-  NextCustomer: {fileID: 0}
+  nextCustomer: {fileID: 0}
 --- !u!1 &4453655572270644890
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +185,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4536660549057647992}
   m_Father: {fileID: 3079979970520565092}
@@ -216,6 +220,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3928617207567819808}
   m_RootOrder: 0
@@ -235,10 +240,11 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4630645746901845571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

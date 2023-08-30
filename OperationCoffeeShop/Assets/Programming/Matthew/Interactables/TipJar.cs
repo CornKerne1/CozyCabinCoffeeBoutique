@@ -10,29 +10,15 @@ public class TipJar : Interactable
     [SerializeField] private GameObject halfJar;
     [SerializeField] private GameObject fullJar;
 
-    public override void OnInteract(PlayerInteraction playerInteraction)
+    public override void OnInteract(PlayerInteraction interaction)
     {
-        this.pI = playerInteraction;
-        playerInteraction.Carry(gameObject);
+        this.pI = interaction;
+        interaction.Carry(gameObject);
     }
 
-    public override void OnAltInteract(PlayerInteraction playerInteraction)
+    public override void OnAltInteract(PlayerInteraction interaction)
     {
         
     }
     
-
-    private void Update()
-    {
-        if (gameMode.gameModeData.reputation > 5)
-        {
-            fullJar.SetActive(true);
-            halfJar.SetActive(false);
-        }
-        else
-        {
-            halfJar.SetActive(true);
-            fullJar.SetActive(false);
-        }
-    }
 }

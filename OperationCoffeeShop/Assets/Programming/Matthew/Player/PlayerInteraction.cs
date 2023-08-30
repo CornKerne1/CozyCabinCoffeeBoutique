@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -10,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private Vector3 interactionPoint;
     [SerializeField] private LayerMask interactionLayer;
+    [SerializeField] private LayerMask dofLayer;
     private Interactable _currentInteractable;
     private bool _rotate;
     private float _carryDistance;
@@ -21,6 +24,11 @@ public class PlayerInteraction : MonoBehaviour
     private MinFloatParameter _dofDistanceParameter;
     private ClampedFloatParameter _dofAperture;
     private ClampedFloatParameter _startAperture;
+    private GameMode _gameMode;
+
+    public Vector3 carriedObjPosition;
+
+    private IEnumerator _coRoutine;
 
     private bool _blur;
 
@@ -35,6 +43,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Start()
     {
         InitializeDof();
+       _gameMode = GameObject.FindGameObjectWithTag("GameMode").GetComponent<GameMode>();
     }
 
     private void Update()
@@ -58,6 +67,7 @@ public class PlayerInteraction : MonoBehaviour
         profile.TryGet(out dof);
         _dofDistanceParameter = dof.focusDistance;
         _dofAperture = dof.aperture;
+        _dofDistanceParameter.value = 5f;
         var d = _dofAperture;
         _startAperture = d;
         _startAperture.value = 32.0f;
@@ -65,8 +75,15 @@ public class PlayerInteraction : MonoBehaviour
         _carryDistance = playerData.carryDistance;
     }
 
+    public void ToggleDof()
+    {
+        var value = Math.Abs( - 1000f) < .001f ? 5f : 1000f;
+        _dofDistanceParameter.value = value;
+    }
+
     private void RaycastCheck()
     {
+        if(!_cam) return;
         if (playerData.busyHands)
         {
             if (!_currentInteractable && carriedObj)
@@ -74,7 +91,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000)) return; //
+            if (!Physics.Raycast(_cam.ViewportPointToRay(interactionPoint), out RaycastHit hit, 1000000, dofLayer)) return;
             _dofDistanceParameter.value = Mathf.Lerp(_dofDistanceParameter.value, hit.distance, .5f);
             if (hit.distance <= playerData.interactDistance)
             {
@@ -100,13 +117,14 @@ public class PlayerInteraction : MonoBehaviour
         if (!playerData.busyHands || !carriedObj) return;
         _currentInteractable.OnFocus();
         var camTrans = _cam.transform;
-        carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position,
+        carriedObjPosition =Vector3.Lerp(carriedObj.transform.position,
             camTrans.position + camTrans.forward * _carryDistance, Time.deltaTime * playerData.smooth);
+        carriedObj.transform.position = carriedObjPosition;
     }
 
     private void HandleRotation()
     {
-        if (!playerData.busyHands || !carriedObj || !_rotate) return;
+        if (!playerData.busyHands || !carriedObj || !_rotate||playerData.inUI) return;
         try
         {
             var root = carriedObj.transform.root;
@@ -117,15 +135,15 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (playerInput.GetCurrentRotate().x > 0)
             {
-                carriedObj.transform.Rotate(playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0, 0);
+                carriedObj.transform.Rotate(playerData.objRotationSpeed, 0, 0);
             }
             else if (playerInput.GetCurrentRotate().x < 0)
             {
-                carriedObj.transform.Rotate(0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed, 0);
+                carriedObj.transform.Rotate(0, playerData.objRotationSpeed, 0);
             }
             else if (playerInput.GetCurrentRotate().y > 0)
             {
-                carriedObj.transform.Rotate(0, 0, playerInput.GetCurrentObjDistance() * playerData.objRotationSpeed);
+                carriedObj.transform.Rotate(0, 0, playerData.objRotationSpeed);
             }
             else if (playerInput.GetCurrentRotate().y < 0)
             {
@@ -144,6 +162,11 @@ public class PlayerInteraction : MonoBehaviour
     private void TryInteract(object sender, EventArgs e)
     {
         if (playerData.inUI) return;
+        if (playerData.camMode)
+        {
+            TryTakePicture();
+            return;
+        }
         if (playerData.busyHands)
         {
             DropCurrentObj();
@@ -158,6 +181,35 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void Throw()
+    {
+        var throwable = _currentInteractable;
+        var tRB = throwable.GetComponent<Rigidbody>();
+        DropCurrentObj();
+        tRB.AddForce(_gameMode.camera.transform.forward*350);
+    }
+
+    private void TryTakePicture()
+    {
+        if (_coRoutine==null)
+        {
+            StartCoroutine(TakePicture());
+        }
+    }
+
+    private IEnumerator TakePicture()
+    {
+        _coRoutine = TakePicture();
+        var camInteractable = carriedObj.GetComponent<CameraInteractable>();
+        camInteractable.HideUI();
+        yield return new WaitForEndOfFrame();
+        _gameMode.TakePicture();
+        yield return new WaitForSeconds(.08f);
+        camInteractable.TakePictureUI();
+        yield return new WaitForSeconds(.35f);
+        _coRoutine = null;
+    }
+
     private void TryRotate(object sender, EventArgs e)
     {
         _rotate = true;
@@ -170,8 +222,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void MoveObj(object sender, EventArgs e)
     {
-        if (_rotate) return;
-        _carryDistance = Mathf.Clamp(_carryDistance + (playerInput.GetCurrentObjDistance() / 8),
+        if (_rotate||playerData.inUI) return;
+        _carryDistance = Mathf.Clamp(_carryDistance + (playerInput.GetCurrentObjDistance() / 24f),
             playerData.carryDistance - playerData.carryDistanceClamp,
             playerData.carryDistance + playerData.carryDistanceClamp);
     }
@@ -179,6 +231,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Alt(object sender, EventArgs e)
     {
         if (!carriedObj) return;
+        if(playerData.inUI) return;
         if (_currentInteractable)
         {
             _currentInteractable.OnAltInteract(this);
@@ -203,6 +256,7 @@ public class PlayerInteraction : MonoBehaviour
             RemoveCurrentInteractable();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
+            HandleIgnoreChildList(carriedObj,false);
             ingredientContainer.inHand = false;
             var rot = new Quaternion(Quaternion.identity.x + ingredientContainer.rotateOffset.x,
                 Quaternion.identity.y + ingredientContainer.rotateOffset.y,
@@ -228,6 +282,7 @@ public class PlayerInteraction : MonoBehaviour
                 _currentInteractable.OnLoseFocus();
             carriedObj.GetComponent<Rigidbody>().isKinematic = false;
             carriedObj.GetComponent<Collider>().isTrigger = false;
+            HandleIgnoreChildList(carriedObj,false);
             if (_currentInteractable)
             {
                 _currentInteractable.OnDrop();
@@ -251,14 +306,33 @@ public class PlayerInteraction : MonoBehaviour
         obj.TryGetComponent(out _currentInteractable);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Collider>().isTrigger = true;
+        HandleIgnoreChildList(obj,true);
         carriedObj = obj;
         playerData.busyHands = true;
         _carryDistance = Mathf.Clamp(_carryDistance - 1, playerData.carryDistance - playerData.carryDistanceClamp,
             playerData.carryDistance + playerData.carryDistanceClamp);
     }
 
+    private void HandleIgnoreChildList(GameObject obj,bool condition)
+    {
+        obj.TryGetComponent<Interactable>(out var interactable);
+        if (!interactable||interactable.carryIgnoreChildList.Count <= 0) return;
+        foreach (var childObj in interactable.carryIgnoreChildList)
+        {
+            try
+            {
+                childObj.GetComponent<Collider>().isTrigger = condition;
+                obj.GetComponent<Rigidbody>().isKinematic = condition;
+            }
+            catch
+            {
+            }
+        }
+    }
+
     public void CameraBlur()
     {
+        if(_dofAperture==null) return;
         if (_blur)
         {
             _dofAperture.value = 1.0f;

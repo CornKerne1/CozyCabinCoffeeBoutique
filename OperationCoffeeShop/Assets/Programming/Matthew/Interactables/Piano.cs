@@ -1,37 +1,73 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Piano : Interactable
 {
-    bool on = false;
+    [FormerlySerializedAs("radioChannel")] [SerializeField]
+    private GameObject pianoChannel;
 
-    Animator animator;
+    public int currentChannel;
+    private bool _isOn;
 
-    private void Start()
+    [FormerlySerializedAs("radioChannels")]
+    public List<PianoChannel> pianoChannels = new List<PianoChannel>();
+
+    private bool _on;
+
+    private Animator _animator;
+    private static readonly int On = Animator.StringToHash("On");
+
+
+    [FormerlySerializedAs("_numberOfChannels")] [SerializeField]
+    private int numberOfChannels = 3;
+
+    public override void Start()
     {
-        animator = gameObject.GetComponent<Animator>();
-    }
-    public override void OnInteract(PlayerInteraction playerInteraction)
-    {
-        if (!GameMode.IsEventPlayingOnGameObject("Play_Piano", this.gameObject))
+        base.Start();
+        _animator = gameObject.GetComponent<Animator>();
+        for (var i = 0; i < numberOfChannels; i++)
         {
-            on = true;
-            AkSoundEngine.PostEvent("Play_Piano", this.gameObject);
-            animator.SetBool("On", true);
+            Transform transform1;
+            PianoChannel pC = Instantiate(pianoChannel, (transform1 = transform).position, transform1.rotation)
+                .GetComponent<PianoChannel>();
+            pC.piano = this;
+            pC.transform.SetParent(this.transform);
+            pianoChannels.Add(pC);
+            pC.channel = pianoChannels.Count - 1;
         }
-        else if (on)
+
+        foreach (var pC in pianoChannels)
         {
-            on = false;
-            AkSoundEngine.PostEvent("VolumeZero_Piano", this.gameObject);
-            animator.SetBool("On",false);
+            pC.StartChannel();
+        }
+
+        currentChannel = Random.Range(0, pianoChannels.Count);
+       
+    }
+
+    public override void OnInteract(PlayerInteraction interaction)
+    {
+        if (_on)
+        {
+            _on = false;
+            _animator.SetBool(On, false);
+            if (currentChannel > pianoChannels.Count || currentChannel < 0)
+                currentChannel = 0;
+            foreach (var p in pianoChannels.Where(p => p.channel == currentChannel))
+                p.StopChannel();
         }
         else
         {
-            on = true;
-            AkSoundEngine.PostEvent("VolumeOne_Piano", this.gameObject);
-            animator.SetBool("On",true);
-
+            _on = true;
+            _animator.SetBool(On, true);
+            currentChannel += 1;
+            if (currentChannel >= pianoChannels.Count || currentChannel < 0)
+                currentChannel = 0;
+            foreach (var p in pianoChannels)
+                if (p.channel == currentChannel)
+                    p.PlayChannel();
         }
     }
 }

@@ -9,7 +9,7 @@ public class FPSCounter : MonoBehaviour
     [SerializeField]private Text fpsCounter;
     private void Update()
     {
-        var fps = (int)(1f / Time.unscaledDeltaTime);
-        fpsCounter.text = fps + "FRAMES";
+        var fps = Time.frameCount / Time.time;
+        fpsCounter.text = (int)fps + "FRAMES";
     }
 }
